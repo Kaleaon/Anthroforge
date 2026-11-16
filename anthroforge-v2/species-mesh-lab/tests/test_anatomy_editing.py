@@ -2,14 +2,16 @@
 import json
 import tempfile
 import unittest
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
 
 from anatomy_editing import (
     AnatomyStateError, MemberOverride, instance_from_dict, instance_to_dict,
     load_profiles, new_instance, resolve_anatomy, save_instance, load_instance,
 )
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 class AnatomyEditingTests(unittest.TestCase):
