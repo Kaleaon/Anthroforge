@@ -148,3 +148,10 @@ def test_unknown_genital_module_is_not_silently_ignored():
     )
     assert report.ok is False
     assert any("unknown anatomy part" in error for error in report.errors)
+
+
+def test_manifest_rejects_unknown_or_malformed_body_plans():
+    data = genital_manifest()
+    data["plan_fit"]["plans"] = ["plan.biped", {"not": "a plan"}]
+    errors = validate_part_manifest(data)
+    assert any("non-empty strings" in error for error in errors)
