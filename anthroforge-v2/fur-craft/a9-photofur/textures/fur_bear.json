@@ -1,0 +1,20 @@
+{
+  "name": "bear",
+  "species": "American black bear (Ursus americanus), flank, summer coat",
+  "source_file": "bear_black.jpg",
+  "crop_xy_size": [
+    560,
+    470,
+    560
+  ],
+  "tile_cm": 15.0,
+  "px_per_cm": 68.3,
+  "strand_angle_raw_deg": 2.0,
+  "rotation_applied_deg": -88.0,
+  "strand_angle_final_deg": 90.0,
+  "coherence": 0.28,
+  "seam_ratio_x": 4.902,
+  "seam_ratio_y": 5.495,
+  "seam_ratio_pre_x": 5.081,
+  "seam_ratio_pre_y": 6.396
+}

@@ -1,0 +1,183 @@
+{
+ "BaraWolfBody": {
+  "verts": 69190,
+  "weight_sum_min": 1.0,
+  "weight_sum_max": 1.0,
+  "verts_sum_off_1pct": 0,
+  "zero_weight_verts": 0,
+  "verts_over_4_influences": 0,
+  "max_influences": 4,
+  "weight_edge_L1_p99": 0.237,
+  "weight_edge_L1_max": 0.997,
+  "distant_weight_worst": [
+   {
+    "bone": "mixamorig:Head",
+    "vert": 37597,
+    "dist_m": 0.372
+   },
+   {
+    "bone": "mixamorig:Spine2",
+    "vert": 68061,
+    "dist_m": 0.334
+   },
+   {
+    "bone": "mixamorig:Spine1",
+    "vert": 61900,
+    "dist_m": 0.333
+   },
+   {
+    "bone": "mixamorig:Neck",
+    "vert": 49933,
+    "dist_m": 0.325
+   },
+   {
+    "bone": "mixamorig:Hips",
+    "vert": 52563,
+    "dist_m": 0.314
+   }
+  ]
+ },
+ "EyeL": {
+  "verts": 1488,
+  "weight_sum_min": 1.0,
+  "weight_sum_max": 1.0,
+  "verts_sum_off_1pct": 0,
+  "zero_weight_verts": 0,
+  "verts_over_4_influences": 0,
+  "max_influences": 1,
+  "weight_edge_L1_p99": 0.0,
+  "weight_edge_L1_max": 0.0,
+  "distant_weight_worst": [
+   {
+    "bone": "mixamorig:Head",
+    "vert": 884,
+    "dist_m": 0.24
+   }
+  ]
+ },
+ "EyeR": {
+  "verts": 1488,
+  "weight_sum_min": 1.0,
+  "weight_sum_max": 1.0,
+  "verts_sum_off_1pct": 0,
+  "zero_weight_verts": 0,
+  "verts_over_4_influences": 0,
+  "max_influences": 1,
+  "weight_edge_L1_p99": 0.0,
+  "weight_edge_L1_max": 0.0,
+  "distant_weight_worst": [
+   {
+    "bone": "mixamorig:Head",
+    "vert": 644,
+    "dist_m": 0.24
+   }
+  ]
+ },
+ "__support__": {
+  "BaraWolfBody:mixamorig:LeftArm:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 4472
+  },
+  "BaraWolfBody:mixamorig:LeftForeArm:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 1504
+  },
+  "BaraWolfBody:pivot:elbow:mixamorig:LeftForeArm": {
+   "offset_m": 0.0147,
+   "local_radius_m": 0.1041,
+   "offset_over_radius": 0.141,
+   "station_verts": 606
+  },
+  "BaraWolfBody:mixamorig:LeftHand:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 1025
+  },
+  "BaraWolfBody:pivot:wrist:mixamorig:LeftHand": {
+   "offset_m": 0.051,
+   "local_radius_m": 0.074,
+   "offset_over_radius": 0.689,
+   "station_verts": 280
+  },
+  "BaraWolfBody:mixamorig:LeftUpLeg:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 6539
+  },
+  "BaraWolfBody:mixamorig:LeftLeg:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 3297
+  },
+  "BaraWolfBody:pivot:knee:mixamorig:LeftLeg": {
+   "offset_m": 0.0514,
+   "local_radius_m": 0.1331,
+   "offset_over_radius": 0.386,
+   "station_verts": 1842
+  },
+  "BaraWolfBody:mixamorig:LeftFoot:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 3012
+  },
+  "BaraWolfBody:pivot:ankle:mixamorig:LeftFoot": {
+   "offset_m": 0.0916,
+   "local_radius_m": 0.0962,
+   "offset_over_radius": 0.952,
+   "station_verts": 704
+  },
+  "BaraWolfBody:mixamorig:RightArm:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 4308
+  },
+  "BaraWolfBody:mixamorig:RightForeArm:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 1518
+  },
+  "BaraWolfBody:pivot:elbow:mixamorig:RightForeArm": {
+   "offset_m": 0.0186,
+   "local_radius_m": 0.1042,
+   "offset_over_radius": 0.178,
+   "station_verts": 623
+  },
+  "BaraWolfBody:mixamorig:RightUpLeg:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 6718
+  },
+  "BaraWolfBody:mixamorig:RightLeg:rings": {
+   "rings_of_16": 16,
+   "weighted_verts": 3258
+  },
+  "BaraWolfBody:pivot:knee:mixamorig:RightLeg": {
+   "offset_m": 0.053,
+   "local_radius_m": 0.1324,
+   "offset_over_radius": 0.401,
+   "station_verts": 1826
+  }
+ },
+ "__bind__": {
+  "mixamorig:LeftArm": {
+   "angle_from_down_deg": 72.0,
+   "angle_from_horizontal_deg": -18.0
+  },
+  "mixamorig:RightArm": {
+   "angle_from_down_deg": 72.0,
+   "angle_from_horizontal_deg": -18.0
+  },
+  "mixamorig:LeftUpLeg": {
+   "angle_from_down_deg": 29.5,
+   "angle_from_horizontal_deg": -60.5
+  },
+  "mixamorig:RightUpLeg": {
+   "angle_from_down_deg": 29.7,
+   "angle_from_horizontal_deg": -60.30000000000001
+  }
+ },
+ "__census__": {
+  "total_bones": 65,
+  "finger_bones": 40,
+  "tail_bones": 0,
+  "ear_bones": 0,
+  "twist_helper_bones": [],
+  "clavicle_bones": [
+   "mixamorig:LeftShoulder",
+   "mixamorig:RightShoulder"
+  ]
+ }
+}

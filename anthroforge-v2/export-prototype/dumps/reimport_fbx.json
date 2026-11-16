@@ -1,0 +1,630 @@
+{
+ "armatures": [
+  {
+   "object": "Object_5",
+   "bone_count": 66,
+   "bones": [
+    "_rootJoint",
+    "pelvis_01",
+    "spine_lower_02",
+    "spine_mid_03",
+    "spine_upper_04",
+    "neck_05",
+    "head_06",
+    "ear_base.l_07",
+    "ear_tip.l_08",
+    "ear_base.r_09",
+    "ear_tip.r_010",
+    "shoulder.l_011",
+    "bicep.l_012",
+    "forearm.l_013",
+    "hand.l_014",
+    "pinky_base.l_015",
+    "pinky_mid.l_016",
+    "pinky_tip.l_017",
+    "ring_finger_base.l_018",
+    "ring_finger_mid.l_019",
+    "ring_finger_tip.l_020",
+    "middle_finger_base.l_021",
+    "middle_finger_mid.l_022",
+    "middle_finger_tip.l_023",
+    "index_finger_base.l_024",
+    "index_finger_mid.l_025",
+    "index_finger_tip.l_026",
+    "thumb_base.l_027",
+    "thumb_mid.l_028",
+    "thumb_tip.l_029",
+    "shoulder.r_030",
+    "bicep.r_031",
+    "forearm.r_032",
+    "hand.r_033",
+    "pinky_base.r_034",
+    "pinky_mid.r_035",
+    "pinky_tip.r_036",
+    "ring_finger_base.r_037",
+    "ring_finger_mid.r_038",
+    "ring_finger_tip.r_039",
+    "middle_finger_base.r_040",
+    "middle_finger_mid.r_041",
+    "middle_finger_tip.r_042",
+    "index_finger_base.r_043",
+    "index_finger_mid.r_044",
+    "index_finger_tip.r_045",
+    "thumb_base.r_046",
+    "thumb_mid.r_047",
+    "thumb_tip.r_048",
+    "femur.l_049",
+    "shin.l_050",
+    "foot.l_051",
+    "toes.l_00",
+    "femur.r_052",
+    "shin.r_053",
+    "foot.r_054",
+    "toes.r_055",
+    "tail1_056",
+    "tail2_057",
+    "tail3_058",
+    "tail4_059",
+    "tail5_060",
+    "tail6_061",
+    "tail7_062",
+    "tail8_063",
+    "tail9_064"
+   ]
+  }
+ ],
+ "meshes": [
+  {
+   "object": "0",
+   "verts": 4051,
+   "polys": 7084,
+   "vgroup_count": 52,
+   "vgroups": [
+    "pelvis_01",
+    "spine_lower_02",
+    "spine_mid_03",
+    "spine_upper_04",
+    "neck_05",
+    "head_06",
+    "shoulder.l_011",
+    "bicep.l_012",
+    "forearm.l_013",
+    "hand.l_014",
+    "pinky_base.l_015",
+    "pinky_mid.l_016",
+    "pinky_tip.l_017",
+    "ring_finger_base.l_018",
+    "ring_finger_mid.l_019",
+    "ring_finger_tip.l_020",
+    "middle_finger_base.l_021",
+    "middle_finger_mid.l_022",
+    "middle_finger_tip.l_023",
+    "index_finger_base.l_024",
+    "index_finger_mid.l_025",
+    "index_finger_tip.l_026",
+    "thumb_base.l_027",
+    "thumb_mid.l_028",
+    "thumb_tip.l_029",
+    "shoulder.r_030",
+    "bicep.r_031",
+    "forearm.r_032",
+    "hand.r_033",
+    "pinky_base.r_034",
+    "pinky_mid.r_035",
+    "pinky_tip.r_036",
+    "ring_finger_base.r_037",
+    "ring_finger_mid.r_038",
+    "ring_finger_tip.r_039",
+    "middle_finger_base.r_040",
+    "middle_finger_mid.r_041",
+    "middle_finger_tip.r_042",
+    "index_finger_base.r_043",
+    "index_finger_mid.r_044",
+    "index_finger_tip.r_045",
+    "thumb_base.r_046",
+    "thumb_mid.r_047",
+    "thumb_tip.r_048",
+    "femur.l_049",
+    "shin.l_050",
+    "foot.l_051",
+    "toes.l_00",
+    "femur.r_052",
+    "shin.r_053",
+    "foot.r_054",
+    "toes.r_055"
+   ],
+   "weighted_verts": 4051,
+   "max_influences": 4,
+   "shape_keys": [
+    "Basis",
+    "target_0",
+    "target_1",
+    "target_2",
+    "target_3"
+   ],
+   "materials": [
+    "body"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    139.826,
+    129.7387,
+    89.6926
+   ]
+  },
+  {
+   "object": "1",
+   "verts": 914,
+   "polys": 1411,
+   "vgroup_count": 2,
+   "vgroups": [
+    "neck_05",
+    "head_06"
+   ],
+   "weighted_verts": 914,
+   "max_influences": 2,
+   "shape_keys": [
+    "Basis",
+    "target_0",
+    "target_1",
+    "target_2",
+    "target_3"
+   ],
+   "materials": [
+    "head"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    16.0217,
+    20.6123,
+    43.882
+   ]
+  },
+  {
+   "object": "2",
+   "verts": 360,
+   "polys": 634,
+   "vgroup_count": 1,
+   "vgroups": [
+    "head_06"
+   ],
+   "weighted_verts": 360,
+   "max_influences": 1,
+   "shape_keys": [
+    "Basis",
+    "target_0",
+    "target_1",
+    "target_2",
+    "target_3"
+   ],
+   "materials": [
+    "eyelashes"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    15.5776,
+    3.7224,
+    4.4767
+   ]
+  },
+  {
+   "object": "clipboard_clipboard_clip_0",
+   "verts": 48,
+   "polys": 28,
+   "vgroup_count": 0,
+   "vgroups": [],
+   "weighted_verts": 0,
+   "max_influences": 0,
+   "shape_keys": [],
+   "materials": [
+    "clipboard_clip"
+   ],
+   "parent": "clipboard",
+   "dims": [
+    0.0714,
+    0.0224,
+    0.0092
+   ]
+  },
+  {
+   "object": "clipboard_clipboard_paper_0",
+   "verts": 4,
+   "polys": 2,
+   "vgroup_count": 0,
+   "vgroups": [],
+   "weighted_verts": 0,
+   "max_influences": 0,
+   "shape_keys": [],
+   "materials": [
+    "clipboard_paper"
+   ],
+   "parent": "clipboard",
+   "dims": [
+    0.1044,
+    0.1732,
+    0.0
+   ]
+  },
+  {
+   "object": "clipboard_clipboard_wood_0",
+   "verts": 56,
+   "polys": 28,
+   "vgroup_count": 0,
+   "vgroups": [],
+   "weighted_verts": 0,
+   "max_influences": 0,
+   "shape_keys": [],
+   "materials": [
+    "clipboard_wood"
+   ],
+   "parent": "clipboard",
+   "dims": [
+    0.1206,
+    0.1963,
+    0.0053
+   ]
+  },
+  {
+   "object": "Icosphere",
+   "verts": 42,
+   "polys": 80,
+   "vgroup_count": 0,
+   "vgroups": [],
+   "weighted_verts": 0,
+   "max_influences": 0,
+   "shape_keys": [],
+   "materials": [],
+   "parent": null,
+   "dims": [
+    1.9021,
+    2.0,
+    2.0
+   ]
+  },
+  {
+   "object": "Object_77",
+   "verts": 1271,
+   "polys": 2014,
+   "vgroup_count": 14,
+   "vgroups": [
+    "pelvis_01",
+    "spine_lower_02",
+    "spine_mid_03",
+    "spine_upper_04",
+    "shoulder.l_011",
+    "bicep.l_012",
+    "forearm.l_013",
+    "shoulder.r_030",
+    "bicep.r_031",
+    "forearm.r_032",
+    "femur.l_049",
+    "shin.l_050",
+    "femur.r_052",
+    "shin.r_053"
+   ],
+   "weighted_verts": 1271,
+   "max_influences": 4,
+   "shape_keys": [],
+   "materials": [
+    "lab_coat"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    0.5253,
+    0.9722,
+    0.5414
+   ]
+  },
+  {
+   "object": "Object_79",
+   "verts": 796,
+   "polys": 1278,
+   "vgroup_count": 5,
+   "vgroups": [
+    "spine_upper_04",
+    "neck_05",
+    "head_06",
+    "shoulder.l_011",
+    "shoulder.r_030"
+   ],
+   "weighted_verts": 796,
+   "max_influences": 4,
+   "shape_keys": [],
+   "materials": [
+    "collie_mane"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    0.2503,
+    0.3793,
+    0.2177
+   ]
+  },
+  {
+   "object": "Object_81",
+   "verts": 352,
+   "polys": 584,
+   "vgroup_count": 5,
+   "vgroups": [
+    "head_06",
+    "ear_base.l_07",
+    "ear_tip.l_08",
+    "ear_base.r_09",
+    "ear_tip.r_010"
+   ],
+   "weighted_verts": 352,
+   "max_influences": 2,
+   "shape_keys": [],
+   "materials": [
+    "collie_ears"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    0.5582,
+    0.2578,
+    0.2806
+   ]
+  },
+  {
+   "object": "Object_87",
+   "verts": 478,
+   "polys": 800,
+   "vgroup_count": 6,
+   "vgroups": [
+    "shin.l_050",
+    "foot.l_051",
+    "toes.l_00",
+    "shin.r_053",
+    "foot.r_054",
+    "toes.r_055"
+   ],
+   "weighted_verts": 478,
+   "max_influences": 2,
+   "shape_keys": [],
+   "materials": [
+    "shoes"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    0.4111,
+    0.097,
+    0.2991
+   ]
+  },
+  {
+   "object": "Object_89",
+   "verts": 92,
+   "polys": 150,
+   "vgroup_count": 1,
+   "vgroups": [
+    "head_06"
+   ],
+   "weighted_verts": 92,
+   "max_influences": 1,
+   "shape_keys": [],
+   "materials": [
+    "collie_eyes"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    0.3028,
+    0.1469,
+    0.1006
+   ]
+  },
+  {
+   "object": "Object_91",
+   "verts": 335,
+   "polys": 614,
+   "vgroup_count": 10,
+   "vgroups": [
+    "spine_lower_02",
+    "tail1_056",
+    "tail2_057",
+    "tail3_058",
+    "tail4_059",
+    "tail5_060",
+    "tail6_061",
+    "tail7_062",
+    "tail8_063",
+    "tail9_064"
+   ],
+   "weighted_verts": 335,
+   "max_influences": 2,
+   "shape_keys": [],
+   "materials": [
+    "collie_tail"
+   ],
+   "parent": "Object_5",
+   "dims": [
+    0.5024,
+    0.6193,
+    0.3393
+   ]
+  }
+ ],
+ "actions": [
+  {
+   "name": "Key.001|Object_5|collie_skeleton|female_skeleton.000Action",
+   "fcurves": 4,
+   "frame_range": [
+    1.0,
+    200.0
+   ]
+  },
+  {
+   "name": "Key.002|Object_5|collie_skeleton|female_skeleton.000Action",
+   "fcurves": 4,
+   "frame_range": [
+    1.0,
+    200.0
+   ]
+  },
+  {
+   "name": "Key|Object_5|collie_skeleton|female_skeleton.000Action",
+   "fcurves": 4,
+   "frame_range": [
+    1.0,
+    200.0
+   ]
+  },
+  {
+   "name": "Object_5|Object_5|collie_skeleton|female_skeleton.000Action",
+   "fcurves": 669,
+   "frame_range": [
+    1.0,
+    200.0
+   ]
+  }
+ ],
+ "objects": [
+  {
+   "name": "0",
+   "type": "MESH"
+  },
+  {
+   "name": "1",
+   "type": "MESH"
+  },
+  {
+   "name": "2",
+   "type": "MESH"
+  },
+  {
+   "name": "6082b5d2587f40c5abaa34043e74f97b.fbx",
+   "type": "EMPTY"
+  },
+  {
+   "name": "clipboard",
+   "type": "EMPTY"
+  },
+  {
+   "name": "clipboard_clipboard_clip_0",
+   "type": "MESH"
+  },
+  {
+   "name": "clipboard_clipboard_paper_0",
+   "type": "MESH"
+  },
+  {
+   "name": "clipboard_clipboard_wood_0",
+   "type": "MESH"
+  },
+  {
+   "name": "collie_body",
+   "type": "EMPTY"
+  },
+  {
+   "name": "collie_ears",
+   "type": "EMPTY"
+  },
+  {
+   "name": "collie_eyes",
+   "type": "EMPTY"
+  },
+  {
+   "name": "collie_mane",
+   "type": "EMPTY"
+  },
+  {
+   "name": "collie_shoes",
+   "type": "EMPTY"
+  },
+  {
+   "name": "collie_skeleton",
+   "type": "EMPTY"
+  },
+  {
+   "name": "collie_tail",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Icosphere",
+   "type": "MESH"
+  },
+  {
+   "name": "labcoat",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_2",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_5",
+   "type": "ARMATURE"
+  },
+  {
+   "name": "Object_76",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_77",
+   "type": "MESH"
+  },
+  {
+   "name": "Object_78",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_79",
+   "type": "MESH"
+  },
+  {
+   "name": "Object_80",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_81",
+   "type": "MESH"
+  },
+  {
+   "name": "Object_82",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_83",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_84",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_85",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_86",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_87",
+   "type": "MESH"
+  },
+  {
+   "name": "Object_88",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_89",
+   "type": "MESH"
+  },
+  {
+   "name": "Object_90",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Object_91",
+   "type": "MESH"
+  },
+  {
+   "name": "RootNode",
+   "type": "EMPTY"
+  },
+  {
+   "name": "Sketchfab_model",
+   "type": "EMPTY"
+  }
+ ]
+}

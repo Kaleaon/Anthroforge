@@ -1,0 +1,8 @@
+00:27.174  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/fur_paintable_rev1.blend"
+shave_patch: 1031 verts in patch core, min density now 0.025
+Info: Saved as "fur_paintable_rev2.blend"
+repaint stats: length mean 0.526 | density mean 0.82 | lift chest mean 0.17
+SAVED /home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/fur_paintable_rev2.blend
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

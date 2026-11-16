@@ -1,0 +1,12 @@
+{
+ "hand": {
+  "verts": 1270,
+  "tris": 1440
+ },
+ "foot": {
+  "verts": 1092,
+  "tris": 1243
+ },
+ "hand_bones": 16,
+ "foot_bones": 11
+}

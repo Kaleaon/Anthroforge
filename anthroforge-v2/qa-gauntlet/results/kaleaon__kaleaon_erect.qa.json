@@ -1,0 +1,56 @@
+{
+ "file": "kaleaon_erect.glb",
+ "path": "/home/hatch/workspace/bodies-3d/kaleaon/kaleaon_erect.glb",
+ "size_bytes": 8382844,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [],
+ "meshes": 1,
+ "primitives": 1,
+ "vertices": 149666,
+ "triangles": 299360,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 0,
+ "morph_targets_max_per_primitive": 0,
+ "bbox_min": [
+  -0.5604,
+  0.0,
+  -0.6053
+ ],
+ "bbox_max": [
+  0.7782,
+  2.2828,
+  0.6178
+ ],
+ "bbox_dims_m": [
+  1.3386,
+  2.2828,
+  1.2231
+ ],
+ "max_extent_m": 2.2828,
+ "scale_flag": null,
+ "textures": {
+  "total": 0,
+  "embedded": 0,
+  "external": 0
+ },
+ "materials": 1,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "warn",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

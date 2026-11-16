@@ -1,0 +1,24 @@
+{
+  "stripes": {
+    "seed": 4177,
+    "count": 46,
+    "width_px": 15,
+    "branch_prob": 0.4,
+    "softness": 0.35,
+    "colour": "#241407"
+  },
+  "rosettes": {
+    "seed": 903,
+    "cols": 8,
+    "radius_px": 38,
+    "density": 0.92,
+    "softness": 0.3
+  },
+  "spots": {
+    "seed": 51,
+    "cols": 9,
+    "radius_px": 26,
+    "density": 0.9,
+    "softness": 0.25
+  }
+}

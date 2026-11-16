@@ -1,0 +1,32 @@
+[
+ {
+  "variant": "straight",
+  "strands": 950,
+  "alpha_coverage_gt_0_5": 0.824,
+  "alpha_mean": 0.795
+ },
+ {
+  "variant": "wavy",
+  "strands": 880,
+  "alpha_coverage_gt_0_5": 0.816,
+  "alpha_mean": 0.792
+ },
+ {
+  "variant": "clumped",
+  "strands": 1050,
+  "alpha_coverage_gt_0_5": 0.785,
+  "alpha_mean": 0.763
+ },
+ {
+  "variant": "tail_plume",
+  "strands": 760,
+  "alpha_coverage_gt_0_5": 0.808,
+  "alpha_mean": 0.783
+ },
+ {
+  "variant": "guard_ruff",
+  "strands": 520,
+  "alpha_coverage_gt_0_5": 0.743,
+  "alpha_mean": 0.716
+ }
+]

@@ -1,0 +1,20 @@
+00:00.780  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/geonodes_fur.blend"
+PATCHED AF_Fur_ruff
+PATCHED AF_Fur_back
+PATCHED AF_Fur_belly
+PATCHED AF_Fur_coat
+PATCHED AF_Fur_bodyhair
+Info: Saved as "geonodes_fur.blend"
+PATCH_SAVED
+15:59.987  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/curtain_card_texture.png'
+RENDER curtain bake done
+BAKE_DONE
+21:26.356  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/render_geonodes_closeup.png'
+CLOSEUP2_DONE s=324.8
+23:00.739  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/render_geonodes_strands.png'
+HERO2_DONE s=94.6
+FINISH_ALL_DONE
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit
+FINISH_EXIT=0

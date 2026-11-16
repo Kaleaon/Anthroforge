@@ -1,0 +1,20 @@
+{
+ "shoulder_height_m": 0.83,
+ "head_length_m": 0.257,
+ "head_width_m": 0.132,
+ "ear_height_m": 0.098,
+ "nose_to_tailbase_m": 1.318,
+ "tail_reach_m": 0.399,
+ "brisket_bottom_m": 0.43,
+ "elbow_z_m": 0.42,
+ "ZB_over_L_measured": 0.528,
+ "ear_over_L_measured": 0.392,
+ "targets": {
+  "shoulder_height": 0.82,
+  "skull_L": 0.25,
+  "ZB_over_L": 0.53,
+  "ear_over_L": 0.4,
+  "tail_len": 0.4,
+  "headbody_stations": 1.3
+ }
+}

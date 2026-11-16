@@ -1,0 +1,77 @@
+{
+ "file": "free_horse_3d_model.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/free-horse-dinoreplicas/free_horse_3d_model.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 7,
+  "used": 7,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 0,
+  "channels": 0,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 0,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 0.0
+ },
+ "topology": {
+  "boundary_edges": 2836,
+  "nonmanifold_edges": 0,
+  "edges_total": 68681,
+  "duplicate_faces": 0,
+  "unused_vertices": 0,
+  "vertices_total": 23893,
+  "split_vertex_ratio": 0.0535
+ },
+ "winding": {
+  "conflicts": 0,
+  "faces_checked": 44842,
+  "faces_inverted": 80,
+  "closed_meshes": 0,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.0018
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 7,
+  "uv_out_of_range_frac_max": 0.0,
+  "overlap_estimate_max": 0.0152,
+  "seam_edges": 0,
+  "shared_edges": 65845,
+  "overlap_estimate_area_weighted": 0.0048
+ },
+ "texel": {
+  "per_prim": [],
+  "mean_texel_per_m": null,
+  "cv": null,
+  "prims_measured": 0
+ },
+ "weights": {
+  "prims_checked": 0,
+  "verts": 0,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 0,
+  "mean_influences": null,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 0,
+  "skins_joints_unused": 0,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "warn",
+  "winding": "ok",
+  "uv": "ok",
+  "texel": "n/a",
+  "materials": "ok",
+  "weights": "n/a",
+  "animation": "n/a"
+ }
+}

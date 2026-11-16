@@ -1,0 +1,103 @@
+[
+ {
+  "file": "orc_bust_skinned.glb",
+  "path": "/home/hatch/workspace/anthroforge-v2/autoskin-prototype/orc_bust_skinned.glb",
+  "size_bytes": 47659544,
+  "parses": true,
+  "error": null,
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "extensions_used": [],
+  "meshes": 6,
+  "primitives": 6,
+  "vertices": 38046,
+  "triangles": 70004,
+  "degenerate_triangles": 0,
+  "nan_vertices": 0,
+  "morph_targets_total": 0,
+  "morph_targets_max_per_primitive": 0,
+  "bbox_min": [
+   -3.46,
+   -1.3491,
+   -2.7211
+  ],
+  "bbox_max": [
+   3.4599,
+   2.4146,
+   1.3393
+  ],
+  "bbox_dims_m": [
+   6.9199,
+   3.7637,
+   4.0604
+  ],
+  "max_extent_m": 6.9199,
+  "scale_flag": null,
+  "textures": {
+   "total": 6,
+   "embedded": 6,
+   "external": 0
+  },
+  "materials": 2,
+  "animations": 0,
+  "skin": {
+   "present": true,
+   "count": 1,
+   "index": 0,
+   "joint_count": 36,
+   "joint_names": [
+    "Root",
+    "Pelvis",
+    "GenBase",
+    "Gen01",
+    "Gen02",
+    "Gen03",
+    "Gen04",
+    "GenScrot",
+    "Hip_L",
+    "Knee_L",
+    "Ankle_L",
+    "Foot_L",
+    "Hip_R",
+    "Knee_R",
+    "Ankle_R",
+    "Foot_R",
+    "Spine1",
+    "Chest",
+    "Neck",
+    "Head",
+    "Ear_L",
+    "Ear_R",
+    "Jaw",
+    "Shoulder_L",
+    "Elbow_L",
+    "Wrist_L",
+    "Shoulder_R",
+    "Elbow_R",
+    "Wrist_R",
+    "Wing_L1",
+    "Wing_L2",
+    "Wing_R1",
+    "Wing_R2",
+    "Tail_1",
+    "Tail_2",
+    "Tail_3"
+   ],
+   "has_inverse_bind_matrices": true,
+   "contract_matched": 36,
+   "contract_missing": [],
+   "contract_extra": [],
+   "contract_full_match": true
+  },
+  "primitives_with_joints": 6,
+  "primitives_with_weights": 6,
+  "status": {
+   "parse": "ok",
+   "skin": "ok",
+   "contract": "ok",
+   "morphs": "warn",
+   "textures": "ok",
+   "geometry": "ok",
+   "scale": "ok"
+  }
+ }
+]

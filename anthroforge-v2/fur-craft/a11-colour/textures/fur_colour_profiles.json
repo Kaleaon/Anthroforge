@@ -1,0 +1,197 @@
+{
+  "format": "anthroforge.fur_colour v2 (extends APP_BLUEPRINT 9.5)",
+  "convention": "t: 0 = root, 1 = tip; card textures: row 0 = root",
+  "profiles": {
+    "wolf.guard.dorsal": {
+      "pattern": "agouti",
+      "melanism": 0.0,
+      "bands": [
+        {
+          "centre": 0.0,
+          "width": 0.3,
+          "colour": "#38312b",
+          "ground": true
+        },
+        {
+          "centre": 0.34,
+          "width": 0.26,
+          "colour": "#a97e4f",
+          "pulse": true
+        },
+        {
+          "centre": 0.6,
+          "width": 0.24,
+          "colour": "#d9c49a",
+          "pulse": true
+        },
+        {
+          "centre": 0.9,
+          "width": 0.3,
+          "colour": "#201c19"
+        }
+      ],
+      "distance_colour": "#76634a",
+      "pheo_fraction": 0.499
+    },
+    "wolf.undercoat": {
+      "pattern": "solid",
+      "melanism": 0.0,
+      "bands": [
+        {
+          "centre": 0.0,
+          "width": 0.4,
+          "colour": "#6f6455",
+          "ground": true
+        },
+        {
+          "centre": 0.62,
+          "width": 0.9,
+          "colour": "#a3967f"
+        }
+      ],
+      "distance_colour": "#9a8d78",
+      "pheo_fraction": 0.0
+    },
+    "wolf.ventral": {
+      "pattern": "solid",
+      "melanism": 0.0,
+      "bands": [
+        {
+          "centre": 0.0,
+          "width": 0.3,
+          "colour": "#8a6f4d",
+          "ground": true
+        },
+        {
+          "centre": 0.6,
+          "width": 0.95,
+          "colour": "#c8ab7d"
+        }
+      ],
+      "distance_colour": "#c0a377",
+      "pheo_fraction": 0.0
+    },
+    "tabby.ground": {
+      "pattern": "agouti",
+      "melanism": 0.0,
+      "bands": [
+        {
+          "centre": 0.0,
+          "width": 0.26,
+          "colour": "#453729",
+          "ground": true
+        },
+        {
+          "centre": 0.3,
+          "width": 0.22,
+          "colour": "#b0824a",
+          "pulse": true
+        },
+        {
+          "centre": 0.5,
+          "width": 0.1,
+          "colour": "#4c3b2a"
+        },
+        {
+          "centre": 0.66,
+          "width": 0.2,
+          "colour": "#c09a5c",
+          "pulse": true
+        },
+        {
+          "centre": 0.9,
+          "width": 0.26,
+          "colour": "#231b13"
+        }
+      ],
+      "distance_colour": "#6e5535",
+      "pheo_fraction": 0.42
+    },
+    "tabby.stripe": {
+      "pattern": "agouti",
+      "melanism": 0.97,
+      "bands": [
+        {
+          "centre": 0.0,
+          "width": 0.26,
+          "colour": "#453729",
+          "ground": true
+        },
+        {
+          "centre": 0.3,
+          "width": 0.22,
+          "colour": "#b0824a",
+          "pulse": true
+        },
+        {
+          "centre": 0.5,
+          "width": 0.1,
+          "colour": "#4c3b2a"
+        },
+        {
+          "centre": 0.66,
+          "width": 0.2,
+          "colour": "#c09a5c",
+          "pulse": true
+        },
+        {
+          "centre": 0.9,
+          "width": 0.26,
+          "colour": "#231b13"
+        }
+      ],
+      "distance_colour": "#3e3124",
+      "pheo_fraction": 0.004
+    },
+    "tiger.ground": {
+      "pattern": "agouti",
+      "melanism": 0.0,
+      "bands": [
+        {
+          "centre": 0.0,
+          "width": 0.34,
+          "colour": "#3d2c1c",
+          "ground": true
+        },
+        {
+          "centre": 0.62,
+          "width": 0.3,
+          "colour": "#c07f36",
+          "pulse": true
+        },
+        {
+          "centre": 0.93,
+          "width": 0.26,
+          "colour": "#191008"
+        }
+      ],
+      "distance_colour": "#5d3f20",
+      "pheo_fraction": 0.3
+    },
+    "tiger.stripe": {
+      "pattern": "agouti",
+      "melanism": 0.97,
+      "bands": [
+        {
+          "centre": 0.0,
+          "width": 0.34,
+          "colour": "#3d2c1c",
+          "ground": true
+        },
+        {
+          "centre": 0.62,
+          "width": 0.3,
+          "colour": "#c07f36",
+          "pulse": true
+        },
+        {
+          "centre": 0.93,
+          "width": 0.26,
+          "colour": "#191008"
+        }
+      ],
+      "distance_colour": "#362618",
+      "pheo_fraction": 0.003
+    }
+  }
+}

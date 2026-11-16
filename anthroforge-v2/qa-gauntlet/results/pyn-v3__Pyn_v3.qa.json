@@ -1,0 +1,59 @@
+{
+ "file": "Pyn_v3.glb",
+ "path": "/home/hatch/workspace/bodies-3d/pyn-v3/Pyn_v3.glb",
+ "size_bytes": 5932128,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [
+  "KHR_materials_clearcoat",
+  "KHR_materials_sheen"
+ ],
+ "meshes": 13,
+ "primitives": 14,
+ "vertices": 29300,
+ "triangles": 45014,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 12,
+ "morph_targets_max_per_primitive": 4,
+ "bbox_min": [
+  -0.8678,
+  0.0,
+  -0.853
+ ],
+ "bbox_max": [
+  0.8678,
+  1.9945,
+  0.1547
+ ],
+ "bbox_dims_m": [
+  1.7355,
+  1.9945,
+  1.0077
+ ],
+ "max_extent_m": 1.9945,
+ "scale_flag": null,
+ "textures": {
+  "total": 4,
+  "embedded": 4,
+  "external": 0
+ },
+ "materials": 10,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "ok",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

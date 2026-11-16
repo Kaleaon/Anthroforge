@@ -1,0 +1,10 @@
+PASS  mode_set(SCULPT) :: mode=SCULPT
+FAIL  sculpt.brush_stroke :: AttributeError('bpy_struct: attribute "brush" from "Sculpt" is read-only')
+FAIL  sculpt.mesh_filter(SMOOTH) :: TypeError('Converting py args to operator properties:: keyword "repeat" unrecognized')
+PASS  sculpt.dynamic_topology_toggle :: use_dyntopo=n/a
+PASS  object.voxel_remesh :: verts 8 -> 152
+PASS  object.multires_subdivide :: total_levels=1
+PASS  attributes .sculpt_face_set/.sculpt_mask :: round-trip read OK
+PASS  mesh.symmetrize (edit mode) :: executed
+FAIL  context.window is None in -b :: window=<bpy_struct, Window at 0x7f1ccbec11e0>
+FAIL  VIEW_3D areas available :: areas=[]

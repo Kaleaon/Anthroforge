@@ -1,0 +1,79 @@
+{
+ "file": "eyeball.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/eyeball-crislart/eyeball.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 2,
+  "used": 2,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 0,
+  "channels": 0,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 0,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 0.0
+ },
+ "topology": {
+  "boundary_edges": 128,
+  "nonmanifold_edges": 0,
+  "edges_total": 6112,
+  "duplicate_faces": 0,
+  "unused_vertices": 0,
+  "vertices_total": 2084,
+  "split_vertex_ratio": 0.0307
+ },
+ "winding": {
+  "conflicts": 0,
+  "faces_checked": 4032,
+  "faces_inverted": 0,
+  "closed_meshes": 0,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.0
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 2,
+  "uv_out_of_range_frac_max": 0.0,
+  "overlap_estimate_max": 0.0186,
+  "seam_edges": 0,
+  "shared_edges": 5984,
+  "overlap_estimate_area_weighted": 0.0186
+ },
+ "texel": {
+  "per_prim": [
+   48941.3
+  ],
+  "mean_texel_per_m": 48941.3,
+  "cv": 0.0,
+  "prims_measured": 1
+ },
+ "weights": {
+  "prims_checked": 0,
+  "verts": 0,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 0,
+  "mean_influences": null,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 0,
+  "skins_joints_unused": 0,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "warn",
+  "winding": "ok",
+  "uv": "ok",
+  "texel": "ok",
+  "materials": "ok",
+  "weights": "n/a",
+  "animation": "n/a"
+ }
+}

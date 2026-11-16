@@ -1,0 +1,76 @@
+{
+ "file": "bara_wolf_avatar.glb",
+ "path": "/home/hatch/workspace/stick-figure-avatar/furry/bara_wolf_avatar.glb",
+ "parses": true,
+ "error": null,
+ "materials_check": {
+  "defined": 2,
+  "used": 2,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 4,
+  "channels": 780,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 0,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 15.967
+ },
+ "topology": {
+  "boundary_edges": 14030,
+  "nonmanifold_edges": 0,
+  "edges_total": 199840,
+  "duplicate_faces": 0,
+  "unused_vertices": 0,
+  "vertices_total": 72166,
+  "split_vertex_ratio": 0.1093
+ },
+ "winding": {
+  "conflicts": 0,
+  "faces_checked": 22625,
+  "faces_inverted": 2,
+  "closed_meshes": 0,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.0001
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 3,
+  "uv_out_of_range_frac_max": 0.0,
+  "overlap_estimate_max": 0.5278,
+  "seam_edges": 0,
+  "shared_edges": 185810,
+  "overlap_estimate_area_weighted": 0.1336
+ },
+ "texel": {
+  "per_prim": [],
+  "mean_texel_per_m": null,
+  "cv": null,
+  "prims_measured": 0
+ },
+ "weights": {
+  "prims_checked": 3,
+  "verts": 72166,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 4,
+  "mean_influences": 2.65,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 65,
+  "skins_joints_unused": 13,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "warn",
+  "winding": "ok",
+  "uv": "ok",
+  "texel": "n/a",
+  "materials": "ok",
+  "weights": "warn",
+  "animation": "ok"
+ }
+}

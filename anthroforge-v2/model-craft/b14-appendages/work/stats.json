@@ -1,0 +1,28 @@
+{
+ "tail_canine_bushy": {
+  "verts": 312,
+  "tris": 616,
+  "bones": 6,
+  "meshes": [
+   "tail_volume",
+   "tail_core"
+  ]
+ },
+ "ear_canine_upright": {
+  "R": {
+   "verts": 265,
+   "tris": 500,
+   "bones": 4
+  },
+  "L": {
+   "verts": 265,
+   "tris": 500,
+   "bones": 4
+  }
+ },
+ "horns_curved_pair": {
+  "verts": 304,
+  "tris": 600,
+  "bones": 0
+ }
+}

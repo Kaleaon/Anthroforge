@@ -1,0 +1,56 @@
+{
+ "file": "model.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/alternative-bara-julianemilioqwe/source/model.glb",
+ "size_bytes": 15251388,
+ "parses": true,
+ "error": null,
+ "generator": "libmeshy",
+ "extensions_used": [],
+ "meshes": 1,
+ "primitives": 1,
+ "vertices": 423272,
+ "triangles": 847612,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 0,
+ "morph_targets_max_per_primitive": 0,
+ "bbox_min": [
+  -0.9516,
+  -0.8441,
+  -0.2573
+ ],
+ "bbox_max": [
+  0.9518,
+  0.8457,
+  0.2608
+ ],
+ "bbox_dims_m": [
+  1.9033,
+  1.6899,
+  0.5181
+ ],
+ "max_extent_m": 1.9033,
+ "scale_flag": null,
+ "textures": {
+  "total": 0,
+  "embedded": 0,
+  "external": 0
+ },
+ "materials": 0,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "warn",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

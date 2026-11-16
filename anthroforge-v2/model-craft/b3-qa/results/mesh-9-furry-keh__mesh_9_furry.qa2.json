@@ -1,0 +1,80 @@
+{
+ "file": "mesh_9_furry.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/mesh-9-furry-keh/mesh_9_furry.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 2,
+  "used": 2,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 5,
+  "channels": 430,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 329,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 9.633
+ },
+ "topology": {
+  "boundary_edges": 3152,
+  "nonmanifold_edges": 0,
+  "edges_total": 18052,
+  "duplicate_faces": 0,
+  "unused_vertices": 0,
+  "vertices_total": 7200,
+  "split_vertex_ratio": 0.2243
+ },
+ "winding": {
+  "conflicts": 0,
+  "faces_checked": 10984,
+  "faces_inverted": 3,
+  "closed_meshes": 0,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.0003
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 2,
+  "uv_out_of_range_frac_max": 0.0,
+  "overlap_estimate_max": 0.0173,
+  "seam_edges": 0,
+  "shared_edges": 14900,
+  "overlap_estimate_area_weighted": 0.0044
+ },
+ "texel": {
+  "per_prim": [
+   427.8,
+   1431.1
+  ],
+  "mean_texel_per_m": 929.4,
+  "cv": 0.54,
+  "prims_measured": 2
+ },
+ "weights": {
+  "prims_checked": 2,
+  "verts": 7200,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 4,
+  "mean_influences": 1.47,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 61,
+  "skins_joints_unused": 6,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "warn",
+  "winding": "ok",
+  "uv": "ok",
+  "texel": "warn",
+  "materials": "ok",
+  "weights": "warn",
+  "animation": "warn"
+ }
+}

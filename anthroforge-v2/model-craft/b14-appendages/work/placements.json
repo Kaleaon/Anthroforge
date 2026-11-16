@@ -1,0 +1,43 @@
+{
+ "ear.R": {
+  "location": [
+   0.295,
+   -0.15,
+   0.185
+  ],
+  "rotation_euler_deg": [
+   -10.0,
+   22.0,
+   -21.0
+  ],
+  "scale": 3.3,
+  "site": "base head v3 native ear site (hidden Ear_L/R centre +/-0.314,-0.166,0.238)"
+ },
+ "ear.L": {
+  "location": [
+   -0.295,
+   -0.15,
+   0.185
+  ],
+  "rotation_euler_deg": [
+   -10.0,
+   -22.0,
+   21.0
+  ],
+  "scale": 3.3,
+  "site": "base head v3 native ear site (hidden Ear_L/R centre +/-0.314,-0.166,0.238)"
+ },
+ "head.top horns": {
+  "location": [
+   0.0,
+   -0.1,
+   0.2717
+  ],
+  "scale": 3.0
+ },
+ "tail.base": {
+  "anchor": "skin-weight Hips_02 cluster, mesh world frame",
+  "H_units": 492.1,
+  "scale": 273.37
+ }
+}

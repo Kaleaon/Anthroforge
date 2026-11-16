@@ -1,0 +1,330 @@
+{
+ "armatures": [
+  {
+   "object": "DAE skins (first controller)",
+   "bone_count": 66,
+   "bones": [
+    "_rootJoint",
+    "pelvis_01",
+    "spine_lower_02",
+    "spine_mid_03",
+    "spine_upper_04",
+    "neck_05",
+    "head_06",
+    "ear_base_l_07",
+    "ear_tip_l_08",
+    "ear_base_r_09",
+    "ear_tip_r_010",
+    "shoulder_l_011",
+    "bicep_l_012",
+    "forearm_l_013",
+    "hand_l_014",
+    "pinky_base_l_015",
+    "pinky_mid_l_016",
+    "pinky_tip_l_017",
+    "ring_finger_base_l_018",
+    "ring_finger_mid_l_019",
+    "ring_finger_tip_l_020",
+    "middle_finger_base_l_021",
+    "middle_finger_mid_l_022",
+    "middle_finger_tip_l_023",
+    "index_finger_base_l_024",
+    "index_finger_mid_l_025",
+    "index_finger_tip_l_026",
+    "thumb_base_l_027",
+    "thumb_mid_l_028",
+    "thumb_tip_l_029",
+    "shoulder_r_030",
+    "bicep_r_031",
+    "forearm_r_032",
+    "hand_r_033",
+    "pinky_base_r_034",
+    "pinky_mid_r_035",
+    "pinky_tip_r_036",
+    "ring_finger_base_r_037",
+    "ring_finger_mid_r_038",
+    "ring_finger_tip_r_039",
+    "middle_finger_base_r_040",
+    "middle_finger_mid_r_041",
+    "middle_finger_tip_r_042",
+    "index_finger_base_r_043",
+    "index_finger_mid_r_044",
+    "index_finger_tip_r_045",
+    "thumb_base_r_046",
+    "thumb_mid_r_047",
+    "thumb_tip_r_048",
+    "femur_l_049",
+    "shin_l_050",
+    "foot_l_051",
+    "toes_l_00",
+    "femur_r_052",
+    "shin_r_053",
+    "foot_r_054",
+    "toes_r_055",
+    "tail1_056",
+    "tail2_057",
+    "tail3_058",
+    "tail4_059",
+    "tail5_060",
+    "tail6_061",
+    "tail7_062",
+    "tail8_063",
+    "tail9_064"
+   ]
+  }
+ ],
+ "meshes": [
+  {
+   "object": "_0",
+   "verts": 4051,
+   "polys": 7084,
+   "vgroup_count": 66,
+   "weighted_verts": 4051,
+   "max_influences": 4,
+   "shape_keys": [
+    "morph_weights:4"
+   ],
+   "materials": [
+    "sym-body"
+   ]
+  },
+  {
+   "object": "_1",
+   "verts": 914,
+   "polys": 1411,
+   "vgroup_count": 66,
+   "weighted_verts": 914,
+   "max_influences": 2,
+   "shape_keys": [
+    "morph_weights:4"
+   ],
+   "materials": [
+    "sym-head"
+   ]
+  },
+  {
+   "object": "_2",
+   "verts": 360,
+   "polys": 634,
+   "vgroup_count": 66,
+   "weighted_verts": 360,
+   "max_influences": 1,
+   "shape_keys": [
+    "morph_weights:4"
+   ],
+   "materials": [
+    "sym-eyelashes"
+   ]
+  },
+  {
+   "object": "clipboard_clipboard_clip_0",
+   "verts": 48,
+   "polys": 28,
+   "vgroup_count": 0,
+   "weighted_verts": 0,
+   "max_influences": 0,
+   "shape_keys": [],
+   "materials": [
+    "sym-clipboard_clip"
+   ]
+  },
+  {
+   "object": "clipboard_clipboard_paper_0",
+   "verts": 4,
+   "polys": 2,
+   "vgroup_count": 0,
+   "weighted_verts": 0,
+   "max_influences": 0,
+   "shape_keys": [],
+   "materials": [
+    "sym-clipboard_paper"
+   ]
+  },
+  {
+   "object": "clipboard_clipboard_wood_0",
+   "verts": 56,
+   "polys": 28,
+   "vgroup_count": 0,
+   "weighted_verts": 0,
+   "max_influences": 0,
+   "shape_keys": [],
+   "materials": [
+    "sym-clipboard_wood"
+   ]
+  },
+  {
+   "object": "Icosphere",
+   "verts": 42,
+   "polys": 80,
+   "vgroup_count": 0,
+   "weighted_verts": 0,
+   "max_influences": 0,
+   "shape_keys": [],
+   "materials": []
+  },
+  {
+   "object": "Object_77",
+   "verts": 1271,
+   "polys": 2014,
+   "vgroup_count": 66,
+   "weighted_verts": 1271,
+   "max_influences": 4,
+   "shape_keys": [],
+   "materials": [
+    "sym-lab_coat"
+   ]
+  },
+  {
+   "object": "Object_79",
+   "verts": 796,
+   "polys": 1278,
+   "vgroup_count": 66,
+   "weighted_verts": 796,
+   "max_influences": 4,
+   "shape_keys": [],
+   "materials": [
+    "sym-collie_mane"
+   ]
+  },
+  {
+   "object": "Object_81",
+   "verts": 352,
+   "polys": 584,
+   "vgroup_count": 66,
+   "weighted_verts": 352,
+   "max_influences": 2,
+   "shape_keys": [],
+   "materials": [
+    "sym-collie_ears"
+   ]
+  },
+  {
+   "object": "Object_87",
+   "verts": 478,
+   "polys": 800,
+   "vgroup_count": 66,
+   "weighted_verts": 478,
+   "max_influences": 2,
+   "shape_keys": [],
+   "materials": [
+    "sym-shoes"
+   ]
+  },
+  {
+   "object": "Object_89",
+   "verts": 92,
+   "polys": 150,
+   "vgroup_count": 66,
+   "weighted_verts": 92,
+   "max_influences": 1,
+   "shape_keys": [],
+   "materials": [
+    "sym-collie_eyes"
+   ]
+  },
+  {
+   "object": "Object_91",
+   "verts": 335,
+   "polys": 614,
+   "vgroup_count": 66,
+   "weighted_verts": 335,
+   "max_influences": 2,
+   "shape_keys": [],
+   "materials": [
+    "sym-collie_tail"
+   ]
+  }
+ ],
+ "actions": [
+  {
+   "name": "library_animations (66 joint clips)",
+   "fcurves": 66,
+   "frame_range": null,
+   "samples_per_channel": 101
+  }
+ ],
+ "objects": [],
+ "extra": {
+  "joint_node_names_preserved": [
+   "_rootJoint",
+   "pelvis_01",
+   "spine_lower_02",
+   "spine_mid_03",
+   "spine_upper_04",
+   "neck_05",
+   "head_06",
+   "ear_base.l_07",
+   "ear_tip.l_08",
+   "ear_base.r_09",
+   "ear_tip.r_010",
+   "shoulder.l_011",
+   "bicep.l_012",
+   "forearm.l_013",
+   "hand.l_014",
+   "pinky_base.l_015",
+   "pinky_mid.l_016",
+   "pinky_tip.l_017",
+   "ring_finger_base.l_018",
+   "ring_finger_mid.l_019",
+   "ring_finger_tip.l_020",
+   "middle_finger_base.l_021",
+   "middle_finger_mid.l_022",
+   "middle_finger_tip.l_023",
+   "index_finger_base.l_024",
+   "index_finger_mid.l_025",
+   "index_finger_tip.l_026",
+   "thumb_base.l_027",
+   "thumb_mid.l_028",
+   "thumb_tip.l_029",
+   "shoulder.r_030",
+   "bicep.r_031",
+   "forearm.r_032",
+   "hand.r_033",
+   "pinky_base.r_034",
+   "pinky_mid.r_035",
+   "pinky_tip.r_036",
+   "ring_finger_base.r_037",
+   "ring_finger_mid.r_038",
+   "ring_finger_tip.r_039",
+   "middle_finger_base.r_040",
+   "middle_finger_mid.r_041",
+   "middle_finger_tip.r_042",
+   "index_finger_base.r_043",
+   "index_finger_mid.r_044",
+   "index_finger_tip.r_045",
+   "thumb_base.r_046",
+   "thumb_mid.r_047",
+   "thumb_tip.r_048",
+   "femur.l_049",
+   "shin.l_050",
+   "foot.l_051",
+   "toes.l_00",
+   "femur.r_052",
+   "shin.r_053",
+   "foot.r_054",
+   "toes.r_055",
+   "tail1_056",
+   "tail2_057",
+   "tail3_058",
+   "tail4_059",
+   "tail5_060",
+   "tail6_061",
+   "tail7_062",
+   "tail8_063",
+   "tail9_064"
+  ],
+  "up_axis": "Z_UP",
+  "unit": {
+   "name": "meter",
+   "meter": "1.0"
+  },
+  "pycollada_counts": {
+   "geometries": 25,
+   "controllers": 12,
+   "materials": 12,
+   "effects": 12,
+   "images": 7,
+   "scene_nodes": 14
+  }
+ }
+}

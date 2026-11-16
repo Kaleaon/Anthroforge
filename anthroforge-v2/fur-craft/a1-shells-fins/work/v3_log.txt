@@ -1,0 +1,75 @@
+00:28.982  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/shells_fins.blend"
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/swap_v3.py:88: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  if mat.name.startswith('Shell_t') and mat.use_nodes:
+12:26.273  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/renders/render_shells16_front_v3.png'
+15:58.896  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/renders/render_shells16_grazing_fins_v3.png'
+V3 length map coverage: {'0.125': 0.3974113464355469, '0.250': 0.39423370361328125, '0.375': 0.3628273010253906, '0.500': 0.28964996337890625, '0.625': 0.170806884765625, '0.750': 0.049907684326171875, '0.875': 0.005062103271484375}
+swapped strand_length_map.png
+swapped fin_texture.png
+recolored Shell_t0.001 t= 0.001
+recolored Shell_t0.002 t= 0.002
+recolored Shell_t0.003 t= 0.003
+recolored Shell_t0.004 t= 0.004
+recolored Shell_t0.005 t= 0.005
+recolored Shell_t0.006 t= 0.006
+recolored Shell_t0.007 t= 0.007
+recolored Shell_t0.008 t= 0.008
+recolored Shell_t0.009 t= 0.009
+recolored Shell_t0.010 t= 0.01
+recolored Shell_t0.011 t= 0.011
+recolored Shell_t0.012 t= 0.012
+recolored Shell_t0.013 t= 0.013
+recolored Shell_t0.014 t= 0.014
+recolored Shell_t0.043 t= 0.043
+recolored Shell_t0.067 t= 0.067
+recolored Shell_t0.087 t= 0.087
+recolored Shell_t0.130 t= 0.13
+recolored Shell_t0.133 t= 0.133
+recolored Shell_t0.143 t= 0.143
+recolored Shell_t0.174 t= 0.174
+recolored Shell_t0.200 t= 0.2
+recolored Shell_t0.217 t= 0.217
+recolored Shell_t0.261 t= 0.261
+recolored Shell_t0.267 t= 0.267
+recolored Shell_t0.286 t= 0.286
+recolored Shell_t0.304 t= 0.304
+recolored Shell_t0.333 t= 0.333
+recolored Shell_t0.348 t= 0.348
+recolored Shell_t0.391 t= 0.391
+recolored Shell_t0.400 t= 0.4
+recolored Shell_t0.429 t= 0.429
+recolored Shell_t0.435 t= 0.435
+recolored Shell_t0.467 t= 0.467
+recolored Shell_t0.478 t= 0.478
+recolored Shell_t0.522 t= 0.522
+recolored Shell_t0.533 t= 0.533
+recolored Shell_t0.565 t= 0.565
+recolored Shell_t0.571 t= 0.571
+recolored Shell_t0.600 t= 0.6
+recolored Shell_t0.609 t= 0.609
+recolored Shell_t0.652 t= 0.652
+recolored Shell_t0.667 t= 0.667
+recolored Shell_t0.696 t= 0.696
+recolored Shell_t0.714 t= 0.714
+recolored Shell_t0.733 t= 0.733
+recolored Shell_t0.739 t= 0.739
+recolored Shell_t0.783 t= 0.783
+recolored Shell_t0.800 t= 0.8
+recolored Shell_t0.826 t= 0.826
+recolored Shell_t0.857 t= 0.857
+recolored Shell_t0.867 t= 0.867
+recolored Shell_t0.870 t= 0.87
+recolored Shell_t0.913 t= 0.913
+recolored Shell_t0.933 t= 0.933
+recolored Shell_t0.957 t= 0.957
+recolored Shell_t1.000 t= 1.0
+recolored Shell_t1.001 t= 1.001
+recolored Shell_t1.002 t= 1.002
+recolored Shell_t1.003 t= 1.003
+V3 RENDER render_shells16_front_v3: 684.7s
+V3 RENDER render_shells16_grazing_fins_v3: 212.6s
+Info: Saved as "shells_fins.blend"
+V3 DONE
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

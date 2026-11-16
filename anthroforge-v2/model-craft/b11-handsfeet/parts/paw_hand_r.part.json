@@ -1,0 +1,101 @@
+{
+ "anchor_bone": "Wrist_R",
+ "budget_note": "Points formula (ceil(verts/1000) + bones + 2*morphs) prices this at 18 \u2014 over the standard-anatomy cap (12), inside the major cap (25). The entire overage is digit-chain bones; see HANDS_FEET.md S7 for the accounting finding.",
+ "class": "A",
+ "conflicts": [],
+ "cost": {
+  "bones": 16,
+  "morphs": 0,
+  "points": 18,
+  "tris": 2456,
+  "verts": 1270
+ },
+ "files": {
+  "blend": "b11_hands_feet.blend",
+  "glb": "paw_hand_r.glb"
+ },
+ "fit_qa": {
+  "base": "stub_forearm \u2014 forearm-end sleeve stub, ships in b11_hands_feet.blend",
+  "date": "2026-11-12",
+  "detail": {
+   "buried_pct": 93.75,
+   "engaged_pct": 79.86,
+   "excess_pct": 9.72
+  },
+  "note": "Deficiency: the residual excess is the loft start-cap pole vertex and axis-adjacent cuff verts reading as deep-buried inside a sleeve seat \u2014 an artifact of scoring a sleeved cuff against a solid, not a surface misfit; cuff wall engagement is 79.9% at a ~1.5 mm designed gap. Whole-part vs stub scores 0.0 by construction (fingers have no base surface to engage); cuff-region scoring is the applicable gate \u2014 see HANDS_FEET.md S6.",
+  "score": 0.721,
+  "scored_region": "wrist cuff (palm loft rings y <= 0.032), internal thenar-mound overlap verts excluded",
+  "tool": "parts-lab/fit_score.py (res 128)",
+  "verdict": "partial (ships with this note, per PARTS_STANDARD S5)"
+ },
+ "function": {
+  "hand": {
+   "claws": "non-retractile, blunt (canine pattern)",
+   "digits": 5,
+   "grip": "power + precision (thumb opposed, finger chains 3-seg)",
+   "opposable_thumb": true,
+   "pads": [
+    "metacarpal (heart)",
+    "digital x4 + thumb",
+    "carpal (stopper)"
+   ]
+  }
+ },
+ "id": "paw_hand_r",
+ "kind": "anatomy",
+ "licence_tier": "build \u2014 original procedural geometry authored for AnthroForge (no donor mesh); anatomy per WikiVet canine phalanges + art references cited in HANDS_FEET.md",
+ "name": "Anthro paw-hand (right)",
+ "plan_fit": {
+  "excluded_plans": [
+   "plan.quadruped_feral"
+  ],
+  "plans": [
+   "plan.biped",
+   "plan.quadruped_taur",
+   "plan.naga"
+  ],
+  "socket_by_plan": {},
+  "variant_by_plan": {}
+ },
+ "provenance": "model-craft wave B11, Nov 12, 2026. Built by loft/ellipsoid/cone procedural construction (work/build_hands_feet.py); no library geometry copied.",
+ "qa_gauntlet": {
+  "contract": "1/36 core joints (Wrist_R) + 15 module joints \u2014 module parts are exempt from the full-character contract gate",
+  "degenerate_tris": 0,
+  "extent_m": 0.205,
+  "file": "paw_hand_r.glb",
+  "nan_verts": 0
+ },
+ "size_class": "M",
+ "skin": {
+  "bones_core": [
+   "Wrist_R"
+  ],
+  "bones_module": [
+   "Thumb1_R",
+   "Thumb2_R",
+   "Thumb3_R",
+   "Index1_R",
+   "Index2_R",
+   "Index3_R",
+   "Middle1_R",
+   "Middle2_R",
+   "Middle3_R",
+   "Ring1_R",
+   "Ring2_R",
+   "Ring3_R",
+   "Pinky1_R",
+   "Pinky2_R",
+   "Pinky3_R"
+  ],
+  "max_influences": 2,
+  "meshes": [
+   "paw_hand_main",
+   "paw_hand_pads",
+   "paw_hand_claws"
+  ],
+  "mode": "own-weights"
+ },
+ "socket": "arm.R",
+ "socket_note": "Distal sub-part of the arm.R family: the catalogue's arm socket is shoulder-anchored (whole-arm parts); this part anchors at Wrist_R and seats its cuff into the forearm. Catalogue gap flagged in HANDS_FEET.md S7 (no distal-extremity socket exists for hands; leg.digi is the foot-side precedent).",
+ "tier": 3
+}

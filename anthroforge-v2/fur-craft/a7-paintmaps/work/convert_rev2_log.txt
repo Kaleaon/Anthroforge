@@ -1,0 +1,89 @@
+00:28.826  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/fur_paintable_rev2.blend"
+/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/fur_paint_convert.py:205: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/fur_paint_convert.py:312: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  gm.use_nodes = True
+groom[ruff]: 1197 strands
+groom[back]: 1735 strands
+groom[belly]: 712 strands
+groom[coat]: 4821 strands
+groom[bodyhair]: 535 strands
+guides: 112 streamlines
+Info: Saved as "groom_from_paint_rev2.blend"
+{
+ "ruff": {
+  "density": 0.925,
+  "length_m": 0.1698,
+  "length_variation": 0.0389,
+  "clump": 0.603,
+  "curl": 0.339,
+  "lift": 0.466,
+  "colour": {
+   "root": "#43392D",
+   "tip": "#B4A993",
+   "pattern": "tipped"
+  },
+  "area_share": 0.178
+ },
+ "back": {
+  "density": 0.951,
+  "length_m": 0.1507,
+  "length_variation": 0.043,
+  "clump": 0.526,
+  "curl": 0.44,
+  "lift": 0.427,
+  "colour": {
+   "root": "#3E352B",
+   "tip": "#8F826E",
+   "pattern": "tipped"
+  },
+  "area_share": 0.172
+ },
+ "belly": {
+  "density": 0.752,
+  "length_m": 0.0456,
+  "length_variation": 0.0185,
+  "clump": 0.256,
+  "curl": 0.129,
+  "lift": 0.173,
+  "colour": {
+   "root": "#433F3A",
+   "tip": "#B7B5B0",
+   "pattern": "tipped"
+  },
+  "area_share": 0.083
+ },
+ "coat": {
+  "density": 0.759,
+  "length_m": 0.082,
+  "length_variation": 0.0305,
+  "clump": 0.415,
+  "curl": 0.406,
+  "lift": 0.315,
+  "colour": {
+   "root": "#44392D",
+   "tip": "#867866",
+   "pattern": "tipped"
+  },
+  "area_share": 0.462
+ },
+ "bodyhair": {
+  "density": 0.696,
+  "length_m": 0.0809,
+  "length_variation": 0.0437,
+  "clump": 0.318,
+  "curl": 0.202,
+  "lift": 0.243,
+  "colour": {
+   "root": "#423A30",
+   "tip": "#999082",
+   "pattern": "tipped"
+  },
+  "area_share": 0.105
+ }
+}
+WROTE out/groom_params_rev2.json
+WROTE out/groom_from_paint_rev2.blend
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

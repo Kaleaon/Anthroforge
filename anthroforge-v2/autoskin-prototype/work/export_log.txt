@@ -1,0 +1,43 @@
+[StableGen] Could not query ComfyUI node Trellis2Conditioning: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/Trellis2Conditioning (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a33963fc6e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[TRELLIS2] Auto-detect: ComfyUI's TRELLIS.2 nodes NOT found.
+[PBR] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/MarigoldModelLoader (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a33963f9f90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[SkinTokens] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/StableGenSkinTokensAutoRig (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a33963fa850>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect of LATO2Remesh failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/LATO2Remesh (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7a3395711220>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect: no nodes found.
+19:16:42 | INFO: Data are loaded, start creating Blender stuff
+19:16:42 | INFO: Blender create Mesh node OrcBust_LP_Main_0
+19:16:49 | INFO: Blender create Mesh node Hair_LP_Main_0
+19:16:49 | INFO: Blender create Mesh node Rings_LP_Main_0
+19:16:49 | INFO: Blender create Mesh node Eyes_LP_Eyes_0
+19:16:50 | INFO: Blender create Mesh node Teeth_LP_Main_0
+19:16:51 | INFO: Blender create Mesh node 0
+19:16:51 | INFO: glTF import finished in 8.78s
+OrcBust_LP_Main_0: 12 vertex groups assigned
+Hair_LP_Main_0: 1 vertex groups assigned
+Rings_LP_Main_0: 2 vertex groups assigned
+Eyes_LP_Eyes_0: 1 vertex groups assigned
+Teeth_LP_Main_0: 2 vertex groups assigned
+0: 1 vertex groups assigned
+INFO Draco is available, use library at /home/hatch/workspace/tools/blender/blender-5.2.3-linux-x64/lib/libbf_intern_draco_bridge.so
+INFO MeshOptimizer is available, use library at /home/hatch/workspace/tools/blender/blender-5.2.3-linux-x64/lib/libbf_intern_meshopt_bridge.so
+19:16:56 | INFO: Starting glTF 2.0 export
+19:16:56 | INFO: Extracting primitive: 0
+19:17:07 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+19:17:22 | INFO: Primitives created: 1
+19:17:22 | INFO: Extracting primitive: Eyes_LP_Eyes_0
+19:17:22 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+19:17:23 | INFO: Primitives created: 1
+19:17:23 | INFO: Extracting primitive: Hair_LP_Main_0
+19:17:23 | INFO: Primitives created: 1
+19:17:23 | INFO: Extracting primitive: OrcBust_LP_Main_0
+19:17:27 | INFO: Primitives created: 1
+19:17:27 | INFO: Extracting primitive: Rings_LP_Main_0
+19:17:27 | INFO: Primitives created: 1
+19:17:27 | INFO: Extracting primitive: Teeth_LP_Main_0
+19:17:29 | INFO: Primitives created: 1
+19:17:29 | INFO: Finished glTF 2.0 export in 33.10029578208923 s
+
+exported /home/hatch/workspace/anthroforge-v2/autoskin-prototype/orc_bust_skinned.glb
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

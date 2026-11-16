@@ -1,0 +1,1045 @@
+{
+ "Ear_L": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 76,
+  "mats": [
+   "TissueClay"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   0.208,
+   -0.249,
+   0.026
+  ],
+  "bbox_max": [
+   0.42,
+   -0.083,
+   0.45
+  ],
+  "has_uv": false
+ },
+ "Ear_R": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 76,
+  "mats": [
+   "TissueClay"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.42,
+   -0.249,
+   0.026
+  ],
+  "bbox_max": [
+   -0.208,
+   -0.083,
+   0.45
+  ],
+  "has_uv": false
+ },
+ "Eyeball_L": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 162,
+  "mats": [
+   "Eyeball"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   0.056,
+   0.007,
+   -0.083
+  ],
+  "bbox_max": [
+   0.206,
+   0.156,
+   0.067
+  ],
+  "has_uv": true
+ },
+ "Eyeball_R": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 162,
+  "mats": [
+   "Eyeball"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.206,
+   0.007,
+   -0.083
+  ],
+  "bbox_max": [
+   -0.056,
+   0.156,
+   0.067
+  ],
+  "has_uv": true
+ },
+ "Eyelid_L": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 478,
+  "mats": [
+   "TissueClayDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   0.051,
+   0.001,
+   -0.088
+  ],
+  "bbox_max": [
+   0.211,
+   0.162,
+   0.072
+  ],
+  "has_uv": true
+ },
+ "Eyelid_R": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 478,
+  "mats": [
+   "TissueClayDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.211,
+   0.001,
+   -0.088
+  ],
+  "bbox_max": [
+   -0.051,
+   0.162,
+   0.072
+  ],
+  "has_uv": true
+ },
+ "Iris_L": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 162,
+  "mats": [
+   "Iris"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   0.154,
+   0.099,
+   -0.014
+  ],
+  "bbox_max": [
+   0.207,
+   0.155,
+   0.05
+  ],
+  "has_uv": true
+ },
+ "Iris_R": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 162,
+  "mats": [
+   "Iris"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.207,
+   0.099,
+   -0.014
+  ],
+  "bbox_max": [
+   -0.154,
+   0.155,
+   0.05
+  ],
+  "has_uv": true
+ },
+ "Jaw": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   -0.217,
+   -0.125
+  ],
+  "verts": 538,
+  "mats": [
+   "TissueClay"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.269,
+   -0.414,
+   -0.45
+  ],
+  "bbox_max": [
+   0.269,
+   0.499,
+   -0.076
+  ],
+  "has_uv": false
+ },
+ "LidMargin_L": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 280,
+  "mats": [
+   "TissueClayDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   0.11,
+   0.055,
+   -0.058
+  ],
+  "bbox_max": [
+   0.22,
+   0.171,
+   0.078
+  ],
+  "has_uv": true
+ },
+ "LidMargin_R": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 280,
+  "mats": [
+   "TissueClayDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.22,
+   0.055,
+   -0.058
+  ],
+  "bbox_max": [
+   -0.11,
+   0.171,
+   0.078
+  ],
+  "has_uv": true
+ },
+ "Muscles": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 220,
+  "mats": [
+   "Muscle"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.272,
+   -0.315,
+   -0.189
+  ],
+  "bbox_max": [
+   0.272,
+   0.127,
+   0.293
+  ],
+  "has_uv": false
+ },
+ "NeckSocket": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 280,
+  "mats": [
+   "TissueClayDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.235,
+   -0.585,
+   -0.261
+  ],
+  "bbox_max": [
+   0.235,
+   -0.296,
+   0.141
+  ],
+  "has_uv": true
+ },
+ "NeckSocketDisc": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 42,
+  "mats": [
+   "MouthDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.187,
+   -0.528,
+   -0.277
+  ],
+  "bbox_max": [
+   0.187,
+   -0.402,
+   0.111
+  ],
+  "has_uv": true
+ },
+ "NoseLeather": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 162,
+  "mats": [
+   "NoseLeather"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.044,
+   0.458,
+   -0.222
+  ],
+  "bbox_max": [
+   0.044,
+   0.512,
+   -0.15
+  ],
+  "has_uv": true
+ },
+ "Pupil_L": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 162,
+  "mats": [
+   "MouthDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   0.17,
+   0.115,
+   0.004
+  ],
+  "bbox_max": [
+   0.196,
+   0.142,
+   0.034
+  ],
+  "has_uv": true
+ },
+ "Pupil_R": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 162,
+  "mats": [
+   "MouthDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.196,
+   0.115,
+   0.004
+  ],
+  "bbox_max": [
+   -0.17,
+   0.142,
+   0.034
+  ],
+  "has_uv": true
+ },
+ "Skull": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 824,
+  "mats": [
+   "Bone"
+  ],
+  "vgroups": [
+   "Root",
+   "DEF_Pelvis",
+   "DEF_Spine1",
+   "DEF_Spine2",
+   "DEF_Spine3",
+   "DEF_Neck",
+   "DEF_Head",
+   "Ear.L",
+   "Eye.L",
+   "Ear.R",
+   "Eye.R",
+   "DEF_Shoulder.L",
+   "DEF_Arm.L",
+   "DEF_Forearm.L",
+   "Hand.L",
+   "DEF_Finger4.L",
+   "DEF_Finger4.001.L",
+   "DEF_Finger4.002.L",
+   "DEF_Finger4.003.L",
+   "DEF_Finger3.L",
+   "DEF_Finger3.001.L",
+   "DEF_Finger3.002.L",
+   "DEF_Finger3.003.L",
+   "DEF_Finger2.L",
+   "DEF_Finger2.001.L",
+   "DEF_Finger2.002.L",
+   "DEF_Finger2.003.L",
+   "Def_Finger1.L",
+   "Def_Finger1.001.L",
+   "Def_Finger1.002.L",
+   "Def_Finger1.003.L",
+   "DEF_ThumbBase.L",
+   "DEF_Thumb.L",
+   "DEF_Thumb.001.L",
+   "DEF_Shoulder.R",
+   "DEF_Arm.R",
+   "DEF_Forearm.R",
+   "Hand.R",
+   "DEF_Finger4.R",
+   "DEF_Finger4.001.R",
+   "DEF_Finger4.002.R",
+   "DEF_Finger4.003.R",
+   "DEF_Finger3.R",
+   "DEF_Finger3.001.R",
+   "DEF_Finger3.002.R",
+   "DEF_Finger3.003.R",
+   "DEF_Finger2.R",
+   "DEF_Finger2.001.R",
+   "DEF_Finger2.002.R",
+   "DEF_Finger2.003.R",
+   "Def_Finger1.R",
+   "Def_Finger1.001.R",
+   "Def_Finger1.002.R",
+   "Def_Finger1.003.R",
+   "DEF_ThumbBase.R",
+   "DEF_Thumb.R",
+   "DEF_Thumb.001.R",
+   "DEF_Thigh.L",
+   "DEF_Shin.L",
+   "DEF_Foot.L",
+   "DEF_Toe2.L",
+   "DEF_Toe1.001.L",
+   "DEF_Thigh.R",
+   "DEF_Shin.R",
+   "DEF_Foot.R",
+   "DEF_Toe2.R",
+   "DEF_Toe1.001.R",
+   "Def_Tail",
+   "Def_Tail.001",
+   "Def_Tail.002",
+   "Def_Tail.003",
+   "Def_Tail.004",
+   "Def_Tail.005",
+   "DEF-spine",
+   "DEF-shoulder.L",
+   "DEF-hand.L",
+   "DEF-shoulder.R",
+   "DEF-hand.R",
+   "DEF_Breast.L",
+   "DEF_Breast.R",
+   "Tail",
+   "Tail.001",
+   "Tail.002",
+   "Tail.003",
+   "Tail.004",
+   "Tail.005",
+   "DEF-shin.L",
+   "DEF-shin.L.001",
+   "DEF-foot.L",
+   "DEF-toe.L",
+   "DEF-shin.R",
+   "DEF-shin.R.001",
+   "DEF-foot.R",
+   "DEF-toe.R",
+   "Bone.006.L",
+   "DEF_Toe3.L",
+   "DEF_Toe3.001.L",
+   "DEF_Toe4.L",
+   "DEF_Toe4.001.L",
+   "DEF_Toe2.001.L",
+   "DEF_Toe1.L",
+   "Def_DailBase",
+   "Bone.006.R",
+   "DEF_Toe3.R",
+   "DEF_Toe3.001.R",
+   "DEF_Toe4.R",
+   "DEF_Toe4.001.R",
+   "DEF_Toe2.001.R",
+   "DEF_Toe1.R",
+   "DEF_ShouldeBase.L",
+   "DEF_ShouldeBase.R",
+   "DEF-upper_arm.L",
+   "DEF-upper_arm.L.001",
+   "DEF-forearm.L",
+   "DEF-forearm.L.001",
+   "DEF-upper_arm.R",
+   "DEF-upper_arm.R.001",
+   "DEF-forearm.R",
+   "DEF-forearm.R.001"
+  ],
+  "bbox_min": [
+   -0.261,
+   -0.491,
+   -0.313
+  ],
+  "bbox_max": [
+   0.261,
+   0.488,
+   0.302
+  ],
+  "has_uv": true
+ },
+ "SkullMandible": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 538,
+  "mats": [
+   "Bone"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.261,
+   -0.196,
+   -0.317
+  ],
+  "bbox_max": [
+   0.261,
+   0.711,
+   0.049
+  ],
+  "has_uv": false
+ },
+ "TeethArcade": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 719,
+  "mats": [
+   "MouthInterior"
+  ],
+  "vgroups": [
+   "Root",
+   "DEF_Pelvis",
+   "DEF_Spine1",
+   "DEF_Spine2",
+   "DEF_Spine3",
+   "DEF_Neck",
+   "DEF_Head",
+   "Ear.L",
+   "Eye.L",
+   "Ear.R",
+   "Eye.R",
+   "DEF_Shoulder.L",
+   "DEF_Arm.L",
+   "DEF_Forearm.L",
+   "Hand.L",
+   "DEF_Finger4.L",
+   "DEF_Finger4.001.L",
+   "DEF_Finger4.002.L",
+   "DEF_Finger4.003.L",
+   "DEF_Finger3.L",
+   "DEF_Finger3.001.L",
+   "DEF_Finger3.002.L",
+   "DEF_Finger3.003.L",
+   "DEF_Finger2.L",
+   "DEF_Finger2.001.L",
+   "DEF_Finger2.002.L",
+   "DEF_Finger2.003.L",
+   "Def_Finger1.L",
+   "Def_Finger1.001.L",
+   "Def_Finger1.002.L",
+   "Def_Finger1.003.L",
+   "DEF_ThumbBase.L",
+   "DEF_Thumb.L",
+   "DEF_Thumb.001.L",
+   "DEF_Shoulder.R",
+   "DEF_Arm.R",
+   "DEF_Forearm.R",
+   "Hand.R",
+   "DEF_Finger4.R",
+   "DEF_Finger4.001.R",
+   "DEF_Finger4.002.R",
+   "DEF_Finger4.003.R",
+   "DEF_Finger3.R",
+   "DEF_Finger3.001.R",
+   "DEF_Finger3.002.R",
+   "DEF_Finger3.003.R",
+   "DEF_Finger2.R",
+   "DEF_Finger2.001.R",
+   "DEF_Finger2.002.R",
+   "DEF_Finger2.003.R",
+   "Def_Finger1.R",
+   "Def_Finger1.001.R",
+   "Def_Finger1.002.R",
+   "Def_Finger1.003.R",
+   "DEF_ThumbBase.R",
+   "DEF_Thumb.R",
+   "DEF_Thumb.001.R",
+   "DEF_Thigh.L",
+   "DEF_Shin.L",
+   "DEF_Foot.L",
+   "DEF_Toe2.L",
+   "DEF_Toe1.001.L",
+   "DEF_Thigh.R",
+   "DEF_Shin.R",
+   "DEF_Foot.R",
+   "DEF_Toe2.R",
+   "DEF_Toe1.001.R",
+   "Def_Tail",
+   "Def_Tail.001",
+   "Def_Tail.002",
+   "Def_Tail.003",
+   "Def_Tail.004",
+   "Def_Tail.005",
+   "DEF-spine",
+   "DEF-shoulder.L",
+   "DEF-hand.L",
+   "DEF-shoulder.R",
+   "DEF-hand.R",
+   "DEF-breast.L",
+   "DEF-breast.R",
+   "Tail",
+   "Tail.001",
+   "Tail.002",
+   "Tail.003",
+   "Tail.004",
+   "Tail.005",
+   "DEF-shin.L",
+   "DEF-shin.L.001",
+   "DEF-foot.L",
+   "DEF-toe.L",
+   "DEF-shin.R",
+   "DEF-shin.R.001",
+   "DEF-foot.R",
+   "DEF-toe.R",
+   "Bone.006.L",
+   "DEF_Toe3.L",
+   "DEF_Toe3.001.L",
+   "DEF_Toe4.L",
+   "DEF_Toe4.001.L",
+   "DEF_Toe2.001.L",
+   "DEF_Toe1.L",
+   "Def_DailBase",
+   "Bone.006.R",
+   "DEF_Toe3.R",
+   "DEF_Toe3.001.R",
+   "DEF_Toe4.R",
+   "DEF_Toe4.001.R",
+   "DEF_Toe2.001.R",
+   "DEF_Toe1.R",
+   "DEF_ShouldeBase.L",
+   "DEF_ShouldeBase.R",
+   "CopyNormal",
+   "WeaponBone_Hand.L",
+   "DEF-upper_arm.L",
+   "DEF-upper_arm.L.001",
+   "DEF-forearm.L",
+   "DEF-forearm.L.001",
+   "DEF-upper_arm.R",
+   "DEF-upper_arm.R.001",
+   "DEF-forearm.R",
+   "DEF-forearm.R.001",
+   "DEF-pelvis.L",
+   "DEF-pelvis.R"
+  ],
+  "bbox_min": [
+   -0.159,
+   -0.165,
+   -0.378
+  ],
+  "bbox_max": [
+   0.159,
+   0.388,
+   -0.153
+  ],
+  "has_uv": true
+ },
+ "Throat": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 42,
+  "mats": [
+   "MouthDark"
+  ],
+  "vgroups": [],
+  "bbox_min": [
+   -0.105,
+   -0.12,
+   -0.246
+  ],
+  "bbox_max": [
+   0.105,
+   -0.04,
+   -0.044
+  ],
+  "has_uv": true
+ },
+ "TissueHead": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 962,
+  "mats": [
+   "TissueClay"
+  ],
+  "vgroups": [
+   "Root",
+   "DEF_Pelvis",
+   "DEF_Spine1",
+   "DEF_Spine2",
+   "DEF_Spine3",
+   "DEF_Neck",
+   "DEF_Head",
+   "Ear.L",
+   "Eye.L",
+   "Ear.R",
+   "Eye.R",
+   "DEF_Shoulder.L",
+   "DEF_Arm.L",
+   "DEF_Forearm.L",
+   "Hand.L",
+   "DEF_Finger4.L",
+   "DEF_Finger4.001.L",
+   "DEF_Finger4.002.L",
+   "DEF_Finger4.003.L",
+   "DEF_Finger3.L",
+   "DEF_Finger3.001.L",
+   "DEF_Finger3.002.L",
+   "DEF_Finger3.003.L",
+   "DEF_Finger2.L",
+   "DEF_Finger2.001.L",
+   "DEF_Finger2.002.L",
+   "DEF_Finger2.003.L",
+   "Def_Finger1.L",
+   "Def_Finger1.001.L",
+   "Def_Finger1.002.L",
+   "Def_Finger1.003.L",
+   "DEF_ThumbBase.L",
+   "DEF_Thumb.L",
+   "DEF_Thumb.001.L",
+   "DEF_Shoulder.R",
+   "DEF_Arm.R",
+   "DEF_Forearm.R",
+   "Hand.R",
+   "DEF_Finger4.R",
+   "DEF_Finger4.001.R",
+   "DEF_Finger4.002.R",
+   "DEF_Finger4.003.R",
+   "DEF_Finger3.R",
+   "DEF_Finger3.001.R",
+   "DEF_Finger3.002.R",
+   "DEF_Finger3.003.R",
+   "DEF_Finger2.R",
+   "DEF_Finger2.001.R",
+   "DEF_Finger2.002.R",
+   "DEF_Finger2.003.R",
+   "Def_Finger1.R",
+   "Def_Finger1.001.R",
+   "Def_Finger1.002.R",
+   "Def_Finger1.003.R",
+   "DEF_ThumbBase.R",
+   "DEF_Thumb.R",
+   "DEF_Thumb.001.R",
+   "DEF_Thigh.L",
+   "DEF_Shin.L",
+   "DEF_Foot.L",
+   "DEF_Toe2.L",
+   "DEF_Toe1.001.L",
+   "DEF_Thigh.R",
+   "DEF_Shin.R",
+   "DEF_Foot.R",
+   "DEF_Toe2.R",
+   "DEF_Toe1.001.R",
+   "Def_Tail",
+   "Def_Tail.001",
+   "Def_Tail.002",
+   "Def_Tail.003",
+   "Def_Tail.004",
+   "Def_Tail.005",
+   "DEF-spine",
+   "DEF-shoulder.L",
+   "DEF-hand.L",
+   "DEF-shoulder.R",
+   "DEF-hand.R",
+   "DEF_Breast.L",
+   "DEF_Breast.R",
+   "Tail",
+   "Tail.001",
+   "Tail.002",
+   "Tail.003",
+   "Tail.004",
+   "Tail.005",
+   "DEF-shin.L",
+   "DEF-shin.L.001",
+   "DEF-foot.L",
+   "DEF-toe.L",
+   "DEF-shin.R",
+   "DEF-shin.R.001",
+   "DEF-foot.R",
+   "DEF-toe.R",
+   "Bone.006.L",
+   "DEF_Toe3.L",
+   "DEF_Toe3.001.L",
+   "DEF_Toe4.L",
+   "DEF_Toe4.001.L",
+   "DEF_Toe2.001.L",
+   "DEF_Toe1.L",
+   "Def_DailBase",
+   "Bone.006.R",
+   "DEF_Toe3.R",
+   "DEF_Toe3.001.R",
+   "DEF_Toe4.R",
+   "DEF_Toe4.001.R",
+   "DEF_Toe2.001.R",
+   "DEF_Toe1.R",
+   "DEF_ShouldeBase.L",
+   "DEF_ShouldeBase.R",
+   "DEF-upper_arm.L",
+   "DEF-upper_arm.L.001",
+   "DEF-forearm.L",
+   "DEF-forearm.L.001",
+   "DEF-upper_arm.R",
+   "DEF-upper_arm.R.001",
+   "DEF-forearm.R",
+   "DEF-forearm.R.001"
+  ],
+  "bbox_min": [
+   -0.273,
+   -0.5,
+   -0.311
+  ],
+  "bbox_max": [
+   0.273,
+   0.5,
+   0.309
+  ],
+  "has_uv": true
+ },
+ "Tongue": {
+  "type": "MESH",
+  "loc": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "verts": 457,
+  "mats": [
+   "Tongue"
+  ],
+  "vgroups": [
+   "Root",
+   "DEF_Pelvis",
+   "DEF_Spine1",
+   "DEF_Spine2",
+   "DEF_Spine3",
+   "DEF_Neck",
+   "DEF_Head",
+   "Ear.L",
+   "Eye.L",
+   "Ear.R",
+   "Eye.R",
+   "DEF_Shoulder.L",
+   "DEF_Arm.L",
+   "DEF_Forearm.L",
+   "Hand.L",
+   "DEF_Finger4.L",
+   "DEF_Finger4.001.L",
+   "DEF_Finger4.002.L",
+   "DEF_Finger4.003.L",
+   "DEF_Finger3.L",
+   "DEF_Finger3.001.L",
+   "DEF_Finger3.002.L",
+   "DEF_Finger3.003.L",
+   "DEF_Finger2.L",
+   "DEF_Finger2.001.L",
+   "DEF_Finger2.002.L",
+   "DEF_Finger2.003.L",
+   "Def_Finger1.L",
+   "Def_Finger1.001.L",
+   "Def_Finger1.002.L",
+   "Def_Finger1.003.L",
+   "DEF_ThumbBase.L",
+   "DEF_Thumb.L",
+   "DEF_Thumb.001.L",
+   "DEF_Shoulder.R",
+   "DEF_Arm.R",
+   "DEF_Forearm.R",
+   "Hand.R",
+   "DEF_Finger4.R",
+   "DEF_Finger4.001.R",
+   "DEF_Finger4.002.R",
+   "DEF_Finger4.003.R",
+   "DEF_Finger3.R",
+   "DEF_Finger3.001.R",
+   "DEF_Finger3.002.R",
+   "DEF_Finger3.003.R",
+   "DEF_Finger2.R",
+   "DEF_Finger2.001.R",
+   "DEF_Finger2.002.R",
+   "DEF_Finger2.003.R",
+   "Def_Finger1.R",
+   "Def_Finger1.001.R",
+   "Def_Finger1.002.R",
+   "Def_Finger1.003.R",
+   "DEF_ThumbBase.R",
+   "DEF_Thumb.R",
+   "DEF_Thumb.001.R",
+   "DEF_Thigh.L",
+   "DEF_Shin.L",
+   "DEF_Foot.L",
+   "DEF_Toe2.L",
+   "DEF_Toe1.001.L",
+   "DEF_Thigh.R",
+   "DEF_Shin.R",
+   "DEF_Foot.R",
+   "DEF_Toe2.R",
+   "DEF_Toe1.001.R",
+   "Def_Tail",
+   "Def_Tail.001",
+   "Def_Tail.002",
+   "Def_Tail.003",
+   "Def_Tail.004",
+   "Def_Tail.005",
+   "DEF-spine",
+   "DEF-shoulder.L",
+   "DEF-hand.L",
+   "DEF-shoulder.R",
+   "DEF-hand.R",
+   "DEF_Breast.L",
+   "DEF_Breast.R",
+   "Tail",
+   "Tail.001",
+   "Tail.002",
+   "Tail.003",
+   "Tail.004",
+   "Tail.005",
+   "DEF-shin.L",
+   "DEF-shin.L.001",
+   "DEF-foot.L",
+   "DEF-toe.L",
+   "DEF-shin.R",
+   "DEF-shin.R.001",
+   "DEF-foot.R",
+   "DEF-toe.R",
+   "Bone.006.L",
+   "DEF_Toe3.L",
+   "DEF_Toe3.001.L",
+   "DEF_Toe4.L",
+   "DEF_Toe4.001.L",
+   "DEF_Toe2.001.L",
+   "DEF_Toe1.L",
+   "Def_DailBase",
+   "Bone.006.R",
+   "DEF_Toe3.R",
+   "DEF_Toe3.001.R",
+   "DEF_Toe4.R",
+   "DEF_Toe4.001.R",
+   "DEF_Toe2.001.R",
+   "DEF_Toe1.R",
+   "DEF_ShouldeBase.L",
+   "DEF_ShouldeBase.R",
+   "CopyNormal",
+   "WeaponBone_Hand.L",
+   "DEF-upper_arm.L",
+   "DEF-upper_arm.L.001",
+   "DEF-forearm.L",
+   "DEF-forearm.L.001",
+   "DEF-upper_arm.R",
+   "DEF-upper_arm.R.001",
+   "DEF-forearm.R",
+   "DEF-forearm.R.001",
+   "DEF-pelvis.L",
+   "DEF-pelvis.R"
+  ],
+  "bbox_min": [
+   -0.105,
+   -0.144,
+   -0.348
+  ],
+  "bbox_max": [
+   0.105,
+   0.297,
+   -0.23
+  ],
+  "has_uv": true
+ },
+ "_engine": "CYCLES",
+ "_cams": [],
+ "_lights": []
+}

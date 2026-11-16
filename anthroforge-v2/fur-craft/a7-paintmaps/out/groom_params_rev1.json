@@ -1,0 +1,140 @@
+{
+  "format": "anthroforge.fur.groom_params",
+  "version": 1,
+  "source": {
+    "paintmap_set": "furp.wolf.bara",
+    "revision": 1,
+    "author": "procedural-seed",
+    "mesh": "BaraWolfBody",
+    "verts": 63557,
+    "input": "fur_paintable_rev1.blend"
+  },
+  "profile": {
+    "length_ref_m": 0.2,
+    "pattern_default": "tipped"
+  },
+  "regions": {
+    "ruff": {
+      "density": 0.878,
+      "length_m": 0.1255,
+      "length_variation": 0.0331,
+      "clump": 0.527,
+      "curl": 0.339,
+      "lift": 0.493,
+      "colour": {
+        "root": "#43392D",
+        "tip": "#867761",
+        "pattern": "tipped"
+      },
+      "area_share": 0.178
+    },
+    "back": {
+      "density": 0.874,
+      "length_m": 0.0978,
+      "length_variation": 0.0195,
+      "clump": 0.456,
+      "curl": 0.44,
+      "lift": 0.441,
+      "colour": {
+        "root": "#3E352B",
+        "tip": "#766753",
+        "pattern": "tipped"
+      },
+      "area_share": 0.172
+    },
+    "belly": {
+      "density": 0.747,
+      "length_m": 0.0434,
+      "length_variation": 0.0106,
+      "clump": 0.253,
+      "curl": 0.129,
+      "lift": 0.307,
+      "colour": {
+        "root": "#544A3C",
+        "tip": "#80715C",
+        "pattern": "tipped"
+      },
+      "area_share": 0.083
+    },
+    "coat": {
+      "density": 0.754,
+      "length_m": 0.073,
+      "length_variation": 0.0185,
+      "clump": 0.402,
+      "curl": 0.406,
+      "lift": 0.332,
+      "colour": {
+        "root": "#443A2D",
+        "tip": "#796A56",
+        "pattern": "tipped"
+      },
+      "area_share": 0.462
+    },
+    "bodyhair": {
+      "density": 0.642,
+      "length_m": 0.0567,
+      "length_variation": 0.0206,
+      "clump": 0.286,
+      "curl": 0.202,
+      "lift": 0.37,
+      "colour": {
+        "root": "#453B2F",
+        "tip": "#746653",
+        "pattern": "tipped"
+      },
+      "area_share": 0.105
+    }
+  },
+  "groom": {
+    "guide_set": "FURP_guides@rev1",
+    "guide_count": 116
+  },
+  "perf": {
+    "surface_area_m2": 4.92,
+    "preview_strands": 9000,
+    "est_hero_strands_x6_children": 200685,
+    "est_lod0_cards": 38130
+  },
+  "particle_binding": {
+    "ruff": {
+      "count": 2107,
+      "hair_length_m": 0.2,
+      "density_group": "FURP_eff_density_ruff",
+      "length_group": "FURP_length",
+      "clump_group": "FURP_clump",
+      "kink": "CURL"
+    },
+    "back": {
+      "count": 2098,
+      "hair_length_m": 0.2,
+      "density_group": "FURP_eff_density_back",
+      "length_group": "FURP_length",
+      "clump_group": "FURP_clump",
+      "kink": "CURL"
+    },
+    "belly": {
+      "count": 1793,
+      "hair_length_m": 0.2,
+      "density_group": "FURP_eff_density_belly",
+      "length_group": "FURP_length",
+      "clump_group": "FURP_clump",
+      "kink": "CURL"
+    },
+    "coat": {
+      "count": 1810,
+      "hair_length_m": 0.2,
+      "density_group": "FURP_eff_density_coat",
+      "length_group": "FURP_length",
+      "clump_group": "FURP_clump",
+      "kink": "CURL"
+    },
+    "bodyhair": {
+      "count": 1541,
+      "hair_length_m": 0.2,
+      "density_group": "FURP_eff_density_bodyhair",
+      "length_group": "FURP_length",
+      "clump_group": "FURP_clump",
+      "kink": "CURL"
+    }
+  }
+}

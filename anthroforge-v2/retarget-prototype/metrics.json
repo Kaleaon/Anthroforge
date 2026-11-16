@@ -1,0 +1,132 @@
+{
+ "wolf_original": {
+  "L_contact_frames": 13,
+  "L_segments": 2,
+  "R_contact_frames": 13,
+  "R_segments": 2,
+  "treadmill_speed_mps": 1.371,
+  "drift_path_cm_per_step": 33.85,
+  "drift_path_cm_max": 52.99,
+  "drift_net_cm_per_step": 29.0,
+  "contact_rms_cm": 11.13,
+  "stride_m": 0.851,
+  "min_toe_below_floor_cm": -7.44,
+  "mean_contact_toe_above_floor_cm": -2.07,
+  "hips_mean_height": -0.041
+ },
+ "fennec_C0_nocomp": {
+  "L_contact_frames": 11,
+  "L_segments": 2,
+  "R_contact_frames": 11,
+  "R_segments": 2,
+  "treadmill_speed_mps": 0.392,
+  "drift_path_cm_per_step": 20.79,
+  "drift_path_cm_max": 24.5,
+  "drift_net_cm_per_step": 20.73,
+  "contact_rms_cm": 7.46,
+  "stride_m": 0.481,
+  "min_toe_below_floor_cm": -1.48,
+  "mean_contact_toe_above_floor_cm": 0.28,
+  "hips_mean_height": -0.01
+ },
+ "fennec_C1_comp": {
+  "L_contact_frames": 11,
+  "L_segments": 2,
+  "R_contact_frames": 13,
+  "R_segments": 3,
+  "treadmill_speed_mps": 0.525,
+  "drift_path_cm_per_step": 16.96,
+  "drift_path_cm_max": 26.68,
+  "drift_net_cm_per_step": 16.87,
+  "contact_rms_cm": 6.27,
+  "stride_m": 0.481,
+  "min_toe_below_floor_cm": -0.41,
+  "mean_contact_toe_above_floor_cm": 1.02,
+  "hips_mean_height": -0.005
+ },
+ "orc_C0_nocomp": {
+  "L_contact_frames": 12,
+  "L_segments": 2,
+  "R_contact_frames": 11,
+  "R_segments": 2,
+  "treadmill_speed_mps": 2.196,
+  "drift_path_cm_per_step": 30.58,
+  "drift_path_cm_max": 53.17,
+  "drift_net_cm_per_step": 24.13,
+  "contact_rms_cm": 10.25,
+  "stride_m": 1.003,
+  "min_toe_below_floor_cm": -4.07,
+  "mean_contact_toe_above_floor_cm": 1.51,
+  "hips_mean_height": -0.01
+ },
+ "orc_C1_comp": {
+  "L_contact_frames": 8,
+  "L_segments": 1,
+  "R_contact_frames": 11,
+  "R_segments": 2,
+  "treadmill_speed_mps": 2.504,
+  "drift_path_cm_per_step": 22.98,
+  "drift_path_cm_max": 30.51,
+  "drift_net_cm_per_step": 12.16,
+  "contact_rms_cm": 6.65,
+  "stride_m": 1.003,
+  "min_toe_below_floor_cm": -4.66,
+  "mean_contact_toe_above_floor_cm": 0.88,
+  "hips_mean_height": -0.012
+ },
+ "wave": {
+  "fennec_C1_comp": {
+   "hand_rms_err_pct_arm": 31.1,
+   "hand_rms_err_cm_at_target": 11.2,
+   "peak_hand_above_head_norm": 0.26,
+   "peak_hand_above_head_norm_source": 0.21
+  },
+  "fennec_C0_nocomp": {
+   "hand_rms_err_pct_arm": 31.1,
+   "hand_rms_err_cm_at_target": 11.2,
+   "peak_hand_above_head_norm": 0.26,
+   "peak_hand_above_head_norm_source": 0.21
+  },
+  "orc_C1_comp": {
+   "hand_rms_err_pct_arm": 2.9,
+   "hand_rms_err_cm_at_target": 3.3,
+   "peak_hand_above_head_norm": 0.24,
+   "peak_hand_above_head_norm_source": 0.21
+  }
+ },
+ "meta": {
+  "frame": "per-rig character frame (right/forward/up from rest pose); heights along character up-axis",
+  "floors": {
+   "Wolf_SRC": -1.0474,
+   "Fennec_TGT": -0.5283,
+   "OrcSim_TGT": -1.2549
+  },
+  "wave_hand_side": "R",
+  "fps": 30.0,
+  "wolf_arm_len_m": 0.805,
+  "fen_arm_len_m": 0.361,
+  "orc_arm_len_m": 1.14
+ },
+ "normalized": {
+  "wolf_original": {
+   "drift_per_stride": 0.398,
+   "contact_rms_cm_per_m_leg": 10.63
+  },
+  "fennec_C0_nocomp": {
+   "drift_per_stride": 0.432,
+   "contact_rms_cm_per_m_leg": 14.12
+  },
+  "fennec_C1_comp": {
+   "drift_per_stride": 0.353,
+   "contact_rms_cm_per_m_leg": 11.87
+  },
+  "orc_C0_nocomp": {
+   "drift_per_stride": 0.305,
+   "contact_rms_cm_per_m_leg": 8.17
+  },
+  "orc_C1_comp": {
+   "drift_per_stride": 0.229,
+   "contact_rms_cm_per_m_leg": 5.3
+  }
+ }
+}

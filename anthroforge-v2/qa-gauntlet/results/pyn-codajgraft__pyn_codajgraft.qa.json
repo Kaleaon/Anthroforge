@@ -1,0 +1,59 @@
+{
+ "file": "pyn_codajgraft.glb",
+ "path": "/home/hatch/workspace/bodies-3d/pyn-codajgraft/pyn_codajgraft.glb",
+ "size_bytes": 5023988,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [
+  "KHR_materials_clearcoat",
+  "KHR_materials_sheen"
+ ],
+ "meshes": 12,
+ "primitives": 12,
+ "vertices": 38763,
+ "triangles": 71378,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 12,
+ "morph_targets_max_per_primitive": 3,
+ "bbox_min": [
+  -0.8678,
+  0.0,
+  -0.853
+ ],
+ "bbox_max": [
+  0.8678,
+  1.9951,
+  0.057
+ ],
+ "bbox_dims_m": [
+  1.7355,
+  1.9951,
+  0.91
+ ],
+ "max_extent_m": 1.9951,
+ "scale_flag": null,
+ "textures": {
+  "total": 3,
+  "embedded": 3,
+  "external": 0
+ },
+ "materials": 8,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "ok",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

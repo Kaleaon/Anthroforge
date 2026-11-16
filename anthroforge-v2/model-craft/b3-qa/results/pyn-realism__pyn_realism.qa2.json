@@ -1,0 +1,80 @@
+{
+ "file": "pyn_realism.glb",
+ "path": "/home/hatch/workspace/bodies-3d/pyn-realism/pyn_realism.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 8,
+  "used": 8,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 0,
+  "channels": 0,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 0,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 0.0
+ },
+ "topology": {
+  "boundary_edges": 2306,
+  "nonmanifold_edges": 66,
+  "edges_total": 601207,
+  "duplicate_faces": 62,
+  "unused_vertices": 0,
+  "vertices_total": 201594,
+  "split_vertex_ratio": 0.0076
+ },
+ "winding": {
+  "conflicts": 132,
+  "faces_checked": 32460,
+  "faces_inverted": 37,
+  "closed_meshes": 3,
+  "negative_volume_meshes": 2,
+  "inverted_face_frac": 0.0011
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 9,
+  "uv_out_of_range_frac_max": 0.0,
+  "overlap_estimate_max": 0.9748,
+  "seam_edges": 0,
+  "shared_edges": 15790,
+  "overlap_estimate_area_weighted": 0.8368
+ },
+ "texel": {
+  "per_prim": [
+   30971.6,
+   30971.6
+  ],
+  "mean_texel_per_m": 30971.6,
+  "cv": 0.0,
+  "prims_measured": 2
+ },
+ "weights": {
+  "prims_checked": 11,
+  "verts": 200858,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 4,
+  "mean_influences": 1.36,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 47,
+  "skins_joints_unused": 2,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "fail",
+  "winding": "fail",
+  "uv": "warn",
+  "texel": "ok",
+  "materials": "ok",
+  "weights": "warn",
+  "animation": "n/a"
+ }
+}

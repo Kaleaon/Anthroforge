@@ -1,0 +1,34 @@
+{
+ "pass0": {
+  "verts": 120,
+  "note": "coarse profile, flat facets"
+ },
+ "pass1": {
+  "verts": 20800,
+  "chest_width_m": 0.3364,
+  "waist_width_m": 0.2583,
+  "radial_std_mm": 22.449,
+  "mean_move_vs_prev_pass_mm": 0.0
+ },
+ "pass2": {
+  "verts": 20800,
+  "chest_width_m": 0.3402,
+  "waist_width_m": 0.2639,
+  "radial_std_mm": 22.894,
+  "mean_move_vs_prev_pass_mm": 3.706
+ },
+ "pass3": {
+  "verts": 20800,
+  "chest_width_m": 0.3407,
+  "waist_width_m": 0.2643,
+  "radial_std_mm": 22.919,
+  "mean_move_vs_prev_pass_mm": 0.428
+ },
+ "pass4": {
+  "verts": 20800,
+  "chest_width_m": 0.3406,
+  "waist_width_m": 0.2642,
+  "radial_std_mm": 22.927,
+  "mean_move_vs_prev_pass_mm": 2.382
+ }
+}

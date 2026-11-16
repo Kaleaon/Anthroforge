@@ -1,0 +1,4 @@
+FAIL  sculpt.mesh_filter(SMOOTH) corrected :: SEGFAULT (exit 139) in blender -b; no Python exception; crash written to /tmp/blender.crash.txt
+FAIL  sculpt.face_sets_init :: SEGFAULT (exit 139) in blender -b; no Python exception
+PASS  quadriflow :: verts 386 -> 225
+FAIL  brush_stroke :: stroke props=['stroke', 'mode', 'brush_toggle', 'pen_flip', 'override_location', 'ignore_background_click']; brush in data: Draw; RuntimeError('Operator bpy.ops.sculpt.brush_stroke.poll() failed, context is incorrect')

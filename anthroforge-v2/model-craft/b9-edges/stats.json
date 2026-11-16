@@ -1,0 +1,54 @@
+{
+ "base": {
+  "verts": 285,
+  "polys": 536,
+  "edges": 820,
+  "sharp_edges": 0
+ },
+ "variants": {
+  "A": {
+   "eval": {
+    "verts": 285,
+    "polys": 536
+   },
+   "loop_dev": {
+    "mean_deg": 7.36,
+    "p95_deg": 18.01,
+    "loops_over_15deg_pct": 9.1
+   },
+   "mods": [],
+   "sharp_edges": 54
+  },
+  "B": {
+   "eval": {
+    "verts": 285,
+    "polys": 536
+   },
+   "loop_dev": {
+    "mean_deg": 11.41,
+    "p95_deg": 41.72,
+    "loops_over_15deg_pct": 21.0
+   },
+   "mods": [
+    "WEIGHTED_NORMAL"
+   ],
+   "sharp_edges": 0
+  },
+  "C": {
+   "eval": {
+    "verts": 575,
+    "polys": 759
+   },
+   "loop_dev": {
+    "mean_deg": 7.89,
+    "p95_deg": 18.64,
+    "loops_over_15deg_pct": 11.4
+   },
+   "mods": [
+    "BEVEL",
+    "WEIGHTED_NORMAL"
+   ],
+   "sharp_edges": 0
+  }
+ }
+}

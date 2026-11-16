@@ -1,0 +1,56 @@
+{
+ "file": "kitty_base_v1.0.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/kitty-base-chocolatemilkcows/kitty_base_v1.0.glb",
+ "size_bytes": 779556,
+ "parses": true,
+ "error": null,
+ "generator": "Sketchfab-15.70.0",
+ "extensions_used": [],
+ "meshes": 1,
+ "primitives": 1,
+ "vertices": 15890,
+ "triangles": 22414,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 0,
+ "morph_targets_max_per_primitive": 0,
+ "bbox_min": [
+  -127.4802,
+  -1.5706,
+  -150.035
+ ],
+ "bbox_max": [
+  127.1306,
+  235.4597,
+  35.872
+ ],
+ "bbox_dims_m": [
+  254.6108,
+  237.0303,
+  185.907
+ ],
+ "max_extent_m": 254.6108,
+ "scale_flag": "too_large",
+ "textures": {
+  "total": 0,
+  "embedded": 0,
+  "external": 0
+ },
+ "materials": 1,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "warn",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "warn"
+ }
+}

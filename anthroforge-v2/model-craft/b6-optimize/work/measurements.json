@@ -1,0 +1,192 @@
+{
+ "bara_wolf_lod0": {
+  "verts": 69190,
+  "faces": 127110,
+  "elbow": {
+   "flips": 3553,
+   "flips_pct": 2.8,
+   "region_flips": 1014,
+   "region_tris": 9778,
+   "strain_max": 2.294,
+   "region_strain_p99": 1.612,
+   "region_strain_max": 2.294,
+   "region_verts": 5083
+  },
+  "twist": {
+   "flips": 7585,
+   "flips_pct": 5.97,
+   "region_flips": 4014,
+   "region_tris": 4199,
+   "strain_max": 4.561,
+   "region_strain_p99": 1.796,
+   "region_strain_max": 2.246,
+   "region_verts": 2099
+  },
+  "silhouette_iou_rest": 1.0,
+  "silhouette_iou_rest_filled": 1.0,
+  "dev_rest": {
+   "mean_mm": 0.0,
+   "p95_mm": 0.0,
+   "max_mm": 0.0
+  },
+  "silhouette_iou_elbow": 1.0,
+  "silhouette_iou_elbow_filled": 1.0,
+  "dev_elbow": {
+   "mean_mm": 0.0,
+   "p95_mm": 0.0,
+   "max_mm": 0.0
+  }
+ },
+ "bara_wolf_lod1_naive": {
+  "verts": 37336,
+  "faces": 63555,
+  "elbow": {
+   "flips": 2158,
+   "flips_pct": 3.4,
+   "region_flips": 456,
+   "region_tris": 4784,
+   "strain_max": 2.093,
+   "region_strain_p99": 1.614,
+   "region_strain_max": 2.093,
+   "region_verts": 2603
+  },
+  "twist": {
+   "flips": 4282,
+   "flips_pct": 6.74,
+   "region_flips": 1928,
+   "region_tris": 2046,
+   "strain_max": 4.561,
+   "region_strain_p99": 1.869,
+   "region_strain_max": 2.318,
+   "region_verts": 1047
+  },
+  "silhouette_iou_rest": 0.7916,
+  "silhouette_iou_rest_filled": 0.9899,
+  "dev_rest": {
+   "mean_mm": 1.54,
+   "p95_mm": 4.91,
+   "max_mm": 9.76
+  },
+  "silhouette_iou_elbow": 0.7945,
+  "silhouette_iou_elbow_filled": 0.9901,
+  "dev_elbow": {
+   "mean_mm": 1.58,
+   "p95_mm": 4.98,
+   "max_mm": 8.97
+  }
+ },
+ "bara_wolf_lod1": {
+  "verts": 36612,
+  "faces": 63555,
+  "elbow": {
+   "flips": 3098,
+   "flips_pct": 4.87,
+   "region_flips": 634,
+   "region_tris": 5084,
+   "strain_max": 2.294,
+   "region_strain_p99": 1.694,
+   "region_strain_max": 2.294,
+   "region_verts": 2701
+  },
+  "twist": {
+   "flips": 6261,
+   "flips_pct": 9.85,
+   "region_flips": 2705,
+   "region_tris": 2888,
+   "strain_max": 4.561,
+   "region_strain_p99": 1.848,
+   "region_strain_max": 2.246,
+   "region_verts": 1444
+  },
+  "silhouette_iou_rest": 0.7589,
+  "silhouette_iou_rest_filled": 0.9025,
+  "dev_rest": {
+   "mean_mm": 0.79,
+   "p95_mm": 4.2,
+   "max_mm": 9.18
+  },
+  "silhouette_iou_elbow": 0.7565,
+  "silhouette_iou_elbow_filled": 0.899,
+  "dev_elbow": {
+   "mean_mm": 0.78,
+   "p95_mm": 4.16,
+   "max_mm": 8.93
+  }
+ },
+ "bara_wolf_lod2_naive": {
+  "verts": 21163,
+  "faces": 31776,
+  "elbow": {
+   "flips": 1101,
+   "flips_pct": 3.46,
+   "region_flips": 222,
+   "region_tris": 2368,
+   "strain_max": 2.08,
+   "region_strain_p99": 1.554,
+   "region_strain_max": 2.08,
+   "region_verts": 1395
+  },
+  "twist": {
+   "flips": 2144,
+   "flips_pct": 6.75,
+   "region_flips": 923,
+   "region_tris": 1005,
+   "strain_max": 5.022,
+   "region_strain_p99": 1.849,
+   "region_strain_max": 2.274,
+   "region_verts": 543
+  },
+  "silhouette_iou_rest": 0.5574,
+  "silhouette_iou_rest_filled": 0.7807,
+  "dev_rest": {
+   "mean_mm": 1.61,
+   "p95_mm": 5.21,
+   "max_mm": 9.62
+  },
+  "silhouette_iou_elbow": 0.5654,
+  "silhouette_iou_elbow_filled": 0.793,
+  "dev_elbow": {
+   "mean_mm": 1.61,
+   "p95_mm": 5.17,
+   "max_mm": 9.81
+  }
+ },
+ "bara_wolf_lod2": {
+  "verts": 19689,
+  "faces": 31777,
+  "elbow": {
+   "flips": 2434,
+   "flips_pct": 7.66,
+   "region_flips": 334,
+   "region_tris": 2299,
+   "strain_max": 2.078,
+   "region_strain_p99": 1.709,
+   "region_strain_max": 2.078,
+   "region_verts": 1272
+  },
+  "twist": {
+   "flips": 4756,
+   "flips_pct": 14.97,
+   "region_flips": 1637,
+   "region_tris": 1760,
+   "strain_max": 4.589,
+   "region_strain_p99": 1.809,
+   "region_strain_max": 2.789,
+   "region_verts": 881
+  },
+  "silhouette_iou_rest": 0.5124,
+  "silhouette_iou_rest_filled": 0.7181,
+  "dev_rest": {
+   "mean_mm": 1.36,
+   "p95_mm": 4.97,
+   "max_mm": 13.0
+  },
+  "silhouette_iou_elbow": 0.5099,
+  "silhouette_iou_elbow_filled": 0.7081,
+  "dev_elbow": {
+   "mean_mm": 1.36,
+   "p95_mm": 4.95,
+   "max_mm": 13.0
+  }
+ }
+}

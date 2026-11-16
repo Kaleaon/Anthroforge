@@ -1,0 +1,862 @@
+{
+ "edge_stats": {
+  "rest_edge_len_mm_p1": 2.72,
+  "rest_edge_len_mm_p50": 9.71,
+  "pct_edges_lt_1mm": 0.003,
+  "pct_edges_lt_2mm": 0.265
+ },
+ "filtered": {
+  "elbow_flex_L": {
+   "strain_max_all": 1.536,
+   "strain_max_edges_ge_2mm": 1.536,
+   "strain_p99_edges_ge_2mm": 1.037,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.0
+  },
+  "elbow_flex_R": {
+   "strain_max_all": 2.216,
+   "strain_max_edges_ge_2mm": 2.216,
+   "strain_p99_edges_ge_2mm": 1.088,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.13
+  },
+  "knee_flex_L": {
+   "strain_max_all": 1.989,
+   "strain_max_edges_ge_2mm": 1.989,
+   "strain_p99_edges_ge_2mm": 1.104,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.13
+  },
+  "knee_flex_R": {
+   "strain_max_all": 2.639,
+   "strain_max_edges_ge_2mm": 2.639,
+   "strain_p99_edges_ge_2mm": 1.064,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.01
+  },
+  "hip_flex_L": {
+   "strain_max_all": 7.499,
+   "strain_max_edges_ge_2mm": 7.499,
+   "strain_p99_edges_ge_2mm": 1.317,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.5
+  },
+  "shoulder_flex_L": {
+   "strain_max_all": 3.568,
+   "strain_max_edges_ge_2mm": 3.568,
+   "strain_p99_edges_ge_2mm": 1.155,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.17
+  },
+  "shoulder_overhead_L": {
+   "strain_max_all": 22.175,
+   "strain_max_edges_ge_2mm": 22.175,
+   "strain_p99_edges_ge_2mm": 1.255,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.57
+  },
+  "shoulder_overhead_R": {
+   "strain_max_all": 13.435,
+   "strain_max_edges_ge_2mm": 13.435,
+   "strain_p99_edges_ge_2mm": 1.241,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.55
+  },
+  "clavicle_raise_L": {
+   "strain_max_all": 11.535,
+   "strain_max_edges_ge_2mm": 11.535,
+   "strain_p99_edges_ge_2mm": 1.401,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.79
+  },
+  "wrist_flex_L": {
+   "strain_max_all": 1.529,
+   "strain_max_edges_ge_2mm": 1.529,
+   "strain_p99_edges_ge_2mm": 1.0,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.0
+  },
+  "ankle_plantar_L": {
+   "strain_max_all": 1.358,
+   "strain_max_edges_ge_2mm": 1.358,
+   "strain_p99_edges_ge_2mm": 1.021,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.0
+  },
+  "ankle_dorsi_L": {
+   "strain_max_all": 1.362,
+   "strain_max_edges_ge_2mm": 1.362,
+   "strain_p99_edges_ge_2mm": 1.028,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.0
+  },
+  "neck_flex": {
+   "strain_max_all": 7.268,
+   "strain_max_edges_ge_2mm": 7.268,
+   "strain_p99_edges_ge_2mm": 1.449,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.93
+  },
+  "neck_extend": {
+   "strain_max_all": 7.44,
+   "strain_max_edges_ge_2mm": 7.44,
+   "strain_p99_edges_ge_2mm": 1.277,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.76
+  },
+  "spine_flex": {
+   "strain_max_all": 6.288,
+   "strain_max_edges_ge_2mm": 6.288,
+   "strain_p99_edges_ge_2mm": 1.258,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.43
+  },
+  "forearm_twist_L_180": {
+   "strain_max_all": 4.561,
+   "strain_max_edges_ge_2mm": 4.561,
+   "strain_p99_edges_ge_2mm": 1.062,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.32
+  },
+  "upperarm_twist_L_180": {
+   "strain_max_all": 26.606,
+   "strain_max_edges_ge_2mm": 26.606,
+   "strain_p99_edges_ge_2mm": 1.545,
+   "pct_edges_ge_2mm_strain_gt_1_5": 1.07
+  },
+  "thigh_twist_L_90": {
+   "strain_max_all": 9.4,
+   "strain_max_edges_ge_2mm": 9.4,
+   "strain_p99_edges_ge_2mm": 1.402,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.67
+  },
+  "neck_twist_80": {
+   "strain_max_all": 17.42,
+   "strain_max_edges_ge_2mm": 17.42,
+   "strain_p99_edges_ge_2mm": 1.814,
+   "pct_edges_ge_2mm_strain_gt_1_5": 1.36
+  },
+  "spine_twist_45": {
+   "strain_max_all": 7.509,
+   "strain_max_edges_ge_2mm": 7.509,
+   "strain_p99_edges_ge_2mm": 1.413,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.74
+  },
+  "elbow_hyper_L": {
+   "strain_max_all": 1.228,
+   "strain_max_edges_ge_2mm": 1.228,
+   "strain_p99_edges_ge_2mm": 1.01,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.0
+  },
+  "knee_hyper_L": {
+   "strain_max_all": 1.176,
+   "strain_max_edges_ge_2mm": 1.176,
+   "strain_p99_edges_ge_2mm": 1.013,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.0
+  },
+  "fist_L": {
+   "strain_max_all": 8.872,
+   "strain_max_edges_ge_2mm": 8.872,
+   "strain_p99_edges_ge_2mm": 1.133,
+   "pct_edges_ge_2mm_strain_gt_1_5": 0.26
+  },
+  "deep_squat": {
+   "strain_max_all": 5.398,
+   "strain_max_edges_ge_2mm": 5.398,
+   "strain_p99_edges_ge_2mm": 1.537,
+   "pct_edges_ge_2mm_strain_gt_1_5": 1.15
+  },
+  "arms_overhead_both": {
+   "strain_max_all": 22.175,
+   "strain_max_edges_ge_2mm": 22.175,
+   "strain_p99_edges_ge_2mm": 1.57,
+   "pct_edges_ge_2mm_strain_gt_1_5": 1.12
+  },
+  "touch_toes": {
+   "strain_max_all": 6.465,
+   "strain_max_edges_ge_2mm": 6.465,
+   "strain_p99_edges_ge_2mm": 1.606,
+   "pct_edges_ge_2mm_strain_gt_1_5": 1.58
+  }
+ },
+ "worst_verts": {
+  "upperarm_twist_L_180": [
+   {
+    "vert": 44655,
+    "vstrain": 26.61,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.29100000858306885,
+     0.05299999937415123,
+     1.3860000371932983
+    ]
+   },
+   {
+    "vert": 44637,
+    "vstrain": 26.61,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.2879999876022339,
+     0.05299999937415123,
+     1.3869999647140503
+    ]
+   },
+   {
+    "vert": 39599,
+    "vstrain": 21.89,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24500000476837158,
+     0.014000000432133675,
+     1.3880000114440918
+    ]
+   },
+   {
+    "vert": 39476,
+    "vstrain": 21.89,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.2460000067949295,
+     0.013000000268220901,
+     1.3930000066757202
+    ]
+   },
+   {
+    "vert": 2831,
+    "vstrain": 20.76,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24400000274181366,
+     -0.017999999225139618,
+     1.3830000162124634
+    ]
+   },
+   {
+    "vert": 2846,
+    "vstrain": 20.76,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24500000476837158,
+     -0.017999999225139618,
+     1.3899999856948853
+    ]
+   },
+   {
+    "vert": 1595,
+    "vstrain": 19.61,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24199999868869781,
+     -0.009999999776482582,
+     1.378000020980835
+    ]
+   },
+   {
+    "vert": 1518,
+    "vstrain": 19.61,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24400000274181366,
+     -0.009999999776482582,
+     1.3849999904632568
+    ]
+   }
+  ],
+  "shoulder_overhead_L": [
+   {
+    "vert": 44655,
+    "vstrain": 22.17,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.29100000858306885,
+     0.05299999937415123,
+     1.3860000371932983
+    ]
+   },
+   {
+    "vert": 44637,
+    "vstrain": 22.17,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.2879999876022339,
+     0.05299999937415123,
+     1.3869999647140503
+    ]
+   },
+   {
+    "vert": 39599,
+    "vstrain": 17.43,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24500000476837158,
+     0.014000000432133675,
+     1.3880000114440918
+    ]
+   },
+   {
+    "vert": 39476,
+    "vstrain": 17.43,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.2460000067949295,
+     0.013000000268220901,
+     1.3930000066757202
+    ]
+   },
+   {
+    "vert": 2846,
+    "vstrain": 15.88,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24500000476837158,
+     -0.017999999225139618,
+     1.3899999856948853
+    ]
+   },
+   {
+    "vert": 2831,
+    "vstrain": 15.88,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24400000274181366,
+     -0.017999999225139618,
+     1.3830000162124634
+    ]
+   },
+   {
+    "vert": 1518,
+    "vstrain": 15.29,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24400000274181366,
+     -0.009999999776482582,
+     1.3849999904632568
+    ]
+   },
+   {
+    "vert": 1595,
+    "vstrain": 15.29,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.24199999868869781,
+     -0.009999999776482582,
+     1.378000020980835
+    ]
+   }
+  ],
+  "deep_squat": [
+   {
+    "vert": 49645,
+    "vstrain": 5.4,
+    "dom_bone": "mixamorig:LeftUpLeg",
+    "rest_pos": [
+     0.06199999898672104,
+     0.09000000357627869,
+     0.8389999866485596
+    ]
+   },
+   {
+    "vert": 49549,
+    "vstrain": 5.4,
+    "dom_bone": "mixamorig:LeftUpLeg",
+    "rest_pos": [
+     0.05700000002980232,
+     0.09000000357627869,
+     0.8389999866485596
+    ]
+   },
+   {
+    "vert": 55317,
+    "vstrain": 4.96,
+    "dom_bone": "mixamorig:Hips",
+    "rest_pos": [
+     0.050999999046325684,
+     0.12800000607967377,
+     0.878000020980835
+    ]
+   },
+   {
+    "vert": 55717,
+    "vstrain": 4.96,
+    "dom_bone": "mixamorig:Hips",
+    "rest_pos": [
+     0.05000000074505806,
+     0.12999999523162842,
+     0.8820000290870667
+    ]
+   },
+   {
+    "vert": 48445,
+    "vstrain": 4.68,
+    "dom_bone": "mixamorig:RightUpLeg",
+    "rest_pos": [
+     -0.04600000008940697,
+     0.08100000023841858,
+     0.8330000042915344
+    ]
+   },
+   {
+    "vert": 48476,
+    "vstrain": 4.68,
+    "dom_bone": "mixamorig:Hips",
+    "rest_pos": [
+     -0.0430000014603138,
+     0.08100000023841858,
+     0.8370000123977661
+    ]
+   },
+   {
+    "vert": 47812,
+    "vstrain": 4.1,
+    "dom_bone": "mixamorig:RightUpLeg",
+    "rest_pos": [
+     -0.041999999433755875,
+     0.07500000298023224,
+     0.828000009059906
+    ]
+   },
+   {
+    "vert": 47893,
+    "vstrain": 4.1,
+    "dom_bone": "mixamorig:Hips",
+    "rest_pos": [
+     -0.03999999910593033,
+     0.07599999755620956,
+     0.8320000171661377
+    ]
+   }
+  ],
+  "forearm_twist_L_180": [
+   {
+    "vert": 3004,
+    "vstrain": 4.56,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.5389999747276306,
+     -0.01899999938905239,
+     1.437000036239624
+    ]
+   },
+   {
+    "vert": 3445,
+    "vstrain": 4.56,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.5329999923706055,
+     -0.02199999988079071,
+     1.4359999895095825
+    ]
+   },
+   {
+    "vert": 3444,
+    "vstrain": 4.56,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.5329999923706055,
+     -0.02199999988079071,
+     1.4359999895095825
+    ]
+   },
+   {
+    "vert": 3003,
+    "vstrain": 4.56,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.5389999747276306,
+     -0.01899999938905239,
+     1.437000036239624
+    ]
+   },
+   {
+    "vert": 3887,
+    "vstrain": 3.13,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.5400000214576721,
+     -0.02500000037252903,
+     1.4429999589920044
+    ]
+   },
+   {
+    "vert": 4795,
+    "vstrain": 2.83,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.527999997138977,
+     -0.029999999329447746,
+     1.440000057220459
+    ]
+   },
+   {
+    "vert": 2639,
+    "vstrain": 2.61,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.5649999976158142,
+     -0.01600000075995922,
+     1.5110000371932983
+    ]
+   },
+   {
+    "vert": 2179,
+    "vstrain": 2.61,
+    "dom_bone": "mixamorig:LeftArm",
+    "rest_pos": [
+     0.5609999895095825,
+     -0.013000000268220901,
+     1.5110000371932983
+    ]
+   }
+  ],
+  "hip_flex_L": [
+   {
+    "vert": 49645,
+    "vstrain": 7.5,
+    "dom_bone": "mixamorig:LeftUpLeg",
+    "rest_pos": [
+     0.06199999898672104,
+     0.09000000357627869,
+     0.8389999866485596
+    ]
+   },
+   {
+    "vert": 49549,
+    "vstrain": 7.5,
+    "dom_bone": "mixamorig:LeftUpLeg",
+    "rest_pos": [
+     0.05700000002980232,
+     0.09000000357627869,
+     0.8389999866485596
+    ]
+   },
+   {
+    "vert": 55717,
+    "vstrain": 5.32,
+    "dom_bone": "mixamorig:Hips",
+    "rest_pos": [
+     0.05000000074505806,
+     0.12999999523162842,
+     0.8820000290870667
+    ]
+   },
+   {
+    "vert": 55317,
+    "vstrain": 5.32,
+    "dom_bone": "mixamorig:Hips",
+    "rest_pos": [
+     0.050999999046325684,
+     0.12800000607967377,
+     0.878000020980835
+    ]
+   },
+   {
+    "vert": 54873,
+    "vstrain": 4.88,
+    "dom_bone": "mixamorig:Hips",
+    "rest_pos": [
+     0.04699999839067459,
+     0.125,
+     0.8769999742507935
+    ]
+   },
+   {
+    "vert": 49107,
+    "vstrain": 4.77,
+    "dom_bone": "mixamorig:LeftUpLeg",
+    "rest_pos": [
+     0.05299999937415123,
+     0.0860000029206276,
+     0.8360000252723694
+    ]
+   },
+   {
+    "vert": 49510,
+    "vstrain": 4.77,
+    "dom_bone": "mixamorig:LeftUpLeg",
+    "rest_pos": [
+     0.061000000685453415,
+     0.08900000154972076,
+     0.8370000123977661
+    ]
+   },
+   {
+    "vert": 48940,
+    "vstrain": 4.35,
+    "dom_bone": "mixamorig:LeftUpLeg",
+    "rest_pos": [
+     0.052000001072883606,
+     0.08500000089406967,
+     0.8339999914169312
+    ]
+   }
+  ],
+  "neck_twist_80": [
+   {
+    "vert": 53196,
+    "vstrain": 17.42,
+    "dom_bone": "mixamorig:Neck",
+    "rest_pos": [
+     0.27799999713897705,
+     0.11400000005960464,
+     1.6549999713897705
+    ]
+   },
+   {
+    "vert": 54354,
+    "vstrain": 17.42,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.2809999883174896,
+     0.12200000137090683,
+     1.652999997138977
+    ]
+   },
+   {
+    "vert": 55606,
+    "vstrain": 16.8,
+    "dom_bone": "mixamorig:Neck",
+    "rest_pos": [
+     0.2280000001192093,
+     0.12999999523162842,
+     1.6430000066757202
+    ]
+   },
+   {
+    "vert": 56398,
+    "vstrain": 16.8,
+    "dom_bone": "mixamorig:Spine2",
+    "rest_pos": [
+     0.23199999332427979,
+     0.1340000033378601,
+     1.6419999599456787
+    ]
+   },
+   {
+    "vert": 56397,
+    "vstrain": 16.8,
+    "dom_bone": "mixamorig:Spine2",
+    "rest_pos": [
+     0.23199999332427979,
+     0.1340000033378601,
+     1.6419999599456787
+    ]
+   },
+   {
+    "vert": 55605,
+    "vstrain": 16.8,
+    "dom_bone": "mixamorig:Neck",
+    "rest_pos": [
+     0.2280000001192093,
+     0.12999999523162842,
+     1.6430000066757202
+    ]
+   },
+   {
+    "vert": 48047,
+    "vstrain": 16.37,
+    "dom_bone": "mixamorig:Spine2",
+    "rest_pos": [
+     0.3070000112056732,
+     0.07699999958276749,
+     1.6579999923706055
+    ]
+   },
+   {
+    "vert": 46569,
+    "vstrain": 16.37,
+    "dom_bone": "mixamorig:LeftShoulder",
+    "rest_pos": [
+     0.3050000071525574,
+     0.06599999964237213,
+     1.6549999713897705
+    ]
+   }
+  ],
+  "elbow_flex_R": [
+   {
+    "vert": 54688,
+    "vstrain": 2.22,
+    "dom_bone": "mixamorig:RightArm",
+    "rest_pos": [
+     -0.5870000123977661,
+     0.12399999797344208,
+     1.3799999952316284
+    ]
+   },
+   {
+    "vert": 54032,
+    "vstrain": 2.22,
+    "dom_bone": "mixamorig:RightArm",
+    "rest_pos": [
+     -0.5950000286102295,
+     0.11999999731779099,
+     1.38100004196167
+    ]
+   },
+   {
+    "vert": 54700,
+    "vstrain": 2.21,
+    "dom_bone": "mixamorig:RightArm",
+    "rest_pos": [
+     -0.5979999899864197,
+     0.12399999797344208,
+     1.3819999694824219
+    ]
+   },
+   {
+    "vert": 55629,
+    "vstrain": 2.21,
+    "dom_bone": "mixamorig:RightArm",
+    "rest_pos": [
+     -0.5910000205039978,
+     0.12999999523162842,
+     1.38100004196167
+    ]
+   },
+   {
+    "vert": 53868,
+    "vstrain": 2.06,
+    "dom_bone": "mixamorig:RightArm",
+    "rest_pos": [
+     -0.5870000123977661,
+     0.11900000274181366,
+     1.3799999952316284
+    ]
+   },
+   {
+    "vert": 56597,
+    "vstrain": 2.05,
+    "dom_bone": "mixamorig:RightArm",
+    "rest_pos": [
+     -0.6050000190734863,
+     0.13600000739097595,
+     1.3880000114440918
+    ]
+   },
+   {
+    "vert": 57789,
+    "vstrain": 2.05,
+    "dom_bone": "mixamorig:RightArm",
+    "rest_pos": [
+     -0.5960000157356262,
+     0.14300000667572021,
+     1.3880000114440918
+    ]
+   },
+   {
+    "vert": 41753,
+    "vstrain": 2.02,
+    "dom_bone": "mixamorig:RightForeArm",
+    "rest_pos": [
+     -0.7900000214576721,
+     0.03099999949336052,
+     1.50600004196167
+    ]
+   }
+  ],
+  "fist_L": [
+   {
+    "vert": 13988,
+    "vstrain": 8.87,
+    "dom_bone": "mixamorig:LeftHandMiddle1",
+    "rest_pos": [
+     0.9480000138282776,
+     -0.08500000089406967,
+     1.4570000171661377
+    ]
+   },
+   {
+    "vert": 14022,
+    "vstrain": 8.87,
+    "dom_bone": "mixamorig:LeftHandRing1",
+    "rest_pos": [
+     0.9459999799728394,
+     -0.08500000089406967,
+     1.4550000429153442
+    ]
+   },
+   {
+    "vert": 14819,
+    "vstrain": 8.84,
+    "dom_bone": "mixamorig:LeftHandMiddle1",
+    "rest_pos": [
+     0.949999988079071,
+     -0.09099999815225601,
+     1.4570000171661377
+    ]
+   },
+   {
+    "vert": 14988,
+    "vstrain": 8.84,
+    "dom_bone": "mixamorig:LeftHandRing1",
+    "rest_pos": [
+     0.9470000267028809,
+     -0.09300000220537186,
+     1.4559999704360962
+    ]
+   },
+   {
+    "vert": 19440,
+    "vstrain": 6.88,
+    "dom_bone": "mixamorig:LeftHandMiddle1",
+    "rest_pos": [
+     0.9340000152587891,
+     -0.11999999731779099,
+     1.4620000123977661
+    ]
+   },
+   {
+    "vert": 19779,
+    "vstrain": 6.88,
+    "dom_bone": "mixamorig:LeftHandMiddle1",
+    "rest_pos": [
+     0.9340000152587891,
+     -0.12200000137090683,
+     1.465000033378601
+    ]
+   },
+   {
+    "vert": 19634,
+    "vstrain": 6.81,
+    "dom_bone": "mixamorig:LeftHandRing1",
+    "rest_pos": [
+     0.9300000071525574,
+     -0.12200000137090683,
+     1.4639999866485596
+    ]
+   },
+   {
+    "vert": 20017,
+    "vstrain": 6.37,
+    "dom_bone": "mixamorig:LeftHandRing1",
+    "rest_pos": [
+     0.925000011920929,
+     -0.12399999797344208,
+     1.4570000171661377
+    ]
+   }
+  ]
+ },
+ "pivot_decomposition": {
+  "BaraWolfBody:pivot:elbow:mixamorig:LeftForeArm": {
+   "joint": "mixamorig:LeftForeArm",
+   "perp_offset_m": 0.0058,
+   "along_axis_offset_m": -0.0135,
+   "perp_over_radius": 0.056
+  },
+  "BaraWolfBody:pivot:wrist:mixamorig:LeftHand": {
+   "joint": "mixamorig:LeftHand",
+   "perp_offset_m": 0.0159,
+   "along_axis_offset_m": -0.0486,
+   "perp_over_radius": 0.214
+  },
+  "BaraWolfBody:pivot:knee:mixamorig:LeftLeg": {
+   "joint": "mixamorig:LeftLeg",
+   "perp_offset_m": 0.0061,
+   "along_axis_offset_m": -0.051,
+   "perp_over_radius": 0.046
+  },
+  "BaraWolfBody:pivot:ankle:mixamorig:LeftFoot": {
+   "joint": "mixamorig:LeftFoot",
+   "perp_offset_m": 0.0567,
+   "along_axis_offset_m": -0.072,
+   "perp_over_radius": 0.589
+  },
+  "BaraWolfBody:pivot:elbow:mixamorig:RightForeArm": {
+   "joint": "mixamorig:RightForeArm",
+   "perp_offset_m": 0.0129,
+   "along_axis_offset_m": -0.0133,
+   "perp_over_radius": 0.124
+  },
+  "BaraWolfBody:pivot:knee:mixamorig:RightLeg": {
+   "joint": "mixamorig:RightLeg",
+   "perp_offset_m": 0.0092,
+   "along_axis_offset_m": -0.0523,
+   "perp_over_radius": 0.07
+  }
+ }
+}

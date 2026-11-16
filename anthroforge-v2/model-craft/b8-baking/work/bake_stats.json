@@ -1,0 +1,77 @@
+{
+  "settings": {
+    "res_main": 2048,
+    "res_ao": 1024,
+    "cage_extrude": 2.0,
+    "margin": 16
+  },
+  "passes": {
+    "normal": {
+      "file": "maps/orc_head_normal.png",
+      "res": 2048,
+      "bake_seconds": 20.7,
+      "fill_fraction": 1.0,
+      "rgb_mean": [
+        0.5006,
+        0.5037,
+        0.9885
+      ],
+      "rgb_std": [
+        0.0778,
+        0.0727,
+        0.0619
+      ]
+    },
+    "color": {
+      "file": "maps/orc_head_color.png",
+      "res": 2048,
+      "bake_seconds": 11.8,
+      "fill_fraction": 0.7728,
+      "rgb_mean": [
+        0.5421,
+        0.5322,
+        0.4603
+      ],
+      "rgb_std": [
+        0.1201,
+        0.1417,
+        0.1305
+      ]
+    },
+    "ao": {
+      "file": "maps/orc_head_ao.png",
+      "res": 1024,
+      "bake_seconds": 43.9,
+      "fill_fraction": 1.0,
+      "rgb_mean": [
+        0.7447,
+        0.7447,
+        0.7447
+      ],
+      "rgb_std": [
+        0.359,
+        0.359,
+        0.359
+      ]
+    },
+    "curvature": {
+      "file": "maps/orc_head_curvature.png",
+      "res": 2048,
+      "bake_seconds": 43.5,
+      "fill_fraction": 1.0,
+      "rgb_mean": [
+        0.3868,
+        0.3868,
+        0.3868
+      ],
+      "rgb_std": [
+        0.2149,
+        0.2149,
+        0.2149
+      ]
+    }
+  },
+  "head_height": 99.14620971679688,
+  "low_verts": 5813,
+  "high_tris": 855696
+}

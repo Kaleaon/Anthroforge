@@ -1,0 +1,23 @@
+{
+ "import_s": 52.3,
+ "chunk_objects": 9,
+ "src_verts_unwelded": 573148,
+ "src_tris": 855696,
+ "src_bounds": {
+  "x": [
+   -32.63,
+   32.69
+  ],
+  "y": [
+   -42.27,
+   39.1
+  ],
+  "z": [
+   -39.81,
+   59.34
+  ],
+  "height": 99.15,
+  "x_asym": 0.063
+ },
+ "total_s": 59.1
+}

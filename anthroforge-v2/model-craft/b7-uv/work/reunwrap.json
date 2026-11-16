@@ -1,0 +1,29 @@
+{
+ "original": {
+  "L2_rms": 1.074,
+  "L2_p95": 1.448,
+  "conf_p95": 2.068,
+  "conf_gt2_pct": 5.9,
+  "density_CV": 0.443,
+  "density_p10": 0.551,
+  "density_p90": 1.77
+ },
+ "smart_project": {
+  "L2_rms": 1.007,
+  "L2_p95": 1.083,
+  "conf_p95": 1.547,
+  "conf_gt2_pct": 0.0,
+  "density_CV": 0.13,
+  "density_p10": 0.813,
+  "density_p90": 1.157
+ },
+ "house_seams": {
+  "L2_rms": 1.006,
+  "L2_p95": 1.248,
+  "conf_p95": 1.726,
+  "conf_gt2_pct": 3.3,
+  "density_CV": 0.653,
+  "density_p10": 0.456,
+  "density_p90": 1.327
+ }
+}

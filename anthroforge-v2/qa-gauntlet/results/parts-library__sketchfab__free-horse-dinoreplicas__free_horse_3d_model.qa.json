@@ -1,0 +1,58 @@
+{
+ "file": "free_horse_3d_model.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/free-horse-dinoreplicas/free_horse_3d_model.glb",
+ "size_bytes": 1351988,
+ "parses": true,
+ "error": null,
+ "generator": "Sketchfab-16.21.0",
+ "extensions_used": [
+  "KHR_materials_pbrSpecularGlossiness"
+ ],
+ "meshes": 7,
+ "primitives": 7,
+ "vertices": 23893,
+ "triangles": 44842,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 0,
+ "morph_targets_max_per_primitive": 0,
+ "bbox_min": [
+  -0.3747,
+  -0.0005,
+  -1.4456
+ ],
+ "bbox_max": [
+  1.5,
+  2.4232,
+  1.3981
+ ],
+ "bbox_dims_m": [
+  1.8747,
+  2.4237,
+  2.8437
+ ],
+ "max_extent_m": 2.8437,
+ "scale_flag": null,
+ "textures": {
+  "total": 2,
+  "embedded": 2,
+  "external": 0
+ },
+ "materials": 7,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "warn",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

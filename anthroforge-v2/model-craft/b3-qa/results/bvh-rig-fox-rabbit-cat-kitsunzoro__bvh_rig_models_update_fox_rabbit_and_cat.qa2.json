@@ -1,0 +1,80 @@
+{
+ "file": "bvh_rig_models_update_fox_rabbit_and_cat.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/bvh-rig-fox-rabbit-cat-kitsunzoro/bvh_rig_models_update_fox_rabbit_and_cat.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 10,
+  "used": 10,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 1,
+  "channels": 4,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 4,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 0.0
+ },
+ "topology": {
+  "boundary_edges": 51882,
+  "nonmanifold_edges": 2438,
+  "edges_total": 432301,
+  "duplicate_faces": 2024,
+  "unused_vertices": 0,
+  "vertices_total": 163838,
+  "split_vertex_ratio": 0.1575
+ },
+ "winding": {
+  "conflicts": 6072,
+  "faces_checked": 165908,
+  "faces_inverted": 14,
+  "closed_meshes": 4,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.0001
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 25,
+  "uv_out_of_range_frac_max": 1.0,
+  "overlap_estimate_max": 0.9778,
+  "seam_edges": 0,
+  "shared_edges": 377981,
+  "overlap_estimate_area_weighted": 0.8792
+ },
+ "texel": {
+  "per_prim": [
+   2351.5,
+   2351.5
+  ],
+  "mean_texel_per_m": 2351.5,
+  "cv": 0.0,
+  "prims_measured": 2
+ },
+ "weights": {
+  "prims_checked": 13,
+  "verts": 152886,
+  "zero_weight_verts": 80934,
+  "unnormalised_verts": 0,
+  "max_influences": 4,
+  "mean_influences": 1.07,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 318,
+  "skins_joints_unused": null,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "fail",
+  "winding": "warn",
+  "uv": "warn",
+  "texel": "ok",
+  "materials": "ok",
+  "weights": "warn",
+  "animation": "warn"
+ }
+}

@@ -1,0 +1,10 @@
+01:52.742  blend            | Read blend: "/home/hatch/workspace/stick-figure-avatar/furry/bara_wolf_base.blend"
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/build_a1.py:176: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/build_a1.py:211: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/build_a1.py:219: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/build_a1.py:246: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+18:30.791  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/renders/render_shells16_front.png'

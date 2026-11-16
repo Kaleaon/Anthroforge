@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<script src="../../lib/babylon.js"></script></head>
+<body style="margin:0;background:#000"><canvas id="c" width="900" height="900" style="width:900px;height:900px;display:block"></canvas>
+<div id="status">INIT</div>
+<script>
+BABYLON.Effect.ShadersStore['probeVertexShader'] = `
+  attribute vec3 position; uniform mat4 worldViewProjection;
+  void main(){ gl_Position = worldViewProjection * vec4(position, 1.0); }`;
+BABYLON.Effect.ShadersStore['probeFragmentShader'] = `
+  void main(){ gl_FragColor = vec4(1.0, 0.0, 0.0, 0.5); }`;
+try {
+  const engine = new BABYLON.Engine(document.getElementById('c'), false);
+  const scene = new BABYLON.Scene(engine);
+  scene.clearColor = new BABYLON.Color4(0, 0, 0, 1);
+  new BABYLON.HemisphericLight('h', new BABYLON.Vector3(0, 1, 0), scene).intensity = 1.0;
+  const cam = new BABYLON.ArcRotateCamera('cam', -Math.PI/2, Math.PI/2.2, 6, BABYLON.Vector3.Zero(), scene);
+  const inner = BABYLON.MeshBuilder.CreateSphere('inner', {diameter: 2}, scene);
+  const im = new BABYLON.StandardMaterial('im', scene); im.emissiveColor = new BABYLON.Color3(0, 1, 0); im.disableLighting = true;
+  inner.material = im;
+  const outer = BABYLON.MeshBuilder.CreateSphere('outer', {diameter: 2.6}, scene);
+  const sm = new BABYLON.ShaderMaterial('sm', scene, { vertex: 'probe', fragment: 'probe' },
+    { attributes: ['position'], uniforms: ['worldViewProjection'] });
+  sm.alphaMode = BABYLON.Engine.ALPHA_COMBINE;
+  outer.material = sm;
+  engine.runRenderLoop(() => scene.render());
+  document.getElementById('status').textContent = 'ENGINE_OK';
+  setTimeout(() => { window.__AF_READY = true; window.__AF_DIAG = 'ok'; }, 1200);
+} catch (e) { document.getElementById('status').textContent = 'ERR ' + e.message; }
+</script></body></html>

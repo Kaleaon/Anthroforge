@@ -1,0 +1,105 @@
+{
+ "file": "legs_digitigrade.L.glb",
+ "path": "/home/hatch/workspace/anthroforge-v2/model-craft/b13-digitigrade/parts/legs_digitigrade.L.glb",
+ "size_bytes": 52036,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [],
+ "meshes": 1,
+ "primitives": 1,
+ "vertices": 897,
+ "triangles": 1616,
+ "degenerate_triangles": 104,
+ "nan_vertices": 0,
+ "morph_targets_total": 0,
+ "morph_targets_max_per_primitive": 0,
+ "bbox_min": [
+  -0.0045,
+  0.0002,
+  -0.1105
+ ],
+ "bbox_max": [
+  0.2005,
+  0.8978,
+  0.1368
+ ],
+ "bbox_dims_m": [
+  0.205,
+  0.8976,
+  0.2472
+ ],
+ "max_extent_m": 0.8976,
+ "scale_flag": null,
+ "textures": {
+  "total": 0,
+  "embedded": 0,
+  "external": 0
+ },
+ "materials": 0,
+ "animations": 0,
+ "skin": {
+  "present": true,
+  "count": 1,
+  "index": 0,
+  "joint_count": 5,
+  "joint_names": [
+   "Hip_L",
+   "Knee_L",
+   "Ankle_L",
+   "Hock_L",
+   "Foot_L"
+  ],
+  "has_inverse_bind_matrices": true,
+  "contract_matched": 4,
+  "contract_missing": [
+   "Root",
+   "Pelvis",
+   "Spine1",
+   "Chest",
+   "Neck",
+   "Head",
+   "Jaw",
+   "Ear_L",
+   "Ear_R",
+   "Shoulder_L",
+   "Elbow_L",
+   "Wrist_L",
+   "Shoulder_R",
+   "Elbow_R",
+   "Wrist_R",
+   "Hip_R",
+   "Knee_R",
+   "Ankle_R",
+   "Foot_R",
+   "Wing_L1",
+   "Wing_L2",
+   "Wing_R1",
+   "Wing_R2",
+   "Tail_1",
+   "Tail_2",
+   "Tail_3",
+   "GenBase",
+   "GenScrot",
+   "Gen01",
+   "Gen02",
+   "Gen03",
+   "Gen04"
+  ],
+  "contract_extra": [
+   "Hock_L"
+  ],
+  "contract_full_match": false
+ },
+ "primitives_with_joints": 1,
+ "primitives_with_weights": 1,
+ "status": {
+  "parse": "ok",
+  "skin": "ok",
+  "contract": "fail",
+  "morphs": "warn",
+  "textures": "ok",
+  "geometry": "fail",
+  "scale": "ok"
+ }
+}

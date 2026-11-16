@@ -1,0 +1,80 @@
+{
+ "file": "pyn_formgraft.glb",
+ "path": "/home/hatch/workspace/bodies-3d/pyn-formgraft/pyn_formgraft.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 12,
+  "used": 12,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 2,
+  "channels": 2,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 0,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 0.958
+ },
+ "topology": {
+  "boundary_edges": 10813,
+  "nonmanifold_edges": 0,
+  "edges_total": 160520,
+  "duplicate_faces": 0,
+  "unused_vertices": 0,
+  "vertices_total": 59015,
+  "split_vertex_ratio": 0.1132
+ },
+ "winding": {
+  "conflicts": 0,
+  "faces_checked": 53096,
+  "faces_inverted": 494,
+  "closed_meshes": 5,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.0093
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 9,
+  "uv_out_of_range_frac_max": 0.027777777777777776,
+  "overlap_estimate_max": 0.9452,
+  "seam_edges": 0,
+  "shared_edges": 146365,
+  "overlap_estimate_area_weighted": 0.7602
+ },
+ "texel": {
+  "per_prim": [
+   1026.0,
+   4560.4
+  ],
+  "mean_texel_per_m": 2793.2,
+  "cv": 0.633,
+  "prims_measured": 2
+ },
+ "weights": {
+  "prims_checked": 0,
+  "verts": 0,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 0,
+  "mean_influences": null,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 0,
+  "skins_joints_unused": 0,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "warn",
+  "winding": "warn",
+  "uv": "warn",
+  "texel": "warn",
+  "materials": "ok",
+  "weights": "n/a",
+  "animation": "ok"
+ }
+}

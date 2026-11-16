@@ -1,0 +1,537 @@
+{
+ "Ear_L": {
+  "welded_verts": 76,
+  "tris": 134,
+  "valence_med": 6,
+  "poles_v5": 13,
+  "poles_v7plus": 9,
+  "boundary_edges": 16,
+  "nonmanifold_edges": 0,
+  "boundary_loops": [
+   16
+  ]
+ },
+ "Ear_R": {
+  "welded_verts": 76,
+  "tris": 134,
+  "valence_med": 6,
+  "poles_v5": 13,
+  "poles_v7plus": 9,
+  "boundary_edges": 16,
+  "nonmanifold_edges": 0,
+  "boundary_loops": [
+   16
+  ]
+ },
+ "Eyeball_L": {
+  "welded_verts": 162,
+  "tris": 320,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "Eyeball_R": {
+  "welded_verts": 162,
+  "tris": 320,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "Eyelid_L": {
+  "welded_verts": 478,
+  "tris": 952,
+  "valence_med": 6,
+  "poles_v5": 56,
+  "poles_v7plus": 2,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "Eyelid_R": {
+  "welded_verts": 478,
+  "tris": 952,
+  "valence_med": 6,
+  "poles_v5": 56,
+  "poles_v7plus": 2,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "Iris_L": {
+  "welded_verts": 162,
+  "tris": 320,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "Iris_R": {
+  "welded_verts": 162,
+  "tris": 320,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "Jaw": {
+  "welded_verts": 538,
+  "tris": 952,
+  "valence_med": 6,
+  "poles_v5": 62,
+  "poles_v7plus": 64,
+  "boundary_edges": 124,
+  "nonmanifold_edges": 0,
+  "boundary_loops": [
+   78,
+   46
+  ]
+ },
+ "LidMargin_L": {
+  "welded_verts": 280,
+  "tris": 560,
+  "valence_med": 6,
+  "poles_v5": 0,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "LidMargin_R": {
+  "welded_verts": 280,
+  "tris": 560,
+  "valence_med": 6,
+  "poles_v5": 0,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "NeckSocket": {
+  "welded_verts": 280,
+  "tris": 560,
+  "valence_med": 6,
+  "poles_v5": 0,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "NeckSocketDisc": {
+  "welded_verts": 42,
+  "tris": 80,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "NoseLeather": {
+  "welded_verts": 162,
+  "tris": 320,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "Pupil_L": {
+  "welded_verts": 162,
+  "tris": 320,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "Pupil_R": {
+  "welded_verts": 162,
+  "tris": 320,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "TeethArcade": {
+  "welded_verts": 719,
+  "tris": 1368,
+  "valence_med": 6,
+  "poles_v5": 123,
+  "poles_v7plus": 153,
+  "boundary_edges": 68,
+  "nonmanifold_edges": 0,
+  "boundary_loops": [
+   68
+  ]
+ },
+ "Throat": {
+  "welded_verts": 42,
+  "tris": 80,
+  "valence_med": 6,
+  "poles_v5": 12,
+  "poles_v7plus": 0,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "boundary_loops": []
+ },
+ "TissueHead": {
+  "welded_verts": 962,
+  "tris": 1828,
+  "valence_med": 6,
+  "poles_v5": 179,
+  "poles_v7plus": 132,
+  "boundary_edges": 98,
+  "nonmanifold_edges": 0,
+  "boundary_loops": [
+   66,
+   16,
+   16
+  ]
+ },
+ "Tongue": {
+  "welded_verts": 457,
+  "tris": 880,
+  "valence_med": 6,
+  "poles_v5": 13,
+  "poles_v7plus": 10,
+  "boundary_edges": 32,
+  "nonmanifold_edges": 0,
+  "boundary_loops": [
+   32
+  ]
+ },
+ "eye_socket_rings_from_rim": [
+  102
+ ],
+ "eye_ring_radial_extent": {
+  "0": [
+   0.07,
+   0.087,
+   102
+  ]
+ },
+ "region_density": {
+  "brow_band": {
+   "tris": 410,
+   "verts": 254,
+   "area_L2": 0.1002,
+   "verts_per_L2": 2535.3,
+   "mean_edge_L": null
+  },
+  "eye_socket_zone": {
+   "tris": 1192,
+   "verts": 636,
+   "area_L2": 0.4396,
+   "verts_per_L2": 1446.9,
+   "mean_edge_L": null
+  },
+  "muzzle_dorsum": {
+   "tris": 132,
+   "verts": 89,
+   "area_L2": 0.0593,
+   "verts_per_L2": 1502.1,
+   "mean_edge_L": null
+  },
+  "whisker_pad_zone": {
+   "tris": 34,
+   "verts": 32,
+   "area_L2": 0.0392,
+   "verts_per_L2": 816.0,
+   "mean_edge_L": null
+  },
+  "lip_line_zone": {
+   "tris": 48,
+   "verts": 42,
+   "area_L2": 0.0307,
+   "verts_per_L2": 1367.5,
+   "mean_edge_L": null
+  },
+  "cheek": {
+   "tris": 188,
+   "verts": 138,
+   "area_L2": 0.1252,
+   "verts_per_L2": 1102.0,
+   "mean_edge_L": null
+  },
+  "forehead": {
+   "tris": 84,
+   "verts": 63,
+   "area_L2": 0.0974,
+   "verts_per_L2": 646.5,
+   "mean_edge_L": null
+  },
+  "cranium_side": {
+   "tris": 148,
+   "verts": 124,
+   "area_L2": 0.2135,
+   "verts_per_L2": 580.8,
+   "mean_edge_L": null
+  }
+ },
+ "stop": {
+  "z_at_max_curvature": -0.27,
+  "profile_y_at_stop": 0.062,
+  "slope_before": 0.65,
+  "slope_after": 2.81
+ },
+ "midline_profile": [
+  [
+   -0.5,
+   -0.139
+  ],
+  [
+   -0.48,
+   -0.189
+  ],
+  [
+   -0.46,
+   -0.137
+  ],
+  [
+   -0.44,
+   -0.113
+  ],
+  [
+   -0.42,
+   -0.092
+  ],
+  [
+   -0.4,
+   -0.066
+  ],
+  [
+   -0.38,
+   -0.04
+  ],
+  [
+   -0.36,
+   -0.016
+  ],
+  [
+   -0.34,
+   0.004
+  ],
+  [
+   -0.32,
+   0.02
+  ],
+  [
+   -0.3,
+   0.033
+  ],
+  [
+   -0.28,
+   0.046
+  ],
+  [
+   -0.26,
+   0.11
+  ],
+  [
+   -0.24,
+   0.134
+  ],
+  [
+   -0.22,
+   0.13
+  ],
+  [
+   -0.2,
+   0.126
+  ],
+  [
+   -0.18,
+   0.125
+  ],
+  [
+   -0.16,
+   0.132
+  ],
+  [
+   -0.14,
+   0.147
+  ],
+  [
+   -0.12,
+   0.147
+  ],
+  [
+   -0.1,
+   0.147
+  ],
+  [
+   -0.08,
+   0.152
+  ],
+  [
+   -0.06,
+   0.163
+  ],
+  [
+   -0.04,
+   0.173
+  ],
+  [
+   -0.02,
+   0.187
+  ],
+  [
+   0.0,
+   0.214
+  ],
+  [
+   0.02,
+   0.241
+  ],
+  [
+   0.04,
+   0.269
+  ],
+  [
+   0.06,
+   0.279
+  ],
+  [
+   0.08,
+   0.287
+  ],
+  [
+   0.1,
+   0.294
+  ],
+  [
+   0.12,
+   0.3
+  ],
+  [
+   0.14,
+   0.303
+  ],
+  [
+   0.16,
+   0.306
+  ],
+  [
+   0.18,
+   0.309
+  ],
+  [
+   0.2,
+   0.308
+  ],
+  [
+   0.22,
+   0.306
+  ],
+  [
+   0.24,
+   0.305
+  ],
+  [
+   0.26,
+   0.302
+  ],
+  [
+   0.28,
+   0.295
+  ],
+  [
+   0.3,
+   0.288
+  ]
+ ],
+ "tissue_boundary_loops": [
+  {
+   "n": 66,
+   "centre": [
+    0.0,
+    -0.186,
+    -0.015
+   ],
+   "span": [
+    0.538,
+    0.235,
+    0.983
+   ]
+  },
+  {
+   "n": 16,
+   "centre": [
+    -0.219,
+    0.165,
+    0.186
+   ],
+   "span": [
+    0.123,
+    0.241,
+    0.142
+   ]
+  },
+  {
+   "n": 16,
+   "centre": [
+    0.219,
+    0.165,
+    0.186
+   ],
+   "span": [
+    0.123,
+    0.241,
+    0.142
+   ]
+  }
+ ],
+ "eyelid_loops_detail": [],
+ "ear_loops_detail": [
+  {
+   "n": 16,
+   "centre": [
+    0.284,
+    0.218,
+    0.171
+   ],
+   "span": [
+    0.127,
+    0.342,
+    0.156
+   ]
+  }
+ ],
+ "ear_relief": {
+  "pca_extents": [
+   0.246,
+   0.102,
+   0.053
+  ],
+  "signed_dist_min": -0.037,
+  "signed_dist_max": 0.073,
+  "frac_beyond_002L": 37,
+  "nverts": 76
+ },
+ "ear_concha_probe": {
+  "central_mean_depth": 0.0136,
+  "rim_mean_depth": -0.0039,
+  "central_n": 16
+ },
+ "nose_seating": {
+  "nn_dist_median": 0.0175,
+  "nn_dist_p90": 0.0268,
+  "nn_dist_max": 0.0411,
+  "frac_within_0005L": 0.019
+ },
+ "nose_welded_verts": 162
+}

@@ -1,0 +1,424 @@
+{
+ "neutral": {
+  "A_static_offset": {
+   "verts": 1538,
+   "penetrating_pct": 0.07,
+   "max_penetration_mm": 0.76,
+   "mean_clearance_mm": 7.99,
+   "min_clearance_mm": -0.76,
+   "p5_clearance_mm": 8.0
+  },
+  "B_offset_maintained": {
+   "verts": 1538,
+   "penetrating_pct": 0.07,
+   "max_penetration_mm": 0.76,
+   "mean_clearance_mm": 7.99,
+   "min_clearance_mm": -0.76,
+   "p5_clearance_mm": 8.0
+  }
+ },
+ "strongman": {
+  "A_static_offset": {
+   "verts": 1538,
+   "penetrating_pct": 0.0,
+   "max_penetration_mm": 0.0,
+   "mean_clearance_mm": 7.76,
+   "min_clearance_mm": 3.37,
+   "p5_clearance_mm": 7.14
+  },
+  "B_offset_maintained": {
+   "verts": 1538,
+   "penetrating_pct": 0.0,
+   "max_penetration_mm": 0.0,
+   "mean_clearance_mm": 8.0,
+   "min_clearance_mm": 6.34,
+   "p5_clearance_mm": 8.0
+  }
+ },
+ "fat_v51": {
+  "A_static_offset": {
+   "verts": 1538,
+   "penetrating_pct": 0.0,
+   "max_penetration_mm": 0.0,
+   "mean_clearance_mm": 7.35,
+   "min_clearance_mm": 1.83,
+   "p5_clearance_mm": 5.15
+  },
+  "B_offset_maintained": {
+   "verts": 1538,
+   "penetrating_pct": 0.0,
+   "max_penetration_mm": 0.0,
+   "mean_clearance_mm": 7.98,
+   "min_clearance_mm": 3.43,
+   "p5_clearance_mm": 8.0
+  }
+ },
+ "gachidebu": {
+  "A_static_offset": {
+   "verts": 1538,
+   "penetrating_pct": 0.0,
+   "max_penetration_mm": 0.0,
+   "mean_clearance_mm": 7.71,
+   "min_clearance_mm": 2.07,
+   "p5_clearance_mm": 6.86
+  },
+  "B_offset_maintained": {
+   "verts": 1538,
+   "penetrating_pct": 0.0,
+   "max_penetration_mm": 0.0,
+   "mean_clearance_mm": 8.0,
+   "min_clearance_mm": 5.85,
+   "p5_clearance_mm": 8.0
+  }
+ },
+ "body_through_garment": {
+  "neutral": {
+   "A": {
+    "body_samples": 2986,
+    "pokethrough_pct": 0.0,
+    "max_poke_mm": 0.0,
+    "mean_poke_mm_when_out": 0.0
+   },
+   "B": {
+    "body_samples": 2986,
+    "pokethrough_pct": 0.0,
+    "max_poke_mm": 0.0,
+    "mean_poke_mm_when_out": 0.0
+   }
+  },
+  "strongman": {
+   "A": {
+    "body_samples": 2986,
+    "pokethrough_pct": 0.03,
+    "max_poke_mm": 1.24,
+    "mean_poke_mm_when_out": 1.24
+   },
+   "B": {
+    "body_samples": 2986,
+    "pokethrough_pct": 0.03,
+    "max_poke_mm": 0.64,
+    "mean_poke_mm_when_out": 0.64
+   }
+  },
+  "fat_v51": {
+   "A": {
+    "body_samples": 2986,
+    "pokethrough_pct": 1.07,
+    "max_poke_mm": 10.11,
+    "mean_poke_mm_when_out": 1.89
+   },
+   "B": {
+    "body_samples": 2986,
+    "pokethrough_pct": 1.84,
+    "max_poke_mm": 17.04,
+    "mean_poke_mm_when_out": 4.02
+   }
+  },
+  "gachidebu": {
+   "A": {
+    "body_samples": 2986,
+    "pokethrough_pct": 0.07,
+    "max_poke_mm": 1.57,
+    "mean_poke_mm_when_out": 0.81
+   },
+   "B": {
+    "body_samples": 2986,
+    "pokethrough_pct": 0.1,
+    "max_poke_mm": 5.2,
+    "mean_poke_mm_when_out": 4.8
+   }
+  }
+ },
+ "method_c_and_diagnosis": {
+  "neutral": {
+   "A": {
+    "pokethrough_pct": 0.0,
+    "max_poke_mm": 0.0,
+    "worst_h": null
+   },
+   "B": {
+    "pokethrough_pct": 0.0,
+    "max_poke_mm": 0.0,
+    "worst_h": null
+   },
+   "C": {
+    "pokethrough_pct": 0.47,
+    "max_poke_mm": 7.77,
+    "garment_in_penetrating_pct": 0.0,
+    "mean_clearance_mm": 10.25,
+    "min_clearance_mm": 3.89
+   }
+  },
+  "strongman": {
+   "A": {
+    "pokethrough_pct": 0.03,
+    "max_poke_mm": 1.24,
+    "worst_h": -0.03
+   },
+   "B": {
+    "pokethrough_pct": 0.03,
+    "max_poke_mm": 0.64,
+    "worst_h": -0.03
+   },
+   "C": {
+    "pokethrough_pct": 0.6,
+    "max_poke_mm": 8.7,
+    "garment_in_penetrating_pct": 0.0,
+    "mean_clearance_mm": 10.88,
+    "min_clearance_mm": 3.72
+   }
+  },
+  "fat_v51": {
+   "A": {
+    "pokethrough_pct": 1.07,
+    "max_poke_mm": 10.11,
+    "worst_h": 0.38
+   },
+   "B": {
+    "pokethrough_pct": 1.84,
+    "max_poke_mm": 17.04,
+    "worst_h": 0.38
+   },
+   "C": {
+    "pokethrough_pct": 0.54,
+    "max_poke_mm": 9.16,
+    "garment_in_penetrating_pct": 0.13,
+    "mean_clearance_mm": 10.41,
+    "min_clearance_mm": -6.21
+   }
+  },
+  "gachidebu": {
+   "A": {
+    "pokethrough_pct": 0.07,
+    "max_poke_mm": 1.57,
+    "worst_h": -0.03
+   },
+   "B": {
+    "pokethrough_pct": 0.1,
+    "max_poke_mm": 5.2,
+    "worst_h": 0.67
+   },
+   "C": {
+    "pokethrough_pct": 0.64,
+    "max_poke_mm": 9.46,
+    "garment_in_penetrating_pct": 0.0,
+    "mean_clearance_mm": 10.88,
+    "min_clearance_mm": 3.68
+   }
+  }
+ },
+ "final_point_to_triangle": {
+  "neutral": {
+   "A": {
+    "garment_verts_penetrating_pct": 0.07,
+    "garment_max_penetration_mm": 6.88,
+    "garment_mean_clearance_mm": 7.89,
+    "body_samples_poking_pct": 0.54,
+    "body_max_poke_mm": 8.0
+   },
+   "B": {
+    "garment_verts_penetrating_pct": 0.07,
+    "garment_max_penetration_mm": 6.88,
+    "garment_mean_clearance_mm": 7.89,
+    "body_samples_poking_pct": 0.54,
+    "body_max_poke_mm": 8.0
+   },
+   "C": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 10.14,
+    "body_samples_poking_pct": 0.5,
+    "body_max_poke_mm": 28.92
+   }
+  },
+  "strongman": {
+   "A": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 7.68,
+    "body_samples_poking_pct": 0.0,
+    "body_max_poke_mm": 0.0
+   },
+   "B": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 7.9,
+    "body_samples_poking_pct": 0.23,
+    "body_max_poke_mm": 7.99
+   },
+   "C": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 10.73,
+    "body_samples_poking_pct": 0.47,
+    "body_max_poke_mm": 35.8
+   }
+  },
+  "fat_v51": {
+   "A": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 7.25,
+    "body_samples_poking_pct": 0.1,
+    "body_max_poke_mm": 7.69
+   },
+   "B": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 7.82,
+    "body_samples_poking_pct": 1.88,
+    "body_max_poke_mm": 8.29
+   },
+   "C": {
+    "garment_verts_penetrating_pct": 0.13,
+    "garment_max_penetration_mm": 8.0,
+    "garment_mean_clearance_mm": 10.35,
+    "body_samples_poking_pct": 0.27,
+    "body_max_poke_mm": 32.33
+   }
+  },
+  "gachidebu": {
+   "A": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 7.63,
+    "body_samples_poking_pct": 0.0,
+    "body_max_poke_mm": 0.0
+   },
+   "B": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 7.9,
+    "body_samples_poking_pct": 0.44,
+    "body_max_poke_mm": 8.01
+   },
+   "C": {
+    "garment_verts_penetrating_pct": 0.0,
+    "garment_max_penetration_mm": 0.0,
+    "garment_mean_clearance_mm": 10.73,
+    "body_samples_poking_pct": 0.4,
+    "body_max_poke_mm": 36.48
+   }
+  }
+ },
+ "body_poke_openings_excluded": {
+  "neutral": {
+   "A": {
+    "samples_kept": 2571,
+    "body_samples_poking_pct": 0.62,
+    "body_max_poke_mm": 8.0,
+    "body_mean_poke_mm_when_out": 7.47
+   },
+   "B": {
+    "samples_kept": 2571,
+    "body_samples_poking_pct": 0.62,
+    "body_max_poke_mm": 8.0,
+    "body_mean_poke_mm_when_out": 7.47
+   },
+   "C": {
+    "samples_kept": 2490,
+    "body_samples_poking_pct": 0.32,
+    "body_max_poke_mm": 28.92,
+    "body_mean_poke_mm_when_out": 18.01
+   }
+  },
+  "strongman": {
+   "A": {
+    "samples_kept": 2627,
+    "body_samples_poking_pct": 0.0,
+    "body_max_poke_mm": 0.0,
+    "body_mean_poke_mm_when_out": 0.0
+   },
+   "B": {
+    "samples_kept": 2636,
+    "body_samples_poking_pct": 0.27,
+    "body_max_poke_mm": 7.99,
+    "body_mean_poke_mm_when_out": 7.91
+   },
+   "C": {
+    "samples_kept": 2575,
+    "body_samples_poking_pct": 0.47,
+    "body_max_poke_mm": 35.8,
+    "body_mean_poke_mm_when_out": 21.86
+   }
+  },
+  "fat_v51": {
+   "A": {
+    "samples_kept": 2610,
+    "body_samples_poking_pct": 0.11,
+    "body_max_poke_mm": 7.69,
+    "body_mean_poke_mm_when_out": 3.33
+   },
+   "B": {
+    "samples_kept": 2609,
+    "body_samples_poking_pct": 2.15,
+    "body_max_poke_mm": 8.29,
+    "body_mean_poke_mm_when_out": 7.37
+   },
+   "C": {
+    "samples_kept": 2544,
+    "body_samples_poking_pct": 0.28,
+    "body_max_poke_mm": 32.33,
+    "body_mean_poke_mm_when_out": 22.7
+   }
+  },
+  "gachidebu": {
+   "A": {
+    "samples_kept": 2627,
+    "body_samples_poking_pct": 0.0,
+    "body_max_poke_mm": 0.0,
+    "body_mean_poke_mm_when_out": 0.0
+   },
+   "B": {
+    "samples_kept": 2642,
+    "body_samples_poking_pct": 0.49,
+    "body_max_poke_mm": 8.01,
+    "body_mean_poke_mm_when_out": 7.94
+   },
+   "C": {
+    "samples_kept": 2574,
+    "body_samples_poking_pct": 0.43,
+    "body_max_poke_mm": 36.48,
+    "body_mean_poke_mm_when_out": 23.16
+   }
+  }
+ },
+ "hyper2_extension": {
+  "state": "belly slider 2.0 = v5.1 field + hyper segment delta (contact corrective excluded, as in the original fat_v51 state)",
+  "composition_check": {
+   "vs_hyper2_full_max_diff_mm": 0.17,
+   "vs_hyper2_full_max_diff_on_garment_verts_mm": 0.0,
+   "note": "hyper2_full additionally carries the re-solved 2.0 contact field (inner-thigh zone); the garment patch is torso-only, so the difference does not touch the garment source verts beyond the figure above."
+  },
+  "A": {
+   "garment_verts_penetrating_pct": 0.91,
+   "garment_max_penetration_mm": 7.74,
+   "garment_mean_clearance_mm": 6.33,
+   "body_samples_poking_pct": 1.11,
+   "body_max_poke_mm": 15.14,
+   "body_poking_openings_excluded_pct": 1.17,
+   "body_max_poke_openings_excluded_mm": 10.04,
+   "body_mean_poke_openings_excluded_mm": 2.47
+  },
+  "B": {
+   "garment_verts_penetrating_pct": 1.89,
+   "garment_max_penetration_mm": 8.0,
+   "garment_mean_clearance_mm": 7.29,
+   "body_samples_poking_pct": 4.59,
+   "body_max_poke_mm": 17.57,
+   "body_poking_openings_excluded_pct": 4.73,
+   "body_max_poke_openings_excluded_mm": 8.54,
+   "body_mean_poke_openings_excluded_mm": 4.86
+  },
+  "C": {
+   "garment_verts_penetrating_pct": 1.24,
+   "garment_max_penetration_mm": 23.26,
+   "garment_mean_clearance_mm": 10.54,
+   "body_samples_poking_pct": 1.94,
+   "body_max_poke_mm": 37.64,
+   "body_poking_openings_excluded_pct": 1.93,
+   "body_max_poke_openings_excluded_mm": 37.64,
+   "body_mean_poke_openings_excluded_mm": 8.67
+  }
+ }
+}

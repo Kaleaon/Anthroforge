@@ -1,0 +1,59 @@
+{
+ "file": "pyn_formgraft.glb",
+ "path": "/home/hatch/workspace/bodies-3d/pyn-formgraft/pyn_formgraft.glb",
+ "size_bytes": 6562512,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [
+  "KHR_materials_emissive_strength",
+  "KHR_materials_sheen"
+ ],
+ "meshes": 14,
+ "primitives": 14,
+ "vertices": 59015,
+ "triangles": 103409,
+ "degenerate_triangles": 9,
+ "nan_vertices": 0,
+ "morph_targets_total": 12,
+ "morph_targets_max_per_primitive": 3,
+ "bbox_min": [
+  -0.8678,
+  0.0,
+  -0.853
+ ],
+ "bbox_max": [
+  0.8678,
+  2.0064,
+  0.0639
+ ],
+ "bbox_dims_m": [
+  1.7355,
+  2.0064,
+  0.9169
+ ],
+ "max_extent_m": 2.0064,
+ "scale_flag": null,
+ "textures": {
+  "total": 3,
+  "embedded": 3,
+  "external": 0
+ },
+ "materials": 12,
+ "animations": 2,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "ok",
+  "textures": "ok",
+  "geometry": "fail",
+  "scale": "ok"
+ }
+}

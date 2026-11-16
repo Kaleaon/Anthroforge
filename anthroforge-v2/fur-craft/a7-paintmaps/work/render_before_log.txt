@@ -1,0 +1,10 @@
+00:17.420  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/out/groom_from_paint_rev1.blend"
+/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/render_compare.py:28: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/render_compare.py:38: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  gm.use_nodes = True
+03:28.234  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/out/render_before.png'
+RENDERED out/render_before.png
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

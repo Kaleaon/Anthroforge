@@ -1,0 +1,153 @@
+{
+ "border_collie.glb": {
+  "0": {
+   "object": "0",
+   "verts": 4051,
+   "tris": 7084,
+   "islands": 13,
+   "uv_area_sum": 0.5002,
+   "outside_tile_frac": 0.0,
+   "density_rel_p10": 0.448,
+   "density_rel_p90": 2.018,
+   "density_CV": 0.754,
+   "density_outside_0.5_2_pct": 23.2,
+   "L2stretch_rms": 1.113,
+   "L2stretch_p95": 1.725,
+   "conformal_p95": 1.76,
+   "conformal_gt2_pct": 2.5,
+   "zero_uv_faces_pct": 0.0
+  },
+  "1": {
+   "object": "1",
+   "verts": 914,
+   "tris": 1411,
+   "islands": 11,
+   "uv_area_sum": 0.4365,
+   "outside_tile_frac": 0.0,
+   "density_rel_p10": 0.644,
+   "density_rel_p90": 1.346,
+   "density_CV": 0.596,
+   "density_outside_0.5_2_pct": 10.5,
+   "L2stretch_rms": 1.077,
+   "L2stretch_p95": 1.324,
+   "conformal_p95": 2.036,
+   "conformal_gt2_pct": 5.0,
+   "zero_uv_faces_pct": 0.0
+  },
+  "2": {
+   "object": "2",
+   "verts": 360,
+   "tris": 634,
+   "islands": 6,
+   "uv_area_sum": 0.0,
+   "outside_tile_frac": 0.0,
+   "density_rel_p10": 0.0,
+   "density_rel_p90": 0.0,
+   "density_CV": NaN,
+   "density_outside_0.5_2_pct": 100.0,
+   "L2stretch_rms": 0.0,
+   "L2stretch_p95": 0.0,
+   "conformal_p95": 0.0,
+   "conformal_gt2_pct": 0.0,
+   "zero_uv_faces_pct": 100.0
+  },
+  "0_symmetry": {
+   "pairs": 4000,
+   "mirrored_within_0.02_pct": 0.0,
+   "mean_abs_du_err": 0.2271,
+   "mean_abs_dv_err": 0.1263
+  }
+ },
+ "anthro_fennec_rigged.glb": {
+  "Object_113": {
+   "object": "Object_113",
+   "verts": 41304,
+   "tris": 78860,
+   "islands": 70,
+   "uv_area_sum": 0.2973,
+   "outside_tile_frac": 0.0,
+   "density_rel_p10": 0.513,
+   "density_rel_p90": 4.157,
+   "density_CV": 0.764,
+   "density_outside_0.5_2_pct": 50.7,
+   "L2stretch_rms": 1.6,
+   "L2stretch_p95": 2.473,
+   "conformal_p95": 3.286,
+   "conformal_gt2_pct": 54.7,
+   "zero_uv_faces_pct": 0.0
+  },
+  "Object_113_symmetry": {
+   "pairs": 4000,
+   "mirrored_within_0.02_pct": 0.1,
+   "mean_abs_du_err": 0.3406,
+   "mean_abs_dv_err": 0.1184
+  }
+ },
+ "neutral_base_head_v3.glb": {
+  "TissueHead": {
+   "object": "TissueHead",
+   "verts": 1023,
+   "tris": 1828,
+   "islands": 4,
+   "uv_area_sum": 0.0831,
+   "outside_tile_frac": 0.0,
+   "density_rel_p10": 0.551,
+   "density_rel_p90": 1.77,
+   "density_CV": 0.443,
+   "density_outside_0.5_2_pct": 9.7,
+   "L2stretch_rms": 1.074,
+   "L2stretch_p95": 1.448,
+   "conformal_p95": 2.068,
+   "conformal_gt2_pct": 5.9,
+   "zero_uv_faces_pct": 0.0
+  },
+  "Jaw": {
+   "object": "Jaw",
+   "uv": null
+  },
+  "Ear_L": {
+   "object": "Ear_L",
+   "uv": null
+  },
+  "TeethArcade": {
+   "object": "TeethArcade",
+   "verts": 984,
+   "tris": 1368,
+   "islands": 10,
+   "uv_area_sum": 0.7298,
+   "outside_tile_frac": 0.0,
+   "density_rel_p10": 0.622,
+   "density_rel_p90": 1.37,
+   "density_CV": 0.293,
+   "density_outside_0.5_2_pct": 3.4,
+   "L2stretch_rms": 1.016,
+   "L2stretch_p95": 1.248,
+   "conformal_p95": 1.504,
+   "conformal_gt2_pct": 0.4,
+   "zero_uv_faces_pct": 0.0
+  },
+  "Tongue": {
+   "object": "Tongue",
+   "verts": 505,
+   "tris": 880,
+   "islands": 2,
+   "uv_area_sum": 0.1836,
+   "outside_tile_frac": 0.0,
+   "density_rel_p10": 0.522,
+   "density_rel_p90": 1.217,
+   "density_CV": 0.297,
+   "density_outside_0.5_2_pct": 7.0,
+   "L2stretch_rms": 0.982,
+   "L2stretch_p95": 1.16,
+   "conformal_p95": 1.602,
+   "conformal_gt2_pct": 1.4,
+   "zero_uv_faces_pct": 0.0
+  },
+  "TissueHead_symmetry": {
+   "pairs": 1023,
+   "mirrored_within_0.02_pct": 3.8,
+   "mean_abs_du_err": 0.2595,
+   "mean_abs_dv_err": 0.0084
+  }
+ }
+}

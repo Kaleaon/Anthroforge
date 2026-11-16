@@ -1,0 +1,42 @@
+{
+ "border_collie.glb:0": {
+  "object": "0",
+  "pairs": 4000,
+  "shared_texel_within_0.02_pct": 2.0,
+  "shared_mean_abs_du": 0.2803,
+  "shared_mean_abs_dv": 0.1263,
+  "centre_mirror_within_0.02_pct": 0.0,
+  "centre_mean_abs_du": 0.2271,
+  "centre_mean_abs_dv": 0.1263
+ },
+ "anthro_fennec_rigged.glb:Object_113": {
+  "object": "Object_113",
+  "pairs": 4000,
+  "shared_texel_within_0.02_pct": 13.3,
+  "shared_mean_abs_du": 0.0756,
+  "shared_mean_abs_dv": 0.1184,
+  "centre_mirror_within_0.02_pct": 0.1,
+  "centre_mean_abs_du": 0.3406,
+  "centre_mean_abs_dv": 0.1184
+ },
+ "neutral_base_head_v3.glb:TissueHead": {
+  "object": "TissueHead",
+  "pairs": 1023,
+  "shared_texel_within_0.02_pct": 94.0,
+  "shared_mean_abs_du": 0.0238,
+  "shared_mean_abs_dv": 0.0084,
+  "centre_mirror_within_0.02_pct": 3.8,
+  "centre_mean_abs_du": 0.2595,
+  "centre_mean_abs_dv": 0.0084
+ },
+ "head_reunwrap.blend:TissueHead": {
+  "object": "TissueHead",
+  "pairs": 1023,
+  "shared_texel_within_0.02_pct": 5.9,
+  "shared_mean_abs_du": 0.2123,
+  "shared_mean_abs_dv": 0.1819,
+  "centre_mirror_within_0.02_pct": 0.4,
+  "centre_mean_abs_du": 0.2593,
+  "centre_mean_abs_dv": 0.1819
+ }
+}

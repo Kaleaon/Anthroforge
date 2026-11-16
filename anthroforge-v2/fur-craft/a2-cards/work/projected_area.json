@@ -1,0 +1,134 @@
+{
+ "ribbon_flat": {
+  "0": {
+   "area_m2": 0.002065,
+   "retention": 1.0
+  },
+  "30": {
+   "area_m2": 0.001789,
+   "retention": 0.866
+  },
+  "60": {
+   "area_m2": 0.001033,
+   "retention": 0.5
+  },
+  "75": {
+   "area_m2": 0.000535,
+   "retention": 0.259
+  },
+  "85": {
+   "area_m2": 0.00018,
+   "retention": 0.087
+  }
+ },
+ "ribbon_bent": {
+  "0": {
+   "area_m2": 0.001888,
+   "retention": 1.0
+  },
+  "30": {
+   "area_m2": 0.001364,
+   "retention": 0.723
+  },
+  "60": {
+   "area_m2": 0.000505,
+   "retention": 0.267
+  },
+  "75": {
+   "area_m2": 0.0003,
+   "retention": 0.159
+  },
+  "85": {
+   "area_m2": 0.0004,
+   "retention": 0.212
+  }
+ },
+ "ribbon_fork": {
+  "0": {
+   "area_m2": 0.002166,
+   "retention": 1.0
+  },
+  "30": {
+   "area_m2": 0.001741,
+   "retention": 0.804
+  },
+  "60": {
+   "area_m2": 0.000849,
+   "retention": 0.392
+  },
+  "75": {
+   "area_m2": 0.000304,
+   "retention": 0.14
+  },
+  "85": {
+   "area_m2": 0.00015,
+   "retention": 0.069
+  }
+ },
+ "cross_pair": {
+  "0": {
+   "area_m2": 0.001945,
+   "retention": 1.0
+  },
+  "30": {
+   "area_m2": 0.001685,
+   "retention": 0.866
+  },
+  "60": {
+   "area_m2": 0.000973,
+   "retention": 0.5
+  },
+  "75": {
+   "area_m2": 0.000504,
+   "retention": 0.259
+  },
+  "85": {
+   "area_m2": 0.00017,
+   "retention": 0.087
+  }
+ },
+ "tri_fan": {
+  "0": {
+   "area_m2": 0.004171,
+   "retention": 1.0
+  },
+  "30": {
+   "area_m2": 0.003429,
+   "retention": 0.822
+  },
+  "60": {
+   "area_m2": 0.0018,
+   "retention": 0.432
+  },
+  "75": {
+   "area_m2": 0.001057,
+   "retention": 0.254
+  },
+  "85": {
+   "area_m2": 0.000958,
+   "retention": 0.23
+  }
+ },
+ "quad_shingle": {
+  "0": {
+   "area_m2": 0.002233,
+   "retention": 1.0
+  },
+  "30": {
+   "area_m2": 0.001849,
+   "retention": 0.828
+  },
+  "60": {
+   "area_m2": 0.000969,
+   "retention": 0.434
+  },
+  "75": {
+   "area_m2": 0.000414,
+   "retention": 0.185
+  },
+  "85": {
+   "area_m2": 9e-05,
+   "retention": 0.04
+  }
+ }
+}

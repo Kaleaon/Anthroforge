@@ -1,0 +1,20 @@
+{
+  "name": "wolf",
+  "species": "grey wolf (Canis lupus), taxidermy flank",
+  "source_file": "wolf_taxidermied.jpg",
+  "crop_xy_size": [
+    1000,
+    495,
+    620
+  ],
+  "tile_cm": 20.0,
+  "px_per_cm": 51.2,
+  "strand_angle_raw_deg": 105.0,
+  "rotation_applied_deg": 17.0,
+  "strand_angle_final_deg": 90.0,
+  "coherence": 0.425,
+  "seam_ratio_x": 3.627,
+  "seam_ratio_y": 3.448,
+  "seam_ratio_pre_x": 2.974,
+  "seam_ratio_pre_y": 3.335
+}

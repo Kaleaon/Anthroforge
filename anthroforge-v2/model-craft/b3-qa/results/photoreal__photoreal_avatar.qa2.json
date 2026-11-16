@@ -1,0 +1,87 @@
+{
+ "file": "photoreal_avatar.glb",
+ "path": "/home/hatch/workspace/stick-figure-avatar/photoreal/photoreal_avatar.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 9,
+  "used": 9,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 3,
+  "channels": 477,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 0,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 2.458
+ },
+ "topology": {
+  "boundary_edges": 6950,
+  "nonmanifold_edges": 0,
+  "edges_total": 77482,
+  "duplicate_faces": 0,
+  "unused_vertices": 0,
+  "vertices_total": 28413,
+  "split_vertex_ratio": 0.0686
+ },
+ "winding": {
+  "conflicts": 0,
+  "faces_checked": 49338,
+  "faces_inverted": 2,
+  "closed_meshes": 0,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.0
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 9,
+  "uv_out_of_range_frac_max": 0.0,
+  "overlap_estimate_max": 0.5158,
+  "seam_edges": 0,
+  "shared_edges": 70532,
+  "overlap_estimate_area_weighted": 0.1896
+ },
+ "texel": {
+  "per_prim": [
+   1888.7,
+   6019.3,
+   9700.0,
+   7530.3,
+   943.5,
+   2418.4,
+   4071.5,
+   9958.9,
+   8000.8
+  ],
+  "mean_texel_per_m": 5614.6,
+  "cv": 0.574,
+  "prims_measured": 9
+ },
+ "weights": {
+  "prims_checked": 9,
+  "verts": 28413,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 4,
+  "mean_influences": 1.82,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 53,
+  "skins_joints_unused": 1,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "warn",
+  "winding": "ok",
+  "uv": "ok",
+  "texel": "warn",
+  "materials": "ok",
+  "weights": "warn",
+  "animation": "ok"
+ }
+}

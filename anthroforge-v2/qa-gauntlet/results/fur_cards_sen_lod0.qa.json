@@ -1,0 +1,56 @@
+{
+ "file": "fur_cards_sen_lod0.glb",
+ "path": "/home/hatch/workspace/anthroforge-v2/characters/sen/fur_cards_sen_lod0.glb",
+ "size_bytes": 1319952,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [],
+ "meshes": 1,
+ "primitives": 1,
+ "vertices": 27194,
+ "triangles": 13600,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 0,
+ "morph_targets_max_per_primitive": 0,
+ "bbox_min": [
+  -0.6283,
+  -0.0695,
+  -0.2569
+ ],
+ "bbox_max": [
+  0.5981,
+  1.5511,
+  0.3861
+ ],
+ "bbox_dims_m": [
+  1.2264,
+  1.6206,
+  0.643
+ ],
+ "max_extent_m": 1.6206,
+ "scale_flag": null,
+ "textures": {
+  "total": 1,
+  "embedded": 1,
+  "external": 0
+ },
+ "materials": 1,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "warn",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

@@ -1,0 +1,311 @@
+{
+ "atlas": "AF-FUR-2048",
+ "size_px": [
+  2048,
+  2048
+ ],
+ "cell_px": [
+  512,
+  1024
+ ],
+ "pad_px": 16,
+ "gutter_px_between_usable": 32,
+ "alpha_curve": "ATLAS-ALPHA-1: a' = clamp((a-0.02)/(t1-0.02)) with t1 solved so DENSE coverage@0.5 ~= 0.15; applied to raw Cycles coverage alpha at bake/pack time",
+ "v_convention": "image row 0 (top) = ROOT, s increases downward to tip; glTF uv v = 1 - row/H (card root verts carry v at the rect's v1)",
+ "source_stats": {
+  "A": {
+   "alpha_max_raw": 0.584,
+   "coverage_raw_mips": [
+    0.0001,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage_renorm_mips": [
+    0.143,
+    0.1544,
+    0.1419,
+    0.1266,
+    0.1069
+   ]
+  },
+  "B": {
+   "alpha_max_raw": 0.459,
+   "coverage_raw_mips": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage_renorm_mips": [
+    0.0339,
+    0.0184,
+    0.0052,
+    0.0001,
+    0.0
+   ]
+  }
+ },
+ "slots": [
+  {
+   "slot": 0,
+   "key": "dense",
+   "name": "DENSE_A",
+   "role": "primary full-density card; LOD0/1 workhorse",
+   "cell_px": [
+    0,
+    0,
+    512,
+    1024
+   ],
+   "usable_px": [
+    16,
+    16,
+    480,
+    992
+   ],
+   "uv_image_space": [
+    0.0078125,
+    0.0078125,
+    0.2421875,
+    0.4921875
+   ],
+   "uv_gltf": [
+    0.0078125,
+    0.5078125,
+    0.2421875,
+    0.9921875
+   ]
+  },
+  {
+   "slot": 1,
+   "key": "sparse",
+   "name": "SPARSE_B",
+   "role": "low-density card; layering + cheap fill",
+   "cell_px": [
+    512,
+    0,
+    512,
+    1024
+   ],
+   "usable_px": [
+    528,
+    16,
+    480,
+    992
+   ],
+   "uv_image_space": [
+    0.2578125,
+    0.0078125,
+    0.4921875,
+    0.4921875
+   ],
+   "uv_gltf": [
+    0.2578125,
+    0.5078125,
+    0.4921875,
+    0.9921875
+   ]
+  },
+  {
+   "slot": 2,
+   "key": "dense_mir",
+   "name": "DENSE_A_MIR",
+   "role": "U-mirror of dense: free silhouette variant",
+   "cell_px": [
+    1024,
+    0,
+    512,
+    1024
+   ],
+   "usable_px": [
+    1040,
+    16,
+    480,
+    992
+   ],
+   "uv_image_space": [
+    0.5078125,
+    0.0078125,
+    0.7421875,
+    0.4921875
+   ],
+   "uv_gltf": [
+    0.5078125,
+    0.5078125,
+    0.7421875,
+    0.9921875
+   ]
+  },
+  {
+   "slot": 3,
+   "key": "sparse_mir",
+   "name": "SPARSE_B_MIR",
+   "role": "U-mirror of sparse",
+   "cell_px": [
+    1536,
+    0,
+    512,
+    1024
+   ],
+   "usable_px": [
+    1552,
+    16,
+    480,
+    992
+   ],
+   "uv_image_space": [
+    0.7578125,
+    0.0078125,
+    0.9921875,
+    0.4921875
+   ],
+   "uv_gltf": [
+    0.7578125,
+    0.5078125,
+    0.9921875,
+    0.9921875
+   ]
+  },
+  {
+   "slot": 4,
+   "key": "core",
+   "name": "CORE_A",
+   "role": "high-coverage under-layer card (alpha^1.5 x1.35)",
+   "cell_px": [
+    0,
+    1024,
+    512,
+    1024
+   ],
+   "usable_px": [
+    16,
+    1040,
+    480,
+    992
+   ],
+   "uv_image_space": [
+    0.0078125,
+    0.5078125,
+    0.2421875,
+    0.9921875
+   ],
+   "uv_gltf": [
+    0.0078125,
+    0.0078125,
+    0.2421875,
+    0.4921875
+   ]
+  },
+  {
+   "slot": 5,
+   "key": "clump",
+   "name": "CLUMP_A",
+   "role": "wide-clump card: centre crop of A, fewer thicker clumps",
+   "cell_px": [
+    512,
+    1024,
+    512,
+    1024
+   ],
+   "usable_px": [
+    528,
+    1040,
+    480,
+    992
+   ],
+   "uv_image_space": [
+    0.2578125,
+    0.5078125,
+    0.4921875,
+    0.9921875
+   ],
+   "uv_gltf": [
+    0.2578125,
+    0.0078125,
+    0.4921875,
+    0.4921875
+   ]
+  },
+  {
+   "slot": 6,
+   "key": "thin_far",
+   "name": "THIN_FAR",
+   "role": "eroded alpha x0.8: LOD2 / far cards",
+   "cell_px": [
+    1024,
+    1024,
+    512,
+    1024
+   ],
+   "usable_px": [
+    1040,
+    1040,
+    480,
+    992
+   ],
+   "uv_image_space": [
+    0.5078125,
+    0.5078125,
+    0.7421875,
+    0.9921875
+   ],
+   "uv_gltf": [
+    0.5078125,
+    0.0078125,
+    0.7421875,
+    0.4921875
+   ]
+  },
+  {
+   "slot": 7,
+   "key": "utility",
+   "name": "UTILITY",
+   "role": "strips: gradient LUT | underfur puff | wisp | reserved",
+   "cell_px": [
+    1536,
+    1024,
+    512,
+    1024
+   ],
+   "usable_px": [
+    1552,
+    1040,
+    480,
+    992
+   ],
+   "uv_image_space": [
+    0.7578125,
+    0.5078125,
+    0.9921875,
+    0.9921875
+   ],
+   "uv_gltf": [
+    0.7578125,
+    0.0078125,
+    0.9921875,
+    0.4921875
+   ]
+  }
+ ],
+ "utility_strips_usable_local_px": {
+  "gradient_lut": [
+   0,
+   96
+  ],
+  "underfur_puff": [
+   96,
+   240
+  ],
+  "wisp": [
+   240,
+   336
+  ],
+  "reserved": [
+   336,
+   480
+  ]
+ }
+}

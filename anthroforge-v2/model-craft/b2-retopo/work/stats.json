@@ -1,0 +1,121 @@
+{
+ "import_s": 52.3,
+ "chunk_objects": 9,
+ "src_verts_unwelded": 573148,
+ "src_tris": 855696,
+ "src_bounds": {
+  "x": [
+   -32.63,
+   32.69
+  ],
+  "y": [
+   -42.27,
+   39.1
+  ],
+  "z": [
+   -39.81,
+   59.34
+  ],
+  "height": 99.15,
+  "x_asym": 0.063
+ },
+ "total_s": 543.3,
+ "src_stats": {
+  "verts": 573148,
+  "polys": 855696,
+  "quads": 0,
+  "tris": 855696,
+  "ngons": 0,
+  "nonmanifold_edges": 300254,
+  "boundary_edges": 300254,
+  "poles3": 59739,
+  "poles5": 72924,
+  "poles6plus": 222617
+ },
+ "voxel_size": 0.5508,
+ "voxel_proxy_stats": {
+  "verts": 105462,
+  "polys": 105460,
+  "quads": 105460,
+  "tris": 0,
+  "ngons": 0,
+  "nonmanifold_edges": 0,
+  "boundary_edges": 0,
+  "poles3": 27074,
+  "poles5": 19340,
+  "poles6plus": 3862
+ },
+ "voxel_s": 95.6,
+ "retopo_mode": "voxel_then_quadriflow",
+ "quadriflow_s": 168.5,
+ "retopo_raw_stats": {
+  "verts": 5813,
+  "polys": 5811,
+  "quads": 5811,
+  "tris": 0,
+  "ngons": 0,
+  "nonmanifold_edges": 0,
+  "boundary_edges": 0,
+  "poles3": 80,
+  "poles5": 72,
+  "poles6plus": 0
+ },
+ "shrinkwrap_s": 1.9,
+ "retopo_stats": {
+  "verts": 5813,
+  "polys": 5811,
+  "quads": 5811,
+  "tris": 0,
+  "ngons": 0,
+  "nonmanifold_edges": 0,
+  "boundary_edges": 0,
+  "poles3": 80,
+  "poles5": 72,
+  "poles6plus": 0
+ },
+ "glb_exports": "ok",
+ "deviation_verts": {
+  "mean": 0.0,
+  "median": 0.0,
+  "p95": 0.0,
+  "p99": 0.0,
+  "max": 0.0,
+  "mean_pct_height": 0.0,
+  "p95_pct_height": 0.0,
+  "max_pct_height": 0.0
+ },
+ "deviation_all_samples": {
+  "mean": 0.0574,
+  "median": 0.0215,
+  "p95": 0.2346,
+  "p99": 0.4317,
+  "max": 1.642,
+  "mean_pct_height": 0.058,
+  "p95_pct_height": 0.237,
+  "max_pct_height": 1.656
+ },
+ "deviation_samples_n": 17435,
+ "silhouette": {
+  "front": {
+   "iou": 0.9775,
+   "boundary_mean_px": 1.33,
+   "boundary_p95_px": 6.4,
+   "boundary_max_px": 18.38,
+   "boundary_mean_pct_diag": 0.259
+  },
+  "profile": {
+   "iou": 0.9924,
+   "boundary_mean_px": 0.58,
+   "boundary_p95_px": 2.0,
+   "boundary_max_px": 21.93,
+   "boundary_mean_pct_diag": 0.114
+  },
+  "top": {
+   "iou": 0.9882,
+   "boundary_mean_px": 0.76,
+   "boundary_p95_px": 2.85,
+   "boundary_max_px": 11.31,
+   "boundary_mean_pct_diag": 0.149
+  }
+ }
+}

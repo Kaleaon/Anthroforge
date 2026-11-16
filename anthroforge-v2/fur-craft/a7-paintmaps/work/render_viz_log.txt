@@ -1,0 +1,12 @@
+00:16.488  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/fur_paintable_rev2.blend"
+/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/render_compare.py:80: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/render_compare.py:28: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/render_compare.py:38: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  gm.use_nodes = True
+01:30.053  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/out/render_maps_viz.png'
+RENDERED out/render_maps_viz.png
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

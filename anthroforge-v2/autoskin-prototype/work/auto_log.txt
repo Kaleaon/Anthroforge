@@ -1,0 +1,6 @@
+OrcBust_LP_Main_0: OK covered=23549/23549 (100%) err=
+Hair_LP_Main_0: OK covered=1823/1823 (100%) err=
+Rings_LP_Main_0: OK covered=432/432 (100%) err=
+Eyes_LP_Eyes_0: OK covered=450/450 (100%) err=
+Teeth_LP_Main_0: OK covered=11407/11407 (100%) err=
+0: OK covered=385/385 (100%) err=

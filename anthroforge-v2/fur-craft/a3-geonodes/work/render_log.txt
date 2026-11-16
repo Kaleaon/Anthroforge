@@ -1,0 +1,7 @@
+00:21.207  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/geonodes_fur.blend"
+13:26.030  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/render_geonodes_strands.png'
+RENDER hero_s=773.7
+34:19.818  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/render_geonodes_closeup.png'
+RENDER closeup done
+42:52.532  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/render_curtain.png'
+RENDER curtain done

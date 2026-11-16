@@ -1,0 +1,16 @@
+{
+ "full_leg": {
+  "part_verts": 897,
+  "buried_pct": 0.0,
+  "engaged_pct": 1.56,
+  "excess_pct": 0.0,
+  "fit_score": 0.016,
+  "verdict": "poor",
+  "band_world": 0.0465,
+  "max_depth_world": 0.143,
+  "out_of_grid_pct": 25.08
+ },
+ "cap_seating_pct": NaN,
+ "cap_verts": 0,
+ "thigh_inside_pct": NaN
+}

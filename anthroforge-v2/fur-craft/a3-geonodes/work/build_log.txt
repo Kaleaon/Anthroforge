@@ -1,0 +1,30 @@
+00:24.508  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/fur-prototype/work/fur_stage1.blend"
+/home/hatch/workspace/anthroforge-v2/fur-craft/a3-geonodes/work/build_geonodes_fur.py:148: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+EFF_AREA ruff=1.00 back=1.03 belly=0.44 coat=2.82 bodyhair=0.58 total=4.92
+PASS1 guides={'ruff': 1503, 'back': 1546, 'belly': 626, 'coat': 4170, 'bodyhair': 854} total=8699
+CALIBRATION scale=1.552 -> target 13500
+REGION ruff: guides~2332 children_total=14724 eval_s=15.9
+REGION back: guides~2399 children_total=15397 eval_s=14.1
+REGION belly: guides~971 children_total=5983 eval_s=7.1
+REGION coat: guides~6471 children_total=41152 eval_s=26.6
+REGION bodyhair: guides~1325 children_total=8157 eval_s=6.2
+CHILDREN_TOTAL=85413
+LENGTH_CHECK (full-stack strands, by owning object):
+  ruff      n= 14724 mean_len=0.167 p50=0.172 target=0.170
+  back      n= 15397 mean_len=0.105 p50=0.104 target=0.095
+  belly     n=  5983 mean_len=0.061 p50=0.059 target=0.042
+  coat      n= 41152 mean_len=0.077 p50=0.077 target=0.066
+  bodyhair  n=  8157 mean_len=0.038 p50=0.037 target=0.018
+PLACEMENT coat-object guide roots by dominant region: {'ruff': 0.083, 'back': 0.19, 'belly': 0.075, 'coat': 0.641, 'bodyhair': 0.01}
+CURTAIN curves=25415 root_z=1.080 tip_z=1.369
+CURTAIN flipping rotate angle
+CURTAIN after flip curves=25415
+CURTAIN built
+Info: Saved as "geonodes_fur.blend"
+SAVED built blend
+TOTAL_S=199.4
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit
+BUILD_EXIT=0

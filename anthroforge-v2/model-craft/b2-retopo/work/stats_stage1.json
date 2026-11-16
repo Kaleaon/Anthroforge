@@ -1,0 +1,57 @@
+{
+ "src_stats": {
+  "verts": 573148,
+  "polys": 855696,
+  "quads": 0,
+  "tris": 855696,
+  "ngons": 0,
+  "nonmanifold_edges": 300254,
+  "boundary_edges": 300254,
+  "poles3": 59739,
+  "poles5": 72924,
+  "poles6plus": 222617
+ },
+ "voxel_size": 0.5508,
+ "voxel_proxy_stats": {
+  "verts": 105462,
+  "polys": 105460,
+  "quads": 105460,
+  "tris": 0,
+  "ngons": 0,
+  "nonmanifold_edges": 0,
+  "boundary_edges": 0,
+  "poles3": 27074,
+  "poles5": 19340,
+  "poles6plus": 3862
+ },
+ "voxel_s": 95.6,
+ "retopo_mode": "voxel_then_quadriflow",
+ "quadriflow_s": 168.5,
+ "retopo_raw_stats": {
+  "verts": 5813,
+  "polys": 5811,
+  "quads": 5811,
+  "tris": 0,
+  "ngons": 0,
+  "nonmanifold_edges": 0,
+  "boundary_edges": 0,
+  "poles3": 80,
+  "poles5": 72,
+  "poles6plus": 0
+ },
+ "shrinkwrap_s": 1.9,
+ "retopo_stats": {
+  "verts": 5813,
+  "polys": 5811,
+  "quads": 5811,
+  "tris": 0,
+  "ngons": 0,
+  "nonmanifold_edges": 0,
+  "boundary_edges": 0,
+  "poles3": 80,
+  "poles5": 72,
+  "poles6plus": 0
+ },
+ "glb_exports": "ok",
+ "total_s": 543.3
+}

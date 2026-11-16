@@ -1,0 +1,56 @@
+{
+ "file": "pyn_form_body.glb",
+ "path": "/home/hatch/workspace/bodies-3d/pyn-form/pyn_form_body.glb",
+ "size_bytes": 13236628,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [],
+ "meshes": 1,
+ "primitives": 1,
+ "vertices": 193924,
+ "triangles": 387868,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 1,
+ "morph_targets_max_per_primitive": 1,
+ "bbox_min": [
+  -0.2183,
+  0.0,
+  -0.6405
+ ],
+ "bbox_max": [
+  0.221,
+  2.0015,
+  0.1592
+ ],
+ "bbox_dims_m": [
+  0.4393,
+  2.0015,
+  0.7997
+ ],
+ "max_extent_m": 2.0015,
+ "scale_flag": null,
+ "textures": {
+  "total": 0,
+  "embedded": 0,
+  "external": 0
+ },
+ "materials": 1,
+ "animations": 1,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "ok",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

@@ -1,0 +1,12 @@
+00:31.934  blend            | Read blend: "/home/hatch/workspace/stick-figure-avatar/furry/bara_wolf_base.blend"
+/home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/seed_paintmaps.py:88: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+Info: Saved as "fur_paintable_rev1.blend"
+FURP_density: mean=0.796 max=0.946 verts>0.5=59159/63557
+FURP_length: mean=0.419 max=0.830 verts>0.5=18196/63557
+FURP_clump: mean=0.420 max=0.640 verts>0.5=9237/63557
+FURP_curl: mean=0.373 max=0.498 verts>0.5=0/63557
+lift mean 0.37385235305593856 SAVED /home/hatch/workspace/anthroforge-v2/fur-craft/a7-paintmaps/fur_paintable_rev1.blend
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

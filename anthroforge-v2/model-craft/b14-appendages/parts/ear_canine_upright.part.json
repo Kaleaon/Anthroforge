@@ -1,0 +1,105 @@
+{
+ "class": "A",
+ "conflicts": [
+  {
+   "kind": "clip",
+   "note": "mane shell intersects ear base above EarHeight +60 (socket default, PARTS_STANDARD socket 1)",
+   "with": "hair_mane_v1"
+  },
+  {
+   "kind": "clearance",
+   "note": "horn bases at +/-36 mm on the poll sit medial to ear bases; clip-check when EarHeight > +60 and horns equipped",
+   "with": "horns_curved_pair"
+  }
+ ],
+ "cost": {
+  "bones": 4,
+  "morphs": 0,
+  "note": "per ear; pair totals 458 verts / 856 tris / 10 points",
+  "points": 5,
+  "tris": 428,
+  "verts": 229
+ },
+ "fit": {
+  "regions": [
+   "head.ear.base"
+  ],
+  "rescale_by": [
+   "head.ear.height"
+  ]
+ },
+ "fit_qa": {
+  "base": "neutral head v3 (layered build), R ear scored",
+  "buried_pct": 1.4,
+  "date": "2026-11-12",
+  "engaged_pct": 10.6,
+  "excess_pct": 0.0,
+  "fit_score": 0.106,
+  "known_issue": "mount sits ~0.02 L proud to clear the base head's own ear-base nub; a nub remnant peeks below the ear base in closeup \u2014 fix belongs to the base head (merge nub into tissue layer)",
+  "out_of_grid_pct": 77.7,
+  "seating_min_L": 0.006,
+  "seating_patch_L": 0.022,
+  "verdict": "seated within 0.02 L tolerance; fit_score rubric is inset-oriented (78% of verts outside base grid) \u2014 gate is excess=0 + seating patch, see APPENDAGES.md s.6"
+ },
+ "format": "anthroforge.part",
+ "function": {
+  "ear": {
+   "carriage_deg": [
+    -30,
+    45
+   ],
+   "expression_role": "primary"
+  }
+ },
+ "fur": {
+  "accepts": [
+   "ear.inner"
+  ]
+ },
+ "id": "ear_canine_upright",
+ "kind": "anatomy",
+ "label": "Upright canine ear (point tip family)",
+ "licence": {
+  "attribution": "AnthroForge in-house, procedurally authored",
+  "spdx": "CC-BY-4.0",
+  "tier": "build"
+ },
+ "meshes": {
+  "lod0_L": "ear_canine_upright_L.glb",
+  "lod0_R": "ear_canine_upright_R.glb",
+  "print_L": "ear_canine_upright_L.stl",
+  "print_R": "ear_canine_upright_R.stl"
+ },
+ "plan_fit": {
+  "plans": [
+   "plan.biped",
+   "plan.quadruped_taur",
+   "plan.quadruped_feral",
+   "plan.naga"
+  ]
+ },
+ "provenance": {
+  "detail": "Parametric pinna sheet (10x9) solidified 2.2 mm + inset inner-ear sheet with tragus ridge as separate material zone; proportions per species-head-spec (ear 0.38 L, EarWidth 0.55->profiled); per APPENDAGES.md E1-E7.",
+  "source": "authored"
+ },
+ "size_class": "M",
+ "skin": {
+  "bones": [
+   "EarBase_L",
+   "Ear1_L",
+   "Ear2_L",
+   "EarTip_L",
+   "EarBase_R",
+   "Ear1_R",
+   "Ear2_R",
+   "EarTip_R"
+  ],
+  "mode": "own-weights"
+ },
+ "sockets": [
+  "ear.L",
+  "ear.R"
+ ],
+ "tier": 3,
+ "version": 1
+}

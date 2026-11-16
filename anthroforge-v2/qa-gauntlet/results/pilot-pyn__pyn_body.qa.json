@@ -1,0 +1,56 @@
+{
+ "file": "pyn_body.glb",
+ "path": "/home/hatch/workspace/bodies-3d/pilot-pyn/pyn_body.glb",
+ "size_bytes": 6365092,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [],
+ "meshes": 1,
+ "primitives": 1,
+ "vertices": 78859,
+ "triangles": 157726,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 2,
+ "morph_targets_max_per_primitive": 2,
+ "bbox_min": [
+  -0.2139,
+  0.0,
+  -0.6383
+ ],
+ "bbox_max": [
+  0.215,
+  1.9941,
+  0.1629
+ ],
+ "bbox_dims_m": [
+  0.4289,
+  1.9941,
+  0.8012
+ ],
+ "max_extent_m": 1.9941,
+ "scale_flag": null,
+ "textures": {
+  "total": 0,
+  "embedded": 0,
+  "external": 0
+ },
+ "materials": 1,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "ok",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

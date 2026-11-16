@@ -1,0 +1,124 @@
+00:51.622  blend            | Read blend: "/home/hatch/workspace/stick-figure-avatar/furry/bara_wolf_base.blend"
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/build_a1.py:187: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/build_a1.py:222: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/build_a1.py:230: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/work/build_a1.py:257: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+12:55.120  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/renders/render_shells16_front.png'
+19:47.109  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/renders/render_shells8_front.png'
+25:30.493  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/renders/render_shells16_grazing_nofins.png'
+29:02.980  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/renders/render_shells16_grazing_fins.png'
+41:30.809  render           | Saved: '/home/hatch/workspace/anthroforge-v2/fur-craft/a1-shells-fins/renders/render_shells16_ruff60_front.png'
+PATCH {'anchor_src_vertex': 6985, 'anchor': [0.3, -0.047, 1.593], 'radius_m': 0.17, 'verts': 1335, 'tris': 2500, 'area_m2': 0.1077, 'avg_normal': [0.228, -0.768, 0.598], 'uv_mode': 'planar projection on patch tangent plane (metres)'}
+TILING {'tile_world_m': 0.068, 'tiles_across_patch': 5.0, 'uv_scale': [14.71, 14.71], 'strand_dots_per_cm2': 302.8}
+FINS {'fins': 168, 'tris': 336, 'fur_length_mm': 25.0} {'fins': 3834, 'tris': 7668, 'fur_length_mm': 25.0}
+RENDER render_shells16_front: 636.5s visible=['SH16']
+RENDER render_shells8_front: 411.9s visible=['SH8']
+RENDER render_shells16_grazing_nofins: 343.2s visible=['SH16']
+RENDER render_shells16_grazing_fins: 212.5s visible=['SH16', 'FINS_B']
+RENDER render_shells16_ruff60_front: 747.8s visible=['SH16L60']
+Info: Saved as "shells_fins.blend"
+STATS_JSON_BEGIN
+{
+ "source": "/home/hatch/workspace/stick-figure-avatar/furry/bara_wolf_base.blend",
+ "length_map": {
+  "dots": 14000,
+  "coverage_by_height": {
+   "0.000": 1.0,
+   "0.125": 0.5348854064941406,
+   "0.250": 0.533050537109375,
+   "0.375": 0.4999580383300781,
+   "0.500": 0.4203987121582031,
+   "0.625": 0.2860679626464844,
+   "0.750": 0.1069793701171875,
+   "0.875": 0.012615203857421875,
+   "1.000": 0.00016021728515625
+  }
+ },
+ "patch": {
+  "anchor_src_vertex": 6985,
+  "anchor": [
+   0.3,
+   -0.047,
+   1.593
+  ],
+  "radius_m": 0.17,
+  "verts": 1335,
+  "tris": 2500,
+  "area_m2": 0.1077,
+  "avg_normal": [
+   0.228,
+   -0.768,
+   0.598
+  ],
+  "uv_mode": "planar projection on patch tangent plane (metres)"
+ },
+ "tiling": {
+  "tile_world_m": 0.068,
+  "tiles_across_patch": 5.0,
+  "uv_scale": [
+   14.71,
+   14.71
+  ],
+  "strand_dots_per_cm2": 302.8
+ },
+ "configs": {
+  "SH8": {
+   "layers_total_incl_base": 8,
+   "shells_above_base": 7,
+   "fur_length_mm": 25.0,
+   "step_mm": 3.5714285714285716,
+   "shell_tris": 17500,
+   "total_tris_incl_base": 20000
+  },
+  "SH16": {
+   "layers_total_incl_base": 16,
+   "shells_above_base": 15,
+   "fur_length_mm": 25.0,
+   "step_mm": 1.6666666666666667,
+   "shell_tris": 37500,
+   "total_tris_incl_base": 40000
+  },
+  "SH24": {
+   "layers_total_incl_base": 24,
+   "shells_above_base": 23,
+   "fur_length_mm": 25.0,
+   "step_mm": 1.0869565217391304,
+   "shell_tris": 57500,
+   "total_tris_incl_base": 60000
+  },
+  "SH16L60": {
+   "layers_total_incl_base": 16,
+   "shells_above_base": 15,
+   "fur_length_mm": 60.0,
+   "step_mm": 4.0,
+   "shell_tris": 37500,
+   "total_tris_incl_base": 40000
+  }
+ },
+ "fins_boundary": {
+  "fins": 168,
+  "tris": 336,
+  "fur_length_mm": 25.0
+ },
+ "fins_all": {
+  "fins": 3834,
+  "tris": 7668,
+  "fur_length_mm": 25.0
+ },
+ "render_seconds_448x448_24spp": {
+  "shells16_front": 636.5,
+  "shells8_front": 411.9,
+  "shells16_grazing_nofins": 343.2,
+  "shells16_grazing_fins": 212.5,
+  "shells16_ruff60_front": 747.8
+ },
+ "note_render_configs": "SH24 and FINS_ALL are built in the .blend but were not rendered in this pass (shared-VM CPU contention); their costs follow from the measured per-shell figures."
+}
+STATS_JSON_END
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

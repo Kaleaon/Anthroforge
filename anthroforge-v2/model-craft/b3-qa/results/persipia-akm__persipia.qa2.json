@@ -1,0 +1,87 @@
+{
+ "file": "persipia.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/persipia-akm/persipia.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 9,
+  "used": 9,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 1,
+  "channels": 65,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 0,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 3.3
+ },
+ "topology": {
+  "boundary_edges": 16707,
+  "nonmanifold_edges": 0,
+  "edges_total": 67947,
+  "duplicate_faces": 0,
+  "unused_vertices": 0,
+  "vertices_total": 29105,
+  "split_vertex_ratio": 0.2815
+ },
+ "winding": {
+  "conflicts": 2,
+  "faces_checked": 39729,
+  "faces_inverted": 8948,
+  "closed_meshes": 1,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.2252
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 10,
+  "uv_out_of_range_frac_max": 0.0,
+  "overlap_estimate_max": 0.6798,
+  "seam_edges": 0,
+  "shared_edges": 51096,
+  "overlap_estimate_area_weighted": 0.1926
+ },
+ "texel": {
+  "per_prim": [
+   400.0,
+   63.7,
+   63.8,
+   80.7,
+   1105.7,
+   5228.7,
+   397.6,
+   276.0,
+   850.5
+  ],
+  "mean_texel_per_m": 940.7,
+  "cv": 1.652,
+  "prims_measured": 9
+ },
+ "weights": {
+  "prims_checked": 11,
+  "verts": 29105,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 4,
+  "mean_influences": 1.31,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 65,
+  "skins_joints_unused": 1,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "warn",
+  "winding": "fail",
+  "uv": "ok",
+  "texel": "warn",
+  "materials": "ok",
+  "weights": "warn",
+  "animation": "ok"
+ }
+}

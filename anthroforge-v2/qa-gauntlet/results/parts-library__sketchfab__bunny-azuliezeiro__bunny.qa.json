@@ -1,0 +1,105 @@
+{
+ "file": "bunny.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/bunny-azuliezeiro/bunny.glb",
+ "size_bytes": 629172,
+ "parses": true,
+ "error": null,
+ "generator": "Sketchfab-12.68.0",
+ "extensions_used": [],
+ "meshes": 7,
+ "primitives": 7,
+ "vertices": 11900,
+ "triangles": 19980,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 0,
+ "morph_targets_max_per_primitive": 0,
+ "bbox_min": [
+  -0.8409,
+  0.0,
+  -0.4218
+ ],
+ "bbox_max": [
+  0.8409,
+  3.2835,
+  0.3907
+ ],
+ "bbox_dims_m": [
+  1.6818,
+  3.2835,
+  0.8125
+ ],
+ "max_extent_m": 3.2835,
+ "scale_flag": null,
+ "textures": {
+  "total": 0,
+  "embedded": 0,
+  "external": 0
+ },
+ "materials": 7,
+ "animations": 0,
+ "skin": {
+  "present": true,
+  "count": 1,
+  "index": 0,
+  "joint_count": 1,
+  "joint_names": [
+   "metarig_rootJoint"
+  ],
+  "has_inverse_bind_matrices": true,
+  "contract_matched": 0,
+  "contract_missing": [
+   "Root",
+   "Pelvis",
+   "Spine1",
+   "Chest",
+   "Neck",
+   "Head",
+   "Jaw",
+   "Ear_L",
+   "Ear_R",
+   "Shoulder_L",
+   "Elbow_L",
+   "Wrist_L",
+   "Shoulder_R",
+   "Elbow_R",
+   "Wrist_R",
+   "Hip_L",
+   "Knee_L",
+   "Ankle_L",
+   "Foot_L",
+   "Hip_R",
+   "Knee_R",
+   "Ankle_R",
+   "Foot_R",
+   "Wing_L1",
+   "Wing_L2",
+   "Wing_R1",
+   "Wing_R2",
+   "Tail_1",
+   "Tail_2",
+   "Tail_3",
+   "GenBase",
+   "GenScrot",
+   "Gen01",
+   "Gen02",
+   "Gen03",
+   "Gen04"
+  ],
+  "contract_extra": [
+   "metarig_rootJoint"
+  ],
+  "contract_full_match": false
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "fail",
+  "contract": "fail",
+  "morphs": "warn",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

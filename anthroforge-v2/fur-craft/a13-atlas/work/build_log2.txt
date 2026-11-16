@@ -1,0 +1,14 @@
+ATLAS-ALPHA-1: t0=0.02 t1=0.231 (solved for A coverage@0.5 ~= 0.15)
+A {'alpha_max_raw': 0.584, 'coverage_raw_mips': [0.0001, 0.0, 0.0, 0.0, 0.0], 'coverage_renorm_mips': [0.143, 0.1544, 0.1419, 0.1266, 0.1069]}
+B {'alpha_max_raw': 0.459, 'coverage_raw_mips': [0.0, 0.0, 0.0, 0.0, 0.0], 'coverage_renorm_mips': [0.0339, 0.0184, 0.0052, 0.0001, 0.0]}
+push-pull gutter fill done
+atlas saved
+layout saved
+Traceback (most recent call last):
+  File "/home/hatch/workspace/anthroforge-v2/fur-craft/a13-atlas/work/../scripts/build_atlas.py", line 245, in <module>
+    view_map[bvi] = add_view(payload, target)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/anthroforge-v2/fur-craft/a13-atlas/work/../scripts/build_atlas.py", line 210, in add_view
+    while len(new_bin) % 4:
+              ^^^^^^^
+UnboundLocalError: cannot access local variable 'new_bin' where it is not associated with a value

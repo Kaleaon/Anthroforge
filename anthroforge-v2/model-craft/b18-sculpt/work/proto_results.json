@@ -1,0 +1,49 @@
+{
+ "joined_verts": 1446,
+ "remeshed_verts": 3924,
+ "remeshed_faces": 3922,
+ "volume_fused_m3": 0.05091,
+ "bbox_fused": [
+  0.936,
+  0.258,
+  0.397
+ ],
+ "symmetry_fused": {
+  "n": 250,
+  "median_mm": 0.0,
+  "p90_mm": 0.0
+ },
+ "stroke_S1_clay_strips": {
+  "verts_touched": 3636,
+  "max_disp_mm": 4.5,
+  "mean_disp_mm": 7.65
+ },
+ "stroke_S2_inflate_sag": {
+  "verts_touched": 440,
+  "max_disp_mm": 20.0
+ },
+ "stroke_S3_scrape": {
+  "verts_touched": 756,
+  "max_disp_mm": 18.49
+ },
+ "stroke_S4_pinch_crease": {
+  "verts_touched": 250,
+  "max_disp_mm": 10.54
+ },
+ "stroke_S5_smooth": {
+  "verts_blended": 2312,
+  "iterations": 3
+ },
+ "volume_sculpted_m3": 0.05377,
+ "vol_delta_pct": 5.62,
+ "bbox_sculpted": [
+  0.936,
+  0.273,
+  0.378
+ ],
+ "symmetry_sculpted": {
+  "n": 250,
+  "median_mm": 0.0,
+  "p90_mm": 0.0
+ }
+}

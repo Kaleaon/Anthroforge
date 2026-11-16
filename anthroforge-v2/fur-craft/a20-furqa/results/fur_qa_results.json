@@ -1,0 +1,336 @@
+{
+ "lods": [
+  {
+   "cards": 2116,
+   "tris": 13600,
+   "body_surface_m2_est": 8.959,
+   "cards_per_m2": 236.2,
+   "mean_card_length_m": 0.0737,
+   "mean_card_width_m": 0.0009,
+   "coverage_by_view": {
+    "+x": 0.184,
+    "-x": 0.185,
+    "+z": 0.311,
+    "-z": 0.304,
+    "+y": 0.548,
+    "-y": 0.545
+   },
+   "coverage": 0.34602754154936227,
+   "grazing_retention": 0.6327131394843873,
+   "overdraw": 1.3484536989165115,
+   "straightness": 0.9999999999986865,
+   "neighbour_coherence": 0.8520345932977827,
+   "textures": {
+    "FurCardA": {
+     "alpha_coverage": 0.3632831573486328,
+     "strand_fill_alpha": 0.6604774008989451,
+     "alpha_mean": 0.38604357850317866,
+     "dead_uv_fraction": 0.30000000000000004,
+     "band_profile_root_to_tip": [
+      0.3672,
+      0.3903,
+      0.1748,
+      0.1528,
+      0.263,
+      0.3713,
+      0.3847,
+      NaN,
+      NaN,
+      NaN
+     ],
+     "band_trend_corr": 0.07705271570082922,
+     "band_gradient": 0.7903577972584656
+    },
+    "FurCardB": {
+     "alpha_coverage": 0.36328125,
+     "strand_fill_alpha": 0.7189427520245609,
+     "alpha_mean": 0.3745211133769914,
+     "dead_uv_fraction": 0.30000000000000004,
+     "band_profile_root_to_tip": [
+      0.3154,
+      0.3472,
+      0.1112,
+      0.1131,
+      0.2387,
+      0.3645,
+      0.3825,
+      NaN,
+      NaN,
+      NaN
+     ],
+     "band_trend_corr": 0.2422916400741627,
+     "band_gradient": 1.01433367471534
+    }
+   },
+   "file": "../../fur-prototype/fur_cards_lod0.glb"
+  },
+  {
+   "cards": 886,
+   "tris": 5440,
+   "body_surface_m2_est": 10.045,
+   "cards_per_m2": 88.2,
+   "mean_card_length_m": 0.0706,
+   "mean_card_width_m": 0.0009,
+   "coverage_by_view": {
+    "+x": 0.084,
+    "-x": 0.086,
+    "+z": 0.172,
+    "-z": 0.169,
+    "+y": 0.332,
+    "-y": 0.332
+   },
+   "coverage": 0.19579165017736533,
+   "grazing_retention": 0.49682620090625224,
+   "overdraw": 0.12636513319740553,
+   "straightness": 0.9999999999988063,
+   "neighbour_coherence": 0.8582522998433503,
+   "textures": {
+    "FurCardA": {
+     "alpha_coverage": 9.34600830078125e-05,
+     "strand_fill_alpha": 0.10739487905737477,
+     "alpha_mean": 0.06382941451727177,
+     "dead_uv_fraction": 0.09999999999999998,
+     "band_profile_root_to_tip": [
+      0.3792,
+      0.4071,
+      0.4028,
+      0.3972,
+      0.3825,
+      0.3666,
+      0.3409,
+      0.2765,
+      0.1814,
+      0.0071
+     ],
+     "band_trend_corr": -0.8198313767428471,
+     "band_gradient": 0.6479095516930838
+    },
+    "FurCardB": {
+     "alpha_coverage": 0.0,
+     "strand_fill_alpha": 0.07587386281069587,
+     "alpha_mean": 0.031707838469860604,
+     "dead_uv_fraction": 0.09999999999999998,
+     "band_profile_root_to_tip": [
+      0.3391,
+      0.3849,
+      0.3755,
+      0.3618,
+      0.3365,
+      0.3094,
+      0.2601,
+      0.2145,
+      0.1246,
+      0.0054
+     ],
+     "band_trend_corr": -0.8757372453018754,
+     "band_gradient": 0.8657402605299123
+    }
+   },
+   "file": "../../fur-prototype/fur_cards_lod1.glb",
+   "popin_coverage_delta": 0.4341732184071399,
+   "popin_area_delta": 0.43417321840713985
+  },
+  {
+   "cards": 327,
+   "tris": 2040,
+   "body_surface_m2_est": 9.423,
+   "cards_per_m2": 34.7,
+   "mean_card_length_m": 0.072,
+   "mean_card_width_m": 0.001,
+   "coverage_by_view": {
+    "+x": 0.041,
+    "-x": 0.041,
+    "+z": 0.085,
+    "-z": 0.082,
+    "+y": 0.187,
+    "-y": 0.188
+   },
+   "coverage": 0.10391665124358014,
+   "grazing_retention": 0.4637224273270523,
+   "overdraw": 0.10044391587014369,
+   "straightness": 0.9999999999988687,
+   "neighbour_coherence": 0.8642812036690066,
+   "textures": {
+    "FurCardA": {
+     "alpha_coverage": 9.34600830078125e-05,
+     "strand_fill_alpha": 0.10739487905737477,
+     "alpha_mean": 0.06382941451727177,
+     "dead_uv_fraction": 0.09999999999999998,
+     "band_profile_root_to_tip": [
+      0.3792,
+      0.4071,
+      0.4028,
+      0.3972,
+      0.3825,
+      0.3666,
+      0.3409,
+      0.2765,
+      0.1814,
+      0.0071
+     ],
+     "band_trend_corr": -0.8198313767428471,
+     "band_gradient": 0.6479095516930838
+    },
+    "FurCardB": {
+     "alpha_coverage": 0.0,
+     "strand_fill_alpha": 0.07587386281069587,
+     "alpha_mean": 0.031707838469860604,
+     "dead_uv_fraction": 0.09999999999999998,
+     "band_profile_root_to_tip": [
+      0.3391,
+      0.3849,
+      0.3755,
+      0.3618,
+      0.3365,
+      0.3094,
+      0.2601,
+      0.2145,
+      0.1246,
+      0.0054
+     ],
+     "band_trend_corr": -0.8757372453018754,
+     "band_gradient": 0.8657402605299123
+    }
+   },
+   "file": "../../fur-prototype/fur_cards_lod2.glb",
+   "popin_coverage_delta": 0.4692488104092116,
+   "popin_area_delta": 0.4692488104092116
+  }
+ ],
+ "gates": [
+  {
+   "gate": "density_cards_per_m2",
+   "value": 236.2,
+   "status": "FAIL",
+   "pass_at": 4000,
+   "warn_at": 1500
+  },
+  {
+   "gate": "silhouette_coverage",
+   "value": 0.346,
+   "status": "FAIL",
+   "pass_at": 0.55,
+   "warn_at": 0.35
+  },
+  {
+   "gate": "grazing_retention",
+   "value": 0.6327,
+   "status": "PASS",
+   "pass_at": 0.55,
+   "warn_at": 0.35
+  },
+  {
+   "gate": "overdraw",
+   "value": 1.348,
+   "status": "PASS",
+   "pass_at": "<=4.0",
+   "warn_at": "<=8.0"
+  },
+  {
+   "gate": "direction_coherence_neighbour",
+   "value": 0.852,
+   "status": "PASS",
+   "pass_at": 0.75,
+   "warn_at": 0.55
+  },
+  {
+   "gate": "direction_straightness",
+   "value": 1.0,
+   "status": "PASS",
+   "pass_at": 0.85,
+   "warn_at": 0.7
+  },
+  {
+   "gate": "texture_alpha_coverage[FurCardA]",
+   "value": 0.3633,
+   "status": "PASS",
+   "pass_at": 0.25,
+   "warn_at": 0.12
+  },
+  {
+   "gate": "colour_band_gradient[FurCardA]",
+   "value": 0.7904,
+   "status": "PASS",
+   "pass_at": 0.25,
+   "warn_at": 0.1
+  },
+  {
+   "gate": "dead_uv_fraction[FurCardA]",
+   "value": 0.3,
+   "status": "FAIL",
+   "pass_at": "<=0.05",
+   "warn_at": "<=0.20"
+  },
+  {
+   "gate": "texture_alpha_coverage[FurCardB]",
+   "value": 0.3633,
+   "status": "PASS",
+   "pass_at": 0.25,
+   "warn_at": 0.12
+  },
+  {
+   "gate": "colour_band_gradient[FurCardB]",
+   "value": 1.0143,
+   "status": "PASS",
+   "pass_at": 0.25,
+   "warn_at": 0.1
+  },
+  {
+   "gate": "dead_uv_fraction[FurCardB]",
+   "value": 0.3,
+   "status": "FAIL",
+   "pass_at": "<=0.05",
+   "warn_at": "<=0.20"
+  },
+  {
+   "gate": "lod_texture_alpha_ratio[FurCardA vs LOD0]",
+   "value": 0.1653,
+   "status": "FAIL",
+   "pass_at": "0.7-1.4",
+   "warn_at": "0.4-2.0"
+  },
+  {
+   "gate": "lod_texture_alpha_ratio[FurCardB vs LOD0]",
+   "value": 0.0847,
+   "status": "FAIL",
+   "pass_at": "0.7-1.4",
+   "warn_at": "0.4-2.0"
+  },
+  {
+   "gate": "lod_texture_alpha_ratio[FurCardA vs LOD0]",
+   "value": 0.1653,
+   "status": "FAIL",
+   "pass_at": "0.7-1.4",
+   "warn_at": "0.4-2.0"
+  },
+  {
+   "gate": "lod_texture_alpha_ratio[FurCardB vs LOD0]",
+   "value": 0.0847,
+   "status": "FAIL",
+   "pass_at": "0.7-1.4",
+   "warn_at": "0.4-2.0"
+  },
+  {
+   "gate": "popin_delta[fur_cards_lod1.glb]",
+   "value": 0.4342,
+   "status": "FAIL",
+   "pass_at": "<=0.10",
+   "warn_at": "<=0.25"
+  },
+  {
+   "gate": "popin_delta[fur_cards_lod2.glb]",
+   "value": 0.4692,
+   "status": "FAIL",
+   "pass_at": "<=0.10",
+   "warn_at": "<=0.25"
+  },
+  {
+   "gate": "render_silhouette_ratio",
+   "value": 0.9258,
+   "status": "PASS",
+   "pass_at": 0.85,
+   "warn_at": 0.65
+  }
+ ],
+ "render_silhouette_ratio_cards_vs_strands": 0.9258
+}

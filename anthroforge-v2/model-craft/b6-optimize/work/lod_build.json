@@ -1,0 +1,96 @@
+{
+ "source": "work/src_wolf.glb",
+ "arms": {
+  "lod1": {
+   "naive": {
+    "verts": 37336,
+    "faces": 63555,
+    "target_faces": 63555,
+    "hygiene": {
+     "verts": 37336,
+     "wsum_min": 0.9999998211860657,
+     "wsum_max": 1.000000238418579,
+     "unweighted": 0,
+     "max_influences": 6,
+     "frac_gt4_influences": 0.00503535461752732
+    },
+    "file": "lods/bara_wolf_lod1_naive.glb",
+    "bytes": 3177912
+   },
+   "aware": {
+    "verts": 36653,
+    "faces": 63555,
+    "target_faces": 63555,
+    "hygiene": {
+     "verts": 36653,
+     "wsum_min": 0.9999998211860657,
+     "wsum_max": 1.000000238418579,
+     "unweighted": 0,
+     "max_influences": 5,
+     "frac_gt4_influences": 0.00043652634163642815
+    },
+    "file": "lods/bara_wolf_lod1.glb",
+    "bytes": 3131576
+   }
+  },
+  "lod2": {
+   "naive": {
+    "verts": 21163,
+    "faces": 31776,
+    "target_faces": 31778,
+    "hygiene": {
+     "verts": 21163,
+     "wsum_min": 0.9999998211860657,
+     "wsum_max": 1.000000238418579,
+     "unweighted": 0,
+     "max_influences": 7,
+     "frac_gt4_influences": 0.009781221943958796
+    },
+    "file": "lods/bara_wolf_lod2_naive.glb",
+    "bytes": 1952156
+   },
+   "aware": {
+    "verts": 19780,
+    "faces": 31777,
+    "target_faces": 31778,
+    "hygiene": {
+     "verts": 19780,
+     "wsum_min": 0.9999998211860657,
+     "wsum_max": 1.000000238418579,
+     "unweighted": 0,
+     "max_influences": 6,
+     "frac_gt4_influences": 0.002982810920121335
+    },
+    "file": "lods/bara_wolf_lod2.glb",
+    "bytes": 1857828
+   }
+  }
+ },
+ "lod0": {
+  "verts": 69190,
+  "faces": 127110,
+  "hygiene": {
+   "verts": 69190,
+   "wsum_min": 0.9999998211860657,
+   "wsum_max": 1.0000001192092896,
+   "unweighted": 0,
+   "max_influences": 4,
+   "frac_gt4_influences": 0.0
+  },
+  "rigid_objects": [
+   "EyeL",
+   "EyeR",
+   "Icosphere"
+  ],
+  "shape_keys": false
+ },
+ "importance": {
+  "grad_p995": 0.9730024337768555,
+  "grad_max": 1.994858980178833,
+  "curv_p99": 1.4424315305768582,
+  "dmin_median": 0.15914304081947567,
+  "imp_mean": 0.16082315967862595,
+  "imp_frac_gt_0_8": 0.00439369851134557,
+  "imp_frac_lt_0_1": 0.4199884376354965
+ }
+}

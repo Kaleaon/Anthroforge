@@ -1,0 +1,58 @@
+{
+ "file": "kaleaon_v3_r3.glb",
+ "path": "/home/hatch/workspace/bodies-3d/kaleaon-v3-r3/kaleaon_v3_r3.glb",
+ "size_bytes": 82596988,
+ "parses": true,
+ "error": null,
+ "generator": "Khronos glTF Blender I/O v5.2.41",
+ "extensions_used": [
+  "KHR_materials_clearcoat"
+ ],
+ "meshes": 52,
+ "primitives": 58,
+ "vertices": 1173664,
+ "triangles": 466511,
+ "degenerate_triangles": 0,
+ "nan_vertices": 0,
+ "morph_targets_total": 13,
+ "morph_targets_max_per_primitive": 3,
+ "bbox_min": [
+  -0.9928,
+  -0.013,
+  -0.6085
+ ],
+ "bbox_max": [
+  0.9859,
+  2.3184,
+  0.4326
+ ],
+ "bbox_dims_m": [
+  1.9786,
+  2.3314,
+  1.0411
+ ],
+ "max_extent_m": 2.3314,
+ "scale_flag": null,
+ "textures": {
+  "total": 6,
+  "embedded": 6,
+  "external": 0
+ },
+ "materials": 18,
+ "animations": 0,
+ "skin": {
+  "present": false,
+  "count": 0
+ },
+ "primitives_with_joints": 0,
+ "primitives_with_weights": 0,
+ "status": {
+  "parse": "ok",
+  "skin": "warn",
+  "contract": "n/a",
+  "morphs": "ok",
+  "textures": "ok",
+  "geometry": "ok",
+  "scale": "ok"
+ }
+}

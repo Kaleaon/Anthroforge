@@ -1,0 +1,5437 @@
+[
+ {
+  "file": "neutral_base_head.glb",
+  "path": "/home/hatch/workspace/anthroforge-v2/base-head/neutral_base_head.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 2,
+   "used": 2,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 130,
+   "nonmanifold_edges": 0,
+   "edges_total": 21359,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 7172,
+   "split_vertex_ratio": 0.0059
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 14196,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 1,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 2,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.0,
+   "seam_edges": 0,
+   "shared_edges": 196,
+   "overlap_estimate_area_weighted": 0.0
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "_source_border_collie.glb",
+  "path": "/home/hatch/workspace/anthroforge-v2/export-prototype/out/_source_border_collie.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 12,
+   "used": 12,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 62,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 8.3
+  },
+  "topology": {
+   "boundary_edges": 2735,
+   "nonmanifold_edges": 0,
+   "edges_total": 23308,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 8757,
+   "split_vertex_ratio": 0.1244
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 14627,
+   "faces_inverted": 10079,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.6891
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 9,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5038,
+   "seam_edges": 0,
+   "shared_edges": 20540,
+   "overlap_estimate_area_weighted": 0.2197
+  },
+  "texel": {
+   "per_prim": [
+    373.7,
+    876.3,
+    22.2,
+    295.0,
+    801.6,
+    1581.5,
+    596.0
+   ],
+   "mean_texel_per_m": 649.5,
+   "cv": 0.722,
+   "prims_measured": 7
+  },
+  "weights": {
+   "prims_checked": 9,
+   "verts": 8649,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.76,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 66,
+   "skins_joints_unused": 1,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "warn",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "bara_wolf_avatar.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/furry-lineup/threejs-lineup/models/bara_wolf_avatar.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 2,
+   "used": 2,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 4,
+   "channels": 780,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 15.967
+  },
+  "topology": {
+   "boundary_edges": 14030,
+   "nonmanifold_edges": 0,
+   "edges_total": 199840,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 72166,
+   "split_vertex_ratio": 0.1093
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 22625,
+   "faces_inverted": 2,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0001
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 3,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5278,
+   "seam_edges": 0,
+   "shared_edges": 185810,
+   "overlap_estimate_area_weighted": 0.1336
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 3,
+   "verts": 72166,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.65,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 65,
+   "skins_joints_unused": 13,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "border_collie.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/furry-lineup/threejs-lineup/models/border_collie.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 12,
+   "used": 12,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 62,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 8.3
+  },
+  "topology": {
+   "boundary_edges": 2735,
+   "nonmanifold_edges": 0,
+   "edges_total": 23308,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 8757,
+   "split_vertex_ratio": 0.1244
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 14627,
+   "faces_inverted": 10079,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.6891
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 9,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5038,
+   "seam_edges": 0,
+   "shared_edges": 20540,
+   "overlap_estimate_area_weighted": 0.2197
+  },
+  "texel": {
+   "per_prim": [
+    373.7,
+    876.3,
+    22.2,
+    295.0,
+    801.6,
+    1581.5,
+    596.0
+   ],
+   "mean_texel_per_m": 649.5,
+   "cv": 0.722,
+   "prims_measured": 7
+  },
+  "weights": {
+   "prims_checked": 9,
+   "verts": 8649,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.76,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 66,
+   "skins_joints_unused": 1,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "warn",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "cat_base.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/furry-lineup/threejs-lineup/models/cat_base.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 7,
+   "used": 7,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1596,
+   "nonmanifold_edges": 0,
+   "edges_total": 15471,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 5731,
+   "split_vertex_ratio": 0.1106
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 9782,
+   "faces_inverted": 8446,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.8634
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 6,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5002,
+   "seam_edges": 0,
+   "shared_edges": 13803,
+   "overlap_estimate_area_weighted": 0.1189
+  },
+  "texel": {
+   "per_prim": [
+    724.4,
+    55.9,
+    294.0
+   ],
+   "mean_texel_per_m": 358.1,
+   "cv": 0.773,
+   "prims_measured": 3
+  },
+  "weights": {
+   "prims_checked": 7,
+   "verts": 5731,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.92,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 63,
+   "skins_joints_unused": 3,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kitty_base.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/furry-lineup/threejs-lineup/models/kitty_base.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 8450,
+   "nonmanifold_edges": 0,
+   "edges_total": 37846,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 15890,
+   "split_vertex_ratio": 0.2573
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 22414,
+   "faces_inverted": 22,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.001
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5005,
+   "seam_edges": 0,
+   "shared_edges": 29396,
+   "overlap_estimate_area_weighted": 0.5005
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "persipia.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/furry-lineup/threejs-lineup/models/persipia.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 9,
+   "used": 9,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 65,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 3.3
+  },
+  "topology": {
+   "boundary_edges": 16707,
+   "nonmanifold_edges": 0,
+   "edges_total": 67947,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 29105,
+   "split_vertex_ratio": 0.2815
+  },
+  "winding": {
+   "conflicts": 2,
+   "faces_checked": 39729,
+   "faces_inverted": 8948,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.2252
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 10,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.6834,
+   "seam_edges": 0,
+   "shared_edges": 51096,
+   "overlap_estimate_area_weighted": 0.1801
+  },
+  "texel": {
+   "per_prim": [
+    400.0,
+    63.7,
+    63.8,
+    80.7,
+    1105.7,
+    5228.7,
+    397.6,
+    276.0,
+    850.5
+   ],
+   "mean_texel_per_m": 940.7,
+   "cv": 1.652,
+   "prims_measured": 9
+  },
+  "weights": {
+   "prims_checked": 11,
+   "verts": 29105,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.31,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 65,
+   "skins_joints_unused": 1,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "pyn_fennec.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/furry-lineup/threejs-lineup/models/pyn_fennec.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 3608,
+   "nonmanifold_edges": 0,
+   "edges_total": 120094,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 41304,
+   "split_vertex_ratio": 0.0425
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 26287,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.2376,
+   "seam_edges": 0,
+   "shared_edges": 116486,
+   "overlap_estimate_area_weighted": 0.2376
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 1,
+   "verts": 41304,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.98,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 107,
+   "skins_joints_unused": 1,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "bara_wolf_avatar.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/furry/bara_wolf_avatar.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 2,
+   "used": 2,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 4,
+   "channels": 780,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 15.967
+  },
+  "topology": {
+   "boundary_edges": 14030,
+   "nonmanifold_edges": 0,
+   "edges_total": 199840,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 72166,
+   "split_vertex_ratio": 0.1093
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 22625,
+   "faces_inverted": 2,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0001
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 3,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5278,
+   "seam_edges": 0,
+   "shared_edges": 185810,
+   "overlap_estimate_area_weighted": 0.1336
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 3,
+   "verts": 72166,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.65,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 65,
+   "skins_joints_unused": 13,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "kaleaon_realism.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-realism/kaleaon_realism.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 10,
+   "used": 10,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 7338,
+   "nonmanifold_edges": 77,
+   "edges_total": 476503,
+   "duplicate_faces": 73,
+   "unused_vertices": 0,
+   "vertices_total": 162858,
+   "split_vertex_ratio": 0.0315
+  },
+  "winding": {
+   "conflicts": 154,
+   "faces_checked": 37359,
+   "faces_inverted": 101,
+   "closed_meshes": 4,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0027
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 18,
+   "uv_out_of_range_frac_max": 0.8258064516129032,
+   "overlap_estimate_max": 0.9793,
+   "seam_edges": 0,
+   "shared_edges": 468416,
+   "overlap_estimate_area_weighted": 0.7655
+  },
+  "texel": {
+   "per_prim": [
+    19727.0,
+    19603.7,
+    21969.2,
+    21969.2,
+    17181.4
+   ],
+   "mean_texel_per_m": 20090.1,
+   "cv": 0.089,
+   "prims_measured": 5
+  },
+  "weights": {
+   "prims_checked": 22,
+   "verts": 162858,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.34,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 70,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "fail",
+   "winding": "warn",
+   "uv": "warn",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "ok",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_rigged.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-rigged2/kaleaon_rigged.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 9,
+   "used": 9,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 11815,
+   "nonmanifold_edges": 0,
+   "edges_total": 462773,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 160078,
+   "split_vertex_ratio": 0.0405
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 28932,
+   "faces_inverted": 5,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0002
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 21,
+   "uv_out_of_range_frac_max": 0.03333333333333333,
+   "overlap_estimate_max": 0.977,
+   "seam_edges": 0,
+   "shared_edges": 450382,
+   "overlap_estimate_area_weighted": 0.6691
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 23,
+   "verts": 160078,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.34,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 70,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "ok",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_rigged3.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-rigged3/kaleaon_rigged3.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 18,
+   "used": 18,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1137707,
+   "nonmanifold_edges": 0,
+   "edges_total": 1268620,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 1173664,
+   "split_vertex_ratio": 0.7971
+  },
+  "winding": {
+   "conflicts": 88,
+   "faces_checked": 169630,
+   "faces_inverted": 85,
+   "closed_meshes": 8,
+   "negative_volume_meshes": 5,
+   "inverted_face_frac": 0.0005
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 33,
+   "uv_out_of_range_frac_max": 0.6666666666666666,
+   "overlap_estimate_max": 0.9973,
+   "seam_edges": 0,
+   "shared_edges": 98493,
+   "overlap_estimate_area_weighted": 0.9525
+  },
+  "texel": {
+   "per_prim": [
+    524.3,
+    10880.7,
+    10503.7,
+    14162.1,
+    25768.8,
+    25768.8,
+    492.2,
+    5957.5
+   ],
+   "mean_texel_per_m": 11757.3,
+   "cv": 0.788,
+   "prims_measured": 8
+  },
+  "weights": {
+   "prims_checked": 43,
+   "verts": 1167751,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.38,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 89,
+   "skins_joints_unused": 17,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "warn",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_rigged.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-rigged/kaleaon_rigged.glb",
+  "parses": true,
+  "error": null,
+  "materials_check": {
+   "defined": 9,
+   "used": 9,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 9423,
+   "nonmanifold_edges": 0,
+   "edges_total": 465093,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 160074,
+   "split_vertex_ratio": 0.0407
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 29099,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 21,
+   "uv_out_of_range_frac_max": 0.03333333333333333,
+   "overlap_estimate_max": 0.9781,
+   "seam_edges": 0,
+   "shared_edges": 455094,
+   "overlap_estimate_area_weighted": 0.6782
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 1,
+   "verts": 149661,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.87,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 70,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "ok",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_sacdrape.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-sacdrape/kaleaon_sacdrape.glb",
+  "parses": true,
+  "error": null,
+  "lite": true,
+  "materials_check": {
+   "defined": 18,
+   "used": 18,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1137799,
+   "nonmanifold_edges": 0,
+   "edges_total": 1271957,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 1174765,
+   "split_vertex_ratio": 0.7964
+  },
+  "winding": {
+   "conflicts": 96,
+   "faces_checked": 171824,
+   "faces_inverted": 67,
+   "closed_meshes": 8,
+   "negative_volume_meshes": 5,
+   "inverted_face_frac": 0.0004
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 40,
+   "uv_out_of_range_frac_max": 0.6666666666666666,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [
+    524.3,
+    10880.7,
+    10503.7,
+    14162.1,
+    25768.8,
+    25768.8,
+    492.2,
+    5999.6
+   ],
+   "mean_texel_per_m": 11762.5,
+   "cv": 0.788,
+   "prims_measured": 8
+  },
+  "weights": {
+   "prims_checked": 44,
+   "verts": 1168443,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.38,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 89,
+   "skins_joints_unused": 17,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_sculpt.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-sculpt/kaleaon_sculpt.glb",
+  "parses": true,
+  "error": null,
+  "lite": true,
+  "materials_check": {
+   "defined": 18,
+   "used": 18,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1137799,
+   "nonmanifold_edges": 0,
+   "edges_total": 1270733,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 1174357,
+   "split_vertex_ratio": 0.7966
+  },
+  "winding": {
+   "conflicts": 88,
+   "faces_checked": 171008,
+   "faces_inverted": 84,
+   "closed_meshes": 8,
+   "negative_volume_meshes": 5,
+   "inverted_face_frac": 0.0005
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 40,
+   "uv_out_of_range_frac_max": 0.6666666666666666,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [
+    524.3,
+    10880.7,
+    10503.7,
+    14162.1,
+    25768.8,
+    25768.8,
+    492.2,
+    5999.6
+   ],
+   "mean_texel_per_m": 11762.5,
+   "cv": 0.788,
+   "prims_measured": 8
+  },
+  "weights": {
+   "prims_checked": 44,
+   "verts": 1168035,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.38,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 89,
+   "skins_joints_unused": 17,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_v3_r2.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-v3-r2/kaleaon_v3_r2.glb",
+  "parses": true,
+  "error": null,
+  "lite": true,
+  "materials_check": {
+   "defined": 15,
+   "used": 15,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1082798,
+   "nonmanifold_edges": 0,
+   "edges_total": 1209826,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 1119178,
+   "split_vertex_ratio": 0.798
+  },
+  "winding": {
+   "conflicts": 88,
+   "faces_checked": 114976,
+   "faces_inverted": 85,
+   "closed_meshes": 8,
+   "negative_volume_meshes": 5,
+   "inverted_face_frac": 0.0007
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 33,
+   "uv_out_of_range_frac_max": 0.6666666666666666,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [
+    10880.7,
+    10503.7,
+    551.8,
+    25768.8,
+    25768.8,
+    14162.0
+   ],
+   "mean_texel_per_m": 14606.0,
+   "cv": 0.611,
+   "prims_measured": 6
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_v3_r3.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-v3-r3/kaleaon_v3_r3.glb",
+  "parses": true,
+  "error": null,
+  "lite": true,
+  "materials_check": {
+   "defined": 18,
+   "used": 18,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1137707,
+   "nonmanifold_edges": 0,
+   "edges_total": 1268620,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 1173664,
+   "split_vertex_ratio": 0.7975
+  },
+  "winding": {
+   "conflicts": 88,
+   "faces_checked": 169630,
+   "faces_inverted": 85,
+   "closed_meshes": 8,
+   "negative_volume_meshes": 5,
+   "inverted_face_frac": 0.0005
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 33,
+   "uv_out_of_range_frac_max": 0.6666666666666666,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [
+    10880.7,
+    10503.7,
+    524.3,
+    25768.8,
+    25768.8,
+    14162.0,
+    492.2,
+    5957.5
+   ],
+   "mean_texel_per_m": 11757.2,
+   "cv": 0.788,
+   "prims_measured": 8
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_v3.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon-v3/kaleaon_v3.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 13,
+   "used": 13,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1074124,
+   "nonmanifold_edges": 0,
+   "edges_total": 1098416,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 1080423,
+   "split_vertex_ratio": 0.828
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 43594,
+   "faces_inverted": 39,
+   "closed_meshes": 7,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0009
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 20,
+   "uv_out_of_range_frac_max": 0.6666666666666666,
+   "overlap_estimate_max": 0.8881,
+   "seam_edges": 0,
+   "shared_edges": 17284,
+   "overlap_estimate_area_weighted": 0.3338
+  },
+  "texel": {
+   "per_prim": [
+    5440.4,
+    5251.9,
+    552.0,
+    30407.2,
+    30407.2,
+    7081.0
+   ],
+   "mean_texel_per_m": 13189.9,
+   "cv": 0.935,
+   "prims_measured": 6
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon/kaleaon.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 9,
+   "used": 9,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 9222,
+   "nonmanifold_edges": 0,
+   "edges_total": 465243,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 160079,
+   "split_vertex_ratio": 0.0407
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 29111,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 21,
+   "uv_out_of_range_frac_max": 0.03333333333333333,
+   "overlap_estimate_max": 0.9769,
+   "seam_edges": 0,
+   "shared_edges": 455445,
+   "overlap_estimate_area_weighted": 0.691
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_body.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon/kaleaon_body.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "edges_total": 449040,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 149666,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 21383,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9769,
+   "seam_edges": 0,
+   "shared_edges": 449040,
+   "overlap_estimate_area_weighted": 0.9769
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "ok",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kaleaon_erect.glb",
+  "path": "/home/hatch/workspace/bodies-3d/kaleaon/kaleaon_erect.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "edges_total": 449040,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 149666,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 21383,
+   "faces_inverted": 5,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0002
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9769,
+   "seam_edges": 0,
+   "shared_edges": 449040,
+   "overlap_estimate_area_weighted": 0.9769
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "ok",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "MascularMale.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/cgtrader/muscular-heroic-male-braineybites/MascularMale.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 4,
+   "used": 4,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 15966,
+   "nonmanifold_edges": 0,
+   "edges_total": 396753,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 140298,
+   "split_vertex_ratio": 0.0735
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 47273,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 3,
+   "uv_out_of_range_frac_max": 0.0009008243392538455,
+   "overlap_estimate_max": 0.7487,
+   "seam_edges": 0,
+   "shared_edges": 366474,
+   "overlap_estimate_area_weighted": 0.7487
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "cat.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/existing-haul/styloo-animals-cc0/cat.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1472,
+   "nonmanifold_edges": 0,
+   "edges_total": 5950,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 2547,
+   "split_vertex_ratio": 0.3168
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 3476,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.1944,
+   "seam_edges": 0,
+   "shared_edges": 4478,
+   "overlap_estimate_area_weighted": 0.1944
+  },
+  "texel": {
+   "per_prim": [
+    858.1
+   ],
+   "mean_texel_per_m": 858.1,
+   "cv": 0.0,
+   "prims_measured": 1
+  },
+  "weights": {
+   "prims_checked": 1,
+   "verts": 2547,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.78,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 283,
+   "skins_joints_unused": 237,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "dog.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/existing-haul/styloo-animals-cc0/dog.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 6,
+   "channels": 828,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 1.333
+  },
+  "topology": {
+   "boundary_edges": 936,
+   "nonmanifold_edges": 0,
+   "edges_total": 9036,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 3344,
+   "split_vertex_ratio": 0.1441
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 5712,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.0306,
+   "seam_edges": 0,
+   "shared_edges": 8100,
+   "overlap_estimate_area_weighted": 0.0306
+  },
+  "texel": {
+   "per_prim": [
+    798.5
+   ],
+   "mean_texel_per_m": 798.5,
+   "cv": 0.0,
+   "prims_measured": 1
+  },
+  "weights": {
+   "prims_checked": 1,
+   "verts": 3344,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.09,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 46,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "ok",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "model.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/alternative-bara-julianemilioqwe/source/model.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 0,
+   "used": 0,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 1,
+   "edges_total": 1271417,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 423272,
+   "split_vertex_ratio": 0.0002
+  },
+  "winding": {
+   "conflicts": 2,
+   "faces_checked": 0,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 0,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "fail",
+   "winding": "warn",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "anthro_female_cat_base.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/anthro-female-cat-base-akm/anthro_female_cat_base.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 7,
+   "used": 7,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 1596,
+   "nonmanifold_edges": 0,
+   "edges_total": 15471,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 5731,
+   "split_vertex_ratio": 0.1106
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 9782,
+   "faces_inverted": 8446,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.8634
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 6,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5132,
+   "seam_edges": 0,
+   "shared_edges": 13803,
+   "overlap_estimate_area_weighted": 0.1361
+  },
+  "texel": {
+   "per_prim": [
+    724.4,
+    55.9,
+    294.0
+   ],
+   "mean_texel_per_m": 358.1,
+   "cv": 0.773,
+   "prims_measured": 3
+  },
+  "weights": {
+   "prims_checked": 7,
+   "verts": 5731,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.92,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 63,
+   "skins_joints_unused": 3,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "anthro_fennec_rigged.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/anthro-fennec-rigged-codaj/anthro_fennec_rigged.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 3608,
+   "nonmanifold_edges": 0,
+   "edges_total": 120094,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 41304,
+   "split_vertex_ratio": 0.0425
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 26287,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.0,
+   "seam_edges": 0,
+   "shared_edges": 116486,
+   "overlap_estimate_area_weighted": 0.0
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 1,
+   "verts": 41304,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.98,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 107,
+   "skins_joints_unused": 1,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "model.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/bara-earthquake-julianemilioqwe/source/model.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 1
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "edges_total": 1889733,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 629917,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 0,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 0,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "ok",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "border_collie_scientist.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/border-collie-scientist-akm/border_collie_scientist.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 12,
+   "used": 12,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 62,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 8.3
+  },
+  "topology": {
+   "boundary_edges": 2735,
+   "nonmanifold_edges": 0,
+   "edges_total": 23308,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 8757,
+   "split_vertex_ratio": 0.1248
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 14627,
+   "faces_inverted": 10079,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.6891
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 9,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5144,
+   "seam_edges": 0,
+   "shared_edges": 20540,
+   "overlap_estimate_area_weighted": 0.2321
+  },
+  "texel": {
+   "per_prim": [
+    373.7,
+    876.3,
+    22.2,
+    295.0,
+    801.6,
+    1581.5,
+    596.0
+   ],
+   "mean_texel_per_m": 649.5,
+   "cv": 0.722,
+   "prims_measured": 7
+  },
+  "weights": {
+   "prims_checked": 9,
+   "verts": 8649,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.76,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 66,
+   "skins_joints_unused": 1,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "warn",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "bunny.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/bunny-azuliezeiro/bunny.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 7,
+   "used": 7,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 3744,
+   "nonmanifold_edges": 0,
+   "edges_total": 31842,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 11900,
+   "split_vertex_ratio": 0.0953
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 19980,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 7,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5478,
+   "seam_edges": 0,
+   "shared_edges": 28098,
+   "overlap_estimate_area_weighted": 0.3801
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "bunny_furry_commission.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/bunny-furry-commission-colin-greenall/bunny_furry_commission.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 2232,
+   "nonmanifold_edges": 0,
+   "edges_total": 29640,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 10646,
+   "split_vertex_ratio": 0.084
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 19016,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 2,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.0051,
+   "seam_edges": 0,
+   "shared_edges": 27408,
+   "overlap_estimate_area_weighted": 0.0044
+  },
+  "texel": {
+   "per_prim": [
+    2028.9,
+    2027.4
+   ],
+   "mean_texel_per_m": 2028.2,
+   "cv": 0.0,
+   "prims_measured": 2
+  },
+  "weights": {
+   "prims_checked": 2,
+   "verts": 10646,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.91,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 67,
+   "skins_joints_unused": 2,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "bvh_rig_models_update_fox_rabbit_and_cat.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/bvh-rig-fox-rabbit-cat-kitsunzoro/bvh_rig_models_update_fox_rabbit_and_cat.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 10,
+   "used": 10,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 4,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 4,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 51882,
+   "nonmanifold_edges": 2438,
+   "edges_total": 432301,
+   "duplicate_faces": 2024,
+   "unused_vertices": 0,
+   "vertices_total": 163838,
+   "split_vertex_ratio": 0.1575
+  },
+  "winding": {
+   "conflicts": 6072,
+   "faces_checked": 165908,
+   "faces_inverted": 14,
+   "closed_meshes": 4,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0001
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 25,
+   "uv_out_of_range_frac_max": 1.0,
+   "overlap_estimate_max": 0.9778,
+   "seam_edges": 0,
+   "shared_edges": 377981,
+   "overlap_estimate_area_weighted": 0.8792
+  },
+  "texel": {
+   "per_prim": [
+    2351.5,
+    2351.5
+   ],
+   "mean_texel_per_m": 2351.5,
+   "cv": 0.0,
+   "prims_measured": 2
+  },
+  "weights": {
+   "prims_checked": 13,
+   "verts": 152886,
+   "zero_weight_verts": 80934,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.07,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 318,
+   "skins_joints_unused": null,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "fail",
+   "winding": "warn",
+   "uv": "warn",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "warn"
+  }
+ },
+ {
+  "file": "cute_furry_fox.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/cute-furry-fox-enotobuterbrodo/cute_furry_fox.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 2,
+   "used": 2,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 4482,
+   "nonmanifold_edges": 0,
+   "edges_total": 52857,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 19209,
+   "split_vertex_ratio": 0.107
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 33744,
+   "faces_inverted": 7,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0002
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 2,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.3865,
+   "seam_edges": 0,
+   "shared_edges": 48375,
+   "overlap_estimate_area_weighted": 0.319
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "eyeball_with_brown_iris.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/eyeball-brown-iris-epim/eyeball_with_brown_iris.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 2,
+   "used": 2,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 384,
+   "nonmanifold_edges": 0,
+   "edges_total": 15936,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 5444,
+   "split_vertex_ratio": 0.0353
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 10496,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.024,
+   "seam_edges": 0,
+   "shared_edges": 10944,
+   "overlap_estimate_area_weighted": 0.024
+  },
+  "texel": {
+   "per_prim": [
+    2289.9
+   ],
+   "mean_texel_per_m": 2289.9,
+   "cv": 0.0,
+   "prims_measured": 1
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "eyeball.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/eyeball-crislart/eyeball.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 2,
+   "used": 2,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 128,
+   "nonmanifold_edges": 0,
+   "edges_total": 6112,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 2084,
+   "split_vertex_ratio": 0.0307
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 4032,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 2,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.0186,
+   "seam_edges": 0,
+   "shared_edges": 5984,
+   "overlap_estimate_area_weighted": 0.0186
+  },
+  "texel": {
+   "per_prim": [
+    48941.3
+   ],
+   "mean_texel_per_m": 48941.3,
+   "cv": 0.0,
+   "prims_measured": 1
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "generic_productfemale_dog_furry.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/female-dog-furry-rhl89ryo/generic_productfemale_dog_furry.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 5,
+   "used": 5,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 104,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 104,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 10760,
+   "nonmanifold_edges": 0,
+   "edges_total": 162919,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 58032,
+   "split_vertex_ratio": 0.0738
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 84856,
+   "faces_inverted": 1,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 16,
+   "uv_out_of_range_frac_max": 0.0005015045135406219,
+   "overlap_estimate_max": 0.1156,
+   "seam_edges": 0,
+   "shared_edges": 152159,
+   "overlap_estimate_area_weighted": 0.0224
+  },
+  "texel": {
+   "per_prim": [
+    2090.6,
+    914.3,
+    964.9,
+    10645.1,
+    6209.2,
+    1130.6,
+    2232.0,
+    2106.9,
+    873.9,
+    7504.1,
+    2095.3,
+    3069.3,
+    1794.8,
+    1379.8,
+    7294.5
+   ],
+   "mean_texel_per_m": 3353.7,
+   "cv": 0.875,
+   "prims_measured": 15
+  },
+  "weights": {
+   "prims_checked": 16,
+   "verts": 58032,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.98,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 144,
+   "skins_joints_unused": null,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "ok",
+   "animation": "warn"
+  }
+ },
+ {
+  "file": "fox_fem._full_rig.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/fox-fem-full-rig-azuliezeiro/fox_fem._full_rig.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 8,
+   "used": 8,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 2560,
+   "nonmanifold_edges": 16,
+   "edges_total": 14500,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 5802,
+   "split_vertex_ratio": 0.158
+  },
+  "winding": {
+   "conflicts": 32,
+   "faces_checked": 8824,
+   "faces_inverted": 14,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0016
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 8,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.4967,
+   "seam_edges": 0,
+   "shared_edges": 11924,
+   "overlap_estimate_area_weighted": 0.4252
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "fail",
+   "winding": "warn",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "free_horse_3d_model.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/free-horse-dinoreplicas/free_horse_3d_model.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 7,
+   "used": 7,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 2836,
+   "nonmanifold_edges": 0,
+   "edges_total": 68681,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 23893,
+   "split_vertex_ratio": 0.0535
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 44842,
+   "faces_inverted": 80,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0018
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 7,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.0152,
+   "seam_edges": 0,
+   "shared_edges": 65845,
+   "overlap_estimate_area_weighted": 0.0048
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "model.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/furry-dad-julianemilioqwe/source/model.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 0,
+   "used": 0,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 1,
+   "edges_total": 793373,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 264326,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 2,
+   "faces_checked": 0,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 0,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "fail",
+   "winding": "warn",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "kitty_base_v1.0.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/kitty-base-chocolatemilkcows/kitty_base_v1.0.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 8450,
+   "nonmanifold_edges": 0,
+   "edges_total": 37846,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 15890,
+   "split_vertex_ratio": 0.2573
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 22414,
+   "faces_inverted": 22,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.001
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.4987,
+   "seam_edges": 0,
+   "shared_edges": 29396,
+   "overlap_estimate_area_weighted": 0.4987
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "leopard_animation_run.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/leopard-animation-run-gremorysaiyan/leopard_animation_run.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 101,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.567
+  },
+  "topology": {
+   "boundary_edges": 2332,
+   "nonmanifold_edges": 0,
+   "edges_total": 8504,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 3644,
+   "split_vertex_ratio": 0.2234
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 4892,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5277,
+   "seam_edges": 0,
+   "shared_edges": 6172,
+   "overlap_estimate_area_weighted": 0.5277
+  },
+  "texel": {
+   "per_prim": [
+    9.1
+   ],
+   "mean_texel_per_m": 9.1,
+   "cv": 0.0,
+   "prims_measured": 1
+  },
+  "weights": {
+   "prims_checked": 1,
+   "verts": 3644,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.29,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 47,
+   "skins_joints_unused": 7,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "lowpoly_base_male_protogen.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/lowpoly-base-male-protogen-radthezealot/lowpoly_base_male_protogen.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 5710,
+   "nonmanifold_edges": 0,
+   "edges_total": 9587,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 6290,
+   "split_vertex_ratio": 0.6172
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 4488,
+   "faces_inverted": 2,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0004
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 14,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5032,
+   "seam_edges": 0,
+   "shared_edges": 3877,
+   "overlap_estimate_area_weighted": 0.4404
+  },
+  "texel": {
+   "per_prim": [
+    45.3,
+    63.5,
+    50.7,
+    56.6,
+    44.5,
+    44.3,
+    43.5,
+    40.8,
+    44.3,
+    41.0,
+    63.9,
+    44.6,
+    40.3,
+    53.7
+   ],
+   "mean_texel_per_m": 48.4,
+   "cv": 0.161,
+   "prims_measured": 14
+  },
+  "weights": {
+   "prims_checked": 14,
+   "verts": 6290,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.16,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 56,
+   "skins_joints_unused": 2,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "mesh_9_furry.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/mesh-9-furry-keh/mesh_9_furry.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 2,
+   "used": 2,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 5,
+   "channels": 430,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 329,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 9.633
+  },
+  "topology": {
+   "boundary_edges": 3152,
+   "nonmanifold_edges": 0,
+   "edges_total": 18052,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 7200,
+   "split_vertex_ratio": 0.2243
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 10984,
+   "faces_inverted": 3,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0003
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 2,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.0173,
+   "seam_edges": 0,
+   "shared_edges": 14900,
+   "overlap_estimate_area_weighted": 0.0044
+  },
+  "texel": {
+   "per_prim": [
+    427.8,
+    1431.1
+   ],
+   "mean_texel_per_m": 929.4,
+   "cv": 0.54,
+   "prims_measured": 2
+  },
+  "weights": {
+   "prims_checked": 2,
+   "verts": 7200,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.47,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 61,
+   "skins_joints_unused": 6,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "warn"
+  }
+ },
+ {
+  "file": "otter-chan.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/otter-chan-akm/otter-chan.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 6,
+   "used": 6,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 54,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 2,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 5.8
+  },
+  "topology": {
+   "boundary_edges": 14082,
+   "nonmanifold_edges": 0,
+   "edges_total": 38340,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 20431,
+   "split_vertex_ratio": 0.4714
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 20866,
+   "faces_inverted": 12490,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.5986
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 8,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9955,
+   "seam_edges": 0,
+   "shared_edges": 24078,
+   "overlap_estimate_area_weighted": 0.0605
+  },
+  "texel": {
+   "per_prim": [
+    837.7,
+    296.4,
+    829.8,
+    722.2,
+    3258.4,
+    313.9,
+    56.6,
+    117.5
+   ],
+   "mean_texel_per_m": 804.1,
+   "cv": 1.209,
+   "prims_measured": 8
+  },
+  "weights": {
+   "prims_checked": 8,
+   "verts": 20245,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.52,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 65,
+   "skins_joints_unused": 3,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "warn"
+  }
+ },
+ {
+  "file": "panda_girl_-_stylizedfree_blender_rig.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/panda-girl-futaba/panda_girl_-_stylizedfree_blender_rig.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 14,
+   "used": 14,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 2164,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 1.967
+  },
+  "topology": {
+   "boundary_edges": 76733,
+   "nonmanifold_edges": 0,
+   "edges_total": 359296,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 148234,
+   "split_vertex_ratio": 0.2592
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 186822,
+   "faces_inverted": 213,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0011
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 25,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5026,
+   "seam_edges": 0,
+   "shared_edges": 282563,
+   "overlap_estimate_area_weighted": 0.1731
+  },
+  "texel": {
+   "per_prim": [
+    571.8,
+    262.3,
+    389.8,
+    557.2,
+    385.3,
+    206.2,
+    853.5,
+    324.6,
+    464.2,
+    371.2,
+    91.4
+   ],
+   "mean_texel_per_m": 407.0,
+   "cv": 0.481,
+   "prims_measured": 11
+  },
+  "weights": {
+   "prims_checked": 18,
+   "verts": 112914,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 2.97,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 742,
+   "skins_joints_unused": 572,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "persipia.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/persipia-akm/persipia.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 9,
+   "used": 9,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 65,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 3.3
+  },
+  "topology": {
+   "boundary_edges": 16707,
+   "nonmanifold_edges": 0,
+   "edges_total": 67947,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 29105,
+   "split_vertex_ratio": 0.2815
+  },
+  "winding": {
+   "conflicts": 2,
+   "faces_checked": 39729,
+   "faces_inverted": 8948,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.2252
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 10,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.6798,
+   "seam_edges": 0,
+   "shared_edges": 51096,
+   "overlap_estimate_area_weighted": 0.1926
+  },
+  "texel": {
+   "per_prim": [
+    400.0,
+    63.7,
+    63.8,
+    80.7,
+    1105.7,
+    5228.7,
+    397.6,
+    276.0,
+    850.5
+   ],
+   "mean_texel_per_m": 940.7,
+   "cv": 1.652,
+   "prims_measured": 9
+  },
+  "weights": {
+   "prims_checked": 11,
+   "verts": 29105,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.31,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 65,
+   "skins_joints_unused": 1,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "roaring_lion.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/roaring-lion-siraliraza/roaring_lion.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 6821,
+   "nonmanifold_edges": 0,
+   "edges_total": 92932,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 33392,
+   "split_vertex_ratio": 0.1065
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 29841,
+   "faces_inverted": 1,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.0,
+   "seam_edges": 0,
+   "shared_edges": 86111,
+   "overlap_estimate_area_weighted": 0.0
+  },
+  "texel": {
+   "per_prim": [
+    1059.1
+   ],
+   "mean_texel_per_m": 1059.1,
+   "cv": 0.0,
+   "prims_measured": 1
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "round-rim_glasses.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/round-rim-glasses-microsoft/round-rim_glasses.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 5560,
+   "nonmanifold_edges": 0,
+   "edges_total": 11120,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 5560,
+   "split_vertex_ratio": 0.0036
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 5560,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 0,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "toriel_head_rig.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/toriel-head-rig-dm2206/toriel_head_rig.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 4,
+   "used": 4,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 23,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 3.083
+  },
+  "topology": {
+   "boundary_edges": 736,
+   "nonmanifold_edges": 0,
+   "edges_total": 7049,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 2613,
+   "split_vertex_ratio": 0.129
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 4454,
+   "faces_inverted": 2796,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.6278
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 10,
+   "uv_out_of_range_frac_max": 0.06666666666666667,
+   "overlap_estimate_max": 0.7059,
+   "seam_edges": 0,
+   "shared_edges": 6313,
+   "overlap_estimate_area_weighted": 0.3447
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 10,
+   "verts": 2613,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.3,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 46,
+   "skins_joints_unused": 24,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "fail",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "model.glb",
+  "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/true-furry-rig-julianemilioqwe/extracted/source/model.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 0,
+   "used": 0,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "edges_total": 526962,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 175662,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 0,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 0,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": null,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": null
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "ok",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "photoreal_avatar.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/photoreal/photoreal_avatar.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 9,
+   "used": 9,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 3,
+   "channels": 477,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 2.458
+  },
+  "topology": {
+   "boundary_edges": 6950,
+   "nonmanifold_edges": 0,
+   "edges_total": 77482,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 28413,
+   "split_vertex_ratio": 0.0686
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 49338,
+   "faces_inverted": 2,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 9,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.5158,
+   "seam_edges": 0,
+   "shared_edges": 70532,
+   "overlap_estimate_area_weighted": 0.1896
+  },
+  "texel": {
+   "per_prim": [
+    1888.7,
+    6019.3,
+    9700.0,
+    7530.3,
+    943.5,
+    2418.4,
+    4071.5,
+    9958.9,
+    8000.8
+   ],
+   "mean_texel_per_m": 5614.6,
+   "cv": 0.574,
+   "prims_measured": 9
+  },
+  "weights": {
+   "prims_checked": 9,
+   "verts": 28413,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.82,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 53,
+   "skins_joints_unused": 1,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "pyn_body.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pilot-pyn/pyn_body.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "edges_total": 236589,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 78859,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 22533,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9455,
+   "seam_edges": 0,
+   "shared_edges": 236589,
+   "overlap_estimate_area_weighted": 0.9455
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "ok",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "pyn_body_erect.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pilot-pyn/pyn_body_erect.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "edges_total": 236589,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 78859,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 22533,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9455,
+   "seam_edges": 0,
+   "shared_edges": 236589,
+   "overlap_estimate_area_weighted": 0.9455
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "ok",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "pyn_codajgraft.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-codajgraft/pyn_codajgraft.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 8,
+   "used": 8,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 5680,
+   "nonmanifold_edges": 0,
+   "edges_total": 109907,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 38763,
+   "split_vertex_ratio": 0.0604
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 71378,
+   "faces_inverted": 480,
+   "closed_meshes": 2,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0067
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 3,
+   "uv_out_of_range_frac_max": 0.027777777777777776,
+   "overlap_estimate_max": 0.0,
+   "seam_edges": 0,
+   "shared_edges": 25045,
+   "overlap_estimate_area_weighted": 0.0
+  },
+  "texel": {
+   "per_prim": [
+    1025.9,
+    4560.4
+   ],
+   "mean_texel_per_m": 2793.1,
+   "cv": 0.633,
+   "prims_measured": 2
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "warn",
+   "uv": "ok",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "pyn_form.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-form/pyn_form.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 5,
+   "used": 5,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 2,
+   "channels": 2,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.958
+  },
+  "topology": {
+   "boundary_edges": 5280,
+   "nonmanifold_edges": 0,
+   "edges_total": 588624,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 199332,
+   "split_vertex_ratio": 0.0218
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 23203,
+   "faces_inverted": 0,
+   "closed_meshes": 2,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 4,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9748,
+   "seam_edges": 0,
+   "shared_edges": 912,
+   "overlap_estimate_area_weighted": 0.9097
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "pyn_form_body.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-form/pyn_form_body.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 1,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.958
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "edges_total": 581802,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 193924,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 20415,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9748,
+   "seam_edges": 0,
+   "shared_edges": 0,
+   "overlap_estimate_area_weighted": 0.9748
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "ok",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "pyn_form_state1.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-form/pyn_form_state1.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 5,
+   "used": 5,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 5280,
+   "nonmanifold_edges": 0,
+   "edges_total": 588624,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 199332,
+   "split_vertex_ratio": 0.0218
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 23203,
+   "faces_inverted": 0,
+   "closed_meshes": 2,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 4,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9748,
+   "seam_edges": 0,
+   "shared_edges": 912,
+   "overlap_estimate_area_weighted": 0.9097
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "pyn_formgraft.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-formgraft/pyn_formgraft.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 12,
+   "used": 12,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 2,
+   "channels": 2,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.958
+  },
+  "topology": {
+   "boundary_edges": 10813,
+   "nonmanifold_edges": 0,
+   "edges_total": 160520,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 59015,
+   "split_vertex_ratio": 0.1132
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 53096,
+   "faces_inverted": 494,
+   "closed_meshes": 5,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0093
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 9,
+   "uv_out_of_range_frac_max": 0.027777777777777776,
+   "overlap_estimate_max": 0.9452,
+   "seam_edges": 0,
+   "shared_edges": 146365,
+   "overlap_estimate_area_weighted": 0.7602
+  },
+  "texel": {
+   "per_prim": [
+    1026.0,
+    4560.4
+   ],
+   "mean_texel_per_m": 2793.2,
+   "cv": 0.633,
+   "prims_measured": 2
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "warn",
+   "uv": "warn",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "pyn_realism.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-realism/pyn_realism.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 8,
+   "used": 8,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 2306,
+   "nonmanifold_edges": 66,
+   "edges_total": 601207,
+   "duplicate_faces": 62,
+   "unused_vertices": 0,
+   "vertices_total": 201594,
+   "split_vertex_ratio": 0.0076
+  },
+  "winding": {
+   "conflicts": 132,
+   "faces_checked": 32460,
+   "faces_inverted": 37,
+   "closed_meshes": 3,
+   "negative_volume_meshes": 2,
+   "inverted_face_frac": 0.0011
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 9,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9748,
+   "seam_edges": 0,
+   "shared_edges": 15790,
+   "overlap_estimate_area_weighted": 0.8368
+  },
+  "texel": {
+   "per_prim": [
+    30971.6,
+    30971.6
+   ],
+   "mean_texel_per_m": 30971.6,
+   "cv": 0.0,
+   "prims_measured": 2
+  },
+  "weights": {
+   "prims_checked": 11,
+   "verts": 200858,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.36,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 47,
+   "skins_joints_unused": 2,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "fail",
+   "winding": "fail",
+   "uv": "warn",
+   "texel": "ok",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "pyn_body.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-refined/pyn_body.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 1,
+   "used": 1,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 1,
+   "channels": 1,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.958
+  },
+  "topology": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "edges_total": 408657,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 136217,
+   "split_vertex_ratio": 0.0
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 20957,
+   "faces_inverted": 0,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 1,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9636,
+   "seam_edges": 0,
+   "shared_edges": 408657,
+   "overlap_estimate_area_weighted": 0.9636
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "ok",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "pyn_refined.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-refined/pyn_refined.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 5,
+   "used": 5,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 2,
+   "channels": 2,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.958
+  },
+  "topology": {
+   "boundary_edges": 4848,
+   "nonmanifold_edges": 0,
+   "edges_total": 414939,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 141193,
+   "split_vertex_ratio": 0.0285
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 23529,
+   "faces_inverted": 0,
+   "closed_meshes": 2,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 4,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9636,
+   "seam_edges": 0,
+   "shared_edges": 409569,
+   "overlap_estimate_area_weighted": 0.8729
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "pyn_refined_state1.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-refined/pyn_refined_state1.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 5,
+   "used": 5,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 4848,
+   "nonmanifold_edges": 0,
+   "edges_total": 414939,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 141193,
+   "split_vertex_ratio": 0.0285
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 23529,
+   "faces_inverted": 6,
+   "closed_meshes": 2,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0003
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 4,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9636,
+   "seam_edges": 0,
+   "shared_edges": 409569,
+   "overlap_estimate_area_weighted": 0.8729
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "pyn_rigged.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-rigged2/pyn_rigged.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 5,
+   "used": 5,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 7392,
+   "nonmanifold_edges": 0,
+   "edges_total": 586482,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 199308,
+   "split_vertex_ratio": 0.0201
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 23090,
+   "faces_inverted": 2,
+   "closed_meshes": 1,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0001
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 4,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9748,
+   "seam_edges": 0,
+   "shared_edges": 912,
+   "overlap_estimate_area_weighted": 0.9096
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 7,
+   "verts": 199308,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.36,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 47,
+   "skins_joints_unused": 2,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "warn",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "pyn_rigged.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-rigged/pyn_rigged.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 5,
+   "used": 5,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 2,
+   "channels": 2,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.958
+  },
+  "topology": {
+   "boundary_edges": 5280,
+   "nonmanifold_edges": 0,
+   "edges_total": 588624,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 199332,
+   "split_vertex_ratio": 0.0201
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 23203,
+   "faces_inverted": 0,
+   "closed_meshes": 2,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 4,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9748,
+   "seam_edges": 0,
+   "shared_edges": 912,
+   "overlap_estimate_area_weighted": 0.9097
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 7,
+   "verts": 199332,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 4,
+   "mean_influences": 1.48,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 47,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "ok",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "pyn_v3_likeness.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-v3-likeness/pyn_v3_likeness.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 10,
+   "used": 10,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 11142,
+   "nonmanifold_edges": 0,
+   "edges_total": 73092,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 29337,
+   "split_vertex_ratio": 0.2087
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 45014,
+   "faces_inverted": 1001,
+   "closed_meshes": 5,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0222
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 11,
+   "uv_out_of_range_frac_max": 0.027777777777777776,
+   "overlap_estimate_max": 0.4972,
+   "seam_edges": 0,
+   "shared_edges": 58860,
+   "overlap_estimate_area_weighted": 0.2094
+  },
+  "texel": {
+   "per_prim": [
+    1035.0,
+    16599.6,
+    16599.6,
+    2290.8,
+    4560.4
+   ],
+   "mean_texel_per_m": 8217.1,
+   "cv": 0.844,
+   "prims_measured": 5
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "warn",
+   "uv": "warn",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "Pyn_v3.glb",
+  "path": "/home/hatch/workspace/bodies-3d/pyn-v3/Pyn_v3.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 10,
+   "used": 10,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 0,
+   "channels": 0,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 0.0
+  },
+  "topology": {
+   "boundary_edges": 11092,
+   "nonmanifold_edges": 0,
+   "edges_total": 73067,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 29300,
+   "split_vertex_ratio": 0.2076
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 45014,
+   "faces_inverted": 835,
+   "closed_meshes": 5,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0185
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 11,
+   "uv_out_of_range_frac_max": 0.027777777777777776,
+   "overlap_estimate_max": 0.4972,
+   "seam_edges": 0,
+   "shared_edges": 58885,
+   "overlap_estimate_area_weighted": 0.2094
+  },
+  "texel": {
+   "per_prim": [
+    1032.1,
+    37707.0,
+    37707.0,
+    1884.1,
+    4560.4
+   ],
+   "mean_texel_per_m": 16578.1,
+   "cv": 1.043,
+   "prims_measured": 5
+  },
+  "weights": {
+   "prims_checked": 0,
+   "verts": 0,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 0,
+   "mean_influences": null,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 0,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "warn",
+   "uv": "warn",
+   "texel": "warn",
+   "materials": "ok",
+   "weights": "n/a",
+   "animation": "n/a"
+  }
+ },
+ {
+  "file": "realistic_avatar.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/realistic/realistic_avatar.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 7,
+   "used": 7,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 3,
+   "channels": 189,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 1.958
+  },
+  "topology": {
+   "boundary_edges": 5802,
+   "nonmanifold_edges": 0,
+   "edges_total": 42723,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 16267,
+   "split_vertex_ratio": 0.2479
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 26548,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 7,
+   "uv_out_of_range_frac_max": 0.004498714652956298,
+   "overlap_estimate_max": 0.9402,
+   "seam_edges": 0,
+   "shared_edges": 36921,
+   "overlap_estimate_area_weighted": 0.8628
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 7,
+   "verts": 16267,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 1,
+   "mean_influences": 1.0,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 21,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "ok",
+   "animation": "ok"
+  }
+ },
+ {
+  "file": "stick_figure_avatar.glb",
+  "path": "/home/hatch/workspace/stick-figure-avatar/stick_figure_avatar.glb",
+  "parses": true,
+  "error": null,
+  "lite": false,
+  "materials_check": {
+   "defined": 2,
+   "used": 2,
+   "unused": 0,
+   "prims_without_material": 0,
+   "duplicate_names": 0
+  },
+  "animation_check": {
+   "count": 3,
+   "channels": 189,
+   "nonmonotonic_samplers": 0,
+   "nan_outputs": 0,
+   "zero_duration": 0,
+   "bad_targets": 0,
+   "duplicate_channels": 0,
+   "max_duration_s": 1.958
+  },
+  "topology": {
+   "boundary_edges": 11664,
+   "nonmanifold_edges": 0,
+   "edges_total": 14340,
+   "duplicate_faces": 0,
+   "unused_vertices": 0,
+   "vertices_total": 11664,
+   "split_vertex_ratio": 0.8064
+  },
+  "winding": {
+   "conflicts": 0,
+   "faces_checked": 5672,
+   "faces_inverted": 0,
+   "closed_meshes": 0,
+   "negative_volume_meshes": 0,
+   "inverted_face_frac": 0.0
+  },
+  "uv": {
+   "prims_textured_no_uv": 0,
+   "prims_with_uv": 2,
+   "uv_out_of_range_frac_max": 0.0,
+   "overlap_estimate_max": 0.9734,
+   "seam_edges": 0,
+   "shared_edges": 2676,
+   "overlap_estimate_area_weighted": 0.9504
+  },
+  "texel": {
+   "per_prim": [],
+   "mean_texel_per_m": null,
+   "cv": null,
+   "prims_measured": 0
+  },
+  "weights": {
+   "prims_checked": 2,
+   "verts": 11664,
+   "zero_weight_verts": 0,
+   "unnormalised_verts": 0,
+   "max_influences": 1,
+   "mean_influences": 1.0,
+   "joint_index_out_of_range": 0,
+   "skins_joint_total": 21,
+   "skins_joints_unused": 0,
+   "weights1_without_joints1": 0
+  },
+  "status2": {
+   "topology": "warn",
+   "winding": "ok",
+   "uv": "warn",
+   "texel": "n/a",
+   "materials": "ok",
+   "weights": "ok",
+   "animation": "ok"
+  }
+ }
+]

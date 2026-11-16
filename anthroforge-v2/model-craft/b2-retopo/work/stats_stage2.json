@@ -1,0 +1,23 @@
+{
+ "deviation_verts": {
+  "mean": 0.0,
+  "median": 0.0,
+  "p95": 0.0,
+  "p99": 0.0,
+  "max": 0.0,
+  "mean_pct_height": 0.0,
+  "p95_pct_height": 0.0,
+  "max_pct_height": 0.0
+ },
+ "deviation_all_samples": {
+  "mean": 0.0574,
+  "median": 0.0215,
+  "p95": 0.2346,
+  "p99": 0.4317,
+  "max": 1.642,
+  "mean_pct_height": 0.058,
+  "p95_pct_height": 0.237,
+  "max_pct_height": 1.656
+ },
+ "deviation_samples_n": 17435
+}

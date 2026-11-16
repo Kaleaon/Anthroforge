@@ -1,0 +1,93 @@
+{
+ "file": "generic_productfemale_dog_furry.glb",
+ "path": "/home/hatch/workspace/bodies-3d/parts-library/sketchfab/female-dog-furry-rhl89ryo/generic_productfemale_dog_furry.glb",
+ "parses": true,
+ "error": null,
+ "lite": false,
+ "materials_check": {
+  "defined": 5,
+  "used": 5,
+  "unused": 0,
+  "prims_without_material": 0,
+  "duplicate_names": 0
+ },
+ "animation_check": {
+  "count": 1,
+  "channels": 104,
+  "nonmonotonic_samplers": 0,
+  "nan_outputs": 0,
+  "zero_duration": 104,
+  "bad_targets": 0,
+  "duplicate_channels": 0,
+  "max_duration_s": 0.0
+ },
+ "topology": {
+  "boundary_edges": 10760,
+  "nonmanifold_edges": 0,
+  "edges_total": 162919,
+  "duplicate_faces": 0,
+  "unused_vertices": 0,
+  "vertices_total": 58032,
+  "split_vertex_ratio": 0.0738
+ },
+ "winding": {
+  "conflicts": 0,
+  "faces_checked": 84856,
+  "faces_inverted": 1,
+  "closed_meshes": 0,
+  "negative_volume_meshes": 0,
+  "inverted_face_frac": 0.0
+ },
+ "uv": {
+  "prims_textured_no_uv": 0,
+  "prims_with_uv": 16,
+  "uv_out_of_range_frac_max": 0.0005015045135406219,
+  "overlap_estimate_max": 0.1156,
+  "seam_edges": 0,
+  "shared_edges": 152159,
+  "overlap_estimate_area_weighted": 0.0224
+ },
+ "texel": {
+  "per_prim": [
+   2090.6,
+   914.3,
+   964.9,
+   10645.1,
+   6209.2,
+   1130.6,
+   2232.0,
+   2106.9,
+   873.9,
+   7504.1,
+   2095.3,
+   3069.3,
+   1794.8,
+   1379.8,
+   7294.5
+  ],
+  "mean_texel_per_m": 3353.7,
+  "cv": 0.875,
+  "prims_measured": 15
+ },
+ "weights": {
+  "prims_checked": 16,
+  "verts": 58032,
+  "zero_weight_verts": 0,
+  "unnormalised_verts": 0,
+  "max_influences": 4,
+  "mean_influences": 1.98,
+  "joint_index_out_of_range": 0,
+  "skins_joint_total": 144,
+  "skins_joints_unused": null,
+  "weights1_without_joints1": 0
+ },
+ "status2": {
+  "topology": "warn",
+  "winding": "ok",
+  "uv": "ok",
+  "texel": "warn",
+  "materials": "ok",
+  "weights": "ok",
+  "animation": "warn"
+ }
+}

@@ -1,0 +1,231 @@
+{
+ "format": "anthroforge.furplan v1 (draft, A18)",
+ "base": "neutral_base_head_v3 (AnthroForge library head)",
+ "frame": "face +Y, up +Z, L (nose tip to occiput) = 1.0 model unit",
+ "plan_scale": {
+  "L_mm": 300,
+  "note": "fursuit head scale; all mm/cm2 values at this scale"
+ },
+ "seam_allowance_mm": 10,
+ "pile_table": {
+  "0": {
+   "name": "NO-FUR",
+   "mm": 0
+  },
+  "1": {
+   "name": "MICRO",
+   "mm": 6
+  },
+  "2": {
+   "name": "SHORT",
+   "mm": 13
+  },
+  "3": {
+   "name": "MEDIUM",
+   "mm": 25
+  },
+  "4": {
+   "name": "LONG",
+   "mm": 50
+  }
+ },
+ "fabric_table": {
+  "0": "nose leather \u2014 no fur (vinyl/silicone)",
+  "1": "agouti grey-brown faux fur",
+  "2": "cream faux fur",
+  "3": "charcoal faux fur (ear backs)",
+  "4": "dusty pink-grey minky/felt (inner ear)"
+ },
+ "nap_convention": "arrows point in the direction the pile LIES (root->tip fall). On the animal: away from the nose/face, back over the skull, down the cheeks and jaw; up the ears from base to tip (OpenFur rule).",
+ "pieces": [
+  {
+   "id": "P01",
+   "name": "head-main-l",
+   "part": "TissueHead",
+   "verts": 454,
+   "area_cm2": 482.9,
+   "colour_code": 1,
+   "fabric": "agouti grey-brown faux fur",
+   "pile_code": 3,
+   "pile_mm": 25,
+   "pile_range_mm": [
+    6,
+    50
+   ],
+   "nap_mean_xyz": [
+    -0.273,
+    -0.942,
+    0.194
+   ],
+   "note": ""
+  },
+  {
+   "id": "P02",
+   "name": "head-main-r",
+   "part": "TissueHead",
+   "verts": 454,
+   "area_cm2": 482.9,
+   "colour_code": 1,
+   "fabric": "agouti grey-brown faux fur",
+   "pile_code": 3,
+   "pile_mm": 25,
+   "pile_range_mm": [
+    6,
+    50
+   ],
+   "nap_mean_xyz": [
+    0.273,
+    -0.942,
+    0.194
+   ],
+   "note": ""
+  },
+  {
+   "id": "P03",
+   "name": "head-pale",
+   "part": "TissueHead",
+   "verts": 80,
+   "area_cm2": 64.3,
+   "colour_code": 2,
+   "fabric": "cream faux fur",
+   "pile_code": 1,
+   "pile_mm": 6,
+   "pile_range_mm": [
+    6,
+    13
+   ],
+   "nap_mean_xyz": [
+    -0.0,
+    -1.0,
+    -0.012
+   ],
+   "note": ""
+  },
+  {
+   "id": "P04",
+   "name": "jaw-pale",
+   "part": "Jaw",
+   "verts": 538,
+   "area_cm2": 579.6,
+   "colour_code": 2,
+   "fabric": "cream faux fur",
+   "pile_code": 3,
+   "pile_mm": 25,
+   "pile_range_mm": [
+    13,
+    50
+   ],
+   "nap_mean_xyz": [
+    -0.0,
+    -0.945,
+    -0.328
+   ],
+   "note": ""
+  },
+  {
+   "id": "P05",
+   "name": "ear-dark-l",
+   "part": "Ear_L",
+   "verts": 35,
+   "area_cm2": 46.3,
+   "colour_code": 3,
+   "fabric": "charcoal faux fur (ear backs)",
+   "pile_code": 3,
+   "pile_mm": 25,
+   "pile_range_mm": [
+    25,
+    25
+   ],
+   "nap_mean_xyz": [
+    0.187,
+    0.262,
+    0.947
+   ],
+   "note": ""
+  },
+  {
+   "id": "P06",
+   "name": "ear-inner-l",
+   "part": "Ear_L",
+   "verts": 41,
+   "area_cm2": 43.4,
+   "colour_code": 4,
+   "fabric": "dusty pink-grey minky/felt (inner ear)",
+   "pile_code": 1,
+   "pile_mm": 6,
+   "pile_range_mm": [
+    6,
+    6
+   ],
+   "nap_mean_xyz": [
+    0.189,
+    0.154,
+    0.97
+   ],
+   "note": ""
+  },
+  {
+   "id": "P07",
+   "name": "ear-dark-r",
+   "part": "Ear_R",
+   "verts": 35,
+   "area_cm2": 46.3,
+   "colour_code": 3,
+   "fabric": "charcoal faux fur (ear backs)",
+   "pile_code": 3,
+   "pile_mm": 25,
+   "pile_range_mm": [
+    25,
+    25
+   ],
+   "nap_mean_xyz": [
+    -0.187,
+    0.262,
+    0.947
+   ],
+   "note": ""
+  },
+  {
+   "id": "P08",
+   "name": "ear-inner-r",
+   "part": "Ear_R",
+   "verts": 41,
+   "area_cm2": 43.4,
+   "colour_code": 4,
+   "fabric": "dusty pink-grey minky/felt (inner ear)",
+   "pile_code": 1,
+   "pile_mm": 6,
+   "pile_range_mm": [
+    6,
+    6
+   ],
+   "nap_mean_xyz": [
+    -0.189,
+    0.154,
+    0.97
+   ],
+   "note": ""
+  },
+  {
+   "id": "P09",
+   "name": "nose-leather",
+   "part": "NoseLeather",
+   "verts": 162,
+   "area_cm2": 14.4,
+   "colour_code": 0,
+   "fabric": "nose leather \u2014 no fur (vinyl/silicone)",
+   "pile_code": 0,
+   "pile_mm": 0,
+   "pile_range_mm": [
+    0,
+    0
+   ],
+   "nap_mean_xyz": [
+    0,
+    -1,
+    0
+   ],
+   "note": ""
+  }
+ ]
+}

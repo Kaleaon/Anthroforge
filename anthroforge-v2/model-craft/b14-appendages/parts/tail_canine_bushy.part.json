@@ -1,0 +1,88 @@
+{
+ "class": "A",
+ "conflicts": [],
+ "cost": {
+  "bones": 6,
+  "morphs": 0,
+  "points": 7,
+  "tris": 616,
+  "verts": 312
+ },
+ "fit": {
+  "regions": [
+   "tail.base"
+  ],
+  "rescale_by": [
+   "body.tail.length"
+  ]
+ },
+ "fit_qa": {
+  "base": "CVRxEarthWolf rump crop (evaluated mesh, skin-weight landmarks)",
+  "buried_pct": 39.7,
+  "date": "2026-11-12",
+  "engaged_pct": 9.8,
+  "excess_pct": 8.3,
+  "fit_score": 0.09,
+  "known_issue": "library wolf rig (Mixamo humanoid, 222 bones) has no tail bones; tail chain arrives with the part per PARTS_STANDARD module-chain design",
+  "out_of_grid_pct": 42.2,
+  "seating_patch": "2.6 wolf-units (~0.5% of torso scale), min 1.4",
+  "verdict": "root buried by design (mount from interior pelvis centroid; shell emerges through rump surface at the mount) \u2014 judged on emergence + seating patch, not the inset rubric, see APPENDAGES.md s.6"
+ },
+ "format": "anthroforge.part",
+ "function": {
+  "tail": {
+   "sway": {
+    "amp_deg": 12,
+    "freq_hz": 0.6
+   }
+  }
+ },
+ "fur": {
+  "accepts": [
+   "tail.volume"
+  ]
+ },
+ "id": "tail_canine_bushy",
+ "kind": "anatomy",
+ "label": "Bushy canine tail",
+ "licence": {
+  "attribution": "AnthroForge in-house, procedurally authored",
+  "spdx": "CC-BY-4.0",
+  "tier": "build"
+ },
+ "meshes": {
+  "lod0": "tail_canine_bushy.glb",
+  "print": "tail_canine_bushy.stl"
+ },
+ "plan_fit": {
+  "excluded_plans": [
+   "plan.naga"
+  ],
+  "plans": [
+   "plan.biped",
+   "plan.quadruped_taur",
+   "plan.quadruped_feral"
+  ]
+ },
+ "provenance": {
+  "detail": "Two-layer construction: skeletal core tube (13x8) under a fur-volume shell (17x12); radius profiles and curve per APPENDAGES.md T1-T6; vertex-colour coat (dark dorsal / pale ventral).",
+  "source": "authored"
+ },
+ "size_class": "M",
+ "skin": {
+  "bones": [
+   "Tail_1",
+   "Tail_2",
+   "Tail_3",
+   "Tail_4",
+   "Tail_5",
+   "Tail_6"
+  ],
+  "mode": "own-weights"
+ },
+ "sockets": [
+  "tail.base"
+ ],
+ "tier": 3,
+ "version": 1
+}

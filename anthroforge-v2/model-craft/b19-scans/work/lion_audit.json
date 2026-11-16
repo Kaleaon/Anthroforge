@@ -1,0 +1,160 @@
+{
+ "0_imported": {
+  "verts": 25380,
+  "faces": 47214,
+  "boundary_edges": 3468,
+  "boundary_loops": 49,
+  "loop_sizes_top5": [
+   316,
+   290,
+   242,
+   224,
+   208
+  ],
+  "nonmanifold_edges": 0,
+  "degenerate_faces": 0,
+  "components": 44,
+  "component_vert_sizes": [
+   3177,
+   3125,
+   2799,
+   2000,
+   1993,
+   1768,
+   1735,
+   1699
+  ],
+  "signed_volume_m3": 0.007221,
+  "roughness_mean_m": 0.001103,
+  "bbox_m": [
+   0.3208,
+   0.2066,
+   0.4364
+  ]
+ },
+ "weld_removed": 1769,
+ "1_welded": {
+  "verts": 23611,
+  "faces": 47214,
+  "boundary_edges": 0,
+  "boundary_loops": 0,
+  "loop_sizes_top5": [],
+  "nonmanifold_edges": 0,
+  "degenerate_faces": 0,
+  "components": 2,
+  "component_vert_sizes": [
+   23442,
+   169
+  ],
+  "signed_volume_m3": 0.007221,
+  "roughness_mean_m": 0.000802,
+  "bbox_m": [
+   0.3208,
+   0.2066,
+   0.4364
+  ]
+ },
+ "culled_verts": 169,
+ "2_components_culled": {
+  "verts": 23442,
+  "faces": 46880,
+  "boundary_edges": 0,
+  "boundary_loops": 0,
+  "loop_sizes_top5": [],
+  "nonmanifold_edges": 0,
+  "degenerate_faces": 0,
+  "components": 1,
+  "component_vert_sizes": [
+   23442
+  ],
+  "signed_volume_m3": 0.005596,
+  "roughness_mean_m": 0.000608,
+  "bbox_m": [
+   0.3208,
+   0.1981,
+   0.4035
+  ]
+ },
+ "3_holes_filled": {
+  "verts": 23442,
+  "faces": 46880,
+  "boundary_edges": 0,
+  "boundary_loops": 0,
+  "loop_sizes_top5": [],
+  "nonmanifold_edges": 0,
+  "degenerate_faces": 0,
+  "components": 1,
+  "component_vert_sizes": [
+   23442
+  ],
+  "signed_volume_m3": 0.005596,
+  "roughness_mean_m": 0.000608,
+  "bbox_m": [
+   0.3208,
+   0.1981,
+   0.4035
+  ]
+ },
+ "4_normals": {
+  "verts": 23442,
+  "faces": 46880,
+  "boundary_edges": 0,
+  "boundary_loops": 0,
+  "loop_sizes_top5": [],
+  "nonmanifold_edges": 0,
+  "degenerate_faces": 0,
+  "components": 1,
+  "component_vert_sizes": [
+   23442
+  ],
+  "signed_volume_m3": 0.005596,
+  "roughness_mean_m": 0.000608,
+  "bbox_m": [
+   0.3208,
+   0.1981,
+   0.4035
+  ]
+ },
+ "taubin_applied": false,
+ "5_smoothed": {
+  "verts": 23442,
+  "faces": 46880,
+  "boundary_edges": 0,
+  "boundary_loops": 0,
+  "loop_sizes_top5": [],
+  "nonmanifold_edges": 0,
+  "degenerate_faces": 0,
+  "components": 1,
+  "component_vert_sizes": [
+   23442
+  ],
+  "signed_volume_m3": 0.005596,
+  "roughness_mean_m": 0.000608,
+  "bbox_m": [
+   0.3208,
+   0.1981,
+   0.4035
+  ]
+ },
+ "grounded_shift_m": 0.0329,
+ "6_grounded": {
+  "verts": 23442,
+  "faces": 46880,
+  "boundary_edges": 0,
+  "boundary_loops": 0,
+  "loop_sizes_top5": [],
+  "nonmanifold_edges": 0,
+  "degenerate_faces": 0,
+  "components": 1,
+  "component_vert_sizes": [
+   23442
+  ],
+  "signed_volume_m3": 0.005596,
+  "roughness_mean_m": 0.000608,
+  "bbox_m": [
+   0.3208,
+   0.1981,
+   0.4035
+  ]
+ }
+}
