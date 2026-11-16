@@ -181,3 +181,29 @@ not yet assembled into the character core or the Babylon preview. The next
 integration task is to resolve the part manifest/socket, compose its geometry
 and rig with the selected body plan, and export the same assembled result
 that the creator previews.
+
+
+## Persistent editor-state pass
+
+`scripts/anatomy_editing.py` is a Blender-independent state and resolver
+module for the creator UI. It provides stable instance/component IDs, per-axis
+scale, per-member overrides, independent shared-sac dimensions, body-plan fit,
+socket offsets, deterministic JSON save/reopen, and one canonical resolved
+payload for both preview and export adapters.
+
+The resolver deliberately rejects values outside the supported 0.15–8.0 global
+scale range instead of silently clamping them. It returns a clearance warning
+for extreme scales; geometric collision checks must be performed by the mesh
+adapter. Member count is 1–4 and each member can be edited independently.
+
+Run its regression tests with:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The tests cover stable component IDs, independent member/axis edits, micro and
+maximum scale, adult gating, plan compatibility, schema rejection, and
+save/reopen round trips. This pass creates the persistent data contract; the
+Babylon UI and Blender geometry adapter still need to consume the resolver
+output before the feature can be called end-to-end integrated.
