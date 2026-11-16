@@ -1,0 +1,240 @@
+{
+  "schema": "anthroforge.species-mesh-profiles",
+  "version": 1,
+  "units": "metres",
+  "axes": {
+    "x": "character right",
+    "y": "front",
+    "z": "up"
+  },
+  "profiles": [
+    {
+      "id": "species.canid.wolf",
+      "family": "canid",
+      "label": "Wolf",
+      "body_plan": "plan.biped",
+      "head": {
+        "length": 0.27,
+        "width": 0.22,
+        "height": 0.25,
+        "muzzle_length": 0.19,
+        "ear": "pointed"
+      },
+      "torso": {
+        "shoulder_width": 0.48,
+        "waist_width": 0.32,
+        "hip_width": 0.39,
+        "chest_depth": 0.29,
+        "pelvis_depth": 0.25
+      },
+      "limbs": {
+        "arm_girth": 0.075,
+        "thigh_girth": 0.12,
+        "shin_girth": 0.075,
+        "digitigrade": true,
+        "paw_scale": 1
+      },
+      "tail": {
+        "enabled": true,
+        "length": 0.72,
+        "girth": 0.075,
+        "curve": 0.18
+      },
+      "surface": {
+        "coat": "short_double",
+        "markings": "canid"
+      },
+      "notes": "Canid baseline; long muzzle, upright pinnae, digitigrade lower legs."
+    },
+    {
+      "id": "species.feline.big_cat",
+      "family": "feline",
+      "label": "Big cat",
+      "body_plan": "plan.biped",
+      "head": {
+        "length": 0.25,
+        "width": 0.25,
+        "height": 0.24,
+        "muzzle_length": 0.12,
+        "ear": "rounded"
+      },
+      "torso": {
+        "shoulder_width": 0.54,
+        "waist_width": 0.34,
+        "hip_width": 0.4,
+        "chest_depth": 0.32,
+        "pelvis_depth": 0.25
+      },
+      "limbs": {
+        "arm_girth": 0.085,
+        "thigh_girth": 0.13,
+        "shin_girth": 0.08,
+        "digitigrade": true,
+        "paw_scale": 1.12
+      },
+      "tail": {
+        "enabled": true,
+        "length": 0.88,
+        "girth": 0.065,
+        "curve": 0.12
+      },
+      "surface": {
+        "coat": "short_velvet",
+        "markings": "rosette_or_solid"
+      },
+      "notes": "Distinct feline head and paw proportions; do not alias to canid."
+    },
+    {
+      "id": "species.equine.horse",
+      "family": "equine",
+      "label": "Horse",
+      "body_plan": "plan.biped",
+      "head": {
+        "length": 0.34,
+        "width": 0.19,
+        "height": 0.23,
+        "muzzle_length": 0.22,
+        "ear": "long_pointed"
+      },
+      "torso": {
+        "shoulder_width": 0.5,
+        "waist_width": 0.34,
+        "hip_width": 0.43,
+        "chest_depth": 0.31,
+        "pelvis_depth": 0.29
+      },
+      "limbs": {
+        "arm_girth": 0.07,
+        "thigh_girth": 0.105,
+        "shin_girth": 0.055,
+        "digitigrade": false,
+        "paw_scale": 0.8
+      },
+      "tail": {
+        "enabled": true,
+        "length": 0.95,
+        "girth": 0.08,
+        "curve": 0.08
+      },
+      "surface": {
+        "coat": "short_coat",
+        "markings": "equine"
+      },
+      "notes": "Long face, long distal limbs, hoof-ready foot socket."
+    },
+    {
+      "id": "species.draconic.drake",
+      "family": "draconic",
+      "label": "Drake",
+      "body_plan": "plan.biped",
+      "head": {
+        "length": 0.31,
+        "width": 0.24,
+        "height": 0.22,
+        "muzzle_length": 0.23,
+        "ear": "horn_fin"
+      },
+      "torso": {
+        "shoulder_width": 0.52,
+        "waist_width": 0.31,
+        "hip_width": 0.4,
+        "chest_depth": 0.32,
+        "pelvis_depth": 0.26
+      },
+      "limbs": {
+        "arm_girth": 0.085,
+        "thigh_girth": 0.12,
+        "shin_girth": 0.08,
+        "digitigrade": true,
+        "paw_scale": 1.08
+      },
+      "tail": {
+        "enabled": true,
+        "length": 1.25,
+        "girth": 0.11,
+        "curve": 0.1
+      },
+      "surface": {
+        "coat": "scales",
+        "markings": "scale_regions"
+      },
+      "notes": "Long counterbalance tail, horn/fin attachment zones, claw-ready digits."
+    },
+    {
+      "id": "species.avian.gryphon",
+      "family": "avian",
+      "label": "Gryphon",
+      "body_plan": "plan.biped",
+      "head": {
+        "length": 0.29,
+        "width": 0.22,
+        "height": 0.23,
+        "muzzle_length": 0.18,
+        "ear": "crest"
+      },
+      "torso": {
+        "shoulder_width": 0.56,
+        "waist_width": 0.3,
+        "hip_width": 0.38,
+        "chest_depth": 0.3,
+        "pelvis_depth": 0.23
+      },
+      "limbs": {
+        "arm_girth": 0.075,
+        "thigh_girth": 0.1,
+        "shin_girth": 0.06,
+        "digitigrade": true,
+        "paw_scale": 0.95
+      },
+      "tail": {
+        "enabled": true,
+        "length": 0.85,
+        "girth": 0.055,
+        "curve": 0.06
+      },
+      "surface": {
+        "coat": "feathered_body",
+        "markings": "avian"
+      },
+      "notes": "Wing-root shoulder volume and feather-tail mount; wings remain modular parts."
+    },
+    {
+      "id": "species.serpentine.naga",
+      "family": "serpentine",
+      "label": "Naga",
+      "body_plan": "plan.naga",
+      "head": {
+        "length": 0.27,
+        "width": 0.22,
+        "height": 0.24,
+        "muzzle_length": 0.12,
+        "ear": "species"
+      },
+      "torso": {
+        "shoulder_width": 0.47,
+        "waist_width": 0.34,
+        "hip_width": 0.4,
+        "chest_depth": 0.28,
+        "pelvis_depth": 0.24
+      },
+      "limbs": {
+        "arm_girth": 0.07,
+        "thigh_girth": 0.11,
+        "shin_girth": 0.07,
+        "digitigrade": false,
+        "paw_scale": 0
+      },
+      "tail": {
+        "enabled": true,
+        "length": 3.2,
+        "girth": 0.34,
+        "curve": 0.3
+      },
+      "surface": {
+        "coat": "scales",
+        "markings": "serpentine"
+      },
+      "notes": "This profile is for the upper-body + coil blockout only; requires dedicated axial rig and coil mesh pass."
+    }
+  ]
+}
