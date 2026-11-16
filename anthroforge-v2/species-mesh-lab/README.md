@@ -78,3 +78,46 @@ fit QA.
   values.
 - Save/reopen preserves profile ID and component names.
 - Rigged preview and exported geometry match within the project tolerance.
+
+
+## Second geometry pass: plan bodies and species modules
+
+Additional builders now exist:
+
+- `scripts/build_species_plan_meshes.py` creates separate feral quadruped,
+  taur, and naga silhouettes. Feral uses a horizontal ribcage/abdomen/pelvis
+  axis and four limb stations; taur combines an upper torso with a distinct
+  quadruped lower body; naga uses a continuous variable-radius axial coil.
+- `scripts/build_species_addons.py` creates species-specific head and
+  extremity modules: canid pinnae, feline ears, equine ears and hoof caps,
+  draconic horns/jaw fins/dorsal scutes, avian crest/wings/feather fan, and
+  serpentine crest fins. Toe/claw objects remain separate for editing.
+- `scripts/validate_species_mesh_lab.py` validates profile completeness,
+  species-family coverage, positive dimensions, and Python syntax without
+  requiring Blender.
+
+Build the plan-specific meshes:
+
+```bash
+blender --background --python scripts/build_species_plan_meshes.py -- --profile all --plan all --output ./out/plans
+```
+
+Build species add-ons:
+
+```bash
+blender --background --python scripts/build_species_addons.py -- --profile all --output ./out/addons
+```
+
+Run the dependency-free checks:
+
+```bash
+python scripts/validate_species_mesh_lab.py
+```
+
+The plan builders currently emit distinct greybox shapes, not production
+quad topology or rigged creatures. The accessory builder creates separate
+parts, but attachment transforms and fit adapters still need to be authored
+against each canonical species base. In particular, a gryphon wing module
+needs a flight-ready shoulder rig, equine hoof placement needs fetlock/limb
+validation, and the naga coil needs ground-contact and spline deformation
+tests. The static validator does not substitute for Blender runtime tests.
