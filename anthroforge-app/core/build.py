@@ -207,7 +207,8 @@ def build_character(
     min_body_dot = (float(dots[base.body_face_mask].min())
                     if np.any(base.body_face_mask) else None)
     min_all_dot = float(dots.min()) if len(dots) else None
-    new_degenerate_faces = int((degenerate_face_mask(positions, base.triangles) &\n                                ~degenerate_face_mask(base.positions, base.triangles)).sum())
+    new_degenerate_faces = int((degenerate_face_mask(positions, base.triangles) &
+                                ~degenerate_face_mask(base.positions, base.triangles)).sum())
     if strict and (flips_all or new_degenerate_faces):
         raise GeometryError(
             f"build of character {character.id!r} on base {base.id!r}: "
