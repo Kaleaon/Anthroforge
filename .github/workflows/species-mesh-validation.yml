@@ -1,0 +1,22 @@
+name: Species mesh profile validation
+
+on:
+  pull_request:
+    paths:
+      - "anthroforge-v2/species-mesh-lab/**"
+      - ".github/workflows/species-mesh-validation.yml"
+  push:
+    branches: [main]
+    paths:
+      - "anthroforge-v2/species-mesh-lab/**"
+
+jobs:
+  validate-profiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate species profiles and Blender script syntax
+        run: python anthroforge-v2/species-mesh-lab/scripts/validate_species_mesh_lab.py
