@@ -34,7 +34,7 @@ class AnatomyEditingTests(unittest.TestCase):
         instance.axis_scale["length"] = 1.5
         instance.members["member-02"] = MemberOverride(length=1.2, girth=0.8, curve=0.3)
         result = resolve_anatomy(instance, self.profiles, "plan.biped", True)
-        self.assertAlmostEqual(result["members"][0]["length_m"], 0.34)
+        self.assertAlmostEqual(result["members"][0]["length_m"], 0.34 * 1.5)
         self.assertAlmostEqual(result["members"][1]["length_m"], 0.34 * 1.5 * 1.2)
         self.assertAlmostEqual(result["members"][1]["girth_m"], 0.052 * 0.8)
 
