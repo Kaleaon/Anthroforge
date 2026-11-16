@@ -53,7 +53,7 @@ The new \`core/anatomy.py\` module adds validation for anatomy part manifests us
 For a genital module mounted at \`pelvis.genital\`, the contract requires:
 
 - Explicit adult-only metadata; the default application setting does not equip adult-only anatomy.
-- A real LOD0 mesh file inside the part folder. A JSON placeholder or missing mesh is not exportable.
+- An existing, non-empty LOD0 asset inside the part folder. The current validator checks containment and presence, not GLB parsing or topology quality; those remain export-time QA gates.
 - Own skin weights for the shared rig; rigid attachment is not accepted for an articulated module.
 - The complete \`GenBase → Gen01 → Gen02 → Gen03 → Gen04\` motion chain and \`GenScrot\` bone.
 - Named morph channels and a collision-profile identifier.
@@ -64,7 +64,7 @@ The application-level \`adult_content_enabled\` argument is a visibility/export 
 
 ## What this change does not claim
 
-This change adds a reusable contract and validator. It does not ship a genital mesh, create an anatomical model from a reference photo, generate authored skin weights, implement PhysBones/SpringBones, or prove collision-free animation. Those require actual assets, Blender/Unity runtime checks and pose-suite QA.
+This change adds a reusable contract and validator. The LOD0 check verifies a non-empty file exists; it does not yet parse the mesh or verify its topology. It does not ship a genital mesh, create an anatomical model from a reference photo, generate authored skin weights, implement PhysBones/SpringBones, or prove collision-free animation. Those require actual assets, Blender/Unity runtime checks and pose-suite QA.
 
 ## Required next implementation passes
 
