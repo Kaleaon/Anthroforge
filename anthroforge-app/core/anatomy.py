@@ -78,8 +78,12 @@ def validate_part_manifest(
         errors.append(f"{source}: meshes.lod0 is required")
     elif Path(lod0).is_absolute() or ".." in Path(lod0).parts:
         errors.append(f"{source}: meshes.lod0 must stay inside the part folder")
-    elif require_mesh_files and not (Path(source).parent / lod0).is_file():
-        errors.append(f"{source}: meshes.lod0 asset does not exist: {lod0}")
+    elif require_mesh_files:
+        asset_path = Path(source).parent / lod0
+        if not asset_path.is_file():
+            errors.append(f"{source}: meshes.lod0 asset does not exist: {lod0}")
+        elif asset_path.stat().st_size <= 0:
+            errors.append(f"{source}: meshes.lod0 asset is empty: {lod0}")
 
     skin = data.get("skin")
     if not isinstance(skin, dict):
