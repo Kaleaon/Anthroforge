@@ -594,8 +594,8 @@
             <input id="rng-head-muzzle-width" type="range" min="0.65" max="1.55" step="0.01" value="1.00" class="w-full" />
           </div>
           <div>
-            <div class="flex justify-between text-xs mb-0.5"><span class="text-slate-300">Muzzle depth</span><span id="val-head-muzzle-depth" class="font-mono-code text-amber-300">1.00x</span></div>
-            <input id="rng-head-muzzle-depth" type="range" min="0.65" max="1.55" step="0.01" value="1.00" class="w-full" />
+            <div class="flex justify-between text-xs mb-0.5"><span class="text-slate-300">Muzzle height / vertical volume</span><span id="val-head-muzzle-height" class="font-mono-code text-amber-300">1.00x</span></div>
+            <input id="rng-head-muzzle-height" type="range" min="0.65" max="1.55" step="0.01" value="1.00" class="w-full" />
           </div>
           <div>
             <div class="flex justify-between text-xs mb-0.5"><span class="text-slate-300">Jaw breadth</span><span id="val-head-jaw-width" class="font-mono-code text-amber-300">1.00x</span></div>
@@ -997,7 +997,7 @@
       equipped: { ...SPECIES_PRESETS.fennec.equipped },
       colors: { ...SPECIES_PRESETS.fennec.colors },
       morphs: { ...SPECIES_PRESETS.fennec.morphs },
-      headShape: { width: 1.0, height: 1.0, muzzleWidth: 1.0, muzzleDepth: 1.0, jawWidth: 1.0, cheek: 1.0, brow: 1.0 },
+      headShape: { width: 1.0, height: 1.0, muzzleWidth: 1.0, muzzleHeight: 1.0, jawWidth: 1.0, cheek: 1.0, brow: 1.0 },
       bodyslide: {
         samson: 0,    // Muscular hypertrophy (.osd differential morph)
         samuel: 0,    // Powerbelly / core mass (.osd differential morph)
@@ -2140,7 +2140,7 @@
           const skullWidth = hs.width || 1.0;
           const skullHeight = hs.height || 1.0;
           const muzzleWidth = hs.muzzleWidth || 1.0;
-          const muzzleDepth = hs.muzzleDepth || 1.0;
+          const muzzleHeight = hs.muzzleHeight || 1.0;
           const cheekFullness = hs.cheek || 1.0;
           const browProjection = hs.brow || 1.0;
 
@@ -2161,9 +2161,10 @@
           // Region-aware shaping: skull controls stop at the muzzle root;
           // muzzle controls taper in smoothly from the bridge; no global
           // scaling that drags the eyes, cheeks and nose out of alignment.
-          const muzzleBlend = Math.max(0, Math.min(1, (s.snout - 0.05) / 0.95));
+          const muzzleT = Math.max(0, Math.min(1, (s.snout - 0.05) / 0.95));
+          const muzzleBlend = muzzleT * muzzleT * (3 - 2 * muzzleT);
           const widthScale = skullWidth * (1 - muzzleBlend) + muzzleWidth * muzzleBlend;
-          const heightScale = skullHeight * (1 - muzzleBlend) + muzzleDepth * muzzleBlend;
+          const heightScale = skullHeight * (1 - muzzleBlend) + muzzleHeight * muzzleBlend;
           x *= widthScale;
           y *= heightScale;
           const yOffset = 0.085 + (s.yOff - 0.085) * skullHeight;
@@ -2184,7 +2185,7 @@
         const hs = state.headShape || {};
         const nose = BABYLON.MeshBuilder.CreateSphere('rhinarium', {
           diameterX: 0.058 * snoutWidthMul * (hs.muzzleWidth || 1.0),
-          diameterY: 0.044 * (hs.muzzleDepth || 1.0),
+          diameterY: 0.044 * (hs.muzzleHeight || 1.0),
           diameterZ: 0.048 * (hs.muzzleWidth || 1.0), segments: 20
         }, scene);
         nose.position.set(0, 0.055, 0.315 * snoutLenMul);
@@ -3122,9 +3123,9 @@
       });
 
       // Sync independent anatomical head sculpt controls.
-      ['width', 'height', 'muzzleWidth', 'muzzleDepth', 'jawWidth', 'cheek', 'brow'].forEach(k => {
-        const rng = document.getElementById('rng-head-' + (k === 'muzzleWidth' ? 'muzzle-width' : k === 'muzzleDepth' ? 'muzzle-depth' : k === 'jawWidth' ? 'jaw-width' : k));
-        const val = document.getElementById('val-head-' + (k === 'muzzleWidth' ? 'muzzle-width' : k === 'muzzleDepth' ? 'muzzle-depth' : k === 'jawWidth' ? 'jaw-width' : k));
+      ['width', 'height', 'muzzleWidth', 'muzzleHeight', 'jawWidth', 'cheek', 'brow'].forEach(k => {
+        const rng = document.getElementById('rng-head-' + (k === 'muzzleWidth' ? 'muzzle-width' : k === 'muzzleHeight' ? 'muzzle-height' : k === 'jawWidth' ? 'jaw-width' : k));
+        const val = document.getElementById('val-head-' + (k === 'muzzleWidth' ? 'muzzle-width' : k === 'muzzleHeight' ? 'muzzle-height' : k === 'jawWidth' ? 'jaw-width' : k));
         if (rng) rng.value = state.headShape[k];
         if (val) val.textContent = Number(state.headShape[k]).toFixed(2) + 'x';
       });
@@ -3328,8 +3329,8 @@
         });
       });
 
-      ['width', 'height', 'muzzle-width', 'muzzle-depth', 'jaw-width', 'cheek', 'brow'].forEach(k => {
-        const key = k === 'muzzle-width' ? 'muzzleWidth' : k === 'muzzle-depth' ? 'muzzleDepth' : k === 'jaw-width' ? 'jawWidth' : k;
+      ['width', 'height', 'muzzle-width', 'muzzle-height', 'jaw-width', 'cheek', 'brow'].forEach(k => {
+        const key = k === 'muzzle-width' ? 'muzzleWidth' : k === 'muzzle-height' ? 'muzzleHeight' : k === 'jaw-width' ? 'jawWidth' : k;
         document.getElementById('rng-head-' + k).addEventListener('input', (e) => {
           state.headShape[key] = parseFloat(e.target.value);
           document.getElementById('val-head-' + k).textContent = state.headShape[key].toFixed(2) + 'x';
@@ -3338,7 +3339,7 @@
       });
 
       document.getElementById('btn-reset-head-shape').addEventListener('click', () => {
-        state.headShape = { width: 1.0, height: 1.0, muzzleWidth: 1.0, muzzleDepth: 1.0, jawWidth: 1.0, cheek: 1.0, brow: 1.0 };
+        state.headShape = { width: 1.0, height: 1.0, muzzleWidth: 1.0, muzzleHeight: 1.0, jawWidth: 1.0, cheek: 1.0, brow: 1.0 };
         syncControlsFromState();
         rebuildAvatarGeometry();
       });
