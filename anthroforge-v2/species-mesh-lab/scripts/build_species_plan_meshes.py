@@ -155,6 +155,9 @@ def main():
     out=Path(a.output).resolve()
     for p in profiles:
       for plan in plans:
+        if plan not in p.get("supported_plans", [p["body_plan"]]):
+            print("SKIP", p["id"], plan, "not declared compatible")
+            continue
         if plan=="plan.naga": result=build_naga(p,plan,out)
         elif plan=="plan.quadruped_taur": result=build_taur(p,plan,out)
         else: result=build_feral(p,plan,out)
