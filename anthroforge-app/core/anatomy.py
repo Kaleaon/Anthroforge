@@ -100,9 +100,13 @@ def validate_part_manifest(
     if not isinstance(plans, list) or not plans:
         errors.append(f"{source}: plan_fit.plans must be a non-empty list")
         plans = []
-    unknown_plans = sorted(set(plans) - BODY_PLANS) if all(isinstance(p, str) for p in plans) else []
-    if unknown_plans:
-        errors.append(f"{source}: unknown body plan(s): {unknown_plans}")
+    invalid_plans = [p for p in plans if not _is_nonempty_string(p)]
+    if invalid_plans:
+        errors.append(f"{source}: plan_fit.plans entries must be non-empty strings")
+    else:
+        unknown_plans = sorted(set(plans) - BODY_PLANS)
+        if unknown_plans:
+            errors.append(f"{source}: unknown body plan(s): {unknown_plans}")
     socket_map = plan_fit.get("socket_by_plan", {})
     if not isinstance(socket_map, dict):
         errors.append(f"{source}: plan_fit.socket_by_plan must be an object")
@@ -202,6 +206,10 @@ def validate_character_anatomy(
     result = AnatomyValidation()
     if body_plan not in BODY_PLANS:
         result.errors.append(f"unknown body plan: {body_plan!r}")
+        return result
+
+    if not isinstance(adult_content_enabled, bool):
+        result.errors.append("adult_content_enabled must be a boolean preference")
         return result
 
     occupied_genital_socket = False
