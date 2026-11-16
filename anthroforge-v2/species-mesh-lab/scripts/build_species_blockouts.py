@@ -32,7 +32,7 @@ def parse_args():
 
 
 def clear_scene():
-    bpy.ops.object.select_all(action="SELECT)
+    bpy.ops.object.select_all(action="SELECT")
     bpy.ops.object.delete(use_global=False)
     for datablocks in (bpy.data.meshes, bpy.data.curves, bpy.data.materials):
         for block in list(datablocks):
