@@ -1,0 +1,283 @@
+{
+  "schema": "anthroforge.adult-anatomy-profiles",
+  "version": 1,
+  "units": "metres",
+  "scale": {
+    "minimum": 0.15,
+    "maximum": 8,
+    "default": 1,
+    "curve": "linear",
+    "note": "Scale multiplier applies to length, girth, spacing and shared sac dimensions. UI should expose per-axis overrides."
+  },
+  "profiles": {
+    "adult_quad_canid": {
+      "id": "adult_quad_canid",
+      "label": "Canid modular set",
+      "adult_only": true,
+      "compatible_families": [
+        "canid",
+        "vulpine"
+      ],
+      "compatible_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ],
+      "default_member_count": 4,
+      "dimensions_m": {
+        "length": 0.34,
+        "girth": 0.052,
+        "sac_width": 0.3,
+        "sac_height": 0.25,
+        "member_spacing": 0.105
+      },
+      "shape": {
+        "stations": [
+          {
+            "t": 0,
+            "radius": 0.7
+          },
+          {
+            "t": 0.12,
+            "radius": 0.92
+          },
+          {
+            "t": 0.38,
+            "radius": 1
+          },
+          {
+            "t": 0.68,
+            "radius": 0.91
+          },
+          {
+            "t": 0.88,
+            "radius": 0.76
+          },
+          {
+            "t": 1,
+            "radius": 0.18
+          }
+        ]
+      }
+    },
+    "adult_feline_modular": {
+      "id": "adult_feline_modular",
+      "label": "Feline modular set",
+      "adult_only": true,
+      "compatible_families": [
+        "feline"
+      ],
+      "compatible_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ],
+      "default_member_count": 1,
+      "dimensions_m": {
+        "length": 0.28,
+        "girth": 0.046,
+        "sac_width": 0.2,
+        "sac_height": 0.18,
+        "member_spacing": 0
+      },
+      "shape": {
+        "stations": [
+          {
+            "t": 0,
+            "radius": 0.72
+          },
+          {
+            "t": 0.15,
+            "radius": 0.96
+          },
+          {
+            "t": 0.48,
+            "radius": 1
+          },
+          {
+            "t": 0.78,
+            "radius": 0.82
+          },
+          {
+            "t": 1,
+            "radius": 0.2
+          }
+        ]
+      }
+    },
+    "adult_equine_modular": {
+      "id": "adult_equine_modular",
+      "label": "Equine modular set",
+      "adult_only": true,
+      "compatible_families": [
+        "equine"
+      ],
+      "compatible_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ],
+      "default_member_count": 1,
+      "dimensions_m": {
+        "length": 0.42,
+        "girth": 0.075,
+        "sac_width": 0.31,
+        "sac_height": 0.29,
+        "member_spacing": 0
+      },
+      "shape": {
+        "stations": [
+          {
+            "t": 0,
+            "radius": 0.68
+          },
+          {
+            "t": 0.18,
+            "radius": 0.88
+          },
+          {
+            "t": 0.5,
+            "radius": 1
+          },
+          {
+            "t": 0.82,
+            "radius": 0.88
+          },
+          {
+            "t": 1,
+            "radius": 0.2
+          }
+        ]
+      }
+    },
+    "adult_draconic_modular": {
+      "id": "adult_draconic_modular",
+      "label": "Draconic modular set",
+      "adult_only": true,
+      "compatible_families": [
+        "draconic"
+      ],
+      "compatible_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ],
+      "default_member_count": 1,
+      "dimensions_m": {
+        "length": 0.38,
+        "girth": 0.064,
+        "sac_width": 0.27,
+        "sac_height": 0.23,
+        "member_spacing": 0
+      },
+      "shape": {
+        "stations": [
+          {
+            "t": 0,
+            "radius": 0.72
+          },
+          {
+            "t": 0.16,
+            "radius": 0.94
+          },
+          {
+            "t": 0.46,
+            "radius": 1
+          },
+          {
+            "t": 0.8,
+            "radius": 0.82
+          },
+          {
+            "t": 1,
+            "radius": 0.16
+          }
+        ]
+      }
+    },
+    "adult_avian_cloacal": {
+      "id": "adult_avian_cloacal",
+      "label": "Avian cloacal module",
+      "adult_only": true,
+      "compatible_families": [
+        "avian"
+      ],
+      "compatible_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ],
+      "default_member_count": 1,
+      "dimensions_m": {
+        "length": 0.06,
+        "girth": 0.025,
+        "sac_width": 0.11,
+        "sac_height": 0.09,
+        "member_spacing": 0
+      },
+      "shape": {
+        "stations": [
+          {
+            "t": 0,
+            "radius": 0.7
+          },
+          {
+            "t": 0.3,
+            "radius": 1
+          },
+          {
+            "t": 0.7,
+            "radius": 0.9
+          },
+          {
+            "t": 1,
+            "radius": 0.1
+          }
+        ]
+      }
+    },
+    "adult_serpentine_modular": {
+      "id": "adult_serpentine_modular",
+      "label": "Serpentine modular set",
+      "adult_only": true,
+      "compatible_families": [
+        "serpentine"
+      ],
+      "compatible_plans": [
+        "plan.naga"
+      ],
+      "default_member_count": 1,
+      "dimensions_m": {
+        "length": 0.32,
+        "girth": 0.055,
+        "sac_width": 0.25,
+        "sac_height": 0.22,
+        "member_spacing": 0
+      },
+      "shape": {
+        "stations": [
+          {
+            "t": 0,
+            "radius": 0.68
+          },
+          {
+            "t": 0.16,
+            "radius": 0.92
+          },
+          {
+            "t": 0.5,
+            "radius": 1
+          },
+          {
+            "t": 0.82,
+            "radius": 0.82
+          },
+          {
+            "t": 1,
+            "radius": 0.16
+          }
+        ]
+      }
+    }
+  }
+}
