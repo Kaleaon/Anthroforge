@@ -33,7 +33,7 @@ import numpy as np
 from .bases import BaseRegistry
 from .character import Character
 from .errors import GeometryError
-from .geometry import count_degenerate_faces, count_flips, load_instance, write_glb
+from .geometry import count_degenerate_faces, count_flips, degenerate_face_mask, load_instance, write_glb
 from .sliders import CouplingRegistry, SliderRegistry
 
 APP_ROOT = Path(__file__).resolve().parent.parent
@@ -207,7 +207,7 @@ def build_character(
     min_body_dot = (float(dots[base.body_face_mask].min())
                     if np.any(base.body_face_mask) else None)
     min_all_dot = float(dots.min()) if len(dots) else None
-    new_degenerate_faces = max(0, degenerate_faces - base_degenerate_faces)
+    new_degenerate_faces = int((degenerate_face_mask(positions, base.triangles) &\n                                ~degenerate_face_mask(base.positions, base.triangles)).sum())
     if strict and (flips_all or new_degenerate_faces):
         raise GeometryError(
             f"build of character {character.id!r} on base {base.id!r}: "
