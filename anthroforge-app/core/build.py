@@ -33,7 +33,7 @@ import numpy as np
 from .bases import BaseRegistry
 from .character import Character
 from .errors import GeometryError
-from .geometry import count_flips, load_instance, write_glb
+from .geometry import count_degenerate_faces, count_flips, degenerate_face_mask, load_instance, write_glb
 from .sliders import CouplingRegistry, SliderRegistry
 
 APP_ROOT = Path(__file__).resolve().parent.parent
@@ -73,14 +73,23 @@ class BuildReport:
     unapplied: list[str] = field(default_factory=list)     # effective, no instance on base
     flips_body: Optional[int] = None
     flips_all: Optional[int] = None
-    min_body_dot: Optional[float] = None   # thinnest fold-gate margin
+    min_body_dot: Optional[float] = None   # thinnest body fold-gate margin
+    min_all_dot: Optional[float] = None    # thinnest full-mesh fold-gate margin
+    base_degenerate_faces: Optional[int] = None
+    degenerate_faces: Optional[int] = None
+    new_degenerate_faces: Optional[int] = None
+    nonfinite_vertices: int = 0
     glb_path: Optional[str] = None
     qa: Optional[dict] = None                              # qa-gauntlet verdicts
 
     @property
     def ok(self) -> bool:
-        return self.flips_body in (0, None) and not (
-            self.qa and self.qa.get("blocked")
+        return (
+            self.flips_body in (0, None)
+            and self.flips_all in (0, None)
+            and self.new_degenerate_faces in (0, None)
+            and self.nonfinite_vertices == 0
+            and not (self.qa and self.qa.get("blocked"))
         )
 
 
@@ -177,9 +186,17 @@ def build_character(
         positions = positions + fld.at(value)
         applied.append(sid)
 
+    nonfinite_vertices = int((~np.isfinite(positions).all(axis=1)).sum())
+    if nonfinite_vertices:
+        raise GeometryError(
+            f"build of character {character.id!r} on base {base.id!r}: "
+            f"{nonfinite_vertices} vertices contain NaN or infinity"
+        )
     flips_body = count_flips(base.positions, positions, base.triangles,
                              base.body_face_mask)
     flips_all = count_flips(base.positions, positions, base.triangles)
+    base_degenerate_faces = count_degenerate_faces(base.positions, base.triangles)
+    degenerate_faces = count_degenerate_faces(positions, base.triangles)
     from .geometry import face_normals
 
     dots = np.einsum(
@@ -187,16 +204,30 @@ def build_character(
         face_normals(base.positions, base.triangles),
         face_normals(positions, base.triangles),
     )
-    min_body_dot = float(dots[base.body_face_mask].min())
-    if strict and flips_body:
+    min_body_dot = (float(dots[base.body_face_mask].min())
+                    if np.any(base.body_face_mask) else None)
+    min_all_dot = float(dots.min()) if len(dots) else None
+    new_degenerate_faces = int((degenerate_face_mask(positions, base.triangles) &
+                                ~degenerate_face_mask(base.positions, base.triangles)).sum())
+    if strict and (flips_all or new_degenerate_faces):
         raise GeometryError(
-            f"build of character {character.id!r} on base {base.id!r}: fold gate "
-            f"failed — {flips_body} flipped body faces (the lineage gate is 0)"
+            f"build of character {character.id!r} on base {base.id!r}: "
+            f"geometry gate failed — {flips_all} flipped faces across the full mesh, "
+            f"{new_degenerate_faces} newly degenerate faces"
         )
     glb = write_glb(out_path, positions, base.triangles)
     qa = run_qa_gauntlet(glb) if run_qa else None
     warnings = [w.message for w in report.warnings] + \
                [w.message for w in effective.warnings]
+    if unapplied:
+        warnings.append(
+            f"{len(unapplied)} active slider(s) have no geometry instance on "
+            f"base {base.id!r}; they were not applied"
+        )
+    if flips_all:
+        warnings.append(f"Full-mesh fold gate: {flips_all} face(s) flipped")
+    if new_degenerate_faces:
+        warnings.append(f"Geometry gate: {new_degenerate_faces} newly degenerate face(s)")
     return BuildReport(
         character_id=character.id,
         base_id=base.id,
@@ -208,6 +239,11 @@ def build_character(
         flips_body=flips_body,
         flips_all=flips_all,
         min_body_dot=min_body_dot,
+        min_all_dot=min_all_dot,
+        base_degenerate_faces=base_degenerate_faces,
+        degenerate_faces=degenerate_faces,
+        new_degenerate_faces=new_degenerate_faces,
+        nonfinite_vertices=nonfinite_vertices,
         glb_path=str(glb),
         qa=qa,
     )

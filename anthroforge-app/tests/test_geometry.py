@@ -14,7 +14,7 @@ import pytest
 
 from core.bases import BaseRegistry
 from core.errors import GeometryError
-from core.geometry import count_flips, load_instance, parse_target, write_glb
+from core.geometry import count_degenerate_faces, count_flips, load_instance, parse_target, write_glb
 from core.sliders import SliderRegistry
 
 APP = Path(__file__).resolve().parent.parent
@@ -110,3 +110,13 @@ def test_fold_gate_counts_a_known_flip():
     flipped = pos.copy()
     assert count_flips(pos, flipped, tris) == 0
     assert count_flips(pos, pos[[0, 2, 1]], tris[[0]]) == 1
+
+
+
+def test_degenerate_face_gate_detects_collapsed_triangles():
+    positions = np.array([[0., 0., 0.], [1., 0., 0.], [2., 0., 0.]])
+    triangles = np.array([[0, 1, 2]])
+    assert count_degenerate_faces(positions, triangles) == 1
+    healthy = positions.copy()
+    healthy[2] = [0., 1., 0.]
+    assert count_degenerate_faces(healthy, triangles) == 0
