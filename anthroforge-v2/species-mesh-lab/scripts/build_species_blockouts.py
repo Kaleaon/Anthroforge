@@ -134,7 +134,7 @@ def build_profile(profile, out_dir):
                   (x, 0.015, 1.00), (limbs["arm_girth"], limbs["arm_girth"] * 0.9),
                   (limbs["arm_girth"] * 0.78, limbs["arm_girth"] * 0.72), neutral, bulge=0.12)
         make_loft(ident + "_Forearm_" + label, (x, 0.015, 1.00),
-                  (side * (x + 0.015), 0.055, 0.69),
+                  (x + side * 0.015, 0.055, 0.69),
                   (limbs["arm_girth"] * 0.78, limbs["arm_girth"] * 0.72),
                   (limbs["arm_girth"] * 0.58, limbs["arm_girth"] * 0.55), neutral)
         ellipsoid(ident + "_Hand_" + label, (side * (x + 0.015), 0.075, 0.64),
