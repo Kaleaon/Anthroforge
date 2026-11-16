@@ -140,21 +140,22 @@ def build_profile(profile, out_dir):
         ellipsoid(ident + "_Hand_" + label, (side * (x + 0.015), 0.075, 0.64),
                   (0.075, 0.10, 0.11), accents)
 
-        # Leg modules are independent objects for later authored rig/weights.
-        hip_x = side * torso["hip_width"] * 0.25
-        knee_z = 0.40 if limbs["digitigrade"] else 0.43
-        ankle_z = 0.13 if limbs["digitigrade"] else 0.08
-        make_loft(ident + "_Thigh_" + label, (hip_x, 0, 0.83),
-                  (hip_x, 0.015, knee_z),
-                  (limbs["thigh_girth"], limbs["thigh_girth"] * 0.85),
-                  (limbs["thigh_girth"] * 0.72, limbs["thigh_girth"] * 0.68), neutral, bulge=0.16)
-        make_loft(ident + "_Shin_" + label, (hip_x, 0.015, knee_z),
-                  (hip_x, -0.025 if limbs["digitigrade"] else 0, ankle_z),
-                  (limbs["shin_girth"], limbs["shin_girth"] * 0.88),
-                  (limbs["shin_girth"] * 0.62, limbs["shin_girth"] * 0.58), neutral)
-        foot_y = 0.08
-        ellipsoid(ident + "_Paw_" + label, (hip_x, foot_y, 0.055),
-                  (0.075 * limbs["paw_scale"], 0.13 * limbs["paw_scale"], 0.055), accents)
+        # Naga is an axial plan: it deliberately has no biped leg stubs.
+        if profile["body_plan"] != "plan.naga":
+            hip_x = side * torso["hip_width"] * 0.25
+            knee_z = 0.40 if limbs["digitigrade"] else 0.43
+            ankle_z = 0.13 if limbs["digitigrade"] else 0.08
+            make_loft(ident + "_Thigh_" + label, (hip_x, 0, 0.83),
+                      (hip_x, 0.015, knee_z),
+                      (limbs["thigh_girth"], limbs["thigh_girth"] * 0.85),
+                      (limbs["thigh_girth"] * 0.72, limbs["thigh_girth"] * 0.68), neutral, bulge=0.16)
+            make_loft(ident + "_Shin_" + label, (hip_x, 0.015, knee_z),
+                      (hip_x, -0.025 if limbs["digitigrade"] else 0, ankle_z),
+                      (limbs["shin_girth"], limbs["shin_girth"] * 0.88),
+                      (limbs["shin_girth"] * 0.62, limbs["shin_girth"] * 0.58), neutral)
+            foot_y = 0.08
+            ellipsoid(ident + "_Paw_" + label, (hip_x, foot_y, 0.055),
+                      (0.075 * limbs["paw_scale"], 0.13 * limbs["paw_scale"], 0.055), accents)
 
     # Tail: segmented lofts with an editable chain of named objects.
     if tail["enabled"]:
@@ -162,8 +163,13 @@ def build_profile(profile, out_dir):
         points = []
         for i in range(count):
             t = i / (count - 1)
-            points.append((0, -0.10 - tail["length"] * t,
-                           0.84 - tail["curve"] * math.sin(math.pi * t) + 0.08 * t))
+            if profile["body_plan"] == "plan.naga":
+                angle = 2.0 * math.pi * 1.6 * t
+                points.append((0.62 * math.cos(angle), -0.25 - 0.62 * math.sin(angle),
+                               0.22 + 0.10 * t))
+            else:
+                points.append((0, -0.10 - tail["length"] * t,
+                               0.84 - tail["curve"] * math.sin(math.pi * t) + 0.08 * t))
         for i in range(count - 1):
             radius = tail["girth"] * (1.0 - 0.78 * i / (count - 1))
             make_loft(ident + "_TailSeg_" + str(i + 1), points[i], points[i + 1],
