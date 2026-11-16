@@ -611,6 +611,28 @@
           </div>
         </div>
 
+        <div class="bg-slate-900/80 border border-cyan-500/30 rounded-lg p-2.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-cyan-300">Direct Head Sculpt</h3>
+            <button id="btn-sculpt-undo" class="text-[11px] px-2 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700">Undo stroke</button>
+          </div>
+          <div class="grid grid-cols-2 gap-1">
+            <button id="btn-sculpt-toggle" class="text-xs rounded px-2 py-1.5 bg-slate-800 border border-cyan-500/50 text-cyan-200">Enable brush</button>
+            <select id="sel-sculpt-tool" class="text-xs rounded bg-slate-800 border border-slate-700 px-2 py-1">
+              <option value="inflate">Inflate / deflate</option>
+              <option value="grab">Grab / push</option>
+              <option value="smooth">Smooth</option>
+            </select>
+          </div>
+          <label class="block text-[11px] text-slate-300">Brush radius <span id="val-sculpt-radius" class="text-cyan-300">0.10</span>
+            <input id="rng-sculpt-radius" type="range" min="0.025" max="0.28" step="0.005" value="0.10" class="w-full"/>
+          </label>
+          <label class="block text-[11px] text-slate-300">Strength <span id="val-sculpt-strength" class="text-cyan-300">0.35</span>
+            <input id="rng-sculpt-strength" type="range" min="0.02" max="1.0" step="0.01" value="0.35" class="w-full"/>
+          </label>
+          <p id="lbl-sculpt-status" class="text-[10px] text-slate-400">Brush edits head surface only. X symmetry follows the symmetry toggle.</p>
+        </div>
+
         <!-- Section B: BodySlide (.OSD) & SAM (Samson / Samuel / Samael) Differential Morphs -->
         <div class="bg-slate-900/80 border border-cyan-500/30 rounded-lg p-2.5 space-y-2">
           <div class="flex items-center justify-between">
@@ -998,6 +1020,12 @@
       colors: { ...SPECIES_PRESETS.fennec.colors },
       morphs: { ...SPECIES_PRESETS.fennec.morphs },
       headShape: { width: 1.0, height: 1.0, muzzleWidth: 1.0, muzzleHeight: 1.0, jawWidth: 1.0, cheek: 1.0, brow: 1.0 },
+      headSculpt: {},
+      sculptEnabled: false,
+      sculptTool: 'inflate',
+      sculptRadius: 0.10,
+      sculptStrength: 0.35,
+      sculptUndo: [],
       bodyslide: {
         samson: 0,    // Muscular hypertrophy (.osd differential morph)
         samuel: 0,    // Powerbelly / core mass (.osd differential morph)
@@ -1145,12 +1173,24 @@
       createSocketHighlightRings();
       rebuildAvatarGeometry();
 
+      let sculptStrokeOpen = false;
       scene.onPointerObservable.add((pointerInfo) => {
+        const pick = pointerInfo.pickInfo;
         if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERDOWN) {
-          const pick = pointerInfo.pickInfo;
+          if (state.sculptEnabled && pick && pick.hit && pick.pickedMesh && pick.pickedMesh.metadata && pick.pickedMesh.metadata.sculptable) {
+            pushSculptUndo(pick.pickedMesh);
+            sculptStrokeOpen = true;
+            sculptHeadAt(pick);
+            document.getElementById('lbl-sculpt-status').textContent = 'Sculpting ' + pick.pickedMesh.name;
+            return;
+          }
           if (pick && pick.hit && pick.pickedMesh && pick.pickedMesh.metadata && pick.pickedMesh.metadata.boneName) {
             selectBoneInUI(pick.pickedMesh.metadata.boneName);
           }
+        } else if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERMOVE && sculptStrokeOpen) {
+          if (pick && pick.hit) sculptHeadAt(pick);
+        } else if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERUP) {
+          sculptStrokeOpen = false;
         }
       });
 
@@ -1528,6 +1568,88 @@
       }
     }
 
+    function pushSculptUndo(mesh) {
+      const p = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
+      state.sculptUndo.push({ name: mesh.name, positions: Array.from(p),
+        offsets: (state.headSculpt[mesh.name] || []).slice() });
+      if (state.sculptUndo.length > 30) state.sculptUndo.shift();
+    }
+
+    function sculptHeadAt(pick) {
+      const mesh = pick && pick.pickedMesh;
+      if (!mesh || !mesh.metadata || !mesh.metadata.sculptable || !pick.pickedPoint) return false;
+      const positions = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
+      const indices = mesh.getIndices();
+      const normals = mesh.getVerticesData(BABYLON.VertexBuffer.NormalKind);
+      if (!positions || !indices || !normals) return false;
+      const point = pick.pickedPoint;
+      const radius = state.sculptRadius;
+      const strength = state.sculptStrength * 0.012;
+      const offsets = state.headSculpt[mesh.name] || (state.headSculpt[mesh.name] = new Array(positions.length).fill(0));
+      const before = positions.slice();
+      const adjacency = null;
+      const centers = [point];
+      if (state.symmetry && Math.abs(point.x) > 0.003) centers.push(new BABYLON.Vector3(-point.x, point.y, point.z));
+      for (let v = 0; v < positions.length / 3; v++) {
+        const x = positions[v * 3], y = positions[v * 3 + 1], z = positions[v * 3 + 2];
+        let best = Infinity, signX = 1;
+        for (let c = 0; c < centers.length; c++) {
+          const dx = x - centers[c].x, dy = y - centers[c].y, dz = z - centers[c].z;
+          const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          if (d < best) { best = d; signX = c === 1 ? -1 : 1; }
+        }
+        if (best >= radius) continue;
+        const t = 1 - best / radius;
+        const falloff = t * t * (3 - 2 * t);
+        const k = v * 3;
+        if (state.sculptTool === 'inflate') {
+          positions[k] += normals[k] * strength * falloff * signX;
+          positions[k + 1] += normals[k + 1] * strength * falloff;
+          positions[k + 2] += normals[k + 2] * strength * falloff;
+        } else if (state.sculptTool === 'grab') {
+          positions[k] += (point.x - before[k]) * 0.18 * falloff;
+          positions[k + 1] += (point.y - before[k + 1]) * 0.18 * falloff;
+          positions[k + 2] += (point.z - before[k + 2]) * 0.18 * falloff;
+        } else {
+          // Laplacian smoothing from one-ring neighbours, computed from indexed triangles.
+          let sx = 0, sy = 0, sz = 0, count = 0;
+          for (let q = 0; q < indices.length; q += 3) {
+            for (let e = 0; e < 3; e++) if (indices[q + e] === v) {
+              const n = indices[q + (e + 1) % 3], nk = n * 3;
+              sx += before[nk]; sy += before[nk + 1]; sz += before[nk + 2]; count++;
+              const n2 = indices[q + (e + 2) % 3], n2k = n2 * 3;
+              sx += before[n2k]; sy += before[n2k + 1]; sz += before[n2k + 2]; count++;
+            }
+          }
+          if (count) {
+            positions[k] += (sx / count - before[k]) * 0.22 * falloff;
+            positions[k + 1] += (sy / count - before[k + 1]) * 0.22 * falloff;
+            positions[k + 2] += (sz / count - before[k + 2]) * 0.22 * falloff;
+          }
+        }
+      }
+      for (let i = 0; i < positions.length; i++) offsets[i] = positions[i] - (before[i] - offsets[i]);
+      mesh.updateVerticesData(BABYLON.VertexBuffer.PositionKind, positions, true);
+      const nextNormals = [];
+      BABYLON.VertexData.ComputeNormals(positions, indices, nextNormals);
+      mesh.updateVerticesData(BABYLON.VertexBuffer.NormalKind, nextNormals, true);
+      return true;
+    }
+
+    function undoSculptStroke() {
+      const item = state.sculptUndo.pop();
+      if (!item) return;
+      const mesh = avatarMeshGroup.find(m => m.name === item.name);
+      state.headSculpt[item.name] = item.offsets;
+      if (mesh) {
+        mesh.updateVerticesData(BABYLON.VertexBuffer.PositionKind, new Float32Array(item.positions), true);
+        const normals = [];
+        BABYLON.VertexData.ComputeNormals(item.positions, mesh.getIndices(), normals);
+        mesh.updateVerticesData(BABYLON.VertexBuffer.NormalKind, normals, true);
+      }
+      document.getElementById('lbl-sculpt-status').textContent = 'Last sculpt stroke undone.';
+    }
+
     function attachPartMesh(mesh, boneName, mat) {
       // === v2: bake the bind-pose world transform into the vertices, unparent,
       // and bind the mesh to the real Skeleton (below, after weights are computed).
@@ -1538,6 +1660,19 @@
       const bindWorld = mesh.getWorldMatrix().clone();
       mesh.parent = null;
       mesh.bakeTransformIntoVertices(bindWorld);
+      mesh.metadata = mesh.metadata || {};
+      mesh.metadata.sculptable = boneName === 'Head' && /head|snout|muzzle|jaw/i.test(mesh.name);
+      if (mesh.metadata.sculptable) {
+        const saved = state.headSculpt && state.headSculpt[mesh.name];
+        const basePositions = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
+        if (saved && saved.length === basePositions.length) {
+          for (let i = 0; i < basePositions.length; i++) basePositions[i] += saved[i];
+          mesh.updateVerticesData(BABYLON.VertexBuffer.PositionKind, basePositions, true);
+          const normals = [];
+          BABYLON.VertexData.ComputeNormals(basePositions, mesh.getIndices(), normals);
+          mesh.updateVerticesData(BABYLON.VertexBuffer.NormalKind, normals, true);
+        }
+      }
       mesh.position.setAll(0);
       mesh.rotation.setAll(0);
       mesh.scaling.setAll(1);
@@ -3196,6 +3331,24 @@
         state.symmetry = e.target.checked;
       });
 
+      document.getElementById('btn-sculpt-toggle').addEventListener('click', (e) => {
+        state.sculptEnabled = !state.sculptEnabled;
+        e.currentTarget.textContent = state.sculptEnabled ? 'Disable brush' : 'Enable brush';
+        e.currentTarget.classList.toggle('bg-cyan-500/20', state.sculptEnabled);
+        document.getElementById('lbl-sculpt-status').textContent = state.sculptEnabled
+          ? 'Brush active — drag on the head mesh to sculpt.' : 'Brush disabled — normal viewport selection restored.';
+      });
+      document.getElementById('sel-sculpt-tool').addEventListener('change', e => { state.sculptTool = e.target.value; });
+      document.getElementById('rng-sculpt-radius').addEventListener('input', e => {
+        state.sculptRadius = parseFloat(e.target.value);
+        document.getElementById('val-sculpt-radius').textContent = state.sculptRadius.toFixed(3);
+      });
+      document.getElementById('rng-sculpt-strength').addEventListener('input', e => {
+        state.sculptStrength = parseFloat(e.target.value);
+        document.getElementById('val-sculpt-strength').textContent = state.sculptStrength.toFixed(2);
+      });
+      document.getElementById('btn-sculpt-undo').addEventListener('click', undoSculptStroke);
+
       const canvasContainer = document.getElementById('canvas-container');
       const banner = document.getElementById('canvas-drop-banner');
       canvasContainer.addEventListener('dragover', (e) => {
@@ -3645,7 +3798,8 @@
           parts: parts,
           fur: {},
           materials: { colors: state.colors || {} },
-          identity: { source: inTelegram ? 'telegram-miniapp' : 'web', species: state.activeSpecies, head_shape: { ...state.headShape } }
+          identity: { source: inTelegram ? 'telegram-miniapp' : 'web', species: state.activeSpecies,
+            head_shape: { ...state.headShape }, head_sculpt: state.headSculpt }
         };
         // Vocabulary fix (pass 2): translate the web vocabulary to
         // canonical Core form, so the record validates against the
@@ -3673,6 +3827,7 @@
         }
         var sliders = record.sliders || {};
         var identity = record.identity || {};
+        state.headSculpt = identity.head_sculpt && typeof identity.head_sculpt === 'object' ? identity.head_sculpt : {};
         [['morphs', state.morphs], ['head_shape', state.headShape], ['sos', state.sos], ['drivers', state.drivers]].forEach(function (pair) {
           var vals = identity[pair[0]];
           if (vals) {
