@@ -135,3 +135,33 @@ def test_unknown_slider_character_refuses_to_build(tmp_path, library):
     char = Character(sliders={"body.nope": 1.0})
     with pytest.raises(Exception):
         build_character(char, library, out_path=tmp_path / "x.glb")
+
+
+
+def test_strict_build_checks_the_entire_mesh_fold_gate(tmp_path, library, monkeypatch):
+    import core.build as build
+    from core.errors import GeometryError
+
+    calls = iter((0, 1))  # body-only passes; a non-body face is flipped
+    monkeypatch.setattr(build, "count_flips", lambda *args, **kwargs: next(calls))
+    char = Character(name="Full mesh gate", sliders={"body.belly.protrusion": 1.0})
+    with pytest.raises(GeometryError, match="full mesh"):
+        build_character(char, library, out_path=tmp_path / "strict.glb",
+                        strict=True, run_qa=False)
+
+
+def test_build_report_is_not_ok_when_non_body_faces_flip():
+    from core.build import BuildReport
+
+    report = BuildReport(character_id="test", base_id="base",
+                         effective_sliders={}, flips_body=0, flips_all=1)
+    assert report.ok is False
+
+
+def test_build_report_is_not_ok_when_new_faces_collapse():
+    from core.build import BuildReport
+
+    report = BuildReport(character_id="test", base_id="base",
+                         effective_sliders={}, flips_body=0, flips_all=0,
+                         new_degenerate_faces=2)
+    assert report.ok is False
