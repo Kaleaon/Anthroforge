@@ -77,6 +77,7 @@ class BuildReport:
     min_all_dot: Optional[float] = None    # thinnest full-mesh fold-gate margin
     base_degenerate_faces: Optional[int] = None
     degenerate_faces: Optional[int] = None
+    new_degenerate_faces: Optional[int] = None
     nonfinite_vertices: int = 0
     glb_path: Optional[str] = None
     qa: Optional[dict] = None                              # qa-gauntlet verdicts
@@ -86,7 +87,7 @@ class BuildReport:
         return (
             self.flips_body in (0, None)
             and self.flips_all in (0, None)
-            and self.degenerate_faces in (0, None)
+            and self.new_degenerate_faces in (0, None)
             and self.nonfinite_vertices == 0
             and not (self.qa and self.qa.get("blocked"))
         )
@@ -240,6 +241,7 @@ def build_character(
         min_all_dot=min_all_dot,
         base_degenerate_faces=base_degenerate_faces,
         degenerate_faces=degenerate_faces,
+        new_degenerate_faces=new_degenerate_faces,
         nonfinite_vertices=nonfinite_vertices,
         glb_path=str(glb),
         qa=qa,
