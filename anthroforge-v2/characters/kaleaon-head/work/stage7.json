@@ -1,0 +1,53 @@
+{
+ "L": 0.9614408910274506,
+ "pal_z": -0.18624889850616455,
+ "top_z": 0.328182190656662,
+ "H_abs": 0.5144310891628265,
+ "mane_before_fit": {
+  "width_L": 0.9701478301568015,
+  "z_at_max_frac_of_H": 0.5953665055696676,
+  "crown_width_L": 0.8502299228566806
+ },
+ "mane_x_fit_factor": 1.051386158164309,
+ "crown_correction_factor": 0.9014229791821309,
+ "mane": {
+  "width_L": 1.0200000291377072,
+  "z_at_max_frac_of_H": 0.5953665055696676,
+  "crown_width_L": 0.8058000031803497
+ },
+ "ear_burial": {
+  "L": {
+   "proud_verts": 187,
+   "total_verts": 285,
+   "max_protrusion_L": 0.39050240319438545,
+   "worst_at": [
+    0.3754,
+    -0.1713,
+    0.2283
+   ]
+  },
+  "R": {
+   "proud_verts": 187,
+   "total_verts": 285,
+   "max_protrusion_L": 0.39050240319438545,
+   "worst_at": [
+    -0.3754,
+    -0.1713,
+    0.2283
+   ]
+  }
+ },
+ "temple_corridor_min_dist": 0.05892709270119667,
+ "cheek_tuft_L": {
+  "verts": 190,
+  "faces": 293
+ },
+ "cheek_tuft_R": {
+  "verts": 186,
+  "faces": 290
+ },
+ "chin_tuft": {
+  "verts": 851,
+  "faces": 1530
+ }
+}
