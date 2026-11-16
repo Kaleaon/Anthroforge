@@ -1,0 +1,30 @@
+{
+  "id": "body.himbo.torso_back_center",
+  "label": "Back (Mid)",
+  "group": "body/himbo/stature",
+  "semantics": "HIMBO V5 slider 'TorsoBackCenter' (block 'HIMBO - BodyTorsoBackCenter'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built.",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.019 m on the Skyrim HIMBO base (581 diff verts)"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyTorsoBackCenter",
+      "qa": {
+        "diff_verts": 581,
+        "disp_max_m": 0.019401775099966188,
+        "disp_mean_m": 0.0037453049326697362
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyTorsoBackCenter', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

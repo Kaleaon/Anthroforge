@@ -1,0 +1,114 @@
+{
+ "extensions": {
+  "acceptance": {
+   "gate": "Measure on the neutral-pose exported mesh at the stated values with the character's preset delts/traps calls in place. Misses are build data, not spec edits.",
+   "m8_shoulder_breadth": "BARA_LESSONS M8 (shoulder breadth / head width): at +1.0 the build lands in the strongman artist band 3.7-4.1 and stays under the 4.2-4.8 hyper band unless the character is a hyper build",
+   "narrow_pole": "at -1.0 the ribcage narrows without a fold-gate failure (0 flips) and without touching the R5 neck floor (neck vs jaw is a neck relation; broadness must not narrow the neck column - it is outside the mask)",
+   "orthogonality": "at +1.0, chest-band WIDTH gain must dominate chest-band DEPTH gain by >= 3:1 [E]; if depth tracks width, the field is TorsoMass in disguise and the blend weights are wrong",
+   "wrap_independence": "at tissue level 0 the +1.0 width gain is fully present (frame is not tissue); the tissue-stage lateral gain is measured separately as the wrap audit (MUSCLE_TISSUE_MODEL.md section 4)"
+  },
+  "build_spec": {
+   "field_construction": "Positive pole: TorsoShoulderInc as the primary frame field; blend TorsoWidth (ribcage band, weight rising below the pec line) and PecsWidth (plate extent, chest band only) so the span reads as one ribcage, not shoulders pasted on a narrow chest; lat component from TorsoBackSize weighted to the front-silhouette sector. Negative pole: TorsoShoulderDec primary, same component weights inverted. Restrict every component to the region mask and re-weight displacement onto the lateral axis before blending (the source blocks carry some sagittal bleed; broadness must not secretly become a depth slider).",
+   "status": "RECORD + SPEC (authored Nov 12, 2026, per Joe's chest-broadness directive). Component fields are decoded and in hand; the composite field blend is specified here, geometry proof is a separate build (same status NeckMass shipped with)."
+  },
+  "carriers": {
+   "frame": "biacromial span + ribcage lateral span - the ShoulderInc/Dec pair and the TorsoWidth band; this is the component that survives at zero muscle and zero tissue (a broad skeleton)",
+   "lat_mass": "latissimus frontal wings (TorsoBackSize family): the taper component - width that narrows downward into the waist instead of ending at the ribcage edge",
+   "not_carriers": "chest tissue adds lateral silhouette at tissue levels, but via the wrap coupling's ring, never via this record; delts cap the span visually but are body.arms.delts",
+   "plate_extent": "PecsWidth / PecsSide (Width (Lower)): how far the pec plates reach toward the acromion; extent, not size - BARA_LESSONS R10 (PecsWidth leads, PecsLower is fullness)"
+  },
+  "composition": {
+   "delts_shingle": "BARA_LESSONS R9: delts and pec width must move together or the overlap read breaks. Broadness is the frame-level variable under both - presets that pin body.arms.delts should carry a matching broadness call (preset discipline, recorded here; NOT a coupling, because a coupling would rewrite authored values)",
+   "distribution": "the mass-distribution axis's chest macro factor is a DEPOSITION multiplier; broadness is the frame it deposits on. The geometry layer may read distribution.muscle.chest as a deposition scale over this field's muscle component; the vector layer leaves broadness untouched (frame is authored, like the Muscle vector - the tissue stage never rewrites it)",
+   "power_belly": "the PowerBelly chest-dominance advisory currently reads body.torso.mass as its chest proxy; broadness is the width component of that chest ring (girth ~ width x depth) and is the named candidate to refine the advisory - not changed by this amendment",
+   "show_through": "deliberately NOT a show-through target: show-through boosts forms that displace the tissue surface from below; the frame sits under everything and its lateral tissue gain is the wrap mechanism's output, not a boost to the frame value"
+  }
+ },
+ "group": "body/chest",
+ "id": "body.chest.broadness",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "components": {
+     "arms_shoulders": {
+      "block": "HIMBO - BodyArmsShoulders",
+      "diff_verts": 3636,
+      "disp_max_m": 0.01674,
+      "disp_mean_m": 0.00411,
+      "disp_p95_m": 0.01467,
+      "region_disp_share": {
+       "arms": 0.396,
+       "chest": 0.488,
+       "neck": 0.115
+      }
+     },
+     "pecs_width": {
+      "block": "HIMBO - BodyPecsWidth",
+      "diff_verts": 1330,
+      "disp_max_m": 0.01497,
+      "disp_mean_m": 0.00589,
+      "disp_p95_m": 0.0129,
+      "region_disp_share": {
+       "chest": 0.999
+      }
+     },
+     "torso_width": {
+      "block": "HIMBO - BodyTorsoWidth",
+      "diff_verts": 1196,
+      "disp_max_m": 0.02172,
+      "disp_mean_m": 0.0082,
+      "disp_p95_m": 0.01974,
+      "region_disp_share": {
+       "torso": 0.995
+      }
+     }
+    },
+    "note": "component-block stats from the canonical decode (Skyrim units converted at 0.01428 m/unit); the composite broadness field is a build spec (see extensions) - native-base decode numbers only, no cross-base instance yet",
+    "primary_pair": {
+     "negative_block": "HIMBO - BodyTorsoShoulderDec",
+     "negative_diff_verts": 5000,
+     "negative_disp_max_m": 0.03343,
+     "negative_disp_mean_m": 0.01149,
+     "negative_disp_p95_m": 0.02742,
+     "positive_block": "HIMBO - BodyTorsoShoulderInc",
+     "positive_diff_verts": 4968,
+     "positive_disp_max_m": 0.05973,
+     "positive_disp_mean_m": 0.01717,
+     "positive_disp_p95_m": 0.04881
+    }
+   }
+  }
+ },
+ "label": "Chest Broadness",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned) - composite field spec from decoded blocks, no cross-base instance yet",
+  "source": "HIMBO V5 blocks 'HIMBO - BodyTorsoShoulderInc' / 'HIMBO - BodyTorsoShoulderDec' (frame pair), 'HIMBO - BodyPecsWidth' (plate extent), 'HIMBO - BodyTorsoWidth' (ribcage band), 'HIMBO - BodyArmsShoulders' (girdle blend), decoded in himbo_sliders_full.json; framing rules from anthroforge-v2/BARA_LESSONS.md (R9 delts/pec-width shingle, R11 lats-are-the-taper, M8 shoulder-breadth scorecard)"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "+1.0 = HIMBO TorsoShoulderInc at full: max |delta| = 0.0597 m (4.1825 Skyrim units), mean 0.0172 m over 4,968 moved verts. -1.0 = TorsoShoulderDec at full: max |delta| = 0.0334 m (2.3409 u), mean 0.0115 m over 5,000 verts. The poles are asymmetric because the source pair is: the widen field is the larger of the two, so +1.0 spans further than -1.0 narrows.",
+  "max": 1.0,
+  "min": -1.0,
+  "safe_max": 1.0,
+  "safe_min": -1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [
+   "acromion_l",
+   "acromion_r",
+   "clavicle_l",
+   "clavicle_r",
+   "sternum_top",
+   "xiphoid",
+   "rib_lateral_l",
+   "rib_lateral_r"
+  ],
+  "mask_rule": "chest band from the clavicle line to the lower ribcage; displacement weighted to the lateral (X) axis - the field SPANS, it does not push forward; delt caps excluded (body.arms.delts territory - the field ends at the acromion) and the neck column excluded (body.neck.mass territory)"
+ },
+ "semantics": "Lateral span of the chest and ribcage - the front-view WIDTH of the upper torso - as a frame variable in its own right. Two-pole: + widens the frame, - narrows it, 0 = base frame. What carries broadness: (1) FRAME - the biacromial/ribcage span itself, carried in HIMBO by the TorsoShoulderInc/TorsoShoulderDec pair (the two largest-displacement width blocks in the V5 decode) and the TorsoWidth ribcage-band field; (2) LAT MASS - from the front, the lats are what make top width TAPER rather than merely sit wide (BARA_LESSONS R11; TorsoBackSize is a front-silhouette slider); (3) PEC PLATE EXTENT - the PecsWidth family sets how far the plates reach laterally, which is width, not plate volume; (4) TISSUE WRAP - at tissue, chest silhouette width also gains from the circumferential tissue ring, but that gain belongs to the wrap coupling (MUSCLE_TISSUE_MODEL.md section 4), NOT to this slider: broadness is the frame UNDER the tissue. Distinct from its neighbours: it is not chest DEPTH (the sagittal axis - TorsoSterDepth / PecsFlatten territory), not body.torso.mass (barrel VOLUME fill over chest+arms+neck; a narrow frame can be thick, a broad frame lean), and not body.pecs.size (front plate volume; plates sit ON the frame this sets).",
+ "symmetry": "bilateral_x"
+}

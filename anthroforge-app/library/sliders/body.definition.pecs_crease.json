@@ -1,0 +1,69 @@
+{
+  "group": "body/definition",
+  "id": "body.definition.pecs_crease",
+  "instances": {
+    "makehuman_hm08": {
+      "file": "anthroforge-v2/bara-proof/body.definition.pecs_crease.target",
+      "note": "Relief instance authored Nov 12, 2026 (DEFINITION_GEOMETRY.md): HIMBO source transferred at the feature kernel and closed-loop calibrated at the canonical station; composes at the evaluator's effective values (definition is evaluation-stage relief, never stored mass).",
+      "qa": {
+        "attenuation_measured_vs_predicted": {
+          "gachidebu": [
+            0.596560504501076,
+            0.5967
+          ],
+          "strongman": [
+            0.6978355998653915,
+            0.6979500000000001
+          ]
+        },
+        "base_verts": 19158,
+        "blender_evaluated": "tissue0 0 flips, strongman 0; the gachidebu render state carries 2 flips from the SHIPPED quantised coupling target alone (present with definition keys at 0; the definition set adds none at 1.0)",
+        "calibration_scale": 1.726356896241353,
+        "canonical_measure": "crease",
+        "feature_depth_mm": 1.2125785106609637,
+        "feature_depth_target_mm": 1.212578872180968,
+        "fold_gate": "0 flips at raw 1.0 over muscle / strongman / gachidebu substrates (raw + macro bases); combined definition set over gachidebu also 0",
+        "moved_verts": 336,
+        "relief_peak_mm": 4.188077639678194
+      },
+      "arrays": {
+        "pack": "anthroforge-app/library/instances/body.definition.pecs_crease__makehuman_hm08.npz",
+        "linear": "linear"
+      }
+    },
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "qa": {
+        "base_verts": 9346,
+        "diff_verts": 433,
+        "disp_max_m": 0.008548,
+        "disp_mean_m": 0.001572,
+        "disp_p95_m": 0.005718,
+        "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+        "region_disp_share": {
+          "chest": 1.0
+        }
+      }
+    }
+  },
+  "label": "Pecs Crease (Underside)",
+  "provenance": {
+    "licence": "study-only (internal)",
+    "method": "osd decode (learned)",
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - PecsCrease', decoded in himbo_sliders_full.json"
+  },
+  "range": {
+    "default": 0.0,
+    "endpoint_anchor": "max |delta| = 0.0085 m (0.5986 Skyrim units); mean |delta| 0.0016 m over 433 moved verts",
+    "max": 1.0,
+    "min": 0.0,
+    "safe_max": 1.0,
+    "units": "normalised"
+  },
+  "region": {
+    "landmarks": [],
+    "mask_rule": "delta field as decoded: 433 verts, 100% chest"
+  },
+  "semantics": "Definition family: under-pec crease. Attenuated by chest-region tissue, so the mass-distribution axis moves it: a pear keeps it, a big-chest build submerges it (MUSCLE_TISSUE_MODEL.md section 7).",
+  "symmetry": "bilateral_x"
+}

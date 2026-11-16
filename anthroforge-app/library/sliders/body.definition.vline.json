@@ -1,0 +1,40 @@
+{
+ "group": "body/definition",
+ "id": "body.definition.vline",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "diff_verts": 270,
+    "disp_max_m": 0.004397,
+    "disp_mean_m": 0.00118,
+    "disp_p95_m": 0.003681,
+    "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+    "region_disp_share": {
+     "torso": 1.0
+    }
+   }
+  }
+ },
+ "label": "V Line",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned)",
+  "source": "HIMBO V5 slider backed by .osd block 'HIMBO - TorsoVLine', decoded in himbo_sliders_full.json"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "max |delta| = 0.0044 m (0.3079 Skyrim units); mean |delta| 0.0012 m over 270 moved verts",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "delta field as decoded: 270 verts, 100% torso band"
+ },
+ "semantics": "Definition family: the abdominal V. Attenuated by abdomen-region tissue: the fastest-submerging definition slider (MUSCLE_TISSUE_MODEL.md section 4).",
+ "symmetry": "bilateral_x"
+}

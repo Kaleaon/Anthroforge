@@ -1,0 +1,40 @@
+{
+ "group": "body/chest",
+ "id": "body.pecs.size",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "diff_verts": 1593,
+    "disp_max_m": 0.02779,
+    "disp_mean_m": 0.010956,
+    "disp_p95_m": 0.024682,
+    "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+    "region_disp_share": {
+     "chest": 0.987
+    }
+   }
+  }
+ },
+ "label": "Pecs Size",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned)",
+  "source": "HIMBO V5 slider backed by .osd block 'HIMBO - PecsSize', decoded in himbo_sliders_full.json"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "max |delta| = 0.0278 m (1.9461 Skyrim units); mean |delta| 0.0110 m over 1593 moved verts",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "delta field as decoded: 1,593 verts; 99% of displacement in the chest"
+ },
+ "semantics": "Pectoral plate size. A show-through form (MUSCLE_TISSUE_MODEL.md section 6): at high tissue its effective value is boosted so the plate still displaces the tissue surface.",
+ "symmetry": "bilateral_x"
+}

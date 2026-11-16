@@ -1,0 +1,45 @@
+{
+ "group": "body/muscle",
+ "id": "body.muscle",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "diff_verts": 9080,
+    "disp_max_m": 0.024432,
+    "disp_mean_m": 0.007838,
+    "disp_p95_m": 0.017662,
+    "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+    "region_disp_share": {
+     "arms": 0.197,
+     "chest": 0.348,
+     "hips": 0.031,
+     "legs": 0.29,
+     "neck": 0.051,
+     "torso": 0.084
+    }
+   }
+  }
+ },
+ "label": "Muscle (overall)",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned)",
+  "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyMuscle', decoded in himbo_sliders_full.json"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "max |delta| = 0.0244 m (1.7109 Skyrim units); mean |delta| 0.0078 m over 9080 moved verts",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "delta field as decoded: 9,080 of 9,346 base verts moved; chest 35% / legs 29% / arms 20% of displacement"
+ },
+ "semantics": "The MuscleVector's summary slider (MUSCLE_TISSUE_MODEL.md): one-pole overall muscle mass, chest/legs-led. Couplings read this as the muscle level for the definition muscle-gate and the PowerBelly core share.",
+ "symmetry": "bilateral_x"
+}

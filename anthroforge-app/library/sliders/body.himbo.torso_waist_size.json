@@ -1,0 +1,31 @@
+{
+  "id": "body.himbo.torso_waist_size",
+  "label": "Shrink Waist",
+  "group": "body/himbo/stature",
+  "semantics": "HIMBO V5 slider 'TorsoWaistSize' (block 'HIMBO - BodyTorsoWaistSize'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built. Two-sided: negative values engage the small-end morph (specs annotate 'big X' / 'small X').",
+  "range": {
+    "min": -1.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.027 m on the Skyrim HIMBO base (1697 diff verts)",
+    "safe_min": -1.0
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyTorsoWaistSize",
+      "qa": {
+        "diff_verts": 1697,
+        "disp_max_m": 0.026661049655254915,
+        "disp_mean_m": 0.010085723673626252
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyTorsoWaistSize', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

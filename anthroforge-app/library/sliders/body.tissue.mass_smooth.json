@@ -1,0 +1,37 @@
+{
+ "group": "body/tissue",
+ "id": "body.tissue.mass_smooth",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "diff_verts": 805,
+    "disp_max_m": 0.00833,
+    "disp_mean_m": 0.001492,
+    "disp_p95_m": 0.006192,
+    "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet"
+   }
+  }
+ },
+ "label": "Torso Mass Smooth",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned)",
+  "source": "HIMBO V5 slider backed by .osd block 'HIMBO - TorsoMassSmooth', decoded in himbo_sliders_full.json"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "max |delta| = 0.0083 m (0.5833 Skyrim units); mean |delta| 0.0015 m over 805 moved verts",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "delta field as decoded: 805 verts (a redistribution/smoothing field, low raw displacement by design)"
+ },
+ "semantics": "TissueVector smoothing: erases separation between muscle groups. The inverse face of the definition family; driven inversely by the TissueDefinition dial coupling (BARA_LESSONS A5).",
+ "symmetry": "bilateral_x"
+}

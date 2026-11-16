@@ -1,0 +1,30 @@
+{
+  "id": "body.himbo.torso_back_slope",
+  "label": "Back Slope",
+  "group": "body/himbo/stature",
+  "semantics": "HIMBO V5 slider 'TorsoBackSlope' (block 'HIMBO - BodyTorsoBackSlope'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built.",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.022 m on the Skyrim HIMBO base (991 diff verts)"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyTorsoBackSlope",
+      "qa": {
+        "diff_verts": 991,
+        "disp_max_m": 0.021843919310192028,
+        "disp_mean_m": 0.004727517359090288
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyTorsoBackSlope', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

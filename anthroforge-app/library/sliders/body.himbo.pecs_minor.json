@@ -1,0 +1,30 @@
+{
+  "id": "body.himbo.pecs_minor",
+  "label": "Pectoralis Minor",
+  "group": "body/himbo/pecs",
+  "semantics": "HIMBO V5 slider 'PecsMinor' (block 'HIMBO - BodyPecsMinor'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built.",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.022 m on the Skyrim HIMBO base (1605 diff verts)"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyPecsMinor",
+      "qa": {
+        "diff_verts": 1605,
+        "disp_max_m": 0.021887900346714152,
+        "disp_mean_m": 0.006906977026269323
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyPecsMinor', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

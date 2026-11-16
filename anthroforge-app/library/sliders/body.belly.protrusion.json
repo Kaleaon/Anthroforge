@@ -1,0 +1,82 @@
+{
+  "group": "body/torso",
+  "id": "body.belly.protrusion",
+  "instances": {
+    "skyrim_fatmales": {
+      "file": "character_assets/learned/fat-males_body_morph.npz",
+      "qa": {
+        "disp_max_m": 0.156057,
+        "disp_mean_m": 0.036993,
+        "disp_median_m": 0.024519,
+        "folds": null,
+        "note": "exact-topology pair (topology_identical: true in fat-males_body_morph.json), so the fit residual is 0 by construction; displacement stats are the source morph's own _0->_1 deltas in metres",
+        "residual_p95_cm": 0.0,
+        "tris": 3680,
+        "verts": 2024
+      }
+    },
+    "makehuman_hm08": {
+      "components": {
+        "combined": "anthroforge-v2/first-proof/body.belly.protrusion_v5.1.target",
+        "sag": "anthroforge-v2/first-proof/body.belly.protrusion_sag_v3.target",
+        "gamma": 2.0,
+        "variants": {
+          "contact": "anthroforge-v2/first-proof/body.belly.protrusion_contact_v52.target"
+        }
+      },
+      "note": "v5.1 system: shape(w) = base + w*LIN + sign(w)|w|^2.0*SAG with LIN = combined - sag (the engine decomposes at load). The 'contact' variant is the v5.2 thigh-contact combined field (GRAVITY_V5.md v5.2 addendum); selecting it swaps the combined field and keeps the v3 sag decomposition, as that build's own record documents. QA at +1: 0 flipped faces over all 26,756 body faces on both bases; navel +11.27 cm fwd / -6.99 cm down (Blender). Known debit: the -1 pole folds (~184 faces, linear evaluation) — a separately authored decrease target is owed.",
+      "qa": {
+        "flips_at_+1_body_faces": 0,
+        "body_faces_checked": 26756,
+        "navel_at_+1_cm": {
+          "forward": 11.27,
+          "down": 6.99
+        },
+        "wrist_girth_gain_cm": 2.98,
+        "ankle_girth_gain_cm": 3.32
+      },
+      "arrays": {
+        "pack": "anthroforge-app/library/instances/body.belly.protrusion__makehuman_hm08.npz",
+        "linear": "linear",
+        "sag": "sag",
+        "gamma": 2.0,
+        "variants": {
+          "contact": {
+            "linear": "contact_linear"
+          }
+        }
+      }
+    },
+    "makehuman_hm08_masculine": {
+      "file": "anthroforge-v2/masculine-base/body.belly.protrusion.target",
+      "note": "v1-lineage field RE-DERIVED on the masculine base (targets are per-base; the hm08 field does not transfer). 542 moved verts; navel achieved 0.12257 m vs anchor 0.12447 m (error -0.19 cm).",
+      "qa": {
+        "navel_error_cm": -0.19
+      }
+    }
+  },
+  "label": "Body adiposity (belly-centred)",
+  "provenance": {
+    "licence": "study-only (internal)",
+    "method": "exact delta",
+    "source": "Fat Males + HIMBO Chonky fields transferred to hm08 (first-proof lineage v1-v5.1); see anthroforge-v2/first-proof/GRAVITY_V5.md"
+  },
+  "range": {
+    "default": 0.0,
+    "endpoint_anchor": "belly core unchanged from v1/v3/v4: max forward displacement at navel 0.1197 m on hm08 (Fat Males anchor scaled by torso-length ratio 0.8325); limb layer calibrated separately (thigh-band match, alpha 0.65) -- see system.limb_distribution",
+    "max": 1.0,
+    "min": -1.0,
+    "safe_max": 1.0,
+    "units": "normalised"
+  },
+  "region": {
+    "landmarks": [
+      "navel",
+      "sternum_bottom",
+      "pelvis_top"
+    ],
+    "mask_rule": "geodesic falloff from navel landmark, r = 0.35 x torso_len"
+  },
+  "semantics": "Whole-body adiposity system INCLUDING terminal tissue (Joe, Nov 12, 2026: 'wrists and hands also need fat, not massive amounts but that is realistic'). v5's limb gains stand; v5.1 adds the heavy-hand/foot tells at +1: wrist girth +2.98 cm total (v5 alone +1.85), ankle +3.42 cm total (v5 +2.18), proximal finger mean radial thickness +13.5-16.2% per finger (thumb +14.3%), dorsal hand pad, knuckle relief softened (not erased). Inter-digit minimum distance 2.11 -> 1.01 mm, zero new close pairs, centroid separations preserved -- fingers thicken into their free sectors, contact faces flatten (contact cap).",
+  "symmetry": "bilateral_x"
+}

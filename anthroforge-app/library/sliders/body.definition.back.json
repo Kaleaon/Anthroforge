@@ -1,0 +1,66 @@
+{
+  "group": "body/definition",
+  "id": "body.definition.back",
+  "instances": {
+    "makehuman_hm08": {
+      "file": "anthroforge-v2/bara-proof/body.definition.back.target",
+      "note": "Relief instance authored Nov 12, 2026 (DEFINITION_GEOMETRY.md): HIMBO source transferred at the feature kernel and closed-loop calibrated at the canonical station; composes at the evaluator's effective values (definition is evaluation-stage relief, never stored mass).",
+      "qa": {
+        "attenuation_measured_vs_predicted": {
+          "gachidebu": [
+            0.6725674006778507,
+            0.6725025
+          ],
+          "strongman": [
+            0.7560607754693011,
+            0.75603375
+          ]
+        },
+        "base_verts": 19158,
+        "blender_evaluated": "tissue0 0 flips, strongman 0; the gachidebu render state carries 2 flips from the SHIPPED quantised coupling target alone (present with definition keys at 0; the definition set adds none at 1.0)",
+        "calibration_scale": 0.6982487144610539,
+        "canonical_measure": "back_rms",
+        "feature_depth_mm": 1.5633249156100333,
+        "feature_depth_target_mm": 1.563325897380453,
+        "fold_gate": "0 flips at raw 1.0 over muscle / strongman / gachidebu substrates (raw + macro bases); combined definition set over gachidebu also 0",
+        "moved_verts": 624,
+        "relief_peak_mm": 9.990861645047527
+      },
+      "arrays": {
+        "pack": "anthroforge-app/library/instances/body.definition.back__makehuman_hm08.npz",
+        "linear": "linear"
+      }
+    },
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "qa": {
+        "base_verts": 9346,
+        "diff_verts": 1519,
+        "disp_max_m": 0.019526,
+        "disp_mean_m": 0.003036,
+        "disp_p95_m": 0.014003,
+        "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet"
+      }
+    }
+  },
+  "label": "Back Definition",
+  "provenance": {
+    "licence": "study-only (internal)",
+    "method": "osd decode (learned)",
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - TorsoBackDefinition', decoded in himbo_sliders_full.json"
+  },
+  "range": {
+    "default": 0.0,
+    "endpoint_anchor": "max |delta| = 0.0195 m (1.3674 Skyrim units); mean |delta| 0.0030 m over 1519 moved verts",
+    "max": 1.0,
+    "min": 0.0,
+    "safe_max": 1.0,
+    "units": "normalised"
+  },
+  "region": {
+    "landmarks": [],
+    "mask_rule": "delta field as decoded: 1,519 verts, back-localised (region split not published in the decode)"
+  },
+  "semantics": "Definition family: back separation. Attenuated by back-region tissue (MUSCLE_TISSUE_MODEL.md section 4). The muscle-bear tell from behind (sen_muscle_bear).",
+  "symmetry": "bilateral_x"
+}

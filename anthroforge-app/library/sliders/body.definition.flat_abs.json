@@ -1,0 +1,70 @@
+{
+  "group": "body/definition",
+  "id": "body.definition.flat_abs",
+  "instances": {
+    "makehuman_hm08": {
+      "file": "anthroforge-v2/bara-proof/body.definition.flat_abs.target",
+      "note": "Relief instance authored Nov 12, 2026 (DEFINITION_GEOMETRY.md): HIMBO source transferred at the feature kernel and closed-loop calibrated at the canonical station; composes at the evaluator's effective values (definition is evaluation-stage relief, never stored mass).",
+      "qa": {
+        "attenuation_measured_vs_predicted": {
+          "gachidebu": [
+            0.22970949458143072,
+            0.22968
+          ],
+          "strongman": [
+            0.3377103840757387,
+            0.33768
+          ]
+        },
+        "base_verts": 19158,
+        "blender_evaluated": "tissue0 0 flips, strongman 0; the gachidebu render state carries 2 flips from the SHIPPED quantised coupling target alone (present with definition keys at 0; the definition set adds none at 1.0)",
+        "calibration_scale": 0.9000456500770466,
+        "canonical_measure": "abs",
+        "feature_depth_mm": 2.702333188488313,
+        "feature_depth_target_mm": 2.722980094652597,
+        "fold_gate": "0 flips at raw 1.0 over muscle / strongman / gachidebu substrates (raw + macro bases); combined definition set over gachidebu also 0",
+        "moved_verts": 197,
+        "relief_peak_mm": 5.6651214420356455
+      },
+      "arrays": {
+        "pack": "anthroforge-app/library/instances/body.definition.flat_abs__makehuman_hm08.npz",
+        "linear": "linear"
+      }
+    },
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "qa": {
+        "base_verts": 9346,
+        "diff_verts": 627,
+        "disp_max_m": 0.009011,
+        "disp_mean_m": 0.002192,
+        "disp_p95_m": 0.006475,
+        "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+        "region_disp_share": {
+          "chest": 0.401,
+          "torso": 0.599
+        }
+      }
+    }
+  },
+  "label": "Flat Abs",
+  "provenance": {
+    "licence": "study-only (internal)",
+    "method": "osd decode (learned)",
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - TorsoFlatAbs', decoded in himbo_sliders_full.json"
+  },
+  "range": {
+    "default": 0.0,
+    "endpoint_anchor": "max |delta| = 0.0090 m (0.631 Skyrim units); mean |delta| 0.0022 m over 627 moved verts",
+    "max": 1.0,
+    "min": 0.0,
+    "safe_max": 1.0,
+    "units": "normalised"
+  },
+  "region": {
+    "landmarks": [],
+    "mask_rule": "delta field as decoded: 627 verts; 60% torso / 40% chest displacement"
+  },
+  "semantics": "Definition family: abdominal flattening/separation. Attenuated by abdomen-region tissue alongside the V line.",
+  "symmetry": "bilateral_x"
+}

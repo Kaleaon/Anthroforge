@@ -1,0 +1,25 @@
+{
+ "format": "anthroforge.coupling",
+ "id": "muscle_tissue.power_belly",
+ "kind": "power_belly",
+ "label": "PowerBelly coupling (BARA_LESSONS section 6 E item 2)",
+ "params": {
+  "bare_belly_advisory": 0.6,
+  "bare_belly_muscle_floor": 0.3,
+  "belly_sliders": {
+   "body.belly.pot": 0.5,
+   "body.belly.protrusion": 0.5
+  },
+  "chest_gap_advisory": 0.25,
+  "chest_slider": "body.torso.mass",
+  "muscle_slider": "body.muscle",
+  "tilt_anchor_deg": 3.0
+ },
+ "provenance": {
+  "licence": "build (ours)",
+  "method": "authored coupling record (MUSCLE_TISSUE_MODEL.md)"
+ },
+ "semantics": "One Belly control whose character changes with the Muscle vector, as coupling terms, not a mode switch. core_share = muscle x belly_composite is the share of the belly field the geometry layer routes through the built-core variant (low-sitting, tilt-coupled, chest ring dominant); drape_share = 1 - core_share routes through the v4 fat-drape system. tilt_deg scales the v4 posture shear's pelvic lobe with core_share (anchor: v4's -3.0 deg lobe at full core share). Advisories flag the two failure reads: belly out-sliding chest at lifter muscle levels (check M4 chest:waist >= 1.28 on the mesh), and a big belly with no core under it (the Fat Males read, BARA_LESSONS R18).",
+ "stage": "tissue",
+ "version": 1
+}

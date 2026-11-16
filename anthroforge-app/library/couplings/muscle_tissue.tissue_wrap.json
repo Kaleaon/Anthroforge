@@ -1,0 +1,50 @@
+{
+ "format": "anthroforge.coupling",
+ "id": "muscle_tissue.tissue_wrap",
+ "kind": "tissue_wrap",
+ "label": "Circumferential tissue wrap (front-to-sides)",
+ "params": {
+  "bands": {
+   "chest": {
+    "front": "chest",
+    "side": null
+   },
+   "waist": {
+    "front": "abdomen",
+    "side": "flanks"
+   }
+  },
+  "factor_anchors": [
+   [
+    0.0,
+    0.35
+   ],
+   [
+    0.15,
+    0.45
+   ],
+   [
+    0.5,
+    0.75
+   ],
+   [
+    0.85,
+    1.0
+   ],
+   [
+    1.0,
+    1.0
+   ]
+  ],
+  "floor_ratio": 0.4,
+  "min_front_tissue": 0.3
+ },
+ "provenance": {
+  "anchors_note": "factor anchors are [E] fits over the [S] pattern: FAT_REFERENCE R2's deposition ordering (abdomen loads first, flanks fifth - the sides LAG the front at low levels) closing to a full ring at heavy classes (R6: the clinical pannus definition includes flanks and back; waist:hip converges 0.98-1.02 at class II-III, i.e. the whole ring fills). Prior art that the sides are a real deposition site, not spillover: HIMBO ships a dedicated LoveHandles block (1,071 diff verts, max |delta| 0.0224 m) and the v4 fat build's flank roll (peak at h 0.28, 10.3 cm pinch contrast, GRAVITY_V4 M7b) was delivered by the learned fields' flank mass",
+  "licence": "build (ours)",
+  "method": "authored coupling record (MUSCLE_TISSUE_MODEL.md section 4, circumferential wrap)"
+ },
+ "semantics": "Fat distributes CIRCUMFERENTIALLY: the tissue field is a ring around the torso, not a patch on the front (Joe, Nov 12, 2026: 'fat goes from front to sides as well, the sides dont stay stiff'). Per band, wrap.factor is the side-sector radial gain the geometry layer must deliver as a fraction of the front-sector gain, piecewise in the band's front tissue: the flanks lag at lean levels and the ring closes at heavy ones. The coupling emits wrap.factor.<band> as the kernel calibration target and, where the profile resolves a true side region (waist band: flanks vs abdomen), wrap.ratio.waist from the resolved regional tissue. STIFF SIDES is a defined failure: side/front ratio below floor_ratio while front tissue is at or above min_front_tissue - at the vector layer it raises an advisory (it guards the regional profile); on a mesh it is a build failure, not a warning. The chest band has no side region at the vector layer, so it emits its factor only; its ratio is a geometry-layer measurement.",
+ "stage": "tissue",
+ "version": 1
+}

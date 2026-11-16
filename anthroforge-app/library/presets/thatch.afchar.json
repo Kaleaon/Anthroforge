@@ -1,0 +1,80 @@
+{
+  "format": "anthroforge.character",
+  "version": 1,
+  "id": "chr_preset_thatch",
+  "name": "Thatch",
+  "base": {
+    "body": "af_body_neutral_v1",
+    "head": "af_head_neutral_v2"
+  },
+  "sliders": {
+    "body.himbo.weight_0_to_1": 0.25,
+    "body.chubby": 0.15,
+    "body.muscle": 0.45,
+    "body.himbo.lean": 0.45,
+    "body.torso.mass": 0.45,
+    "body.tissue.mass_smooth": 0.6,
+    "body.himbo.torso_width": 0.75,
+    "body.himbo.torso_back_size": 0.6,
+    "body.himbo.torso_back_shape": 0.7,
+    "body.himbo.torso_back_slope": 0.3,
+    "body.torso.lower": 0.45,
+    "body.himbo.torso_waist_size": 0.35,
+    "body.himbo.torso_belly": 0.3,
+    "body.himbo.torso_belly_chub": 0.2,
+    "body.belly.pot": 0.15,
+    "body.himbo.belly_smooth": 0.65,
+    "body.pecs.size": 0.55,
+    "body.himbo.pecs_mass": 0.4,
+    "body.himbo.pecs_width": 0.7,
+    "body.himbo.pecs_lower": 0.3,
+    "body.himbo.pecs_saggy": 0.1,
+    "body.himbo.pecs_clavicle": 0.45,
+    "body.himbo.arms_traps": 0.3,
+    "body.himbo.arms_traps_meat": 0.2,
+    "body.himbo.arms_traps_push": 0.25,
+    "body.definition.traps_valleys": 0.2,
+    "body.himbo.arms_shoulders": 0.65,
+    "body.arms.delts": 0.55,
+    "body.himbo.arms_biceps": 0.5,
+    "body.himbo.arms_fore": 0.6,
+    "body.himbo.arms_brachio": 0.45,
+    "body.himbo.legs_size": 0.65,
+    "body.himbo.legs_thigh": 0.7,
+    "body.himbo.legs_chubby": 0.15,
+    "body.himbo.legs_glutes": 0.55,
+    "body.himbo.legs_calf_size": 0.7,
+    "body.himbo.legs_calf_width": 0.55,
+    "body.himbo.butt_booty": 0.4,
+    "body.himbo.bubble_butt": 0.2,
+    "body.himbo.butt_saggy": 0.05,
+    "body.neck.mass": 0.3
+  },
+  "species_preset": {
+    "preset_id": "thatch_titan",
+    "species": "owl (great horned owl reference - Joe's confirmation owed)",
+    "export_scale": 0.99,
+    "height_cm": 173,
+    "mass_kg": 70,
+    "qa_gates": {
+      "barrel_check": "chest width / waist width >= 1.15 at Pyn-neighbourhood volume",
+      "M1": "NOT GATED - owl head-into-barrel silhouette is the species read (batch2 doc s.7.1)"
+    },
+    "parts_notes": [
+      "Person file contains NO body facts; every value is the engineering spec's design point or flagged [E] (batch2 doc s.7 header)",
+      "Wings are dorsal articulated PARTS, decorative (spec s.9 Q1: powered flight at 70 kg infeasible); six-limb expression is an open plan question - vector takes no position",
+      "Feathers are the fur system's avian mode; NO owl profile exists in the library - fur is empty by design, no mammal coat substituted",
+      "Hex disc with honey-glow LED is a carried artifact, not body data - excluded"
+    ],
+    "head_sliders": {},
+    "head_scale": "-100..+100 spec values, species-head-spec.md names ",
+    "head_note": "No head vector exists for this species in species-head-spec.md (no equine/avian/serval column); head_sliders is empty BY DESIGN and flagged in presets-titan-batch2.md section 9 - nothing was borrowed from another species."
+  },
+  "parts": [],
+  "fur": {},
+  "materials": {},
+  "identity": {},
+  "provenance": {
+    "source": "anthroforge-v2/presets-titan-batch2.md"
+  }
+}

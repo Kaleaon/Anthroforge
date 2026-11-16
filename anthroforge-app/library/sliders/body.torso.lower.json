@@ -1,0 +1,40 @@
+{
+ "group": "body/torso",
+ "id": "body.torso.lower",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "diff_verts": 3478,
+    "disp_max_m": 0.024871,
+    "disp_mean_m": 0.004577,
+    "disp_p95_m": 0.022398,
+    "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+    "region_disp_share": {
+     "torso": 0.962
+    }
+   }
+  }
+ },
+ "label": "Torso Lower (Enlarge Waist)",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned)",
+  "source": "HIMBO V5 slider backed by .osd block 'HIMBO - TorsoLower', decoded in himbo_sliders_full.json"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "max |delta| = 0.0249 m (1.7417 Skyrim units); mean |delta| 0.0046 m over 3478 moved verts",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "delta field as decoded: 3,478 verts; 96% of displacement in the torso band"
+ },
+ "semantics": "Waist/lower-torso width ('Enlarge Waist'). At the strongman pole this, not Chubby alone, carries waist width: muscle + fat stack (BARA_LESSONS R18).",
+ "symmetry": "bilateral_x"
+}

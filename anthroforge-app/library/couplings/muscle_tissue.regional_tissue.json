@@ -1,0 +1,39 @@
+{
+ "format": "anthroforge.coupling",
+ "id": "muscle_tissue.regional_tissue",
+ "kind": "regional_tissue",
+ "label": "Regional tissue field",
+ "params": {
+  "default_profile": "lifter",
+  "level_from": {
+   "body.belly.pot": 0.2,
+   "body.chubby": 0.55,
+   "body.tissue.mass_smooth": 0.25
+  },
+  "level_slider": "body.tissue.level",
+  "profiles": {
+   "lifter": {
+    "abdomen": 1.0,
+    "back": 0.55,
+    "calf": 0.3,
+    "chest": 0.6,
+    "flanks": 0.65,
+    "foot": 0.15,
+    "forearm": 0.25,
+    "glutes": 0.6,
+    "hand": 0.12,
+    "neck": 0.45,
+    "thigh": 0.8,
+    "upper_arm": 0.7
+   }
+  }
+ },
+ "provenance": {
+  "anchors_note": "profile weights are [E] calibrations of the [S] ordering in FAT_REFERENCE R2 (Keninism distribution chart + android anthropometry). Terminal entries (foot 0.15, hand 0.12) added Nov 12, 2026 per MUSCLE_TISSUE_MODEL.md section 4: small but nonzero by design, measured by the v5.1 geometry from the Fat Males hand/feet deltas (GRAVITY_V5.md v5.1 addendum: wrist girth +2.98 cm total at full tissue, proximal fingers +13.5-15.4% radial thickness); Joe's correction (Nov 12, 2026): 'wrists and hands also need fat, not massive amounts but that is realistic'",
+  "licence": "build (ours)",
+  "method": "authored coupling record (MUSCLE_TISSUE_MODEL.md)"
+ },
+ "semantics": "Tissue is not one global number. tissue(region) = clamp01(level x profile_weight(region) x distribution_tissue_factor(macro(region))). The level is the character's explicit body.tissue.level if set, else a weighted mean of the tissue sliders present. The lifter profile follows the sourced male android ordering (FAT_REFERENCE R2: abdomen first, then thighs, upper arms, chest, flanks, back; forearms/calves carry little; hands/feet carry a small nonzero terminal share).",
+ "stage": "tissue",
+ "version": 1
+}

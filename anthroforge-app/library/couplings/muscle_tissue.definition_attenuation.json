@@ -1,0 +1,167 @@
+{
+ "format": "anthroforge.coupling",
+ "id": "muscle_tissue.definition_attenuation",
+ "kind": "definition_attenuation",
+ "label": "Definition attenuation by regional tissue",
+ "params": {
+  "class_region": {
+   "abdomen": "abdomen",
+   "back": "back",
+   "chest": "chest",
+   "limb_distal": "forearm",
+   "yoke": "neck"
+  },
+  "curves": {
+   "abdomen": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.15,
+     0.98
+    ],
+    [
+     0.35,
+     0.82
+    ],
+    [
+     0.55,
+     0.58
+    ],
+    [
+     0.75,
+     0.38
+    ],
+    [
+     1.0,
+     0.22
+    ]
+   ],
+   "back": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.15,
+     0.99
+    ],
+    [
+     0.35,
+     0.9
+    ],
+    [
+     0.55,
+     0.72
+    ],
+    [
+     0.75,
+     0.52
+    ],
+    [
+     1.0,
+     0.36
+    ]
+   ],
+   "chest": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.15,
+     0.99
+    ],
+    [
+     0.35,
+     0.88
+    ],
+    [
+     0.55,
+     0.68
+    ],
+    [
+     0.75,
+     0.48
+    ],
+    [
+     1.0,
+     0.32
+    ]
+   ],
+   "limb_distal": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.15,
+     1.0
+    ],
+    [
+     0.35,
+     0.95
+    ],
+    [
+     0.55,
+     0.86
+    ],
+    [
+     0.75,
+     0.72
+    ],
+    [
+     1.0,
+     0.58
+    ]
+   ],
+   "yoke": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.15,
+     1.0
+    ],
+    [
+     0.35,
+     0.94
+    ],
+    [
+     0.55,
+     0.82
+    ],
+    [
+     0.75,
+     0.66
+    ],
+    [
+     1.0,
+     0.5
+    ]
+   ]
+  },
+  "muscle_gate": {
+   "floor": 0.5,
+   "full_at": 1.0
+  },
+  "muscle_slider": "body.muscle",
+  "targets": {
+   "body.definition.back": "back",
+   "body.definition.flat_abs": "abdomen",
+   "body.definition.pecs_crease": "chest",
+   "body.definition.traps_valleys": "yoke",
+   "body.definition.vline": "abdomen"
+  }
+ },
+ "provenance": {
+  "anchors_note": "curve anchors are [E] fits to the [S] body-fat bands in BARA_LESSONS section 1/section 5 M10 (BB <10%, strongman 15-25%, gachidebu ~30%) mapped through the regional-tissue profile; first geometry builds should tighten them",
+  "licence": "build (ours)",
+  "method": "authored coupling record (MUSCLE_TISSUE_MODEL.md)"
+ },
+ "semantics": "effective_definition = raw x A(region tissue) x G(muscle). A is a per-region-class piecewise-linear curve fitted to the reference pattern: bodybuilder (<10% fat) full definition; strongman (15-25%) valleys soften but mass reads; gachidebu definition mostly submerged EXCEPT the largest forms (yoke curve stays highest). Abdomen submerges fastest; forearms/calves (limb_distal) keep definition longest. G is the muscle gate: definition over no muscle reads at the floor, not zero (lean untrained bodies do show separation).",
+ "stage": "tissue",
+ "version": 1
+}

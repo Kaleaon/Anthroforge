@@ -1,0 +1,43 @@
+{
+ "group": "body/torso",
+ "id": "body.torso.mass",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "diff_verts": 5426,
+    "disp_max_m": 0.011959,
+    "disp_mean_m": 0.005069,
+    "disp_p95_m": 0.009605,
+    "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+    "region_disp_share": {
+     "arms": 0.247,
+     "chest": 0.528,
+     "neck": 0.127,
+     "torso": 0.099
+    }
+   }
+  }
+ },
+ "label": "Torso Mass",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned)",
+  "source": "HIMBO V5 slider backed by .osd block 'HIMBO - TorsoMass', decoded in himbo_sliders_full.json"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "max |delta| = 0.0120 m (0.8375 Skyrim units); mean |delta| 0.0051 m over 5426 moved verts",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "delta field as decoded: 5,426 verts; chest 53% of displacement"
+ },
+ "semantics": "Torso barrel mass, chest-led. Read by the PowerBelly coupling as the chest-ring proxy for the chest-dominance advisory (BARA_LESSONS M4).",
+ "symmetry": "bilateral_x"
+}

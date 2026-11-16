@@ -1,0 +1,488 @@
+{
+  "extensions": {
+    "acceptance": {
+      "gate": "Measure on the neutral-pose exported mesh at value 1.0 (HIMBO big-end 100) with the traps family pinned (ArmsTrapsMeat 100, ArmsTrapsPush 90+). All three must pass; a miss is build data, not a spec edit.",
+      "m1_neck_head": "M1 neck width / head width (front span at jaw level / bizygomatic span) >= 1.05 (BARA_LESSONS section 5; bara target band 1.05-1.20). Corrective if low: raise this slider, then ArmsTrapsMeat / Weight (A3 wiring).",
+      "m7_visible_neck": "M7 visible neck length / head height (chin to trap line, front view) <= 0.25 (strongman band 0.15-0.25).",
+      "scm_groove": "The front sternocleidomastoid V-groove must still read in the front render at full value (BARA_LESSONS R8): a thick neck must stay a neck, not become a column of trap. If the groove is gone, the field is too wide - narrow it medially (front-centre exclusion in the mask) and re-test."
+    },
+    "build_spec": {
+      "field_construction": "Blend of two decoded HIMBO fields on the source base: (1) the neck-region vertex subset of the 'HIMBO - BodyWeight 0 to 1' block (7,797 diff verts; 46% of its displacement is neck-region [S]) as the primary mass field, (2) the 'HIMBO - BodyArmsTrapsMeat' block (480 diff verts, 100% neck/trap region, max 0.641 units) as the trap-cone reinforcement. Restrict both to the region mask before blending; weight the trap component higher laterally (outer clavicle), the Weight component higher at the neck column.",
+      "status": "RECORD ONLY (authored Nov 12, 2026, per BARA_LESSONS section 6 A2). No instance geometry exists yet; the geometry proof is a separate build. Until an instance lands, presets use the interim recipe: Weight high + ArmsTrapsMeat pinned (the recipe Sen's vector in presets-titan-batch1.md section 4.2 already satisfies).",
+      "trap_clavicle_budget": "R6: the visible neck cone is trapezius wrapping to the OUTER two-thirds of the clavicle run; the inner third is true neck. The mask weights the band accordingly - trap mass over the outer 2/3 of the sternum-to-acromion line, neck column over the inner 1/3 - so the front silhouette reads head -> sloping trap cone -> shoulders, never head -> vertical neck sides -> shoulders.",
+      "yoke_first_rule": "R4/R5 (BARA_LESSONS section 2): the traps+neck cluster is the primary size signal and is set FIRST among muscle sliders on any bara build, pinned near max at the strongman pole. Floor: neck front width at jaw level must never fall below the jaw (bi-angular) width - 'no lollipop'. The field must not be authored so that any bara preset value produces neck < jaw."
+    },
+    "preset_calls": {
+      "note": "Values in this record's normalised units (1.0 = HIMBO big-end 100). orc_bara_strongman calls NeckMass 90 per BARA_LESSONS section 6 B (interim recipe already satisfied by Weight 85 + ArmsTrapsMeat 100, so no interim preset change). Other bara vectors set it when their build runs the A3 QA gates.",
+      "orc_bara_strongman": 0.9
+    }
+  },
+  "group": "body/neck",
+  "id": "body.neck.mass",
+  "instances": {
+    "makehuman_hm08": {
+      "file": "anthroforge-v2/bara-proof/body.neck.mass.target",
+      "note": "Authored yoke field (traps + SCM + neck cylinder) built to this record's acceptance gate after the bara proof found the source-field neck capped (neck girth only 32.2 -> 36.4 cm) — later traced to a dropped NeckMass block in build_bara.py and fixed at the source (the composed build now reads 43.0 cm; see anthroforge-v2/bara-proof/FIX_NECK_FIELD.md). This field remains the fine-control yoke slider. QA: bara-proof/work/qa_numbers_neck_forearm.json.",
+      "qa": {
+        "fold_gate": "0 flipped faces at +1 (slope limiter KAPPA=0.55 + surgical attenuation repair; solo on raw AND macro base, over the muscle system, and in the full composition)",
+        "flips": {
+          "neck_solo": {
+            "raw": 0,
+            "macro": 0
+          },
+          "forearm_solo": {
+            "raw": 0,
+            "macro": 0
+          },
+          "muscle_system": {
+            "raw": 0,
+            "macro": 0
+          },
+          "muscle_plus_neck": {
+            "raw": 0,
+            "macro": 0
+          },
+          "full_plus_neck": {
+            "raw": 0,
+            "macro": 0
+          },
+          "full_plus_neck_forearm": {
+            "raw": 0,
+            "macro": 0
+          }
+        },
+        "acceptance_gate": {
+          "context": "value 1.0 over body.muscle + body.chest.width (traps family pinned in the shipped muscle vector), macro base",
+          "m1_record": {
+            "value": 0.763,
+            "required": ">= 1.05",
+            "status": "miss"
+          },
+          "m7_visible_neck": {
+            "value": 0.24,
+            "required": "<= 0.25 (strongman band 0.15-0.25)",
+            "status": "PASS"
+          },
+          "scm_groove": {
+            "differential_growth_mm": 1.57,
+            "surface_depths_mm": {
+              "base": {
+                "z+0.020": -7.72,
+                "z+0.040": -12.1,
+                "z+0.058": -13.4
+              },
+              "muscle_system": {
+                "z+0.020": -7.38,
+                "z+0.040": -7.59,
+                "z+0.058": -13.02
+              },
+              "muscle_plus_neck": {
+                "z+0.020": -8.28,
+                "z+0.040": -9.29,
+                "z+0.058": -7.45
+              },
+              "full_strongman_shipped": {
+                "z+0.020": -7.69,
+                "z+0.040": -7.71,
+                "z+0.058": -12.94
+              },
+              "full_plus_neck": {
+                "z+0.020": -8.59,
+                "z+0.040": -9.45,
+                "z+0.058": -7.5
+              },
+              "full_plus_neck_forearm": {
+                "z+0.020": -8.59,
+                "z+0.040": -9.45,
+                "z+0.058": -7.5
+              },
+              "neck_solo": {
+                "z+0.020": -8.54,
+                "z+0.040": -8.06,
+                "z+0.058": -6.25
+              },
+              "forearm_solo": {
+                "z+0.020": -7.72,
+                "z+0.040": -12.1,
+                "z+0.058": -13.4
+              }
+            },
+            "note": "construction differential (SCM strip growth minus front-centre growth) + surface probe; visual read in renders/neck_forearm_*_front.png"
+          },
+          "r5_floor": {
+            "neck_width_m": 0.23304646835072823,
+            "jaw_width_m": 0.09459076746827264,
+            "status": "PASS"
+          }
+        },
+        "scorecard_full_composition": [
+          {
+            "metric": "M1 neck width / head width (scorecard)",
+            "value": 1.266,
+            "band": [
+              0.68,
+              9.0
+            ],
+            "status": "PASS",
+            "note": "scorecard read at the neck station"
+          },
+          {
+            "metric": "M1 record gate (jaw-level span / bizygomatic)",
+            "value": 0.763,
+            "band": [
+              1.05,
+              9.0
+            ],
+            "status": "miss",
+            "note": "body.neck.mass acceptance gate, muscle system context"
+          },
+          {
+            "metric": "M2 neck/arm (Reeves 1.00)",
+            "value": 1.246,
+            "band": [
+              0.92,
+              1.05
+            ],
+            "status": "miss",
+            "note": ""
+          },
+          {
+            "metric": "M2 neck/calf",
+            "value": 1.146,
+            "band": [
+              0.9,
+              1.08
+            ],
+            "status": "miss",
+            "note": ""
+          },
+          {
+            "metric": "M3 forearm/arm",
+            "value": 0.84,
+            "band": [
+              0.8,
+              0.88
+            ],
+            "status": "PASS",
+            "note": "bara band [E]; wolf cross-check 0.834"
+          },
+          {
+            "metric": "M6 trap slope deg",
+            "value": 35.688,
+            "band": [
+              28.0,
+              50.0
+            ],
+            "status": "PASS",
+            "note": ""
+          },
+          {
+            "metric": "M7 visible neck/head",
+            "value": 0.235,
+            "band": [
+              0.12,
+              0.38
+            ],
+            "status": "PASS",
+            "note": "record gate <= 0.25 measured in the muscle context: 0.240"
+          }
+        ],
+        "grades": {
+          "base": {
+            "height_m": 1.66589,
+            "volume_L": 51.20762882595758,
+            "neck_g": 0.32162344675035254,
+            "neck_w": 0.09989377158594412,
+            "head_w": 0.15759673707069566,
+            "head_h": 0.2186579559748426,
+            "chin_z": 0.6304720440251574,
+            "jaw_z": 0.6504720440251575,
+            "chest_g": 1.0824358440562145,
+            "chest_w": 0.46730567637328724,
+            "waist_w": 0.24057537221520575,
+            "waist_g": 0.6960722481925224,
+            "chest_d": 0.18070966737184213,
+            "waist_d": 0.17843222813895854,
+            "delt_span": 0.5566803317072783,
+            "trap_angle": 34.479849739536164,
+            "visible_neck": 0.05197079877204247,
+            "ua_g": 0.2732070224362752,
+            "fa_g": 0.2258958003534433,
+            "thigh_g": 0.4759690531379843,
+            "calf_g": 0.3403786191090661,
+            "M1_neckW_headW": 0.6338568516246196,
+            "M2_neck_arm": 1.1772151531184392,
+            "M2_neck_calf": 0.9448990879397631,
+            "M3_fa_arm": 0.8268301390610591,
+            "M4_chest_waist": 1.555062490807463,
+            "M6_trap_deg": 34.479849739536164,
+            "M7_vis_neck_ratio": 0.23768080397688296,
+            "M8_span_headW": 3.532308739727012,
+            "M11_thigh_waist": 0.6837926010897922
+          },
+          "muscle_system": {
+            "height_m": 1.6676795118707264,
+            "volume_L": 78.31738580710129,
+            "neck_g": 0.3597865506279148,
+            "neck_w": 0.11075695264574245,
+            "head_w": 0.15759673707069566,
+            "head_h": 0.22665795597484262,
+            "chin_z": 0.6224720440251574,
+            "jaw_z": 0.6424720440251575,
+            "chest_g": 1.2914539202198025,
+            "chest_w": 0.5477320725222901,
+            "waist_w": 0.3008061753032969,
+            "waist_g": 0.8487299441326634,
+            "chest_d": 0.23356231778224962,
+            "waist_d": 0.20744713128767533,
+            "delt_span": 0.6865516721731312,
+            "trap_angle": 31.356693231349766,
+            "visible_neck": 0.03807212935508408,
+            "ua_g": 0.49424352405103955,
+            "fa_g": 0.33504396112591367,
+            "thigh_g": 0.6446044423585624,
+            "calf_g": 0.4672805286981445,
+            "M1_neckW_headW": 0.7027870925783093,
+            "M2_neck_arm": 0.727954000649203,
+            "M2_neck_calf": 0.7699583623359813,
+            "M3_fa_arm": 0.677892465600246,
+            "M4_chest_waist": 1.5216311491631993,
+            "M6_trap_deg": 31.356693231349766,
+            "M7_vis_neck_ratio": 0.16797173164003038,
+            "M8_span_headW": 4.356382530084705,
+            "M11_thigh_waist": 0.759492989277406
+          },
+          "muscle_plus_neck": {
+            "height_m": 1.6676795118707264,
+            "volume_L": 79.9210275662526,
+            "neck_g": 0.642377858914769,
+            "neck_w": 0.23304646835072823,
+            "head_w": 0.18369505127211266,
+            "head_h": 0.19065795597484259,
+            "chin_z": 0.6584720440251575,
+            "jaw_z": 0.6784720440251575,
+            "chest_g": 1.2914539202198025,
+            "chest_w": 0.5477320725222901,
+            "waist_w": 0.3008061753032969,
+            "waist_g": 0.8487299441326634,
+            "chest_d": 0.23356231778224962,
+            "waist_d": 0.20744713128767533,
+            "delt_span": 0.6865516721731312,
+            "trap_angle": 36.429753672389474,
+            "visible_neck": 0.045765142406619774,
+            "ua_g": 0.49424352405103955,
+            "fa_g": 0.33504396112591367,
+            "thigh_g": 0.6446044423585624,
+            "calf_g": 0.4672805286981445,
+            "M1_neckW_headW": 1.2686594806819804,
+            "M2_neck_arm": 1.2997193238862383,
+            "M2_neck_calf": 1.3747156567906864,
+            "M3_fa_arm": 0.677892465600246,
+            "M4_chest_waist": 1.5216311491631993,
+            "M6_trap_deg": 36.429753672389474,
+            "M7_vis_neck_ratio": 0.2400379369044453,
+            "M8_span_headW": 3.7374532815046977,
+            "M11_thigh_waist": 0.759492989277406
+          },
+          "full_strongman_shipped": {
+            "height_m": 1.668256432161975,
+            "volume_L": 98.67816344014669,
+            "neck_g": 0.36437617567420105,
+            "neck_w": 0.11210805972386338,
+            "head_w": 0.15759673707069566,
+            "head_h": 0.22665795597484262,
+            "chin_z": 0.6224720440251574,
+            "jaw_z": 0.6424720440251575,
+            "chest_g": 1.3355816029503378,
+            "chest_w": 0.5601241997207534,
+            "waist_w": 0.35379149549040256,
+            "waist_g": 1.026368073045277,
+            "chest_d": 0.2462822141692001,
+            "waist_d": 0.2624837849784126,
+            "delt_span": 0.7105032420155282,
+            "trap_angle": 32.881156848176595,
+            "visible_neck": 0.03817123180804838,
+            "ua_g": 0.5293293517075504,
+            "fa_g": 0.36538976991031646,
+            "thigh_g": 0.7594568526175876,
+            "calf_g": 0.5757000127864116,
+            "M1_neckW_headW": 0.7113602845316099,
+            "M2_neck_arm": 0.688373267982909,
+            "M2_neck_calf": 0.6329271627259577,
+            "M3_fa_arm": 0.690288132958459,
+            "M4_chest_waist": 1.301269630287321,
+            "M6_trap_deg": 32.881156848176595,
+            "M7_vis_neck_ratio": 0.16840896514695963,
+            "M8_span_headW": 4.50836264266567,
+            "M11_thigh_waist": 0.739945904946407
+          },
+          "full_plus_neck": {
+            "height_m": 1.668256432161975,
+            "volume_L": 100.42274496923609,
+            "neck_g": 0.6595432519125269,
+            "neck_w": 0.23642224114160473,
+            "head_w": 0.18667737180287458,
+            "head_h": 0.18665795597484258,
+            "chin_z": 0.6624720440251575,
+            "jaw_z": 0.6824720440251575,
+            "chest_g": 1.3355816029503382,
+            "chest_w": 0.5601241997207536,
+            "waist_w": 0.35379149549040256,
+            "waist_g": 1.026368073045277,
+            "chest_d": 0.24628221416920004,
+            "waist_d": 0.2624837849784126,
+            "delt_span": 0.7105032420155282,
+            "trap_angle": 35.68796048736517,
+            "visible_neck": 0.043825260004438094,
+            "ua_g": 0.5293293517075504,
+            "fa_g": 0.3653897699103166,
+            "thigh_g": 0.7594568526175876,
+            "calf_g": 0.5757000127864116,
+            "M1_neckW_headW": 1.2664750893925116,
+            "M2_neck_arm": 1.2459978835198215,
+            "M2_neck_calf": 1.145637028424423,
+            "M3_fa_arm": 0.6902881329584593,
+            "M4_chest_waist": 1.3012696302873215,
+            "M6_trap_deg": 35.68796048736517,
+            "M7_vis_neck_ratio": 0.23478913489412034,
+            "M8_span_headW": 3.806049095044027,
+            "M11_thigh_waist": 0.739945904946407
+          },
+          "full_plus_neck_forearm": {
+            "height_m": 1.668256432161975,
+            "volume_L": 102.28801390094976,
+            "neck_g": 0.6595432519125269,
+            "neck_w": 0.23642224114160473,
+            "head_w": 0.18667737180287458,
+            "head_h": 0.18665795597484258,
+            "chin_z": 0.6624720440251575,
+            "jaw_z": 0.6824720440251575,
+            "chest_g": 1.3355816029503382,
+            "chest_w": 0.5601241997207536,
+            "waist_w": 0.35379149549040256,
+            "waist_g": 1.026368073045277,
+            "chest_d": 0.24628221416920004,
+            "waist_d": 0.2624837849784126,
+            "delt_span": 0.7105032420155282,
+            "trap_angle": 35.68796048736517,
+            "visible_neck": 0.043825260004438094,
+            "ua_g": 0.5293293517075504,
+            "fa_g": 0.4446243918711028,
+            "thigh_g": 0.7594568526175876,
+            "calf_g": 0.5757000127864116,
+            "M1_neckW_headW": 1.2664750893925116,
+            "M2_neck_arm": 1.2459978835198215,
+            "M2_neck_calf": 1.145637028424423,
+            "M3_fa_arm": 0.8399768318851015,
+            "M4_chest_waist": 1.3012696302873215,
+            "M6_trap_deg": 35.68796048736517,
+            "M7_vis_neck_ratio": 0.23478913489412034,
+            "M8_span_headW": 3.806049095044027,
+            "M11_thigh_waist": 0.739945904946407
+          },
+          "neck_solo": {
+            "height_m": 1.66589,
+            "volume_L": 52.50562806428083,
+            "neck_g": 0.5485261040846899,
+            "neck_w": 0.19634529165721606,
+            "head_w": 0.15759673707069566,
+            "head_h": 0.2066579559748426,
+            "chin_z": 0.6424720440251575,
+            "jaw_z": 0.6624720440251575,
+            "chest_g": 1.0824358440562145,
+            "chest_w": 0.46730567637328724,
+            "waist_w": 0.24057537221520575,
+            "waist_g": 0.6960722481925224,
+            "chest_d": 0.18070966737184213,
+            "waist_d": 0.17843222813895854,
+            "delt_span": 0.5566803317072783,
+            "trap_angle": 43.125821137132924,
+            "visible_neck": 0.05455586974763993,
+            "ua_g": 0.2732070224362752,
+            "fa_g": 0.2258958003534433,
+            "thigh_g": 0.4759690531379843,
+            "calf_g": 0.3403786191090661,
+            "M1_neckW_headW": 1.2458715536041736,
+            "M2_neck_arm": 2.007730618317588,
+            "M2_neck_calf": 1.6115175081221187,
+            "M3_fa_arm": 0.8268301390610591,
+            "M4_chest_waist": 1.555062490807463,
+            "M6_trap_deg": 43.125821137132924,
+            "M7_vis_neck_ratio": 0.2639911417409028,
+            "M8_span_headW": 3.532308739727012,
+            "M11_thigh_waist": 0.6837926010897922
+          },
+          "forearm_solo": {
+            "height_m": 1.66589,
+            "volume_L": 52.47488376335368,
+            "neck_g": 0.32162344675035254,
+            "neck_w": 0.09989377158594412,
+            "head_w": 0.15759673707069566,
+            "head_h": 0.2186579559748426,
+            "chin_z": 0.6304720440251574,
+            "jaw_z": 0.6504720440251575,
+            "chest_g": 1.0824358440562145,
+            "chest_w": 0.46730567637328724,
+            "waist_w": 0.24057537221520575,
+            "waist_g": 0.6960722481925224,
+            "chest_d": 0.18070966737184213,
+            "waist_d": 0.17843222813895854,
+            "delt_span": 0.5566803317072783,
+            "trap_angle": 34.479849739536164,
+            "visible_neck": 0.05197079877204247,
+            "ua_g": 0.2732070224362752,
+            "fa_g": 0.3158343747077049,
+            "thigh_g": 0.4759690531379843,
+            "calf_g": 0.3403786191090661,
+            "M1_neckW_headW": 0.6338568516246196,
+            "M2_neck_arm": 1.1772151531184392,
+            "M2_neck_calf": 0.9448990879397631,
+            "M3_fa_arm": 1.1560258293923336,
+            "M4_chest_waist": 1.555062490807463,
+            "M6_trap_deg": 34.479849739536164,
+            "M7_vis_neck_ratio": 0.23768080397688296,
+            "M8_span_headW": 3.532308739727012,
+            "M11_thigh_waist": 0.6837926010897922
+          }
+        },
+        "moved_verts": 1179,
+        "max_disp_m": 0.08985223720451287,
+        "attenuation": {
+          "min": 1.0,
+          "verts": 0
+        }
+      },
+      "arrays": {
+        "pack": "anthroforge-app/library/instances/body.neck.mass__makehuman_hm08.npz",
+        "linear": "linear"
+      }
+    }
+  },
+  "label": "Neck mass (yoke)",
+  "provenance": {
+    "licence": "study-only (internal)",
+    "method": "osd decode (learned) - field blend spec, no instance built yet",
+    "source": "HIMBO V5 decoded blocks 'HIMBO - BodyWeight 0 to 1' (neck-region subset) + 'HIMBO - BodyArmsTrapsMeat', himbo_sliders_full.json; requirement and acceptance metrics from anthroforge-v2/BARA_LESSONS.md section 6 A2 (rules R4-R8, scorecard M1/M7)"
+  },
+  "range": {
+    "default": 0.0,
+    "endpoint_anchor": "at 1.0 the blended field is at full HIMBO big-end strength: Weight block max |delta| = 1.911 Skyrim units = 0.0273 m (mean 0.258 u over 7,797 verts, 46% of displacement in the neck region); TrapsMeat block max |delta| = 0.641 u = 0.00915 m over 480 verts, 100% neck/trap region",
+    "max": 1.0,
+    "min": 0.0,
+    "safe_max": 1.0,
+    "units": "normalised"
+  },
+  "region": {
+    "landmarks": [
+      "jaw_angle_l",
+      "jaw_angle_r",
+      "sternum_top",
+      "clavicle_l",
+      "clavicle_r",
+      "c7"
+    ],
+    "mask_rule": "neck column + trapezius cone band (skull base / jaw angle -> outer clavicle -> C7), geodesic falloff at the band edges; front-centre SCM strip excluded from full weight so the sternocleidomastoid V-groove survives (R8); clavicle run weighted outer 2/3 trap / inner 1/3 neck (R6)"
+  },
+  "semantics": "One-pole slider: at 1.0 the neck and trapezius cone carry full bara yoke mass - the neck meets or exceeds jaw width (no lollipop), the visible neck shortens as the traps rise to meet it, and the head reads as set INTO the shoulders rather than on top of them; 0 = base neck. This is the muscle-vector slider the HIMBO vocabulary was missing (its neck mass is smeared across the Weight block); poles never change it to change character - tissue sliders do that (two-vector rule, BARA_LESSONS A1/R16).",
+  "symmetry": "bilateral_x"
+}

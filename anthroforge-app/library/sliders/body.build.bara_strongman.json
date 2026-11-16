@@ -1,0 +1,32 @@
+{
+  "id": "body.build.bara_strongman",
+  "label": "Bara strongman — combined build",
+  "group": "body/build",
+  "semantics": "The full strongman composition (body.build.muscle + body.build.chest_width + body.build.tissue_strongman, all at +1) summed into one field — verified equal to the component sum (max deviation 0.020 cm). Scorecard: M4 chest:waist 1.303, M13 chest width x1.199, volume +94.2%. Honest misses: M2 neck ratios and M3 forearm ratio are vocabulary-capped by the HIMBO source fields (see body.neck.mass / body.forearm.mass for the authored correctives).",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "+1 = the BARA_PROOF.md combined build, measured on hm08"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "makehuman_hm08": {
+      "file": "anthroforge-v2/bara-proof/body.bara.strongman.target",
+      "qa": {
+        "flips_at_+1": 0,
+        "combined_vs_components_max_dev_cm": 0.02
+      },
+      "arrays": {
+        "pack": "anthroforge-app/library/instances/body.build.bara_strongman__makehuman_hm08.npz",
+        "linear": "linear"
+      },
+      "note": ""
+    }
+  },
+  "provenance": {
+    "source": "anthroforge-v2/bara-proof/BARA_PROOF.md",
+    "licence": "study-only (internal)"
+  }
+}

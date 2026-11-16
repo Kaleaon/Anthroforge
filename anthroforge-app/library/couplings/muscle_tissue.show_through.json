@@ -1,0 +1,23 @@
+{
+ "format": "anthroforge.coupling",
+ "id": "muscle_tissue.show_through",
+ "kind": "show_through",
+ "label": "Muscle show-through under tissue",
+ "params": {
+  "factor": 0.15,
+  "targets": {
+   "body.arms.delts": "upper_arm",
+   "body.neck.mass": "neck",
+   "body.pecs.size": "chest",
+   "body.torso.mass": "chest"
+  }
+ },
+ "provenance": {
+  "anchors_note": "factor 0.15 is [E]: sized so a pinned form at strongman tissue (~0.5 regional) gains ~7%, visible in the surface but never a second slider's worth",
+  "licence": "build (ours)",
+  "method": "authored coupling record (MUSCLE_TISSUE_MODEL.md)"
+ },
+ "semantics": "The largest muscle forms displace the tissue surface above them. At the vector layer: effective = raw x (1 + factor x tissue(region)) for the top forms only (yoke/neck mass, pecs, delts, torso mass), evaluated at the tissue stage - which is exactly 'tissue sampled over the muscled shape' expressed in slider terms. The registry clamp still applies, so a pinned slider stays pinned and the excess surfaces as a warning, not a silent overflow.",
+ "stage": "tissue",
+ "version": 1
+}

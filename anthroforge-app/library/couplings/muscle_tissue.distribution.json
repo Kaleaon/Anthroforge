@@ -1,0 +1,91 @@
+{
+ "format": "anthroforge.coupling",
+ "id": "muscle_tissue.distribution",
+ "kind": "mass_distribution",
+ "label": "Mass distribution axis (pear <-> big-chest)",
+ "params": {
+  "anchors": [
+   {
+    "archetype": "pear",
+    "at": -1.0,
+    "weights": {
+     "chest": 0.55,
+     "hips_glutes": 1.45,
+     "thighs": 1.4,
+     "waist": 0.85
+    }
+   },
+   {
+    "archetype": "hourglass",
+    "at": -0.35,
+    "weights": {
+     "chest": 1.15,
+     "hips_glutes": 1.2,
+     "thighs": 1.05,
+     "waist": 0.7
+    }
+   },
+   {
+    "archetype": "rectangle",
+    "at": 0.0,
+    "weights": {
+     "chest": 1.0,
+     "hips_glutes": 1.0,
+     "thighs": 1.0,
+     "waist": 1.0
+    }
+   },
+   {
+    "archetype": "apple",
+    "at": 0.45,
+    "weights": {
+     "chest": 0.95,
+     "hips_glutes": 0.8,
+     "thighs": 0.85,
+     "waist": 1.45
+    }
+   },
+   {
+    "archetype": "inverted_triangle",
+    "at": 1.0,
+    "weights": {
+     "chest": 1.45,
+     "hips_glutes": 0.6,
+     "thighs": 0.7,
+     "waist": 0.85
+    }
+   }
+  ],
+  "driver": "body.distribution",
+  "macro_regions": [
+   "chest",
+   "waist",
+   "hips_glutes",
+   "thighs"
+  ],
+  "region_to_macro": {
+   "abdomen": "waist",
+   "back": "chest",
+   "calf": "thighs",
+   "chest": "chest",
+   "flanks": "waist",
+   "foot": "thighs",
+   "forearm": "chest",
+   "glutes": "hips_glutes",
+   "hand": "chest",
+   "neck": "chest",
+   "thigh": "thighs",
+   "upper_arm": "chest"
+  },
+  "strength_muscle": 0.6,
+  "strength_tissue": 1.0
+ },
+ "provenance": {
+  "anchors_note": "weight multipliers are [E] calibrations chosen to drive the sourced girth-ratio bands in MUSCLE_TISSUE_MODEL.md section 3 (gynoid WHR ~0.70, android WHR >= 0.95); they are tuning values, not measurements",
+  "licence": "build (ours)",
+  "method": "authored coupling record (MUSCLE_TISSUE_MODEL.md)"
+ },
+ "semantics": "One control, body.distribution in [-1, +1], steering both vectors. Piecewise-linear weight multipliers over four macro regions, anchored at the five archetypes. Tissue placement takes the factors at full strength (strength_tissue); muscle deposition at reduced strength (strength_muscle) because muscle distribution is partly frame. Factors are emitted as derived values; the regional-tissue coupling consumes the tissue factors, the geometry layer consumes both.",
+ "stage": "distribution",
+ "version": 1
+}

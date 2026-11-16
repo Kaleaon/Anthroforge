@@ -1,0 +1,36 @@
+{
+  "format": "anthroforge.base",
+  "version": 1,
+  "id": "makehuman_hm08",
+  "label": "MakeHuman hm08 \u2014 default macro (gender 0.5)",
+  "package": "makehuman_hm08.npz",
+  "topology": {
+    "verts": 19158,
+    "body_verts": 13380,
+    "triangles": 36972,
+    "vertex_order": "MPFB base.obj order; .target instances index this order",
+    "frame": "frame 1 (base.obj canonical): (x, z_obj, y_obj) x 0.1 m, metres, up = +axis2 in stored array order [width, depth, height] as written by the proof builders (pos = [obj.x, obj.z, obj.y])"
+  },
+  "macro": "MPFB get_default_macro_info_dict(): gender 0.5, age/muscle/weight/proportions/height/cupsize/firmness 0.5, race thirds. The base every v1-v5.2 belly, bara, definition and coupling proof was validated on.",
+  "provenance": {
+    "source": "MPFB2 2.0.18 base.obj + evaluated macro dump (anthroforge-v2/first-proof/work/mh_macro_base.npz), aligned to frame 1 per anthroforge-v2/masculine-base/MASCULINE_BASE.md",
+    "licence": "CC0 (MakeHuman system assets via MPFB2)"
+  },
+  "alignment": {
+    "offset_m": [
+      0.0,
+      0.006542248462587595,
+      0.8167600113213901
+    ],
+    "residual_cm": {
+      "p50_cm": 3.2174982346993146,
+      "p95_cm": 5.8330454209240346,
+      "max_cm": 6.174720788804254
+    },
+    "cross_check": "documented feminine residual p50 3.2 cm / max 6.2 cm (MASCULINE_BASE.md) \u2014 reproduced by this build"
+  },
+  "aliases": [
+    "af_body_neutral_v1"
+  ],
+  "alias_note": "af_body_neutral_v1 is the blueprint \u00a73.1 default body id in character records; it denotes this package until a bespoke AnthroForge base replaces hm08."
+}

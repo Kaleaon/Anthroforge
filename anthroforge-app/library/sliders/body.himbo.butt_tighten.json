@@ -1,0 +1,30 @@
+{
+  "id": "body.himbo.butt_tighten",
+  "label": "Tighten Butt",
+  "group": "body/himbo/buttocks",
+  "semantics": "HIMBO V5 slider 'ButtTighten' (block 'HIMBO - BodyButtTighten'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built.",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.028 m on the Skyrim HIMBO base (509 diff verts)"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyButtTighten",
+      "qa": {
+        "diff_verts": 509,
+        "disp_max_m": 0.027974233434938187,
+        "disp_mean_m": 0.006356966349616863
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyButtTighten', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

@@ -1,0 +1,26 @@
+{
+ "group": "body/distribution",
+ "id": "body.distribution",
+ "instances": {},
+ "label": "Mass Distribution (pear <-> big-chest)",
+ "provenance": {
+  "licence": "build (ours)",
+  "method": "authored driver record (MUSCLE_TISSUE_MODEL.md)",
+  "source": "AnthroForge preset-layer driver: no mesh instance; consumed by coupling records in library/couplings/"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "archetype anchors: pear -1.0, hourglass -0.35, rectangle 0.0, apple +0.45, inverted-triangle +1.0 (MUSCLE_TISSUE_MODEL.md section 3)",
+  "max": 1.0,
+  "min": -1.0,
+  "safe_max": 1.0,
+  "safe_min": -1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "no vertex region: preset-layer driver, not a mesh morph"
+ },
+ "semantics": "First-class distribution axis (MUSCLE_TISSUE_MODEL.md section 3): -1 = pear (hips/glutes/thighs dominant), 0 = rectangle/balanced, +1 = inverted triangle / big-chest (chest/shoulders dominant, hips narrow). Hourglass and apple are intermediate archetype points (-0.35 / +0.45). Steers BOTH vectors: tissue placement at full strength, muscle deposition at 0.6 strength.",
+ "symmetry": null
+}

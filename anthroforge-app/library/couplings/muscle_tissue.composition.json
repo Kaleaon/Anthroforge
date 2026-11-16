@@ -1,0 +1,27 @@
+{
+ "format": "anthroforge.coupling",
+ "id": "muscle_tissue.composition",
+ "kind": "composition_order",
+ "label": "Composition order (engine doctrine)",
+ "params": {
+  "evaluation_stages": [
+   "authoring",
+   "distribution",
+   "muscle",
+   "tissue"
+  ],
+  "field_order": [
+   "base",
+   "muscle_field",
+   "tissue_field",
+   "gravity_drape"
+  ]
+ },
+ "provenance": {
+  "licence": "build (ours)",
+  "method": "authored coupling record (MUSCLE_TISSUE_MODEL.md)"
+ },
+ "semantics": "Fields compose in a fixed order: base -> muscle field -> tissue field -> gravity/drape acting on the tissue over the MUSCLED shape. Fat drapes over whatever is under it; a power belly hangs from a built core. The vector-layer evaluation mirrors this: authoring (dial fills) -> distribution factors -> muscle (passes through untouched) -> tissue (regional tissue, attenuation, show-through, power-belly terms). Gravity itself is geometry-stage; its parameters (mobility, core share, tilt) are derived at the tissue stage.",
+ "stage": "meta",
+ "version": 1
+}

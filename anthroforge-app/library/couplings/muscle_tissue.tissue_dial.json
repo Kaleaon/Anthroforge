@@ -1,0 +1,47 @@
+{
+ "format": "anthroforge.coupling",
+ "id": "muscle_tissue.tissue_dial",
+ "kind": "dial_expand",
+ "label": "TissueDefinition master dial (BARA_LESSONS A5)",
+ "params": {
+  "driver": "body.definition.dial",
+  "targets": {
+   "body.chubby": {
+    "at_driver_0": 0.65,
+    "at_driver_1": 0.05
+   },
+   "body.definition.back": {
+    "at_driver_0": 0.35,
+    "at_driver_1": 0.95
+   },
+   "body.definition.flat_abs": {
+    "at_driver_0": 0.0,
+    "at_driver_1": 0.9
+   },
+   "body.definition.pecs_crease": {
+    "at_driver_0": 0.2,
+    "at_driver_1": 0.75
+   },
+   "body.definition.traps_valleys": {
+    "at_driver_0": 0.4,
+    "at_driver_1": 0.85
+   },
+   "body.definition.vline": {
+    "at_driver_0": 0.1,
+    "at_driver_1": 0.85
+   },
+   "body.tissue.mass_smooth": {
+    "at_driver_0": 0.65,
+    "at_driver_1": 0.1
+   }
+  }
+ },
+ "provenance": {
+  "anchors_note": "endpoints are the orc sub-presets' authored tissue values [S, preset-orc-bara.md sections 3.1/3.2 as amended Nov 12, 2026]; pecs_crease at_driver_0 is [E] (strongman orc leaves it unset)",
+  "licence": "build (ours)",
+  "method": "authored coupling record (MUSCLE_TISSUE_MODEL.md)"
+ },
+ "semantics": "One dial expands into the tissue/definition family, linearly interpolating the two orc sub-presets' tissue vectors (dial 0 = orc_bara_strongman tissue, dial 1 = orc_bara_bodybuilder tissue). Fills only sliders the character has NOT set explicitly: explicit values always win.",
+ "stage": "authoring",
+ "version": 1
+}

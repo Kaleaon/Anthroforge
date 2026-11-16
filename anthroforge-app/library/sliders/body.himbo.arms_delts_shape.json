@@ -1,0 +1,30 @@
+{
+  "id": "body.himbo.arms_delts_shape",
+  "label": "Delts (Round)",
+  "group": "body/himbo/arms_and_shoulders",
+  "semantics": "HIMBO V5 slider 'ArmsDeltsShape' (block 'HIMBO - BodyArmsDeltsShape'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built.",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.019 m on the Skyrim HIMBO base (1872 diff verts)"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyArmsDeltsShape",
+      "qa": {
+        "diff_verts": 1872,
+        "disp_max_m": 0.019432146793107886,
+        "disp_mean_m": 0.004956707635953106
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyArmsDeltsShape', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

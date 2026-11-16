@@ -1,0 +1,30 @@
+{
+  "id": "body.himbo.legs_calf_size",
+  "label": "Calves Size",
+  "group": "body/himbo/thighs_and_legs",
+  "semantics": "HIMBO V5 slider 'LegsCalfSize' (block 'HIMBO - BodyLegsCalfSize'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built.",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.015 m on the Skyrim HIMBO base (514 diff verts)"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyLegsCalfSize",
+      "qa": {
+        "diff_verts": 514,
+        "disp_max_m": 0.015221379184997972,
+        "disp_mean_m": 0.003422555583324326
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyLegsCalfSize', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

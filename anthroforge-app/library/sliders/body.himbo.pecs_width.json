@@ -1,0 +1,30 @@
+{
+  "id": "body.himbo.pecs_width",
+  "label": "Width",
+  "group": "body/himbo/pecs",
+  "semantics": "HIMBO V5 slider 'PecsWidth' (block 'HIMBO - BodyPecsWidth'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built.",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.015 m on the Skyrim HIMBO base (1330 diff verts)"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyPecsWidth",
+      "qa": {
+        "diff_verts": 1330,
+        "disp_max_m": 0.014971567997932433,
+        "disp_mean_m": 0.005890777925817797
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyPecsWidth', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

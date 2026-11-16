@@ -1,0 +1,30 @@
+{
+  "id": "body.himbo.torso_ster_depth",
+  "label": "Sternum Depth",
+  "group": "body/himbo/stature",
+  "semantics": "HIMBO V5 slider 'TorsoSterDepth' (block 'HIMBO - BodyTorsoSterDepth'), carried as app vocabulary for the spec'd presets. Record-only: no hm08 instance has been authored; the slider's geometry lives on the Skyrim HIMBO base until a transfer is built.",
+  "range": {
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0,
+    "safe_max": 1.0,
+    "endpoint_anchor": "max |delta| = 0.009 m on the Skyrim HIMBO base (159 diff verts)"
+  },
+  "symmetry": "bilateral_x",
+  "instances": {
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "block": "HIMBO - BodyTorsoSterDepth",
+      "qa": {
+        "diff_verts": 159,
+        "disp_max_m": 0.008524272441471198,
+        "disp_mean_m": 0.002702695679818921
+      }
+    }
+  },
+  "provenance": {
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BodyTorsoSterDepth', decoded in himbo_sliders_full.json",
+    "licence": "study-only (internal)",
+    "generated_by": "anthroforge-app/scripts/build_presets.py"
+  }
+}

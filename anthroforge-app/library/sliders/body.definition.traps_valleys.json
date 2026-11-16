@@ -1,0 +1,71 @@
+{
+  "group": "body/definition",
+  "id": "body.definition.traps_valleys",
+  "instances": {
+    "makehuman_hm08": {
+      "file": "anthroforge-v2/bara-proof/body.definition.traps_valleys.target",
+      "note": "Relief instance authored Nov 12, 2026 (DEFINITION_GEOMETRY.md): HIMBO source transferred at the feature kernel and closed-loop calibrated at the canonical station; composes at the evaluator's effective values (definition is evaluation-stage relief, never stored mass).",
+      "qa": {
+        "attenuation_measured_vs_predicted": {
+          "gachidebu": [
+            0.8043125349255222,
+            0.805365
+          ],
+          "strongman": [
+            0.8477492815686424,
+            0.84846375
+          ]
+        },
+        "base_verts": 19158,
+        "blender_evaluated": "tissue0 0 flips, strongman 0; the gachidebu render state carries 2 flips from the SHIPPED quantised coupling target alone (present with definition keys at 0; the definition set adds none at 1.0)",
+        "calibration_scale": 1.1820784597793397,
+        "canonical_measure": "valleys",
+        "feature_depth_mm": -0.9365863868855797,
+        "feature_depth_target_mm": -0.9365863098668138,
+        "fold_gate": "0 flips at raw 1.0 over muscle / strongman / gachidebu substrates (raw + macro bases); combined definition set over gachidebu also 0",
+        "moved_verts": 488,
+        "relief_peak_mm": 3.794538069005446
+      },
+      "arrays": {
+        "pack": "anthroforge-app/library/instances/body.definition.traps_valleys__makehuman_hm08.npz",
+        "linear": "linear"
+      }
+    },
+    "skyrim_himbo": {
+      "file": "character_assets/learned/himbo_sliders_full.json",
+      "qa": {
+        "base_verts": 9346,
+        "diff_verts": 1159,
+        "disp_max_m": 0.007708,
+        "disp_mean_m": 0.001836,
+        "disp_p95_m": 0.005792,
+        "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+        "region_disp_share": {
+          "arms": 0.049,
+          "chest": 0.339,
+          "neck": 0.612
+        }
+      }
+    }
+  },
+  "label": "Traps Valleys",
+  "provenance": {
+    "licence": "study-only (internal)",
+    "method": "osd decode (learned)",
+    "source": "HIMBO V5 slider backed by .osd block 'HIMBO - ArmsTrapsValleys', decoded in himbo_sliders_full.json"
+  },
+  "range": {
+    "default": 0.0,
+    "endpoint_anchor": "max |delta| = 0.0077 m (0.5398 Skyrim units); mean |delta| 0.0018 m over 1159 moved verts",
+    "max": 1.0,
+    "min": 0.0,
+    "safe_max": 1.0,
+    "units": "normalised"
+  },
+  "region": {
+    "landmarks": [],
+    "mask_rule": "delta field as decoded: 1,159 verts; 61% neck / 34% chest displacement"
+  },
+  "semantics": "Definition family: trap separation valleys. Attenuated by regional tissue through the yoke curve (slowest torso submersion: traps read even at gachidebu). See MUSCLE_TISSUE_MODEL.md section 4.",
+  "symmetry": "bilateral_x"
+}

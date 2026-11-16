@@ -1,0 +1,42 @@
+{
+ "group": "body/arms",
+ "id": "body.arms.delts",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "diff_verts": 1430,
+    "disp_max_m": 0.0149,
+    "disp_mean_m": 0.005425,
+    "disp_p95_m": 0.012946,
+    "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet",
+    "region_disp_share": {
+     "arms": 0.164,
+     "chest": 0.435,
+     "neck": 0.401
+    }
+   }
+  }
+ },
+ "label": "Delts",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned)",
+  "source": "HIMBO V5 slider backed by .osd block 'HIMBO - ArmsDelts', decoded in himbo_sliders_full.json"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "max |delta| = 0.0149 m (1.0434 Skyrim units); mean |delta| 0.0054 m over 1430 moved verts",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "delta field as decoded: 1,430 verts across the shoulder join (chest/neck/arm bands)"
+ },
+ "semantics": "Deltoid caps. A show-through form (MUSCLE_TISSUE_MODEL.md section 6); must rise together with PecsWidth-class sliders to keep the shingle overlap read (BARA_LESSONS R9).",
+ "symmetry": "bilateral_x"
+}

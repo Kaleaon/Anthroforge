@@ -1,0 +1,2027 @@
+{
+  "format": "anthroforge.fur_profiles",
+  "version": 1,
+  "provenance": {
+    "source": "anthroforge-v2/fur-craft/a19-species/SPECIES_FUR.md section 9 (machine-readable profiles, winter/prime defaults)",
+    "note": "Region vocabulary and parameter columns are that document's section 0 canon; colour values are representative mid-population picks [E] \u2014 per-character palettes override them."
+  },
+  "profiles": {
+    "species.wolf.coat": {
+      "profile": "species.wolf.coat",
+      "seasonal": {
+        "summer": {
+          "density_scale": 0.55,
+          "undercoat_scale": 0.15
+        }
+      },
+      "regions": {
+        "scalp": {
+          "density": 0.75,
+          "length_m": 0.055,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#3d3230",
+            "tip": "#7d7468",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.7
+          }
+        },
+        "muzzle": {
+          "density": 0.55,
+          "length_m": 0.018,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.15,
+          "colour": {
+            "root": "#4a423c",
+            "tip": "#8d8378",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.3
+          }
+        },
+        "cheeks": {
+          "density": 0.8,
+          "length_m": 0.075,
+          "length_variation": 0.35,
+          "curl": 0.05,
+          "clump": 0.45,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#3d3230",
+            "tip": "#9a8d7a",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.75
+          }
+        },
+        "ruff": {
+          "density": 0.95,
+          "length_m": 0.115,
+          "length_variation": 0.35,
+          "curl": 0.1,
+          "clump": 0.65,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#38302c",
+            "tip": "#8d8074",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "ears.inner": {
+          "density": 0.45,
+          "length_m": 0.02,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#6b5f55",
+            "tip": "#b3a893",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.2
+          }
+        },
+        "ears.back": {
+          "density": 0.7,
+          "length_m": 0.03,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.25,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#38302c",
+            "tip": "#6e6259",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.5
+          }
+        },
+        "torso.front": {
+          "density": 0.9,
+          "length_m": 0.075,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.45,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#453a34",
+            "tip": "#968a76",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "torso.back": {
+          "density": 1.0,
+          "length_m": 0.065,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#38302c",
+            "tip": "#84796a",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 1.0
+          }
+        },
+        "arms": {
+          "density": 0.8,
+          "length_m": 0.045,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.35,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#403832",
+            "tip": "#877b6c",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.8
+          }
+        },
+        "legs": {
+          "density": 0.75,
+          "length_m": 0.04,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.35,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#453b33",
+            "tip": "#978a76",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.75
+          }
+        },
+        "pelvis": {
+          "density": 0.9,
+          "length_m": 0.07,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.45,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#38302c",
+            "tip": "#84796a",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "tail": {
+          "density": 0.95,
+          "length_m": 0.085,
+          "length_variation": 0.35,
+          "curl": 0.1,
+          "clump": 0.55,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#38302c",
+            "tip": "#7d7468",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "hands": {
+          "density": 0.5,
+          "length_m": 0.015,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#4a423c",
+            "tip": "#8d8378",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.25
+          }
+        },
+        "feet": {
+          "density": 0.5,
+          "length_m": 0.015,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#4a423c",
+            "tip": "#8d8378",
+            "pattern": "agouti"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.25
+          }
+        }
+      }
+    },
+    "species.red_fox.coat": {
+      "profile": "species.red_fox.coat",
+      "seasonal": {
+        "summer": {
+          "density_scale": 0.6,
+          "undercoat_scale": 0.3
+        }
+      },
+      "regions": {
+        "scalp": {
+          "density": 0.7,
+          "length_m": 0.04,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#6e625a",
+            "tip": "#b35c28",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.7,
+            "undercoat_length_m": 0.035
+          }
+        },
+        "muzzle": {
+          "density": 0.5,
+          "length_m": 0.014,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#6e625a",
+            "tip": "#a85424",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.3
+          }
+        },
+        "cheeks": {
+          "density": 0.75,
+          "length_m": 0.05,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#6e625a",
+            "tip": "#bc652c",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.8
+          }
+        },
+        "ruff": {
+          "density": 0.85,
+          "length_m": 0.06,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.5,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#66584f",
+            "tip": "#b35c28",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "ears.inner": {
+          "density": 0.4,
+          "length_m": 0.018,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#8a7a6a",
+            "tip": "#d8cbb8",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.15
+          }
+        },
+        "ears.back": {
+          "density": 0.7,
+          "length_m": 0.028,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.25,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#241c18",
+            "tip": "#17120f",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.5
+          }
+        },
+        "torso.front": {
+          "density": 0.85,
+          "length_m": 0.048,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#6e625a",
+            "tip": "#c4beb2",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9,
+            "undercoat_length_m": 0.035
+          }
+        },
+        "torso.back": {
+          "density": 0.95,
+          "length_m": 0.06,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#6e625a",
+            "tip": "#b35c28",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 1.0,
+            "undercoat_length_m": 0.035
+          }
+        },
+        "arms": {
+          "density": 0.7,
+          "length_m": 0.035,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.3,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#66584f",
+            "tip": "#a85424",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.7
+          }
+        },
+        "legs": {
+          "density": 0.65,
+          "length_m": 0.032,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.3,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#2a201b",
+            "tip": "#1d1512",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.65
+          }
+        },
+        "pelvis": {
+          "density": 0.85,
+          "length_m": 0.055,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.45,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#66584f",
+            "tip": "#b35c28",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "tail": {
+          "density": 0.95,
+          "length_m": 0.085,
+          "length_variation": 0.35,
+          "curl": 0.1,
+          "clump": 0.55,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#66584f",
+            "tip": "#b35c28",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "hands": {
+          "density": 0.45,
+          "length_m": 0.012,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#2a201b",
+            "tip": "#1d1512",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.25
+          }
+        },
+        "feet": {
+          "density": 0.45,
+          "length_m": 0.012,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#2a201b",
+            "tip": "#1d1512",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.25
+          }
+        }
+      }
+    },
+    "species.fennec.coat": {
+      "profile": "species.fennec.coat",
+      "seasonal": {
+        "summer": {
+          "density_scale": 1.0,
+          "undercoat_scale": 1.0
+        }
+      },
+      "regions": {
+        "scalp": {
+          "density": 0.8,
+          "length_m": 0.03,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#e6d7b8",
+            "tip": "#d9bd8f",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.8
+          }
+        },
+        "muzzle": {
+          "density": 0.55,
+          "length_m": 0.012,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#efe4cc",
+            "tip": "#e8dcc2",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.35
+          }
+        },
+        "cheeks": {
+          "density": 0.8,
+          "length_m": 0.035,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.35,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#e6d7b8",
+            "tip": "#dcc096",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.85
+          }
+        },
+        "ruff": {
+          "density": 0.85,
+          "length_m": 0.038,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#e6d7b8",
+            "tip": "#d9bd8f",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "ears.inner": {
+          "density": 0.75,
+          "length_m": 0.03,
+          "length_variation": 0.35,
+          "curl": 0.0,
+          "clump": 0.25,
+          "frizz": 0.45,
+          "colour": {
+            "root": "#f4ecd9",
+            "tip": "#faf5e8",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.1
+          }
+        },
+        "ears.back": {
+          "density": 0.75,
+          "length_m": 0.022,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.25,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#e0cda6",
+            "tip": "#d3b586",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.5
+          }
+        },
+        "torso.front": {
+          "density": 0.9,
+          "length_m": 0.032,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.35,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#f2e8d2",
+            "tip": "#f7f1e0",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "torso.back": {
+          "density": 0.9,
+          "length_m": 0.035,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.35,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#e6d7b8",
+            "tip": "#d9bd8f",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "arms": {
+          "density": 0.75,
+          "length_m": 0.024,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.3,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#eadcbf",
+            "tip": "#e2cda1",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.75
+          }
+        },
+        "legs": {
+          "density": 0.75,
+          "length_m": 0.024,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.3,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#eadcbf",
+            "tip": "#e2cda1",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.75
+          }
+        },
+        "pelvis": {
+          "density": 0.85,
+          "length_m": 0.034,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#e6d7b8",
+            "tip": "#d9bd8f",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "tail": {
+          "density": 0.9,
+          "length_m": 0.045,
+          "length_variation": 0.35,
+          "curl": 0.05,
+          "clump": 0.5,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#e6d7b8",
+            "tip": "#d9bd8f",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "hands": {
+          "density": 0.55,
+          "length_m": 0.012,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#efe4cc",
+            "tip": "#e8dcc2",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.4
+          }
+        },
+        "feet": {
+          "density": 0.8,
+          "length_m": 0.018,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.3,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#f2e8d2",
+            "tip": "#f7f1e0",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.7,
+            "note": "covers pads \u2014 unique on roster"
+          }
+        }
+      }
+    },
+    "species.lion.coat": {
+      "profile": "species.lion.coat",
+      "seasonal": {
+        "summer": {
+          "density_scale": 1.0,
+          "undercoat_scale": 1.0
+        }
+      },
+      "regions": {
+        "scalp": {
+          "density": 0.95,
+          "length_m": 0.16,
+          "length_variation": 0.4,
+          "curl": 0.15,
+          "clump": 0.6,
+          "frizz": 0.45,
+          "colour": {
+            "root": "#a97c46",
+            "tip": "#4a3018",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "mane-hair",
+            "undercoat": 0.0
+          }
+        },
+        "muzzle": {
+          "density": 0.45,
+          "length_m": 0.008,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.1,
+          "frizz": 0.15,
+          "colour": {
+            "root": "#b98d54",
+            "tip": "#c49a5e",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "cheeks": {
+          "density": 0.95,
+          "length_m": 0.15,
+          "length_variation": 0.4,
+          "curl": 0.15,
+          "clump": 0.6,
+          "frizz": 0.45,
+          "colour": {
+            "root": "#a97c46",
+            "tip": "#453013",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "mane-hair",
+            "undercoat": 0.0
+          }
+        },
+        "ruff": {
+          "density": 1.0,
+          "length_m": 0.16,
+          "length_variation": 0.4,
+          "curl": 0.15,
+          "clump": 0.65,
+          "frizz": 0.45,
+          "colour": {
+            "root": "#a97c46",
+            "tip": "#3d2812",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "mane-hair",
+            "undercoat": 0.0,
+            "note": "character dials: length to 0.22 (cool-climate), tip darkness = age/testosterone proxy"
+          }
+        },
+        "ears.inner": {
+          "density": 0.3,
+          "length_m": 0.01,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#c4a06a",
+            "tip": "#d3b57f",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "ears.back": {
+          "density": 0.55,
+          "length_m": 0.014,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#8a6535",
+            "tip": "#33241a",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "torso.front": {
+          "density": 0.6,
+          "length_m": 0.018,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#b98d54",
+            "tip": "#cda668",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0,
+            "note": "male chest fringe override: density 0.85, length_m 0.10"
+          }
+        },
+        "torso.back": {
+          "density": 0.6,
+          "length_m": 0.014,
+          "length_variation": 0.25,
+          "curl": 0.05,
+          "clump": 0.25,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#b0824a",
+            "tip": "#c49a5e",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "arms": {
+          "density": 0.55,
+          "length_m": 0.014,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#b98d54",
+            "tip": "#cda668",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0,
+            "note": "male elbow-tuft override: density 0.80, length_m 0.07"
+          }
+        },
+        "legs": {
+          "density": 0.55,
+          "length_m": 0.013,
+          "length_variation": 0.25,
+          "curl": 0.05,
+          "clump": 0.25,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#b98d54",
+            "tip": "#cda668",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "pelvis": {
+          "density": 0.6,
+          "length_m": 0.016,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#b0824a",
+            "tip": "#c49a5e",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "tail": {
+          "density": 0.55,
+          "length_m": 0.012,
+          "length_variation": 0.35,
+          "curl": 0.05,
+          "clump": 0.2,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#b0824a",
+            "tip": "#c49a5e",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0,
+            "note": "terminal tuft override (last 15% of tail): density 0.90, length_m 0.06, tip #2e2015"
+          }
+        },
+        "hands": {
+          "density": 0.45,
+          "length_m": 0.01,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#b98d54",
+            "tip": "#cda668",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "feet": {
+          "density": 0.45,
+          "length_m": 0.01,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#b98d54",
+            "tip": "#cda668",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        }
+      }
+    },
+    "species.bear.coat": {
+      "profile": "species.bear.coat",
+      "seasonal": {
+        "summer": {
+          "density_scale": 0.6,
+          "undercoat_scale": 0.25
+        }
+      },
+      "regions": {
+        "scalp": {
+          "density": 0.75,
+          "length_m": 0.055,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.35,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#2e2119",
+            "tip": "#6e5638",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.75
+          }
+        },
+        "muzzle": {
+          "density": 0.5,
+          "length_m": 0.016,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#4a3826",
+            "tip": "#8a6c48",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.3
+          }
+        },
+        "cheeks": {
+          "density": 0.8,
+          "length_m": 0.07,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.45,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#2e2119",
+            "tip": "#77603c",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.8
+          }
+        },
+        "ruff": {
+          "density": 0.95,
+          "length_m": 0.15,
+          "length_variation": 0.35,
+          "curl": 0.15,
+          "clump": 0.6,
+          "frizz": 0.45,
+          "colour": {
+            "root": "#241a12",
+            "tip": "#5f4a2e",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9,
+            "note": "moon-bear value; brown-only fallback length_m 0.115"
+          }
+        },
+        "ears.inner": {
+          "density": 0.4,
+          "length_m": 0.018,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#4a3826",
+            "tip": "#77603c",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.2
+          }
+        },
+        "ears.back": {
+          "density": 0.7,
+          "length_m": 0.03,
+          "length_variation": 0.25,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#2e2119",
+            "tip": "#6e5638",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.6
+          }
+        },
+        "torso.front": {
+          "density": 0.9,
+          "length_m": 0.085,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.45,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#2e2119",
+            "tip": "#77603c",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95,
+            "note": "crescent zone (moon blend) = markings fur-colour override, parameters unchanged"
+          }
+        },
+        "torso.back": {
+          "density": 0.95,
+          "length_m": 0.105,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.45,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#2e2119",
+            "tip": "#7d6540",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 1.0
+          }
+        },
+        "arms": {
+          "density": 0.85,
+          "length_m": 0.075,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.4,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#2e2119",
+            "tip": "#6e5638",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.85
+          }
+        },
+        "legs": {
+          "density": 0.85,
+          "length_m": 0.07,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.4,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#2a1e15",
+            "tip": "#63502f",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.85
+          }
+        },
+        "pelvis": {
+          "density": 0.9,
+          "length_m": 0.09,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.5,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#2e2119",
+            "tip": "#77603c",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "tail": {
+          "density": 0.8,
+          "length_m": 0.05,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.4,
+          "frizz": 0.4,
+          "colour": {
+            "root": "#2e2119",
+            "tip": "#6e5638",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.8
+          }
+        },
+        "hands": {
+          "density": 0.55,
+          "length_m": 0.02,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#33261a",
+            "tip": "#6e5638",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.35
+          }
+        },
+        "feet": {
+          "density": 0.55,
+          "length_m": 0.02,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#33261a",
+            "tip": "#6e5638",
+            "pattern": "tipped"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.35
+          }
+        }
+      }
+    },
+    "species.badger.coat": {
+      "profile": "species.badger.coat",
+      "seasonal": {
+        "summer": {
+          "density_scale": 0.55,
+          "undercoat_scale": 0.4
+        }
+      },
+      "regions": {
+        "scalp": {
+          "density": 0.6,
+          "length_m": 0.03,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#e8e2d4",
+            "tip": "#f0ead9",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.3
+          }
+        },
+        "muzzle": {
+          "density": 0.45,
+          "length_m": 0.012,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.1,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#e8e2d4",
+            "tip": "#f0ead9",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.15
+          }
+        },
+        "cheeks": {
+          "density": 0.6,
+          "length_m": 0.032,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.25,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#e8e2d4",
+            "tip": "#efe9da",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.3
+          }
+        },
+        "ruff": {
+          "density": 0.7,
+          "length_m": 0.055,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.35,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#ddd5c2",
+            "tip": "#8f8a7c",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.4
+          }
+        },
+        "ears.inner": {
+          "density": 0.3,
+          "length_m": 0.01,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.1,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#3a332c",
+            "tip": "#efe9da",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.1
+          }
+        },
+        "ears.back": {
+          "density": 0.6,
+          "length_m": 0.022,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#ddd5c2",
+            "tip": "#211c17",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.35
+          }
+        },
+        "torso.front": {
+          "density": 0.25,
+          "length_m": 0.02,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#1d1813",
+            "tip": "#14100d",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.1,
+            "note": "sparse by design \u2014 skin may show"
+          }
+        },
+        "torso.back": {
+          "density": 0.75,
+          "length_m": 0.078,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.4,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#e3dcc9",
+            "tip": "#211c17",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.35,
+            "note": "bristly guard dominant; groom flow hangs over the ventral zone"
+          }
+        },
+        "arms": {
+          "density": 0.55,
+          "length_m": 0.028,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.25,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#1d1813",
+            "tip": "#14100d",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.3
+          }
+        },
+        "legs": {
+          "density": 0.55,
+          "length_m": 0.026,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.25,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#1d1813",
+            "tip": "#14100d",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.3
+          }
+        },
+        "pelvis": {
+          "density": 0.75,
+          "length_m": 0.072,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.4,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#e3dcc9",
+            "tip": "#211c17",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.35
+          }
+        },
+        "tail": {
+          "density": 0.7,
+          "length_m": 0.06,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.4,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#ddd5c2",
+            "tip": "#8f8a7c",
+            "pattern": "banded"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.3
+          }
+        },
+        "hands": {
+          "density": 0.4,
+          "length_m": 0.012,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.1,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#1d1813",
+            "tip": "#14100d",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.15
+          }
+        },
+        "feet": {
+          "density": 0.4,
+          "length_m": 0.012,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.1,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#1d1813",
+            "tip": "#14100d",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.15
+          }
+        }
+      }
+    },
+    "species.saint_bernard.coat": {
+      "profile": "species.saint_bernard.coat",
+      "variety": "rough",
+      "seasonal": {
+        "post_shed": {
+          "density_scale": 0.75,
+          "length_scale": 0.8
+        }
+      },
+      "regions": {
+        "scalp": {
+          "density": 0.75,
+          "length_m": 0.035,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#7a4a2a",
+            "tip": "#8a5a33",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.85
+          }
+        },
+        "muzzle": {
+          "density": 0.5,
+          "length_m": 0.014,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#5f3d24",
+            "tip": "#6e4a2c",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.4
+          }
+        },
+        "cheeks": {
+          "density": 0.8,
+          "length_m": 0.045,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#7a4a2a",
+            "tip": "#8a5a33",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9
+          }
+        },
+        "ruff": {
+          "density": 0.9,
+          "length_m": 0.065,
+          "length_variation": 0.35,
+          "curl": 0.1,
+          "clump": 0.55,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#e8e0d0",
+            "tip": "#f2ecdd",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "ears.inner": {
+          "density": 0.4,
+          "length_m": 0.016,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#6e4a2c",
+            "tip": "#7d5636",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.25
+          }
+        },
+        "ears.back": {
+          "density": 0.75,
+          "length_m": 0.04,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.3,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#5f3d24",
+            "tip": "#4a2e1a",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.8
+          }
+        },
+        "torso.front": {
+          "density": 0.9,
+          "length_m": 0.055,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#ece4d2",
+            "tip": "#f5efe0",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "torso.back": {
+          "density": 0.9,
+          "length_m": 0.048,
+          "length_variation": 0.3,
+          "curl": 0.08,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#7a4a2a",
+            "tip": "#8a5a33",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "arms": {
+          "density": 0.8,
+          "length_m": 0.042,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#ece4d2",
+            "tip": "#f5efe0",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.85,
+            "note": "foreleg feathering = posterior subzone +0.02 m"
+          }
+        },
+        "legs": {
+          "density": 0.8,
+          "length_m": 0.045,
+          "length_variation": 0.3,
+          "curl": 0.05,
+          "clump": 0.4,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#ece4d2",
+            "tip": "#f5efe0",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.85
+          }
+        },
+        "pelvis": {
+          "density": 0.9,
+          "length_m": 0.06,
+          "length_variation": 0.3,
+          "curl": 0.08,
+          "clump": 0.5,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#7a4a2a",
+            "tip": "#8a5a33",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.95
+          }
+        },
+        "tail": {
+          "density": 0.9,
+          "length_m": 0.075,
+          "length_variation": 0.35,
+          "curl": 0.05,
+          "clump": 0.5,
+          "frizz": 0.35,
+          "colour": {
+            "root": "#ece4d2",
+            "tip": "#f5efe0",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.9,
+            "note": "length authored as base-to-tip falloff in guides"
+          }
+        },
+        "hands": {
+          "density": 0.5,
+          "length_m": 0.014,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#ece4d2",
+            "tip": "#f5efe0",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.35
+          }
+        },
+        "feet": {
+          "density": 0.5,
+          "length_m": 0.014,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#ece4d2",
+            "tip": "#f5efe0",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double-sparse",
+            "undercoat": 0.35
+          }
+        }
+      }
+    },
+    "species.clydesdale.coat": {
+      "profile": "species.clydesdale.coat",
+      "seasonal": {
+        "summer": {
+          "density_scale": 0.45,
+          "undercoat_scale": 0.0,
+          "note": "body regions only \u2014 mane/tail/feather/forelock are season-invariant"
+        }
+      },
+      "regions": {
+        "scalp": {
+          "density": 0.95,
+          "length_m": 0.28,
+          "length_variation": 0.35,
+          "curl": 0.1,
+          "clump": 0.5,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#77563c",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "mane-hair",
+            "undercoat": 0.0,
+            "note": "forelock \u2014 falls forward over face"
+          }
+        },
+        "muzzle": {
+          "density": 0.35,
+          "length_m": 0.008,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.1,
+          "frizz": 0.15,
+          "colour": {
+            "root": "#6e4f36",
+            "tip": "#83643f",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "cheeks": {
+          "density": 0.55,
+          "length_m": 0.03,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#6e5138",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.4
+          }
+        },
+        "ruff": {
+          "density": 1.0,
+          "length_m": 0.45,
+          "length_variation": 0.35,
+          "curl": 0.1,
+          "clump": 0.55,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#77563c",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "mane-hair",
+            "undercoat": 0.0,
+            "note": "mane \u2014 crest-origin only, falls to one side; neck body hair uses cheeks values"
+          }
+        },
+        "ears.inner": {
+          "density": 0.45,
+          "length_m": 0.012,
+          "length_variation": 0.3,
+          "curl": 0.0,
+          "clump": 0.15,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#6e4f36",
+            "tip": "#83643f",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "ears.back": {
+          "density": 0.55,
+          "length_m": 0.016,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#6e5138",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.0
+          }
+        },
+        "torso.front": {
+          "density": 0.6,
+          "length_m": 0.047,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#6e5138",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.5,
+            "undercoat_length_m": 0.025,
+            "note": "structure is winter state; summer = single, length_m 0.012"
+          }
+        },
+        "torso.back": {
+          "density": 0.6,
+          "length_m": 0.047,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#6e5138",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.5,
+            "undercoat_length_m": 0.025
+          }
+        },
+        "arms": {
+          "density": 0.55,
+          "length_m": 0.04,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#6e5138",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.35
+          }
+        },
+        "legs": {
+          "density": 0.55,
+          "length_m": 0.04,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#6e5138",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "single",
+            "undercoat": 0.35,
+            "note": "distal feather override: density 0.95, length_m 0.22, curl 0.05, clump 0.45 \u2014 posterior knee/hock origin, covers hoof"
+          }
+        },
+        "pelvis": {
+          "density": 0.6,
+          "length_m": 0.047,
+          "length_variation": 0.25,
+          "curl": 0.0,
+          "clump": 0.2,
+          "frizz": 0.2,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#6e5138",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "double",
+            "undercoat": 0.5,
+            "undercoat_length_m": 0.025
+          }
+        },
+        "tail": {
+          "density": 0.95,
+          "length_m": 0.85,
+          "length_variation": 0.3,
+          "curl": 0.1,
+          "clump": 0.5,
+          "frizz": 0.3,
+          "colour": {
+            "root": "#5a4030",
+            "tip": "#77563c",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "mane-hair",
+            "undercoat": 0.0
+          }
+        },
+        "hands": {
+          "density": 0.9,
+          "length_m": 0.2,
+          "length_variation": 0.35,
+          "curl": 0.05,
+          "clump": 0.45,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#e8e2d2",
+            "tip": "#f2ecdc",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "mane-hair",
+            "undercoat": 0.0,
+            "note": "fore feather \u2014 white follows leg marking"
+          }
+        },
+        "feet": {
+          "density": 0.9,
+          "length_m": 0.22,
+          "length_variation": 0.35,
+          "curl": 0.05,
+          "clump": 0.45,
+          "frizz": 0.25,
+          "colour": {
+            "root": "#e8e2d2",
+            "tip": "#f2ecdc",
+            "pattern": "solid"
+          },
+          "layer": {
+            "structure": "mane-hair",
+            "undercoat": 0.0,
+            "note": "hind feather \u2014 typically >= fore"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "format": "anthroforge.character",
+  "version": 1,
+  "id": "chr_preset_hollis",
+  "name": "Hollis",
+  "base": {
+    "body": "af_body_neutral_v1",
+    "head": "af_head_neutral_v2"
+  },
+  "sliders": {
+    "body.himbo.weight_0_to_1": 0.15,
+    "body.chubby": 0.05,
+    "body.muscle": 0.4,
+    "body.himbo.lean": 0.65,
+    "body.torso.mass": 0.2,
+    "body.tissue.mass_smooth": 0.5,
+    "body.himbo.torso_width": 0.1,
+    "body.himbo.torso_back_size": 0.3,
+    "body.himbo.torso_back_shape": 0.35,
+    "body.himbo.torso_back_slope": 0.45,
+    "body.torso.lower": 0.15,
+    "body.himbo.torso_waist_size": 0.55,
+    "body.himbo.torso_hip": 0.35,
+    "body.himbo.torso_belly": 0.05,
+    "body.belly.pot": 0.05,
+    "body.himbo.belly_smooth": 0.55,
+    "body.definition.flat_abs": 0.4,
+    "body.pecs.size": 0.25,
+    "body.himbo.pecs_mass": 0.15,
+    "body.himbo.pecs_width": 0.3,
+    "body.himbo.pecs_lower": 0.1,
+    "body.himbo.pecs_clavicle": 0.55,
+    "body.himbo.arms_traps": 0.15,
+    "body.himbo.arms_traps_meat": 0.05,
+    "body.himbo.arms_traps_push": 0.1,
+    "body.definition.traps_valleys": 0.15,
+    "body.himbo.arms_shoulders": 0.15,
+    "body.arms.delts": 0.3,
+    "body.himbo.arms_biceps": 0.3,
+    "body.himbo.arms_fore": 0.4,
+    "body.himbo.arms_brachio": 0.3,
+    "body.himbo.legs_size": 0.45,
+    "body.himbo.legs_thigh": 0.35,
+    "body.himbo.legs_thinner": 0.45,
+    "body.himbo.legs_glutes": 0.5,
+    "body.himbo.legs_calf_size": 0.55,
+    "body.himbo.legs_calf_width": 0.3,
+    "body.himbo.butt_booty": 0.3,
+    "body.himbo.bubble_butt": 0.15,
+    "body.himbo.butt_tighten": 0.45,
+    "body.neck.mass": 0.35
+  },
+  "species_preset": {
+    "preset_id": "hollis_adjacent",
+    "species": "serval",
+    "adjacency": "ADJACENT, not a Titan and not a substrate-self (hollis.md). Authored at Joe's direction.",
+    "provisional": "ALL values provisional: the spec's figures are 'design points chosen for him, not measurements of him', and shape decisions are Hollis's (Joe, Nov 4 2026).",
+    "export_scale": 1.05,
+    "height_cm": 183,
+    "mass_kg": 54.1,
+    "qa_gates": {
+      "proportion_check": "leg-length share of height highest in batch (serval canon) - delivered by scale + plan, never by leg mass",
+      "M1": "NOT GATED - periscope neck, not a yoke"
+    },
+    "parts_notes": [
+      "Ears are sensor-organ parts (~20 cm pinnae, 180 deg independent rotation, Decision #75); ear language (Decision #72) untouched",
+      "Tail 60 cm, a pounce-balance organ (Decision #75) - part parameter",
+      "Coat described in his spec s.1 but NO serval profile exists in the library - fur empty by design; the cat head column was NOT substituted for a serval",
+      "Pounce question (must he leave the ground?) is HIS to answer - unresolved here deliberately"
+    ],
+    "head_sliders": {},
+    "head_scale": "-100..+100 spec values, species-head-spec.md names ",
+    "head_note": "No head vector exists for this species in species-head-spec.md (no equine/avian/serval column); head_sliders is empty BY DESIGN and flagged in presets-titan-batch2.md section 9 - nothing was borrowed from another species."
+  },
+  "parts": [],
+  "fur": {},
+  "materials": {},
+  "identity": {},
+  "provenance": {
+    "source": "anthroforge-v2/presets-titan-batch2.md"
+  }
+}

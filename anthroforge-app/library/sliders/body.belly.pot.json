@@ -1,0 +1,37 @@
+{
+ "group": "body/torso",
+ "id": "body.belly.pot",
+ "instances": {
+  "skyrim_himbo": {
+   "file": "character_assets/learned/himbo_sliders_full.json",
+   "qa": {
+    "base_verts": 9346,
+    "diff_verts": 2163,
+    "disp_max_m": 0.056836,
+    "disp_mean_m": 0.010304,
+    "disp_p95_m": 0.051052,
+    "note": "displacement stats converted from Skyrim units at 0.01428 m/unit; native-base decode (himbo_sliders_full.json), no cross-base instance yet"
+   }
+  }
+ },
+ "label": "Belly Pot",
+ "provenance": {
+  "licence": "study-only (internal)",
+  "method": "osd decode (learned)",
+  "source": "HIMBO V5 slider backed by .osd block 'HIMBO - BellyPot', decoded in himbo_sliders_full.json"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "max |delta| = 0.0568 m (3.9801 Skyrim units); mean |delta| 0.0103 m over 2163 moved verts",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "delta field as decoded: 2,163 verts, belly-localised (region split not published in the decode)"
+ },
+ "semantics": "Surface pot-belly layer. One of the two belly inputs to the PowerBelly coupling (with body.belly.protrusion): at high Muscle its character changes to built-core + fat (MUSCLE_TISSUE_MODEL.md section 5).",
+ "symmetry": "bilateral_x"
+}

@@ -1,0 +1,25 @@
+{
+ "group": "body/tissue",
+ "id": "body.tissue.level",
+ "instances": {},
+ "label": "Tissue Level (TissueVector summary)",
+ "provenance": {
+  "licence": "build (ours)",
+  "method": "authored driver record (MUSCLE_TISSUE_MODEL.md)",
+  "source": "AnthroForge preset-layer driver: no mesh instance; consumed by coupling records in library/couplings/"
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "driver value only; effects are defined by the coupling records that read it",
+  "max": 1.0,
+  "min": 0.0,
+  "safe_max": 1.0,
+  "units": "normalised"
+ },
+ "region": {
+  "landmarks": [],
+  "mask_rule": "no vertex region: preset-layer driver, not a mesh morph"
+ },
+ "semantics": "The TissueVector's summary value, 0..1. When a character sets it explicitly it overrides the level the regional-tissue coupling derives from the tissue sliders (Chubby / MassSmooth / BellyPot). Presets author it; the TissueDefinition dial moves it implicitly through its targets.",
+ "symmetry": null
+}

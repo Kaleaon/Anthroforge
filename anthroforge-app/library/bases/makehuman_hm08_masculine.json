@@ -1,0 +1,20 @@
+{
+  "format": "anthroforge.base",
+  "version": 1,
+  "id": "makehuman_hm08_masculine",
+  "label": "MakeHuman hm08 \u2014 masculine macro (gender 1.0)",
+  "package": "makehuman_hm08_masculine.npz",
+  "topology": {
+    "verts": 19158,
+    "body_verts": 13380,
+    "triangles": 36972,
+    "vertex_order": "MPFB base.obj order; .target instances index this order",
+    "frame": "frame 1 (base.obj canonical): (x, z_obj, y_obj) x 0.1 m, metres, up = +axis2 in stored array order [width, depth, height] as written by the proof builders (pos = [obj.x, obj.z, obj.y])"
+  },
+  "macro": "Identical default macro dict with exactly one change: gender 0.5 -> 1.0. Under male weighting the cupsize/firmness macros are inert.",
+  "provenance": {
+    "source": "anthroforge-v2/masculine-base/ (correspondence_masc.npz: pos_neutral_canonical_m, aligned by that package's own pipeline; frame_offset_m [0.0, 0.00397, 0.81676])",
+    "licence": "CC0 (MakeHuman system assets via MPFB2)"
+  },
+  "validation": "belly v1 transfer re-derived on this base: navel achieved 0.12257 m vs anchor 0.12447 m (error -0.19 cm); anchor deviation vs feminine base +0.48 cm (work/qa_numbers_masc.json)"
+}

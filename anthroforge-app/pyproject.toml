@@ -1,0 +1,14 @@
+[project]
+name = "anthroforge-app"
+version = "0.1.0"
+description = "AnthroForge — avatar creator app (Core Service skeleton, APP_BLUEPRINT Phase 1)"
+requires-python = ">=3.11"
+# numpy joined the core with the geometry layer (Nov 12, 2026
+# integration pass): instance packs, field evaluation and the fold
+# gate are array work. Everything else remains stdlib.
+dependencies = ["numpy"]
+
+# The Core Service runs from the repo tree for now (no packaging step
+# in the skeleton phase); tests/conftest.py puts the root on sys.path.
+[tool.pytest.ini_options]
+testpaths = ["tests"]
