@@ -1617,9 +1617,9 @@
           positions[k + 1] += normals[k + 1] * strength * falloff * direction;
           positions[k + 2] += normals[k + 2] * strength * falloff * direction;
         } else if (state.sculptTool === 'grab') {
-          positions[k] += (point.x - before[k]) * 0.18 * falloff;
-          positions[k + 1] += (point.y - before[k + 1]) * 0.18 * falloff;
-          positions[k + 2] += (point.z - before[k + 2]) * 0.18 * falloff;
+          positions[k] += (point.x - before[k]) * strength * 15 * falloff;
+          positions[k + 1] += (point.y - before[k + 1]) * strength * 15 * falloff;
+          positions[k + 2] += (point.z - before[k + 2]) * strength * 15 * falloff;
         } else {
           // Laplacian smoothing from one-ring neighbours, computed from indexed triangles.
           let sx = 0, sy = 0, sz = 0, count = 0;
@@ -1828,6 +1828,8 @@
     function rebuildAvatarGeometry() {
       avatarMeshGroup.forEach(m => m.dispose());
       avatarMeshGroup = [];
+      // A rebuild changes mesh instances/topology; stale vertex snapshots must not be undoable.
+      state.sculptUndo = [];
 
       // === v2: geometry is baked in TRUE bind pose. Zero every rig rotation and
       // reset scaling first (the render loop reapplies animation + manual offsets
