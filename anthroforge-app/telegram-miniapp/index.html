@@ -3670,17 +3670,56 @@
           // Imported external meshes legitimately stay unskinned; avatar prims must all be skinned.
           checks.push({ name: 'all avatar prims carry JOINTS_0+WEIGHTS_0', ok: skinnedPrims >= avatarMeshGroup.length, detail: `${skinnedPrims}/${prims} prims skinned, ${avatarMeshGroup.length} avatar meshes` });
           const failed = checks.filter(c => !c.ok);
+          // Unity Humanoid candidate mapping for VRChat/Unity/Unreal handoff.
+          // This is a mapping manifest, not a claim that the GLB is upload-ready:
+          // Unity import, Humanoid avatar configuration, expressions and SDK setup
+          // still happen in the target application.
+          const humanoidMap = {
+            Hips: 'Pelvis', Spine: 'Spine1', Chest: 'Chest', Neck: 'Neck', Head: 'Head',
+            LeftShoulder: 'Shoulder_L', LeftUpperArm: 'Shoulder_L', LeftLowerArm: 'Elbow_L', LeftHand: 'Wrist_L',
+            RightShoulder: 'Shoulder_R', RightUpperArm: 'Shoulder_R', RightLowerArm: 'Elbow_R', RightHand: 'Wrist_R',
+            LeftUpperLeg: 'Hip_L', LeftLowerLeg: 'Knee_L', LeftFoot: 'Ankle_L', LeftToes: 'Foot_L',
+            RightUpperLeg: 'Hip_R', RightLowerLeg: 'Knee_R', RightFoot: 'Ankle_R', RightToes: 'Foot_R',
+            Jaw: 'Jaw'
+          };
+          const rigNames = new Set(BONE_HIERARCHY.map(b => b.name));
+          const requiredHumanoid = ['Hips', 'Spine', 'Head', 'LeftUpperArm', 'LeftLowerArm', 'LeftHand',
+            'RightUpperArm', 'RightLowerArm', 'RightHand', 'LeftUpperLeg', 'LeftLowerLeg', 'LeftFoot',
+            'RightUpperLeg', 'RightLowerLeg', 'RightFoot'];
+          const missingHumanoid = requiredHumanoid.filter(k => !humanoidMap[k] || !rigNames.has(humanoidMap[k]));
+          const avatarProfile = {
+            schema: 'anthroforge.avatar-targets/v1',
+            target: 'Unity Humanoid / VRChat handoff',
+            generatedAt: new Date().toISOString(),
+            sourceGlb: key,
+            humanoidBoneMap: humanoidMap,
+            requiredHumanoidBones: requiredHumanoid,
+            missingHumanoidBones: missingHumanoid,
+            optionalSetup: ['Eye bones / look-at', 'Viseme blendshapes or jaw-viseme mapping',
+              'Blink and expression blendshapes', 'VRChat PhysBones and colliders',
+              'Unity Humanoid Avatar configuration and VRC SDK validation'],
+            status: missingHumanoid.length ? 'blocked_missing_humanoid_bones' : 'rig_mapping_candidate_needs_unity_validation',
+            important: 'This sidecar is not a VRChat-ready upload. Import the skinned GLB into Blender or Unity, configure/verify the Humanoid Avatar, create expressions and PhysBones, then run the VRChat SDK build validation.'
+          };
           const report = {
             file: key, bytes: buf.byteLength, generatedBy: 'AnthroForge 3D Pro v2',
             joints: skins.length ? (skins[0].joints || []).length : 0,
-            checks, pass: failed.length === 0, exportedAtPose: 'current rig pose (bind pose is stored in the skin)'
+            checks, pass: failed.length === 0, exportedAtPose: 'current rig pose (bind pose is stored in the skin)',
+            avatarTargets: avatarProfile
           };
           window.__lastExportReport = report;
           const statusEl = document.getElementById('status-text');
           if (failed.length === 0) {
             glb.downloadFiles();
-            if (statusEl) statusEl.textContent = `✅ Export validated: ${key} • skin with ${report.joints} joints • ${skinnedPrims} skinned prims • ${(buf.byteLength / 1024).toFixed(0)} KB`;
-            showToast('✅ Exported + validated anthroforge_avatar.glb (real skin inside)');
+            const profileBlob = new Blob([JSON.stringify(avatarProfile, null, 2)], { type: 'application/json' });
+            const profileUrl = URL.createObjectURL(profileBlob);
+            const profileLink = document.createElement('a');
+            profileLink.href = profileUrl;
+            profileLink.download = 'anthroforge_avatar_unity_vrchat_profile.json';
+            profileLink.click();
+            URL.revokeObjectURL(profileUrl);
+            if (statusEl) statusEl.textContent = `✅ Skinned GLB validated • ${report.joints} joints • Unity/VRChat mapping sidecar generated (final SDK setup still required)`;
+            showToast('✅ Exported skinned GLB + Unity/VRChat setup manifest');
           } else {
             if (statusEl) statusEl.textContent = `⛔ Export FAILED validation — not downloaded: ${failed.map(f => f.name).join('; ')}`;
             showToast('⛔ Export failed validation — see status bar');
