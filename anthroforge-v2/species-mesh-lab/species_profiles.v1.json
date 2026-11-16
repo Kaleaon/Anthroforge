@@ -44,7 +44,12 @@
         "coat": "short_double",
         "markings": "canid"
       },
-      "notes": "Canid baseline; long muzzle, upright pinnae, digitigrade lower legs."
+      "notes": "Canid baseline; long muzzle, upright pinnae, digitigrade lower legs.",
+      "supported_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ]
     },
     {
       "id": "species.feline.big_cat",
@@ -82,7 +87,12 @@
         "coat": "short_velvet",
         "markings": "rosette_or_solid"
       },
-      "notes": "Distinct feline head and paw proportions; do not alias to canid."
+      "notes": "Distinct feline head and paw proportions; do not alias to canid.",
+      "supported_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ]
     },
     {
       "id": "species.equine.horse",
@@ -120,7 +130,12 @@
         "coat": "short_coat",
         "markings": "equine"
       },
-      "notes": "Long face, long distal limbs, hoof-ready foot socket."
+      "notes": "Long face, long distal limbs, hoof-ready foot socket.",
+      "supported_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ]
     },
     {
       "id": "species.draconic.drake",
@@ -158,7 +173,12 @@
         "coat": "scales",
         "markings": "scale_regions"
       },
-      "notes": "Long counterbalance tail, horn/fin attachment zones, claw-ready digits."
+      "notes": "Long counterbalance tail, horn/fin attachment zones, claw-ready digits.",
+      "supported_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ]
     },
     {
       "id": "species.avian.gryphon",
@@ -196,7 +216,12 @@
         "coat": "feathered_body",
         "markings": "avian"
       },
-      "notes": "Wing-root shoulder volume and feather-tail mount; wings remain modular parts."
+      "notes": "Wing-root shoulder volume and feather-tail mount; wings remain modular parts.",
+      "supported_plans": [
+        "plan.biped",
+        "plan.quadruped_feral",
+        "plan.quadruped_taur"
+      ]
     },
     {
       "id": "species.serpentine.naga",
@@ -234,7 +259,11 @@
         "coat": "scales",
         "markings": "serpentine"
       },
-      "notes": "This profile is for the upper-body + coil blockout only; requires dedicated axial rig and coil mesh pass."
+      "notes": "This profile is for the upper-body + coil blockout only; requires dedicated axial rig and coil mesh pass.",
+      "supported_plans": [
+        "plan.biped",
+        "plan.naga"
+      ]
     }
   ]
 }
