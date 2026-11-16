@@ -1,0 +1,319 @@
+{
+ "id": "body.belly.protrusion",
+ "label": "Body adiposity (belly-centred)",
+ "group": "body/torso",
+ "version": 4,
+ "supersedes": "body.belly.protrusion.slider_v3.json (v3, belly-only gravity)",
+ "symmetry": "bilateral_x",
+ "range": {
+  "min": -1,
+  "max": 1,
+  "default": 0,
+  "safe_max": 1.0,
+  "endpoint_anchor": "belly core unchanged from v1/v3: max forward displacement at navel 0.1197 m on hm08 (Fat Males anchor scaled by torso-length ratio 0.8325); distribution layer calibrated separately (flank match, alpha capped 2.0) -- see distribution"
+ },
+ "region": {
+  "landmarks": [
+   "navel",
+   "sternum_bottom",
+   "pelvis_top"
+  ],
+  "mask_rule": "belly core: v1 geodesic mask (r = 0.35 x torso_len) crossfaded against the whole-torso distribution field across the mask ring; distribution weight covers h in [-0.08, 1.03] of the torso parameter, graph-smoothed"
+ },
+ "semantics": "Whole-torso adiposity SYSTEM (FAT_REFERENCE.md): the v3 pendant belly (drain/descent/drape, gamma=2) embedded in a learned fat-distribution field -- chest, flanks/love-handles, back, hips/glutes, shoulder roots -- with a posture shear (anterior pelvic tilt lobe + compensating chest lobe, kept after passing its effect gate). At +1 the silhouette is one heavy torso: waist girth +20 cm at the narrowest point, hips +11 cm, chest width +4.8 cm, back band +5.6 cm mean radial; no silhouette step at the old belly-mask boundary (ring gradient ratio 1.28 vs base). Limbs are NOT covered (v5 scope).",
+ "system": {
+  "model": "D4 = LIN + SAG; LIN = B*D_protrusion + (1-B)*D_distribution + D_crease(0: learned fields already carry the flank crease) + D_posture; SAG = B * D_sag3 (v3, gamma = 2.0)",
+  "distribution": {
+   "blend": "0.5 * Fat Males full-torso field + 0.5 * alpha * HIMBO Chonky field (each scaled by its torso-length ratio)",
+   "alpha_himbo_calibration": 2.0,
+   "calibration": "flank-band match (mean |radial| over |theta| 1.1-1.9, h 0.3-0.6): the sources DISAGREE on the belly front (Fat Males peak 15.4 cm vs Chonky 3.3 cm -- pot-belly vs broad-mass bodies), so they are matched where the distribution's job lives and the belly core stays D_protrusion/D_sag3's job. Alpha hit its 2.0 cap: even doubled, Chonky's flanks are the lighter of the two; the blend leans Fat Males there.",
+   "s_fm": 0.8324822358139423,
+   "s_hi": 0.7902259294955191,
+   "himbo_recipe_used": {
+    "Chubby": 0.4,
+    "TorsoMass": 1.0,
+    "TorsoLower": 1.0,
+    "TorsoBackShape": 0.92,
+    "TorsoBackSlope": 0.9,
+    "TorsoBellyLHandles": 0.66,
+    "TorsoSterHeight": 1.0,
+    "PecsSize": 1.0,
+    "PecsWidth": 1.0,
+    "PecsClavicle": 1.0,
+    "PecsMass": 0.05,
+    "ButtBooty": 0.75,
+    "ButtDimpleDeepen": 1.0,
+    "ButtSaggy": 0.11,
+    "ArmsTrapsMeat": 1.0,
+    "ArmsTrapsPush": 0.92,
+    "ArmsShoulders": 0.5
+   },
+   "himbo_recipe_missing": [],
+   "shipped_scale": 1.0
+  },
+  "field_cross_validation_cm": {
+   "fm": {
+    "label": "fat_males",
+    "samples": 1154,
+    "informative": 1154,
+    "cv_cm": {
+     "p50": 0.9413945651623685,
+     "p95": 3.4015368368190657,
+     "max": 8.224586866075706
+    },
+    "torso_len_m": 0.7534239375233199
+   },
+   "himbo": {
+    "label": "himbo_chonky",
+    "samples": 5514,
+    "informative": 5490,
+    "cv_cm": {
+     "p50": 0.4381234366232221,
+     "p95": 1.957002644487793,
+     "max": 4.262850121096936
+    },
+    "torso_len_m": 0.7937123050689695
+   }
+  },
+  "posture": {
+   "kept": true,
+   "with": {
+    "below_share_pct": 63.65023759898316,
+    "lowest_above_crotch_cm": -1.5285209515479015
+   },
+   "without": {
+    "below_share_pct": 56.884595254626745,
+    "lowest_above_crotch_cm": -1.3645238078923219
+   },
+   "preflips_with": 6,
+   "preflips_without": 7
+  },
+  "whole_torso_gate": "fold repair and the 0-flip gate run over ALL 12,298 torso faces (both bases), not just the belly patch"
+ },
+ "gravity": {
+  "coupling": {
+   "formula": "shape(w) = base + w * LIN + f(w) * SAG",
+   "f": "sign(w) * |w|^gamma",
+   "gamma": 2.0,
+   "f_at_0.5": 0.25
+  },
+  "fold_repair": "attenuation repair over the whole torso: 4 rounds, min attenuation 0.53, 67 verts touched (the distribution fields are intrinsically smooth; contrast v3's 40 rounds / 509 verts)",
+  "shipped_distribution_scale": 1.0
+ },
+ "qa": {
+  "fold_scan_+1_both_bases": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.11621562050057885
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.005093005969853959
+   }
+  },
+  "fold_scan_full": {
+   "-1 (linear)": {
+    "raw": {
+     "flips": 183,
+     "min_dot": -0.9962751455780274
+    },
+    "macro": {
+     "flips": 170,
+     "min_dot": -0.9842359847292783
+    }
+   },
+   "+0.5 (coupled)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.48061852525190524
+    },
+    "macro": {
+     "flips": 0,
+     "min_dot": 0.586878537110553
+    }
+   },
+   "+1 (combined)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.11621562050057885
+    },
+    "macro": {
+     "flips": 0,
+     "min_dot": 0.005093005969853959
+    }
+   },
+   "+1.05 (combined)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.08170947326811502
+    },
+    "macro": {
+     "flips": 8,
+     "min_dot": -0.0680511004278044
+    }
+   }
+  },
+  "navel_anchor": {
+   "anchor_forward_m": 0.11968888694106054,
+   "v4_at_+1_numpy": {
+    "forward_cm": 11.14157754248432,
+    "down_cm": 6.992363717319414
+   },
+   "v4_at_+1_blender_cm": {
+    "forward": 11.27,
+    "down": 6.99
+   }
+  },
+  "metrics_first_pass": {
+   "v3": {
+    "below_share_pct (M1)": 65.9,
+    "lowest_above_crotch_cm (M2)": -1.32,
+    "waist_girth_cm": 91.7,
+    "hip_girth_cm": 92.1,
+    "waist_hip_ratio (M3)": 0.995,
+    "boundary_step_ratio (M4)": 3.16,
+    "back_radial_cm (M5)": 0.0,
+    "chest_front_radial_cm (M6)": 0.11,
+    "chest_width_gain_cm (M6b)": 0.0,
+    "waist_crease_depth_cm (M7b)": 4.41,
+    "waist_h_found": 0.538,
+    "added_torso_volume_proxy_cm3 (M8)": 7253.6,
+    "waist_height_ratio (M9)": 0.55
+   },
+   "v4": {
+    "below_share_pct (M1)": 63.1,
+    "lowest_above_crotch_cm (M2)": -1.54,
+    "waist_girth_cm": 101.9,
+    "hip_girth_cm": 102.9,
+    "waist_hip_ratio (M3)": 0.991,
+    "boundary_step_ratio (M4)": 3.76,
+    "back_radial_cm (M5)": 5.59,
+    "chest_front_radial_cm (M6)": 1.77,
+    "chest_width_gain_cm (M6b)": 4.88,
+    "waist_crease_depth_cm (M7b)": 6.62,
+    "waist_h_found": 0.538,
+    "added_torso_volume_proxy_cm3 (M8)": 23888.8,
+    "waist_height_ratio (M9)": 0.612,
+    "added_torso_volume_ratio_v4_over_v3 (M8)": 3.29
+   },
+   "pinch": {
+    "v3": {
+     "bulge_extent_cm": 12.66,
+     "crease_extent_cm": 8.83,
+     "crease_pinch_ratio (M7a)": 0.697
+    },
+    "v4": {
+     "bulge_extent_cm": 13.26,
+     "crease_extent_cm": 9.48,
+     "crease_pinch_ratio (M7a)": 0.715
+    }
+   }
+  },
+  "metrics_corrected": {
+   "note": "supersede the same-named first-pass metrics in qa.metrics where definitions overlap; see GRAVITY_V4.md",
+   "base": {
+    "M2_apron_bottom_above_crotch_cm": null,
+    "M3_waist_girth_narrowest_cm": 65.3,
+    "M3_hip_girth_cm": 92.1,
+    "M3_ratio_narrowest": 0.709,
+    "M3_navel_girth_cm": 67.2,
+    "M3_ratio_navel_level": 0.729,
+    "M9_waist_height_ratio_narrowest": 0.392,
+    "chest_width_cm": 41.2,
+    "flank_roll_peak": {
+     "h": 0.12,
+     "width_cm": 34.8
+    },
+    "flank_pinch_above_roll_cm": 5.1
+   },
+   "v3": {
+    "M2_apron_bottom_above_crotch_cm": 9.05,
+    "M3_waist_girth_narrowest_cm": 79.6,
+    "M3_hip_girth_cm": 92.1,
+    "M3_ratio_narrowest": 0.864,
+    "M3_navel_girth_cm": 104.1,
+    "M3_ratio_navel_level": 1.13,
+    "M9_waist_height_ratio_narrowest": 0.478,
+    "chest_width_cm": 41.2,
+    "flank_roll_peak": {
+     "h": 0.419,
+     "width_cm": 37.4
+    },
+    "flank_pinch_above_roll_cm": 10.7
+   },
+   "v4": {
+    "M2_apron_bottom_above_crotch_cm": 8.81,
+    "M3_waist_girth_narrowest_cm": 85.5,
+    "M3_hip_girth_cm": 102.9,
+    "M3_ratio_narrowest": 0.831,
+    "M3_navel_girth_cm": 117.4,
+    "M3_ratio_navel_level": 1.141,
+    "M9_waist_height_ratio_narrowest": 0.513,
+    "chest_width_cm": 46.0,
+    "flank_roll_peak": {
+     "h": 0.279,
+     "width_cm": 45.1
+    },
+    "flank_pinch_above_roll_cm": 10.3
+   },
+   "M4_ring_gradient_ratio": {
+    "v3": 1.0,
+    "v4": 1.28
+   }
+  },
+  "zones": {
+   "pin_patch": {
+    "n": 18,
+    "v3_p95_cm": 4.136284215205284,
+    "v4_p50_cm": 2.665705185500129,
+    "v4_p95_cm": 4.459194670118738
+   },
+   "crease": {
+    "n": 63,
+    "v3_p95_cm": 3.9348234173257866,
+    "v4_p50_cm": 3.3645358288007783,
+    "v4_p95_cm": 4.574536339727396
+   },
+   "flank": {
+    "n": 66,
+    "v3_p95_cm": 2.275868994099605,
+    "v4_p50_cm": 0.9054495761454078,
+    "v4_p95_cm": 2.039358964583421
+   },
+   "core": {
+    "n": 244,
+    "v3_p95_cm": 3.670875075013446,
+    "v4_p50_cm": 1.106394809898,
+    "v4_p95_cm": 3.622855669790455
+   }
+  },
+  "zones_all_triangle_exact": {
+   "n": 391,
+   "v4_p50_cm": 1.2031380873488982,
+   "v4_p95_cm": 4.404923274938557,
+   "v3_p95_cm": 3.7699028440454976
+  },
+  "blender_evaluated_belly_region": {
+   "faces": 918,
+   "flips": 0,
+   "min_dot": 0.02694272606906299
+  }
+ },
+ "instances": {
+  "makehuman_hm08": {
+   "base": "hm08 (MPFB2 base.obj vertex order, 19158 verts; pure delta vs the macro-neutral base)",
+   "file": "body.belly.protrusion_v4.target",
+   "components": {
+    "combined_at_+1": "body.belly.protrusion_v4.target (= LIN_v4 + SAG_v3, for hosts without coupling support)",
+    "distribution_component": "body.belly.protrusion_distribution_v4.target (= D4 - D3: everything v4 adds over v3 -- the distribution, posture and crossfade; stack it on v3 to reproduce v4, or use it standalone as a torso-mass layer under a different belly)",
+    "protrusion": "body.belly.protrusion.target (v1, unchanged)",
+    "sag": "body.belly.protrusion_sag_v3.target (v3, unchanged)"
+   }
+  }
+ },
+ "provenance": {
+  "source": "belly core: Fat Males morph (Skyrim) transferred v1. Distribution: 50/50 blend of (a) the Fat Males full-torso morph and (b) the HIMBO 'Chonky' preset recipe (17 Vanilla OSD blocks at the preset's big values; SamuelLike/FemmeB/FemmeBooba excluded -- other sets, one a body-swap; BellySmooth absent from the Vanilla OSD; TorsoWaistSize excluded -- direction ambiguous, its display name decodes to 'Shrink Waist'), each transferred by the v1 (h, theta) kernel machinery and flank-calibrated (alpha = 2.00, capped). Rules: FAT_REFERENCE.md.",
+  "method": "scripts/build_belly_v4.py (+ analyze/finalize scripts)",
+  "licence": "STUDY-ONLY / internal. Derived from Fat Males + HIMBO material under Joe's Nov 12, 2026 licence ruling (no AI-training use). NOT a CC0 MakeHuman asset; do not ship with stock MPFB content or redistribute."
+ }
+}

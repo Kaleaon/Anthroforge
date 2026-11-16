@@ -1,0 +1,173 @@
+{
+ "s_scale": 0.8324822358139423,
+ "h_star": 0.4625,
+ "anchor_raw_m": 0.14377350265502928,
+ "anchor_m": 0.11968888694106054,
+ "max_delta_source_m": 0.15605727234583344,
+ "navel_mh": 4075,
+ "navel_sk": 741,
+ "navel_predicted_m": 0.11903457658184478,
+ "gain": 1.0,
+ "cv_residual_m": {
+  "p50": 0.007996447411662045,
+  "p95": 0.02033367235454095,
+  "max": 0.025750842304427087
+ },
+ "cv_residual_torso_m": {
+  "p50": 0.009353986717076242,
+  "p95": 0.03489764254437458,
+  "max": 0.07818808100503033
+ },
+ "surface_residual_cm": {
+  "forward_hm08_to_source": {
+   "p50": 0.0392353918542295,
+   "p95": 1.3937931401811112,
+   "max": 4.281943761617139
+  },
+  "backward_source_to_hm08_matched": {
+   "p50": 0.2248263578906135,
+   "p95": 2.5273123438638136,
+   "max": 4.005476977734864
+  },
+  "backward_coverage": 0.9425287356321839,
+  "backward_n": 164
+ },
+ "navel_pin_cm": 3.746522589423952,
+ "fold_scan": {
+  "-1.0": {
+   "faces_checked": 1092,
+   "raw": {
+    "flips": 153,
+    "min_dot": -0.9878746691875107,
+    "flip_h_range": [
+     0.2577969203136792,
+     0.710302048954485
+    ]
+   },
+   "macro": {
+    "flips": 141,
+    "min_dot": -0.984759854276878,
+    "flip_h_range": [
+     0.2577969203136792,
+     0.787500821620365
+    ]
+   }
+  },
+  "0.5": {
+   "faces_checked": 1092,
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.37112678084046696,
+    "flip_h_range": null
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.5607973148502974,
+    "flip_h_range": null
+   }
+  },
+  "0.7": {
+   "faces_checked": 1092,
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.21239415307868562,
+    "flip_h_range": null
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.39713504779029674,
+    "flip_h_range": null
+   }
+  },
+  "0.8": {
+   "faces_checked": 1092,
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.161792358748888,
+    "flip_h_range": null
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.27937668341889443,
+    "flip_h_range": null
+   }
+  },
+  "0.9": {
+   "faces_checked": 1092,
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.1197233787816939,
+    "flip_h_range": null
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.1767868785823793,
+    "flip_h_range": null
+   }
+  },
+  "0.95": {
+   "faces_checked": 1092,
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.08862368017835798,
+    "flip_h_range": null
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.13121589756741825,
+    "flip_h_range": null
+   }
+  },
+  "1.0": {
+   "faces_checked": 1092,
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.05526940783983689,
+    "flip_h_range": null
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.08924333959643252,
+    "flip_h_range": null
+   }
+  },
+  "1.05": {
+   "faces_checked": 1092,
+   "raw": {
+    "flips": 4,
+    "min_dot": -0.3784722897787118,
+    "flip_h_range": [
+     0.7057421875372109,
+     0.7148247087051848
+    ]
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.050635126420460586,
+    "flip_h_range": null
+   }
+  }
+ },
+ "safe_max": 1.0,
+ "moved_verts": 535,
+ "tangential_mean_cm": 1.2837203958140337,
+ "landmarks": {
+  "skyrim": [
+   0.8376245960998535,
+   1.5910485336231734
+  ],
+  "hm08": [
+   -0.04474,
+   0.5824720440251574
+  ]
+ },
+ "kernel": {
+  "sigma_h": 0.05,
+  "sigma_arc_m": 0.04
+ },
+ "method": "non-rigid registration in torso-param space (arc/L, h, r/L) onto the source fat surface, kernel-field init; mask falloff; tight navel pin to the canonical displacement anchor (sigma_u 0.035, sigma_v 0.045); targeted dual-base fold repair (bad-face verts + 1-ring, checked on raw base.obj geometry AND the MPFB default-macro evaluated base)",
+ "smoothing": {
+  "registration": "param-space graph Laplacian x6 in-loop",
+  "fold_repair": "targeted, bad-face verts + 1-ring, 0.5"
+ }
+}

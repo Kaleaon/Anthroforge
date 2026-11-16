@@ -1,0 +1,18 @@
+{
+ "body_triangles": 26756,
+ "states": {
+  "tissue0": {
+   "flips": 0,
+   "min_dot": 0.22200444575116435
+  },
+  "strongman": {
+   "flips": 0,
+   "min_dot": 0.08408163797617102
+  },
+  "gachidebu": {
+   "flips": 2,
+   "min_dot": -0.9600734405871889
+  }
+ },
+ "note": "probe (scripts, /tmp run): the gachidebu state's 2 flipped triangles exist in the shipped quantised body.coupling.gachidebu.target ALONE (definition keys at 0; z 1.486-1.487, upper chest), and the definition set at 1.0 adds none. The float substrate used by the numpy gates is flip-free (see definition_numbers.json)."
+}

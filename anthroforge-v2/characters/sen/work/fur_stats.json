@@ -1,0 +1,59 @@
+{
+ "ruff": {
+  "parents": 2200,
+  "length_m": 0.15,
+  "rendered_children_per_parent": 3,
+  "rendered_strands": 8800,
+  "colour_authored": [
+   0.115,
+   0.07,
+   0.038
+  ]
+ },
+ "back": {
+  "parents": 3000,
+  "length_m": 0.1,
+  "rendered_children_per_parent": 3,
+  "rendered_strands": 12000,
+  "colour_authored": [
+   0.15,
+   0.092,
+   0.048
+  ]
+ },
+ "belly": {
+  "parents": 2400,
+  "length_m": 0.045,
+  "rendered_children_per_parent": 3,
+  "rendered_strands": 9600,
+  "colour_authored": [
+   0.165,
+   0.103,
+   0.055
+  ]
+ },
+ "coat": {
+  "parents": 5200,
+  "length_m": 0.068,
+  "rendered_children_per_parent": 3,
+  "rendered_strands": 20800,
+  "colour_authored": [
+   0.155,
+   0.097,
+   0.052
+  ]
+ },
+ "crescent": {
+  "parents": 700,
+  "length_m": 0.055,
+  "rendered_children_per_parent": 3,
+  "rendered_strands": 2800,
+  "colour_authored": [
+   0.62,
+   0.545,
+   0.4
+  ]
+ },
+ "total_parents": 13500,
+ "total_rendered_strands": 54000
+}

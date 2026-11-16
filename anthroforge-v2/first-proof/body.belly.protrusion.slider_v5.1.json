@@ -1,0 +1,658 @@
+{
+ "id": "body.belly.protrusion",
+ "label": "Body adiposity (belly-centred)",
+ "group": "body/torso",
+ "version": 5.1,
+ "supersedes": "body.belly.protrusion.slider_v5.json (v5, whole-body system; distal fades ended at zero -- hands/feet lean)",
+ "symmetry": "bilateral_x",
+ "range": {
+  "min": -1,
+  "max": 1,
+  "default": 0,
+  "safe_max": 1.0,
+  "endpoint_anchor": "belly core unchanged from v1/v3/v4: max forward displacement at navel 0.1197 m on hm08 (Fat Males anchor scaled by torso-length ratio 0.8325); limb layer calibrated separately (thigh-band match, alpha 0.65) -- see system.limb_distribution"
+ },
+ "region": {
+  "landmarks": [
+   "navel",
+   "sternum_bottom",
+   "pelvis_top"
+  ],
+  "mask_rule": "v5 system, plus the v5.1 TERMINAL component: the distal fades no longer end at zero. From the wrist (arm s 0.60-0.90) and ankle (leg s 0.74-0.99) a low, shaped terminal field (Fat Males malehands/malefeet measured deltas, zone-scaled) carries small real tissue into the hands and feet: wrist ring, dorsal-weighted palm pad, per-digit thickening (rig-weight segmentation) with knuckle softening and a contact cap between fingers, ankle ring (capped, excess routed to heel/dorsal), dorsal midfoot and toes."
+ },
+ "semantics": "Whole-body adiposity system INCLUDING terminal tissue (Joe, Nov 12, 2026: 'wrists and hands also need fat, not massive amounts but that is realistic'). v5's limb gains stand; v5.1 adds the heavy-hand/foot tells at +1: wrist girth +2.98 cm total (v5 alone +1.85), ankle +3.42 cm total (v5 +2.18), proximal finger mean radial thickness +13.5-16.2% per finger (thumb +14.3%), dorsal hand pad, knuckle relief softened (not erased). Inter-digit minimum distance 2.11 -> 1.01 mm, zero new close pairs, centroid separations preserved -- fingers thicken into their free sectors, contact faces flatten (contact cap).",
+ "system": {
+  "model": "D5 = D4 + INC; INC(v) = m(v) * w_prox(s) * (F_limb(v) * d_fade(s) - D4(v)) on limb verts, 0 elsewhere; shape(w) = base + w * LIN5 + sign(w)|w|^2.0 * SAG, LIN5 = LIN4 + INC, SAG unchanged from v3/v4",
+  "limb_distribution": {
+   "blend": "0.5 * Fat Males limb field + 0.5 * alpha_limb * HIMBO Chonky limb-recipe field, each scaled by its per-limb length ratio (arm/leg separately)",
+   "alpha_limb_calibration": 0.6501530710755051,
+   "calibration": "thigh-band match (mean |dr| over leg samples s 0.08-0.45, all phi): Fat Males 2.92 cm vs HIMBO limb recipe 4.49 cm after length scaling -> alpha 0.65 (inside the [0.5, 2.0] cap, unlike v4's torso alpha which capped at 2.0). The sources agree on limbs far better than on the belly front.",
+   "scales": {
+    "fm_arm": 1.151927887276351,
+    "hi_arm": 1.1795178641043322,
+    "fm_leg": 1.1026512848940604,
+    "hi_leg": 1.1638954566839907
+   },
+   "himbo_recipe_used": {
+    "ArmsBiceps": 1.0,
+    "ArmsClavicleCurve": 1.0,
+    "ArmsDelts": 1.0,
+    "ArmsDeltsBack": 0.27,
+    "ArmsDeltsLower": 0.23,
+    "ArmsDeltsUpper": 0.18,
+    "ArmsFore": 1.0,
+    "LegsSize": 1.0,
+    "LegsThigh": 1.0,
+    "LegsChubby": 0.94,
+    "LegsFemurUpper": 0.62,
+    "LegsFemurLower": 0.05,
+    "LegsGlutes": 0.38,
+    "LegsKneePit": 0.57,
+    "LegsCalfWidth": 0.72,
+    "LegsCalfLower": 0.33,
+    "LegsCalfUpper": 0.12
+   },
+   "himbo_recipe_missing": [
+    "ArmsDeltsShape",
+    "LegsThighSmoothCurve",
+    "LegsVastusMReduction",
+    "LegsCalfOut",
+    "LegsCalfSideIn"
+   ],
+   "missing_reason": "DeltsShape, ThighSmoothCurve, VastusMReduction, CalfOut, CalfSideIn exist only on the SOS-variant HIMBO mesh; verified Nov 12, 2026 that the SOS OSD's same-named blocks carry different vertex supports (LegsCalfWidth 2422 vs 4009 verts), so they do not index the Vanilla base and cannot be composed onto it. All primary mass sliders are present; the five are shape refinements.",
+   "shipped_inc_scale": 1.0,
+   "parametrization": "per-limb axis polyline from cross-section centroids (binomial-smoothed; legs z-bands hip->ankle, arms PCA bands shoulder->wrist); (s, phi) kernel with phi in mirrored right-limb space (inner/outer NOT folded, unlike the torso's |theta|); radial + axial components, tangential dropped as in v1-v4",
+   "reference_shapings": [
+    "arm underside sector gain (R3/L3): blended arm dr reweighted toward phi_down (world-down in the arm's frame, -2.12 rad) with strength 1.0, mean-preserved -- both sources under-pool the underside (HIMBO's arm recipe is deltoid/biceps-led; Fat Males' arm is its coarsest region)",
+    "leg distal taper (L4): leg dr x1.0 through the gastrocnemius belly (s<=0.68), ->0.55 at s=0.85, ->0.35 at s=1.0 -- calf fat is a thin layer over a muscle form; the raw blend tubed the shank",
+    "distal fades re-anchored after the r3 run measured +5.4/+5.5 cm at wrist/ankle: arm fade s 0.58-0.82, leg fade s 0.70-0.90 (wrist s~0.72, ankle s~0.84 on the base profile)"
+   ]
+  },
+  "field_cross_validation_cm": {
+   "fm_arm": {
+    "label": "fat_males_arm",
+    "kind": "arm",
+    "samples": 594,
+    "informative": 592,
+    "cv_cm": {
+     "p50": 0.5300905413369071,
+     "p95": 2.535259314538671,
+     "max": 5.70228719010534
+    }
+   },
+   "hi_arm": {
+    "label": "himbo_limb_arm",
+    "kind": "arm",
+    "samples": 3322,
+    "informative": 2895,
+    "cv_cm": {
+     "p50": 0.13948123256395267,
+     "p95": 0.4729013723051321,
+     "max": 0.729811350666383
+    }
+   },
+   "fm_leg": {
+    "label": "fat_males_leg",
+    "kind": "leg",
+    "samples": 1084,
+    "informative": 1080,
+    "cv_cm": {
+     "p50": 0.4721657767438074,
+     "p95": 2.43161705407179,
+     "max": 4.212482280554221
+    }
+   },
+   "hi_leg": {
+    "label": "himbo_limb_leg",
+    "kind": "leg",
+    "samples": 3422,
+    "informative": 3398,
+    "cv_cm": {
+     "p50": 0.353634594073416,
+     "p95": 1.8099120364455719,
+     "max": 3.4916269292803612
+    }
+   }
+  },
+  "whole_body_gate": "fold repair and the 0-flip gate run over ALL 26,756 body faces (both bases), not just the torso",
+  "terminal_component": {
+   "component_file": "body.belly.protrusion_terminal_v51.target",
+   "model": "D51 = D5 + TERM; TERM is linear (part of LIN): shape(w) = base + w*(LIN5+TERM) + sign(w)|w|^2.0*SAG",
+   "source": {
+    "primary": "Fat Males malehands/malefeet same-topology deltas (learned/fat-males_body_morph.npz): hands mean 0.150 / max 0.501 Skyrim units, feet mean 0.384 / max 1.520 -- per-zone perpendicular magnitudes, scaled by hand/foot length ratio to hm08 (hand 0.642, foot 0.692)",
+    "zone_perp_mean_mm": {
+     "wrist": 4.354804555056793,
+     "palm": 2.3626471631192363,
+     "prox_finger": 2.909691377796964,
+     "distal_finger": 1.5060724041757299,
+     "length_m": 0.25985663963521155
+    },
+    "foot_zone_perp_mean_mm": {
+     "ankle_heel": 7.28686582067214,
+     "midfoot": 5.157096743632129,
+     "toes": 3.0885849989994107,
+     "length_m": 0.26759954103686556
+    },
+    "gains_pre_cal_mm": {
+     "wrist": 2.8,
+     "palm": 1.52,
+     "prox_finger": 1.87,
+     "distal_finger": 0.97,
+     "ankle": 5.04,
+     "midfoot": 3.57,
+     "toes": 2.14
+    },
+    "shaping_E": "sector weights (hand dorsal > lateral > palmar; foot dorsal > side > sole) and the knuckle-softening term are anatomical shaping [E] over the measured magnitudes [S]"
+   },
+   "calibration": {
+    "CAL": 1.0,
+    "CAL_target": "composed wrist girth gain 3.0 cm (band 2.5-3.5); solved CAL = 1.000 (the scaled source itself)",
+    "FBOOST": 1.0,
+    "FBOOST_target": "fingers 2-5 proximal mean radial thickness gain 0.150 (foot of the specified 15-20% band); solved FBOOST = 1.000 after the round-finger sector rebalance",
+    "per_vert_caps": "proximal finger radial <= 20% of local radius (the band ceiling; binds dorsally), mid/distal <= 15%; contact cap <= 45% of distance to nearest other-digit vertex + 0.3 mm; ankle ring capped (see ankle_ring_cap_mm), FM ankle/heel excess routed to heel/dorsal zones",
+    "ankle_ring_cap_mm": 1.7
+   },
+   "segmentation": "digits from the MPFB default rig's finger bone skin weights (authoritative; geometric clustering and a geodesic watershed both failed on the webbed, contact-resting hm08 hand -- probed and documented in GRAVITY_V5.md addendum); dorsal sign from the base.obj joint helpers (thumb MCP joint sits 8.2 mm palmar to the finger MCP plane)",
+   "moved_verts_terminal": 5590
+  }
+ },
+ "gravity": {
+  "coupling": {
+   "formula": "shape(w) = base + w * LIN + f(w) * SAG",
+   "f": "sign(w) * |w|^gamma",
+   "gamma": 2.0,
+   "f_at_0.5": 0.25
+  },
+  "fold_repair": "attenuation repair on the limb increment: converged in 2 rounds, min attenuation 0.59, 29 verts attenuated below 0.99 (slope limiter kappa 0.55 on the increment first, as v2-v4)",
+  "contact_cap_applied": false
+ },
+ "qa": {
+  "fold_scan_+1_both_bases": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.06954358003606084
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.0017686192905230214
+   }
+  },
+  "fold_scan_full": {
+   "-1 (linear)": {
+    "raw": {
+     "flips": 184,
+     "min_dot": -0.9962751455780274
+    },
+    "macro": {
+     "flips": 162,
+     "min_dot": -0.9842359847292783
+    }
+   },
+   "+0.5 (coupled)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.45008062687908507
+    },
+    "macro": {
+     "flips": 0,
+     "min_dot": 0.586878537110553
+    }
+   },
+   "+1 (combined)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.06954358003606084
+    },
+    "macro": {
+     "flips": 0,
+     "min_dot": 0.0017686192905230214
+    }
+   },
+   "+1.05 (combined)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.04954362113820293
+    },
+    "macro": {
+     "flips": 11,
+     "min_dot": -0.0680511004278044
+    }
+   }
+  },
+  "body_faces_checked": 26756,
+  "navel_anchor": {
+   "v5_at_+1_numpy": {
+    "forward_cm": 11.14157754248432,
+    "down_cm": 6.992363717319414
+   },
+   "v5_at_+1_blender_cm": {
+    "forward": 11.27,
+    "down": 6.99
+   },
+   "v4_at_+1_blender_cm": {
+    "forward": 11.27,
+    "down": 6.99
+   },
+   "note": "identical to v4 by construction (navel is outside the limb region) and reproduced in Blender"
+  },
+  "metrics_corrected_v4": {
+   "M2_apron_bottom_above_crotch_cm": 8.81,
+   "M3_waist_girth_narrowest_cm": 85.5,
+   "M3_hip_girth_cm": 102.9,
+   "M3_ratio_narrowest": 0.831,
+   "M3_navel_girth_cm": 117.4,
+   "M3_ratio_navel_level": 1.141,
+   "M9_waist_height_ratio_narrowest": 0.513,
+   "flank_roll_peak": {
+    "h": 0.279,
+    "width_cm": 45.1
+   },
+   "flank_pinch_above_roll_cm": 10.3,
+   "below_share_pct (M1)": 63.1,
+   "back_radial_cm (M5)": 5.59,
+   "chest_front_radial_cm (M6)": 1.77
+  },
+  "metrics_corrected_v5": {
+   "M2_apron_bottom_above_crotch_cm": 8.99,
+   "M3_waist_girth_narrowest_cm": 85.5,
+   "M3_hip_girth_cm": 104.1,
+   "M3_ratio_narrowest": 0.822,
+   "M3_navel_girth_cm": 117.4,
+   "M3_ratio_navel_level": 1.128,
+   "M9_waist_height_ratio_narrowest": 0.513,
+   "flank_roll_peak": {
+    "h": 0.279,
+    "width_cm": 44.7
+   },
+   "flank_pinch_above_roll_cm": 9.9,
+   "below_share_pct (M1)": 63.0,
+   "back_radial_cm (M5)": 5.59,
+   "chest_front_radial_cm (M6)": 1.77
+  },
+  "limb_metrics": {
+   "arm_R": {
+    "landmark": {
+     "joint": "elbow",
+     "s_base": 0.56,
+     "s_v5": 0.56,
+     "girth_base_cm": 16.5,
+     "girth_v5_cm": 22.2,
+     "gain_cm": 5.66,
+     "interior_min_base": false,
+     "interior_min_v5": false
+    },
+    "points": {
+     "upper_arm_tube": {
+      "s": 0.36,
+      "base_cm": 23.8,
+      "v4_cm": 24.3,
+      "v5_cm": 30.0,
+      "gain_cm": 6.2
+     },
+     "forearm": {
+      "s": 0.64,
+      "base_cm": 16.2,
+      "v4_cm": 15.9,
+      "v5_cm": 21.5,
+      "gain_cm": 5.36
+     },
+     "wrist": {
+      "s": 0.72,
+      "base_cm": 16.0,
+      "v4_cm": 16.4,
+      "v5_cm": 17.8,
+      "gain_cm": 1.85
+     }
+    },
+    "boundary_step_ratio": {
+     "proximal_crossfade": 0.85,
+     "joint": 1.0
+    }
+   },
+   "leg_R": {
+    "landmark": {
+     "joint": "knee",
+     "s_base": 0.52,
+     "s_v5": 0.56,
+     "girth_base_cm": 33.4,
+     "girth_v5_cm": 43.9,
+     "gain_cm": 10.52,
+     "interior_min_base": true,
+     "interior_min_v5": true
+    },
+    "points": {
+     "mid_thigh": {
+      "s": 0.26,
+      "base_cm": 43.0,
+      "v4_cm": 43.0,
+      "v5_cm": 59.9,
+      "gain_cm": 16.99
+     },
+     "calf_belly": {
+      "s": 0.6,
+      "base_cm": 34.6,
+      "v4_cm": 34.6,
+      "v5_cm": 44.9,
+      "gain_cm": 10.28
+     },
+     "ankle": {
+      "s": 0.84,
+      "base_cm": 22.2,
+      "v4_cm": 22.2,
+      "v5_cm": 24.4,
+      "gain_cm": 2.18
+     }
+    },
+    "boundary_step_ratio": {
+     "proximal_crossfade": 0.7,
+     "joint": 1.71
+    }
+   },
+   "arm_L": {
+    "landmark": {
+     "joint": "elbow",
+     "s_base": 0.56,
+     "s_v5": 0.56,
+     "girth_base_cm": 16.5,
+     "girth_v5_cm": 22.2,
+     "gain_cm": 5.66,
+     "interior_min_base": false,
+     "interior_min_v5": false
+    },
+    "points": {
+     "upper_arm_tube": {
+      "s": 0.36,
+      "base_cm": 23.8,
+      "v4_cm": 24.3,
+      "v5_cm": 30.0,
+      "gain_cm": 6.2
+     },
+     "forearm": {
+      "s": 0.64,
+      "base_cm": 16.2,
+      "v4_cm": 15.9,
+      "v5_cm": 21.5,
+      "gain_cm": 5.36
+     },
+     "wrist": {
+      "s": 0.72,
+      "base_cm": 16.0,
+      "v4_cm": 16.4,
+      "v5_cm": 17.8,
+      "gain_cm": 1.85
+     }
+    },
+    "boundary_step_ratio": {
+     "proximal_crossfade": 0.85,
+     "joint": 1.0
+    }
+   },
+   "leg_L": {
+    "landmark": {
+     "joint": "knee",
+     "s_base": 0.52,
+     "s_v5": 0.56,
+     "girth_base_cm": 33.4,
+     "girth_v5_cm": 43.9,
+     "gain_cm": 10.52,
+     "interior_min_base": true,
+     "interior_min_v5": true
+    },
+    "points": {
+     "mid_thigh": {
+      "s": 0.26,
+      "base_cm": 43.0,
+      "v4_cm": 43.0,
+      "v5_cm": 59.9,
+      "gain_cm": 16.99
+     },
+     "calf_belly": {
+      "s": 0.6,
+      "base_cm": 34.6,
+      "v4_cm": 34.6,
+      "v5_cm": 44.9,
+      "gain_cm": 10.28
+     },
+     "ankle": {
+      "s": 0.84,
+      "base_cm": 22.2,
+      "v4_cm": 22.2,
+      "v5_cm": 24.5,
+      "gain_cm": 2.27
+     }
+    },
+    "boundary_step_ratio": {
+     "proximal_crossfade": 0.71,
+     "joint": 1.71
+    }
+   }
+  },
+  "underside_pooling": {
+   "arm_R": {
+    "field_radial_cm": {
+     "back_underside": 1.81,
+     "front": 0.45
+    },
+    "total_radial_cm": {
+     "back_underside": 1.67,
+     "front": 0.38
+    },
+    "n_back": 120,
+    "n_front": 124
+   },
+   "arm_L": {
+    "field_radial_cm": {
+     "back_underside": 1.81,
+     "front": 0.45
+    },
+    "total_radial_cm": {
+     "back_underside": 1.67,
+     "front": 0.38
+    },
+    "n_back": 120,
+    "n_front": 124
+   }
+  },
+  "inner_thigh_gap": {
+   "base_min_cm": 7.16,
+   "v5_min_cm": 6.38,
+   "v5_min_at_z_m": -0.105,
+   "base_top_band_cm": 7.16,
+   "v5_top_band_cm": 6.38
+  },
+  "blender_evaluated_belly_region": {
+   "faces": 918,
+   "flips": 0,
+   "min_dot": 0.021393756089607315
+  },
+  "blender_evaluated_all_body_faces": {
+   "faces": 13378,
+   "flips": 0,
+   "min_dot": 0.021393756089607315
+  },
+  "moved_verts": {
+   "v5_combined": 4762,
+   "limb_component": 5755
+  },
+  "v51_terminal": {
+   "fold_scan": {
+    "+1 (v5.1 combined)": {
+     "raw": {
+      "flips": 0,
+      "min_dot": 0.06954358003606084
+     },
+     "macro": {
+      "flips": 0,
+      "min_dot": 0.0017686192905230214
+     }
+    },
+    "+0.5 (coupled)": {
+     "raw": {
+      "flips": 0,
+      "min_dot": 0.45008062687908507
+     },
+     "macro": {
+      "flips": 0,
+      "min_dot": 0.586878537110553
+     }
+    },
+    "+1 (v5 alone)": {
+     "raw": {
+      "flips": 0,
+      "min_dot": 0.06954358003606084
+     },
+     "macro": {
+      "flips": 0,
+      "min_dot": 0.0017686192905230214
+     }
+    }
+   },
+   "wrist": {
+    "base_cm": 15.98,
+    "v5_cm": 17.83,
+    "v51_cm": 18.96,
+    "gain_v5_cm": 1.85,
+    "gain_v51_cm": 2.98
+   },
+   "wrist_L": {
+    "base_cm": 15.98,
+    "v5_cm": 17.83,
+    "v51_cm": 18.96,
+    "gain_v5_cm": 1.85,
+    "gain_v51_cm": 2.98
+   },
+   "ankle": {
+    "base_cm": 22.24,
+    "v5_cm": 24.42,
+    "v51_cm": 25.57,
+    "gain_v5_cm": 2.18,
+    "gain_v51_cm": 3.32
+   },
+   "ankle_L": {
+    "base_cm": 22.24,
+    "v5_cm": 24.52,
+    "v51_cm": 25.66,
+    "gain_v5_cm": 2.27,
+    "gain_v51_cm": 3.42
+   },
+   "finger_prox_thickness": {
+    "R_digit0": {
+     "n_prox": 29,
+     "mean_radial_gain_mm": 1.99,
+     "thickness_gain_frac": 0.128,
+     "dorsal_palmar_thickness_base_mm": 39.08,
+     "dorsal_palmar_thickness_gain_frac": 0.149
+    },
+    "R_digit1": {
+     "n_prox": 97,
+     "mean_radial_gain_mm": 1.38,
+     "thickness_gain_frac": 0.154,
+     "dorsal_palmar_thickness_base_mm": 21.6,
+     "dorsal_palmar_thickness_gain_frac": 0.118
+    },
+    "R_digit2": {
+     "n_prox": 91,
+     "mean_radial_gain_mm": 1.4,
+     "thickness_gain_frac": 0.143,
+     "dorsal_palmar_thickness_base_mm": 25.8,
+     "dorsal_palmar_thickness_gain_frac": 0.119
+    },
+    "R_digit3": {
+     "n_prox": 102,
+     "mean_radial_gain_mm": 1.28,
+     "thickness_gain_frac": 0.148,
+     "dorsal_palmar_thickness_base_mm": 23.26,
+     "dorsal_palmar_thickness_gain_frac": 0.12
+    },
+    "R_digit4": {
+     "n_prox": 100,
+     "mean_radial_gain_mm": 1.12,
+     "thickness_gain_frac": 0.15,
+     "dorsal_palmar_thickness_base_mm": 20.28,
+     "dorsal_palmar_thickness_gain_frac": 0.101
+    },
+    "L_digit0": {
+     "n_prox": 29,
+     "mean_radial_gain_mm": 1.99,
+     "thickness_gain_frac": 0.128,
+     "dorsal_palmar_thickness_base_mm": 39.08,
+     "dorsal_palmar_thickness_gain_frac": 0.149
+    },
+    "L_digit1": {
+     "n_prox": 97,
+     "mean_radial_gain_mm": 1.38,
+     "thickness_gain_frac": 0.154,
+     "dorsal_palmar_thickness_base_mm": 21.6,
+     "dorsal_palmar_thickness_gain_frac": 0.118
+    },
+    "L_digit2": {
+     "n_prox": 91,
+     "mean_radial_gain_mm": 1.4,
+     "thickness_gain_frac": 0.143,
+     "dorsal_palmar_thickness_base_mm": 25.8,
+     "dorsal_palmar_thickness_gain_frac": 0.119
+    },
+    "L_digit3": {
+     "n_prox": 102,
+     "mean_radial_gain_mm": 1.28,
+     "thickness_gain_frac": 0.148,
+     "dorsal_palmar_thickness_base_mm": 23.26,
+     "dorsal_palmar_thickness_gain_frac": 0.12
+    },
+    "L_digit4": {
+     "n_prox": 100,
+     "mean_radial_gain_mm": 1.12,
+     "thickness_gain_frac": 0.15,
+     "dorsal_palmar_thickness_base_mm": 20.28,
+     "dorsal_palmar_thickness_gain_frac": 0.101
+    }
+   },
+   "inter_digit_min_dist": {
+    "R": {
+     "pairs": 10,
+     "base_min_mm": 2.11,
+     "v51_min_mm": 1.01,
+     "base_mean_of_pair_mins_mm": 26.22,
+     "v51_mean_of_pair_mins_mm": 25.66,
+     "close_pairs_lt_0.3mm_base": 0,
+     "close_pairs_lt_0.3mm_v51": 0,
+     "centroid_sep_ratio_min": 1.0
+    },
+    "L": {
+     "pairs": 10,
+     "base_min_mm": 2.11,
+     "v51_min_mm": 1.01,
+     "base_mean_of_pair_mins_mm": 26.22,
+     "v51_mean_of_pair_mins_mm": 25.66,
+     "close_pairs_lt_0.3mm_base": 0,
+     "close_pairs_lt_0.3mm_v51": 0,
+     "centroid_sep_ratio_min": 1.0
+    }
+   },
+   "blender_evaluated_all_body_faces": {
+    "faces": 13378,
+    "flips": 0,
+    "min_dot": 0.021393756089607315
+   },
+   "terminal_support_verts": 5492
+  }
+ },
+ "instances": {
+  "makehuman_hm08": {
+   "base": "hm08 (MPFB2 base.obj vertex order, 19158 verts; pure delta vs the macro-neutral base)",
+   "file": "body.belly.protrusion_v5.target",
+   "components": {
+    "combined_at_+1": "body.belly.protrusion_v5.target (= LIN5 + SAG, for hosts without coupling support)",
+    "limb_component": "body.belly.protrusion_limb_v5.target (= D5 - D4: the limb crossfade increment. NOT a standalone field -- apply on top of the v4 combined target; its negative regions retire v4's off-gate extrapolation on forearms/hands)",
+    "v4_combined": "body.belly.protrusion_v4.target (unchanged)",
+    "terminal_component": "body.belly.protrusion_terminal_v51.target (= combined v5.1 - combined v5; stacks on the v5 combined target)",
+    "combined_v51": "body.belly.protrusion_v5.1.target (= LIN5 + TERM + SAG at +1)"
+   }
+  }
+ },
+ "provenance": {
+  "source": "v4 system (Fat Males + HIMBO Chonky torso) plus limb transfers of (a) the Fat Males full field (its body mesh carries arms and legs) and (b) the HIMBO 'Chonky' preset's arms+legs blocks (17 of 22 carried on the Vanilla base; 5 SOS-variant-only, see missing_reason). Atomic Muscle contributes no transferable field (its FO4 NIF vertex buffer defeated extraction in the v3 cross-check) and remains a field-level cross-check only. Rules: FAT_REFERENCE.md + limb addendum L1-L5.",
+  "method": "scripts/build_belly_v51.py (+ test_belly_v51.py, finalize_v51.py); v5 system by scripts/build_belly_v5.py",
+  "licence": "STUDY-ONLY / internal. Derived from Fat Males + HIMBO material under Joe's Nov 12, 2026 licence ruling (no AI-training use). NOT a CC0 MakeHuman asset; do not ship with stock MPFB content or redistribute."
+ }
+}

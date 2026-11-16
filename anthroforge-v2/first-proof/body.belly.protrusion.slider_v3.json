@@ -1,0 +1,263 @@
+{
+ "gravity": {
+  "coupling": {
+   "f": "sign(w) * |w|^gamma",
+   "f_at_0.5": 0.25,
+   "formula": "shape(w) = base + w * protrusion + f(w) * sag3",
+   "gamma": 2.0,
+   "note": "retuned from v2's 1.7: a pendant drape engages late -- at half protrusion only a quarter of the full hang is present"
+  },
+  "fold_repair": "attenuation field (v2 method): 40 rounds to clean at full drape; min attenuation 0.10, 509 verts touched. Pre-repair flips were 51 raw / 62 macro. Slope limiter ran its 80 iterations without fully converging -- residual excess was absorbed by the attenuation repair; the shipped field is flip-free on both bases, which is the gate that matters",
+  "gain": {
+   "note": "attenuation repair is the drop's tax: it kept ~80% at the 8.0 cm solve and ~65% at 11.5. The solve aims high on purpose; iterations 8.0 -> 6.2 shipped, 9.8 -> 6.6, 11.5 -> 7.28 (in band)",
+   "shipped_navel_drop_cm": 7.27877244863096,
+   "solved_for": "11.5 cm pre-repair navel drop",
+   "value": 1.4417516044426841
+  },
+  "mobility_field": {
+   "definition": "per-vertex scalar in [0,1]: 0 = tissue anchored to skeleton, 1 = fully mobile flesh (see GRAVITY_WEIGHTS.md for the discipline)",
+   "procedural_seed_v3": "morph mask x angular profile (front-weighted) x vertical profile (peak 0.10 torso-units BELOW the navel, gaussian sigma 0.16, floor 0.35; ribcage taper above h 0.64-0.72; pelvis taper below h 0.16-0.26 -- lower than v2, tissue hangs lower) x tissue-mass factor (0.45 + 0.55 * |delta_v1| / max), 4 graph-Laplacian smoothing passes",
+   "stats_this_instance": {
+    "at_navel": 0.5749955955830531,
+    "max": 0.9169376757422109,
+    "verts_over_0.05": 390
+   },
+   "storage": "field ships as data in work/belly_v3.npz (mobility3); the v2 paintable blend's AF_mobility group is the repaint surface pattern to follow"
+  },
+  "model": "drain + descent + drape: sag3(v) = -DRAIN_FRAC * drain_w * p (upper belly, radial) + gain * mobility3 * p * [(1 + 0.25 * umbilical) downward + drape ramp t^1.3 * (0.85 downward + 1.05 inward) + 0.30 inward below the crease line h_c = h_navel - 0.16], inward soft-floored at the base surface",
+  "volume": {
+   "method": "signed tetrahedral volume over the mask patch about the navel axis point",
+   "note": "the shipped field carries 87.5% of v1's added patch volume: attenuation repair is the leak (it turns the sag down on 509 verts). A post-repair re-solve (+1.52 cm radial) was computed and REJECTED by the flip guard. Gravity redistributes most of the mass; ~12% is the price of a fold-free field on this base",
+   "pre_repair": "compensation solved exactly (ratio 1.000 by construction)",
+   "shipped_ratio_v3_over_v1": 0.8746047849299567
+  }
+ },
+ "group": "body/torso",
+ "id": "body.belly.protrusion",
+ "instances": {
+  "makehuman_hm08": {
+   "base": "hm08 (MPFB2 base.obj vertex order, 19158 verts; instance is a pure delta vs the macro-neutral base)",
+   "components": {
+    "combined_at_+1": "body.belly.protrusion_v3.target (= protrusion + sag3, for hosts without coupling support)",
+    "protrusion": "body.belly.protrusion.target (v1, unchanged)",
+    "sag": "body.belly.protrusion_sag_v3.target"
+   },
+   "file": "body.belly.protrusion_v3.target",
+   "moved_verts": 535,
+   "qa": {
+    "band_profiles_added_extent_cm": {
+     "bands": {
+      "v1": {
+       "+0": 13.8,
+       "+13": 9.5,
+       "+16": 5.7,
+       "+19": 1.4,
+       "+3": 14.0,
+       "+6": 13.5,
+       "+9": 11.8,
+       "-3": 11.6,
+       "-6": 7.8
+      },
+      "v2": {
+       "+0": 11.6,
+       "+13": 11.7,
+       "+16": 7.0,
+       "+19": 2.3,
+       "+3": 13.4,
+       "+6": 13.7,
+       "+9": 13.8,
+       "-3": 8.7,
+       "-6": 7.0
+      },
+      "v3": {
+       "+0": 7.3,
+       "+13": 12.3,
+       "+16": 10.6,
+       "+19": 5.6,
+       "+6": 10.3,
+       "+9": 13.3,
+       "-3": 5.1,
+       "-6": 3.7
+      }
+     },
+     "note": "mean added radial extent of front mask verts by DEFORMED height band, labelled cm below the BASE navel line (build log, build_belly_v3.py)"
+    },
+    "crosscheck_learned_fields": {
+     "fat_males_mass_centroid": "5.35 cm below its own base navel line (belly-window, per-vertex method) -- v2 matched it (5.45); v3 deliberately hangs past the source sculpt (9.26)",
+     "method": "scripts/crosscheck_fields.py -- one metric set on each field's own base: belly band anchored to the field's own forward peak; mean_dz = |delta|-weighted mean vertical delta component in the band",
+     "reading": "by downward push in the band, v3 (-4.65 cm) exceeds every learned field (Atomic Muscle Nuka Bull -2.55 field-level only, Fat Males -1.25, HIMBO BodyChubby -0.33). By centroid-below-own-peak, Fat Males (-2.58) is still the only field whose mass centres below its peak; ours stays positive (+2.43) because the v1 pin made the navel row the peak and the mask's upper rows still carry weight",
+     "rows": {
+      "Atomic Muscle 'BodyFlaccid+HandsNuka Bull' (field-level only)": {
+       "hang_index_cm": null,
+       "mean_dz_cm": -2.55,
+       "share_down_pct": 84.0
+      },
+      "Fat Males (full morph)": {
+       "hang_index_cm": -2.58,
+       "mean_dz_cm": -1.25,
+       "share_down_pct": 59.9
+      },
+      "HIMBO 'HIMBO - BodyChubby'": {
+       "hang_index_cm": 2.1,
+       "mean_dz_cm": -0.33,
+       "share_down_pct": 59.8
+      },
+      "ours v1 (protrusion transfer)": {
+       "hang_index_cm": 3.79,
+       "mean_dz_cm": -0.94,
+       "share_down_pct": 78.8
+      },
+      "ours v2 (gravity pass)": {
+       "hang_index_cm": 3.6,
+       "mean_dz_cm": -2.63,
+       "share_down_pct": 97.4
+      },
+      "ours v3 (realistic gravity)": {
+       "hang_index_cm": 2.43,
+       "mean_dz_cm": -4.65,
+       "share_down_pct": 100.0
+      }
+     }
+    },
+    "folds": {
+     "+0.5_coupled": "0 flips both bases (min_dot 0.353 / 0.548)",
+     "+1.05": "flips appear (15 raw / 2 macro) -- outside the shipped slider range, same as v1/v2",
+     "+1_combined": "0 flipped faces over 1092 belly faces on BOTH bases (min_dot raw 0.0034, macro 0.046); Blender evaluated belly-region cross-check: 0 flips over 918 faces, min_dot 0.042",
+     "-1_linear": "162 raw / 154 macro flips -- inherited from v1, see negative_side"
+    },
+    "load_test": "Loads via stock MPFB2 (2.0.18) TargetService.load_target as shape keys (isolated HOME under xvfb, as v2); measurements above are from the evaluated mesh",
+    "navel_anchor": {
+     "anchor_forward_m_v1": 0.11968888694106054,
+     "note": "THE v3 ANCHOR IS A TRADE, REPORTED PLAINLY: the navel keeps 10.67 cm of the 11.97 cm v1 forward anchor (shortfall 1.30 cm) and gains a 7.28 cm drop (v2: 2.95, v1: -0.21 i.e. a slight rise). No micro-pin was applied: re-inflating the navel forward would fight the drain, which is the physics Joe asked for",
+     "v1_at_+1": {
+      "down_cm": -0.20951979122885156,
+      "forward_cm": 11.903457658184479
+     },
+     "v2_at_+1": {
+      "down_cm": 2.9545941539559744,
+      "forward_cm": 11.84043425217758
+     },
+     "v3_at_+0.5_coupled_blender": {
+      "down_cm": 1.7699956893920898,
+      "forward_cm": 5.709647934440949
+     },
+     "v3_at_+0.5_coupled_numpy": {
+      "down_cm": 1.767313164350527,
+      "forward_cm": 5.644152157015474
+     },
+     "v3_at_+1_blender": {
+      "down_cm": 7.280004024505615,
+      "forward_cm": 10.799520733579271
+     },
+     "v3_at_+1_numpy": {
+      "down_cm": 7.27877244863096,
+      "forward_cm": 10.673150969877417
+     }
+    },
+    "negative_side": "At -1 the reversed combined field folds (162/1092 faces). Same standing fix as v1/v2: a production negative pole must be a separately authored decrease target; hosts should clamp the sag component to w >= 0 until that target exists",
+    "profile_metrics": {
+     "v1": {
+      "apron_bottom_extent_cm": 3.05,
+      "bulge_extent_cm": 12.98,
+      "crease_extent_cm": 9.02,
+      "crease_pinch_ratio": 0.695,
+      "mass_centroid_below_base_navel_cm": 3.15,
+      "mass_centroid_below_deformed_navel_cm": 3.36,
+      "upper_protrusion_cm": 5.68
+     },
+     "v2": {
+      "apron_bottom_extent_cm": 2.87,
+      "bulge_extent_cm": 12.92,
+      "crease_extent_cm": 8.78,
+      "crease_pinch_ratio": 0.679,
+      "mass_centroid_below_base_navel_cm": 5.45,
+      "mass_centroid_below_deformed_navel_cm": 2.5,
+      "upper_protrusion_cm": 5.63
+     },
+     "v3": {
+      "apron_bottom_extent_cm": 2.89,
+      "bulge_extent_cm": 12.66,
+      "crease_extent_cm": 8.83,
+      "crease_pinch_ratio": 0.697,
+      "mass_centroid_below_base_navel_cm": 9.26,
+      "mass_centroid_below_deformed_navel_cm": 1.99,
+      "upper_protrusion_cm": 4.3
+     }
+    },
+    "residual_forward_cm_zone_split": {
+     "all": {
+      "n": 391,
+      "v1_p95_cm": 1.3937931401811112,
+      "v2_p95_cm": 2.374843234057767,
+      "v3_p50_cm": 1.306581753754991,
+      "v3_p95_cm": 3.7699028440454976
+     },
+     "method": "triangle-exact, torso-param space, mask core w>0.5, same machinery as v1/v2; v3 departs from the gravity-free source surface BY DESIGN -- read as 'distance from the uncorrected transfer', localising what gravity changed",
+     "zones": {
+      "core": {
+       "mean_abs_sag3_cm": 2.0703439899773963,
+       "mean_sag3_down_cm": 1.4818230276674387,
+       "n": 244,
+       "v1_p95_cm": 0.2498925535913896,
+       "v2_p95_cm": 1.026090819218601,
+       "v3_p50_cm": 1.2140893329973383,
+       "v3_p95_cm": 3.670875075013446
+      },
+      "crease": {
+       "mean_abs_sag3_cm": 3.367003422937848,
+       "mean_sag3_down_cm": 3.363329540671566,
+       "n": 63,
+       "v1_p95_cm": 1.3717608376312154,
+       "v2_p95_cm": 2.4945162387832136,
+       "v3_p50_cm": 2.752792601919032,
+       "v3_p95_cm": 3.9348234173257866
+      },
+      "flank": {
+       "mean_abs_sag3_cm": 1.9548681079794505,
+       "mean_sag3_down_cm": 1.8886970004934298,
+       "n": 66,
+       "v1_p95_cm": 1.5076622456236815,
+       "v2_p95_cm": 1.7369801638378162,
+       "v3_p50_cm": 1.1527422963456138,
+       "v3_p95_cm": 2.275868994099605
+      },
+      "pin_patch": {
+       "mean_abs_sag3_cm": 6.999786736334074,
+       "mean_sag3_down_cm": 6.953130671057704,
+       "n": 18,
+       "v1_p95_cm": 3.5452252181199873,
+       "v2_p95_cm": 3.6303071091619206,
+       "v3_p50_cm": 2.2904097413742885,
+       "v3_p95_cm": 4.136284215205284
+      }
+     }
+    }
+   }
+  }
+ },
+ "label": "Belly",
+ "provenance": {
+  "licence": "study-only (internal) - NOT a CC0 MakeHuman asset; do not ship or redistribute",
+  "method": "v1: non-rigid registration in torso-param space onto the source fat surface, tight navel pin, dual-base fold repair. v2: mobility-modulated downward sag + sub-crease tuck, gamma 1.7 (superseded). v3: steeper/higher mobility field; descent gain solved to an 11.5 cm pre-repair navel drop (attenuation repair keeps ~65%; shipped 7.28 cm); upper-belly DRAIN (45% outward surrender above the navel); below-crease DRAPE (down 0.85 + inward tuck 1.05 per unit protrusion along a t^1.3 ramp, soft body-floor so tissue never passes through the surface); slope limiter; volume compensation solved pre-repair; attenuation fold repair (40 rounds, full drape factor 1.0 shipped -- bisection not needed); coupling gamma retuned 1.7 -> 2.0",
+  "source": "Fat Males body morph (learned, exact-topology delta vs Skyrim male base) -- v1 transfer unchanged; v3 adds an AnthroForge-authored analytic realistic-gravity pass (no external asset)"
+ },
+ "range": {
+  "default": 0,
+  "endpoint_anchor": "max forward displacement at navel = 0.156 m on the source base (Fat Males); scaled by torso-length ratio s = 0.8325 to 0.1197 m on hm08 (v1 forward anchor; v3 deliberately trades 1.3 cm of it to the drop -- see qa.navel_anchor)",
+  "max": 1,
+  "min": -1,
+  "safe_max": 1.0
+ },
+ "region": {
+  "landmarks": [
+   "navel",
+   "sternum_bottom",
+   "pelvis_top"
+  ],
+  "mask_rule": "geodesic falloff from navel landmark, r = 0.35 x torso_len; full weight inside 0.65r, cosine falloff to 0 at r"
+ },
+ "semantics": "Forward protrusion of the abdominal wall WITH realistic gravity: the belly is a pendant mass. As weight grows the upper abdomen DRAINS (its outward travel is surrendered), the navel is dragged down hard (7.28 cm at +1) as well as out, the added mass centres 9.3 cm below the navel line, and below the crease the tissue DRAPES -- down and inward along a hanging curve -- so the apron's lowest rows tuck back toward the body. Realised as the v1 protrusion field (linear in w) plus a v3 sag component (drain + descent + drape) applied with the nonlinear coupling f(w) = sign(w)*|w|^2.0: at +0.5 the belly protrudes half but drapes only ~25% of its full drop. One-sided source morph: the negative pole remains NOT production-safe (see qa.negative_side).",
+ "supersedes": "body.belly.protrusion.slider_v2.json (v2, polite sag)",
+ "symmetry": "bilateral_x",
+ "version": 3
+}

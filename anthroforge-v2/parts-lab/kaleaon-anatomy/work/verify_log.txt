@@ -1,0 +1,175 @@
+00:20.081  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/kaleaon_anatomy_parts.blend"
+VERIFY DONE
+{
+ "girth_shaft1_vol_L": {
+  "basis": 5.941,
+  "plus": 5.941,
+  "minus": 3.268
+ },
+ "length_bonescale_shaft2": {
+  "tip_lowest_rest": [
+   -0.084,
+   -0.315,
+   0.4637
+  ],
+  "tip_lowest_scale1.25": [
+   -0.0882,
+   -0.4071,
+   0.2196
+  ],
+  "tip_travel_m": 0.261,
+  "vol_L_at_1.25": 9.738
+ },
+ "rest_intersections": {
+  "shaft_vs_shaft": {
+   "total_tris": 28,
+   "pairs": [
+    [
+     "Part_Shaft_1",
+     "Part_Shaft_3",
+     28
+    ]
+   ]
+  },
+  "shaft_vs_sac": {
+   "total_tris": 1140,
+   "pairs": [
+    [
+     "Part_Shaft_1",
+     "Part_SacUdder",
+     280
+    ],
+    [
+     "Part_Shaft_2",
+     "Part_SacUdder",
+     299
+    ],
+    [
+     "Part_Shaft_3",
+     "Part_SacUdder",
+     247
+    ],
+    [
+     "Part_Shaft_4",
+     "Part_SacUdder",
+     314
+    ]
+   ]
+  },
+  "teat_vs_sac(embedded roots expected)": {
+   "total_tris": 185,
+   "pairs": [
+    [
+     "Part_SacUdder_Teat_1",
+     "Part_SacUdder",
+     41
+    ],
+    [
+     "Part_SacUdder_Teat_2",
+     "Part_SacUdder",
+     38
+    ],
+    [
+     "Part_SacUdder_Teat_3",
+     "Part_SacUdder",
+     66
+    ],
+    [
+     "Part_SacUdder_Teat_4",
+     "Part_SacUdder",
+     40
+    ]
+   ]
+  },
+  "teat_vs_shaft": {
+   "total_tris": 0,
+   "pairs": []
+  },
+  "teat_vs_teat": {
+   "total_tris": 0,
+   "pairs": []
+  }
+ },
+ "articulation_volumes": {
+  "Part_Shaft_1": {
+   "vol_L": 5.335,
+   "min_z": 0.5489
+  },
+  "Part_Shaft_2": {
+   "vol_L": 6.957,
+   "min_z": 0.4356
+  },
+  "Part_Shaft_3": {
+   "vol_L": 5.976,
+   "min_z": 0.5487
+  },
+  "Part_Shaft_4": {
+   "vol_L": 6.957,
+   "min_z": 0.4356
+  },
+  "Part_SacUdder": {
+   "vol_L": 209.826,
+   "min_z": 0.0416
+  },
+  "Part_SacUdder_Teat_1": {
+   "vol_L": 0.181,
+   "min_z": 0.0232
+  },
+  "Part_SacUdder_Teat_2": {
+   "vol_L": 0.185,
+   "min_z": 0.0311
+  },
+  "Part_SacUdder_Teat_3": {
+   "vol_L": 0.169,
+   "min_z": 0.0936
+  },
+  "Part_SacUdder_Teat_4": {
+   "vol_L": 0.186,
+   "min_z": 0.0806
+  }
+ },
+ "articulation_intersections": {
+  "shaft_vs_sac": {
+   "total_tris": 1192,
+   "pairs": [
+    [
+     "Part_Shaft_1",
+     "Part_SacUdder",
+     268
+    ],
+    [
+     "Part_Shaft_2",
+     "Part_SacUdder",
+     323
+    ],
+    [
+     "Part_Shaft_3",
+     "Part_SacUdder",
+     253
+    ],
+    [
+     "Part_Shaft_4",
+     "Part_SacUdder",
+     348
+    ]
+   ]
+  },
+  "shaft_vs_shaft_13": {
+   "total_tris": 28,
+   "pairs": [
+    [
+     "Part_Shaft_1",
+     "Part_Shaft_3",
+     28
+    ]
+   ]
+  },
+  "teat_vs_shaft": {
+   "total_tris": 0,
+   "pairs": []
+  }
+ }
+}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

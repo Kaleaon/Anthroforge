@@ -1,0 +1,183 @@
+{
+ "model": {
+  "gamma_coupling": 2.0,
+  "f_at_0.5": 0.25,
+  "gain": 1.4417516044426841,
+  "drape_factor_shipped": 1.0,
+  "crease_h": 0.3025,
+  "crease_dh": 0.16,
+  "drape_span": 0.22,
+  "drape_down": 0.85,
+  "drape_tuck": 1.05,
+  "tuck0": 0.3,
+  "drain_frac": 0.45,
+  "umbilical": 0.25,
+  "nav_drop_target_cm": 11.5,
+  "pre_repair_flips_raw_macro": [
+   51,
+   62
+  ],
+  "attenuation": {
+   "min": 0.1,
+   "verts_under_0.99": 509,
+   "rounds": 40
+  },
+  "volume_comp_cm": -0.22649934445189493,
+  "volume_comp2_cm": 1.5212487177918774,
+  "volume_proxy_cm3": {
+   "base": -4205.524612753531,
+   "v1_added": -8564.68949443967,
+   "v3_added": -7490.718413276268,
+   "v3_over_v1": 0.8746047849299567
+  }
+ },
+ "mobility3": {
+  "max": 0.9169376757422109,
+  "at_navel": 0.5749955955830531,
+  "verts_over_0.05": 390
+ },
+ "navel": {
+  "v1": {
+   "forward_cm": 11.903457658184479,
+   "down_cm": -0.20951979122885156
+  },
+  "v2": {
+   "forward_cm": 11.84043425217758,
+   "down_cm": 2.9545941539559744
+  },
+  "v3_at_+1": {
+   "forward_cm": 10.673150969877417,
+   "down_cm": 7.27877244863096
+  },
+  "v3_at_+0.5_coupled": {
+   "forward_cm": 5.644152157015474,
+   "down_cm": 1.767313164350527
+  },
+  "sag3_at_navel_cm": {
+   "down": 7.4882922398598115,
+   "forward": -1.230306688307062
+  },
+  "anchor_forward_m": 0.11968888694106054,
+  "v3_forward_error_mm": 12.957377242286377
+ },
+ "profile_metrics": {
+  "v1": {
+   "mass_centroid_below_base_navel_cm": 3.15,
+   "mass_centroid_below_deformed_navel_cm": 3.36,
+   "upper_protrusion_cm": 5.68,
+   "bulge_extent_cm": 12.98,
+   "crease_extent_cm": 9.02,
+   "crease_pinch_ratio": 0.695,
+   "apron_bottom_extent_cm": 3.05
+  },
+  "v2": {
+   "mass_centroid_below_base_navel_cm": 5.45,
+   "mass_centroid_below_deformed_navel_cm": 2.5,
+   "upper_protrusion_cm": 5.63,
+   "bulge_extent_cm": 12.92,
+   "crease_extent_cm": 8.78,
+   "crease_pinch_ratio": 0.679,
+   "apron_bottom_extent_cm": 2.87
+  },
+  "v3": {
+   "mass_centroid_below_base_navel_cm": 9.26,
+   "mass_centroid_below_deformed_navel_cm": 1.99,
+   "upper_protrusion_cm": 4.3,
+   "bulge_extent_cm": 12.66,
+   "crease_extent_cm": 8.83,
+   "crease_pinch_ratio": 0.697,
+   "apron_bottom_extent_cm": 2.89
+  }
+ },
+ "fold_scan": {
+  "-1 (linear)": {
+   "raw": {
+    "flips": 162,
+    "min_dot": -0.9870888597992151
+   },
+   "macro": {
+    "flips": 154,
+    "min_dot": -0.9847499810475343
+   }
+  },
+  "+0.5 (coupled)": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.352891940853626
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.5477921251915544
+   }
+  },
+  "+1 (combined)": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.0034146971812665794
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.04614771220830435
+   }
+  },
+  "+1.05 (combined)": {
+   "raw": {
+    "flips": 15,
+    "min_dot": -0.8985178739266124
+   },
+   "macro": {
+    "flips": 2,
+    "min_dot": -0.04989889908308154
+   }
+  }
+ },
+ "zones": {
+  "pin_patch": {
+   "n": 18,
+   "v1_p95_cm": 3.5452252181199873,
+   "v2_p95_cm": 3.6303071091619206,
+   "v3_p50_cm": 2.2904097413742885,
+   "v3_p95_cm": 4.136284215205284,
+   "mean_abs_sag3_cm": 6.999786736334074,
+   "mean_sag3_down_cm": 6.953130671057704
+  },
+  "crease": {
+   "n": 63,
+   "v1_p95_cm": 1.3717608376312154,
+   "v2_p95_cm": 2.4945162387832136,
+   "v3_p50_cm": 2.752792601919032,
+   "v3_p95_cm": 3.9348234173257866,
+   "mean_abs_sag3_cm": 3.367003422937848,
+   "mean_sag3_down_cm": 3.363329540671566
+  },
+  "flank": {
+   "n": 66,
+   "v1_p95_cm": 1.5076622456236815,
+   "v2_p95_cm": 1.7369801638378162,
+   "v3_p50_cm": 1.1527422963456138,
+   "v3_p95_cm": 2.275868994099605,
+   "mean_abs_sag3_cm": 1.9548681079794505,
+   "mean_sag3_down_cm": 1.8886970004934298
+  },
+  "core": {
+   "n": 244,
+   "v1_p95_cm": 0.2498925535913896,
+   "v2_p95_cm": 1.026090819218601,
+   "v3_p50_cm": 1.2140893329973383,
+   "v3_p95_cm": 3.670875075013446,
+   "mean_abs_sag3_cm": 2.0703439899773963,
+   "mean_sag3_down_cm": 1.4818230276674387
+  }
+ },
+ "zones_all_triangle_exact": {
+  "n": 391,
+  "v3_p50_cm": 1.306581753754991,
+  "v3_p95_cm": 3.7699028440454976,
+  "v1_p95_cm": 1.3937931401811112,
+  "v2_p95_cm": 2.374843234057767
+ },
+ "moved_verts": {
+  "v3_combined": 535,
+  "sag3_component": 517
+ }
+}

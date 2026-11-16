@@ -1,0 +1,75 @@
+[
+ {
+  "field": "Fat Males (full morph)",
+  "base_verts": 2024,
+  "band_verts": 117,
+  "body_height_m": 1.465,
+  "z_peak_frac_of_height": 0.666,
+  "mean_dz_cm": -1.25,
+  "share_down_pct": 59.9,
+  "hang_index_cm": -2.58,
+  "fwd_centroid_cm": -1.64,
+  "max_fwd_cm": 15.36
+ },
+ {
+  "field": "HIMBO 'HIMBO - BodyChubby'",
+  "base_verts": 9346,
+  "band_verts": 359,
+  "body_height_m": 1.465,
+  "z_peak_frac_of_height": 0.653,
+  "mean_dz_cm": -0.33,
+  "share_down_pct": 59.8,
+  "hang_index_cm": 2.1,
+  "fwd_centroid_cm": 2.26,
+  "max_fwd_cm": 5.54
+ },
+ {
+  "field": "Atomic Muscle 'BodyFlaccid+HandsNuka Bull' (field-level only)",
+  "base_verts": null,
+  "band_verts": 13372,
+  "body_height_m": null,
+  "z_peak_frac_of_height": null,
+  "mean_dz_cm": -2.55,
+  "share_down_pct": 84.0,
+  "hang_index_cm": null,
+  "fwd_centroid_cm": null,
+  "max_fwd_cm": null,
+  "note": "no base positions recoverable from the FO4 NIF; band metrics not computable -- field-level dz stats only"
+ },
+ {
+  "field": "ours v1 (protrusion transfer)",
+  "base_verts": 19158,
+  "band_verts": 337,
+  "body_height_m": 1.695,
+  "z_peak_frac_of_height": 0.631,
+  "mean_dz_cm": -0.94,
+  "share_down_pct": 78.8,
+  "hang_index_cm": 3.79,
+  "fwd_centroid_cm": 3.78,
+  "max_fwd_cm": 14.88
+ },
+ {
+  "field": "ours v2 (gravity pass)",
+  "base_verts": 19158,
+  "band_verts": 337,
+  "body_height_m": 1.695,
+  "z_peak_frac_of_height": 0.631,
+  "mean_dz_cm": -2.63,
+  "share_down_pct": 97.4,
+  "hang_index_cm": 3.6,
+  "fwd_centroid_cm": 3.8,
+  "max_fwd_cm": 14.81
+ },
+ {
+  "field": "ours v3 (realistic gravity)",
+  "base_verts": 19158,
+  "band_verts": 337,
+  "body_height_m": 1.695,
+  "z_peak_frac_of_height": 0.631,
+  "mean_dz_cm": -4.65,
+  "share_down_pct": 100.0,
+  "hang_index_cm": 2.43,
+  "fwd_centroid_cm": 2.47,
+  "max_fwd_cm": 14.25
+ }
+]

@@ -1,0 +1,26 @@
+{
+ "Shaft_1": {
+  "stored_values_at_open": "0/0 (fix verified)",
+  "rest_L": 5.301,
+  "girth_plus_L": 8.601,
+  "girth_minus_L": 3.268
+ },
+ "Shaft_2": {
+  "stored_values_at_open": "same file",
+  "rest_L": 6.182,
+  "girth_plus_L": 10.024,
+  "girth_minus_L": 3.813
+ },
+ "Shaft_3": {
+  "stored_values_at_open": "same file",
+  "rest_L": 5.301,
+  "girth_plus_L": 8.6,
+  "girth_minus_L": 3.268
+ },
+ "Shaft_4": {
+  "stored_values_at_open": "same file",
+  "rest_L": 6.182,
+  "girth_plus_L": 10.024,
+  "girth_minus_L": 3.813
+ }
+}

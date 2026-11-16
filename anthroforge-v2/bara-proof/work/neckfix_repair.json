@@ -1,0 +1,24 @@
+{
+ "rounds": 4,
+ "deviation_max_mm": 1.506651917331937,
+ "deviation_rms_mm": 0.0545038687837255,
+ "verts_changed": 87,
+ "moved_verts_written": 10570,
+ "combined_moved_verts": 10570,
+ "reload_muscle_raw": [
+  0,
+  0.04716072334165474
+ ],
+ "reload_muscle_macro": [
+  0,
+  0.03542792767497294
+ ],
+ "reload_combined_raw": [
+  0,
+  0.021462736756424867
+ ],
+ "reload_combined_macro": [
+  0,
+  0.02498254382876482
+ ]
+}

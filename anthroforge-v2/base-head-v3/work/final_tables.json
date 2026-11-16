@@ -1,0 +1,57 @@
+{
+ "src": {
+  "L": 1.0,
+  "ZB": 0.6443,
+  "CraniumWidth_domeShell": 0.4761,
+  "MuzzleWidth": 0.315,
+  "MuzzleDepth": 0.1567,
+  "SkullHeight_domeRise": 0.3476,
+  "MuzzleFrac_antOrbit": 0.3035,
+  "OrbitDiameter": 0.1439,
+  "Interorbital": 0.1395,
+  "OrbitHeight": 0.1864,
+  "OrbitRise": 0.2074,
+  "EarLength": 0.2881,
+  "EarBaseHeight_abovePalate": 0.255,
+  "EarBase_belowSkullTop": null,
+  "EarTip_aboveSkullTop": -0.004,
+  "eye_centre": [
+   0.0,
+   0.1245,
+   0.0492
+  ],
+  "pal_z": -0.1371,
+  "EarTipHeight_abovePalate": 0.5299,
+  "JawLength_proxy": 0.52,
+  "JawWidth_proxy": 0.6206,
+  "RamusDepth_proxy": 0.3804
+ },
+ "res": {
+  "L": 1.0,
+  "ZB": 0.5466,
+  "CraniumWidth_domeShell": 0.478,
+  "MuzzleWidth": 0.2158,
+  "MuzzleDepth": 0.231,
+  "SkullHeight_domeRise": 0.3168,
+  "MuzzleFrac_antOrbit": 0.3435,
+  "OrbitDiameter": 0.15,
+  "Interorbital": 0.1122,
+  "OrbitHeight": 0.172,
+  "OrbitRise": 0.2035,
+  "EarLength": 0.3889,
+  "EarBaseHeight_abovePalate": 0.2586,
+  "EarBase_belowSkullTop": 0.2302,
+  "EarTip_aboveSkullTop": 0.1408,
+  "eye_centre": [
+   0.0,
+   0.0815,
+   -0.0079
+  ],
+  "pal_z": -0.1799,
+  "EarTipHeight_abovePalate": 0.6296,
+  "JawLength": 0.7156,
+  "JawWidth": 0.5335,
+  "RamusDepth": 0.2506,
+  "FullHeadHeight": 0.7586
+ }
+}

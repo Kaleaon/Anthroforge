@@ -1,0 +1,14 @@
+/home/hatch/workspace/anthroforge-v2/dynamics/scripts/build_prototype.py:182: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/dynamics/scripts/build_prototype.py:305: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  gmat.use_nodes = True
+/home/hatch/workspace/anthroforge-v2/dynamics/scripts/build_prototype.py:328: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+BODY bbox center: [0. 0. 0.] dims: [2.14 0.61 1.95]
+VERIFY frame 40: sac tip error 0.0 mm (sim [ 0.078 -0.172  0.574] got [ 0.078 -0.172  0.574])
+VERIFY frame 150: sac tip error 0.0 mm (sim [ 0.067 -0.155  0.582] got [ 0.067 -0.155  0.582])
+Info: Saved as "prototype_softdynamics.blend"
+BUILD_OK /home/hatch/workspace/anthroforge-v2/dynamics/prototype_softdynamics.blend tip_errors_mm: {40: 0.0, 150: 0.0}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

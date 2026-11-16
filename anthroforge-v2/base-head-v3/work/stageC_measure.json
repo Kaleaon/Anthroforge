@@ -1,0 +1,46 @@
+{
+ "params": {
+  "LENT_K": 1.15,
+  "ZB_AMP": 0.09,
+  "GLOBX": 0.97,
+  "MUZN": 0.16,
+  "DORS": -0.065,
+  "JAWDP": 0.03,
+  "DOME": -0.005,
+  "CRAN_C": 0.0,
+  "EAR_LEN": 1.43,
+  "EAR_W": 0.92,
+  "EAR_LIFT": 0.015,
+  "ZB_C": -0.06,
+  "ZB_S": 0.2,
+  "ORBLIFT": -0.008,
+  "FHDROP": 0.1,
+  "CRAN_AMP": -0.06,
+  "CRANX": -0.125
+ },
+ "measure": {
+  "L": 1.0,
+  "ZB": 0.5466,
+  "CraniumWidth_domeShell": 0.478,
+  "MuzzleWidth": 0.2418,
+  "MuzzleDepth": 0.2129,
+  "SkullHeight_domeRise": 0.3092,
+  "MuzzleFrac_antOrbit": 0.3425,
+  "MuzzleFrac_eyePlane": 0.4105,
+  "OrbitHeight": 0.1796,
+  "EyeballDiam_source": 0.1359,
+  "Interorbital_source": 0.1317,
+  "EarLength": 0.3889,
+  "EarBaseHeight_abovePalate": 0.2586,
+  "EarBase_belowSkullTop": 0.2302,
+  "EarTip_aboveSkullTop": 0.1408,
+  "eye_centre": [
+   0.0,
+   0.0895,
+   -0.0003
+  ],
+  "pal_z": -0.1799,
+  "skull_top": 0.3089,
+  "ear_base_y": -0.1967
+ }
+}

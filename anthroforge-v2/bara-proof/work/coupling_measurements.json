@@ -1,0 +1,187 @@
+{
+ "note": "follow-up measurements; see COUPLING_VALIDATION.md",
+ "stations": {
+  "base": {
+   "chest": 1.3445582885958505,
+   "waist_navel": 0.7362002748020222,
+   "waist_min": 0.756646232783519,
+   "hip": 1.258250316071614,
+   "thigh": 1.1221021005988723
+  },
+  "strongman": {
+   "chest": 1.5706090126141756,
+   "waist_navel": 1.0345537764810242,
+   "waist_min": 1.0620429406440477,
+   "hip": 1.258250316071614,
+   "thigh": 1.1221021005988723
+  },
+  "gachidebu": {
+   "chest": 1.5865858817033605,
+   "waist_navel": 1.0762627721582079,
+   "waist_min": 1.110464016552049,
+   "hip": 1.2698264545487146,
+   "thigh": 1.1221021005988723
+  },
+  "gachidebu_tissue_scaled_only": {
+   "chest": 1.5879967153427312,
+   "waist_navel": 1.077635378690387,
+   "waist_min": 1.1126099422800477,
+   "hip": 1.2682482099331285,
+   "thigh": 1.1221021005988723
+  },
+  "pear": {
+   "chest": 1.4749616801602266,
+   "waist_navel": 1.0222870445619165,
+   "waist_min": 1.1390586399162412,
+   "hip": 1.3580848927715425,
+   "thigh": 1.1221021005988723
+  },
+  "pear_control": {
+   "chest": 1.6536039225899821,
+   "waist_navel": 1.0948401667158505,
+   "waist_min": 1.1473593667660094,
+   "hip": 1.3085826951341373,
+   "thigh": 1.1221021005988723
+  },
+  "bigchest": {
+   "chest": 1.7101509979137801,
+   "waist_navel": 1.0184790808658268,
+   "waist_min": 1.0224795511205254,
+   "hip": 1.258250316071614,
+   "thigh": 1.1221021005988723
+  },
+  "bigchest_control": {
+   "chest": 1.5956855012657452,
+   "waist_navel": 1.0133057713125768,
+   "waist_min": 1.0420636241115901,
+   "hip": 1.2827842806527237,
+   "thigh": 1.1221021005988723
+  }
+ },
+ "station_ratios": {
+  "pear": {
+   "chest_waist": 1.442805802936,
+   "waist_hip": 0.7527416364051154,
+   "chest_hip": 1.086060001116841,
+   "control_chest_waist": 1.5103610306427042,
+   "control_waist_hip": 0.8366610461737942,
+   "control_chest_hip": 1.263660239997655
+  },
+  "bigchest": {
+   "chest_waist": 1.6791223600390015,
+   "waist_hip": 0.8094407510626522,
+   "chest_hip": 1.3591500642360623,
+   "control_chest_waist": 1.5747324711264477,
+   "control_waist_hip": 0.7899268696970413,
+   "control_chest_hip": 1.2439234915272013
+  }
+ },
+ "curve_dips_gachidebu": {
+  "vline": {
+   "raw": 0.85,
+   "effective": 0.19522799999999998,
+   "low": {
+    "inc_mm": 0.4999302487306281,
+    "abs_dip_mm": 9.35526082190466,
+    "substrate_slice_std_mm": 3.0658523134086644,
+    "snr_inc": 0.1630640349321972,
+    "snr_abs": 3.0514388383905318
+   },
+   "naive": {
+    "inc_mm": 0.49985484874435926,
+    "abs_dip_mm": 10.680427533365524,
+    "substrate_slice_std_mm": 3.0226455994795782,
+    "snr_inc": 0.16536998212109993,
+    "snr_abs": 3.533469995690007
+   },
+   "coupled": {
+    "inc_mm": 0.11480660098933626,
+    "abs_dip_mm": 10.295379285610501,
+    "substrate_slice_std_mm": 3.0226455994795782,
+    "snr_inc": 0.03798215742166498,
+    "snr_abs": 3.406082170990572
+   }
+  },
+  "valleys": {
+   "raw": 0.4,
+   "effective": 0.322146,
+   "low": {
+    "inc_mm": -0.1272206028259113,
+    "abs_dip_mm": -22.34963311714443,
+    "substrate_slice_std_mm": NaN,
+    "snr_inc": NaN,
+    "snr_abs": NaN
+   },
+   "naive": {
+    "inc_mm": -0.12733932837395656,
+    "abs_dip_mm": -22.305937879549596,
+    "substrate_slice_std_mm": NaN,
+    "snr_inc": NaN,
+    "snr_abs": NaN
+   },
+   "coupled": {
+    "inc_mm": -0.1025546728980089,
+    "abs_dip_mm": -22.28115322407365,
+    "substrate_slice_std_mm": NaN,
+    "snr_inc": NaN,
+    "snr_abs": NaN
+   }
+  }
+ },
+ "curve_crease": {
+  "pear": {
+   "effective": 0.77088,
+   "coupled": {
+    "inc_mm": 0.8420512466277088,
+    "abs_dip_mm": -0.2610410450726753,
+    "substrate_slice_std_mm": 3.579505131227587,
+    "snr_inc": 0.23524236333163973,
+    "snr_abs": -0.0729265737867937
+   },
+   "raw": {
+    "inc_mm": 0.8738596856436516,
+    "abs_dip_mm": -0.22923260605673243,
+    "substrate_slice_std_mm": 3.579505131227587,
+    "snr_inc": 0.24412863052495817,
+    "snr_abs": -0.06404030659347522
+   }
+  },
+  "bigchest": {
+   "effective": 0.5664,
+   "coupled": {
+    "inc_mm": 0.6185248418064724,
+    "abs_dip_mm": 8.834534039496575,
+    "substrate_slice_std_mm": 10.600070722225297,
+    "snr_inc": 0.058351010857843034,
+    "snr_abs": 0.8334410468576497
+   },
+   "raw": {
+    "inc_mm": 0.8736218503463675,
+    "abs_dip_mm": 9.08963104803647,
+    "substrate_slice_std_mm": 10.600070722225297,
+    "snr_inc": 0.082416605817038,
+    "snr_abs": 0.8575066418168447
+   }
+  }
+ },
+ "wrap_crossfade_weighted": {
+  "chest": {
+   "front_cm": 0.2127015329885325,
+   "flank_cm": 1.2125176260911674,
+   "back_cm": 1.1003758639123027,
+   "flank_front": 5.700558943110854
+  },
+  "waist": {
+   "front_cm": 0.0,
+   "flank_cm": 1.0734170498741469,
+   "back_cm": 1.6915310053454782,
+   "flank_front": NaN
+  },
+  "belly_apron": {
+   "front_cm": 0.0,
+   "flank_cm": 1.2702682715769251,
+   "back_cm": 1.5932983773763276,
+   "flank_front": NaN
+  }
+ }
+}

@@ -1,0 +1,69 @@
+{
+ "group": "definition",
+ "id": "body.definition.pecs_crease",
+ "label": "Pec crease",
+ "qa": {
+  "attenuation": {
+   "gachidebu": {
+    "measured": 0.596560504501076,
+    "naive_fill_factor": 0.9997635147346964,
+    "predicted": 0.5967
+   },
+   "strongman": {
+    "measured": 0.6978355998653915,
+    "naive_fill_factor": 0.9998345711668223,
+    "predicted": 0.6979500000000001
+   }
+  },
+  "calibrated_depth_mm": 1.2125785106609637,
+  "calibrated_peak_mm": 4.188077639678194,
+  "calibration_scale": 1.726356896241353,
+  "canonical_measure": "crease",
+  "combined_set_over_gachidebu": {
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.005848530848297216
+   },
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.0006095249805491722
+   }
+  },
+  "fold_gate": {
+   "gachidebu": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   },
+   "muscle": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   },
+   "strongman": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   }
+  },
+  "kernel_cv_p95_cm": 0.313093599157845,
+  "moved_verts": 312,
+  "source_depth_mm": 1.5344711264474444,
+  "source_peak_mm": 8.547407967162885,
+  "target_depth_mm": 1.212578872180968,
+  "transfer_depth_mm": 0.7023917677862618
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "1.0 = the source sculpt's own relief depth at the canonical station, frame-scaled to hm08 (closed-loop calibrated; see qa)",
+  "max": 1.0,
+  "min": 0.0
+ },
+ "region": "chest",
+ "semantics": "Pec separation + lower-border crease at value 1: canonical dip depth 1.21 mm across the chest footprint. Pure relief; the chest's width and mass are body.chest.width / body.pecs.",
+ "symmetry": "symmetric",
+ "system": {
+  "file": "body.definition.pecs_crease.target",
+  "model": "makehuman_hm08 relief field (sparse MakeHuman target, metres)",
+  "source": "HIMBO - BodyPecsCrease (Vanilla HIMBO .osd, full decode) transferred at the slider-lab feature kernel (sigma_h 0.018, sigma_arc 0.014) and closed-loop calibrated at the canonical dip-in-h station.",
+  "study_only": true
+ },
+ "version": 1
+}

@@ -1,0 +1,131 @@
+{
+ "old_sen": {
+  "L": 1.03532,
+  "eye_L_centre": [
+   0.115,
+   0.0788,
+   -0.0076
+  ],
+  "eye_R_centre": [
+   -0.115,
+   0.0788,
+   -0.0076
+  ],
+  "eye_centre_xdistance": 0.2301,
+  "orbit_d": 0.1062,
+  "interorbital_gap": 0.1239,
+  "ear_L_base": [
+   0.2444,
+   -0.1452,
+   0.2098
+  ],
+  "ear_L_base_absx": 0.2444,
+  "ear_L_tip": [
+   0.3211,
+   -0.1974,
+   0.0318
+  ],
+  "ear_L_base_tip_len": 0.2008,
+  "ear_R_base": [
+   -0.2444,
+   -0.1452,
+   0.2098
+  ],
+  "ear_R_base_absx": 0.2444,
+  "ear_R_tip": [
+   -0.3211,
+   -0.1974,
+   0.0318
+  ],
+  "ear_R_base_tip_len": 0.2008,
+  "tongue_y_extent": 0.5528,
+  "tongue_max_forward_vs_jaw_front": -0.024,
+  "tissue_max_width": 0.5385
+ },
+ "base_v3": {
+  "L": 1.0,
+  "eye_L_centre": [
+   0.1311,
+   0.0815,
+   -0.0079
+  ],
+  "eye_R_centre": [
+   -0.1311,
+   0.0815,
+   -0.0079
+  ],
+  "eye_centre_xdistance": 0.2622,
+  "orbit_d": 0.15,
+  "interorbital_gap": 0.1122,
+  "ear_L_base": [
+   0.3195,
+   -0.1817,
+   0.1771
+  ],
+  "ear_L_base_absx": 0.3195,
+  "ear_L_tip": [
+   0.316,
+   -0.0842,
+   0.4497
+  ],
+  "ear_L_base_tip_len": 0.2895,
+  "ear_R_base": [
+   -0.3195,
+   -0.1817,
+   0.1771
+  ],
+  "ear_R_base_absx": 0.3195,
+  "ear_R_tip": [
+   -0.316,
+   -0.0842,
+   0.4497
+  ],
+  "ear_R_base_tip_len": 0.2895,
+  "tongue_y_extent": 0.4403,
+  "tongue_max_forward_vs_jaw_front": -0.2023,
+  "tissue_max_width": 0.5466
+ },
+ "base_v4": {
+  "L": 1.0,
+  "eye_L_centre": [
+   0.1311,
+   0.0815,
+   -0.0079
+  ],
+  "eye_R_centre": [
+   -0.1311,
+   0.0815,
+   -0.0079
+  ],
+  "eye_centre_xdistance": 0.2622,
+  "orbit_d": 0.15,
+  "interorbital_gap": 0.1122,
+  "ear_L_base": [
+   0.3276,
+   -0.1831,
+   0.1748
+  ],
+  "ear_L_base_absx": 0.3276,
+  "ear_L_tip": [
+   0.316,
+   -0.0842,
+   0.4497
+  ],
+  "ear_L_base_tip_len": 0.2924,
+  "ear_R_base": [
+   -0.3276,
+   -0.1831,
+   0.1748
+  ],
+  "ear_R_base_absx": 0.3276,
+  "ear_R_tip": [
+   -0.316,
+   -0.0842,
+   0.4497
+  ],
+  "ear_R_base_tip_len": 0.2924,
+  "tongue_y_extent": 0.4403,
+  "tongue_max_forward_vs_jaw_front": -0.2027,
+  "tissue_max_width": 0.5466
+ }
+}

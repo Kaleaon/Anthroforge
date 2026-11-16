@@ -1,0 +1,28 @@
+01:57.016  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/kaleaon_anatomy_parts.blend"
+/home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/scripts/render_parts.py:12: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  sc.world.use_nodes = True
+09:20.409  render           | Saved: '/home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/renders/groin_front.png'
+16:59.112  render           | Saved: '/home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/renders/groin_side.png'
+21:48.909  render           | Saved: '/home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/renders/groin_threequarter.png'
+26:08.798  render           | Saved: '/home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/renders/full_front.png'
+31:45.698  render           | Saved: '/home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/renders/articulation.png'
+[StableGen] Could not query ComfyUI node Trellis2Conditioning: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/Trellis2Conditioning (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73aa0f11c830>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[TRELLIS2] Auto-detect: ComfyUI's TRELLIS.2 nodes NOT found.
+[PBR] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/MarigoldModelLoader (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73aa0f109f90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[SkinTokens] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/StableGenSkinTokensAutoRig (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73aa0f10a850>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect of LATO2Remesh failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/LATO2Remesh (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73aa0f129220>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect: no nodes found.
+[StableGen] Could not query ComfyUI node Trellis2Conditioning: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/Trellis2Conditioning (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73aa12ddf950>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[TRELLIS2] Auto-detect: ComfyUI's TRELLIS.2 nodes NOT found.
+[PBR] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/MarigoldModelLoader (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73aa12df2c30>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[SkinTokens] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/StableGenSkinTokensAutoRig (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73aa12dfb790>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect of LATO2Remesh failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/LATO2Remesh (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73aa0f1485a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect: no nodes found.
+RENDERED groin_front
+RENDERED groin_side
+RENDERED groin_threequarter
+RENDERED full_front
+RENDERED articulation
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

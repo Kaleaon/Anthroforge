@@ -1,0 +1,636 @@
+{
+ "build": "Jorge body (no head, no fur, no render), stage-1 pattern per SEN_BUILD.md, Nov 16, 2026",
+ "base": "makehuman_hm08 (MPFB macro base for grading; raw base.obj frame for the second fold-gate basis)",
+ "vector_applied": {
+  "muscle_recipe": {
+   "BodyMass": 0.25,
+   "ArmsTraps": 0.8,
+   "ArmsTrapsMeat": 0.9,
+   "ArmsTrapsPush": 0.7,
+   "Muscle": 0.45,
+   "TorsoMass": 1.0,
+   "TorsoBackSize": 0.85,
+   "TorsoLower": 1.0,
+   "PecsSize": 0.95,
+   "PecsMass": 0.85,
+   "PecsWidth": 0.95,
+   "PecsLower": 0.65,
+   "PecsClavicle": 0.6,
+   "ArmsDelts": 0.8,
+   "ArmsBiceps": 0.75,
+   "ArmsBrachio": 0.7,
+   "ArmsFore": 0.85,
+   "LegsSize": 1.0,
+   "LegsThigh": 1.0,
+   "LegsGlutes": 0.75,
+   "LegsCalfSize": 0.85,
+   "LegsCalfWidth": 0.8,
+   "ButtBooty": 0.75,
+   "BubbleButt": 0.5
+  },
+  "width_recipe": {
+   "TorsoWidth": 0.9,
+   "TorsoBackShape": 0.7,
+   "ArmsShoulders": 0.85
+  },
+  "tissue_recipe": {
+   "Chubby": 0.85,
+   "TorsoMassSmooth": 0.85,
+   "TorsoBellyLHandles": 0.65,
+   "PecsSaggy": 0.5,
+   "LegsChubby": 0.8,
+   "ButtSaggy": 0.35,
+   "BellySmooth": 0.8,
+   "ArmsTrapsValleys": 0.2
+  },
+  "neck_weight_gated": 0.95,
+  "belly_tau": 0.6,
+  "belly_drive": "tau := BellyPot 0.60 (fixed; NO strongman ratio solve)",
+  "terminal_scale": 0.6,
+  "slice_ratio_pre_repair": 1.2603180761438804
+ },
+ "vocab_gap_composes_zero": {
+  "BodyMass": 0.25,
+  "PecsLower": 0.65,
+  "BubbleButt": 0.5,
+  "TorsoMassSmooth": 0.85,
+  "BellySmooth": 0.8,
+  "note": "no block in HIMBO Body - Vanilla.osd (the machinery's vocabulary); all five exist in SOS.osd but on a ~11k-vert base (max index 11006 vs Vanilla 9345) -- not index-compatible without new verification. Same gap as Sen's shipped build; Joe's open decision (FIX_NECK_FIELD.md). Effect: this build UNDERSTATES Jorge's softness."
+ },
+ "excluded_with_precedent": {
+  "Lean -1.00": "two-sided, sign-ambiguous (v4 precedent)",
+  "TorsoWaistSize -0.65": "Shrink Waist semantics; waist routed via TorsoLower + LHandles + belly core (R18)",
+  "TorsoBelly 0.75 / TorsoBellyChub 0.80": "HIMBO belly stack replaced by the v4/v5.1 belly system"
+ },
+ "cv": {
+  "torso/muscle": {
+   "n": 4662,
+   "median_cm": 0.3358604520959231,
+   "p95_cm": 1.5364696756853362
+  },
+  "torso/width": {
+   "n": 2871,
+   "median_cm": 0.2181079198773878,
+   "p95_cm": 0.6055745249624676
+  },
+  "torso/tissue": {
+   "n": 4451,
+   "median_cm": 0.3063962482122034,
+   "p95_cm": 0.9824889200983116
+  },
+  "armR/seg0/muscle": {
+   "n": 216,
+   "median_cm": 0.29188986559708185,
+   "p95_cm": 0.6051792701909114
+  },
+  "armR/seg1/muscle": {
+   "n": 638,
+   "median_cm": 0.2595987106182689,
+   "p95_cm": 0.6167557679481253
+  },
+  "armL/seg0/muscle": {
+   "n": 216,
+   "median_cm": 0.27598110715647284,
+   "p95_cm": 0.5762013983058262
+  },
+  "armL/seg1/muscle": {
+   "n": 638,
+   "median_cm": 0.2608054209798895,
+   "p95_cm": 0.6267331517069171
+  },
+  "legR/seg0/muscle": {
+   "n": 1067,
+   "median_cm": 0.328936295551547,
+   "p95_cm": 0.7879444189683453
+  },
+  "legR/seg1/muscle": {
+   "n": 391,
+   "median_cm": 0.2958967613487376,
+   "p95_cm": 0.8020937209555454
+  },
+  "legL/seg0/muscle": {
+   "n": 1067,
+   "median_cm": 0.32868994147181874,
+   "p95_cm": 0.7899080599419929
+  },
+  "legL/seg1/muscle": {
+   "n": 391,
+   "median_cm": 0.3064125017374724,
+   "p95_cm": 0.8248938570168212
+  },
+  "armR/seg0/width": {
+   "n": 202,
+   "median_cm": 0.3150935385670418,
+   "p95_cm": 0.6500367730290284
+  },
+  "armR/seg1/width": {
+   "n": 322,
+   "median_cm": 0.09004913705631584,
+   "p95_cm": 0.27472106760519244
+  },
+  "armL/seg0/width": {
+   "n": 202,
+   "median_cm": 0.3176090570771607,
+   "p95_cm": 0.6532906208261441
+  },
+  "armL/seg1/width": {
+   "n": 322,
+   "median_cm": 0.0855258634604926,
+   "p95_cm": 0.2787743207389372
+  },
+  "armR/seg0/tissue": {
+   "n": 216,
+   "median_cm": 0.09675802134282624,
+   "p95_cm": 0.2188251874490311
+  },
+  "armR/seg1/tissue": {
+   "n": 602,
+   "median_cm": 0.06808823454475316,
+   "p95_cm": 0.17990492240133368
+  },
+  "armL/seg0/tissue": {
+   "n": 216,
+   "median_cm": 0.09652372973124673,
+   "p95_cm": 0.20716158585623892
+  },
+  "armL/seg1/tissue": {
+   "n": 602,
+   "median_cm": 0.06856902064548673,
+   "p95_cm": 0.1764260858870904
+  },
+  "legR/seg0/tissue": {
+   "n": 1068,
+   "median_cm": 0.2104877889548083,
+   "p95_cm": 0.6893698983220186
+  },
+  "legR/seg1/tissue": {
+   "n": 375,
+   "median_cm": 0.26517283127404384,
+   "p95_cm": 0.5851323140861697
+  },
+  "legL/seg0/tissue": {
+   "n": 1068,
+   "median_cm": 0.2082511623073232,
+   "p95_cm": 0.6813120206299499
+  },
+  "legL/seg1/tissue": {
+   "n": 375,
+   "median_cm": 0.2721371342375874,
+   "p95_cm": 0.5869411756122626
+  }
+ },
+ "scorecard": [
+  {
+   "metric": "M1 neck width / head width",
+   "base": 0.634,
+   "muscle_system": 0.836,
+   "combined": 0.844
+  },
+  {
+   "metric": "M2 neck/arm (Reeves 1.00)",
+   "base": 1.177,
+   "muscle_system": 1.015,
+   "combined": 0.941
+  },
+  {
+   "metric": "M2 neck/calf",
+   "base": 0.945,
+   "muscle_system": 0.92,
+   "combined": 0.743
+  },
+  {
+   "metric": "M3 forearm/arm",
+   "base": 0.827,
+   "muscle_system": 0.721,
+   "combined": 0.722
+  },
+  {
+   "metric": "M4 chest/waist girth",
+   "base": 1.555,
+   "muscle_system": 1.486,
+   "combined": 1.257
+  },
+  {
+   "metric": "M5 chest depth/waist depth",
+   "base": 1.013,
+   "muscle_system": 1.105,
+   "combined": 0.917
+  },
+  {
+   "metric": "M6 trap slope deg",
+   "base": 34.48,
+   "muscle_system": 32.764,
+   "combined": 31.804
+  },
+  {
+   "metric": "M7 visible neck/head",
+   "base": 0.238,
+   "muscle_system": 0.477,
+   "combined": 0.475
+  },
+  {
+   "metric": "M8 delt span/head width",
+   "base": 3.532,
+   "muscle_system": 4.048,
+   "combined": 4.231
+  },
+  {
+   "metric": "M11 thigh/waist",
+   "base": 0.684,
+   "muscle_system": 0.759,
+   "combined": 0.742
+  },
+  {
+   "metric": "M12 heads tall",
+   "base": 7.619,
+   "muscle_system": 9.334,
+   "combined": 9.338
+  },
+  {
+   "metric": "M13 chest width ratio (broadness)",
+   "base": 1.0,
+   "muscle_system": null,
+   "combined": 1.154,
+   "note": "chest loop width, combined / base; broadness ships as its own component (body.chest.width)"
+  }
+ ],
+ "grades": {
+  "base": {
+   "height_m": 1.66589,
+   "volume_L": 51.20762882595758,
+   "neck_g": 0.32162344675035254,
+   "neck_w": 0.09989377158594412,
+   "head_w": 0.15759673707069566,
+   "head_h": 0.2186579559748426,
+   "chin_z": 0.6304720440251574,
+   "chest_g": 1.0824358440562145,
+   "chest_w": 0.46730567637328724,
+   "waist_w": 0.24057537221520575,
+   "waist_g": 0.6960722481925224,
+   "chest_d": 0.18070966737184213,
+   "waist_d": 0.17843222813895854,
+   "delt_span": 0.5566803317072783,
+   "trap_angle": 34.479849739536164,
+   "visible_neck": 0.05197079877204247,
+   "ua_g": 0.2732070224362752,
+   "fa_g": 0.2258958003534433,
+   "thigh_g": 0.4759690531379843,
+   "calf_g": 0.3403786191090661,
+   "M1_neckW_headW": 0.6338568516246196,
+   "M2_neck_arm": 1.1772151531184392,
+   "M2_neck_calf": 0.9448990879397631,
+   "M2_arm_calf": 0.8026562395469753,
+   "M3_fa_arm": 0.8268301390610591,
+   "M4_chest_waist": 1.555062490807463,
+   "M5_depth_ratio": 1.0127636092237216,
+   "M6_trap_deg": 34.479849739536164,
+   "M7_vis_neck_ratio": 0.23768080397688296,
+   "M8_span_headW": 3.532308739727012,
+   "M11_thigh_waist": 0.6837926010897922,
+   "M12_heads_tall": 7.618702884937179
+  },
+  "muscle_system": {
+   "height_m": 1.66765950806185,
+   "volume_L": 73.95676715686928,
+   "neck_g": 0.4164232895732403,
+   "neck_w": 0.1317688730023575,
+   "head_w": 0.15759673707069566,
+   "head_h": 0.17865795597484257,
+   "chin_z": 0.6704720440251575,
+   "chest_g": 1.2325994345643088,
+   "chest_w": 0.5268354619891951,
+   "waist_w": 0.2946532469745389,
+   "waist_g": 0.8297222364070693,
+   "chest_d": 0.22428826966957505,
+   "waist_d": 0.20306012977680377,
+   "delt_span": 0.6379697490598748,
+   "trap_angle": 32.76357187645907,
+   "visible_neck": 0.08513961098253842,
+   "ua_g": 0.4100811844992005,
+   "fa_g": 0.2955516374254883,
+   "thigh_g": 0.6295049613142865,
+   "calf_g": 0.4527131822859548,
+   "M1_neckW_headW": 0.8361142207103429,
+   "M2_neck_arm": 1.015465486625008,
+   "M2_neck_calf": 0.9198391075570843,
+   "M2_arm_calf": 0.9058300057191047,
+   "M3_fa_arm": 0.7207149427897356,
+   "M4_chest_waist": 1.485556708594205,
+   "M5_depth_ratio": 1.1045411520031256,
+   "M6_trap_deg": 32.76357187645907,
+   "M7_vis_neck_ratio": 0.4765509071117281,
+   "M8_span_headW": 4.048115214299714,
+   "M11_thigh_waist": 0.7586936129857385,
+   "M12_heads_tall": 9.334370243756055
+  },
+  "combined": {
+   "height_m": 1.6682748793589965,
+   "volume_L": 94.87559186829371,
+   "neck_g": 0.4208857453099301,
+   "neck_w": 0.1329660906777078,
+   "head_w": 0.15759673707069566,
+   "head_h": 0.17865795597484257,
+   "chin_z": 0.6704720440251575,
+   "chest_g": 1.2732460831493209,
+   "chest_w": 0.5390470459889694,
+   "waist_w": 0.349697864162554,
+   "waist_g": 1.0132036774343365,
+   "chest_d": 0.23802886520750777,
+   "waist_d": 0.25949026155839827,
+   "delt_span": 0.666775788037518,
+   "trap_angle": 31.80396279577308,
+   "visible_neck": 0.0848415752572822,
+   "ua_g": 0.4471828914439435,
+   "fa_g": 0.32287790548674256,
+   "thigh_g": 0.7518568662590707,
+   "calf_g": 0.5664729541307978,
+   "M1_neckW_headW": 0.8437109368454824,
+   "M2_neck_arm": 0.9411937562076659,
+   "M2_neck_calf": 0.7429935396575847,
+   "M2_arm_calf": 0.7894161374925759,
+   "M3_fa_arm": 0.722026516811001,
+   "M4_chest_waist": 1.2566536339203498,
+   "M5_depth_ratio": 0.9172940201223674,
+   "M6_trap_deg": 31.80396279577308,
+   "M7_vis_neck_ratio": 0.4748827153783682,
+   "M8_span_headW": 4.230898433756353,
+   "M11_thigh_waist": 0.7420589591255179,
+   "M12_heads_tall": 9.33781465401917
+  },
+  "shipped_quantised": {
+   "height_m": 1.66829,
+   "volume_L": 94.87729572917046,
+   "neck_g": 0.4208542301733721,
+   "neck_w": 0.1329812465273102,
+   "head_w": 0.15759673707069566,
+   "head_h": 0.17865795597484257,
+   "chin_z": 0.6704720440251575,
+   "chest_g": 1.273218707759673,
+   "chest_w": 0.5390193987441432,
+   "waist_w": 0.34977863600467685,
+   "waist_g": 1.013293091050768,
+   "chest_d": 0.23809438777497552,
+   "waist_d": 0.25944845555012563,
+   "delt_span": 0.6667494142198338,
+   "trap_angle": 31.804144926068183,
+   "visible_neck": 0.08481719018162759,
+   "ua_g": 0.4472132976060349,
+   "fa_g": 0.3229915166400291,
+   "thigh_g": 0.7518387815693842,
+   "calf_g": 0.5665278719336695,
+   "M1_neckW_headW": 0.843807105394934,
+   "M2_neck_arm": 0.941059294136009,
+   "M2_neck_calf": 0.7428658871397006,
+   "M2_arm_calf": 0.7893932845344558,
+   "M3_fa_arm": 0.72223146844923,
+   "M4_chest_waist": 1.256515729757287,
+   "M5_depth_ratio": 0.917694373127519,
+   "M6_trap_deg": 31.804144926068183,
+   "M7_vis_neck_ratio": 0.47474622509154296,
+   "M8_span_headW": 4.230731083732651,
+   "M11_thigh_waist": 0.7419756319365999,
+   "M12_heads_tall": 9.33789928859881
+  }
+ },
+ "broadness": {
+  "chest_width_base_cm": 46.730567637328726,
+  "chest_width_build_cm": 53.904704598896934,
+  "chest_width_ratio": 1.1535212886187467,
+  "waist_width_base_cm": 24.057537221520576,
+  "waist_width_build_cm": 34.9697864162554,
+  "delt_span_base_cm": 55.668033170727824,
+  "delt_span_build_cm": 66.6775788037518
+ },
+ "side_mass": {
+  "as_composed": {
+   "chest": {
+    "front_cm": 0.32042625212417614,
+    "flank_cm": 0.34274162690516324,
+    "back_cm": 0.277503319689686,
+    "flank_front": 1.0696427793698349
+   },
+   "belly": {
+    "front_cm": 1.5291963338253693,
+    "flank_cm": 1.1290884722229166,
+    "back_cm": 0.8004265833688552,
+    "flank_front": 0.7383541584869219
+   }
+  },
+  "correction": "none -- measured only (the strongman flank-correction table is Sen-recipe-specific)"
+ },
+ "m9_volume_gain": 0.8527628410749704,
+ "m10_tissue_share_proxy": 0.4790428326401122,
+ "attenuation": {
+  "core_min": 0.05799102294883067,
+  "core_verts": 520,
+  "width_min": 0.2887174368,
+  "width_verts": 32,
+  "tissue_min": 0.083357758312362,
+  "tissue_verts": 32
+ },
+ "repair_trajectories": {
+  "core": [
+   153,
+   169,
+   189,
+   185,
+   179,
+   147,
+   106,
+   92,
+   64,
+   66,
+   72,
+   36,
+   34,
+   14,
+   6,
+   6,
+   0
+  ],
+  "width": [
+   8,
+   7,
+   7,
+   3,
+   3,
+   0
+  ],
+  "tissue": [
+   8,
+   7,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   3,
+   0
+  ]
+ },
+ "flips_final_float": {
+  "raw_core": 0,
+  "raw_width": 0,
+  "raw_muscle_system": 0,
+  "raw_tissue": 0,
+  "raw_combined": 0,
+  "macro_combined": 0
+ },
+ "export": {
+  "scale": 1.39,
+  "height_m_at_base_scale": 1.6682748793589965,
+  "height_m_export": 2.318902082309005,
+  "volume_L_at_base_scale": 94.87559186829371,
+  "volume_L_export": 254.79969215773505,
+  "mass_estimate": {
+   "basis": "export volume x density; the person file records NO mass for Jorge -- estimate only",
+   "kg_at_1.00_kg_per_L": 254.79969215773505,
+   "kg_band_0.95_1.05": [
+    242.0597075498483,
+    267.53967676562183
+   ],
+   "lbs_at_1.00": 561.7364973247858
+  },
+  "volume_L_export_shipped": 254.80426807887898,
+  "mass_estimate_shipped_kg_at_1.00": 254.80426807887898,
+  "mass_estimate_shipped_lbs_at_1.00": 561.7465854920581,
+  "height_m_export_shipped": 2.3189231
+ },
+ "ship_gate_quantised": {
+  "rule": "0 flips AND min normalised face dot >= 0.01, both bases (raw base.obj frame + MPFB macro frame), every component solo and the full sum, on the shipped 0.1 mm-quantised targets parsed back from disk",
+  "as_first_written": {
+   "muscle": {
+    "raw": [
+     1,
+     -0.048628581019414516
+    ],
+    "macro": [
+     0,
+     0.035151912215586896
+    ]
+   },
+   "width": {
+    "raw": [
+     0,
+     0.8686517248573935
+    ],
+    "macro": [
+     0,
+     0.9228555345318529
+    ]
+   },
+   "tissue": {
+    "raw": [
+     0,
+     0.38394089166992623
+    ],
+    "macro": [
+     0,
+     0.7308964916170304
+    ]
+   },
+   "terminal": {
+    "raw": [
+     0,
+     0.9589592378758
+    ],
+    "macro": [
+     0,
+     0.9587475413005625
+    ]
+   },
+   "muscle+width": {
+    "raw": [
+     1,
+     -0.048628581019414516
+    ],
+    "macro": [
+     0,
+     0.035151912215586896
+    ]
+   },
+   "muscle+width+tissue+terminal": {
+    "raw": [
+     1,
+     -0.048628581019414516
+    ],
+    "macro": [
+     0,
+     0.035151912215586896
+    ]
+   }
+  },
+  "quantised_repairs": {
+   "muscle": {
+    "rounds": 2,
+    "verts_changed": 13,
+    "att_min": 0.81,
+    "deviation_max_mm": 0.44721359549995765
+   }
+  },
+  "final": {
+   "muscle": {
+    "raw": [
+     0,
+     0.0381073989191824
+    ],
+    "macro": [
+     0,
+     0.035151912215586896
+    ]
+   },
+   "width": {
+    "raw": [
+     0,
+     0.8686517248573935
+    ],
+    "macro": [
+     0,
+     0.9228555345318529
+    ]
+   },
+   "tissue": {
+    "raw": [
+     0,
+     0.38394089166992623
+    ],
+    "macro": [
+     0,
+     0.7308964916170304
+    ]
+   },
+   "terminal": {
+    "raw": [
+     0,
+     0.9589592378758
+    ],
+    "macro": [
+     0,
+     0.9587475413005625
+    ]
+   },
+   "muscle+width": {
+    "raw": [
+     0,
+     0.0381073989191824
+    ],
+    "macro": [
+     0,
+     0.035151912215586896
+    ]
+   },
+   "muscle+width+tissue+terminal": {
+    "raw": [
+     0,
+     0.0381073989191824
+    ],
+    "macro": [
+     0,
+     0.035151912215586896
+    ]
+   }
+  }
+ }
+}

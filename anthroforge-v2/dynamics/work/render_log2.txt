@@ -1,0 +1,5 @@
+00:31.568  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/dynamics/prototype_softdynamics.blend"
+/home/hatch/workspace/anthroforge-v2/dynamics/scripts/render_prototype.py:40: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  clay.use_nodes = True
+02:08.195  render           | Saved: '/home/hatch/workspace/anthroforge-v2/dynamics/renders/soft_f071.png'
+03:08.173  render           | Saved: '/home/hatch/workspace/anthroforge-v2/dynamics/renders/soft_f150.png'

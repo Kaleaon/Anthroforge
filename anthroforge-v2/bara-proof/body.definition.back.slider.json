@@ -1,0 +1,74 @@
+{
+ "group": "definition",
+ "id": "body.definition.back",
+ "label": "Back definition",
+ "qa": {
+  "attenuation": {
+   "gachidebu": {
+    "measured": 0.6725674006778507,
+    "naive_fill_factor": 1.0001049569706373,
+    "predicted": 0.6725025
+   },
+   "strongman": {
+    "measured": 0.7560607754693011,
+    "naive_fill_factor": 1.0000406375001134,
+    "predicted": 0.75603375
+   }
+  },
+  "back_station_detail": {
+   "furrow_source_mm": 0.2877048304184733,
+   "primary_measure": "back_rms",
+   "rms_source_mm": 1.978327765552418
+  },
+  "calibrated_depth_mm": 1.5633249156100333,
+  "calibrated_peak_mm": 9.990861645047527,
+  "calibration_scale": 0.6982487144610539,
+  "canonical_measure": "back_rms",
+  "combined_set_over_gachidebu": {
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.005848530848297216
+   },
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.0006095249805491722
+   }
+  },
+  "fold_gate": {
+   "gachidebu": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   },
+   "muscle": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   },
+   "strongman": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   }
+  },
+  "kernel_cv_p95_cm": 0.33453501582878803,
+  "moved_verts": 539,
+  "source_depth_mm": 1.978327765552418,
+  "source_peak_mm": 19.53988481401785,
+  "target_depth_mm": 1.563325897380453,
+  "transfer_depth_mm": 2.238924132623878
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "1.0 = the source sculpt's own relief depth at the canonical station, frame-scaled to hm08 (closed-loop calibrated; see qa)",
+  "max": 1.0,
+  "min": 0.0
+ },
+ "region": "back",
+ "semantics": "Back relief at value 1: canonical relief RMS 1.56 mm over the back profile (spinal furrow station reads 0.23 mm of it -- the source sculpt is mostly broad lat/scapular shaping). Pure relief; no back mass.",
+ "symmetry": "symmetric",
+ "system": {
+  "file": "body.definition.back.target",
+  "model": "makehuman_hm08 relief field (sparse MakeHuman target, metres)",
+  "source": "HIMBO - Body HPTorsoBackDefinition (SOS HP .osd twin of the SOS.osd block) transferred from the SOS HP base (14,597 verts, position-verified 1:1 over the Vanilla footprint; the Vanilla .osd carries no back-definition block and SOS-family sets do not index the Vanilla base) at the slider-lab feature kernel, closed-loop calibrated at the canonical relief-RMS station.",
+  "study_only": true
+ },
+ "version": 1
+}

@@ -1,0 +1,32 @@
+{
+ "bara_wolf": {
+  "model": "BaraWolfBody (Mixamo-rigged bara wolf, T-pose), height 1.95 m, units m",
+  "chest_g_m": 1.82072728654344,
+  "arm_station_girths_m": {
+   "x=0.40": 1.0128947043849232,
+   "x=0.50": 0.7363347626085591,
+   "x=0.55": 0.6852071277370839,
+   "x=0.62": 0.7356228550854778,
+   "x=0.70": 0.6139645156364733,
+   "x=0.78": 0.4593863541882455
+  },
+  "upper_arm_g_clean_m": 0.7363347626085591,
+  "upper_arm_g_shoulder_blend_m": 1.0128947043849232,
+  "forearm_g_max_m": 0.6139645156364733,
+  "fore_over_arm_clean": 0.833811666668332,
+  "neck_tape": "not isolable -- merged neck/trap/ruff/head mass at every station above the chest junction",
+  "neck_region_outlines_m": {
+   "z=1.65": 2.5646265101448575,
+   "z=1.70": 2.1522532372527445,
+   "z=1.75": 1.6649806858987302,
+   "z=1.85": 1.1210815933421432
+  },
+  "neck_region_over_arm_floor": 1.5225161845823627,
+  "reading": "the sculpt carries no neck cylinder: the smallest above-shoulder outline (1.12 m, skull-dominated) is already 1.5x the clean upper-arm girth, and the forearm:arm ratio at clean stations is 0.82 -- inside the study's bara M3 band (0.80-0.88). Real bara geometry sits at/above the Reeves neck relation, not below it."
+ },
+ "cvrx_wolf": {
+  "model": "Big Bad Wolf / Death V2 (CVRxEarth), Sketchfab scene",
+  "status": "not measurable under the slice-loop protocol",
+  "reason": "fragmented two-scale scene: a posed metre-scale figure in ~9 body fragments (arms raised, holding sickles; neck segment not present as a closed station) plus a second cm-scale group and props. An automatic biped pass over the metre fragments returns a 0.164 m 'neck' at 95% height (a prop edge) -- rejected as a station error, not reported as a measurement."
+ }
+}

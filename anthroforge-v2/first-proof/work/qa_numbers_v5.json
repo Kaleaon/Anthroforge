@@ -1,0 +1,420 @@
+{
+ "model": {
+  "gamma_coupling": 2.0,
+  "shipped_inc_scale": 1.0,
+  "alpha_limb": 0.6501530710755051,
+  "thigh_band_dr_cm": {
+   "fat_males": 2.9215907596995314,
+   "himbo_limb": 4.493696776463022
+  },
+  "scales": {
+   "fm_arm": 1.151927887276351,
+   "hi_arm": 1.1795178641043322,
+   "fm_leg": 1.1026512848940604,
+   "hi_leg": 1.1638954566839907
+  },
+  "himbo_limb_recipe_used": {
+   "ArmsBiceps": 1.0,
+   "ArmsClavicleCurve": 1.0,
+   "ArmsDelts": 1.0,
+   "ArmsDeltsBack": 0.27,
+   "ArmsDeltsLower": 0.23,
+   "ArmsDeltsUpper": 0.18,
+   "ArmsFore": 1.0,
+   "LegsSize": 1.0,
+   "LegsThigh": 1.0,
+   "LegsChubby": 0.94,
+   "LegsFemurUpper": 0.62,
+   "LegsFemurLower": 0.05,
+   "LegsGlutes": 0.38,
+   "LegsKneePit": 0.57,
+   "LegsCalfWidth": 0.72,
+   "LegsCalfLower": 0.33,
+   "LegsCalfUpper": 0.12
+  },
+  "himbo_limb_recipe_missing": [
+   "ArmsDeltsShape",
+   "LegsThighSmoothCurve",
+   "LegsVastusMReduction",
+   "LegsCalfOut",
+   "LegsCalfSideIn"
+  ],
+  "fields": {
+   "fm_arm": {
+    "label": "fat_males_arm",
+    "kind": "arm",
+    "samples": 594,
+    "informative": 592,
+    "cv_cm": {
+     "p50": 0.5300905413369071,
+     "p95": 2.535259314538671,
+     "max": 5.70228719010534
+    }
+   },
+   "hi_arm": {
+    "label": "himbo_limb_arm",
+    "kind": "arm",
+    "samples": 3322,
+    "informative": 2895,
+    "cv_cm": {
+     "p50": 0.13948123256395267,
+     "p95": 0.4729013723051321,
+     "max": 0.729811350666383
+    }
+   },
+   "fm_leg": {
+    "label": "fat_males_leg",
+    "kind": "leg",
+    "samples": 1084,
+    "informative": 1080,
+    "cv_cm": {
+     "p50": 0.4721657767438074,
+     "p95": 2.43161705407179,
+     "max": 4.212482280554221
+    }
+   },
+   "hi_leg": {
+    "label": "himbo_limb_leg",
+    "kind": "leg",
+    "samples": 3422,
+    "informative": 3398,
+    "cv_cm": {
+     "p50": 0.353634594073416,
+     "p95": 1.8099120364455719,
+     "max": 3.4916269292803612
+    }
+   }
+  },
+  "attenuation": {
+   "min": 0.5941326399999999,
+   "verts_under_0.99": 29,
+   "rounds": 2
+  },
+  "contact_cap_applied": false,
+  "leg_distal_shaping": "dr x1.0 to s=0.68, ->0.55 at s=0.85, ->0.35 at s=1.0 (L4)"
+ },
+ "navel": {
+  "v4_at_+1": {
+   "forward_cm": 11.14157754248432,
+   "down_cm": 6.992363717319414
+  },
+  "v5_at_+1": {
+   "forward_cm": 11.14157754248432,
+   "down_cm": 6.992363717319414
+  },
+  "v5_at_+0.5_coupled": {
+   "forward_cm": 5.878365443318925,
+   "down_cm": 1.624108798694754
+  }
+ },
+ "fold_scan": {
+  "-1 (linear)": {
+   "raw": {
+    "flips": 184,
+    "min_dot": -0.9962751455780274
+   },
+   "macro": {
+    "flips": 162,
+    "min_dot": -0.9842359847292783
+   }
+  },
+  "+0.5 (coupled)": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.45008062687908507
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.586878537110553
+   }
+  },
+  "+1 (combined)": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.06954358003606084
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.0017686192905230214
+   }
+  },
+  "+1.05 (combined)": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.04954362113820293
+   },
+   "macro": {
+    "flips": 11,
+    "min_dot": -0.0680511004278044
+   }
+  }
+ },
+ "body_faces_checked": 26756,
+ "limb_metrics": {
+  "arm_R": {
+   "landmark": {
+    "joint": "elbow",
+    "s_base": 0.56,
+    "s_v5": 0.56,
+    "girth_base_cm": 16.5,
+    "girth_v5_cm": 22.2,
+    "gain_cm": 5.66,
+    "interior_min_base": false,
+    "interior_min_v5": false
+   },
+   "points": {
+    "upper_arm_tube": {
+     "s": 0.36,
+     "base_cm": 23.8,
+     "v4_cm": 24.3,
+     "v5_cm": 30.0,
+     "gain_cm": 6.2
+    },
+    "forearm": {
+     "s": 0.64,
+     "base_cm": 16.2,
+     "v4_cm": 15.9,
+     "v5_cm": 21.5,
+     "gain_cm": 5.36
+    },
+    "wrist": {
+     "s": 0.72,
+     "base_cm": 16.0,
+     "v4_cm": 16.4,
+     "v5_cm": 17.8,
+     "gain_cm": 1.85
+    }
+   },
+   "boundary_step_ratio": {
+    "proximal_crossfade": 0.85,
+    "joint": 1.0
+   }
+  },
+  "leg_R": {
+   "landmark": {
+    "joint": "knee",
+    "s_base": 0.52,
+    "s_v5": 0.56,
+    "girth_base_cm": 33.4,
+    "girth_v5_cm": 43.9,
+    "gain_cm": 10.52,
+    "interior_min_base": true,
+    "interior_min_v5": true
+   },
+   "points": {
+    "mid_thigh": {
+     "s": 0.26,
+     "base_cm": 43.0,
+     "v4_cm": 43.0,
+     "v5_cm": 59.9,
+     "gain_cm": 16.99
+    },
+    "calf_belly": {
+     "s": 0.6,
+     "base_cm": 34.6,
+     "v4_cm": 34.6,
+     "v5_cm": 44.9,
+     "gain_cm": 10.28
+    },
+    "ankle": {
+     "s": 0.84,
+     "base_cm": 22.2,
+     "v4_cm": 22.2,
+     "v5_cm": 24.4,
+     "gain_cm": 2.18
+    }
+   },
+   "boundary_step_ratio": {
+    "proximal_crossfade": 0.7,
+    "joint": 1.71
+   }
+  },
+  "arm_L": {
+   "landmark": {
+    "joint": "elbow",
+    "s_base": 0.56,
+    "s_v5": 0.56,
+    "girth_base_cm": 16.5,
+    "girth_v5_cm": 22.2,
+    "gain_cm": 5.66,
+    "interior_min_base": false,
+    "interior_min_v5": false
+   },
+   "points": {
+    "upper_arm_tube": {
+     "s": 0.36,
+     "base_cm": 23.8,
+     "v4_cm": 24.3,
+     "v5_cm": 30.0,
+     "gain_cm": 6.2
+    },
+    "forearm": {
+     "s": 0.64,
+     "base_cm": 16.2,
+     "v4_cm": 15.9,
+     "v5_cm": 21.5,
+     "gain_cm": 5.36
+    },
+    "wrist": {
+     "s": 0.72,
+     "base_cm": 16.0,
+     "v4_cm": 16.4,
+     "v5_cm": 17.8,
+     "gain_cm": 1.85
+    }
+   },
+   "boundary_step_ratio": {
+    "proximal_crossfade": 0.85,
+    "joint": 1.0
+   }
+  },
+  "leg_L": {
+   "landmark": {
+    "joint": "knee",
+    "s_base": 0.52,
+    "s_v5": 0.56,
+    "girth_base_cm": 33.4,
+    "girth_v5_cm": 43.9,
+    "gain_cm": 10.52,
+    "interior_min_base": true,
+    "interior_min_v5": true
+   },
+   "points": {
+    "mid_thigh": {
+     "s": 0.26,
+     "base_cm": 43.0,
+     "v4_cm": 43.0,
+     "v5_cm": 59.9,
+     "gain_cm": 16.99
+    },
+    "calf_belly": {
+     "s": 0.6,
+     "base_cm": 34.6,
+     "v4_cm": 34.6,
+     "v5_cm": 44.9,
+     "gain_cm": 10.28
+    },
+    "ankle": {
+     "s": 0.84,
+     "base_cm": 22.2,
+     "v4_cm": 22.2,
+     "v5_cm": 24.5,
+     "gain_cm": 2.27
+    }
+   },
+   "boundary_step_ratio": {
+    "proximal_crossfade": 0.71,
+    "joint": 1.71
+   }
+  }
+ },
+ "underside_pooling": {
+  "arm_R": {
+   "field_radial_cm": {
+    "back_underside": 1.81,
+    "front": 0.45
+   },
+   "total_radial_cm": {
+    "back_underside": 1.67,
+    "front": 0.38
+   },
+   "n_back": 120,
+   "n_front": 124
+  },
+  "arm_L": {
+   "field_radial_cm": {
+    "back_underside": 1.81,
+    "front": 0.45
+   },
+   "total_radial_cm": {
+    "back_underside": 1.67,
+    "front": 0.38
+   },
+   "n_back": 120,
+   "n_front": 124
+  }
+ },
+ "inner_thigh_gap": {
+  "base_min_cm": 7.16,
+  "v5_min_cm": 6.38,
+  "v5_min_at_z_m": -0.105,
+  "base_top_band_cm": 7.16,
+  "v5_top_band_cm": 6.38
+ },
+ "arm_sector_correction": {
+  "phi_down_rad": -2.117965552441019,
+  "strength": 1.0,
+  "bump_mean": 0.12421326204050011
+ },
+ "corrected_metrics_v4": {
+  "M2_apron_bottom_above_crotch_cm": 8.81,
+  "M3_waist_girth_narrowest_cm": 85.5,
+  "M3_hip_girth_cm": 102.9,
+  "M3_ratio_narrowest": 0.831,
+  "M3_navel_girth_cm": 117.4,
+  "M3_ratio_navel_level": 1.141,
+  "M9_waist_height_ratio_narrowest": 0.513,
+  "flank_roll_peak": {
+   "h": 0.279,
+   "width_cm": 45.1
+  },
+  "flank_pinch_above_roll_cm": 10.3,
+  "below_share_pct (M1)": 63.1,
+  "back_radial_cm (M5)": 5.59,
+  "chest_front_radial_cm (M6)": 1.77
+ },
+ "corrected_metrics_v5": {
+  "M2_apron_bottom_above_crotch_cm": 8.99,
+  "M3_waist_girth_narrowest_cm": 85.5,
+  "M3_hip_girth_cm": 104.1,
+  "M3_ratio_narrowest": 0.822,
+  "M3_navel_girth_cm": 117.4,
+  "M3_ratio_navel_level": 1.128,
+  "M9_waist_height_ratio_narrowest": 0.513,
+  "flank_roll_peak": {
+   "h": 0.279,
+   "width_cm": 44.7
+  },
+  "flank_pinch_above_roll_cm": 9.9,
+  "below_share_pct (M1)": 63.0,
+  "back_radial_cm (M5)": 5.59,
+  "chest_front_radial_cm (M6)": 1.77
+ },
+ "first_pass_metrics_v4_for_reference": {
+  "v3": {
+   "below_share_pct (M1)": 65.9,
+   "lowest_above_crotch_cm (M2)": -1.32,
+   "waist_girth_cm": 91.7,
+   "hip_girth_cm": 92.1,
+   "waist_hip_ratio (M3)": 0.995,
+   "boundary_step_ratio (M4)": 3.16,
+   "back_radial_cm (M5)": 0.0,
+   "chest_front_radial_cm (M6)": 0.11,
+   "chest_width_gain_cm (M6b)": 0.0,
+   "waist_crease_depth_cm (M7b)": 4.41,
+   "waist_h_found": 0.538,
+   "added_torso_volume_proxy_cm3 (M8)": 7253.6,
+   "waist_height_ratio (M9)": 0.55
+  },
+  "v4": {
+   "below_share_pct (M1)": 63.1,
+   "lowest_above_crotch_cm (M2)": -1.54,
+   "waist_girth_cm": 101.9,
+   "hip_girth_cm": 102.9,
+   "waist_hip_ratio (M3)": 0.991,
+   "boundary_step_ratio (M4)": 3.76,
+   "back_radial_cm (M5)": 5.59,
+   "chest_front_radial_cm (M6)": 1.77,
+   "chest_width_gain_cm (M6b)": 4.88,
+   "waist_crease_depth_cm (M7b)": 6.62,
+   "waist_h_found": 0.538,
+   "added_torso_volume_proxy_cm3 (M8)": 23888.8,
+   "waist_height_ratio (M9)": 0.612,
+   "added_torso_volume_ratio_v4_over_v3 (M8)": 3.29
+  }
+ },
+ "moved_verts": {
+  "v5_combined": 4762,
+  "limb_component": 5755
+ }
+}

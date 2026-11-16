@@ -1,0 +1,60 @@
+{
+ "teeth_plane": {
+  "a": 0.09,
+  "b": 0.2696,
+  "pass": true,
+  "verify": {
+   "-10": {
+    "overlap_pairs": 0,
+    "min_clearance": 0.02411
+   },
+   "-20": {
+    "overlap_pairs": 0,
+    "min_clearance": 0.04759
+   },
+   "-30": {
+    "overlap_pairs": 0,
+    "min_clearance": 0.06915
+   }
+  },
+  "upper_tris": 724,
+  "lower_tris": 1012,
+  "upper_verts": 475,
+  "lower_verts": 614
+ },
+ "pal_z_v4": -0.1799,
+ "skull_verts": 3197,
+ "muscles_verts": 735,
+ "skullmandible_verts": 2023,
+ "groups": {
+  "TissueHead": {
+   "Muzzle": 2732,
+   "MuzzleTip": 281,
+   "NoseLeather": 193,
+   "MuzzleBridge": 1002,
+   "Cranium": 1953,
+   "CraniumDome": 370,
+   "CheekL": 390,
+   "CheekR": 390,
+   "BrowL": 947,
+   "EyeSocketL": 832,
+   "BrowR": 940,
+   "EyeSocketR": 832
+  },
+  "Ear_L": {
+   "Ear_L": 285,
+   "EarBase_L": 84,
+   "EarTip_L": 129
+  },
+  "Ear_R": {
+   "Ear_R": 285,
+   "EarBase_R": 84,
+   "EarTip_R": 129
+  },
+  "Jaw": {
+   "Jaw": 2023,
+   "Chin": 734
+  }
+ },
+ "objects_total": 24
+}

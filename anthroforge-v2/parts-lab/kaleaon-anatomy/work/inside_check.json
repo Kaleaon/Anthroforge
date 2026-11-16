@@ -1,0 +1,37 @@
+{
+ "Part_Shaft_1 in Part_Shaft_2": {
+  "verts_of_A_inside_B": 457,
+  "A_total": 626,
+  "min_dist_mm": 0.005
+ },
+ "Part_Shaft_2 in Part_Shaft_1": {
+  "verts_of_A_inside_B": 482,
+  "A_total": 626,
+  "min_dist_mm": 0.018
+ },
+ "Part_Shaft_1 in Part_Shaft_3": {
+  "verts_of_A_inside_B": 619,
+  "A_total": 626,
+  "min_dist_mm": 0.05
+ },
+ "Part_Shaft_1 in Part_SacUdder": {
+  "verts_of_A_inside_B": 146,
+  "A_total": 626,
+  "min_dist_mm": 0.094
+ },
+ "Part_Shaft_2 in Part_SacUdder": {
+  "verts_of_A_inside_B": 341,
+  "A_total": 626,
+  "min_dist_mm": 0.093
+ },
+ "Part_SacUdder in Part_Shaft_1": {
+  "verts_of_A_inside_B": 1648,
+  "A_total": 1730,
+  "min_dist_mm": 0.035
+ },
+ "Part_SacUdder_Teat_1 in Part_SacUdder": {
+  "verts_of_A_inside_B": 25,
+  "A_total": 109,
+  "min_dist_mm": 1.238
+ }
+}

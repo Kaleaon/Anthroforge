@@ -1,0 +1,21 @@
+{
+ "JawLength": 0.7156,
+ "JawWidth": 0.5335,
+ "RamusDepth": 0.2506,
+ "FullHeadHeight": 0.7586,
+ "Hinge": [
+  0.0,
+  -0.2167,
+  -0.1249
+ ],
+ "OrbitDiameter_grafted": 0.15,
+ "EyeCentreSpacing_grafted": 0.2622,
+ "Interorbital_grafted": 0.1122,
+ "OrbitHeight_final": 0.172,
+ "SkullHeight_domeRise_final": 0.3168,
+ "eye_centre_final": [
+  0.1311,
+  0.0815,
+  -0.0079
+ ]
+}

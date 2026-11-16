@@ -1,0 +1,1479 @@
+{
+ "objects": [
+  {
+   "name": "Bicep_Band_L",
+   "type": "MESH",
+   "verts": 68,
+   "polys": 66,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    -0.5713,
+    -0.1568,
+    1.4403
+   ],
+   "bbox_max": [
+    -0.3687,
+    0.1853,
+    1.7863
+   ],
+   "volume_m3": 0.00118
+  },
+  {
+   "name": "Bicep_Band_R",
+   "type": "MESH",
+   "verts": 68,
+   "polys": 66,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    0.3767,
+    -0.197,
+    1.4249
+   ],
+   "bbox_max": [
+    0.5633,
+    0.1724,
+    1.7934
+   ],
+   "volume_m3": 0.00126
+  },
+  {
+   "name": "Body",
+   "type": "MESH",
+   "verts": 147489,
+   "polys": 294962,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_L_Upperarm",
+    "CC_Base_L_Forearm",
+    "CC_Base_L_Hand",
+    "CC_Base_L_Clavicle",
+    "CC_Base_Spine02",
+    "CC_Base_L_UpperarmTwist01",
+    "CC_Base_L_UpperarmTwist02",
+    "CC_Base_L_ForearmTwist01",
+    "CC_Base_L_ForearmTwist02",
+    "CC_Base_R_Upperarm",
+    "CC_Base_R_Forearm",
+    "CC_Base_R_Hand",
+    "CC_Base_R_Clavicle",
+    "CC_Base_R_UpperarmTwist01",
+    "CC_Base_R_UpperarmTwist02",
+    "CC_Base_R_ForearmTwist01",
+    "CC_Base_R_ForearmTwist02",
+    "CC_Base_L_Thigh",
+    "CC_Base_L_Calf",
+    "CC_Base_L_Foot",
+    "CC_Base_L_ToeBase",
+    "CC_Base_L_ThighTwist01",
+    "CC_Base_L_ThighTwist02",
+    "CC_Base_L_CalfTwist01",
+    "CC_Base_L_CalfTwist02",
+    "CC_Base_L_BigToe1",
+    "CC_Base_L_IndexToe1",
+    "CC_Base_L_MidToe1",
+    "CC_Base_L_RingToe1",
+    "CC_Base_R_Thigh",
+    "CC_Base_R_Calf",
+    "CC_Base_R_Foot",
+    "CC_Base_R_ToeBase",
+    "CC_Base_R_ThighTwist01",
+    "CC_Base_R_ThighTwist02",
+    "CC_Base_R_CalfTwist01",
+    "CC_Base_R_CalfTwist02",
+    "CC_Base_R_BigToe1",
+    "CC_Base_R_IndexToe1",
+    "CC_Base_R_MidToe1",
+    "CC_Base_R_RingToe1",
+    "CC_Base_Hip",
+    "CC_Base_Pelvis",
+    "CC_Base_Waist",
+    "CC_Base_Spine01",
+    "CC_Base_NeckTwist01",
+    "CC_Base_NeckTwist02",
+    "CC_Base_Head",
+    "CC_Base_L_Breast",
+    "CC_Base_R_Breast"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.9928,
+    -0.3357,
+    0.0
+   ],
+   "bbox_max": [
+    0.9859,
+    0.3409,
+    1.7654
+   ],
+   "volume_m3": 0.13476
+  },
+  {
+   "name": "Braid",
+   "type": "MESH",
+   "verts": 4083,
+   "polys": 4104,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Hip",
+    "CC_Base_Pelvis",
+    "CC_Base_Waist",
+    "CC_Base_Spine01",
+    "CC_Base_Spine02",
+    "CC_Base_NeckTwist01",
+    "CC_Base_NeckTwist02",
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0498,
+    -0.4257,
+    0.9637
+   ],
+   "bbox_max": [
+    0.0515,
+    -0.023,
+    1.7484
+   ],
+   "volume_m3": 0.00228
+  },
+  {
+   "name": "Cam",
+   "type": "CAMERA"
+  },
+  {
+   "name": "CheekTuft_L",
+   "type": "MESH",
+   "verts": 90,
+   "polys": 55,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head",
+    "CC_Base_JawRoot"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0859,
+    -0.0043,
+    1.7399
+   ],
+   "bbox_max": [
+    -0.0513,
+    0.0264,
+    1.7984
+   ],
+   "volume_m3": 1e-05
+  },
+  {
+   "name": "CheekTuft_R",
+   "type": "MESH",
+   "verts": 90,
+   "polys": 55,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head",
+    "CC_Base_JawRoot"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.0516,
+    -0.0043,
+    1.7399
+   ],
+   "bbox_max": [
+    0.0862,
+    0.0264,
+    1.7984
+   ],
+   "volume_m3": 1e-05
+  },
+  {
+   "name": "Eye_Cornea_L",
+   "type": "MESH",
+   "verts": 1042,
+   "polys": 2016,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_L_Eye"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0992,
+    -0.0574,
+    1.9063
+   ],
+   "bbox_max": [
+    -0.0608,
+    -0.0103,
+    1.9526
+   ],
+   "volume_m3": 8e-05
+  },
+  {
+   "name": "Eye_Cornea_R",
+   "type": "MESH",
+   "verts": 1042,
+   "polys": 2016,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_R_Eye"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.0608,
+    -0.0574,
+    1.9063
+   ],
+   "bbox_max": [
+    0.0993,
+    -0.0103,
+    1.9526
+   ],
+   "volume_m3": 8e-05
+  },
+  {
+   "name": "Eye_Iris_L",
+   "type": "MESH",
+   "verts": 1042,
+   "polys": 2016,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_L_Eye"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0989,
+    -0.0571,
+    1.9066
+   ],
+   "bbox_max": [
+    -0.0611,
+    -0.0106,
+    1.9523
+   ],
+   "volume_m3": 8e-05
+  },
+  {
+   "name": "Eye_Iris_R",
+   "type": "MESH",
+   "verts": 1042,
+   "polys": 2016,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_R_Eye"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.0611,
+    -0.0571,
+    1.9066
+   ],
+   "bbox_max": [
+    0.099,
+    -0.0106,
+    1.9523
+   ],
+   "volume_m3": 8e-05
+  },
+  {
+   "name": "Glasses_Bridge",
+   "type": "MESH",
+   "verts": 90,
+   "polys": 80,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    -0.0333,
+    -0.1713,
+    1.8533
+   ],
+   "bbox_max": [
+    0.0333,
+    -0.1635,
+    1.8582
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Glasses_Lens_L",
+   "type": "MESH",
+   "verts": 26,
+   "polys": 25,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    -0.0779,
+    -0.1684,
+    1.8342
+   ],
+   "bbox_max": [
+    -0.0341,
+    -0.1649,
+    1.8539
+   ],
+   "volume_m3": 0.00012
+  },
+  {
+   "name": "Glasses_Lens_R",
+   "type": "MESH",
+   "verts": 26,
+   "polys": 25,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    0.0341,
+    -0.1684,
+    1.8342
+   ],
+   "bbox_max": [
+    0.0779,
+    -0.1649,
+    1.8539
+   ],
+   "volume_m3": 0.00012
+  },
+  {
+   "name": "Glasses_Rim_L",
+   "type": "MESH",
+   "verts": 250,
+   "polys": 250,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    -0.0807,
+    -0.1694,
+    1.8322
+   ],
+   "bbox_max": [
+    -0.0313,
+    -0.1635,
+    1.8555
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Glasses_Rim_R",
+   "type": "MESH",
+   "verts": 250,
+   "polys": 250,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    0.0313,
+    -0.1694,
+    1.8322
+   ],
+   "bbox_max": [
+    0.0807,
+    -0.1635,
+    1.8555
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Glasses_Temple_L",
+   "type": "MESH",
+   "verts": 80,
+   "polys": 70,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    -0.1459,
+    -0.1657,
+    1.8516
+   ],
+   "bbox_max": [
+    -0.0671,
+    0.0584,
+    1.9509
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Glasses_Temple_R",
+   "type": "MESH",
+   "verts": 80,
+   "polys": 70,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    0.0671,
+    -0.1657,
+    1.8516
+   ],
+   "bbox_max": [
+    0.1459,
+    0.0584,
+    1.9509
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Harness_Strap",
+   "type": "MESH",
+   "verts": 60,
+   "polys": 58,
+   "shape_keys": [],
+   "vgroups": [],
+   "parent": "KaleaonRig",
+   "bbox_min": [
+    -0.3321,
+    -0.2139,
+    1.594
+   ],
+   "bbox_max": [
+    0.3321,
+    -0.0752,
+    1.666
+   ],
+   "volume_m3": 0.00069
+  },
+  {
+   "name": "HEAD_UPPER",
+   "type": "MESH",
+   "verts": 24046,
+   "polys": 46611,
+   "shape_keys": [
+    "Basis",
+    "JawOpen"
+   ],
+   "vgroups": [
+    "CC_Base_Head",
+    "Ear_L",
+    "Ear_R",
+    "CC_Base_NeckTwist02"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.3101,
+    -0.1372,
+    1.3917
+   ],
+   "bbox_max": [
+    0.3085,
+    0.3522,
+    2.0494
+   ],
+   "volume_m3": 0.11434
+  },
+  {
+   "name": "JAW",
+   "type": "MESH",
+   "verts": 23744,
+   "polys": 34604,
+   "shape_keys": [
+    "Basis",
+    "JawOpen"
+   ],
+   "vgroups": [
+    "CC_Base_JawRoot"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.3127,
+    -0.2058,
+    1.4479
+   ],
+   "bbox_max": [
+    0.3128,
+    0.1056,
+    1.8302
+   ],
+   "volume_m3": 0.03721
+  },
+  {
+   "name": "KaleaonRig",
+   "type": "ARMATURE",
+   "bones": [
+    "RL_BoneRoot",
+    "CC_Base_Hip",
+    "CC_Base_Pelvis",
+    "CC_Base_L_Thigh",
+    "CC_Base_L_Calf",
+    "CC_Base_L_Foot",
+    "CC_Base_L_ToeBase",
+    "CC_Base_L_RingToe1",
+    "CC_Base_L_MidToe1",
+    "CC_Base_L_IndexToe1",
+    "CC_Base_L_BigToe1",
+    "CC_Base_L_CalfTwist01",
+    "CC_Base_L_CalfTwist02",
+    "CC_Base_L_ThighTwist01",
+    "CC_Base_L_ThighTwist02",
+    "CC_Base_R_Thigh",
+    "CC_Base_R_ThighTwist01",
+    "CC_Base_R_ThighTwist02",
+    "CC_Base_R_Calf",
+    "CC_Base_R_Foot",
+    "CC_Base_R_ToeBase",
+    "CC_Base_R_BigToe1",
+    "CC_Base_R_IndexToe1",
+    "CC_Base_R_MidToe1",
+    "CC_Base_R_RingToe1",
+    "CC_Base_R_CalfTwist01",
+    "CC_Base_R_CalfTwist02",
+    "Tail_01",
+    "Tail_02",
+    "Tail_03",
+    "Tail_04",
+    "Tail_05",
+    "Sac",
+    "Shaft_1_Base",
+    "Shaft_1_Tip",
+    "Shaft_2_Base",
+    "Shaft_2_Tip",
+    "Shaft_3_Base",
+    "Shaft_3_Tip",
+    "Shaft_4_Base",
+    "Shaft_4_Tip",
+    "CC_Base_Waist",
+    "CC_Base_Spine01",
+    "CC_Base_Spine02",
+    "CC_Base_NeckTwist01",
+    "CC_Base_NeckTwist02",
+    "CC_Base_Head",
+    "CC_Base_FacialBone",
+    "CC_Base_JawRoot",
+    "CC_Base_Tongue01",
+    "CC_Base_Tongue02",
+    "CC_Base_Tongue03",
+    "CC_Base_Teeth02",
+    "CC_Base_R_Eye",
+    "CC_Base_L_Eye",
+    "CC_Base_UpperJaw",
+    "CC_Base_Teeth01",
+    "Ear_L",
+    "Ear_R",
+    "CC_Base_L_Clavicle",
+    "CC_Base_L_Upperarm",
+    "CC_Base_L_Forearm",
+    "CC_Base_L_ForearmTwist01",
+    "CC_Base_L_ForearmTwist02",
+    "CC_Base_L_Hand",
+    "Finger_L_1",
+    "Finger_L_2",
+    "Finger_L_3",
+    "Finger_L_4",
+    "Finger_L_5",
+    "CC_Base_L_UpperarmTwist01",
+    "CC_Base_L_UpperarmTwist02",
+    "CC_Base_R_Clavicle",
+    "CC_Base_R_Upperarm",
+    "CC_Base_R_UpperarmTwist01",
+    "CC_Base_R_UpperarmTwist02",
+    "CC_Base_R_Forearm",
+    "CC_Base_R_ForearmTwist01",
+    "CC_Base_R_ForearmTwist02",
+    "CC_Base_R_Hand",
+    "Finger_R_1",
+    "Finger_R_2",
+    "Finger_R_3",
+    "Finger_R_4",
+    "Finger_R_5",
+    "CC_Base_R_RibsTwist",
+    "CC_Base_R_Breast",
+    "CC_Base_L_RibsTwist",
+    "CC_Base_L_Breast"
+   ]
+  },
+  {
+   "name": "Lid_L",
+   "type": "MESH",
+   "verts": 438,
+   "polys": 466,
+   "shape_keys": [
+    "Basis",
+    "Blink_L"
+   ],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.1035,
+    -0.0563,
+    1.9283
+   ],
+   "bbox_max": [
+    -0.0565,
+    -0.0235,
+    1.9558
+   ],
+   "volume_m3": 1e-05
+  },
+  {
+   "name": "Lid_R",
+   "type": "MESH",
+   "verts": 362,
+   "polys": 390,
+   "shape_keys": [
+    "Basis",
+    "Blink_R"
+   ],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.0577,
+    -0.0562,
+    1.9314
+   ],
+   "bbox_max": [
+    0.1023,
+    -0.0235,
+    1.9558
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "LidLow_L",
+   "type": "MESH",
+   "verts": 248,
+   "polys": 276,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0962,
+    -0.0539,
+    1.9066
+   ],
+   "bbox_max": [
+    -0.0638,
+    -0.0305,
+    1.9202
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "LidLow_R",
+   "type": "MESH",
+   "verts": 248,
+   "polys": 276,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.0638,
+    -0.0539,
+    1.9066
+   ],
+   "bbox_max": [
+    0.0962,
+    -0.0305,
+    1.9202
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "LipLine",
+   "type": "MESH",
+   "verts": 1160,
+   "polys": 1152,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0586,
+    -0.083,
+    1.7574
+   ],
+   "bbox_max": [
+    0.0589,
+    0.0159,
+    1.7651
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Mane_Cap",
+   "type": "MESH",
+   "verts": 1254,
+   "polys": 1252,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Waist",
+    "CC_Base_Spine01",
+    "CC_Base_Spine02",
+    "CC_Base_NeckTwist01",
+    "CC_Base_NeckTwist02",
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.5477,
+    -0.307,
+    1.2587
+   ],
+   "bbox_max": [
+    0.5481,
+    0.3174,
+    2.2336
+   ],
+   "volume_m3": 0.00628
+  },
+  {
+   "name": "Mane_Locks",
+   "type": "MESH",
+   "verts": 17568,
+   "polys": 14640,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Hip",
+    "CC_Base_Pelvis",
+    "CC_Base_Waist",
+    "CC_Base_Spine01",
+    "CC_Base_Spine02",
+    "CC_Base_NeckTwist01",
+    "CC_Base_NeckTwist02",
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.4796,
+    -0.3303,
+    0.5598
+   ],
+   "bbox_max": [
+    0.4705,
+    0.5194,
+    2.3184
+   ],
+   "volume_m3": 0.10973
+  },
+  {
+   "name": "MOUTH_INTERIOR",
+   "type": "MESH",
+   "verts": 91,
+   "polys": 90,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.056,
+    -0.078,
+    1.7229
+   ],
+   "bbox_max": [
+    0.056,
+    0.098,
+    1.7725
+   ],
+   "volume_m3": 0.00043
+  },
+  {
+   "name": "Nose_Leather",
+   "type": "MESH",
+   "verts": 738,
+   "polys": 768,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0417,
+    -0.172,
+    1.8357
+   ],
+   "bbox_max": [
+    0.0417,
+    -0.143,
+    1.8783
+   ],
+   "volume_m3": 4e-05
+  },
+  {
+   "name": "Nostril_L",
+   "type": "MESH",
+   "verts": 178,
+   "polys": 192,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.033,
+    -0.1703,
+    1.8435
+   ],
+   "bbox_max": [
+    -0.008,
+    -0.1607,
+    1.8585
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Nostril_R",
+   "type": "MESH",
+   "verts": 178,
+   "polys": 192,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.008,
+    -0.1703,
+    1.8435
+   ],
+   "bbox_max": [
+    0.033,
+    -0.1607,
+    1.8585
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Pad_Main_L",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_L_Foot"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.3573,
+    -0.1534,
+    -0.013
+   ],
+   "bbox_max": [
+    -0.2133,
+    0.0426,
+    0.021
+   ],
+   "volume_m3": 0.00049
+  },
+  {
+   "name": "Pad_Main_R",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_R_Foot"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.4162,
+    -0.1506,
+    -0.013
+   ],
+   "bbox_max": [
+    0.5602,
+    0.0454,
+    0.021
+   ],
+   "volume_m3": 0.00049
+  },
+  {
+   "name": "Pad_Toe_L_0",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_L_RingToe1"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.4058,
+    -0.1641,
+    -0.007
+   ],
+   "bbox_max": [
+    -0.3638,
+    -0.1101,
+    0.013
+   ],
+   "volume_m3": 2e-05
+  },
+  {
+   "name": "Pad_Toe_L_1",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_L_MidToe1"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.3572,
+    -0.2051,
+    -0.007
+   ],
+   "bbox_max": [
+    -0.3152,
+    -0.1511,
+    0.013
+   ],
+   "volume_m3": 2e-05
+  },
+  {
+   "name": "Pad_Toe_L_2",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_L_IndexToe1"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.3062,
+    -0.2467,
+    -0.007
+   ],
+   "bbox_max": [
+    -0.2642,
+    -0.1927,
+    0.013
+   ],
+   "volume_m3": 2e-05
+  },
+  {
+   "name": "Pad_Toe_L_3",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_L_BigToe1"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.2539,
+    -0.2375,
+    -0.007
+   ],
+   "bbox_max": [
+    -0.2119,
+    -0.1835,
+    0.013
+   ],
+   "volume_m3": 2e-05
+  },
+  {
+   "name": "Pad_Toe_R_0",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_R_BigToe1"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.4322,
+    -0.2291,
+    -0.007
+   ],
+   "bbox_max": [
+    0.4742,
+    -0.1751,
+    0.013
+   ],
+   "volume_m3": 2e-05
+  },
+  {
+   "name": "Pad_Toe_R_1",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_R_IndexToe1"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.4861,
+    -0.2485,
+    -0.007
+   ],
+   "bbox_max": [
+    0.5281,
+    -0.1945,
+    0.013
+   ],
+   "volume_m3": 2e-05
+  },
+  {
+   "name": "Pad_Toe_R_2",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_R_MidToe1"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.5296,
+    -0.2447,
+    -0.007
+   ],
+   "bbox_max": [
+    0.5716,
+    -0.1907,
+    0.013
+   ],
+   "volume_m3": 2e-05
+  },
+  {
+   "name": "Pad_Toe_R_3",
+   "type": "MESH",
+   "verts": 222,
+   "polys": 240,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_R_RingToe1"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.5816,
+    -0.1642,
+    -0.007
+   ],
+   "bbox_max": [
+    0.6236,
+    -0.1102,
+    0.013
+   ],
+   "volume_m3": 2e-05
+  },
+  {
+   "name": "Philtrum",
+   "type": "MESH",
+   "verts": 488,
+   "polys": 480,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0012,
+    -0.1329,
+    1.7613
+   ],
+   "bbox_max": [
+    0.0012,
+    -0.0873,
+    1.8349
+   ],
+   "volume_m3": 0.0
+  },
+  {
+   "name": "Sac",
+   "type": "MESH",
+   "verts": 1730,
+   "polys": 1776,
+   "shape_keys": [],
+   "vgroups": [
+    "SKIN_stretch_sac",
+    "Sac",
+    "CC_Base_Pelvis"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.3509,
+    -0.372,
+    0.0309
+   ],
+   "bbox_max": [
+    0.4114,
+    0.2743,
+    1.005
+   ],
+   "volume_m3": 0.20946
+  },
+  {
+   "name": "Shaft_1",
+   "type": "MESH",
+   "verts": 626,
+   "polys": 650,
+   "shape_keys": [],
+   "vgroups": [
+    "SKIN_stretch_shaft_1",
+    "Shaft_1_Base",
+    "Shaft_1_Tip"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.1361,
+    -0.4326,
+    0.5942
+   ],
+   "bbox_max": [
+    0.004,
+    -0.0794,
+    1.0974
+   ],
+   "volume_m3": 0.0053
+  },
+  {
+   "name": "Shaft_2",
+   "type": "MESH",
+   "verts": 626,
+   "polys": 650,
+   "shape_keys": [],
+   "vgroups": [
+    "SKIN_stretch_shaft_2",
+    "Shaft_2_Base",
+    "Shaft_2_Tip"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.1501,
+    -0.3649,
+    0.4641
+   ],
+   "bbox_max": [
+    -0.009,
+    -0.0509,
+    1.0807
+   ],
+   "volume_m3": 0.00618
+  },
+  {
+   "name": "Shaft_3",
+   "type": "MESH",
+   "verts": 626,
+   "polys": 650,
+   "shape_keys": [],
+   "vgroups": [
+    "SKIN_stretch_shaft_3",
+    "Shaft_3_Base",
+    "Shaft_3_Tip"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.004,
+    -0.4326,
+    0.5942
+   ],
+   "bbox_max": [
+    0.1361,
+    -0.0794,
+    1.0974
+   ],
+   "volume_m3": 0.0053
+  },
+  {
+   "name": "Shaft_4",
+   "type": "MESH",
+   "verts": 626,
+   "polys": 650,
+   "shape_keys": [],
+   "vgroups": [
+    "SKIN_stretch_shaft_4",
+    "Shaft_4_Base",
+    "Shaft_4_Tip"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.009,
+    -0.3649,
+    0.4641
+   ],
+   "bbox_max": [
+    0.1501,
+    -0.0509,
+    1.0807
+   ],
+   "volume_m3": 0.00618
+  },
+  {
+   "name": "Sideburn_L",
+   "type": "MESH",
+   "verts": 432,
+   "polys": 288,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head",
+    "CC_Base_JawRoot"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.1397,
+    -0.0772,
+    1.545
+   ],
+   "bbox_max": [
+    -0.0937,
+    -0.0127,
+    1.7882
+   ],
+   "volume_m3": 0.00163
+  },
+  {
+   "name": "Sideburn_R",
+   "type": "MESH",
+   "verts": 432,
+   "polys": 288,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Head",
+    "CC_Base_JawRoot"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.0898,
+    -0.0762,
+    1.5563
+   ],
+   "bbox_max": [
+    0.1452,
+    -0.0045,
+    1.7967
+   ],
+   "volume_m3": 0.00164
+  },
+  {
+   "name": "Tail",
+   "type": "MESH",
+   "verts": 74,
+   "polys": 84,
+   "shape_keys": [],
+   "vgroups": [
+    "Tail_01",
+    "Tail_02",
+    "Tail_03",
+    "Tail_04",
+    "Tail_05"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0717,
+    0.1344,
+    0.2141
+   ],
+   "bbox_max": [
+    0.3599,
+    0.6085,
+    1.091
+   ],
+   "volume_m3": 0.02245
+  },
+  {
+   "name": "Tail_Tuft",
+   "type": "MESH",
+   "verts": 262,
+   "polys": 280,
+   "shape_keys": [],
+   "vgroups": [
+    "Tail_05"
+   ],
+   "parent": null,
+   "bbox_min": [
+    0.1367,
+    0.2699,
+    0.1468
+   ],
+   "bbox_max": [
+    0.4967,
+    0.4747,
+    0.3531
+   ],
+   "volume_m3": 0.00393
+  },
+  {
+   "name": "TEETH_LOWER",
+   "type": "MESH",
+   "verts": 1565,
+   "polys": 1550,
+   "shape_keys": [
+    "Basis",
+    "JawOpen"
+   ],
+   "vgroups": [
+    "CC_Base_Teeth02"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0522,
+    -0.089,
+    1.6996
+   ],
+   "bbox_max": [
+    0.0522,
+    0.0276,
+    1.758
+   ],
+   "volume_m3": 0.00036
+  },
+  {
+   "name": "TEETH_UPPER",
+   "type": "MESH",
+   "verts": 1707,
+   "polys": 1690,
+   "shape_keys": [],
+   "vgroups": [
+    "CC_Base_Teeth01"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0606,
+    -0.0962,
+    1.724
+   ],
+   "bbox_max": [
+    0.0606,
+    0.0313,
+    1.7871
+   ],
+   "volume_m3": 0.00056
+  },
+  {
+   "name": "TONGUE",
+   "type": "MESH",
+   "verts": 130,
+   "polys": 144,
+   "shape_keys": [
+    "Basis",
+    "JawOpen",
+    "TongueOut",
+    "TongueCurl"
+   ],
+   "vgroups": [
+    "CC_Base_Tongue01",
+    "CC_Base_Tongue02",
+    "CC_Base_Tongue03"
+   ],
+   "parent": null,
+   "bbox_min": [
+    -0.0275,
+    -0.07,
+    1.7068
+   ],
+   "bbox_max": [
+    0.0275,
+    0.045,
+    1.7675
+   ],
+   "volume_m3": 4e-05
+  }
+ ],
+ "armatures": [
+  {
+   "name": "KaleaonRig",
+   "type": "ARMATURE",
+   "bones": [
+    "RL_BoneRoot",
+    "CC_Base_Hip",
+    "CC_Base_Pelvis",
+    "CC_Base_L_Thigh",
+    "CC_Base_L_Calf",
+    "CC_Base_L_Foot",
+    "CC_Base_L_ToeBase",
+    "CC_Base_L_RingToe1",
+    "CC_Base_L_MidToe1",
+    "CC_Base_L_IndexToe1",
+    "CC_Base_L_BigToe1",
+    "CC_Base_L_CalfTwist01",
+    "CC_Base_L_CalfTwist02",
+    "CC_Base_L_ThighTwist01",
+    "CC_Base_L_ThighTwist02",
+    "CC_Base_R_Thigh",
+    "CC_Base_R_ThighTwist01",
+    "CC_Base_R_ThighTwist02",
+    "CC_Base_R_Calf",
+    "CC_Base_R_Foot",
+    "CC_Base_R_ToeBase",
+    "CC_Base_R_BigToe1",
+    "CC_Base_R_IndexToe1",
+    "CC_Base_R_MidToe1",
+    "CC_Base_R_RingToe1",
+    "CC_Base_R_CalfTwist01",
+    "CC_Base_R_CalfTwist02",
+    "Tail_01",
+    "Tail_02",
+    "Tail_03",
+    "Tail_04",
+    "Tail_05",
+    "Sac",
+    "Shaft_1_Base",
+    "Shaft_1_Tip",
+    "Shaft_2_Base",
+    "Shaft_2_Tip",
+    "Shaft_3_Base",
+    "Shaft_3_Tip",
+    "Shaft_4_Base",
+    "Shaft_4_Tip",
+    "CC_Base_Waist",
+    "CC_Base_Spine01",
+    "CC_Base_Spine02",
+    "CC_Base_NeckTwist01",
+    "CC_Base_NeckTwist02",
+    "CC_Base_Head",
+    "CC_Base_FacialBone",
+    "CC_Base_JawRoot",
+    "CC_Base_Tongue01",
+    "CC_Base_Tongue02",
+    "CC_Base_Tongue03",
+    "CC_Base_Teeth02",
+    "CC_Base_R_Eye",
+    "CC_Base_L_Eye",
+    "CC_Base_UpperJaw",
+    "CC_Base_Teeth01",
+    "Ear_L",
+    "Ear_R",
+    "CC_Base_L_Clavicle",
+    "CC_Base_L_Upperarm",
+    "CC_Base_L_Forearm",
+    "CC_Base_L_ForearmTwist01",
+    "CC_Base_L_ForearmTwist02",
+    "CC_Base_L_Hand",
+    "Finger_L_1",
+    "Finger_L_2",
+    "Finger_L_3",
+    "Finger_L_4",
+    "Finger_L_5",
+    "CC_Base_L_UpperarmTwist01",
+    "CC_Base_L_UpperarmTwist02",
+    "CC_Base_R_Clavicle",
+    "CC_Base_R_Upperarm",
+    "CC_Base_R_UpperarmTwist01",
+    "CC_Base_R_UpperarmTwist02",
+    "CC_Base_R_Forearm",
+    "CC_Base_R_ForearmTwist01",
+    "CC_Base_R_ForearmTwist02",
+    "CC_Base_R_Hand",
+    "Finger_R_1",
+    "Finger_R_2",
+    "Finger_R_3",
+    "Finger_R_4",
+    "Finger_R_5",
+    "CC_Base_R_RibsTwist",
+    "CC_Base_R_Breast",
+    "CC_Base_L_RibsTwist",
+    "CC_Base_L_Breast"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,131 @@
+{
+ "meta": {
+  "L_definition": "nose tip to occiput, tissue Y extent, normalised to 1.0",
+  "targets": "species-head-spec.md neutral column; OrbitHeight target 0.22 = canid-felid mid-range (derived, see BUILD_NOTES)"
+ },
+ "result": {
+  "ZB": {
+   "measured": 0.5466,
+   "target": 0.58,
+   "dev_pct": -5.8,
+   "source": 0.6443
+  },
+  "CraniumWidth_domeShell": {
+   "measured": 0.478,
+   "target": 0.36,
+   "dev_pct": 32.8,
+   "source": 0.4761
+  },
+  "MuzzleWidth": {
+   "measured": 0.2158,
+   "target": 0.17,
+   "dev_pct": 26.9,
+   "source": 0.315
+  },
+  "MuzzleDepth": {
+   "measured": 0.231,
+   "target": 0.2,
+   "dev_pct": 15.5,
+   "source": 0.1567
+  },
+  "SkullHeight_domeRise": {
+   "measured": 0.3168,
+   "target": 0.31,
+   "dev_pct": 2.2,
+   "source": 0.3476
+  },
+  "MuzzleFrac_antOrbit": {
+   "measured": 0.3435,
+   "target": 0.33,
+   "dev_pct": 4.1,
+   "source": 0.3035
+  },
+  "OrbitDiameter": {
+   "measured": 0.15,
+   "target": 0.15,
+   "dev_pct": 0.0,
+   "source": 0.1439
+  },
+  "Interorbital": {
+   "measured": 0.1122,
+   "target": 0.19,
+   "dev_pct": -40.9,
+   "source": 0.1395
+  },
+  "OrbitHeight": {
+   "measured": 0.172,
+   "target": 0.17,
+   "dev_pct": 1.2,
+   "source": 0.1864
+  },
+  "OrbitRise": {
+   "measured": 0.2035,
+   "target": 0.12,
+   "dev_pct": 69.6,
+   "source": 0.2074
+  },
+  "EarLength": {
+   "measured": 0.3889,
+   "target": 0.4,
+   "dev_pct": -2.8,
+   "source": 0.2881
+  },
+  "JawLength": {
+   "measured": 0.7156,
+   "target": 0.74,
+   "dev_pct": -3.3,
+   "source": 0.52
+  },
+  "JawWidth": {
+   "measured": 0.5335,
+   "target": 0.4,
+   "dev_pct": 33.4,
+   "source": 0.6206
+  },
+  "RamusDepth": {
+   "measured": 0.2506,
+   "target": 0.28,
+   "dev_pct": -10.5,
+   "source": 0.3804
+  }
+ },
+ "result_extra": {
+  "EarBaseHeight_abovePalate": 0.2586,
+  "EarBase_belowSkullTop": 0.2302,
+  "EarTip_aboveSkullTop": 0.1408,
+  "FullHeadHeight": 0.7586,
+  "eye_centre": [
+   0.0,
+   0.0815,
+   -0.0079
+  ],
+  "pal_z": -0.1799
+ },
+ "source_cougar": {
+  "L": 1.0,
+  "ZB": 0.6443,
+  "CraniumWidth_domeShell": 0.4761,
+  "MuzzleWidth": 0.315,
+  "MuzzleDepth": 0.1567,
+  "SkullHeight_domeRise": 0.3476,
+  "MuzzleFrac_antOrbit": 0.3035,
+  "OrbitDiameter": 0.1439,
+  "Interorbital": 0.1395,
+  "OrbitHeight": 0.1864,
+  "OrbitRise": 0.2074,
+  "EarLength": 0.2881,
+  "EarBaseHeight_abovePalate": 0.255,
+  "EarBase_belowSkullTop": null,
+  "EarTip_aboveSkullTop": -0.004,
+  "eye_centre": [
+   0.0,
+   0.1245,
+   0.0492
+  ],
+  "pal_z": -0.1371,
+  "EarTipHeight_abovePalate": 0.5299,
+  "JawLength_proxy": 0.52,
+  "JawWidth_proxy": 0.6206,
+  "RamusDepth_proxy": 0.3804
+ }
+}

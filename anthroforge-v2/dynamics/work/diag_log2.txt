@@ -1,0 +1,20 @@
+00:14.382  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/dynamics/prototype_softdynamics.blend"
+f1 AF_Sac: centroid [ 0.055 -0.141  0.791] z [0.563,1.003] y [-0.255,-0.033]
+f1 AF_TeatL: centroid [-0.05   0.013 -0.121] z [-0.142,-0.099] y [-0.004,0.029]
+f1 AF_TeatR: centroid [ 0.094  0.096 -0.128] z [-0.149,-0.107] y [0.080,0.113]
+f1 sim sac tip [ 0.059 -0.13   0.583] bone tip [ 0.059 -0.13   0.583]
+f1 sim teatL tip [ 0.014 -0.159  0.53 ] bone tip [ 0.02  -0.167  0.528]
+f71 AF_Sac: centroid [ 0.061 -0.151  0.788] z [0.562,1.001] y [-0.261,-0.041]
+f71 AF_TeatL: centroid [ 0.174 -0.39  -0.107] z [-0.126,-0.088] y [-0.411,-0.369]
+f71 AF_TeatR: centroid [ 0.336 -0.318 -0.11 ] z [-0.128,-0.091] y [-0.336,-0.301]
+f71 sim sac tip [ 0.079 -0.17   0.582] bone tip [ 0.079 -0.17   0.582]
+f71 sim teatL tip [ 0.048 -0.222  0.54 ] bone tip [ 0.053 -0.231  0.54 ]
+f150 AF_Sac: centroid [ 0.058 -0.147  0.79 ] z [0.562,1.003] y [-0.258,-0.039]
+f150 AF_TeatL: centroid [ 0.104 -0.308 -0.129] z [-0.149,-0.109] y [-0.328,-0.287]
+f150 AF_TeatR: centroid [ 0.265 -0.231 -0.14 ] z [-0.159,-0.120] y [-0.248,-0.214]
+f150 sim sac tip [ 0.067 -0.155  0.582] bone tip [ 0.067 -0.155  0.582]
+f150 sim teatL tip [ 0.032 -0.203  0.538] bone tip [ 0.037 -0.211  0.537]
+DIAG_OK
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

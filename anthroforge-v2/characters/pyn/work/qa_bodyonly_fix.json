@@ -1,0 +1,24 @@
+{
+  "file": "/home/hatch/workspace/anthroforge-v2/characters/pyn/pyn_composed.glb",
+  "backup": "/home/hatch/workspace/anthroforge-v2/characters/pyn/work/originals/pyn_composed.glb",
+  "verts_before": 19158,
+  "verts_after": 13380,
+  "islands_before": 154,
+  "islands_after": 1,
+  "tris_after": 26756,
+  "body_extent_before_m": [
+    0.9769840240478516,
+    0.4120059907436371,
+    1.6521810293197632
+  ],
+  "body_extent_after_m": [
+    0.9769840240478516,
+    0.4120059907436371,
+    1.6521810293197632
+  ],
+  "max_pos_deviation_new_vs_subset_m": 0.0,
+  "max_pos_deviation_new_vs_original_body_island_m": 0.0,
+  "max_normal_deviation": 0.0,
+  "body_signed_volume_L": 45.703,
+  "body_signed_volume_L_from_original": 45.703
+}

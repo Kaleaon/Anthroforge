@@ -1,0 +1,40 @@
+{
+  "id": "head.brow.projection",
+  "label": "Brow Projection",
+  "group": "head/eyes-brow",
+  "kind": "slider",
+  "layer": "skull",
+  "semantics": "Forward growth of the supraorbital torus (brow band) on the skull layer. 0 = base; +1.0 = brow-study native +100 (Krapina Neanderthal anchor, midorbit chord 0.126 L vs 0.066 L baseline); +1.5 = native +150 (gorilla anchor [E]). Negative values recess the band below the modern-human zero. v1 form: masked rigid translation of the band; sulcus carving belongs to head.brow.shelf.",
+  "region": {
+    "landmarks": [
+      "brow_band.L",
+      "brow_band.R"
+    ],
+    "mask_rule": "geodesic falloff from BrowL+BrowR vertex groups, plateau 0.025 L, falloff to 0.140 L. No group exclusion (base groups overlap wholesale). Glabella/medial band moves with the torus (anatomically part of it); the low nasal bridge carries falloff-tail weights only. A hard stop guard per brow-study \u00a75.8 is future work \u2014 guard prototypes introduced folds (see QA)."
+  },
+  "range": {
+    "min": -0.5,
+    "max": 1.5,
+    "default": 0.0,
+    "safe_max": 1.25,
+    "units": "normalised (brow-study native units = 100 x value)",
+    "endpoint_anchor": "at +1.0, the midorbit brow anchor vertices sit 0.060 L forward of neutral (L = head length)"
+  },
+  "symmetry": "bilateral_x",
+  "couplings": [],
+  "provenance": {
+    "source": "brow-study.md \u00a75.1 (Smith & Ranyard chords via Ahern, Lee & Hawks 2002 [S]; scale-free form [D]; gorilla extreme [E])",
+    "licence": "ours \u2014 build-tier (procedural; no third-party geometry)",
+    "method": "procedural authoring (landmark mask + translation)"
+  },
+  "instances": {
+    "anthroforge_head_v1": {
+      "file": "instances/head.brow.projection__anthroforge_head_v1.npz",
+      "qa": {
+        "folds_at_plus1": 0,
+        "anchor_displacement_L": 0.06,
+        "mask_verts_any": 1416
+      }
+    }
+  }
+}

@@ -1,0 +1,165 @@
+00:00.809  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/characters/kaleaon-head/work/stage3.blend"
+Info: Saved as "stage4.blend"
+{
+ "teeth_follow": {
+  "f_ml": 0.8484848484848485,
+  "f_mw": 1.0941176470588234,
+  "f_md": 1.15,
+  "f_jl": 1.0
+ },
+ "teeth_before_canine": {
+  "0": {
+   "overlap_pairs": 251,
+   "min_clearance_L": 0.0
+  },
+  "-10": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.02411
+  },
+  "-20": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.04759
+  },
+  "-30": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.06915
+  }
+ },
+ "canine_islands": [
+  20,
+  20
+ ],
+ "canine_stretch_1.9": {
+  "0": {
+   "overlap_pairs": 283,
+   "min_clearance_L": 0.0
+  },
+  "-10": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.02411
+  },
+  "-20": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.04759
+  },
+  "-30": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.06915
+  }
+ },
+ "canine_stretch_shipped": 1.9,
+ "canine_height_after_L": [
+  0.04246121644973755,
+  0.04246121644973755
+ ],
+ "lower_canine_lift": {
+  "verts_moved": 106,
+  "amp_L": 0.014
+ },
+ "teeth_after_canine": {
+  "0": {
+   "overlap_pairs": 289,
+   "min_clearance_L": 0.0
+  },
+  "-10": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.02411
+  },
+  "-20": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.04759
+  },
+  "-30": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.06915
+  }
+ },
+ "tongue_base_inheritance": 319,
+ "tongue_seat_search": [
+  {
+   "width_over_W": 0.55,
+   "drop_L": 0.0,
+   "pairs_all_angles": 268
+  },
+  {
+   "width_over_W": 0.55,
+   "drop_L": 0.008,
+   "pairs_all_angles": 235
+  },
+  {
+   "width_over_W": 0.52,
+   "drop_L": 0.008,
+   "pairs_all_angles": 232
+  },
+  {
+   "width_over_W": 0.52,
+   "drop_L": 0.016,
+   "pairs_all_angles": 195
+  },
+  {
+   "width_over_W": 0.5,
+   "drop_L": 0.016,
+   "pairs_all_angles": 190
+  },
+  {
+   "width_over_W": 0.48,
+   "drop_L": 0.024,
+   "pairs_all_angles": 161
+  }
+ ],
+ "tongue": {
+  "arcade_W_L": 0.3170124739408493,
+  "before": {
+   "width_over_W": 0.6595930770519067,
+   "length_over_W": 1.388758348258586
+  },
+  "after": {
+   "width_over_W": 0.5500000070507453,
+   "length_over_W": 0.9799999971797019
+  },
+  "seat_width_frac": 0.55,
+  "seat_drop_L": 0.0
+ },
+ "mouth_battery": {
+  "0": {
+   "tissueCage_vs_teethLower": 0,
+   "jawCage_vs_teethUpper": 0,
+   "cage_vs_cage": 129,
+   "tongue_vs_tissue": 0,
+   "tongue_vs_jaw": 0,
+   "tongue_vs_teethUpper": 13,
+   "tongue_vs_teethLower": 133
+  },
+  "-10": {
+   "tissueCage_vs_teethLower": 0,
+   "jawCage_vs_teethUpper": 0,
+   "cage_vs_cage": 0,
+   "tongue_vs_tissue": 0,
+   "tongue_vs_jaw": 0,
+   "tongue_vs_teethUpper": 0,
+   "tongue_vs_teethLower": 133
+  },
+  "-20": {
+   "tissueCage_vs_teethLower": 0,
+   "jawCage_vs_teethUpper": 0,
+   "cage_vs_cage": 0,
+   "tongue_vs_tissue": 0,
+   "tongue_vs_jaw": 0,
+   "tongue_vs_teethUpper": 0,
+   "tongue_vs_teethLower": 133
+  },
+  "-30": {
+   "tissueCage_vs_teethLower": 0,
+   "jawCage_vs_teethUpper": 0,
+   "cage_vs_cage": 0,
+   "tongue_vs_tissue": 0,
+   "tongue_vs_jaw": 0,
+   "tongue_vs_teethUpper": 0,
+   "tongue_vs_teethLower": 134
+  }
+ }
+}
+STAGE 4 DONE
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

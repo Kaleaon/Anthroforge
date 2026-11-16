@@ -1,0 +1,116 @@
+{
+ "bigchest": {
+  "as_shipped_raw": [
+   1,
+   -0.023855823306145277
+  ],
+  "flipped_faces": [
+   {
+    "face_index": 4952,
+    "verts": [
+     702,
+     708,
+     709
+    ],
+    "centroid_m": [
+     -0.0045,
+     0.0567,
+     0.6698
+    ],
+    "height_frac_body": 0.892,
+    "lateral_offset_m": -0.0045,
+    "dot": -0.02386
+   }
+  ],
+  "repair_rounds": 2,
+  "after_raw": [
+   0,
+   0.07642970832614032
+  ],
+  "after_macro": [
+   0,
+   0.05420130601987248
+  ],
+  "at_1.5x_raw": [
+   45,
+   -0.7546561060992377
+  ],
+  "deviation_max_mm": 1.6401219466856745,
+  "deviation_rms_mm": 0.03824273990083697,
+  "verts_changed": 34,
+  "moved_verts_written": 10481
+ },
+ "gachidebu": {
+  "as_shipped_raw": [
+   3,
+   -0.023855823306145277
+  ],
+  "flipped_faces": [
+   {
+    "face_index": 489,
+    "verts": [
+     699,
+     700,
+     694
+    ],
+    "centroid_m": [
+     -0.0175,
+     0.0554,
+     0.6614
+    ],
+    "height_frac_body": 0.887,
+    "lateral_offset_m": -0.0175,
+    "dot": -0.00778
+   },
+   {
+    "face_index": 4952,
+    "verts": [
+     702,
+     708,
+     709
+    ],
+    "centroid_m": [
+     -0.0045,
+     0.0567,
+     0.6698
+    ],
+    "height_frac_body": 0.892,
+    "lateral_offset_m": -0.0045,
+    "dot": -0.02386
+   },
+   {
+    "face_index": 7215,
+    "verts": [
+     7558,
+     7592,
+     7591
+    ],
+    "centroid_m": [
+     0.0308,
+     -0.0212,
+     0.6748
+    ],
+    "height_frac_body": 0.895,
+    "lateral_offset_m": 0.0308,
+    "dot": -0.00107
+   }
+  ],
+  "repair_rounds": 13,
+  "after_raw": [
+   0,
+   0.023300397256463004
+  ],
+  "after_macro": [
+   0,
+   0.01889462213467521
+  ],
+  "at_1.5x_raw": [
+   111,
+   -0.9505374915296455
+  ],
+  "deviation_max_mm": 3.0643106892089125,
+  "deviation_rms_mm": 0.08537301978432972,
+  "verts_changed": 87,
+  "moved_verts_written": 10570
+ }
+}

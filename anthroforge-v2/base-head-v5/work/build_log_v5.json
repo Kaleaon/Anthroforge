@@ -1,0 +1,195 @@
+{
+ "hinge": [
+  0.0,
+  -0.2167,
+  -0.1249
+ ],
+ "merged_verts": 5660,
+ "merged_faces": 5656,
+ "seam_verts": 119,
+ "seam_edges_TJ": 118,
+ "seam_degrees": {
+  "1": 2,
+  "2": 117
+ },
+ "seam_path_endpoints": [
+  [
+   -0.225,
+   -0.4138,
+   -0.3116
+  ],
+  [
+   0.225,
+   -0.4138,
+   -0.3115
+  ]
+ ],
+ "seam_loop_len": 119,
+ "commissures": {
+  "L": [
+   0.2285,
+   0.0953,
+   -0.1868
+  ],
+  "R": [
+   -0.2285,
+   0.0953,
+   -0.1868
+  ]
+ },
+ "lip_raw_pts": 59,
+ "lip_line": {
+  "N": 81,
+  "length": 1.354,
+  "spacing": 0.0169,
+  "max_dev_from_surface_after_smooth": 0.0,
+  "centre": [
+   0.0001,
+   0.4911,
+   -0.2404
+  ],
+  "ends": [
+   [
+    0.2285,
+    0.0953,
+    -0.1868
+   ],
+   [
+    -0.2285,
+    0.0953,
+    -0.1868
+   ]
+  ]
+ },
+ "philtrum": {
+  "body_depth": 0.003,
+  "support_depth": 0.002,
+  "halfwidth_cols": 3
+ },
+ "margin_depth_cap": {
+  "min": 0.232,
+  "cols_at_full": 45,
+  "teeth_clear_min": 0.0093
+ },
+ "margin_separation_pass": "3 iterations, target 0.0035",
+ "edge_symmetry_max_err": 0.000133,
+ "dijkstra_sources": 43,
+ "deleted_faces": 152,
+ "kept_mesh_boundary_loops": [
+  [
+   0.0324,
+   120
+  ],
+  [
+   0.12,
+   92
+  ],
+  [
+   0.3954,
+   48
+  ],
+  [
+   0.4529,
+   32
+  ],
+  [
+   0.4529,
+   32
+  ]
+ ],
+ "hole_loop_len": 120,
+ "hole_loop_closed": true,
+ "hole_loop_degrees": {
+  "1": 0,
+  "2": 120,
+  "3": 0,
+  "4": 0
+ },
+ "cage_outer_loop_len": 162,
+ "bridge_tris": 282,
+ "bridge_max_edge": 0.1024,
+ "bridge_edge_stats": {
+  "mean": 0.0214,
+  "p95": 0.0622,
+  "n_over_0.06": 54
+ },
+ "bridge_split": {
+  "T": 146,
+  "J": 136
+ },
+ "v5_merged_verts": 6389,
+ "v5_merged_faces": 6426,
+ "grid_winding_flipped": true,
+ "orientation": {
+  "new_faces_flipped_by_propagation": 282,
+  "faces_unreached_by_bfs": 0,
+  "merged_inconsistent_edges": 0,
+  "merged_edges_with_gt2_faces": 80
+ },
+ "new_faces_degenerate_area": 0,
+ "tissue": {
+  "verts": 4099,
+  "faces": 4152
+ },
+ "jaw": {
+  "verts": 2348,
+  "faces": 2274
+ },
+ "pal_z": -0.1799,
+ "layers": {
+  "skull": 3532,
+  "muscles": 759,
+  "skullmandible": 2348
+ },
+ "groups": {
+  "TissueHead": {
+   "Muzzle": 3075,
+   "MuzzleTip": 406,
+   "NoseLeather": 258,
+   "MuzzleBridge": 1002,
+   "Cranium": 1959,
+   "CraniumDome": 370,
+   "CheekL": 421,
+   "CheekR": 421,
+   "BrowL": 947,
+   "EyeSocketL": 832,
+   "BrowR": 940,
+   "EyeSocketR": 832,
+   "LipCage": 405,
+   "Philtrum": 14,
+   "CommissureL": 9,
+   "CommissureR": 9
+  },
+  "Ear_L": {
+   "Ear_L": 285,
+   "EarBase_L": 84,
+   "EarTip_L": 129
+  },
+  "Ear_R": {
+   "Ear_R": 285,
+   "EarBase_R": 84,
+   "EarTip_R": 129
+  },
+  "Jaw": {
+   "Jaw": 2348,
+   "Chin": 851,
+   "LipCage": 405,
+   "CommissureL": 13,
+   "CommissureR": 13
+  }
+ },
+ "cage_counts": {
+  "tissue": 405,
+  "jaw": 405,
+  "commissureL": [
+   9,
+   13
+  ],
+  "commissureR": [
+   9,
+   13
+  ],
+  "philtrum": 14
+ },
+ "objects_total": 24
+}

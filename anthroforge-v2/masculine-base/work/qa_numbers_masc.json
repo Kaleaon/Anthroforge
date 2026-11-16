@@ -1,0 +1,332 @@
+{
+ "base": "hm08 masculine macro (gender 1.0; age/muscle/weight/proportions/height/cupsize/firmness 0.5; race thirds) -- MPFB defaults except gender",
+ "frame_offset_m": [
+  0.0,
+  0.003970204208493228,
+  0.816760017345883
+ ],
+ "frame_offset_method": "x/y: median of (grounded - raw) over body rows; z: grounded z-min minus raw body z-min",
+ "s_scale": 0.8657354147878384,
+ "h_star": 0.4625,
+ "anchor_raw_m": 0.14377350265502928,
+ "anchor_m": 0.12446981295655217,
+ "anchor_feminine_m": 0.1197,
+ "anchor_deviation_vs_feminine_cm": 0.4769812956552169,
+ "max_delta_source_m": 0.15605727234583344,
+ "navel_mh": 4151,
+ "navel_sk": 741,
+ "navel_achieved_m": 0.12256534631196764,
+ "navel_error_vs_anchor_cm": -0.1904466644584532,
+ "cv_residual_m": {
+  "p50": 0.007996447411662045,
+  "p95": 0.02033367235454095,
+  "max": 0.025750842304427087
+ },
+ "cv_residual_torso_m": {
+  "p50": 0.009353986717076242,
+  "p95": 0.03489764254437458,
+  "max": 0.07818808100503033
+ },
+ "surface_residual_cm": {
+  "forward_hm08_to_source": {
+   "p50": 0.06667644182183993,
+   "p95": 1.6501513563552155,
+   "max": 4.488161658761087
+  },
+  "backward_source_to_hm08_matched": {
+   "p50": 0.1826411105050167,
+   "p95": 2.7296309592724706,
+   "max": 4.09180095535128
+  },
+  "backward_coverage": 0.9482758620689655,
+  "backward_n": 165
+ },
+ "navel_pin_cm": 4.164165270433348,
+ "fold_scan": {
+  "-1.0": {
+   "faces_checked": 1124,
+   "neutral_masc": {
+    "flips": 107,
+    "min_dot": -0.8988503686155571,
+    "flip_h_range": [
+     0.2846426887268236,
+     0.6907750561195852
+    ]
+   },
+   "raw_baseobj": {
+    "flips": 131,
+    "min_dot": -0.9673570438326367,
+    "flip_h_range": [
+     0.2846426887268236,
+     0.7293915345600667
+    ]
+   }
+  },
+  "0.5": {
+   "faces_checked": 1124,
+   "neutral_masc": {
+    "flips": 0,
+    "min_dot": 0.6324983136544151,
+    "flip_h_range": null
+   },
+   "raw_baseobj": {
+    "flips": 0,
+    "min_dot": 0.48288952207309105,
+    "flip_h_range": null
+   }
+  },
+  "0.7": {
+   "faces_checked": 1124,
+   "neutral_masc": {
+    "flips": 0,
+    "min_dot": 0.41711047836907555,
+    "flip_h_range": null
+   },
+   "raw_baseobj": {
+    "flips": 1,
+    "min_dot": -0.8129024847729299,
+    "flip_h_range": [
+     0.7004091023885376,
+     0.7004091023885376
+    ]
+   }
+  },
+  "0.8": {
+   "faces_checked": 1124,
+   "neutral_masc": {
+    "flips": 0,
+    "min_dot": 0.32858195688440694,
+    "flip_h_range": null
+   },
+   "raw_baseobj": {
+    "flips": 2,
+    "min_dot": -0.8754181367053533,
+    "flip_h_range": [
+     0.7004091023885376,
+     0.7004091023885377
+    ]
+   }
+  },
+  "0.9": {
+   "faces_checked": 1124,
+   "neutral_masc": {
+    "flips": 0,
+    "min_dot": 0.22913002426812668,
+    "flip_h_range": null
+   },
+   "raw_baseobj": {
+    "flips": 4,
+    "min_dot": -0.8876409898539896,
+    "flip_h_range": [
+     0.7004091023885376,
+     0.7023796404565626
+    ]
+   }
+  },
+  "0.95": {
+   "faces_checked": 1124,
+   "neutral_masc": {
+    "flips": 0,
+    "min_dot": 0.17945416172914938,
+    "flip_h_range": null
+   },
+   "raw_baseobj": {
+    "flips": 4,
+    "min_dot": -0.8876295590505608,
+    "flip_h_range": [
+     0.7004091023885376,
+     0.7023796404565626
+    ]
+   }
+  },
+  "1.0": {
+   "faces_checked": 1124,
+   "neutral_masc": {
+    "flips": 0,
+    "min_dot": 0.13356416321636777,
+    "flip_h_range": null
+   },
+   "raw_baseobj": {
+    "flips": 6,
+    "min_dot": -0.954232044221791,
+    "flip_h_range": [
+     0.7004091023885376,
+     0.7023796404565626
+    ]
+   }
+  },
+  "1.05": {
+   "faces_checked": 1124,
+   "neutral_masc": {
+    "flips": 0,
+    "min_dot": 0.0913159844933196,
+    "flip_h_range": null
+   },
+   "raw_baseobj": {
+    "flips": 11,
+    "min_dot": -0.9774981522788906,
+    "flip_h_range": [
+     0.3990591494475109,
+     0.7023796404565626
+    ]
+   }
+  }
+ },
+ "safe_max": 1.0,
+ "safe_max_raw_baseobj": 0.5,
+ "fold_repair_rounds_used": 300,
+ "moved_verts": 542,
+ "tangential_mean_cm": 1.2837203958140337,
+ "landmarks": {
+  "skyrim": [
+   0.8376245960998535,
+   1.5910485336231734
+  ],
+  "hm08_masc": [
+   -0.01778890080306683,
+   0.634476884259771
+  ]
+ },
+ "kernel": {
+  "sigma_h": 0.05,
+  "sigma_arc_m": 0.04
+ },
+ "proportions": {
+  "masculine": {
+   "height_m": 1.7291079586138949,
+   "torso_length_m": 0.6522657850628378,
+   "crotch_m": -0.01778890080306683,
+   "neck_m": 0.634476884259771,
+   "chest_girth_m": 1.0937299484378564,
+   "waist_girth_m": 0.7593724326095884,
+   "hip_girth_m": 0.9386219454744842,
+   "chest_width_m": 0.40407382100820544,
+   "chest_depth_m": 0.22600478716194627,
+   "shoulder_width_m": 0.46912797912955284,
+   "hip_width_m": 0.34360460817813876,
+   "bust_protrusion_m": 0.015269075448696434,
+   "frontband_profile_y_m": {
+    "0.58": 0.13288055622160436,
+    "0.6": 0.13373926439464093,
+    "0.62": 0.13588020363032818,
+    "0.64": 0.13588020363032818,
+    "0.66": 0.14119516470611096,
+    "0.68": 0.1423462794083357,
+    "0.7": 0.14231548764884472,
+    "0.72": 0.14215331309616566,
+    "0.74": 0.14156501152694226,
+    "0.76": 0.13827131846129895,
+    "0.78": 0.13363172271430493,
+    "0.8": 0.12904779770553113,
+    "0.82": 0.12270581879794598,
+    "0.84": 0.11478278943479062,
+    "0.86": 0.10503539600551129,
+    "0.88": 0.09773387172400952,
+    "0.9": 0.08962489822089673,
+    "0.92": 0.08918641933381558
+   },
+   "stations_h": {
+    "chest": 0.78,
+    "waist": 0.4625,
+    "hip": 0.12,
+    "shoulder": 0.93,
+    "bust_ref": 0.62,
+    "bust_band": [
+     0.68,
+     0.88
+    ]
+   }
+  },
+  "feminine": {
+   "height_m": 1.6594313269888517,
+   "torso_length_m": 0.6681637108855389,
+   "crotch_m": -0.08634788573392671,
+   "neck_m": 0.5818158251516122,
+   "chest_girth_m": 1.0790306115312822,
+   "waist_girth_m": 0.7073290229216711,
+   "hip_girth_m": 0.944212652012425,
+   "chest_width_m": 0.4127351355552673,
+   "chest_depth_m": 0.21277386471629142,
+   "shoulder_width_m": 0.42921853199601173,
+   "hip_width_m": 0.3538882893323898,
+   "bust_protrusion_m": 0.021800105571746817,
+   "frontband_profile_y_m": {
+    "0.58": 0.13457676973447202,
+    "0.6": 0.13457676973447202,
+    "0.62": 0.13530524280175565,
+    "0.64": 0.13530524280175565,
+    "0.66": 0.13504025545224546,
+    "0.68": 0.14112176206216215,
+    "0.7": 0.14539976623162626,
+    "0.72": 0.1452386638174951,
+    "0.74": 0.14441625979050993,
+    "0.76": 0.13944426384076475,
+    "0.78": 0.13274923172101377,
+    "0.8": 0.12769071962937711,
+    "0.82": 0.12157425489529967,
+    "0.84": 0.11293973978862167,
+    "0.86": 0.10427423026666045,
+    "0.88": 0.09726210084065795,
+    "0.9": 0.0901999219159782,
+    "0.92": 0.08322422411546111
+   },
+   "stations_h": {
+    "chest": 0.78,
+    "waist": 0.4625,
+    "hip": 0.12,
+    "shoulder": 0.93,
+    "bust_ref": 0.62,
+    "bust_band": [
+     0.68,
+     0.88
+    ]
+   }
+  },
+  "raw_baseobj": {
+   "height_m": 1.66589,
+   "torso_length_m": 0.6272120440251574,
+   "crotch_m": -0.04474,
+   "neck_m": 0.5824720440251574,
+   "chest_girth_m": 1.026571149956677,
+   "waist_girth_m": 0.6835939448316755,
+   "hip_girth_m": 0.9632409362331782,
+   "chest_width_m": 0.39739040000000003,
+   "chest_depth_m": 0.19001200000000001,
+   "shoulder_width_m": 0.44439920000000005,
+   "hip_width_m": 0.3471638,
+   "bust_protrusion_m": 0.011161707692307704,
+   "frontband_profile_y_m": {
+    "0.58": 0.16204000000000002,
+    "0.6": 0.16204000000000002,
+    "0.62": 0.16008,
+    "0.64": 0.16002000000000002,
+    "0.66": 0.1597528,
+    "0.68": 0.1597494,
+    "0.7": 0.15846000000000002,
+    "0.72": 0.15386,
+    "0.74": 0.14993,
+    "0.76": 0.14163,
+    "0.78": 0.13652,
+    "0.8": 0.13123,
+    "0.82": 0.12645,
+    "0.84": 0.12001,
+    "0.86": 0.11542,
+    "0.88": 0.11028,
+    "0.9": 0.1041,
+    "0.92": 0.09696
+   },
+   "stations_h": {
+    "chest": 0.78,
+    "waist": 0.4625,
+    "hip": 0.12,
+    "shoulder": 0.93,
+    "bust_ref": 0.62,
+    "bust_band": [
+     0.68,
+     0.88
+    ]
+   }
+  }
+ },
+ "method": "v1 method verbatim (kernel-field init; 60-iter non-rigid registration in torso-param space onto the source fat surface; canonical belly mask; tight navel pin; targeted fold repair) with the target side derived on the masculine-macro neutral and fold-checked on that neutral AND raw base.obj"
+}

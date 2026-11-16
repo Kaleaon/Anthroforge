@@ -1,0 +1,63 @@
+{
+  "slider": "head.brow.projection",
+  "base": "anthroforge_head_v1",
+  "head_length_L": 1.0,
+  "mask": {
+    "verts_full": 516,
+    "verts_partial": 900,
+    "verts_any": 1416,
+    "weight_sum": 904.9955787310432
+  },
+  "seed_count": 368,
+  "anchor_vertices": [
+    1295,
+    1309
+  ],
+  "anchor_mask_weights": [
+    1.0,
+    1.0
+  ],
+  "anchor_displacement_at_plus1_L": [
+    0.06,
+    0.06
+  ],
+  "anchor_expected_L": 0.06,
+  "sweep": [
+    {
+      "value": -0.5,
+      "folds_total": 0,
+      "folds_in_region": 0,
+      "max_displacement_L": 0.03,
+      "delta_volume": -0.0014838321639452645
+    },
+    {
+      "value": 0.5,
+      "folds_total": 0,
+      "folds_in_region": 0,
+      "max_displacement_L": 0.03,
+      "delta_volume": 0.0014838321639452645
+    },
+    {
+      "value": 1.0,
+      "folds_total": 0,
+      "folds_in_region": 0,
+      "max_displacement_L": 0.06,
+      "delta_volume": 0.002967664327890536
+    },
+    {
+      "value": 1.25,
+      "folds_total": 0,
+      "folds_in_region": 0,
+      "max_displacement_L": 0.075,
+      "delta_volume": 0.0037095804098631613
+    },
+    {
+      "value": 1.5,
+      "folds_total": 110,
+      "folds_in_region": 110,
+      "max_displacement_L": 0.09,
+      "delta_volume": 0.0044514964918358005
+    }
+  ],
+  "safe_max_from_sweep": 1.25
+}

@@ -1,0 +1,32 @@
+{
+ "head_verts_total": 6100,
+ "jaw_verts": 938,
+ "skull_verts": 5378,
+ "L_total (nose->occiput)": 1.0,
+ "ZB max width": 0.568,
+ "braincase width @y[-0.18,-0.08],z>0.05": 0.361,
+ "rostrum width @y~0.30": 0.177,
+ "skull height @y[-0.20,0]": 0.315,
+ "symmetry |minx+maxx|": 0.0,
+ "jaw length (local ymax)": 0.752,
+ "jaw width": 0.385,
+ "jaw ramus height (local z span)": 0.25,
+ "ear length L/R": {
+  "L": 0.419,
+  "R": 0.419
+ },
+ "eyeball diameter": 0.104,
+ "eye centre spacing": 0.236,
+ "targets": {
+  "L": 1.0,
+  "ZB": 0.58,
+  "braincaseW": 0.36,
+  "rostrumW": 0.17,
+  "skullH": 0.31,
+  "mandibleL": 0.74,
+  "jawW": 0.4,
+  "earL": 0.4,
+  "orbitD": 0.15,
+  "interorbitalW": 0.19
+ }
+}

@@ -1,0 +1,818 @@
+{
+ "evaluator": {
+  "gachidebu": {
+   "raw": {
+    "body.muscle": 0.8,
+    "body.chubby": 1.0,
+    "body.tissue.mass_smooth": 0.9,
+    "body.belly.pot": 0.85,
+    "body.belly.protrusion": 0.85,
+    "body.definition.traps_valleys": 0.4,
+    "body.definition.vline": 0.85,
+    "body.neck.mass": 0.9,
+    "body.pecs.size": 1.0,
+    "body.torso.mass": 1.0,
+    "body.arms.delts": 0.9,
+    "body.distribution": 0.0
+   },
+   "effective": {
+    "body.muscle": 0.8,
+    "body.chubby": 1.0,
+    "body.tissue.mass_smooth": 0.9,
+    "body.belly.pot": 0.85,
+    "body.belly.protrusion": 0.85,
+    "body.definition.traps_valleys": 0.322146,
+    "body.definition.vline": 0.19522799999999998,
+    "body.neck.mass": 0.9574087500000001,
+    "body.pecs.size": 1.0,
+    "body.torso.mass": 1.0,
+    "body.arms.delts": 0.9893025,
+    "body.distribution": 0.0
+   },
+   "derived": {
+    "distribution.weight.chest": 1.0,
+    "distribution.tissue.chest": 1.0,
+    "distribution.muscle.chest": 1.0,
+    "distribution.weight.waist": 1.0,
+    "distribution.tissue.waist": 1.0,
+    "distribution.muscle.waist": 1.0,
+    "distribution.weight.hips_glutes": 1.0,
+    "distribution.tissue.hips_glutes": 1.0,
+    "distribution.muscle.hips_glutes": 1.0,
+    "distribution.weight.thighs": 1.0,
+    "distribution.tissue.thighs": 1.0,
+    "distribution.muscle.thighs": 1.0,
+    "tissue.level": 0.9450000000000001,
+    "tissue.abdomen": 0.9450000000000001,
+    "tissue.back": 0.51975,
+    "tissue.calf": 0.28350000000000003,
+    "tissue.chest": 0.5670000000000001,
+    "tissue.flanks": 0.6142500000000001,
+    "tissue.foot": 0.14175000000000001,
+    "tissue.forearm": 0.23625000000000002,
+    "tissue.glutes": 0.5670000000000001,
+    "tissue.hand": 0.1134,
+    "tissue.neck": 0.42525,
+    "tissue.thigh": 0.7560000000000001,
+    "tissue.upper_arm": 0.6615,
+    "attenuation.body.definition.traps_valleys": 0.805365,
+    "attenuation.body.definition.vline": 0.22968,
+    "power_belly.composite": 0.85,
+    "power_belly.core_share": 0.68,
+    "power_belly.drape_share": 0.31999999999999995,
+    "power_belly.tilt_deg": 2.04,
+    "power_belly.index": 0.765,
+    "wrap.factor.chest": 0.7978571428571429,
+    "wrap.factor.waist": 1.0,
+    "wrap.ratio.waist": 0.65
+   },
+   "warnings": [
+    {
+     "slider": "body.pecs.size",
+     "kind": "range",
+     "message": "body.pecs.size: requested 1.08505 is above range max 1.0; clamped to 1.0"
+    },
+    {
+     "slider": "body.torso.mass",
+     "kind": "range",
+     "message": "body.torso.mass: requested 1.08505 is above range max 1.0; clamped to 1.0"
+    }
+   ]
+  },
+  "pear": {
+   "raw": {
+    "body.distribution": -1.0,
+    "body.muscle": 0.45,
+    "body.tissue.level": 0.637
+   },
+   "effective": {
+    "body.distribution": -1.0,
+    "body.muscle": 0.45,
+    "body.tissue.level": 0.637
+   },
+   "derived": {
+    "distribution.weight.chest": 0.55,
+    "distribution.tissue.chest": 0.55,
+    "distribution.muscle.chest": 0.73,
+    "distribution.weight.waist": 0.85,
+    "distribution.tissue.waist": 0.85,
+    "distribution.muscle.waist": 0.91,
+    "distribution.weight.hips_glutes": 1.45,
+    "distribution.tissue.hips_glutes": 1.45,
+    "distribution.muscle.hips_glutes": 1.27,
+    "distribution.weight.thighs": 1.4,
+    "distribution.tissue.thighs": 1.4,
+    "distribution.muscle.thighs": 1.24,
+    "tissue.level": 0.637,
+    "tissue.abdomen": 0.54145,
+    "tissue.back": 0.19269250000000004,
+    "tissue.calf": 0.26753999999999994,
+    "tissue.chest": 0.21021,
+    "tissue.flanks": 0.3519425,
+    "tissue.foot": 0.13376999999999997,
+    "tissue.forearm": 0.08758750000000001,
+    "tissue.glutes": 0.55419,
+    "tissue.hand": 0.042042,
+    "tissue.neck": 0.15765750000000003,
+    "tissue.thigh": 0.7134400000000001,
+    "tissue.upper_arm": 0.245245,
+    "wrap.factor.chest": 0.5016085714285714,
+    "wrap.factor.waist": 0.7796071428571428,
+    "wrap.ratio.waist": 0.65
+   },
+   "warnings": []
+  },
+  "bigchest": {
+   "raw": {
+    "body.distribution": 1.0,
+    "body.muscle": 0.85,
+    "body.tissue.level": 0.419
+   },
+   "effective": {
+    "body.distribution": 1.0,
+    "body.muscle": 0.85,
+    "body.tissue.level": 0.419
+   },
+   "derived": {
+    "distribution.weight.chest": 1.45,
+    "distribution.tissue.chest": 1.45,
+    "distribution.muscle.chest": 1.27,
+    "distribution.weight.waist": 0.85,
+    "distribution.tissue.waist": 0.85,
+    "distribution.muscle.waist": 0.91,
+    "distribution.weight.hips_glutes": 0.6,
+    "distribution.tissue.hips_glutes": 0.6,
+    "distribution.muscle.hips_glutes": 0.76,
+    "distribution.weight.thighs": 0.7,
+    "distribution.tissue.thighs": 0.7,
+    "distribution.muscle.thighs": 0.82,
+    "tissue.level": 0.419,
+    "tissue.abdomen": 0.35614999999999997,
+    "tissue.back": 0.3341525,
+    "tissue.calf": 0.08798999999999998,
+    "tissue.chest": 0.3645299999999999,
+    "tissue.flanks": 0.23149749999999997,
+    "tissue.foot": 0.04399499999999999,
+    "tissue.forearm": 0.15188749999999998,
+    "tissue.glutes": 0.15083999999999997,
+    "tissue.hand": 0.072906,
+    "tissue.neck": 0.27339749999999996,
+    "tissue.thigh": 0.23464,
+    "tissue.upper_arm": 0.4252849999999999,
+    "wrap.factor.chest": 0.6338828571428571,
+    "wrap.factor.waist": 0.6267,
+    "wrap.ratio.waist": 0.65
+   },
+   "warnings": []
+  },
+  "crease_pear": {
+   "raw": {
+    "body.distribution": -1.0,
+    "body.muscle": 1.0,
+    "body.tissue.level": 0.6,
+    "body.definition.pecs_crease": 0.8
+   },
+   "effective": {
+    "body.distribution": -1.0,
+    "body.muscle": 1.0,
+    "body.tissue.level": 0.6,
+    "body.definition.pecs_crease": 0.77088
+   },
+   "derived": {
+    "distribution.weight.chest": 0.55,
+    "distribution.tissue.chest": 0.55,
+    "distribution.muscle.chest": 0.73,
+    "distribution.weight.waist": 0.85,
+    "distribution.tissue.waist": 0.85,
+    "distribution.muscle.waist": 0.91,
+    "distribution.weight.hips_glutes": 1.45,
+    "distribution.tissue.hips_glutes": 1.45,
+    "distribution.muscle.hips_glutes": 1.27,
+    "distribution.weight.thighs": 1.4,
+    "distribution.tissue.thighs": 1.4,
+    "distribution.muscle.thighs": 1.24,
+    "tissue.level": 0.6,
+    "tissue.abdomen": 0.51,
+    "tissue.back": 0.18150000000000002,
+    "tissue.calf": 0.252,
+    "tissue.chest": 0.198,
+    "tissue.flanks": 0.3315,
+    "tissue.foot": 0.126,
+    "tissue.forearm": 0.0825,
+    "tissue.glutes": 0.522,
+    "tissue.hand": 0.0396,
+    "tissue.neck": 0.14850000000000002,
+    "tissue.thigh": 0.6719999999999999,
+    "tissue.upper_arm": 0.231,
+    "attenuation.body.definition.pecs_crease": 0.9636,
+    "wrap.factor.chest": 0.49114285714285716,
+    "wrap.factor.waist": 0.7571428571428571,
+    "wrap.ratio.waist": 0.65
+   },
+   "warnings": []
+  },
+  "crease_bigchest": {
+   "raw": {
+    "body.distribution": 1.0,
+    "body.muscle": 1.0,
+    "body.tissue.level": 0.6,
+    "body.definition.pecs_crease": 0.8
+   },
+   "effective": {
+    "body.distribution": 1.0,
+    "body.muscle": 1.0,
+    "body.tissue.level": 0.6,
+    "body.definition.pecs_crease": 0.5664000000000001
+   },
+   "derived": {
+    "distribution.weight.chest": 1.45,
+    "distribution.tissue.chest": 1.45,
+    "distribution.muscle.chest": 1.27,
+    "distribution.weight.waist": 0.85,
+    "distribution.tissue.waist": 0.85,
+    "distribution.muscle.waist": 0.91,
+    "distribution.weight.hips_glutes": 0.6,
+    "distribution.tissue.hips_glutes": 0.6,
+    "distribution.muscle.hips_glutes": 0.76,
+    "distribution.weight.thighs": 0.7,
+    "distribution.tissue.thighs": 0.7,
+    "distribution.muscle.thighs": 0.82,
+    "tissue.level": 0.6,
+    "tissue.abdomen": 0.51,
+    "tissue.back": 0.4785,
+    "tissue.calf": 0.126,
+    "tissue.chest": 0.522,
+    "tissue.flanks": 0.3315,
+    "tissue.foot": 0.063,
+    "tissue.forearm": 0.2175,
+    "tissue.glutes": 0.216,
+    "tissue.hand": 0.10439999999999999,
+    "tissue.neck": 0.3915,
+    "tissue.thigh": 0.33599999999999997,
+    "tissue.upper_arm": 0.609,
+    "attenuation.body.definition.pecs_crease": 0.7080000000000001,
+    "wrap.factor.chest": 0.7657142857142857,
+    "wrap.factor.waist": 0.7571428571428571,
+    "wrap.ratio.waist": 0.65
+   },
+   "warnings": []
+  }
+ },
+ "selfcheck": {
+  "note": "shipped strongman build re-graded with this script's machinery; BARA_PROOF.md reference: M4 1.301, M1 0.711, chest 133.6, waist 102.6, neck 36.4, thigh 75.9 cm",
+  "M4": 1.301269630287321,
+  "M1": 0.7113602845316099,
+  "chest_g_cm": 133.5581602950338,
+  "waist_g_cm": 102.63680730452771,
+  "neck_g_cm": 36.437617567420105,
+  "thigh_g_cm": 75.94568526175875
+ },
+ "gachidebu": {
+  "grade": {
+   "height_m": 1.668256432161975,
+   "volume_L": 104.79827842187146,
+   "neck_g": 0.4356930747249246,
+   "neck_w": 0.1361350685130076,
+   "head_w": 0.15759673707069566,
+   "head_h": 0.17865795597484257,
+   "chin_z": 0.6704720440251575,
+   "chest_g": 1.3476214541531095,
+   "chest_w": 0.56317957011217,
+   "waist_w": 0.36627482200367933,
+   "waist_g": 1.064974635732168,
+   "chest_d": 0.2504723254065146,
+   "waist_d": 0.2725899760699171,
+   "delt_span": 0.7141647489948265,
+   "trap_angle": 28.390701740001933,
+   "visible_neck": 0.10319220514046201,
+   "ua_g": 0.5370957588165695,
+   "fa_g": 0.3732681876669707,
+   "thigh_g": 0.7851165666601594,
+   "calf_g": 0.5997926163331949,
+   "M1_neckW_headW": 0.8638190805431418,
+   "M2_neck_arm": 0.8112018528780149,
+   "M2_neck_calf": 0.726406199176833,
+   "M2_arm_calf": 0.8954691074726463,
+   "M3_fa_arm": 0.6949751167080996,
+   "M4_chest_waist": 1.2654023945148911,
+   "M5_depth_ratio": 0.9188611005353715,
+   "M6_trap_deg": 28.390701740001933,
+   "M7_vis_neck_ratio": 0.5775964724179026,
+   "M8_span_headW": 4.531596035991927,
+   "M11_thigh_waist": 0.7372162118400061,
+   "M12_heads_tall": 9.337711399748063
+  },
+  "girths_profiles": {
+   "chest": 1.3115466694910694,
+   "waist_navel": 1.0215865518768712,
+   "waist_min": 0.9243350498226591,
+   "hip": NaN
+  },
+  "tissue_scale": 1.2475247524752475,
+  "neck_show_through": {
+   "raw": 0.9,
+   "effective": 0.9574087500000001,
+   "factor": 1.0637875,
+   "note": "the shipped body.muscle contains NO authored neck field (build_bara hi_diff name miss -- bug report in the doc); the neck component here is the A2 field derived in this script from the 'Weight 0 to 1' block, so the comparison is neck-at-raw vs neck-at-effective on identical builds, plus the field's worth vs the shipped strongman neck",
+   "neck_girth_cm_effective": 43.569307472492454,
+   "neck_girth_cm_raw": 43.36578010436661,
+   "neck_girth_delta_mm": 2.035273681258498,
+   "neck_width_cm_effective": 13.61350685130076,
+   "neck_width_cm_raw": 13.497076372196751,
+   "M1_effective": 0.8638190805431418,
+   "M1_raw": 0.8564312068302629,
+   "strongman_neck_girth_cm_shipped": 36.437617567420105,
+   "strongman_neck_girth_cm_with_authored_field": 43.249187115301545,
+   "strongman_M1_with_authored_field": 0.8544963184304013
+  },
+  "wrap_audit": {
+   "chest": {
+    "front_cm": 0.5734844613299276,
+    "flank_cm": 0.6586678596673015,
+    "back_cm": 1.9529938442740875,
+    "flank_front": 1.14853654123397,
+    "flank_front_signed": 0.0
+   },
+   "waist": {
+    "front_cm": 9.33584749925539,
+    "flank_cm": 2.3907485339715833,
+    "back_cm": 1.3727808320753097,
+    "flank_front": 0.2560826463973694,
+    "flank_front_signed": 0.2560826463973694
+   },
+   "belly_apron": {
+    "front_cm": 9.242785452357092,
+    "flank_cm": 2.1973144711502974,
+    "back_cm": 1.2948060031751334,
+    "flank_front": 0.2377329304544161,
+    "flank_front_signed": 0.2377329304544161
+   }
+  },
+  "wrap_audit_ring_only": {
+   "chest": {
+    "front_cm": 0.5442456406975967,
+    "flank_cm": 0.6586678596673015,
+    "back_cm": 1.9529938442740875,
+    "flank_front": 1.2102400284236396,
+    "flank_front_signed": 0.0
+   },
+   "waist": {
+    "front_cm": 0.0,
+    "flank_cm": 1.7295019853728035,
+    "back_cm": 1.3727808320753097,
+    "flank_front": 0.0,
+    "flank_front_signed": 0.0
+   },
+   "belly_apron": {
+    "front_cm": 0.0,
+    "flank_cm": 1.7344716307200545,
+    "back_cm": 1.2948060031751334,
+    "flank_front": 0.0,
+    "flank_front_signed": 0.0
+   }
+  },
+  "wrap_emitted": {
+   "wrap.factor.waist": 1.0,
+   "wrap.factor.chest": 0.7978571428571429,
+   "wrap.ratio.waist": 0.65,
+   "floor": 0.4
+  },
+  "definition": {
+   "vline": {
+    "raw": 0.85,
+    "effective": 0.19522799999999998,
+    "attenuation": 0.22968,
+    "dip_inc_low_tissue_mm": -0.1998047727882124,
+    "dip_inc_naive_mm": -0.19953225980981415,
+    "dip_inc_coupled_mm": -0.04582833310530532,
+    "dip_abs_coupled_mm": -196.87645368749907,
+    "roughness_coupled_mm": 58.648539738617075,
+    "snr_coupled": -0.0007814062090812756,
+    "tissue_fill_factor": 0.9986361037597079,
+    "total_read_vs_model": 0.22936555751789822,
+    "model_prediction": 0.22968
+   },
+   "valleys": {
+    "raw": 0.4,
+    "effective": 0.322146,
+    "attenuation": 0.8053649999999999,
+    "dip_inc_low_tissue_mm": -0.31692855824859834,
+    "dip_inc_naive_mm": -0.31651290535685916,
+    "dip_inc_coupled_mm": -0.254908233122606,
+    "dip_abs_coupled_mm": -49.044373620769655,
+    "roughness_coupled_mm": 8.053652864732069,
+    "snr_coupled": -0.031651256566927584,
+    "tissue_fill_factor": 0.9986884965683239,
+    "total_read_vs_model": 0.8043081839366977,
+    "model_prediction": 0.8053649999999999
+   }
+  }
+ },
+ "pear": {
+  "level_w": 0.637,
+  "grade": {
+   "height_m": 1.6680970824701933,
+   "volume_L": 106.83218618209315,
+   "neck_g": 0.3493716026464491,
+   "neck_w": 0.10793305888653942,
+   "head_w": 0.15759673707069566,
+   "head_h": 0.22665795597484262,
+   "chin_z": 0.6224720440251574,
+   "chest_g": 1.2691671258570865,
+   "chest_w": 0.5354895644262914,
+   "waist_w": 0.35123230274972966,
+   "waist_g": 1.0048224246817856,
+   "chest_d": 0.2428184451466615,
+   "waist_d": 0.2653388617529633,
+   "delt_span": 0.6611320494605692,
+   "trap_angle": 34.39281250502768,
+   "visible_neck": 0.039370065673148824,
+   "ua_g": 0.4530599312209075,
+   "fa_g": 0.3262392029636998,
+   "thigh_g": 0.8098582590865029,
+   "calf_g": 0.5952049963019898,
+   "M1_neckW_headW": 0.6848686139873708,
+   "M2_neck_arm": 0.7711377205769694,
+   "M2_neck_calf": 0.5869769320101408,
+   "M2_arm_calf": 0.7611830109555028,
+   "M3_fa_arm": 0.7200795755310986,
+   "M4_chest_waist": 1.2630760368022393,
+   "M5_depth_ratio": 0.915125826433714,
+   "M6_trap_deg": 34.39281250502768,
+   "M7_vis_neck_ratio": 0.17369814134174322,
+   "M8_span_headW": 4.195087168359296,
+   "M11_thigh_waist": 0.8059715221253891,
+   "M12_heads_tall": 7.359534657831909
+  },
+  "girths": {
+   "chest": 1.2753548929384506,
+   "waist_navel": 1.0490528905445446,
+   "waist_min": 0.8880675632942623,
+   "hip": NaN
+  },
+  "girths_control_dist0": {
+   "chest": 1.34077721842601,
+   "waist_navel": 1.115066876409716,
+   "waist_min": 0.9380433180272397,
+   "hip": NaN
+  },
+  "ratios": {
+   "chest_waist": 1.2157202982172202,
+   "waist_hip": NaN,
+   "chest_hip": NaN
+  },
+  "ratios_control": {
+   "chest_waist": 1.202418659177676,
+   "waist_hip": NaN,
+   "chest_hip": NaN
+  },
+  "hip_width_m": 0.43300495250220883,
+  "hip_width_control_m": 0.4082345600398962,
+  "shoulder_hip_width": 1.526846392033349,
+  "shoulder_hip_width_control": 1.6194906413507903,
+  "thigh_g_cm": 80.98582590865028
+ },
+ "bigchest": {
+  "level_w": 0.419,
+  "grade": {
+   "height_m": 1.6673663339211262,
+   "volume_L": 93.15359575739173,
+   "neck_g": 0.37086215016654855,
+   "neck_w": 0.1144856934717398,
+   "head_w": 0.15759673707069566,
+   "head_h": 0.22665795597484262,
+   "chin_z": 0.6224720440251574,
+   "chest_g": 1.4498132297016864,
+   "chest_w": 0.5868322774704312,
+   "waist_w": 0.34422888497251586,
+   "waist_g": 1.0176795434304131,
+   "chest_d": 0.28992463563441184,
+   "waist_d": 0.2709811645730499,
+   "delt_span": 0.7469695999732255,
+   "trap_angle": 27.428956270704695,
+   "visible_neck": 0.05395585766955158,
+   "ua_g": 0.5852823601313982,
+   "fa_g": 0.42040645450951986,
+   "thigh_g": 0.6610866310581721,
+   "calf_g": 0.47648491918837244,
+   "M1_neckW_headW": 0.7264471054396459,
+   "M2_neck_arm": 0.6336465532350719,
+   "M2_neck_calf": 0.7783292507940482,
+   "M2_arm_calf": 1.2283334404966006,
+   "M3_fa_arm": 0.7182968138919084,
+   "M4_chest_waist": 1.42462648390733,
+   "M5_depth_ratio": 1.0699069660107512,
+   "M6_trap_deg": 27.428956270704695,
+   "M7_vis_neck_ratio": 0.2380496966783742,
+   "M8_span_headW": 4.739752953375841,
+   "M11_thigh_waist": 0.6496019649071151,
+   "M12_heads_tall": 7.356310643276919
+  },
+  "girths": {
+   "chest": 1.3886481831333106,
+   "waist_navel": 0.9341859640337798,
+   "waist_min": 0.8794868631981182,
+   "hip": NaN
+  },
+  "girths_control_dist0": {
+   "chest": 1.3222809889870446,
+   "waist_navel": 0.9685517120797993,
+   "waist_min": 0.8880427402252529,
+   "hip": NaN
+  },
+  "ratios": {
+   "chest_waist": 1.4864793912522298,
+   "waist_hip": NaN,
+   "chest_hip": NaN
+  },
+  "ratios_control": {
+   "chest_waist": 1.3652146524501745,
+   "waist_hip": NaN,
+   "chest_hip": NaN
+  },
+  "hip_width_m": 0.38132297015492583,
+  "hip_width_control_m": 0.39917445042150657,
+  "shoulder_hip_width": 1.9588895986773178,
+  "shoulder_hip_width_control": 1.8712860985578263,
+  "thigh_g_cm": 66.10866310581721
+ },
+ "crease": {
+  "pear": {
+   "effective": 0.77088,
+   "attenuation": 0.9636,
+   "dip_inc_coupled_mm": 0.5414499129132588,
+   "dip_inc_raw_mm": 0.5619031760878137,
+   "dip_abs_coupled_mm": -6.9282627211214445,
+   "dip_below_mm": 1.3009591456818597,
+   "roughness_mm": 1.5622609083555854,
+   "snr_coupled": 0.3465809776186371,
+   "full_build_macro_flips": 0
+  },
+  "bigchest": {
+   "effective": 0.5664000000000001,
+   "attenuation": 0.7080000000000001,
+   "dip_inc_coupled_mm": 0.3978037252864164,
+   "dip_inc_raw_mm": 0.5618694397035715,
+   "dip_abs_coupled_mm": -3.01491436950857,
+   "dip_below_mm": -18.00808216705692,
+   "roughness_mm": 2.699129920799949,
+   "snr_coupled": 0.147382207214582,
+   "full_build_macro_flips": 7
+  },
+  "comparison": {
+   "fill_ratio_big_over_pear": 0.9999399605026669,
+   "coupled_ratio_measured": 0.7347008759241322,
+   "coupled_ratio_predicted": 0.7347005936445499,
+   "attenuation_ratio": 0.7347447073474472
+  }
+ },
+ "folds": {
+  "gachidebu": {
+   "raw_flips": 0,
+   "raw_min_dot": 0.0006095249805491722,
+   "macro_flips": 0,
+   "macro_min_dot": 0.005848530848297216,
+   "repair": {
+    "att_min": 0.01877213388752446,
+    "verts_touched": 653,
+    "trajectory": [
+     204,
+     223,
+     234,
+     215,
+     227,
+     169,
+     139,
+     111,
+     90,
+     79,
+     55,
+     47,
+     44,
+     25,
+     18,
+     16,
+     11,
+     0
+    ]
+   }
+  },
+  "pear": {
+   "raw_flips": 0,
+   "raw_min_dot": 0.004649613676048073,
+   "macro_flips": 0,
+   "macro_min_dot": 0.31700752567241613,
+   "repair": {
+    "muscle_inc": {
+     "att_min": 1.0,
+     "verts_touched": 0
+    },
+    "tissue": {
+     "att_min": 1.0,
+     "verts_touched": 0
+    }
+   }
+  },
+  "pear_control_dist0": {
+   "macro_flips": 0,
+   "min_dot": 0.10949802673728093
+  },
+  "bigchest": {
+   "raw_flips": 0,
+   "raw_min_dot": 0.0017747759764260881,
+   "macro_flips": 0,
+   "macro_min_dot": 0.002101780105875337,
+   "repair": {
+    "muscle_inc": {
+     "att_min": 0.01877213388752446,
+     "verts_touched": 96
+    },
+    "tissue": {
+     "att_min": 0.083357758312362,
+     "verts_touched": 98
+    }
+   }
+  },
+  "bigchest_control_dist0": {
+   "macro_flips": 0,
+   "min_dot": 0.10949802673728093
+  }
+ },
+ "zone_residuals": {
+  "gachidebu": {
+   "chest": {
+    "rms_cm": 0.4298230365433034,
+    "max_cm": 1.513046093909937,
+    "mean_abs_delta_cm": 1.9789881549443018
+   },
+   "waist": {
+    "rms_cm": 0.8588822645645959,
+    "max_cm": 2.097474219407014,
+    "mean_abs_delta_cm": 6.006049860670471
+   },
+   "hips_glutes": {
+    "rms_cm": 0.7284969140996711,
+    "max_cm": 2.2442530590594303,
+    "mean_abs_delta_cm": 4.41952183646084
+   },
+   "thighs": {
+    "rms_cm": 0.19847234199609443,
+    "max_cm": 0.5878892907613786,
+    "mean_abs_delta_cm": 1.258104887531162
+   },
+   "neck": {
+    "rms_cm": 0.46778324372187907,
+    "max_cm": 1.513046093909937,
+    "mean_abs_delta_cm": 0.3068737558249513
+   },
+   "arms": {
+    "rms_cm": 0.3879945335645488,
+    "max_cm": 0.4463616889865865,
+    "mean_abs_delta_cm": 3.4317670606403845
+   }
+  },
+  "pear": {
+   "chest": {
+    "rms_cm": 0.6266138432117182,
+    "max_cm": 2.6280541612114607,
+    "mean_abs_delta_cm": 0.8976626261584858
+   },
+   "waist": {
+    "rms_cm": 1.0626652531177057,
+    "max_cm": 2.283704566287576,
+    "mean_abs_delta_cm": 5.100708036417069
+   },
+   "hips_glutes": {
+    "rms_cm": 1.4621179409432168,
+    "max_cm": 4.240159171481943,
+    "mean_abs_delta_cm": 5.911532665355317
+   },
+   "thighs": {
+    "rms_cm": 0.46171462331178875,
+    "max_cm": 1.420499821309925,
+    "mean_abs_delta_cm": 1.3095942854263642
+   },
+   "neck": {
+    "rms_cm": 0.12231660850844782,
+    "max_cm": 1.4924216713725065,
+    "mean_abs_delta_cm": 0.08065600869995197
+   },
+   "arms": {
+    "rms_cm": 0.6391277138051261,
+    "max_cm": 2.044826553134492,
+    "mean_abs_delta_cm": 1.3683566829026832
+   }
+  },
+  "bigchest": {
+   "chest": {
+    "rms_cm": 0.49365070055460436,
+    "max_cm": 1.78688649429161,
+    "mean_abs_delta_cm": 1.5074115488683666
+   },
+   "waist": {
+    "rms_cm": 0.7540969834376455,
+    "max_cm": 2.3577978091599237,
+    "mean_abs_delta_cm": 4.457834704788978
+   },
+   "hips_glutes": {
+    "rms_cm": 1.1240443246307117,
+    "max_cm": 2.6631131122189746,
+    "mean_abs_delta_cm": 2.778842055401837
+   },
+   "thighs": {
+    "rms_cm": 0.3651701345763543,
+    "max_cm": 1.2897390615585018,
+    "mean_abs_delta_cm": 0.748497344401843
+   },
+   "neck": {
+    "rms_cm": 0.10093624589149494,
+    "max_cm": 1.0674996569815935,
+    "mean_abs_delta_cm": 0.13379929052644007
+   },
+   "arms": {
+    "rms_cm": 0.56131233140988,
+    "max_cm": 1.7380318508147723,
+    "mean_abs_delta_cm": 2.3502399994941694
+   }
+  }
+ },
+ "peak_recovery": {
+  "valleys": {
+   "source_max_cm": 0.7707889749918537,
+   "std_kernel_max_cm": 0.1534323624982613,
+   "std_kernel_recovery": 0.19905884421852676,
+   "feature_kernel_max_cm": 0.3210056014144592,
+   "feature_kernel_recovery": 0.41646366493222337
+  },
+  "vline": {
+   "source_max_cm": 0.439747769208275,
+   "std_kernel_max_cm": 0.0624197901734487,
+   "std_kernel_recovery": 0.14194452944202476,
+   "feature_kernel_max_cm": 0.1888571806743679,
+   "feature_kernel_recovery": 0.42946705793275025
+  },
+  "crease": {
+   "source_max_cm": 0.8547407967162887,
+   "std_kernel_max_cm": 0.10477479180732402,
+   "std_kernel_recovery": 0.1225807779502791,
+   "feature_kernel_max_cm": 0.24259628173041928,
+   "feature_kernel_recovery": 0.28382438589852815
+  }
+ },
+ "field_cv": {
+  "torso/valleys-std": {
+   "n": 623,
+   "median_cm": 0.13539603386455296,
+   "p95_cm": 0.39967064077557485
+  },
+  "torso/vline-std": {
+   "n": 138,
+   "median_cm": 0.11686622095205501,
+   "p95_cm": 0.3493069999451141
+  },
+  "torso/crease-std": {
+   "n": 227,
+   "median_cm": 0.14703561659692616,
+   "p95_cm": 0.3257021179582494
+  },
+  "torso/valleys": {
+   "n": 623,
+   "median_cm": 0.0820741582500649,
+   "p95_cm": 0.30197878838125297
+  },
+  "torso/vline": {
+   "n": 138,
+   "median_cm": 0.07854199555684901,
+   "p95_cm": 0.23301634217928305
+  },
+  "torso/crease": {
+   "n": 227,
+   "median_cm": 0.13647324942064148,
+   "p95_cm": 0.313093599157845
+  },
+  "torso/neck": {
+   "n": 920,
+   "median_cm": 0.4428640299473964,
+   "p95_cm": 0.9177194953631382
+  }
+ },
+ "profile_girths": {
+  "base": {
+   "chest": 1.143185264335704,
+   "waist_navel": 0.7002447681326641,
+   "waist_min": 0.6413861256412128,
+   "hip": NaN
+  },
+  "strongman_control": {
+   "chest": 1.3009033245019836,
+   "waist_navel": 0.9933036200154062,
+   "waist_min": 0.9019610857190884,
+   "hip": NaN
+  }
+ },
+ "targets": {
+  "gachidebu": 10570,
+  "pear": 10482,
+  "bigchest": 10482
+ }
+}

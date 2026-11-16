@@ -1,0 +1,247 @@
+{
+ "meta": {
+  "L_definition": "nose tip to occiput, tissue Y extent, normalised to 1.0",
+  "targets": "species-head-spec.md neutral column (unchanged from v3)",
+  "note": "v4 = v3 geometry subdivided + sculpt-smoothed, jaw seam re-cut, teeth split. Gates must hold |dev| <= v3's |dev|."
+ },
+ "result": {
+  "ZB": {
+   "measured": 0.5466,
+   "target": 0.58,
+   "dev_pct": -5.8,
+   "source": 0.6443
+  },
+  "CraniumWidth_domeShell": {
+   "measured": 0.478,
+   "target": 0.36,
+   "dev_pct": 32.8,
+   "source": 0.4761
+  },
+  "MuzzleWidth": {
+   "measured": 0.2332,
+   "target": 0.17,
+   "dev_pct": 37.2,
+   "source": 0.315
+  },
+  "MuzzleDepth": {
+   "measured": 0.231,
+   "target": 0.2,
+   "dev_pct": 15.5,
+   "source": 0.1567
+  },
+  "SkullHeight_domeRise": {
+   "measured": 0.3168,
+   "target": 0.31,
+   "dev_pct": 2.2,
+   "source": 0.3476
+  },
+  "MuzzleFrac_antOrbit": {
+   "measured": 0.3435,
+   "target": 0.33,
+   "dev_pct": 4.1,
+   "source": 0.3035
+  },
+  "OrbitDiameter": {
+   "measured": 0.15,
+   "target": 0.15,
+   "dev_pct": 0.0,
+   "source": 0.1439
+  },
+  "Interorbital": {
+   "measured": 0.1122,
+   "target": 0.19,
+   "dev_pct": -40.9,
+   "source": 0.1395
+  },
+  "OrbitHeight": {
+   "measured": 0.172,
+   "target": 0.17,
+   "dev_pct": 1.2,
+   "source": 0.1864
+  },
+  "OrbitRise": {
+   "measured": 0.2035,
+   "target": 0.12,
+   "dev_pct": 69.6,
+   "source": 0.2074
+  },
+  "EarLength": {
+   "measured": 0.3776,
+   "target": 0.4,
+   "dev_pct": -5.6,
+   "source": 0.2881
+  },
+  "JawLength": {
+   "measured": 0.7128,
+   "target": 0.74,
+   "dev_pct": -3.7,
+   "source": 0.52
+  },
+  "JawWidth": {
+   "measured": 0.533,
+   "target": 0.4,
+   "dev_pct": 33.2,
+   "source": 0.6206
+  },
+  "RamusDepth": {
+   "measured": 0.2697,
+   "target": 0.28,
+   "dev_pct": -3.7,
+   "source": 0.3804
+  }
+ },
+ "result_extra": {
+  "EarBaseHeight_abovePalate": 0.2699,
+  "EarBase_belowSkullTop": 0.2189,
+  "EarTip_aboveSkullTop": 0.1408,
+  "FullHeadHeight": 0.7586,
+  "eye_centre": [
+   0.0,
+   0.0815,
+   -0.0079
+  ],
+  "pal_z": -0.1799
+ },
+ "v3_result": {
+  "ZB": 0.5466,
+  "CraniumWidth_domeShell": 0.478,
+  "MuzzleWidth": 0.2158,
+  "MuzzleDepth": 0.231,
+  "SkullHeight_domeRise": 0.3168,
+  "MuzzleFrac_antOrbit": 0.3435,
+  "OrbitDiameter": 0.15,
+  "Interorbital": 0.1122,
+  "OrbitHeight": 0.172,
+  "OrbitRise": 0.2035,
+  "EarLength": 0.3889,
+  "JawLength": 0.7156,
+  "JawWidth": 0.5335,
+  "RamusDepth": 0.2506
+ },
+ "gate_deltas_v3_to_v4": {
+  "ZB": {
+   "v3_measured": 0.5466,
+   "v4_measured": 0.5466,
+   "v3_dev_pct": -5.8,
+   "v4_dev_pct": -5.8,
+   "within_v3_dev": true
+  },
+  "CraniumWidth_domeShell": {
+   "v3_measured": 0.478,
+   "v4_measured": 0.478,
+   "v3_dev_pct": 32.8,
+   "v4_dev_pct": 32.8,
+   "within_v3_dev": true
+  },
+  "MuzzleWidth": {
+   "v3_measured": 0.2158,
+   "v4_measured": 0.2332,
+   "v3_dev_pct": 26.9,
+   "v4_dev_pct": 37.2,
+   "within_v3_dev": false
+  },
+  "MuzzleDepth": {
+   "v3_measured": 0.231,
+   "v4_measured": 0.231,
+   "v3_dev_pct": 15.5,
+   "v4_dev_pct": 15.5,
+   "within_v3_dev": true
+  },
+  "SkullHeight_domeRise": {
+   "v3_measured": 0.3168,
+   "v4_measured": 0.3168,
+   "v3_dev_pct": 2.2,
+   "v4_dev_pct": 2.2,
+   "within_v3_dev": true
+  },
+  "MuzzleFrac_antOrbit": {
+   "v3_measured": 0.3435,
+   "v4_measured": 0.3435,
+   "v3_dev_pct": 4.1,
+   "v4_dev_pct": 4.1,
+   "within_v3_dev": true
+  },
+  "OrbitDiameter": {
+   "v3_measured": 0.15,
+   "v4_measured": 0.15,
+   "v3_dev_pct": 0.0,
+   "v4_dev_pct": 0.0,
+   "within_v3_dev": true
+  },
+  "Interorbital": {
+   "v3_measured": 0.1122,
+   "v4_measured": 0.1122,
+   "v3_dev_pct": -40.9,
+   "v4_dev_pct": -40.9,
+   "within_v3_dev": true
+  },
+  "OrbitHeight": {
+   "v3_measured": 0.172,
+   "v4_measured": 0.172,
+   "v3_dev_pct": 1.2,
+   "v4_dev_pct": 1.2,
+   "within_v3_dev": true
+  },
+  "OrbitRise": {
+   "v3_measured": 0.2035,
+   "v4_measured": 0.2035,
+   "v3_dev_pct": 69.6,
+   "v4_dev_pct": 69.6,
+   "within_v3_dev": true
+  },
+  "EarLength": {
+   "v3_measured": 0.3889,
+   "v4_measured": 0.3776,
+   "v3_dev_pct": -2.8,
+   "v4_dev_pct": -5.6,
+   "within_v3_dev": false
+  },
+  "JawLength": {
+   "v3_measured": 0.7156,
+   "v4_measured": 0.7128,
+   "v3_dev_pct": -3.3,
+   "v4_dev_pct": -3.7,
+   "within_v3_dev": false
+  },
+  "JawWidth": {
+   "v3_measured": 0.5335,
+   "v4_measured": 0.533,
+   "v3_dev_pct": 33.4,
+   "v4_dev_pct": 33.2,
+   "within_v3_dev": true
+  },
+  "RamusDepth": {
+   "v3_measured": 0.2506,
+   "v4_measured": 0.2697,
+   "v3_dev_pct": -10.5,
+   "v4_dev_pct": -3.7,
+   "within_v3_dev": true
+  }
+ },
+ "all_gates_within_v3_dev": false,
+ "surface_metrics": {
+  "v3": {
+   "cheek_facet_deg": 15.97,
+   "cheek_vnormal_step_deg": 19.77,
+   "seam_rough": 0.04734,
+   "seam_pts": 61
+  },
+  "v4": {
+   "cheek_facet_deg": 9.08,
+   "cheek_vnormal_step_deg": 11.33,
+   "seam_rough": 0.02592,
+   "seam_pts": 119
+  }
+ },
+ "teeth_split_verify_bvh_overlap": {
+  "-10": {
+   "overlap_pairs": 0
+  },
+  "-20": {
+   "overlap_pairs": 0
+  },
+  "-30": {
+   "overlap_pairs": 0
+  }
+ }
+}

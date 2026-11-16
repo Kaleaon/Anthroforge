@@ -1,0 +1,329 @@
+{
+ "Sac": {
+  "verts": 1730,
+  "polys": 1776,
+  "vol_L": 209.459,
+  "min": [
+   -0.3509,
+   -0.372,
+   0.0309
+  ],
+  "max": [
+   0.4114,
+   0.2743,
+   1.005
+  ],
+  "shapekeys": [],
+  "groups": {
+   "SKIN_stretch_sac": {
+    "n": 1730,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.1186
+   },
+   "Sac": {
+    "n": 1729,
+    "min": 0.04,
+    "max": 1.0,
+    "mean": 0.9181
+   },
+   "CC_Base_Pelvis": {
+    "n": 310,
+    "min": 0.01,
+    "max": 1.0,
+    "mean": 0.4598
+   }
+  },
+  "materials": [
+   "SacSkin"
+  ]
+ },
+ "Shaft_1": {
+  "verts": 626,
+  "polys": 650,
+  "vol_L": 5.301,
+  "min": [
+   -0.1361,
+   -0.4326,
+   0.5942
+  ],
+  "max": [
+   0.004,
+   -0.0794,
+   1.0974
+  ],
+  "shapekeys": [],
+  "groups": {
+   "SKIN_stretch_shaft_1": {
+    "n": 626,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.1801
+   },
+   "Shaft_1_Base": {
+    "n": 183,
+    "min": 0.06,
+    "max": 1.0,
+    "mean": 0.6164
+   },
+   "Shaft_1_Tip": {
+    "n": 599,
+    "min": 0.01,
+    "max": 1.0,
+    "mean": 0.8568
+   }
+  },
+  "materials": [
+   "ShaftSkin"
+  ]
+ },
+ "Shaft_2": {
+  "verts": 626,
+  "polys": 650,
+  "vol_L": 6.182,
+  "min": [
+   -0.1501,
+   -0.3649,
+   0.4641
+  ],
+  "max": [
+   -0.009,
+   -0.0509,
+   1.0807
+  ],
+  "shapekeys": [],
+  "groups": {
+   "SKIN_stretch_shaft_2": {
+    "n": 626,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.1801
+   },
+   "Shaft_2_Base": {
+    "n": 183,
+    "min": 0.06,
+    "max": 1.0,
+    "mean": 0.6164
+   },
+   "Shaft_2_Tip": {
+    "n": 599,
+    "min": 0.01,
+    "max": 1.0,
+    "mean": 0.8568
+   }
+  },
+  "materials": [
+   "ShaftSkin"
+  ]
+ },
+ "Shaft_3": {
+  "verts": 626,
+  "polys": 650,
+  "vol_L": 5.301,
+  "min": [
+   -0.004,
+   -0.4326,
+   0.5942
+  ],
+  "max": [
+   0.1361,
+   -0.0794,
+   1.0974
+  ],
+  "shapekeys": [],
+  "groups": {
+   "SKIN_stretch_shaft_3": {
+    "n": 626,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.1801
+   },
+   "Shaft_3_Base": {
+    "n": 183,
+    "min": 0.06,
+    "max": 1.0,
+    "mean": 0.6164
+   },
+   "Shaft_3_Tip": {
+    "n": 599,
+    "min": 0.01,
+    "max": 1.0,
+    "mean": 0.8568
+   }
+  },
+  "materials": [
+   "ShaftSkin"
+  ]
+ },
+ "Shaft_4": {
+  "verts": 626,
+  "polys": 650,
+  "vol_L": 6.182,
+  "min": [
+   0.009,
+   -0.3649,
+   0.4641
+  ],
+  "max": [
+   0.1501,
+   -0.0509,
+   1.0807
+  ],
+  "shapekeys": [],
+  "groups": {
+   "SKIN_stretch_shaft_4": {
+    "n": 626,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.1801
+   },
+   "Shaft_4_Base": {
+    "n": 183,
+    "min": 0.06,
+    "max": 1.0,
+    "mean": 0.6164
+   },
+   "Shaft_4_Tip": {
+    "n": 599,
+    "min": 0.01,
+    "max": 1.0,
+    "mean": 0.8568
+   }
+  },
+  "materials": [
+   "ShaftSkin"
+  ]
+ },
+ "bones": {
+  "CC_Base_Pelvis": {
+   "head": [
+    0.0,
+    -0.02,
+    0.99
+   ],
+   "tail": [
+    0.0,
+    -0.07,
+    1.12
+   ],
+   "parent": "CC_Base_Hip"
+  },
+  "Sac": {
+   "head": [
+    -0.006,
+    -0.03,
+    1.005
+   ],
+   "tail": [
+    -0.075,
+    -0.086,
+    0.32
+   ],
+   "parent": "CC_Base_Pelvis"
+  },
+  "Shaft_1_Base": {
+   "head": [
+    -0.062,
+    -0.13,
+    1.082
+   ],
+   "tail": [
+    -0.066,
+    -0.262,
+    0.852
+   ],
+   "parent": "CC_Base_Pelvis"
+  },
+  "Shaft_1_Tip": {
+   "head": [
+    -0.066,
+    -0.262,
+    0.852
+   ],
+   "tail": [
+    -0.072,
+    -0.425,
+    0.58
+   ],
+   "parent": "Shaft_1_Base"
+  },
+  "Shaft_2_Base": {
+   "head": [
+    -0.075,
+    -0.112,
+    1.07
+   ],
+   "tail": [
+    -0.08,
+    -0.222,
+    0.775
+   ],
+   "parent": "CC_Base_Pelvis"
+  },
+  "Shaft_2_Tip": {
+   "head": [
+    -0.08,
+    -0.222,
+    0.775
+   ],
+   "tail": [
+    -0.086,
+    -0.35,
+    0.445
+   ],
+   "parent": "Shaft_2_Base"
+  },
+  "Shaft_3_Base": {
+   "head": [
+    0.062,
+    -0.13,
+    1.082
+   ],
+   "tail": [
+    0.066,
+    -0.262,
+    0.852
+   ],
+   "parent": "CC_Base_Pelvis"
+  },
+  "Shaft_3_Tip": {
+   "head": [
+    0.066,
+    -0.262,
+    0.852
+   ],
+   "tail": [
+    0.072,
+    -0.425,
+    0.58
+   ],
+   "parent": "Shaft_3_Base"
+  },
+  "Shaft_4_Base": {
+   "head": [
+    0.075,
+    -0.112,
+    1.07
+   ],
+   "tail": [
+    0.08,
+    -0.222,
+    0.775
+   ],
+   "parent": "CC_Base_Pelvis"
+  },
+  "Shaft_4_Tip": {
+   "head": [
+    0.08,
+    -0.222,
+    0.775
+   ],
+   "tail": [
+    0.086,
+    -0.35,
+    0.445
+   ],
+   "parent": "Shaft_4_Base"
+  }
+ }
+}

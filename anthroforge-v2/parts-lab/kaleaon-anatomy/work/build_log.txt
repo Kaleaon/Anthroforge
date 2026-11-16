@@ -1,0 +1,151 @@
+00:51.436  blend            | Read blend: "/home/hatch/workspace/bodies-3d/kaleaon-sacdrape/kaleaon_sacdrape.blend"
+[StableGen] Could not query ComfyUI node Trellis2Conditioning: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/Trellis2Conditioning (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x71c483397620>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[TRELLIS2] Auto-detect: ComfyUI's TRELLIS.2 nodes NOT found.
+[PBR] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/MarigoldModelLoader (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x71c482f89090>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[SkinTokens] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/StableGenSkinTokensAutoRig (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x71c48339f890>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect of LATO2Remesh failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/LATO2Remesh (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x71c4833dec40>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect: no nodes found.
+[StableGen] Could not query ComfyUI node Trellis2Conditioning: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/Trellis2Conditioning (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x71c4833de520>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[TRELLIS2] Auto-detect: ComfyUI's TRELLIS.2 nodes NOT found.
+[PBR] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/MarigoldModelLoader (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x71c482f0da30>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[SkinTokens] Auto-detect failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/StableGenSkinTokensAutoRig (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x71c4833abdf0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect of LATO2Remesh failed: HTTPConnectionPool(host='127.0.0.1', port=8188): Max retries exceeded with url: /object_info/LATO2Remesh (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x71c482fc85a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[MeshTools] Auto-detect: no nodes found.
+Info: Saved as "kaleaon_anatomy_parts.blend"
+BUILT /home/hatch/workspace/anthroforge-v2/parts-lab/kaleaon-anatomy/kaleaon_anatomy_parts.blend
+{
+ "Part_Shaft_1": {
+  "verts": 626,
+  "volume_L": 5.301,
+  "morphs": [
+   "GirthPlus",
+   "GirthMinus"
+  ],
+  "bones": [
+   "Shaft_1_Base",
+   "Shaft_1_Tip"
+  ]
+ },
+ "Part_Shaft_2": {
+  "verts": 626,
+  "volume_L": 6.182,
+  "morphs": [
+   "GirthPlus",
+   "GirthMinus"
+  ],
+  "bones": [
+   "Shaft_2_Base",
+   "Shaft_2_Tip"
+  ]
+ },
+ "Part_Shaft_3": {
+  "verts": 626,
+  "volume_L": 5.301,
+  "morphs": [
+   "GirthPlus",
+   "GirthMinus"
+  ],
+  "bones": [
+   "Shaft_3_Base",
+   "Shaft_3_Tip"
+  ]
+ },
+ "Part_Shaft_4": {
+  "verts": 626,
+  "volume_L": 6.182,
+  "morphs": [
+   "GirthPlus",
+   "GirthMinus"
+  ],
+  "bones": [
+   "Shaft_4_Base",
+   "Shaft_4_Tip"
+  ]
+ },
+ "Part_SacUdder": {
+  "verts": 1730,
+  "volume_L": 209.459,
+  "bones": [
+   "Sac"
+  ]
+ },
+ "Part_SacUdder_Teat_1": {
+  "verts": 109,
+  "volume_L": 0.184,
+  "bones": [
+   "Teat_1"
+  ],
+  "root_world": [
+   -0.1121,
+   -0.2777,
+   0.1274
+  ],
+  "dir_world": [
+   -0.0939,
+   -0.1977,
+   -0.9757
+  ],
+  "length_m": 0.095,
+  "base_radius_m": 0.034
+ },
+ "Part_SacUdder_Teat_2": {
+  "verts": 109,
+  "volume_L": 0.189,
+  "bones": [
+   "Teat_2"
+  ],
+  "root_world": [
+   0.2299,
+   -0.1995,
+   0.1188
+  ],
+  "dir_world": [
+   0.1959,
+   -0.1472,
+   -0.9695
+  ],
+  "length_m": 0.095,
+  "base_radius_m": 0.034
+ },
+ "Part_SacUdder_Teat_3": {
+  "verts": 109,
+  "volume_L": 0.175,
+  "bones": [
+   "Teat_3"
+  ],
+  "root_world": [
+   -0.0884,
+   0.1151,
+   0.1161
+  ],
+  "dir_world": [
+   -0.1834,
+   0.0049,
+   -0.983
+  ],
+  "length_m": 0.095,
+  "base_radius_m": 0.034
+ },
+ "Part_SacUdder_Teat_4": {
+  "verts": 109,
+  "volume_L": 0.185,
+  "bones": [
+   "Teat_4"
+  ],
+  "root_world": [
+   0.2273,
+   0.08,
+   0.1108
+  ],
+  "dir_world": [
+   0.1867,
+   0.1331,
+   -0.9734
+  ],
+  "length_m": 0.095,
+  "base_radius_m": 0.034
+ }
+}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

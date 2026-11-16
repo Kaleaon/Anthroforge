@@ -1,0 +1,305 @@
+{
+ "composition": {
+  "route": "anthroforge-app core/build.py (instance packs on the app hm08 base); graded with bara_machinery",
+  "formula": "preset sliders (neck/forearm/definition at coupling-effective values) + muscle 1.0 + chest_width 1.0 + s*tissue_strongman + 0.30*belly.protrusion",
+  "tissue_scale_shipped": 0.45,
+  "corrective_rule": "largest s passing all gates (0 flips, min-dot >= 0.01, M4 >= 1.30): s=0.45",
+  "scan": [
+   {
+    "s": 0.35,
+    "flips_body": 0,
+    "min_body_dot": 0.010401244785394184,
+    "M4": 1.3192517674625799,
+    "M5": 0.9640877136889501,
+    "M6": 27.72023169488367,
+    "chest_g": 1.3803473845680787,
+    "waist_g": 1.0463108093635598,
+    "fa_g": 0.44990596601813215,
+    "volume_L": 105.07441976422133,
+    "passes": true
+   },
+   {
+    "s": 0.45,
+    "flips_body": 0,
+    "min_body_dot": 0.010401244785394184,
+    "M4": 1.3027416268003247,
+    "M5": 0.9541910723769238,
+    "M6": 26.792133218403283,
+    "chest_g": 1.3844742864613657,
+    "waist_g": 1.0627389637205233,
+    "fa_g": 0.45316518633605984,
+    "volume_L": 107.34913565597421,
+    "passes": true
+   },
+   {
+    "s": 0.55,
+    "flips_body": 0,
+    "min_body_dot": 0.010401244785394184,
+    "M4": 1.287000036423853,
+    "M5": 0.9441420021492497,
+    "M6": 24.323336541783156,
+    "chest_g": 1.3886297758804291,
+    "waist_g": 1.07896638428929,
+    "fa_g": 0.4564108172260935,
+    "volume_L": 109.66178114566132,
+    "passes": false
+   },
+   {
+    "s": 0.65,
+    "flips_body": 0,
+    "min_body_dot": 0.010401244785394184,
+    "M4": 1.272036588058204,
+    "M5": 0.9343690883820366,
+    "M6": 23.858425754737556,
+    "chest_g": 1.3928141603343291,
+    "waist_g": 1.0949481904922995,
+    "fa_g": 0.45964641099614545,
+    "volume_L": 112.01233789930158,
+    "passes": false
+   }
+  ],
+  "neck_cap": {
+   "intent_raw": 0.9,
+   "shipped_raw": 0.3,
+   "scan": [
+    {
+     "raw": 0.9,
+     "effective": 0.92956246875,
+     "flips": 3,
+     "min_dot": -0.04975591023941367,
+     "passes": false
+    },
+    {
+     "raw": 0.75,
+     "effective": 0.7746353906250001,
+     "flips": 2,
+     "min_dot": -0.03580195413847914,
+     "passes": false
+    },
+    {
+     "raw": 0.6,
+     "effective": 0.6197083125,
+     "flips": 2,
+     "min_dot": -0.020812940035464522,
+     "passes": false
+    },
+    {
+     "raw": 0.45,
+     "effective": 0.464781234375,
+     "flips": 1,
+     "min_dot": -0.00468329647689375,
+     "passes": false
+    },
+    {
+     "raw": 0.4,
+     "effective": 0.413138875,
+     "flips": 0,
+     "min_dot": 0.0009667151458064849,
+     "passes": false
+    },
+    {
+     "raw": 0.35,
+     "effective": 0.361496515625,
+     "flips": 0,
+     "min_dot": 0.006761132035993156,
+     "passes": false
+    },
+    {
+     "raw": 0.3,
+     "effective": 0.30985415625,
+     "flips": 0,
+     "min_dot": 0.010401244785394184,
+     "passes": true
+    },
+    {
+     "raw": 0.25,
+     "effective": 0.258211796875,
+     "flips": 0,
+     "min_dot": 0.010401244785394184,
+     "passes": true
+    },
+    {
+     "raw": 0.2,
+     "effective": 0.2065694375,
+     "flips": 0,
+     "min_dot": 0.010401244785394184,
+     "passes": true
+    }
+   ],
+   "reason": "neck field at intent folds 3 throat faces over the full muscle system; largest fold-safe raw value shipped (build-layer corrective, record keeps the intent)"
+  },
+  "applied_sliders": [
+   "body.belly.protrusion",
+   "body.build.chest_width",
+   "body.build.muscle",
+   "body.build.tissue_strongman",
+   "body.definition.back",
+   "body.definition.pecs_crease",
+   "body.definition.traps_valleys",
+   "body.forearm.mass",
+   "body.neck.mass"
+  ],
+  "unapplied_count": 43,
+  "coupling_derived": {
+   "attenuation.body.definition.back": 0.84335428125,
+   "attenuation.body.definition.pecs_crease": 0.820722375,
+   "attenuation.body.definition.traps_valleys": 0.8813750625,
+   "distribution.muscle.chest": 1.0245454545454544,
+   "distribution.muscle.hips_glutes": 0.8581818181818182,
+   "distribution.muscle.thighs": 0.8936363636363637,
+   "distribution.muscle.waist": 1.2045454545454546,
+   "distribution.tissue.chest": 1.0409090909090908,
+   "distribution.tissue.hips_glutes": 0.7636363636363637,
+   "distribution.tissue.thighs": 0.8227272727272728,
+   "distribution.tissue.waist": 1.3409090909090908,
+   "distribution.weight.chest": 1.0409090909090908,
+   "distribution.weight.hips_glutes": 0.7636363636363637,
+   "distribution.weight.thighs": 0.8227272727272728,
+   "distribution.weight.waist": 1.3409090909090908,
+   "power_belly.composite": 0.35,
+   "power_belly.core_share": 0.27999999999999997,
+   "power_belly.drape_share": 0.72,
+   "power_belly.index": 0.315,
+   "power_belly.tilt_deg": 0.8399999999999999,
+   "tissue.abdomen": 0.626875,
+   "tissue.back": 0.26764375,
+   "tissue.calf": 0.11538750000000002,
+   "tissue.chest": 0.291975,
+   "tissue.flanks": 0.40746875,
+   "tissue.foot": 0.05769375000000001,
+   "tissue.forearm": 0.12165625,
+   "tissue.glutes": 0.21420000000000003,
+   "tissue.hand": 0.058394999999999996,
+   "tissue.level": 0.4675,
+   "tissue.neck": 0.21898125,
+   "tissue.thigh": 0.30770000000000003,
+   "tissue.upper_arm": 0.3406374999999999,
+   "wrap.factor.chest": 0.5716928571428571,
+   "wrap.factor.waist": 0.840625,
+   "wrap.ratio.waist": 0.65
+  },
+  "effective_weights": {
+   "neck_mass": 0.30985415625,
+   "forearm_mass": 0.5,
+   "definition": {
+    "body.definition.back": 0.3373417125,
+    "body.definition.traps_valleys": 0.30848127187499996,
+    "body.definition.pecs_crease": 0.164144475
+   }
+  }
+ },
+ "export": {
+  "target_height_m": 1.83,
+  "composed_height_m": 1.6614909411199137,
+  "export_scale": 1.101420389789489,
+  "volume_L_base_scale": 107.34913565597421,
+  "volume_L_at_export": 143.43590831876085,
+  "mass_kg_at_density_1": 143.43590831876085,
+  "draft_mass_kg": 140.0,
+  "draft_implied_density": 0.9760456892626556
+ },
+ "fold_gate_shipped": {
+  "flips_float32_shipped": 0,
+  "min_dot_float32_shipped": 0.010404440714967739,
+  "limiting_face": 23379,
+  "limiting_face_centroid": [
+   0.016489337508877117,
+   0.13739272952079773,
+   0.6717887123425802
+  ],
+  "build_character_flips": 0,
+  "build_character_min_dot": 0.010401244785394184,
+  "body_faces": 26756,
+  "gate": "0 flips and min_dot >= 0.01",
+  "passes": true
+ },
+ "glb_qa": {
+  "file": "brand_body.glb",
+  "status": {
+   "parse": "ok",
+   "skin": "warn",
+   "contract": "n/a",
+   "morphs": "warn",
+   "textures": "ok",
+   "geometry": "ok",
+   "scale": "ok"
+  },
+  "parses": true,
+  "nan_vertices": 0,
+  "degenerate_triangles": 0,
+  "max_extent_m": 1.6945,
+  "scale_flag": null,
+  "blocked": false
+ },
+ "scorecard": {
+  "base": {
+   "neck_w": 0.10301592777232825,
+   "head_w": 0.1670330578742691,
+   "chest_g": 1.1231663284342135,
+   "waist_g": 0.728630776403657,
+   "volume_L": 54.905178868833886,
+   "height_m": 1.6594313269888517
+  },
+  "muscle_width": {
+   "M1_neckW_headW": 0.8152547422056879,
+   "M4_chest_waist": 1.5028229728709304,
+   "M5_depth_ratio": 1.1096890192978404,
+   "M6_trap_deg": 24.4836529640014,
+   "neck_w": 0.136174492537115,
+   "chest_g": 1.3230423067039585,
+   "waist_g": 0.8803713614894199,
+   "volume_L": 83.65923845206632
+  },
+  "brand": {
+   "M1_neckW_headW": 0.8652079075511857,
+   "M2_neck_arm": 0.887053021639811,
+   "M2_neck_calf": 0.8335696226960022,
+   "M3_fa_arm": 0.8545530113691068,
+   "M4_chest_waist": 1.3027416268003247,
+   "M5_depth_ratio": 0.9541910723769238,
+   "M6_trap_deg": 26.792133218403283,
+   "M7_vis_neck_ratio": 0.5116005642206681,
+   "M8_span_headW": 4.415643799230431,
+   "M11_thigh_waist": 0.720694721942774,
+   "M12_heads_tall": 9.220297183172836,
+   "neck_w": 0.14451832249527247,
+   "neck_g": 0.47039977917501263,
+   "head_w": 0.1670330578742691,
+   "head_h": 0.18019928296369414,
+   "chest_g": 1.3844742864613657,
+   "chest_w": 0.583679426731064,
+   "waist_g": 1.0627389637205233,
+   "waist_w": 0.37072334903056503,
+   "chest_d": 0.26344742147496814,
+   "waist_d": 0.27609503914002387,
+   "delt_span": 0.7375584862690141,
+   "ua_g": 0.5302949966907604,
+   "fa_g": 0.45316518633605984,
+   "thigh_g": 0.7659103619563143,
+   "calf_g": 0.5643197237125861,
+   "volume_L": 107.34913565597421,
+   "height_m": 1.6614909411199137,
+   "visible_neck": 0.09219005483638576
+  }
+ },
+ "machinery_crosscheck": {
+  "grade": {
+   "chest_g": 1.3139332429962503,
+   "waist_g": 0.9319942905161356,
+   "neck_g": 0.466291536815912,
+   "fa_g": 0.38936636063641705,
+   "thigh_g": 0.6963833663446086,
+   "calf_g": 0.5155809339521198,
+   "volume_L": 89.29363285687818,
+   "height_m": 1.66796,
+   "M4_chest_waist": 1.409808253512581,
+   "M5_depth_ratio": 1.0283068841891863,
+   "M6_trap_deg": 30.91558865377635
+  },
+  "flips": {
+   "raw": 0,
+   "macro": 1
+  },
+  "note": "composed at the SHIPPED weights (neck capped). The post-neck-fix muscle target folds throat face 23379 on the macro base even alone (0 on the raw base) \u2014 the 1 macro flip here is that pre-existing field/base interaction, not Brand's vector; at the uncapped neck intent the same composition folds 4 macro / 2 raw. App base: 0 flips. Girths differ from the app route because the machinery macro base is a smaller-framed extraction of hm08 (base volume 51.2 L vs the app base's 54.9 L). Cross-check only \u2014 the app route ships."
+ }
+}

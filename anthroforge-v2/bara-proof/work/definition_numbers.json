@@ -1,0 +1,332 @@
+{
+ "sliders": {
+  "body.definition.flat_abs": {
+   "kind": "abs",
+   "block": "HIMBO - BodyTorsoFlatAbs",
+   "record_block": "HIMBO - TorsoFlatAbs",
+   "source_set": "vanilla",
+   "source_support_verts": 484,
+   "source_peak_mm": 9.010069444717168,
+   "source_canonical_depth_mm": 3.4458247863252853,
+   "pipeline_scale_s": 0.7902259294955191,
+   "target_depth_mm": 2.722980094652597,
+   "transfer_depth_mm": 2.5570887011313075,
+   "calibration_scale": 0.9000456500770466,
+   "final_depth_mm": 2.702333188488313,
+   "final_peak_mm": 5.6651214420356455,
+   "moved_verts": 183,
+   "groove": {
+    "source_mm": 1.1671650143639272,
+    "target_mm": 0.9223240583503852,
+    "transferred_mm": 0.41869533896923045,
+    "authored": true,
+    "groove_field_peak_mm": 0.6474101502974886,
+    "final_mm": 0.9128468850370646
+   },
+   "back_station_detail": null,
+   "measure": "abs",
+   "attenuation": {
+    "strongman": {
+     "effective_value": 0.33768,
+     "predicted_ratio": 0.33768,
+     "dip_inc_tissue0_mm": 2.702333188488313,
+     "dip_inc_coupled_mm": 0.9126059789850037,
+     "dip_inc_naive_mm": 2.7025765461043543,
+     "measured_ratio": 0.3377103840757387,
+     "fill_factor_naive_over_tissue0": 1.0000900546302278,
+     "abs_error": 3.038407573874302e-05
+    },
+    "gachidebu": {
+     "effective_value": 0.22968,
+     "predicted_ratio": 0.22968,
+     "dip_inc_tissue0_mm": 2.702333188488313,
+     "dip_inc_coupled_mm": 0.6207515909182765,
+     "dip_inc_naive_mm": 2.7026807133718753,
+     "measured_ratio": 0.22970949458143072,
+     "fill_factor_naive_over_tissue0": 1.000128601789388,
+     "abs_error": 2.9494581430727917e-05
+    }
+   },
+   "kernel_cv": {
+    "n": 391,
+    "median_cm": 0.08195549081344079,
+    "p95_cm": 0.20046561599530044
+   },
+   "target_moved_verts": 197
+  },
+  "body.definition.traps_valleys": {
+   "kind": "valleys",
+   "block": "HIMBO - BodyArmsTrapsValleys",
+   "record_block": "HIMBO - ArmsTrapsValleys",
+   "source_set": "vanilla",
+   "source_support_verts": 885,
+   "source_peak_mm": 7.707889749918537,
+   "source_canonical_depth_mm": -1.1852133357161936,
+   "pipeline_scale_s": 0.7902259294955191,
+   "target_depth_mm": -0.9365863098668138,
+   "transfer_depth_mm": -0.792321611241988,
+   "calibration_scale": 1.1820784597793397,
+   "final_depth_mm": -0.9365863868855797,
+   "final_peak_mm": 3.794538069005446,
+   "moved_verts": 419,
+   "groove": null,
+   "back_station_detail": null,
+   "measure": "valleys",
+   "attenuation": {
+    "strongman": {
+     "effective_value": 0.84846375,
+     "predicted_ratio": 0.84846375,
+     "dip_inc_tissue0_mm": -0.9365863868855797,
+     "dip_inc_coupled_mm": -0.7939904366092208,
+     "dip_inc_naive_mm": -0.9357987294996164,
+     "measured_ratio": 0.8477492815686424,
+     "fill_factor_naive_over_tissue0": 0.9991590125620099,
+     "abs_error": 0.0007144684313575844
+    },
+    "gachidebu": {
+     "effective_value": 0.805365,
+     "predicted_ratio": 0.805365,
+     "dip_inc_tissue0_mm": -0.9365863868855797,
+     "dip_inc_coupled_mm": -0.7533081710126766,
+     "dip_inc_naive_mm": -0.9353643871573993,
+     "measured_ratio": 0.8043125349255222,
+     "fill_factor_naive_over_tissue0": 0.9986952621292694,
+     "abs_error": 0.0010524650744777597
+    }
+   },
+   "kernel_cv": {
+    "n": 623,
+    "median_cm": 0.0820741582500649,
+    "p95_cm": 0.30197878838125297
+   },
+   "target_moved_verts": 488
+  },
+  "body.definition.pecs_crease": {
+   "kind": "crease",
+   "block": "HIMBO - BodyPecsCrease",
+   "record_block": "HIMBO - PecsCrease",
+   "source_set": "vanilla",
+   "source_support_verts": 267,
+   "source_peak_mm": 8.547407967162885,
+   "source_canonical_depth_mm": 1.5344711264474444,
+   "pipeline_scale_s": 0.7902259294955191,
+   "target_depth_mm": 1.212578872180968,
+   "transfer_depth_mm": 0.7023917677862618,
+   "calibration_scale": 1.726356896241353,
+   "final_depth_mm": 1.2125785106609637,
+   "final_peak_mm": 4.188077639678194,
+   "moved_verts": 312,
+   "groove": null,
+   "back_station_detail": null,
+   "measure": "crease",
+   "attenuation": {
+    "strongman": {
+     "effective_value": 0.6979500000000001,
+     "predicted_ratio": 0.6979500000000001,
+     "dip_inc_tissue0_mm": 1.2125785106609637,
+     "dip_inc_coupled_mm": 0.8461804523709766,
+     "dip_inc_naive_mm": 1.2123779152128087,
+     "measured_ratio": 0.6978355998653915,
+     "fill_factor_naive_over_tissue0": 0.9998345711668223,
+     "abs_error": 0.00011440013460861653
+    },
+    "gachidebu": {
+     "effective_value": 0.5967,
+     "predicted_ratio": 0.5967,
+     "dip_inc_tissue0_mm": 1.2125785106609637,
+     "dip_inc_coupled_mm": 0.7233764480670679,
+     "dip_inc_naive_mm": 1.2122917537101685,
+     "measured_ratio": 0.596560504501076,
+     "fill_factor_naive_over_tissue0": 0.9997635147346964,
+     "abs_error": 0.0001394954989240027
+    }
+   },
+   "kernel_cv": {
+    "n": 227,
+    "median_cm": 0.13647324942064148,
+    "p95_cm": 0.313093599157845
+   },
+   "target_moved_verts": 336
+  },
+  "body.definition.back": {
+   "kind": "back",
+   "block": "HIMBO - Body HPTorsoBackDefinition",
+   "record_block": "HIMBO - TorsoBackDefinition (SOS set decode; instance transfers the SOS HP twin block)",
+   "source_set": "sos_hp",
+   "source_support_verts": 859,
+   "source_peak_mm": 19.53988481401785,
+   "source_canonical_depth_mm": 1.978327765552418,
+   "pipeline_scale_s": 0.7902259294955191,
+   "target_depth_mm": 1.563325897380453,
+   "transfer_depth_mm": 2.238924132623878,
+   "calibration_scale": 0.6982487144610539,
+   "final_depth_mm": 1.5633249156100333,
+   "final_peak_mm": 9.990861645047527,
+   "moved_verts": 539,
+   "groove": null,
+   "back_station_detail": {
+    "furrow_source_mm": 0.2877048304184733,
+    "rms_source_mm": 1.978327765552418,
+    "primary_measure": "back_rms"
+   },
+   "measure": "back_rms",
+   "attenuation": {
+    "strongman": {
+     "effective_value": 0.75603375,
+     "predicted_ratio": 0.75603375,
+     "dip_inc_tissue0_mm": 1.5633249156100333,
+     "dip_inc_coupled_mm": 1.1819686480066014,
+     "dip_inc_naive_mm": 1.5633884452264686,
+     "measured_ratio": 0.7560607754693011,
+     "fill_factor_naive_over_tissue0": 1.0000406375001134,
+     "abs_error": 2.7025469301111826e-05
+    },
+    "gachidebu": {
+     "effective_value": 0.6725025,
+     "predicted_ratio": 0.6725025,
+     "dip_inc_tissue0_mm": 1.5633249156100333,
+     "dip_inc_coupled_mm": 1.0514413749067604,
+     "dip_inc_naive_mm": 1.5634889974572976,
+     "measured_ratio": 0.6725674006778507,
+     "fill_factor_naive_over_tissue0": 1.0001049569706373,
+     "abs_error": 6.490067785069886e-05
+    }
+   },
+   "kernel_cv": {
+    "n": 719,
+    "median_cm": 0.09111786715459298,
+    "p95_cm": 0.33453501582878803
+   },
+   "target_moved_verts": 624
+  }
+ },
+ "evaluator": {
+  "strongman": {
+   "level": 0.7575000000000001,
+   "effective_at_raw_1.0": {
+    "body.definition.flat_abs": 0.33768,
+    "body.definition.traps_valleys": 0.84846375,
+    "body.definition.pecs_crease": 0.6979500000000001,
+    "body.definition.back": 0.75603375
+   },
+   "attenuation": {
+    "body.definition.flat_abs": 0.33768,
+    "body.definition.traps_valleys": 0.84846375,
+    "body.definition.pecs_crease": 0.6979500000000001,
+    "body.definition.back": 0.75603375
+   }
+  },
+  "gachidebu": {
+   "level": 0.9450000000000001,
+   "effective_at_raw_1.0": {
+    "body.definition.flat_abs": 0.22968,
+    "body.definition.traps_valleys": 0.805365,
+    "body.definition.pecs_crease": 0.5967,
+    "body.definition.back": 0.6725025
+   },
+   "attenuation": {
+    "body.definition.flat_abs": 0.22968,
+    "body.definition.traps_valleys": 0.805365,
+    "body.definition.pecs_crease": 0.5967,
+    "body.definition.back": 0.6725025
+   }
+  }
+ },
+ "folds": {
+  "body.definition.flat_abs": {
+   "muscle": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.008124329591214927,
+    "macro_flips": 0,
+    "macro_min_dot": 0.10949802673728093
+   },
+   "strongman": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.008124329591214927,
+    "macro_flips": 0,
+    "macro_min_dot": 0.01482329436605596
+   },
+   "gachidebu": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.0006095249805491722,
+    "macro_flips": 0,
+    "macro_min_dot": 0.005848530848297216
+   }
+  },
+  "body.definition.traps_valleys": {
+   "muscle": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.008124329591214927,
+    "macro_flips": 0,
+    "macro_min_dot": 0.10949802673728093
+   },
+   "strongman": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.008124329591214927,
+    "macro_flips": 0,
+    "macro_min_dot": 0.01482329436605596
+   },
+   "gachidebu": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.0006095249805491722,
+    "macro_flips": 0,
+    "macro_min_dot": 0.005848530848297216
+   }
+  },
+  "body.definition.pecs_crease": {
+   "muscle": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.008124329591214927,
+    "macro_flips": 0,
+    "macro_min_dot": 0.10949802673728093
+   },
+   "strongman": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.008124329591214927,
+    "macro_flips": 0,
+    "macro_min_dot": 0.01482329436605596
+   },
+   "gachidebu": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.0006095249805491722,
+    "macro_flips": 0,
+    "macro_min_dot": 0.005848530848297216
+   }
+  },
+  "body.definition.back": {
+   "muscle": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.008124329591214927,
+    "macro_flips": 0,
+    "macro_min_dot": 0.10949802673728093
+   },
+   "strongman": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.008124329591214927,
+    "macro_flips": 0,
+    "macro_min_dot": 0.01482329436605596
+   },
+   "gachidebu": {
+    "raw_flips": 0,
+    "raw_min_dot": 0.0006095249805491722,
+    "macro_flips": 0,
+    "macro_min_dot": 0.005848530848297216
+   }
+  },
+  "combined_defs_gachidebu_raw": {
+   "flips": 0,
+   "min_dot": 0.0006095249805491722
+  },
+  "combined_defs_gachidebu_macro": {
+   "flips": 0,
+   "min_dot": 0.005848530848297216
+  }
+ },
+ "gachidebu_substrate": {
+  "tissue_scale": 1.2475247524752475,
+  "neck_effective": 0.9574087500000001,
+  "repair_att_min": 0.01877213388752446,
+  "repair_verts_touched": 653,
+  "note": "float rebuild of the shipped body.coupling.gachidebu build (build_coupling_validation protocol); the shipped target is this field's 0.1 mm-quantised export"
+ }
+}

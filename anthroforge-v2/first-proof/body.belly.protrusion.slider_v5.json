@@ -1,0 +1,454 @@
+{
+ "id": "body.belly.protrusion",
+ "label": "Body adiposity (belly-centred)",
+ "group": "body/torso",
+ "version": 5,
+ "supersedes": "body.belly.protrusion.slider_v4.json (v4, whole-torso system; limbs lean)",
+ "symmetry": "bilateral_x",
+ "range": {
+  "min": -1,
+  "max": 1,
+  "default": 0,
+  "safe_max": 1.0,
+  "endpoint_anchor": "belly core unchanged from v1/v3/v4: max forward displacement at navel 0.1197 m on hm08 (Fat Males anchor scaled by torso-length ratio 0.8325); limb layer calibrated separately (thigh-band match, alpha 0.65) -- see system.limb_distribution"
+ },
+ "region": {
+  "landmarks": [
+   "navel",
+   "sternum_bottom",
+   "pelvis_top"
+  ],
+  "mask_rule": "v4 whole-torso system, plus the limb crossfade: on limb-region verts (within 0.135 m of an arm axis / 0.175 m of a leg axis) the value crossfades proximally (arms s in [-0.02, 0.16], legs s in [-0.03, 0.13] of limb arc length) from v4's value to a limb-local (s, phi) transfer field, and fades distally to zero across the wrist (s 0.58-0.82) / ankle (s 0.70-0.90) so hands and feet stay lean. The system now ends at the wrists/ankles, not the limb roots."
+ },
+ "semantics": "Whole-BODY adiposity system (FAT_REFERENCE.md + limb addendum L1-L5 in GRAVITY_V5.md): v4's whole-torso field extended into upper arms, forearms, thighs and calves by a limb-local transfer of the same two learned sources. At +1: mid-thigh girth +17.0 cm, calf belly +10.3 cm, upper arm +6.2 cm, forearm +5.4 cm, wrist +1.9 cm, ankle +2.2 cm (proximal gradient, L1); mass pools on the arm's back/underside (field radial 1.81 vs 0.45 cm front, L3); elbow/knee girth minima persist (knee interior minimum s 0.52 -> 0.56); inner thighs close from a 7.2 cm gap to 6.4 cm at their closest band but do NOT meet at +1 on this base (R10 approached, not reached -- reported, not faked). Torso scorecard vs v4: unchanged within noise except hip girth +1.2 cm (legitimate hip/thigh-root mass).",
+ "system": {
+  "model": "D5 = D4 + INC; INC(v) = m(v) * w_prox(s) * (F_limb(v) * d_fade(s) - D4(v)) on limb verts, 0 elsewhere; shape(w) = base + w * LIN5 + sign(w)|w|^2.0 * SAG, LIN5 = LIN4 + INC, SAG unchanged from v3/v4",
+  "limb_distribution": {
+   "blend": "0.5 * Fat Males limb field + 0.5 * alpha_limb * HIMBO Chonky limb-recipe field, each scaled by its per-limb length ratio (arm/leg separately)",
+   "alpha_limb_calibration": 0.6501530710755051,
+   "calibration": "thigh-band match (mean |dr| over leg samples s 0.08-0.45, all phi): Fat Males 2.92 cm vs HIMBO limb recipe 4.49 cm after length scaling -> alpha 0.65 (inside the [0.5, 2.0] cap, unlike v4's torso alpha which capped at 2.0). The sources agree on limbs far better than on the belly front.",
+   "scales": {
+    "fm_arm": 1.151927887276351,
+    "hi_arm": 1.1795178641043322,
+    "fm_leg": 1.1026512848940604,
+    "hi_leg": 1.1638954566839907
+   },
+   "himbo_recipe_used": {
+    "ArmsBiceps": 1.0,
+    "ArmsClavicleCurve": 1.0,
+    "ArmsDelts": 1.0,
+    "ArmsDeltsBack": 0.27,
+    "ArmsDeltsLower": 0.23,
+    "ArmsDeltsUpper": 0.18,
+    "ArmsFore": 1.0,
+    "LegsSize": 1.0,
+    "LegsThigh": 1.0,
+    "LegsChubby": 0.94,
+    "LegsFemurUpper": 0.62,
+    "LegsFemurLower": 0.05,
+    "LegsGlutes": 0.38,
+    "LegsKneePit": 0.57,
+    "LegsCalfWidth": 0.72,
+    "LegsCalfLower": 0.33,
+    "LegsCalfUpper": 0.12
+   },
+   "himbo_recipe_missing": [
+    "ArmsDeltsShape",
+    "LegsThighSmoothCurve",
+    "LegsVastusMReduction",
+    "LegsCalfOut",
+    "LegsCalfSideIn"
+   ],
+   "missing_reason": "DeltsShape, ThighSmoothCurve, VastusMReduction, CalfOut, CalfSideIn exist only on the SOS-variant HIMBO mesh; verified Nov 12, 2026 that the SOS OSD's same-named blocks carry different vertex supports (LegsCalfWidth 2422 vs 4009 verts), so they do not index the Vanilla base and cannot be composed onto it. All primary mass sliders are present; the five are shape refinements.",
+   "shipped_inc_scale": 1.0,
+   "parametrization": "per-limb axis polyline from cross-section centroids (binomial-smoothed; legs z-bands hip->ankle, arms PCA bands shoulder->wrist); (s, phi) kernel with phi in mirrored right-limb space (inner/outer NOT folded, unlike the torso's |theta|); radial + axial components, tangential dropped as in v1-v4",
+   "reference_shapings": [
+    "arm underside sector gain (R3/L3): blended arm dr reweighted toward phi_down (world-down in the arm's frame, -2.12 rad) with strength 1.0, mean-preserved -- both sources under-pool the underside (HIMBO's arm recipe is deltoid/biceps-led; Fat Males' arm is its coarsest region)",
+    "leg distal taper (L4): leg dr x1.0 through the gastrocnemius belly (s<=0.68), ->0.55 at s=0.85, ->0.35 at s=1.0 -- calf fat is a thin layer over a muscle form; the raw blend tubed the shank",
+    "distal fades re-anchored after the r3 run measured +5.4/+5.5 cm at wrist/ankle: arm fade s 0.58-0.82, leg fade s 0.70-0.90 (wrist s~0.72, ankle s~0.84 on the base profile)"
+   ]
+  },
+  "field_cross_validation_cm": {
+   "fm_arm": {
+    "label": "fat_males_arm",
+    "kind": "arm",
+    "samples": 594,
+    "informative": 592,
+    "cv_cm": {
+     "p50": 0.5300905413369071,
+     "p95": 2.535259314538671,
+     "max": 5.70228719010534
+    }
+   },
+   "hi_arm": {
+    "label": "himbo_limb_arm",
+    "kind": "arm",
+    "samples": 3322,
+    "informative": 2895,
+    "cv_cm": {
+     "p50": 0.13948123256395267,
+     "p95": 0.4729013723051321,
+     "max": 0.729811350666383
+    }
+   },
+   "fm_leg": {
+    "label": "fat_males_leg",
+    "kind": "leg",
+    "samples": 1084,
+    "informative": 1080,
+    "cv_cm": {
+     "p50": 0.4721657767438074,
+     "p95": 2.43161705407179,
+     "max": 4.212482280554221
+    }
+   },
+   "hi_leg": {
+    "label": "himbo_limb_leg",
+    "kind": "leg",
+    "samples": 3422,
+    "informative": 3398,
+    "cv_cm": {
+     "p50": 0.353634594073416,
+     "p95": 1.8099120364455719,
+     "max": 3.4916269292803612
+    }
+   }
+  },
+  "whole_body_gate": "fold repair and the 0-flip gate run over ALL 26,756 body faces (both bases), not just the torso"
+ },
+ "gravity": {
+  "coupling": {
+   "formula": "shape(w) = base + w * LIN + f(w) * SAG",
+   "f": "sign(w) * |w|^gamma",
+   "gamma": 2.0,
+   "f_at_0.5": 0.25
+  },
+  "fold_repair": "attenuation repair on the limb increment: converged in 2 rounds, min attenuation 0.59, 29 verts attenuated below 0.99 (slope limiter kappa 0.55 on the increment first, as v2-v4)",
+  "contact_cap_applied": false
+ },
+ "qa": {
+  "fold_scan_+1_both_bases": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.06954358003606084
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.0017686192905230214
+   }
+  },
+  "fold_scan_full": {
+   "-1 (linear)": {
+    "raw": {
+     "flips": 184,
+     "min_dot": -0.9962751455780274
+    },
+    "macro": {
+     "flips": 162,
+     "min_dot": -0.9842359847292783
+    }
+   },
+   "+0.5 (coupled)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.45008062687908507
+    },
+    "macro": {
+     "flips": 0,
+     "min_dot": 0.586878537110553
+    }
+   },
+   "+1 (combined)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.06954358003606084
+    },
+    "macro": {
+     "flips": 0,
+     "min_dot": 0.0017686192905230214
+    }
+   },
+   "+1.05 (combined)": {
+    "raw": {
+     "flips": 0,
+     "min_dot": 0.04954362113820293
+    },
+    "macro": {
+     "flips": 11,
+     "min_dot": -0.0680511004278044
+    }
+   }
+  },
+  "body_faces_checked": 26756,
+  "navel_anchor": {
+   "v5_at_+1_numpy": {
+    "forward_cm": 11.14157754248432,
+    "down_cm": 6.992363717319414
+   },
+   "v5_at_+1_blender_cm": {
+    "forward": 11.27,
+    "down": 6.99
+   },
+   "v4_at_+1_blender_cm": {
+    "forward": 11.27,
+    "down": 6.99
+   },
+   "note": "identical to v4 by construction (navel is outside the limb region) and reproduced in Blender"
+  },
+  "metrics_corrected_v4": {
+   "M2_apron_bottom_above_crotch_cm": 8.81,
+   "M3_waist_girth_narrowest_cm": 85.5,
+   "M3_hip_girth_cm": 102.9,
+   "M3_ratio_narrowest": 0.831,
+   "M3_navel_girth_cm": 117.4,
+   "M3_ratio_navel_level": 1.141,
+   "M9_waist_height_ratio_narrowest": 0.513,
+   "flank_roll_peak": {
+    "h": 0.279,
+    "width_cm": 45.1
+   },
+   "flank_pinch_above_roll_cm": 10.3,
+   "below_share_pct (M1)": 63.1,
+   "back_radial_cm (M5)": 5.59,
+   "chest_front_radial_cm (M6)": 1.77
+  },
+  "metrics_corrected_v5": {
+   "M2_apron_bottom_above_crotch_cm": 8.99,
+   "M3_waist_girth_narrowest_cm": 85.5,
+   "M3_hip_girth_cm": 104.1,
+   "M3_ratio_narrowest": 0.822,
+   "M3_navel_girth_cm": 117.4,
+   "M3_ratio_navel_level": 1.128,
+   "M9_waist_height_ratio_narrowest": 0.513,
+   "flank_roll_peak": {
+    "h": 0.279,
+    "width_cm": 44.7
+   },
+   "flank_pinch_above_roll_cm": 9.9,
+   "below_share_pct (M1)": 63.0,
+   "back_radial_cm (M5)": 5.59,
+   "chest_front_radial_cm (M6)": 1.77
+  },
+  "limb_metrics": {
+   "arm_R": {
+    "landmark": {
+     "joint": "elbow",
+     "s_base": 0.56,
+     "s_v5": 0.56,
+     "girth_base_cm": 16.5,
+     "girth_v5_cm": 22.2,
+     "gain_cm": 5.66,
+     "interior_min_base": false,
+     "interior_min_v5": false
+    },
+    "points": {
+     "upper_arm_tube": {
+      "s": 0.36,
+      "base_cm": 23.8,
+      "v4_cm": 24.3,
+      "v5_cm": 30.0,
+      "gain_cm": 6.2
+     },
+     "forearm": {
+      "s": 0.64,
+      "base_cm": 16.2,
+      "v4_cm": 15.9,
+      "v5_cm": 21.5,
+      "gain_cm": 5.36
+     },
+     "wrist": {
+      "s": 0.72,
+      "base_cm": 16.0,
+      "v4_cm": 16.4,
+      "v5_cm": 17.8,
+      "gain_cm": 1.85
+     }
+    },
+    "boundary_step_ratio": {
+     "proximal_crossfade": 0.85,
+     "joint": 1.0
+    }
+   },
+   "leg_R": {
+    "landmark": {
+     "joint": "knee",
+     "s_base": 0.52,
+     "s_v5": 0.56,
+     "girth_base_cm": 33.4,
+     "girth_v5_cm": 43.9,
+     "gain_cm": 10.52,
+     "interior_min_base": true,
+     "interior_min_v5": true
+    },
+    "points": {
+     "mid_thigh": {
+      "s": 0.26,
+      "base_cm": 43.0,
+      "v4_cm": 43.0,
+      "v5_cm": 59.9,
+      "gain_cm": 16.99
+     },
+     "calf_belly": {
+      "s": 0.6,
+      "base_cm": 34.6,
+      "v4_cm": 34.6,
+      "v5_cm": 44.9,
+      "gain_cm": 10.28
+     },
+     "ankle": {
+      "s": 0.84,
+      "base_cm": 22.2,
+      "v4_cm": 22.2,
+      "v5_cm": 24.4,
+      "gain_cm": 2.18
+     }
+    },
+    "boundary_step_ratio": {
+     "proximal_crossfade": 0.7,
+     "joint": 1.71
+    }
+   },
+   "arm_L": {
+    "landmark": {
+     "joint": "elbow",
+     "s_base": 0.56,
+     "s_v5": 0.56,
+     "girth_base_cm": 16.5,
+     "girth_v5_cm": 22.2,
+     "gain_cm": 5.66,
+     "interior_min_base": false,
+     "interior_min_v5": false
+    },
+    "points": {
+     "upper_arm_tube": {
+      "s": 0.36,
+      "base_cm": 23.8,
+      "v4_cm": 24.3,
+      "v5_cm": 30.0,
+      "gain_cm": 6.2
+     },
+     "forearm": {
+      "s": 0.64,
+      "base_cm": 16.2,
+      "v4_cm": 15.9,
+      "v5_cm": 21.5,
+      "gain_cm": 5.36
+     },
+     "wrist": {
+      "s": 0.72,
+      "base_cm": 16.0,
+      "v4_cm": 16.4,
+      "v5_cm": 17.8,
+      "gain_cm": 1.85
+     }
+    },
+    "boundary_step_ratio": {
+     "proximal_crossfade": 0.85,
+     "joint": 1.0
+    }
+   },
+   "leg_L": {
+    "landmark": {
+     "joint": "knee",
+     "s_base": 0.52,
+     "s_v5": 0.56,
+     "girth_base_cm": 33.4,
+     "girth_v5_cm": 43.9,
+     "gain_cm": 10.52,
+     "interior_min_base": true,
+     "interior_min_v5": true
+    },
+    "points": {
+     "mid_thigh": {
+      "s": 0.26,
+      "base_cm": 43.0,
+      "v4_cm": 43.0,
+      "v5_cm": 59.9,
+      "gain_cm": 16.99
+     },
+     "calf_belly": {
+      "s": 0.6,
+      "base_cm": 34.6,
+      "v4_cm": 34.6,
+      "v5_cm": 44.9,
+      "gain_cm": 10.28
+     },
+     "ankle": {
+      "s": 0.84,
+      "base_cm": 22.2,
+      "v4_cm": 22.2,
+      "v5_cm": 24.5,
+      "gain_cm": 2.27
+     }
+    },
+    "boundary_step_ratio": {
+     "proximal_crossfade": 0.71,
+     "joint": 1.71
+    }
+   }
+  },
+  "underside_pooling": {
+   "arm_R": {
+    "field_radial_cm": {
+     "back_underside": 1.81,
+     "front": 0.45
+    },
+    "total_radial_cm": {
+     "back_underside": 1.67,
+     "front": 0.38
+    },
+    "n_back": 120,
+    "n_front": 124
+   },
+   "arm_L": {
+    "field_radial_cm": {
+     "back_underside": 1.81,
+     "front": 0.45
+    },
+    "total_radial_cm": {
+     "back_underside": 1.67,
+     "front": 0.38
+    },
+    "n_back": 120,
+    "n_front": 124
+   }
+  },
+  "inner_thigh_gap": {
+   "base_min_cm": 7.16,
+   "v5_min_cm": 6.38,
+   "v5_min_at_z_m": -0.105,
+   "base_top_band_cm": 7.16,
+   "v5_top_band_cm": 6.38
+  },
+  "blender_evaluated_belly_region": {
+   "faces": 918,
+   "flips": 0,
+   "min_dot": 0.021393756089607315
+  },
+  "blender_evaluated_all_body_faces": {
+   "faces": 13378,
+   "flips": 0,
+   "min_dot": 0.021393756089607315
+  },
+  "moved_verts": {
+   "v5_combined": 4762,
+   "limb_component": 5755
+  }
+ },
+ "instances": {
+  "makehuman_hm08": {
+   "base": "hm08 (MPFB2 base.obj vertex order, 19158 verts; pure delta vs the macro-neutral base)",
+   "file": "body.belly.protrusion_v5.target",
+   "components": {
+    "combined_at_+1": "body.belly.protrusion_v5.target (= LIN5 + SAG, for hosts without coupling support)",
+    "limb_component": "body.belly.protrusion_limb_v5.target (= D5 - D4: the limb crossfade increment. NOT a standalone field -- apply on top of the v4 combined target; its negative regions retire v4's off-gate extrapolation on forearms/hands)",
+    "v4_combined": "body.belly.protrusion_v4.target (unchanged)"
+   }
+  }
+ },
+ "provenance": {
+  "source": "v4 system (Fat Males + HIMBO Chonky torso) plus limb transfers of (a) the Fat Males full field (its body mesh carries arms and legs) and (b) the HIMBO 'Chonky' preset's arms+legs blocks (17 of 22 carried on the Vanilla base; 5 SOS-variant-only, see missing_reason). Atomic Muscle contributes no transferable field (its FO4 NIF vertex buffer defeated extraction in the v3 cross-check) and remains a field-level cross-check only. Rules: FAT_REFERENCE.md + limb addendum L1-L5.",
+  "method": "scripts/build_belly_v5.py (+ test_belly_v5.py, finalize_v5.py)",
+  "licence": "STUDY-ONLY / internal. Derived from Fat Males + HIMBO material under Joe's Nov 12, 2026 licence ruling (no AI-training use). NOT a CC0 MakeHuman asset; do not ship with stock MPFB content or redistribute."
+ }
+}

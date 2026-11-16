@@ -1,0 +1,18 @@
+00:15.024  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/dynamics/prototype_softdynamics.blend"
+/home/hatch/workspace/anthroforge-v2/dynamics/scripts/render_prototype.py:40: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  clay.use_nodes = True
+01:32.498  render           | Saved: '/home/hatch/workspace/anthroforge-v2/dynamics/renders/soft_f071.png'
+02:25.614  render           | Saved: '/home/hatch/workspace/anthroforge-v2/dynamics/renders/soft_f150.png'
+03:11.732  render           | Saved: '/home/hatch/workspace/anthroforge-v2/dynamics/renders/soft_f001.png'
+04:49.502  render           | Saved: '/home/hatch/workspace/anthroforge-v2/dynamics/renders/firm_f071.png'
+06:12.293  render           | Saved: '/home/hatch/workspace/anthroforge-v2/dynamics/renders/firm_f150.png'
+SWING FRAMES: max side 71 min side 95
+RENDERED soft 71
+RENDERED soft 150
+RENDERED soft 1
+RENDERED firm 71
+RENDERED firm 150
+RENDER_OK swing frames: 71 95
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

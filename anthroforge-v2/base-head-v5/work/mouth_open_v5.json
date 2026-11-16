@@ -1,0 +1,98 @@
+{
+ "edge_row_pairs": 81,
+ "edge_row_max_rest_gap": 0.0,
+ "margin_verts": {
+  "tissue": 68,
+  "jaw": 70
+ },
+ "margin_strip_tris": {
+  "tissue": 80,
+  "jaw": 88
+ },
+ "jaw_pose": {
+  "0": {
+   "rim_gap_centre": 0.0,
+   "rim_gap_front_mean": 0.0,
+   "rim_gap_max": 0.0,
+   "rim_gap_commissure_L": 0.0,
+   "rim_gap_commissure_R": 0.0,
+   "commissure_sep_L": 0.0054,
+   "commissure_sep_R": 0.0054,
+   "overlap_tissueMargin_vs_teethLower": 0,
+   "overlap_jawMargin_vs_teethUpper": 0,
+   "overlap_tissueMargin_vs_teethUpper": 0,
+   "overlap_jawMargin_vs_teethLower_rot": 0,
+   "overlap_margin_vs_margin": 0,
+   "clear_tissueMargin_teethLower": 0.0875,
+   "clear_jawMargin_teethUpper": 0.0194
+  },
+  "-10": {
+   "rim_gap_centre": 0.125,
+   "rim_gap_front_mean": 0.1196,
+   "rim_gap_max": 0.1257,
+   "rim_gap_commissure_L": 0.0554,
+   "rim_gap_commissure_R": 0.0554,
+   "commissure_sep_L": 0.0578,
+   "commissure_sep_R": 0.0578,
+   "overlap_tissueMargin_vs_teethLower": 0,
+   "overlap_jawMargin_vs_teethUpper": 0,
+   "overlap_tissueMargin_vs_teethUpper": 0,
+   "overlap_jawMargin_vs_teethLower_rot": 0,
+   "overlap_margin_vs_margin": 0,
+   "clear_tissueMargin_teethLower": 0.1598,
+   "clear_jawMargin_teethUpper": 0.0215
+  },
+  "-20": {
+   "rim_gap_centre": 0.2491,
+   "rim_gap_front_mean": 0.2382,
+   "rim_gap_max": 0.2504,
+   "rim_gap_commissure_L": 0.1105,
+   "rim_gap_commissure_R": 0.1105,
+   "commissure_sep_L": 0.113,
+   "commissure_sep_R": 0.113,
+   "overlap_tissueMargin_vs_teethLower": 0,
+   "overlap_jawMargin_vs_teethUpper": 0,
+   "overlap_tissueMargin_vs_teethUpper": 0,
+   "overlap_jawMargin_vs_teethLower_rot": 0,
+   "overlap_margin_vs_margin": 0,
+   "clear_tissueMargin_teethLower": 0.2305,
+   "clear_jawMargin_teethUpper": 0.0706
+  },
+  "-30": {
+   "rim_gap_centre": 0.3712,
+   "rim_gap_front_mean": 0.3551,
+   "rim_gap_max": 0.3733,
+   "rim_gap_commissure_L": 0.1647,
+   "rim_gap_commissure_R": 0.1647,
+   "commissure_sep_L": 0.1675,
+   "commissure_sep_R": 0.1675,
+   "overlap_tissueMargin_vs_teethLower": 0,
+   "overlap_jawMargin_vs_teethUpper": 0,
+   "overlap_tissueMargin_vs_teethUpper": 0,
+   "overlap_jawMargin_vs_teethLower_rot": 0,
+   "overlap_margin_vs_margin": 0,
+   "clear_tissueMargin_teethLower": 0.2917,
+   "clear_jawMargin_teethUpper": 0.1085
+  }
+ },
+ "jaw_rigid_pose_check": {
+  "min_area_rest": 0.0,
+  "max_area_drift": 0.0,
+  "max_normal_drift_deg": 1e-06
+ },
+ "lip_part_field_test": {
+  "centre_parting_achieved": 0.02,
+  "tissue_strip": {
+   "max_edge_stretch": 1.161,
+   "min_area_ratio": 0.6296,
+   "flipped": 0,
+   "tris": 640
+  },
+  "jaw_strip": {
+   "max_edge_stretch": 1.2018,
+   "min_area_ratio": 0.4278,
+   "flipped": 0,
+   "tris": 640
+  }
+ }
+}

@@ -1,0 +1,128 @@
+{
+ "character": "brand",
+ "base": "/home/hatch/workspace/anthroforge-v2/base-head-v4/neutral_base_head_v4.glb",
+ "vector": {
+  "BrowContinuity": -30.0,
+  "BrowPadding": 15.0,
+  "BrowPosition": 0.0,
+  "BrowProjection": -30.0,
+  "BrowScowl": 20.0,
+  "BrowShelf": 10.0,
+  "BrowThickness": -25.0,
+  "CheekWidth": 20.0,
+  "CraniumHeight": -50.0,
+  "CraniumLength": -5.0,
+  "CraniumWidth": 10.0,
+  "EarHeight": 10.0,
+  "EarPlacementHeight": -25.0,
+  "EarSpread": 25.0,
+  "EarTilt": -10.0,
+  "EarTipPoint": -65.0,
+  "EarWidth": 45.0,
+  "EyeForwardness": 10.0,
+  "EyeSize": -40.0,
+  "EyeSpacing": 50.0,
+  "ForeheadWidth": 15.0,
+  "JawDepth": 70.0,
+  "JawLength": 70.0,
+  "JawWidth": 50.0,
+  "MuzzleDepth": 20.0,
+  "MuzzleLength": 30.0,
+  "MuzzleTaper": 40.0,
+  "MuzzleWidth": 35.0,
+  "NoseSize": -15.0,
+  "RuffVolume": 50.0,
+  "StopAngle": -10.0
+ },
+ "paths": {
+  "MuzzleLength": "full",
+  "MuzzleWidth": "full",
+  "MuzzleTaper": "partial \u2014 index slider, tip-width field [E map]",
+  "MuzzleDepth": "full",
+  "CraniumWidth": "full (proportional; dome-shell ruler mismatch noted in v3/v4)",
+  "CraniumHeight": "full",
+  "CraniumLength": "full",
+  "ForeheadWidth": "full",
+  "CheekWidth": "full",
+  "StopAngle": "partial \u2014 index slider, dip+pitch field [E map]",
+  "BrowProjection": "partial \u2014 tissue-band field [E map: 0.0003 L/unit]",
+  "BrowThickness": "partial \u2014 band thinning field [E map: 0.002/unit]",
+  "BrowContinuity": "none \u2014 no torus components exist on a non-hominin head to split/merge",
+  "BrowShelf": "partial \u2014 sulcus dip field [E map: 0.00032 L/unit]",
+  "BrowPosition": "partial \u2014 brow-line shift field [E map: 0.00028 L/unit]",
+  "BrowPadding": "partial \u2014 band swell field [E map]",
+  "BrowScowl": "partial \u2014 baked medial depression; expression system owns the live slider",
+  "RuffVolume": "partial \u2014 tissue swell only; the ruff proper is the head fur groom (not built)",
+  "JawDepth": "full",
+  "JawWidth": "full",
+  "JawLength": "full",
+  "TeethUpper_note": "skull-fixed arcade; rides the muzzle metric fields (length/width/taper/depth); stop pitch/dip not followed (see comment)",
+  "TeethLower_note": "jaw-pivot arcade; follows JawLength about the hinge",
+  "EarTilt": "partial \u2014 index slider, pitch rotation [E map: 0.35 deg/unit]",
+  "EarHeight": "full",
+  "EarWidth": "full",
+  "EarTipPoint": "partial \u2014 tip pinch field; a discrete round-ear silhouette variant is separate (spec 1.4/2.4)",
+  "EarSpread": "partial \u2014 index slider, shift+cant [E map]",
+  "EarPlacementHeight": "partial \u2014 index slider, base shift [E map: 0.0008 L/unit]",
+  "EyeSize": "full (eyeball + lid assembly scaled about the centre)",
+  "EyeSpacing": "full (delta applied; the base's deliberate deviation preserved)",
+  "EyeForwardness": "none \u2014 assemblies keep the base's socket yaw; convergence is a socket-rig parameter, not a surface field [recorded, Sen precedent]",
+  "NoseSize": "full",
+  "Tongue_note": "not scaled \u2014 no tongue direction in the batch-1 vectors for this character"
+ },
+ "landmarks": {
+  "L": 1.0,
+  "eye_y": 0.08154535747210806,
+  "eye_z": -0.007876698554415877,
+  "pal_z": -0.17987968027591705,
+  "nose_y": 0.5,
+  "hinge": [
+   0.0,
+   -0.2167000025510788,
+   -0.12489999830722809
+  ]
+ },
+ "ears": {
+  "L": {
+   "base_tip_len_after": 0.3589449665579431,
+   "seat_delta_L": [
+    0.0119,
+    0.0055,
+    -0.031
+   ]
+  },
+  "R": {
+   "base_tip_len_after": 0.3589449668572628,
+   "seat_delta_L": [
+    -0.0119,
+    0.0055,
+    -0.031
+   ]
+  }
+ },
+ "teeth_verify": {
+  "0": {
+   "overlap_pairs": 334,
+   "min_clearance_L": 3e-05
+  },
+  "-10": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.02036
+  },
+  "-20": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.04375
+  },
+  "-30": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.06619
+  }
+ },
+ "teeth_verify_base_reference": {
+  "0": 27,
+  "-10": 0,
+  "-20": 0,
+  "-30": 0,
+  "note": "raw base-head-v4 GLB, identical BVH test: the base itself carries 27 overlapping pairs AT REST (split certified at open angles only); open-angle counts are 0 in base and all builds"
+ }
+}

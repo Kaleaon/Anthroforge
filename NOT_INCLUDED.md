@@ -34,6 +34,12 @@ data), and every GLB/blend we built — **is** included.
 | `anthroforge-v2/fur-craft/a9-photofur/sources/` | Downloaded reference photographs (bear, fox, wolf) and crops | Third-party photographs used for study only |
 | `anthroforge-v2/base-head-v3/work/head_source.blend` | The imported GalileoGB cougar source file (CC-BY) that base-head v3 was neutralised from | Raw third-party source. The shipped v3+ heads are our layered rebuilds and carry the CC-BY attribution in `base-head-v3/BUILD_NOTES.md` — they are included |
 
+## Superseded build — rebuild in progress
+
+| Excluded path | What it is | Why excluded |
+|---|---|---|
+| `anthroforge-v2/characters/kaleaon-head/work/stage2.blend`, `stage3.blend`, `stage4.blend`, `stage5.blend` — and `kaleaon_head.glb` / `renders/`, which are likewise withheld | The Phase-2 Kaleaon head build (on base-head v5) | Rejected on sight Nov 16, 2026 — the sculpt was shattered — and is being rebuilt. The spec (`KALEAON_HEAD_SPEC.md`), the build scripts and the measurement data ship; the rejected geometry doesn't |
+
 ## Transient junk (not third-party — just not shipped)
 
 `__pycache__/`, `*.pyc`, `*.blend1` (Blender auto-backups), `*.log`,

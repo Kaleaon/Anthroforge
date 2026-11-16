@@ -1,0 +1,77 @@
+{
+ "group": "definition",
+ "id": "body.definition.flat_abs",
+ "label": "Flat abs relief",
+ "qa": {
+  "attenuation": {
+   "gachidebu": {
+    "measured": 0.22970949458143072,
+    "naive_fill_factor": 1.000128601789388,
+    "predicted": 0.22968
+   },
+   "strongman": {
+    "measured": 0.3377103840757387,
+    "naive_fill_factor": 1.0000900546302278,
+    "predicted": 0.33768
+   }
+  },
+  "calibrated_depth_mm": 2.702333188488313,
+  "calibrated_peak_mm": 5.6651214420356455,
+  "calibration_scale": 0.9000456500770466,
+  "canonical_measure": "abs",
+  "combined_set_over_gachidebu": {
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.005848530848297216
+   },
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.0006095249805491722
+   }
+  },
+  "fold_gate": {
+   "gachidebu": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   },
+   "muscle": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   },
+   "strongman": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   }
+  },
+  "kernel_cv_p95_cm": 0.20046561599530044,
+  "linea_alba_groove": {
+   "authored": true,
+   "final_mm": 0.9128468850370646,
+   "groove_field_peak_mm": 0.6474101502974886,
+   "source_mm": 1.1671650143639272,
+   "target_mm": 0.9223240583503852,
+   "transferred_mm": 0.41869533896923045
+  },
+  "moved_verts": 183,
+  "source_depth_mm": 3.4458247863252853,
+  "source_peak_mm": 9.010069444717168,
+  "target_depth_mm": 2.722980094652597,
+  "transfer_depth_mm": 2.5570887011313075
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "1.0 = the source sculpt's own relief depth at the canonical station, frame-scaled to hm08 (closed-loop calibrated; see qa)",
+  "max": 1.0,
+  "min": 0.0
+ },
+ "region": "abdomen",
+ "semantics": "Rectus relief at value 1: the abdomen centre sits one calibrated flattening depth (2.70 mm at the canonical station) below its flanks inside the footprint band, with the linea alba groove at 0.91 mm. Pure relief: no mass, no radius change outside the footprint.",
+ "symmetry": "symmetric",
+ "system": {
+  "file": "body.definition.flat_abs.target",
+  "model": "makehuman_hm08 relief field (sparse MakeHuman target, metres)",
+  "source": "HIMBO - BodyTorsoFlatAbs (Vanilla HIMBO .osd, full decode) transferred at the slider-lab feature kernel (sigma_h 0.018, sigma_arc 0.014) and closed-loop calibrated at the canonical flattening station; the linea alba groove is AUTHORED (midline radial Gaussian inside the source footprint), because the kernel transfer carried only 0.42 of its 0.92 mm target.",
+  "study_only": true
+ },
+ "version": 1
+}

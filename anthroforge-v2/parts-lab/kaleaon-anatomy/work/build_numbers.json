@@ -1,0 +1,189 @@
+{
+ "bones_world": {
+  "Shaft_1": {
+   "base": [
+    -0.062,
+    -0.13,
+    1.082
+   ],
+   "tip": [
+    -0.072,
+    -0.425,
+    0.58
+   ],
+   "length_m": 0.5823
+  },
+  "Shaft_2": {
+   "base": [
+    -0.075,
+    -0.112,
+    1.07
+   ],
+   "tip": [
+    -0.086,
+    -0.35,
+    0.445
+   ],
+   "length_m": 0.6689
+  },
+  "Shaft_3": {
+   "base": [
+    0.062,
+    -0.13,
+    1.082
+   ],
+   "tip": [
+    0.072,
+    -0.425,
+    0.58
+   ],
+   "length_m": 0.5823
+  },
+  "Shaft_4": {
+   "base": [
+    0.075,
+    -0.112,
+    1.07
+   ],
+   "tip": [
+    0.086,
+    -0.35,
+    0.445
+   ],
+   "length_m": 0.6689
+  }
+ },
+ "parts": {
+  "Part_Shaft_1": {
+   "verts": 626,
+   "volume_L": 5.301,
+   "morphs": [
+    "GirthPlus",
+    "GirthMinus"
+   ],
+   "bones": [
+    "Shaft_1_Base",
+    "Shaft_1_Tip"
+   ]
+  },
+  "Part_Shaft_2": {
+   "verts": 626,
+   "volume_L": 6.182,
+   "morphs": [
+    "GirthPlus",
+    "GirthMinus"
+   ],
+   "bones": [
+    "Shaft_2_Base",
+    "Shaft_2_Tip"
+   ]
+  },
+  "Part_Shaft_3": {
+   "verts": 626,
+   "volume_L": 5.301,
+   "morphs": [
+    "GirthPlus",
+    "GirthMinus"
+   ],
+   "bones": [
+    "Shaft_3_Base",
+    "Shaft_3_Tip"
+   ]
+  },
+  "Part_Shaft_4": {
+   "verts": 626,
+   "volume_L": 6.182,
+   "morphs": [
+    "GirthPlus",
+    "GirthMinus"
+   ],
+   "bones": [
+    "Shaft_4_Base",
+    "Shaft_4_Tip"
+   ]
+  },
+  "Part_SacUdder": {
+   "verts": 1730,
+   "volume_L": 209.459,
+   "bones": [
+    "Sac"
+   ]
+  },
+  "Part_SacUdder_Teat_1": {
+   "verts": 109,
+   "volume_L": 0.184,
+   "bones": [
+    "Teat_1"
+   ],
+   "root_world": [
+    -0.1121,
+    -0.2777,
+    0.1274
+   ],
+   "dir_world": [
+    -0.0939,
+    -0.1977,
+    -0.9757
+   ],
+   "length_m": 0.095,
+   "base_radius_m": 0.034
+  },
+  "Part_SacUdder_Teat_2": {
+   "verts": 109,
+   "volume_L": 0.189,
+   "bones": [
+    "Teat_2"
+   ],
+   "root_world": [
+    0.2299,
+    -0.1995,
+    0.1188
+   ],
+   "dir_world": [
+    0.1959,
+    -0.1472,
+    -0.9695
+   ],
+   "length_m": 0.095,
+   "base_radius_m": 0.034
+  },
+  "Part_SacUdder_Teat_3": {
+   "verts": 109,
+   "volume_L": 0.175,
+   "bones": [
+    "Teat_3"
+   ],
+   "root_world": [
+    -0.0884,
+    0.1151,
+    0.1161
+   ],
+   "dir_world": [
+    -0.1834,
+    0.0049,
+    -0.983
+   ],
+   "length_m": 0.095,
+   "base_radius_m": 0.034
+  },
+  "Part_SacUdder_Teat_4": {
+   "verts": 109,
+   "volume_L": 0.185,
+   "bones": [
+    "Teat_4"
+   ],
+   "root_world": [
+    0.2273,
+    0.08,
+    0.1108
+   ],
+   "dir_world": [
+    0.1867,
+    0.1331,
+    -0.9734
+   ],
+   "length_m": 0.095,
+   "base_radius_m": 0.034
+  }
+ }
+}

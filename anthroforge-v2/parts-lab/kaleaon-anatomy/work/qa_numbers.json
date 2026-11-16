@@ -1,0 +1,390 @@
+{
+ "sac": {
+  "volume_L": 209.46,
+  "bottom_z_m": 0.0309,
+  "canon": {
+   "volume_L": 209.46,
+   "bottom_z_m": 0.031
+  }
+ },
+ "teat_tip_min_z_m": {
+  "Teat_1": 0.0555,
+  "Teat_2": 0.0468,
+  "Teat_3": 0.0443,
+  "Teat_4": 0.0388
+ },
+ "interpenetration": {
+  "Part_Shaft_1 x Part_Shaft_2": {
+   "candidate_pairs": 240,
+   "intersecting_faces": 240,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_1 x Part_Shaft_3": {
+   "candidate_pairs": 37,
+   "intersecting_faces": 37,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_1 x Part_Shaft_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_1 x Part_SacUdder": {
+   "candidate_pairs": 271,
+   "intersecting_faces": 271,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_1 x Part_SacUdder_Teat_1": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_1 x Part_SacUdder_Teat_2": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_1 x Part_SacUdder_Teat_3": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_1 x Part_SacUdder_Teat_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_2 x Part_Shaft_3": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_2 x Part_Shaft_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_2 x Part_SacUdder": {
+   "candidate_pairs": 299,
+   "intersecting_faces": 299,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_2 x Part_SacUdder_Teat_1": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_2 x Part_SacUdder_Teat_2": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_2 x Part_SacUdder_Teat_3": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_2 x Part_SacUdder_Teat_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_3 x Part_Shaft_4": {
+   "candidate_pairs": 226,
+   "intersecting_faces": 226,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_3 x Part_SacUdder": {
+   "candidate_pairs": 247,
+   "intersecting_faces": 247,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_3 x Part_SacUdder_Teat_1": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_3 x Part_SacUdder_Teat_2": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_3 x Part_SacUdder_Teat_3": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_3 x Part_SacUdder_Teat_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_4 x Part_SacUdder": {
+   "candidate_pairs": 314,
+   "intersecting_faces": 314,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_4 x Part_SacUdder_Teat_1": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_4 x Part_SacUdder_Teat_2": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_4 x Part_SacUdder_Teat_3": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_Shaft_4 x Part_SacUdder_Teat_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder x Part_SacUdder_Teat_1": {
+   "candidate_pairs": 41,
+   "intersecting_faces": 41,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder x Part_SacUdder_Teat_2": {
+   "candidate_pairs": 38,
+   "intersecting_faces": 38,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder x Part_SacUdder_Teat_3": {
+   "candidate_pairs": 66,
+   "intersecting_faces": 66,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder x Part_SacUdder_Teat_4": {
+   "candidate_pairs": 40,
+   "intersecting_faces": 40,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder_Teat_1 x Part_SacUdder_Teat_2": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder_Teat_1 x Part_SacUdder_Teat_3": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder_Teat_1 x Part_SacUdder_Teat_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder_Teat_2 x Part_SacUdder_Teat_3": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder_Teat_2 x Part_SacUdder_Teat_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Part_SacUdder_Teat_3 x Part_SacUdder_Teat_4": {
+   "candidate_pairs": 0,
+   "intersecting_faces": 0,
+   "embed_zone_faces": 0
+  },
+  "Teat_1 x SacUdder (embed-aware)": {
+   "candidate_pairs": 41,
+   "intersecting_faces": 39,
+   "embed_zone_faces": 2
+  },
+  "Teat_2 x SacUdder (embed-aware)": {
+   "candidate_pairs": 38,
+   "intersecting_faces": 33,
+   "embed_zone_faces": 5
+  },
+  "Teat_3 x SacUdder (embed-aware)": {
+   "candidate_pairs": 66,
+   "intersecting_faces": 57,
+   "embed_zone_faces": 9
+  },
+  "Teat_4 x SacUdder (embed-aware)": {
+   "candidate_pairs": 40,
+   "intersecting_faces": 38,
+   "embed_zone_faces": 2
+  }
+ },
+ "body_clearance": {
+  "Part_Shaft_1": {
+   "min_vert_dist_mm": 0.98,
+   "verts_within_10mm": 28
+  },
+  "Part_Shaft_2": {
+   "min_vert_dist_mm": 1.55,
+   "verts_within_10mm": 37
+  },
+  "Part_Shaft_3": {
+   "min_vert_dist_mm": 1.51,
+   "verts_within_10mm": 35
+  },
+  "Part_Shaft_4": {
+   "min_vert_dist_mm": 1.24,
+   "verts_within_10mm": 33
+  },
+  "Part_SacUdder": {
+   "min_vert_dist_mm": 1.9,
+   "verts_within_10mm": 78
+  },
+  "Part_SacUdder_Teat_1": {
+   "min_vert_dist_mm": 122.58,
+   "verts_within_10mm": 0
+  },
+  "Part_SacUdder_Teat_2": {
+   "min_vert_dist_mm": 169.81,
+   "verts_within_10mm": 0
+  },
+  "Part_SacUdder_Teat_3": {
+   "min_vert_dist_mm": 1.64,
+   "verts_within_10mm": 27
+  },
+  "Part_SacUdder_Teat_4": {
+   "min_vert_dist_mm": 37.19,
+   "verts_within_10mm": 0
+  }
+ },
+ "articulation": {
+  "shaft2_base_+25deg": {
+   "Part_Shaft_1": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_Shaft_2": {
+    "mean_mm": 145.63,
+    "max_mm": 276.7973
+   },
+   "Part_Shaft_3": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_Shaft_4": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_SacUdder": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_SacUdder_Teat_1": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_SacUdder_Teat_2": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_SacUdder_Teat_3": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_SacUdder_Teat_4": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   }
+  },
+  "sac_+20deg": {
+   "Part_Shaft_1": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_Shaft_2": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_Shaft_3": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_Shaft_4": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_SacUdder": {
+    "mean_mm": 177.22,
+    "max_mm": 336.3933
+   }
+  },
+  "sac_+20deg_teat_root_nearest_sac_mm": {
+   "Teat_1": 22.0,
+   "Teat_2": 20.04,
+   "Teat_3": 6.48,
+   "Teat_4": 22.0
+  },
+  "rest_teat_root_nearest_sac_mm": {
+   "Teat_1": 22.0,
+   "Teat_2": 20.04,
+   "Teat_3": 6.48,
+   "Teat_4": 22.0
+  },
+  "teat2_+20deg": {
+   "Part_SacUdder_Teat_1": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_SacUdder_Teat_2": {
+    "mean_mm": 17.536,
+    "max_mm": 30.562
+   },
+   "Part_SacUdder_Teat_3": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   },
+   "Part_SacUdder_Teat_4": {
+    "mean_mm": 0.0,
+    "max_mm": 0.0
+   }
+  },
+  "shaft1_bonescale_Y1.3": {
+   "mean_disp_mm": 88.48,
+   "max_disp_mm": 165.23
+  },
+  "shaft1_girthplus_volume_L": 5.941,
+  "shaft1_rest_volume_L": 5.301,
+  "shaft1_girth_volumes_from_key_coords_L": {
+   "Basis": 5.301,
+   "GirthPlus": 8.601,
+   "GirthMinus": 3.268,
+   "note": "exact volumes from shape-key coordinates (bmesh); the evaluated-mesh figure (5.941 L) in shaft1_girthplus_volume_L understates the key and is superseded by these"
+  }
+ },
+ "baseline_original_file": {
+  "Shaft_1 x Shaft_2": 234,
+  "Shaft_1 x Shaft_3": 24,
+  "Shaft_1 x Shaft_4": 0,
+  "Shaft_1 x Sac": 280,
+  "Shaft_2 x Shaft_3": 0,
+  "Shaft_2 x Shaft_4": 0,
+  "Shaft_2 x Sac": 300,
+  "Shaft_3 x Shaft_4": 218,
+  "Shaft_3 x Sac": 248,
+  "Shaft_4 x Sac": 346
+ },
+ "teat_embed_ray_parity": {
+  "Teat_1": {
+   "verts_beyond_root_tested": 85,
+   "verts_inside_sac": 10
+  },
+  "Teat_2": {
+   "verts_beyond_root_tested": 85,
+   "verts_inside_sac": 10
+  },
+  "Teat_3": {
+   "verts_beyond_root_tested": 85,
+   "verts_inside_sac": 14
+  },
+  "Teat_4": {
+   "verts_beyond_root_tested": 85,
+   "verts_inside_sac": 9
+  }
+ }
+}

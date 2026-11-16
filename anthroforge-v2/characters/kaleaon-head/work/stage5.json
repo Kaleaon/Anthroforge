@@ -1,0 +1,37 @@
+{
+ "lid_coverage_before": {
+  "L": 0.30864197530864196,
+  "R": 0.3148148148148148
+ },
+ "orbit_height_delta_L": 0.012141386943834794,
+ "eye": {
+  "spacing_delta_per_side_L": 0.01,
+  "size_factor": 1.1333333333333333
+ },
+ "lid_coverage_after": {
+  "L": 0.30246913580246915,
+  "R": 0.30864197530864196
+ },
+ "closure": {
+  "L": {
+   "upper_margin_min_z": 0.034938596189022064,
+   "lower_margin_max_z": 0.02209564857184887,
+   "gap_to_close_L": 0.012842947617173195,
+   "iris_diameter_L": 0.073015310568735
+  },
+  "R": {
+   "upper_margin_min_z": 0.03493860363960266,
+   "lower_margin_max_z": 0.022095641121268272,
+   "gap_to_close_L": 0.012842962518334389,
+   "iris_diameter_L": 0.073015310568735
+  }
+ },
+ "nose": {
+  "seat_delta": [
+   0.0,
+   -0.0571,
+   0.0067
+  ],
+  "size_factor": 1.190909090909091
+ }
+}

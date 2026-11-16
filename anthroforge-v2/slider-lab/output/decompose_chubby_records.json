@@ -1,0 +1,415 @@
+{
+  "parent": "body.chubby",
+  "source_slider": "HIMBO - BodyChubby",
+  "base": "skyrim_himbo",
+  "exactness_max_err": 4.440892098500626e-16,
+  "records": [
+    {
+      "id": "body.chubby.left",
+      "label": "Chubby \u2014 left",
+      "group": "body",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "side partition: soft L/R about x=0, +/-2 Skyrim-unit blend"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0571 m over 4929 verts"
+      },
+      "symmetry": "none",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.left__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 4929,
+            "mean_disp_units": 0.8626798372523627,
+            "max_disp_units": 3.997620575034086,
+            "max_disp_m": 0.05708602181148675
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.right",
+      "label": "Chubby \u2014 right",
+      "group": "body",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "side partition: soft L/R about x=0, +/-2 Skyrim-unit blend"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0571 m over 4929 verts"
+      },
+      "symmetry": "none",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.right__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 4929,
+            "mean_disp_units": 0.8626644533048685,
+            "max_disp_units": 3.9976158736928733,
+            "max_disp_m": 0.057085954676334226
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.lower",
+      "label": "Chubby \u2014 lower",
+      "group": "body",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "height band partition on z (cuts 55/88, 8-unit smooth transitions)"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0213 m over 3192 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.lower__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 3192,
+            "mean_disp_units": 0.6779623070274725,
+            "max_disp_units": 1.4917535468069765,
+            "max_disp_m": 0.021302240648403623
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.torso",
+      "label": "Chubby \u2014 torso",
+      "group": "body/torso",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "height band partition on z (cuts 55/88, 8-unit smooth transitions)"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0571 m over 3325 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.torso__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 3325,
+            "mean_disp_units": 1.0376486917126464,
+            "max_disp_units": 3.997620575034086,
+            "max_disp_m": 0.05708602181148675
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.upper",
+      "label": "Chubby \u2014 upper",
+      "group": "body",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "height band partition on z (cuts 55/88, 8-unit smooth transitions)"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0322 m over 4231 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.upper__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 4231,
+            "mean_disp_units": 0.6830499702624323,
+            "max_disp_units": 2.257571857046518,
+            "max_disp_m": 0.032238126118624276
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.left.lower",
+      "label": "Chubby \u2014 left lower",
+      "group": "body",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "cross of side x band partitions"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0213 m over 1610 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.left.lower__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 1610,
+            "mean_disp_units": 0.6720955762221532,
+            "max_disp_units": 1.4917535468069765,
+            "max_disp_m": 0.021302240648403623
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.left.torso",
+      "label": "Chubby \u2014 left torso",
+      "group": "body/torso",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "cross of side x band partitions"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0571 m over 1834 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.left.torso__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 1834,
+            "mean_disp_units": 0.9406158377053851,
+            "max_disp_units": 3.997620575034086,
+            "max_disp_m": 0.05708602181148675
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.left.upper",
+      "label": "Chubby \u2014 left upper",
+      "group": "body",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "cross of side x band partitions"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0322 m over 2300 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.left.upper__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 2300,
+            "mean_disp_units": 0.628254605977197,
+            "max_disp_units": 2.2574523244891322,
+            "max_disp_m": 0.032236419193704804
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.right.lower",
+      "label": "Chubby \u2014 right lower",
+      "group": "body",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "cross of side x band partitions"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0213 m over 1610 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.right.lower__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 1610,
+            "mean_disp_units": 0.6720383890149227,
+            "max_disp_units": 1.4917533440876485,
+            "max_disp_m": 0.02130223775357162
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.right.torso",
+      "label": "Chubby \u2014 right torso",
+      "group": "body/torso",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "cross of side x band partitions"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0571 m over 1834 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.right.torso__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 1834,
+            "mean_disp_units": 0.9406174774225041,
+            "max_disp_units": 3.9976158736928733,
+            "max_disp_m": 0.057085954676334226
+          }
+        }
+      }
+    },
+    {
+      "id": "body.chubby.right.upper",
+      "label": "Chubby \u2014 right upper",
+      "group": "body",
+      "kind": "slider",
+      "semantics": "Decomposition piece of body.chubby. At +1 applies this piece's share of the parent delta field; pieces of one partition sum exactly to the parent.",
+      "region": {
+        "mask_rule": "cross of side x band partitions"
+      },
+      "range": {
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.0,
+        "safe_max": 1.0,
+        "units": "normalised (BodySlide native 0-100 = 0-1)",
+        "endpoint_anchor": "max |delta| = 0.0322 m over 2300 verts"
+      },
+      "symmetry": "bilateral_x",
+      "couplings": [],
+      "provenance": {
+        "source": "HIMBO V5 'HIMBO - BodyChubby' (.osd decode), decomposed by slider-lab/decompose.py",
+        "licence": "study-only (internal) \u2014 inherited from source mod",
+        "method": "decomposition (partition-of-unity masks)",
+        "parent": "body.chubby"
+      },
+      "instances": {
+        "skyrim_himbo": {
+          "file": "instances/body.chubby.right.upper__skyrim_himbo.npz",
+          "qa": {
+            "diff_verts": 2300,
+            "mean_disp_units": 0.6282603610577385,
+            "max_disp_units": 2.257571857046518,
+            "max_disp_m": 0.032238126118624276
+          }
+        }
+      }
+    }
+  ]
+}

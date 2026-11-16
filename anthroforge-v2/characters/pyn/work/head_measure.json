@@ -1,0 +1,128 @@
+{
+ "character": "pyn",
+ "base": "/home/hatch/workspace/anthroforge-v2/base-head-v4/neutral_base_head_v4.glb",
+ "vector": {
+  "BrowContinuity": -50.0,
+  "BrowPadding": -10.0,
+  "BrowPosition": 10.0,
+  "BrowProjection": -45.0,
+  "BrowScowl": 15.0,
+  "BrowShelf": -20.0,
+  "BrowThickness": -40.0,
+  "CheekWidth": -30.0,
+  "CraniumHeight": 5.0,
+  "CraniumLength": -5.0,
+  "CraniumWidth": -10.0,
+  "EarHeight": 100.0,
+  "EarPlacementHeight": 20.0,
+  "EarSpread": -10.0,
+  "EarTilt": 10.0,
+  "EarTipPoint": -5.0,
+  "EarWidth": 60.0,
+  "EyeForwardness": 25.0,
+  "EyeSize": 20.0,
+  "EyeSpacing": 10.0,
+  "ForeheadWidth": 20.0,
+  "JawDepth": -25.0,
+  "JawLength": -20.0,
+  "JawWidth": -20.0,
+  "MuzzleDepth": -15.0,
+  "MuzzleLength": 15.0,
+  "MuzzleTaper": 40.0,
+  "MuzzleWidth": -25.0,
+  "NoseSize": -10.0,
+  "RuffVolume": -10.0,
+  "StopAngle": 15.0
+ },
+ "paths": {
+  "MuzzleLength": "full",
+  "MuzzleWidth": "full",
+  "MuzzleTaper": "partial \u2014 index slider, tip-width field [E map]",
+  "MuzzleDepth": "full",
+  "CraniumWidth": "full (proportional; dome-shell ruler mismatch noted in v3/v4)",
+  "CraniumHeight": "full",
+  "CraniumLength": "full",
+  "ForeheadWidth": "full",
+  "CheekWidth": "full",
+  "StopAngle": "partial \u2014 index slider, dip+pitch field [E map]",
+  "BrowProjection": "partial \u2014 tissue-band field [E map: 0.0003 L/unit]",
+  "BrowThickness": "partial \u2014 band thinning field [E map: 0.002/unit]",
+  "BrowContinuity": "none \u2014 no torus components exist on a non-hominin head to split/merge",
+  "BrowShelf": "partial \u2014 sulcus dip field [E map: 0.00032 L/unit]",
+  "BrowPosition": "partial \u2014 brow-line shift field [E map: 0.00028 L/unit]",
+  "BrowPadding": "partial \u2014 band swell field [E map]",
+  "BrowScowl": "partial \u2014 baked medial depression; expression system owns the live slider",
+  "RuffVolume": "partial \u2014 tissue swell only; the ruff proper is the head fur groom (not built)",
+  "JawDepth": "full",
+  "JawWidth": "full",
+  "JawLength": "full",
+  "TeethUpper_note": "skull-fixed arcade; rides the muzzle metric fields (length/width/taper/depth); stop pitch/dip not followed (see comment)",
+  "TeethLower_note": "jaw-pivot arcade; follows JawLength about the hinge",
+  "EarTilt": "partial \u2014 index slider, pitch rotation [E map: 0.35 deg/unit]",
+  "EarHeight": "full \u2014 blade only; sub-base root preserved at base length (skull interface, ear fix Nov 16, 2026)",
+  "EarWidth": "full",
+  "EarFlare": "partial \u2014 long-ear fan stage [E]: envelope remap + aspect -> 0.58 + cup deepening, k = sstep(f_len, 1.15, 2.20); inert (k = 0) at ordinary length factors (ear fix Nov 16, 2026)",
+  "EarTipPoint": "partial \u2014 tip pinch field; a discrete round-ear silhouette variant is separate (spec 1.4/2.4)",
+  "EarSpread": "partial \u2014 index slider, shift+cant [E map]",
+  "EarPlacementHeight": "partial \u2014 index slider, base shift [E map: 0.0008 L/unit]",
+  "EyeSize": "full (eyeball + lid assembly scaled about the centre)",
+  "EyeSpacing": "full (delta applied; the base's deliberate deviation preserved)",
+  "EyeForwardness": "none \u2014 assemblies keep the base's socket yaw; convergence is a socket-rig parameter, not a surface field [recorded, Sen precedent]",
+  "NoseSize": "full",
+  "Tongue_note": "not scaled \u2014 no tongue direction in the batch-1 vectors for this character"
+ },
+ "landmarks": {
+  "L": 1.0,
+  "eye_y": 0.08154535747210806,
+  "eye_z": -0.007876698554415877,
+  "pal_z": -0.17987968027591705,
+  "nose_y": 0.5,
+  "hinge": [
+   0.0,
+   -0.2167000025510788,
+   -0.12489999830722809
+  ]
+ },
+ "ears": {
+  "L": {
+   "flare_k": 1.0,
+   "width_before": 0.2652,
+   "width_target": 0.4221,
+   "base_tip_len_after": 0.7278231131240191,
+   "seat_delta_L": [
+    -0.0102,
+    0.0041,
+    0.0033
+   ]
+  },
+  "R": {
+   "flare_k": 1.0,
+   "width_before": 0.2652,
+   "width_target": 0.4221,
+   "base_tip_len_after": 0.7278231300037453,
+   "seat_delta_L": [
+    0.0102,
+    0.0041,
+    0.0033
+   ]
+  }
+ },
+ "teeth_verify": {
+  "0": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.0004
+  },
+  "-10": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.02541
+  },
+  "-20": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.04866
+  },
+  "-30": {
+   "overlap_pairs": 0,
+   "min_clearance_L": 0.0695
+  }
+ }
+}

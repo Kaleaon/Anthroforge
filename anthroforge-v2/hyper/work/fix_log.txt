@@ -1,0 +1,22 @@
+
+== bigchest ==
+  as-shipped raw: 1 flips, min_dot -0.02386
+  as-shipped macro: 0 flips, min_dot 0.01055
+  flipped face 4952: verts [702, 708, 709], centroid (-0.005, +0.057, +0.670) m, height frac 0.892, dot -0.02386
+  repair: 2 rounds; raw 0 flips min_dot 0.07643; macro 0 flips min_dot 0.05420
+  deviation vs original: max 1.64 mm, rms over support 0.038 mm, 34 verts changed
+  wrote body.coupling.bigchest.target: 10481 moved verts
+  reload check: raw (0, 0.07642970832614032), macro (0, 0.05420130601987248), 1.5x raw (45, -0.7546561060992377)
+
+== gachidebu ==
+  as-shipped raw: 3 flips, min_dot -0.02386
+  as-shipped macro: 3 flips, min_dot -0.91643
+  flipped face 489: verts [699, 700, 694], centroid (-0.018, +0.055, +0.661) m, height frac 0.887, dot -0.00778
+  flipped face 4952: verts [702, 708, 709], centroid (-0.005, +0.057, +0.670) m, height frac 0.892, dot -0.02386
+  flipped face 7215: verts [7558, 7592, 7591], centroid (+0.031, -0.021, +0.675) m, height frac 0.895, dot -0.00107
+  repair: 13 rounds; raw 0 flips min_dot 0.02330; macro 0 flips min_dot 0.01889
+  deviation vs original: max 3.06 mm, rms over support 0.085 mm, 87 verts changed
+  wrote body.coupling.gachidebu.target: 10570 moved verts
+  reload check: raw (0, 0.023300397256463004), macro (0, 0.01889462213467521), 1.5x raw (111, -0.9505374915296455)
+
+wrote hyper/work/defect_fix.json

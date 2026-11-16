@@ -1,0 +1,77 @@
+{
+ "Length_L": {
+  "measured": 1.036,
+  "target": 1.0,
+  "dev_pct": 3.6
+ },
+ "CheekWidth_ZB": {
+  "measured": 0.559,
+  "target": 0.58,
+  "dev_pct": -3.6
+ },
+ "CraniumWidth": {
+  "measured": 0.41,
+  "target": 0.36,
+  "dev_pct": 13.9
+ },
+ "MuzzleWidth_rostrum": {
+  "measured": 0.163,
+  "target": 0.17,
+  "dev_pct": -4.0
+ },
+ "MuzzleDepth": {
+  "measured": 0.176,
+  "target": 0.2,
+  "dev_pct": -12.2
+ },
+ "SkullHeight_head_plus_jaw": {
+  "measured": 0.283,
+  "target": 0.31,
+  "dev_pct": -8.8
+ },
+ "JawLength": {
+  "measured": 0.723,
+  "target": 0.74,
+  "dev_pct": -2.3
+ },
+ "JawWidth": {
+  "measured": 0.371,
+  "target": 0.4,
+  "dev_pct": -7.3
+ },
+ "JawDepth_ramus": {
+  "measured": 0.249,
+  "target": 0.28,
+  "dev_pct": -11.2
+ },
+ "EarHeight": {
+  "measured": 0.393,
+  "target": 0.4,
+  "dev_pct": -1.8
+ },
+ "EarWidth_over_EarLength": {
+  "measured": 0.573,
+  "target": 0.55,
+  "dev_pct": 4.3
+ },
+ "OrbitOpening_est": {
+  "measured": 0.189,
+  "target": 0.15,
+  "dev_pct": 26.1
+ },
+ "EyeballDiameter": {
+  "measured": 0.097,
+  "target": null,
+  "dev_pct": null
+ },
+ "EyeCentreSpacing": {
+  "measured": 0.205,
+  "target": 0.34,
+  "dev_pct": -39.8
+ },
+ "NoseWidth_over_MuzzleWidth": {
+  "measured": 0.497,
+  "target": 0.55,
+  "dev_pct": -9.7
+ }
+}

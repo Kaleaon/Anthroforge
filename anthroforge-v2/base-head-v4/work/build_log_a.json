@@ -1,0 +1,25 @@
+{
+ "hinge": [
+  0.0,
+  -0.2167,
+  -0.1249
+ ],
+ "pal_z": -0.1799,
+ "merged_verts_pre_subdiv": 1439,
+ "seam_verts": 61,
+ "seam_rough_v3": 0.045022337511321425,
+ "cheek_facet_deg_v3": 19.913154760709677,
+ "merged_verts_post_subdiv": 5660,
+ "merged_faces_post_subdiv": 5656,
+ "pinned_extremum_verts": 17,
+ "ruler_guards_applied": true,
+ "relax_max_disp_new": 0.012,
+ "relax_max_disp_orig": 0.00535,
+ "cheek_facet_deg_v4_presplit": 11.197355102994708,
+ "tissue_verts_v4": 3756,
+ "jaw_verts_v4": 2023,
+ "seam_rough_v4": 0.025923704521531022,
+ "seam_loop_pts_v4": 119,
+ "Ear_L_verts_v4": 285,
+ "Ear_R_verts_v4": 285
+}

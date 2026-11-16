@@ -1,0 +1,51 @@
+{
+ "1.0": {
+  "folds_raw": [
+   0,
+   0.09314153587688608
+  ],
+  "folds_macro": [
+   0,
+   0.023377308544002065
+  ],
+  "crossings": 0,
+  "min_thigh_gap_mm": 44.0
+ },
+ "1.5": {
+  "folds_raw": [
+   0,
+   0.07069228692906401
+  ],
+  "folds_macro": [
+   0,
+   0.042982258318346026
+  ],
+  "crossings": 0,
+  "min_thigh_gap_mm": 43.82000000000001
+ },
+ "2.0": {
+  "folds_raw": [
+   0,
+   0.021514361402047127
+  ],
+  "folds_macro": [
+   0,
+   0.021413438345796388
+  ],
+  "crossings": 0,
+  "min_thigh_gap_mm": 43.52
+ },
+ "full_file_matches_composition_max_mm": 0.1,
+ "solve_deviation_vs_naive_2x": {
+  "max_mm": 279.75106791574547,
+  "rms_mm": 17.58957440970996,
+  "verts_changed": 616
+ },
+ "navel_tracker": {
+  "vert": 8532,
+  "at_1x_fwd_mm": 35.5,
+  "at_1x_down_mm": 2.0,
+  "at_2x_fwd_mm": 63.9,
+  "at_2x_down_mm": 3.6
+ }
+}

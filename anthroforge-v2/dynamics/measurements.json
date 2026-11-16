@@ -1,0 +1,40 @@
+{
+ "SOFT": {
+  "params": {
+   "stiffness": 1.5,
+   "drag_force": 0.025,
+   "gravity_power": 1.0
+  },
+  "walk_lag_peak_deg": 10.919393863820043,
+  "walk_lag_rms_deg": 7.394801725817035,
+  "walk_dynamic_swing_peak_deg": 4.181874310970251,
+  "walk_dynamic_swing_rms_deg": 2.2780149277201494,
+  "settle_time_s": 1.6,
+  "equilibrium_hang_offset_deg": 7.0640216075358735,
+  "phase_lag_side_err_vs_root_sway_ms": 66.66666666666667,
+  "tip_travel_walk_m": 0.2715780296435442,
+  "teatR_lag_peak_deg": 33.502007832606736,
+  "teatR_lag_rms_deg": 16.762728221973582,
+  "teatL_lag_peak_deg": 33.65843801970907,
+  "teatL_lag_rms_deg": 16.41163772374718
+ },
+ "FIRM": {
+  "params": {
+   "stiffness": 8.0,
+   "drag_force": 0.025,
+   "gravity_power": 1.0
+  },
+  "walk_lag_peak_deg": 9.080478210755116,
+  "walk_lag_rms_deg": 6.184084119398669,
+  "walk_dynamic_swing_peak_deg": 3.2453188653581684,
+  "walk_dynamic_swing_rms_deg": 2.0527788397790414,
+  "settle_time_s": 0.43333333333333335,
+  "equilibrium_hang_offset_deg": 5.8351593453969475,
+  "phase_lag_side_err_vs_root_sway_ms": -33.333333333333336,
+  "tip_travel_walk_m": 0.5149655728779875,
+  "teatR_lag_peak_deg": 30.295539803080846,
+  "teatR_lag_rms_deg": 20.187213743141246,
+  "teatL_lag_peak_deg": 30.12863385257198,
+  "teatL_lag_rms_deg": 20.126399089007005
+ }
+}

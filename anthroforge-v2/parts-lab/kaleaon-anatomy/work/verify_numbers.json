@@ -1,0 +1,332 @@
+{
+ "objects": {
+  "Part_SacUdder": {
+   "verts": 1730,
+   "vol_L": 209.459,
+   "min": [
+    -0.3509,
+    -0.372,
+    0.0309
+   ],
+   "max": [
+    0.4114,
+    0.2743,
+    1.005
+   ],
+   "shape_keys": []
+  },
+  "Part_SacUdder_Teat_1": {
+   "verts": 109,
+   "vol_L": 0.184,
+   "min": [
+    -0.151,
+    -0.317,
+    0.0555
+   ],
+   "max": [
+    -0.0727,
+    -0.2386,
+    0.156
+   ],
+   "shape_keys": []
+  },
+  "Part_SacUdder_Teat_2": {
+   "verts": 109,
+   "vol_L": 0.189,
+   "min": [
+    0.1908,
+    -0.238,
+    0.0468
+   ],
+   "max": [
+    0.2692,
+    -0.1603,
+    0.148
+   ],
+   "shape_keys": []
+  },
+  "Part_SacUdder_Teat_3": {
+   "verts": 109,
+   "vol_L": 0.175,
+   "min": [
+    -0.127,
+    0.0758,
+    0.0443
+   ],
+   "max": [
+    -0.0492,
+    0.1544,
+    0.1437
+   ],
+   "shape_keys": []
+  },
+  "Part_SacUdder_Teat_4": {
+   "verts": 109,
+   "vol_L": 0.185,
+   "min": [
+    0.1881,
+    0.0407,
+    0.0388
+   ],
+   "max": [
+    0.2661,
+    0.1186,
+    0.1396
+   ],
+   "shape_keys": []
+  },
+  "Part_Shaft_1": {
+   "verts": 626,
+   "vol_L": 5.941,
+   "min": [
+    -0.1396,
+    -0.4345,
+    0.5936
+   ],
+   "max": [
+    0.008,
+    -0.0753,
+    1.0987
+   ],
+   "shape_keys": [
+    "Basis",
+    "GirthPlus",
+    "GirthMinus"
+   ]
+  },
+  "Part_Shaft_2": {
+   "verts": 626,
+   "vol_L": 6.927,
+   "min": [
+    -0.1535,
+    -0.3669,
+    0.4637
+   ],
+   "max": [
+    -0.005,
+    -0.0466,
+    1.0817
+   ],
+   "shape_keys": [
+    "Basis",
+    "GirthPlus",
+    "GirthMinus"
+   ]
+  },
+  "Part_Shaft_3": {
+   "verts": 626,
+   "vol_L": 5.941,
+   "min": [
+    -0.008,
+    -0.4345,
+    0.5936
+   ],
+   "max": [
+    0.1396,
+    -0.0753,
+    1.0987
+   ],
+   "shape_keys": [
+    "Basis",
+    "GirthPlus",
+    "GirthMinus"
+   ]
+  },
+  "Part_Shaft_4": {
+   "verts": 626,
+   "vol_L": 6.927,
+   "min": [
+    0.005,
+    -0.3669,
+    0.4637
+   ],
+   "max": [
+    0.1535,
+    -0.0466,
+    1.0817
+   ],
+   "shape_keys": [
+    "Basis",
+    "GirthPlus",
+    "GirthMinus"
+   ]
+  }
+ },
+ "checks": {
+  "girth_shaft1_vol_L": {
+   "basis": 5.941,
+   "plus": 5.941,
+   "minus": 3.268
+  },
+  "length_bonescale_shaft2": {
+   "tip_lowest_rest": [
+    -0.084,
+    -0.315,
+    0.4637
+   ],
+   "tip_lowest_scale1.25": [
+    -0.0882,
+    -0.4071,
+    0.2196
+   ],
+   "tip_travel_m": 0.261,
+   "vol_L_at_1.25": 9.738
+  },
+  "rest_intersections": {
+   "shaft_vs_shaft": {
+    "total_tris": 28,
+    "pairs": [
+     [
+      "Part_Shaft_1",
+      "Part_Shaft_3",
+      28
+     ]
+    ]
+   },
+   "shaft_vs_sac": {
+    "total_tris": 1140,
+    "pairs": [
+     [
+      "Part_Shaft_1",
+      "Part_SacUdder",
+      280
+     ],
+     [
+      "Part_Shaft_2",
+      "Part_SacUdder",
+      299
+     ],
+     [
+      "Part_Shaft_3",
+      "Part_SacUdder",
+      247
+     ],
+     [
+      "Part_Shaft_4",
+      "Part_SacUdder",
+      314
+     ]
+    ]
+   },
+   "teat_vs_sac(embedded roots expected)": {
+    "total_tris": 185,
+    "pairs": [
+     [
+      "Part_SacUdder_Teat_1",
+      "Part_SacUdder",
+      41
+     ],
+     [
+      "Part_SacUdder_Teat_2",
+      "Part_SacUdder",
+      38
+     ],
+     [
+      "Part_SacUdder_Teat_3",
+      "Part_SacUdder",
+      66
+     ],
+     [
+      "Part_SacUdder_Teat_4",
+      "Part_SacUdder",
+      40
+     ]
+    ]
+   },
+   "teat_vs_shaft": {
+    "total_tris": 0,
+    "pairs": []
+   },
+   "teat_vs_teat": {
+    "total_tris": 0,
+    "pairs": []
+   }
+  },
+  "articulation_volumes": {
+   "Part_Shaft_1": {
+    "vol_L": 5.335,
+    "min_z": 0.5489
+   },
+   "Part_Shaft_2": {
+    "vol_L": 6.957,
+    "min_z": 0.4356
+   },
+   "Part_Shaft_3": {
+    "vol_L": 5.976,
+    "min_z": 0.5487
+   },
+   "Part_Shaft_4": {
+    "vol_L": 6.957,
+    "min_z": 0.4356
+   },
+   "Part_SacUdder": {
+    "vol_L": 209.826,
+    "min_z": 0.0416
+   },
+   "Part_SacUdder_Teat_1": {
+    "vol_L": 0.181,
+    "min_z": 0.0232
+   },
+   "Part_SacUdder_Teat_2": {
+    "vol_L": 0.185,
+    "min_z": 0.0311
+   },
+   "Part_SacUdder_Teat_3": {
+    "vol_L": 0.169,
+    "min_z": 0.0936
+   },
+   "Part_SacUdder_Teat_4": {
+    "vol_L": 0.186,
+    "min_z": 0.0806
+   }
+  },
+  "articulation_intersections": {
+   "shaft_vs_sac": {
+    "total_tris": 1192,
+    "pairs": [
+     [
+      "Part_Shaft_1",
+      "Part_SacUdder",
+      268
+     ],
+     [
+      "Part_Shaft_2",
+      "Part_SacUdder",
+      323
+     ],
+     [
+      "Part_Shaft_3",
+      "Part_SacUdder",
+      253
+     ],
+     [
+      "Part_Shaft_4",
+      "Part_SacUdder",
+      348
+     ]
+    ]
+   },
+   "shaft_vs_shaft_13": {
+    "total_tris": 28,
+    "pairs": [
+     [
+      "Part_Shaft_1",
+      "Part_Shaft_3",
+      28
+     ]
+    ]
+   },
+   "teat_vs_shaft": {
+    "total_tris": 0,
+    "pairs": []
+   }
+  }
+ },
+ "teat_bones": [
+  "Teat_1",
+  "Teat_2",
+  "Teat_3",
+  "Teat_4"
+ ],
+ "bone_count": 93
+}

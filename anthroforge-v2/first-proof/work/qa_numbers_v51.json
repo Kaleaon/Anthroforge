@@ -1,0 +1,201 @@
+{
+ "cal": 1.0,
+ "fboost": 1.0,
+ "fold_scan": {
+  "+1 (v5.1 combined)": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.06954358003606084
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.0017686192905230214
+   }
+  },
+  "+0.5 (coupled)": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.45008062687908507
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.586878537110553
+   }
+  },
+  "+1 (v5 alone)": {
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.06954358003606084
+   },
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.0017686192905230214
+   }
+  }
+ },
+ "terminal_support_verts": 5492,
+ "wrist": {
+  "base_cm": 15.98,
+  "v5_cm": 17.83,
+  "v51_cm": 18.96,
+  "gain_v5_cm": 1.85,
+  "gain_v51_cm": 2.98
+ },
+ "wrist_L": {
+  "base_cm": 15.98,
+  "v5_cm": 17.83,
+  "v51_cm": 18.96,
+  "gain_v5_cm": 1.85,
+  "gain_v51_cm": 2.98
+ },
+ "ankle": {
+  "base_cm": 22.24,
+  "v5_cm": 24.42,
+  "v51_cm": 25.57,
+  "gain_v5_cm": 2.18,
+  "gain_v51_cm": 3.32
+ },
+ "ankle_L": {
+  "base_cm": 22.24,
+  "v5_cm": 24.52,
+  "v51_cm": 25.66,
+  "gain_v5_cm": 2.27,
+  "gain_v51_cm": 3.42
+ },
+ "finger_prox_thickness": {
+  "R_digit0": {
+   "n_prox": 29,
+   "mean_radial_gain_mm": 1.99,
+   "thickness_gain_frac": 0.128,
+   "dorsal_palmar_thickness_base_mm": 39.08,
+   "dorsal_palmar_thickness_gain_frac": 0.149
+  },
+  "R_digit1": {
+   "n_prox": 97,
+   "mean_radial_gain_mm": 1.38,
+   "thickness_gain_frac": 0.154,
+   "dorsal_palmar_thickness_base_mm": 21.6,
+   "dorsal_palmar_thickness_gain_frac": 0.118
+  },
+  "R_digit2": {
+   "n_prox": 91,
+   "mean_radial_gain_mm": 1.4,
+   "thickness_gain_frac": 0.143,
+   "dorsal_palmar_thickness_base_mm": 25.8,
+   "dorsal_palmar_thickness_gain_frac": 0.119
+  },
+  "R_digit3": {
+   "n_prox": 102,
+   "mean_radial_gain_mm": 1.28,
+   "thickness_gain_frac": 0.148,
+   "dorsal_palmar_thickness_base_mm": 23.26,
+   "dorsal_palmar_thickness_gain_frac": 0.12
+  },
+  "R_digit4": {
+   "n_prox": 100,
+   "mean_radial_gain_mm": 1.12,
+   "thickness_gain_frac": 0.15,
+   "dorsal_palmar_thickness_base_mm": 20.28,
+   "dorsal_palmar_thickness_gain_frac": 0.101
+  },
+  "L_digit0": {
+   "n_prox": 29,
+   "mean_radial_gain_mm": 1.99,
+   "thickness_gain_frac": 0.128,
+   "dorsal_palmar_thickness_base_mm": 39.08,
+   "dorsal_palmar_thickness_gain_frac": 0.149
+  },
+  "L_digit1": {
+   "n_prox": 97,
+   "mean_radial_gain_mm": 1.38,
+   "thickness_gain_frac": 0.154,
+   "dorsal_palmar_thickness_base_mm": 21.6,
+   "dorsal_palmar_thickness_gain_frac": 0.118
+  },
+  "L_digit2": {
+   "n_prox": 91,
+   "mean_radial_gain_mm": 1.4,
+   "thickness_gain_frac": 0.143,
+   "dorsal_palmar_thickness_base_mm": 25.8,
+   "dorsal_palmar_thickness_gain_frac": 0.119
+  },
+  "L_digit3": {
+   "n_prox": 102,
+   "mean_radial_gain_mm": 1.28,
+   "thickness_gain_frac": 0.148,
+   "dorsal_palmar_thickness_base_mm": 23.26,
+   "dorsal_palmar_thickness_gain_frac": 0.12
+  },
+  "L_digit4": {
+   "n_prox": 100,
+   "mean_radial_gain_mm": 1.12,
+   "thickness_gain_frac": 0.15,
+   "dorsal_palmar_thickness_base_mm": 20.28,
+   "dorsal_palmar_thickness_gain_frac": 0.101
+  }
+ },
+ "inter_digit_min_dist": {
+  "R": {
+   "pairs": 10,
+   "base_min_mm": 2.11,
+   "v51_min_mm": 1.01,
+   "base_mean_of_pair_mins_mm": 26.22,
+   "v51_mean_of_pair_mins_mm": 25.66,
+   "close_pairs_lt_0.3mm_base": 0,
+   "close_pairs_lt_0.3mm_v51": 0,
+   "centroid_sep_ratio_min": 1.0
+  },
+  "L": {
+   "pairs": 10,
+   "base_min_mm": 2.11,
+   "v51_min_mm": 1.01,
+   "base_mean_of_pair_mins_mm": 26.22,
+   "v51_mean_of_pair_mins_mm": 25.66,
+   "close_pairs_lt_0.3mm_base": 0,
+   "close_pairs_lt_0.3mm_v51": 0,
+   "centroid_sep_ratio_min": 1.0
+  }
+ },
+ "zone_gains_source": {
+  "hand_perp_mean_mm": {
+   "wrist": 4.354804555056793,
+   "palm": 2.3626471631192363,
+   "prox_finger": 2.909691377796964,
+   "distal_finger": 1.5060724041757299,
+   "length_m": 0.25985663963521155
+  },
+  "hand_perp_p90_mm": {
+   "wrist": 5.955910700884118,
+   "palm": 4.10568592919968,
+   "prox_finger": 4.308109170508389,
+   "distal_finger": 3.562852074269478
+  },
+  "foot_perp_mean_mm": {
+   "ankle_heel": 7.28686582067214,
+   "midfoot": 5.157096743632129,
+   "toes": 3.0885849989994107,
+   "length_m": 0.26759954103686556
+  },
+  "foot_perp_p90_mm": {
+   "ankle_heel": 14.084531975166383,
+   "midfoot": 8.484334682324931,
+   "toes": 4.348065469504634
+  },
+  "hand_scale": 0.6420539617195656,
+  "foot_scale": 0.6918288473729275,
+  "gains_pre_cal_mm": {
+   "wrist": 2.8,
+   "palm": 1.52,
+   "prox_finger": 1.87,
+   "distal_finger": 0.97,
+   "ankle": 5.04,
+   "midfoot": 3.57,
+   "toes": 2.14
+  },
+  "ankle_ring_cap_mm": 1.7
+ },
+ "moved_verts": {
+  "terminal": 5590,
+  "combined_v51": 9006
+ }
+}

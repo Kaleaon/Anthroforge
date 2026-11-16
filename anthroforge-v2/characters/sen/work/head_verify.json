@@ -1,0 +1,270 @@
+{
+ "base_rulers": {
+  "L": 1.0,
+  "ZB": 0.5466,
+  "CraniumWidth_domeShell": 0.478,
+  "MuzzleWidth_slab": 0.2332,
+  "MuzzleWidth_section": 0.2412,
+  "MuzzleDepth": 0.231,
+  "SkullHeight_domeRise": 0.3168,
+  "MuzzleFrac_antOrbit": 0.3435,
+  "OrbitDiameter": 0.15,
+  "Interorbital": 0.1122,
+  "OrbitHeight": 0.172,
+  "OrbitRise": 0.2035,
+  "EarLength_baseTip": 0.2924,
+  "EarLength_stageF": 0.369,
+  "JawLength": 0.7104,
+  "JawLength_nodeHinge": 0.716,
+  "JawWidth": 0.533,
+  "RamusDepth": 0.2697,
+  "NoseWidth": 0.0882,
+  "ForeheadWidth_probe": 0.4395,
+  "RuffZoneWidth_probe": 0.533,
+  "StopBandZ_probe": 0.1469,
+  "OcciputY": -0.5,
+  "eye_centre": [
+   3.259629011154175e-09,
+   0.08154535747210806,
+   -0.007876698554415877
+  ],
+  "pal_z": -0.1799
+ },
+ "built_rulers": {
+  "L": 1.0358,
+  "ZB": 0.5578,
+  "CraniumWidth_domeShell": 0.4568,
+  "MuzzleWidth_slab": 0.2922,
+  "MuzzleWidth_section": 0.2916,
+  "MuzzleDepth": 0.2681,
+  "SkullHeight_domeRise": 0.2923,
+  "MuzzleFrac_antOrbit": 0.3764,
+  "OrbitDiameter": 0.11,
+  "Interorbital": 0.1762,
+  "OrbitHeight": 0.172,
+  "OrbitRise": 0.2119,
+  "EarLength_baseTip": 0.1947,
+  "EarLength_stageF": 0.3054,
+  "JawLength": 0.6718,
+  "JawLength_nodeHinge": 0.6676,
+  "JawWidth": 0.6356,
+  "RamusDepth": 0.2986,
+  "NoseWidth": 0.105,
+  "ForeheadWidth_probe": 0.5115,
+  "RuffZoneWidth_probe": 0.5578,
+  "StopBandZ_probe": 0.1324,
+  "OcciputY": -0.5094,
+  "eye_centre": [
+   2.999634790556982e-09,
+   0.0815453576525518,
+   -0.007876698531132813
+  ],
+  "pal_z": -0.1799
+ },
+ "stations": [
+  {
+   "station": "ZB (CheekWidth)",
+   "slider": "CheekWidth",
+   "value": 10.0,
+   "base": 0.5466,
+   "built": 0.5578,
+   "species_target": 0.6,
+   "built_vs_target_pct": -7.0,
+   "expected_proportional": 0.5655,
+   "built_vs_expected_pct": -1.4
+  },
+  {
+   "station": "MuzzleWidth \u2014 vertex slab (legacy ruler)",
+   "slider": "MuzzleWidth",
+   "value": 40.0,
+   "base": 0.2332,
+   "built": 0.2922,
+   "species_target": 0.202,
+   "built_vs_target_pct": 44.7,
+   "expected_proportional": 0.2771,
+   "built_vs_expected_pct": 5.5
+  },
+  {
+   "station": "MuzzleWidth \u2014 merged section (v4-verdict ruler)",
+   "slider": "MuzzleWidth",
+   "value": 40.0,
+   "base": 0.2412,
+   "built": 0.2916,
+   "species_target": 0.202,
+   "built_vs_target_pct": 44.3,
+   "expected_proportional": 0.2866,
+   "built_vs_expected_pct": 1.7
+  },
+  {
+   "station": "MuzzleDepth",
+   "slider": "MuzzleDepth",
+   "value": 40.0,
+   "base": 0.231,
+   "built": 0.2681,
+   "species_target": 0.24,
+   "built_vs_target_pct": 11.7,
+   "expected_proportional": 0.2772,
+   "built_vs_expected_pct": -3.3
+  },
+  {
+   "station": "MuzzleFrac (MuzzleLength)",
+   "slider": "MuzzleLength",
+   "value": 15.0,
+   "base": 0.3435,
+   "built": 0.3764,
+   "species_target": 0.36,
+   "built_vs_target_pct": 4.6,
+   "expected_proportional": 0.3747,
+   "built_vs_expected_pct": 0.5
+  },
+  {
+   "station": "CraniumWidth (dome shell)",
+   "slider": "CraniumWidth",
+   "value": -10.0,
+   "base": 0.478,
+   "built": 0.4568,
+   "species_target": 0.344,
+   "built_vs_target_pct": 32.8,
+   "expected_proportional": 0.4568,
+   "built_vs_expected_pct": 0.0
+  },
+  {
+   "station": "SkullHeight (CraniumHeight)",
+   "slider": "CraniumHeight",
+   "value": -20.0,
+   "base": 0.3168,
+   "built": 0.2923,
+   "species_target": 0.286,
+   "built_vs_target_pct": 2.2,
+   "expected_proportional": 0.2923,
+   "built_vs_expected_pct": 0.0
+  },
+  {
+   "station": "OrbitDiameter (EyeSize)",
+   "slider": "EyeSize",
+   "value": -40.0,
+   "base": 0.15,
+   "built": 0.11,
+   "species_target": 0.11,
+   "built_vs_target_pct": 0.0,
+   "expected_proportional": 0.11,
+   "built_vs_expected_pct": -0.0
+  },
+  {
+   "station": "EarLength base->tip (EarHeight)",
+   "slider": "EarHeight",
+   "value": -10.0,
+   "base": 0.2924,
+   "built": 0.1947,
+   "species_target": 0.335,
+   "built_vs_target_pct": -41.9,
+   "expected_proportional": 0.2449,
+   "built_vs_expected_pct": -20.5
+  },
+  {
+   "station": "EarLength stage-F ruler (EarHeight)",
+   "slider": "EarHeight",
+   "value": -10.0,
+   "base": 0.369,
+   "built": 0.3054,
+   "species_target": 0.335,
+   "built_vs_target_pct": -8.8,
+   "expected_proportional": 0.3091,
+   "built_vs_expected_pct": -1.2
+  },
+  {
+   "station": "JawLength",
+   "slider": "JawLength",
+   "value": -50.0,
+   "base": 0.7104,
+   "built": 0.6718,
+   "species_target": 0.69,
+   "built_vs_target_pct": -2.6,
+   "expected_proportional": 0.6624,
+   "built_vs_expected_pct": 1.4
+  },
+  {
+   "station": "JawWidth",
+   "slider": "JawWidth",
+   "value": 55.0,
+   "base": 0.533,
+   "built": 0.6356,
+   "species_target": 0.477,
+   "built_vs_target_pct": 33.3,
+   "expected_proportional": 0.6356,
+   "built_vs_expected_pct": -0.0
+  },
+  {
+   "station": "RamusDepth (JawDepth)",
+   "slider": "JawDepth",
+   "value": 25.0,
+   "base": 0.2697,
+   "built": 0.2986,
+   "species_target": 0.31,
+   "built_vs_target_pct": -3.7,
+   "expected_proportional": 0.2986,
+   "built_vs_expected_pct": 0.0
+  }
+ ],
+ "extra": [
+  {
+   "station": "Interorbital (EyeSpacing, delta)",
+   "base": 0.1122,
+   "built": 0.1762,
+   "delta_measured": 0.064,
+   "delta_expected": 0.024
+  },
+  {
+   "station": "NoseWidth (NoseSize, factor)",
+   "base": 0.0882,
+   "built": 0.105,
+   "ratio_measured": 1.191,
+   "ratio_expected": 1.191
+  },
+  {
+   "station": "ForeheadWidth probe (factor)",
+   "base": 0.4395,
+   "built": 0.5115,
+   "ratio_measured": 1.164,
+   "ratio_expected": 1.125
+  },
+  {
+   "station": "RuffZoneWidth probe (RuffVolume evidence)",
+   "base": 0.533,
+   "built": 0.5578,
+   "pct_change": 4.7
+  },
+  {
+   "station": "StopBandZ probe (StopAngle evidence)",
+   "base": 0.1469,
+   "built": 0.1324,
+   "delta": -0.0145
+  },
+  {
+   "station": "OcciputY (CraniumLength evidence)",
+   "base": -0.5,
+   "built": -0.5094,
+   "delta": -0.0094,
+   "factor": 1.016
+  },
+  {
+   "station": "JawLength about node hinge (supplementary)",
+   "base": 0.716,
+   "built": 0.6676,
+   "ratio_measured": 0.9324,
+   "ratio_expected": 0.9324
+  },
+  {
+   "station": "OrbitHeight (no slider \u2014 drift check)",
+   "base": 0.172,
+   "built": 0.172,
+   "delta": 0.0
+  },
+  {
+   "station": "OrbitRise (no slider \u2014 drift check)",
+   "base": 0.2035,
+   "built": 0.2119,
+   "delta": 0.0083
+  }
+ ]
+}

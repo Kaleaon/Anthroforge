@@ -1,0 +1,69 @@
+{
+ "group": "definition",
+ "id": "body.definition.traps_valleys",
+ "label": "Trapezius valleys",
+ "qa": {
+  "attenuation": {
+   "gachidebu": {
+    "measured": 0.8043125349255222,
+    "naive_fill_factor": 0.9986952621292694,
+    "predicted": 0.805365
+   },
+   "strongman": {
+    "measured": 0.8477492815686424,
+    "naive_fill_factor": 0.9991590125620099,
+    "predicted": 0.84846375
+   }
+  },
+  "calibrated_depth_mm": -0.9365863868855797,
+  "calibrated_peak_mm": 3.794538069005446,
+  "calibration_scale": 1.1820784597793397,
+  "canonical_measure": "valleys",
+  "combined_set_over_gachidebu": {
+   "macro": {
+    "flips": 0,
+    "min_dot": 0.005848530848297216
+   },
+   "raw": {
+    "flips": 0,
+    "min_dot": 0.0006095249805491722
+   }
+  },
+  "fold_gate": {
+   "gachidebu": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   },
+   "muscle": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   },
+   "strongman": {
+    "macro_flips": 0,
+    "raw_flips": 0
+   }
+  },
+  "kernel_cv_p95_cm": 0.30197878838125297,
+  "moved_verts": 419,
+  "source_depth_mm": -1.1852133357161936,
+  "source_peak_mm": 7.707889749918537,
+  "target_depth_mm": -0.9365863098668138,
+  "transfer_depth_mm": -0.792321611241988
+ },
+ "range": {
+  "default": 0.0,
+  "endpoint_anchor": "1.0 = the source sculpt's own relief depth at the canonical station, frame-scaled to hm08 (closed-loop calibrated; see qa)",
+  "max": 1.0,
+  "min": 0.0
+ },
+ "region": "yoke",
+ "semantics": "Trap/neck valley relief at value 1: the canonical dip-theta increment is -0.94 mm (signed convention; the coupling validation's measure). Pure relief beside the neck and across the upper chest; carries no neck mass (that is body.neck.mass).",
+ "symmetry": "symmetric",
+ "system": {
+  "file": "body.definition.traps_valleys.target",
+  "model": "makehuman_hm08 relief field (sparse MakeHuman target, metres)",
+  "source": "HIMBO - BodyArmsTrapsValleys (Vanilla HIMBO .osd, full decode) transferred at the slider-lab feature kernel (sigma_h 0.018, sigma_arc 0.014) and closed-loop calibrated at the canonical dip-theta station (the coupling validation's own measure).",
+  "study_only": true
+ },
+ "version": 1
+}

@@ -1,0 +1,45 @@
+{
+ "new_sen": {
+  "L": 1.0358,
+  "eye_L_centre": [
+   0.1381,
+   0.0787,
+   -0.0076
+  ],
+  "eye_R_centre": [
+   -0.1381,
+   0.0787,
+   -0.0076
+  ],
+  "eye_centre_xdistance": 0.2763,
+  "orbit_d": 0.1062,
+  "interorbital_gap": 0.1701,
+  "ear_L_base": [
+   0.2959,
+   -0.1665,
+   0.1705
+  ],
+  "ear_L_base_absx": 0.2959,
+  "ear_L_tip": [
+   0.4275,
+   -0.1396,
+   0.302
+  ],
+  "ear_L_base_tip_len": 0.188,
+  "ear_R_base": [
+   -0.2959,
+   -0.1665,
+   0.1705
+  ],
+  "ear_R_base_absx": 0.2959,
+  "ear_R_tip": [
+   -0.4275,
+   -0.1396,
+   0.302
+  ],
+  "ear_R_base_tip_len": 0.188,
+  "tongue_y_extent": 0.5525,
+  "tongue_max_forward_vs_jaw_front": -0.0244,
+  "tissue_max_width": 0.5385
+ }
+}

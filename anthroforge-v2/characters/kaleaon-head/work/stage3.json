@@ -1,0 +1,36 @@
+{
+ "rim_pairs_base": 85,
+ "margin_crossings_base": 33,
+ "chin_mass": {
+  "group_verts": 851,
+  "max_drop_L": 0.01
+ },
+ "jaw_cage_blend": {
+  "rim_grade_1.0_count": 85,
+  "cage_verts": 405
+ },
+ "margin_crossings_after_blend": 125,
+ "smile": {
+  "rim_gap_before_max": 0.0004401718058667982,
+  "rim_gap_before_mean": 1.6186314675932342e-05,
+  "rim_gap_after_max": 0.00022008323031029624,
+  "max_lift_L": 0.01
+ },
+ "margin_crossings_final": 129,
+ "fold": {
+  "TissueHead": {
+   "exterior_pairs": 10876,
+   "exterior_min_dot": -0.9999999981324352,
+   "exterior_below_0.01": 77,
+   "cage_pairs": 956,
+   "cage_below_0.01": 182
+  },
+  "Jaw": {
+   "exterior_pairs": 5520,
+   "exterior_min_dot": -0.9999998947579078,
+   "exterior_below_0.01": 78,
+   "cage_pairs": 956,
+   "cage_below_0.01": 155
+  }
+ }
+}

@@ -1,0 +1,9 @@
+00:31.113  blend            | Read blend: "/home/hatch/workspace/anthroforge-v2/retarget-prototype/retarget_prototype.blend"
+SAMPLED_OK frames=216 seam_max_delta=0.000000
+attach_rest(armature) = [ 0.0507 -0.1388  1.0015]
+basis side/fwd = [ 0.864  0.504 -0.   ] [ 0.504 -0.864  0.   ]
+root_pos[30] (first kept) = [ 0.0507 -0.1388  1.0011]
+root bob range z = 0.9739931821004166 1.009096503175856
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:35:05)
+
+Blender quit

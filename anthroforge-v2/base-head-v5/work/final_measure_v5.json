@@ -1,0 +1,111 @@
+{
+ "m4": {
+  "L": 1.0,
+  "ZB": 0.5466,
+  "CraniumWidth_domeShell": 0.478,
+  "MuzzleWidth": 0.2332,
+  "MuzzleDepth": 0.231,
+  "SkullHeight_domeRise": 0.3168,
+  "MuzzleFrac_antOrbit": 0.3435,
+  "OrbitDiameter": 0.15,
+  "Interorbital": 0.1122,
+  "OrbitHeight": 0.172,
+  "OrbitRise": 0.2035,
+  "EarLength": 0.3776,
+  "EarBaseHeight_abovePalate": 0.2699,
+  "EarBase_belowSkullTop": 0.2189,
+  "EarTip_aboveSkullTop": 0.1408,
+  "eye_centre": [
+   0.0,
+   0.0815,
+   -0.0079
+  ],
+  "pal_z": -0.1799,
+  "EarTipHeight_abovePalate": 0.6296,
+  "JawLength": 0.7128,
+  "JawWidth": 0.533,
+  "RamusDepth": 0.2697,
+  "FullHeadHeight": 0.7586
+ },
+ "s4": {
+  "cheek_facet_deg": 9.08,
+  "cheek_vnormal_step_deg": 11.33,
+  "seam_rough": 0.02592,
+  "seam_pts": 119
+ },
+ "mw4": {
+  "ycan": 0.29077,
+  "merged": {
+   "width": 0.2412,
+   "chord_len": 1.4806,
+   "n_pts": 276
+  },
+  "tissue_only": {
+   "width": 0.2316,
+   "chord_len": 0.6127,
+   "n_pts": 72
+  }
+ },
+ "m5": {
+  "L": 1.0,
+  "ZB": 0.5466,
+  "CraniumWidth_domeShell": 0.478,
+  "MuzzleWidth": 0.2342,
+  "MuzzleDepth": 0.231,
+  "SkullHeight_domeRise": 0.3168,
+  "MuzzleFrac_antOrbit": 0.3435,
+  "OrbitDiameter": 0.15,
+  "Interorbital": 0.1122,
+  "OrbitHeight": 0.172,
+  "OrbitRise": 0.2035,
+  "EarLength": 0.3776,
+  "EarBaseHeight_abovePalate": 0.2699,
+  "EarBase_belowSkullTop": 0.2189,
+  "EarTip_aboveSkullTop": 0.1408,
+  "eye_centre": [
+   0.0,
+   0.0815,
+   -0.0079
+  ],
+  "pal_z": -0.1799,
+  "EarTipHeight_abovePalate": 0.6296,
+  "JawLength": 0.709,
+  "JawWidth": 0.533,
+  "RamusDepth": 0.2697,
+  "FullHeadHeight": 0.7586
+ },
+ "s5": {
+  "cheek_facet_deg": 11.58,
+  "cheek_vnormal_step_deg": 14.57,
+  "seam_rough": 0.016,
+  "seam_pts": 150
+ },
+ "mw5": {
+  "ycan": 0.29077,
+  "merged": {
+   "width": 0.2412,
+   "chord_len": 1.6509,
+   "n_pts": 316
+  },
+  "tissue_only": {
+   "width": 0.2307,
+   "chord_len": 0.6517,
+   "n_pts": 92
+  }
+ },
+ "teeth": {
+  "-10": {
+   "overlap_pairs": 0,
+   "min_clearance_sampled": 0.0277
+  },
+  "-20": {
+   "overlap_pairs": 0,
+   "min_clearance_sampled": 0.053
+  },
+  "-30": {
+   "overlap_pairs": 0,
+   "min_clearance_sampled": 0.0759
+  }
+ },
+ "all_ok": false
+}

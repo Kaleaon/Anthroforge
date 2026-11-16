@@ -1,0 +1,24 @@
+{
+  "file": "/home/hatch/workspace/anthroforge-v2/characters/brand/brand_body.glb",
+  "backup": "/home/hatch/workspace/anthroforge-v2/characters/brand/work/originals/brand_body.glb",
+  "verts_before": 19158,
+  "verts_after": 13380,
+  "islands_before": 154,
+  "islands_after": 1,
+  "tris_after": 26756,
+  "body_extent_before_m": [
+    1.0824110507965088,
+    0.46803200244903564,
+    1.6614910364151
+  ],
+  "body_extent_after_m": [
+    1.0824110507965088,
+    0.46803200244903564,
+    1.6614910364151
+  ],
+  "max_pos_deviation_new_vs_subset_m": 0.0,
+  "max_pos_deviation_new_vs_original_body_island_m": 0.0,
+  "max_normal_deviation": 0.0,
+  "body_signed_volume_L": 107.349,
+  "body_signed_volume_L_from_original": 107.349
+}

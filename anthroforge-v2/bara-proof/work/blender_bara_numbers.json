@@ -1,0 +1,15 @@
+{
+ "combined_target_max_dev_cm": 0.020000338609892535,
+ "combined_target_mean_dev_cm": 0.0033029175035905623,
+ "body_triangles": 26756,
+ "eval_muscle_system": {
+  "faces": 26756,
+  "flips": 0,
+  "min_dot": 0.22200444575116435
+ },
+ "eval_combined": {
+  "faces": 26756,
+  "flips": 0,
+  "min_dot": 0.08408163797617102
+ }
+}
