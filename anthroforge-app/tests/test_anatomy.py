@@ -155,3 +155,12 @@ def test_manifest_rejects_unknown_or_malformed_body_plans():
     data["plan_fit"]["plans"] = ["plan.biped", {"not": "a plan"}]
     errors = validate_part_manifest(data)
     assert any("non-empty strings" in error for error in errors)
+
+
+def test_library_rejects_empty_lod0_asset(tmp_path):
+    part_dir = tmp_path / "canid"
+    part_dir.mkdir()
+    (part_dir / "mesh.glb").write_bytes(b"")
+    (part_dir / "part.json").write_text(json.dumps(genital_manifest()), encoding="utf-8")
+    with pytest.raises(ValueError, match="asset is empty"):
+        AnatomyLibrary.from_folder(tmp_path, require_mesh_files=True)
