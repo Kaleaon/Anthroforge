@@ -252,8 +252,8 @@ def count_flips(
     return int((dots < 0).sum())
 
 
-def count_degenerate_faces(positions: np.ndarray, triangles: np.ndarray, *, area_epsilon: float = 1e-12) -> int:
-    """Count faces with cross-product magnitude at or below epsilon (m^2)."""
+def degenerate_face_mask(positions: np.ndarray, triangles: np.ndarray, *, area_epsilon: float = 1e-12) -> np.ndarray:
+    """Return a per-face mask for collapsed or non-finite triangles."""
     if positions.ndim != 2 or positions.shape[1] != 3:
         raise GeometryError(f"positions must have shape (N, 3), got {positions.shape}")
     if triangles.ndim != 2 or triangles.shape[1] != 3:
@@ -263,7 +263,12 @@ def count_degenerate_faces(positions: np.ndarray, triangles: np.ndarray, *, area
     tri = positions[triangles]
     cross = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
     magnitude = np.linalg.norm(cross, axis=1)
-    return int((~np.isfinite(magnitude) | (magnitude <= area_epsilon)).sum())
+    return ~np.isfinite(magnitude) | (magnitude <= area_epsilon)
+
+
+def count_degenerate_faces(positions: np.ndarray, triangles: np.ndarray, *, area_epsilon: float = 1e-12) -> int:
+    """Count faces with cross-product magnitude at or below epsilon (m^2)."""
+    return int(degenerate_face_mask(positions, triangles, area_epsilon=area_epsilon).sum())
 
 def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) -> Path:
     """Write a minimal, valid GLB (one mesh, positions + computed
