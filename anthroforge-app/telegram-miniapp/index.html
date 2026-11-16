@@ -1587,23 +1587,29 @@
       const strength = state.sculptStrength * 0.012;
       const offsets = state.headSculpt[mesh.name] || (state.headSculpt[mesh.name] = new Array(positions.length).fill(0));
       const before = positions.slice();
-      const adjacency = null;
+      const adjacency = state.sculptTool === 'smooth' ? Array.from({ length: positions.length / 3 }, () => []) : null;
+      if (adjacency) {
+        for (let q = 0; q < indices.length; q += 3) {
+          const a = indices[q], b = indices[q + 1], d = indices[q + 2];
+          adjacency[a].push(b, d); adjacency[b].push(a, d); adjacency[d].push(a, b);
+        }
+      }
       const centers = [point];
       if (state.symmetry && Math.abs(point.x) > 0.003) centers.push(new BABYLON.Vector3(-point.x, point.y, point.z));
       for (let v = 0; v < positions.length / 3; v++) {
         const x = positions[v * 3], y = positions[v * 3 + 1], z = positions[v * 3 + 2];
-        let best = Infinity, signX = 1;
+        let best = Infinity;
         for (let c = 0; c < centers.length; c++) {
           const dx = x - centers[c].x, dy = y - centers[c].y, dz = z - centers[c].z;
           const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
-          if (d < best) { best = d; signX = c === 1 ? -1 : 1; }
+          if (d < best) best = d;
         }
         if (best >= radius) continue;
         const t = 1 - best / radius;
         const falloff = t * t * (3 - 2 * t);
         const k = v * 3;
         if (state.sculptTool === 'inflate') {
-          positions[k] += normals[k] * strength * falloff * signX;
+          positions[k] += normals[k] * strength * falloff;
           positions[k + 1] += normals[k + 1] * strength * falloff;
           positions[k + 2] += normals[k + 2] * strength * falloff;
         } else if (state.sculptTool === 'grab') {
@@ -1613,13 +1619,9 @@
         } else {
           // Laplacian smoothing from one-ring neighbours, computed from indexed triangles.
           let sx = 0, sy = 0, sz = 0, count = 0;
-          for (let q = 0; q < indices.length; q += 3) {
-            for (let e = 0; e < 3; e++) if (indices[q + e] === v) {
-              const n = indices[q + (e + 1) % 3], nk = n * 3;
-              sx += before[nk]; sy += before[nk + 1]; sz += before[nk + 2]; count++;
-              const n2 = indices[q + (e + 2) % 3], n2k = n2 * 3;
-              sx += before[n2k]; sy += before[n2k + 1]; sz += before[n2k + 2]; count++;
-            }
+          for (const n of adjacency[v]) {
+            const nk = n * 3;
+            sx += before[nk]; sy += before[nk + 1]; sz += before[nk + 2]; count++;
           }
           if (count) {
             positions[k] += (sx / count - before[k]) * 0.22 * falloff;
