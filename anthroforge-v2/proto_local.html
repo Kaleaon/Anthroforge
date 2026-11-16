@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<script src="lib/babylon.js"></script>
+<script src="lib/babylonjs.loaders.min.js"></script>
+<script src="lib/babylonjs.serializers.min.js"></script>
+</head><body><canvas id="c" width="400" height="400"></canvas>
+<script>
+window.__result = null;
+(async () => {
+  try {
+    const canvas = document.getElementById('c');
+    const engine = new BABYLON.Engine(canvas, true);
+    const scene = new BABYLON.Scene(engine);
+    new BABYLON.FreeCamera('cam', new BABYLON.Vector3(0, 1, -4), scene);
+    new BABYLON.HemisphericLight('l', new BABYLON.Vector3(0, 1, 0), scene);
+
+    // Control hierarchy, same pattern as AnthroForge rigNodes
+    const defs = [
+      { name: 'Root', parent: null, pos: [0, 0, 0] },
+      { name: 'A', parent: 'Root', pos: [0, 1, 0] },
+      { name: 'B', parent: 'A', pos: [0, 0.5, 0] },
+    ];
+    const nodes = {};
+    defs.forEach(d => {
+      const n = new BABYLON.TransformNode('bone_' + d.name, scene);
+      if (d.parent) n.parent = nodes[d.parent];
+      n.position = BABYLON.Vector3.FromArray(d.pos);
+      nodes[d.name] = n;
+    });
+    defs.forEach(d => nodes[d.name].computeWorldMatrix(true));
+
+    // APPROACH 1: real Skeleton, Bones linked to the TransformNodes
+    const skeleton = new BABYLON.Skeleton('skel', 'skel1', scene);
+    const bones = {};
+    defs.forEach(d => {
+      const parentBone = d.parent ? bones[d.parent] : null;
+      const local = BABYLON.Matrix.Translation(d.pos[0], d.pos[1], d.pos[2]);
+      const bone = new BABYLON.Bone(d.name, skeleton, parentBone, local, local, local);
+      bone.linkTransformNode(nodes[d.name]);
+      bones[d.name] = bone;
+    });
+    skeleton.prepare();
+    scene.registerBeforeRender(() => { /* nothing */ });
+    engine.runRenderLoop(() => scene.render());
+
+    // Skinned box spanning A..B: verts at y 0.9 (near A) and y 1.4 (between A and B)
+    const mesh = BABYLON.MeshBuilder.CreateBox('box', { height: 1, width: 0.2, depth: 0.2 }, scene);
+    const pos = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
+    const nv = pos.length / 3;
+    const idx = new Float32Array(nv * 4), wts = new Float32Array(nv * 4);
+    for (let v = 0; v < nv; v++) {
+      const wy = pos[v * 3 + 1] + 1.0; // box centered at 0, move conceptually: bind verts are local; we bake below
+      idx[v * 4] = 1; wts[v * 4] = 0.5; idx[v * 4 + 1] = 2; wts[v * 4 + 1] = 0.5;
+    }
+    mesh.position.y = 1.0;
+    mesh.computeWorldMatrix(true);
+    mesh.bakeTransformIntoVertices(mesh.getWorldMatrix());
+    mesh.position.setAll(0); mesh.rotation.setAll(0); mesh.scaling.setAll(1);
+    mesh.setVerticesData(BABYLON.VertexBuffer.MatricesIndicesKind, idx, true);
+    mesh.setVerticesData(BABYLON.VertexBuffer.MatricesWeightsKind, wts, true);
+    mesh.numBoneInfluencers = 4;
+    mesh.skeleton = skeleton;
+
+    await new Promise(r => setTimeout(r, 300));
+    const bindCheck = {
+      bones: skeleton.bones.map(b => b.name),
+      boneAWorld: bones.A.getWorldMatrix().asArray().slice(12, 15),
+      invBindA: bones.A.getInvertedAbsoluteTransform().asArray().slice(12, 15),
+    };
+    // Pose: rotate node A by 90 deg about X
+    nodes.A.rotation.x = Math.PI / 2;
+    await new Promise(r => setTimeout(r, 500));
+    const posedAWorld = bones.A.getWorldMatrix().asArray().slice(12, 15);
+    const posedARot = bones.A.getWorldMatrix().asArray().slice(0, 11);
+    // Manual LBS for a test vertex at bind (0, 1.4, 0), weights A .5 / B .5
+    function lbs(vBind) {
+      let out = new BABYLON.Vector3(0, 0, 0);
+      [['A', bones.A], ['B', bones.B]].forEach(([n, b]) => {
+        const m = b.getInvertedAbsoluteTransform().multiply(b.getWorldMatrix());
+        out.addInPlace(BABYLON.Vector3.TransformCoordinates(vBind, m).scale(0.5));
+      });
+      return out;
+    }
+    const vOut = lbs(new BABYLON.Vector3(0, 1.4, 0));
+    // Rigid-follow-A result for comparison
+    const rigidM = bones.A.getInvertedAbsoluteTransform().multiply(bones.A.getWorldMatrix());
+    const vRigid = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(0, 1.4, 0), rigidM);
+
+    // APPROACH 1 export test
+    let exportInfo = null;
+    try {
+      const data = await BABYLON.GLTF2Export.GLBAsync(scene, 'proto', { shouldExportNode: n => n.name !== 'cam' });
+      const dbg = { ctor: data && data.constructor && data.constructor.name, isBlob: data instanceof Blob, isAB: data instanceof ArrayBuffer, props: data ? Object.getOwnPropertyNames(data) : null, filesType: typeof (data && data.files) };
+      window.__dbg = dbg;
+      let blob = null;
+      if (data instanceof Blob) blob = data;
+      else if (data instanceof ArrayBuffer) blob = new Blob([data], { type: 'model/gltf-binary' });
+      else if (data && data.glbData) blob = new Blob([data.glbData], { type: 'model/gltf-binary' });
+      else if (data && data.glTFFiles) { const gf = data.glTFFiles; const ks = gf instanceof Map ? [...gf.keys()] : Object.keys(gf); window.__files = ks; const f = gf instanceof Map ? gf.get(ks.find(k => k.endsWith('.glb'))) : gf[ks.find(k => k.endsWith('.glb'))]; if (f) blob = f instanceof Blob ? f : new Blob([f], { type: 'model/gltf-binary' }); }
+      window.__files = window.__files || [];
+      const buf = await blob.arrayBuffer();
+      const dv = new DataView(buf);
+      const jsonLen = dv.getUint32(12, true);
+      const json = JSON.parse(new TextDecoder().decode(new Uint8Array(buf, 20, jsonLen)));
+      exportInfo = { dbg: window.__dbg, fileKeys: window.__files,
+        skins: json.skins || null,
+        nodesWithSkin: (json.nodes || []).filter(n => n.skin !== undefined).length,
+        meshPrims: (json.meshes || []).map(m => m.primitives.map(p => Object.keys(p.attributes))),
+        accessors: (json.accessors || []).length,
+      };
+    } catch (e) { exportInfo = { dbg: window.__dbg, fileKeys: window.__files, error: String(e && e.message || e) }; }
+
+    window.__result = { bindCheck, posedAWorld, posedARot: posedARot.map(x => +x.toFixed(3)), vOut: vOut.asArray().map(x => +x.toFixed(3)), vRigid: vRigid.asArray().map(x => +x.toFixed(3)), exportInfo };
+  } catch (e) { window.__result = { error: String(e && e.stack || e) }; }
+})();
+</script></body></html>
