@@ -1,61 +1,47 @@
 """Share codes — a character as one portable string.
 
-Blueprint §3.2 + CREATOR_LESSONS rule 2 ("a character is a serialisable
-vector; codes are nearly free — ship the share code with the creator").
-
-Wire format::
-
-    AF1-<base64url(frame)>
-    frame = zlib(JSON) || CRC32(zlib(JSON)) as 4 big-endian bytes
-
-- The payload is the character record *minus provenance* (§3.2),
-  serialised as canonical JSON (sorted keys, compact separators), so
-  encoding is deterministic and the round-trip is lossless — slider
-  floats survive exactly (JSON repr round-trips IEEE-754 doubles).
-- ``AF1-`` is the version prefix; a future format change is ``AF2-``
-  and old codes keep decoding.
-- The trailing CRC32 is the corruption gate: any flipped character in
-  the code changes the decoded bytes and fails the checksum before a
-  single byte is trusted (and zlib + JSON + schema validation stand
-  behind it as further gates).
-- Base64 padding is stripped on encode and restored on decode.
+The decoder applies strict size limits before and during decompression.
+Share codes are untrusted input, so a tiny compressed payload must not
+be able to allocate unbounded memory.
 """
-
 from __future__ import annotations
-
 import base64
 import binascii
 import json
 import struct
 import zlib
-
 from .character import Character
 from .errors import ShareCodeError
 
 PREFIX = "AF1-"
 _CRC = struct.Struct(">I")
+MAX_CODE_CHARS = 1_000_000
+MAX_DECOMPRESSED_BYTES = 4 * 1024 * 1024
 
 
 def encode(character: Character) -> str:
-    """Encode a character record to its ``AF1-…`` share code."""
+    """Encode a character record to its AF1 share code."""
     payload = character.to_dict(include_provenance=False)
-    raw = json.dumps(
-        payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False
-    ).encode("utf-8")
+    raw = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    if len(raw) > MAX_DECOMPRESSED_BYTES:
+        raise ShareCodeError(
+            f"character record is too large to share ({len(raw)} bytes; limit {MAX_DECOMPRESSED_BYTES})"
+        )
     comp = zlib.compress(raw, level=9)
     frame = comp + _CRC.pack(zlib.crc32(comp) & 0xFFFFFFFF)
-    return PREFIX + base64.urlsafe_b64encode(frame).decode("ascii").rstrip("=")
+    code = PREFIX + base64.urlsafe_b64encode(frame).decode("ascii").rstrip("=")
+    if len(code) > MAX_CODE_CHARS:
+        raise ShareCodeError(f"encoded share code is too large ({len(code)} characters; limit {MAX_CODE_CHARS})")
+    return code
 
 
 def decode(code: str) -> Character:
-    """Decode an ``AF1-…`` share code back to a :class:`Character`.
-
-    Raises :class:`ShareCodeError` naming the failure: unsupported
-    prefix, invalid base64, checksum mismatch, or corrupt payload.
-    """
+    """Decode an AF1 share code with bounded resource usage."""
     if not isinstance(code, str):
         raise ShareCodeError("share code must be a string")
     code = code.strip()
+    if len(code) > MAX_CODE_CHARS:
+        raise ShareCodeError(f"share code exceeds the {MAX_CODE_CHARS}-character size limit")
     if not code.startswith(PREFIX):
         head = code.split("-", 1)[0]
         if head.startswith("AF") and head[2:].isdigit():
@@ -78,17 +64,23 @@ def decode(code: str) -> Character:
     actual_crc = zlib.crc32(comp) & 0xFFFFFFFF
     if actual_crc != expected_crc:
         raise ShareCodeError(
-            f"share code checksum mismatch (expected {expected_crc:#010x}, "
-            f"computed {actual_crc:#010x}): the code is corrupted"
+            f"share code checksum mismatch (expected {expected_crc:#010x}, computed {actual_crc:#010x}): the code is corrupted"
         )
     try:
-        raw = zlib.decompress(comp)
+        inflater = zlib.decompressobj()
+        raw = inflater.decompress(comp, MAX_DECOMPRESSED_BYTES + 1)
+        if len(raw) > MAX_DECOMPRESSED_BYTES or inflater.unconsumed_tail:
+            raise ShareCodeError(
+                f"share code expands beyond the {MAX_DECOMPRESSED_BYTES}-byte limit"
+            )
+        if not inflater.eof:
+            raise ShareCodeError("share code contains an incomplete compressed stream")
+        if inflater.unused_data:
+            raise ShareCodeError("share code contains trailing compressed data")
     except zlib.error as exc:
         raise ShareCodeError(f"share code payload does not decompress: {exc}") from exc
     try:
         data = json.loads(raw.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise ShareCodeError(f"share code payload is not valid JSON: {exc}") from exc
-    # Structural validation (format/version/fields) happens in from_dict;
-    # its SchemaError propagates as the named failure.
     return Character.from_dict(data)
