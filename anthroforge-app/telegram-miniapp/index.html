@@ -619,7 +619,8 @@
           <div class="grid grid-cols-2 gap-1">
             <button id="btn-sculpt-toggle" class="text-xs rounded px-2 py-1.5 bg-slate-800 border border-cyan-500/50 text-cyan-200">Enable brush</button>
             <select id="sel-sculpt-tool" class="text-xs rounded bg-slate-800 border border-slate-700 px-2 py-1">
-              <option value="inflate">Inflate / deflate</option>
+              <option value="inflate">Inflate</option>
+              <option value="deflate">Deflate</option>
               <option value="grab">Grab / push</option>
               <option value="smooth">Smooth</option>
             </select>
@@ -1179,6 +1180,7 @@
         if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERDOWN) {
           if (state.sculptEnabled && pick && pick.hit && pick.pickedMesh && pick.pickedMesh.metadata && pick.pickedMesh.metadata.sculptable) {
             pushSculptUndo(pick.pickedMesh);
+            camera.detachControl();
             sculptStrokeOpen = true;
             sculptHeadAt(pick);
             document.getElementById('lbl-sculpt-status').textContent = 'Sculpting ' + pick.pickedMesh.name;
@@ -1190,6 +1192,7 @@
         } else if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERMOVE && sculptStrokeOpen) {
           if (pick && pick.hit) sculptHeadAt(pick);
         } else if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERUP) {
+          if (sculptStrokeOpen) camera.attachControl(canvas, true);
           sculptStrokeOpen = false;
         }
       });
@@ -1608,10 +1611,11 @@
         const t = 1 - best / radius;
         const falloff = t * t * (3 - 2 * t);
         const k = v * 3;
-        if (state.sculptTool === 'inflate') {
-          positions[k] += normals[k] * strength * falloff;
-          positions[k + 1] += normals[k + 1] * strength * falloff;
-          positions[k + 2] += normals[k + 2] * strength * falloff;
+        if (state.sculptTool === 'inflate' || state.sculptTool === 'deflate') {
+          const direction = state.sculptTool === 'deflate' ? -1 : 1;
+          positions[k] += normals[k] * strength * falloff * direction;
+          positions[k + 1] += normals[k + 1] * strength * falloff * direction;
+          positions[k + 2] += normals[k + 2] * strength * falloff * direction;
         } else if (state.sculptTool === 'grab') {
           positions[k] += (point.x - before[k]) * 0.18 * falloff;
           positions[k + 1] += (point.y - before[k + 1]) * 0.18 * falloff;
@@ -1663,7 +1667,7 @@
       mesh.parent = null;
       mesh.bakeTransformIntoVertices(bindWorld);
       mesh.metadata = mesh.metadata || {};
-      mesh.metadata.sculptable = boneName === 'Head' && /head|snout|muzzle|jaw/i.test(mesh.name);
+      mesh.metadata.sculptable = boneName === 'Head' && /head|snout|muzzle|jaw|visor|cowl|cheek/i.test(mesh.name);
       if (mesh.metadata.sculptable) {
         const saved = state.headSculpt && state.headSculpt[mesh.name];
         const basePositions = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
