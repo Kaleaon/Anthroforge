@@ -22,6 +22,12 @@ def validate():
   ids.add(p["id"]);families.add(p["family"])
   assert p["family"] in ALLOWED_FAMILIES
   assert p["body_plan"] in PLANS
+  assert set(p["supported_plans"]) <= PLANS
+  assert p["body_plan"] in p["supported_plans"]
+  if p["family"] == "serpentine":
+   assert "plan.naga" in p["supported_plans"]
+  else:
+   assert "plan.naga" not in p["supported_plans"]
   for group,keys in REQUIRED.items():
    assert keys <= set(p[group]), f'{p["id"]}: missing {group} keys {keys-set(p[group])}'
   for group in ("head","torso"):
