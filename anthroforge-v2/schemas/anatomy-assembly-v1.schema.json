@@ -1,0 +1,433 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://anthroforge.local/schemas/anatomy-assembly-v1.schema.json",
+  "title": "AnthroForge Anatomy Assembly",
+  "description": "Data-driven multi-component anatomy assembly attached to a plan-aware socket.",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "id",
+    "kind",
+    "class",
+    "socket",
+    "species_tags",
+    "plan_fit",
+    "components",
+    "morph_channels",
+    "fit_qa"
+  ],
+  "properties": {
+    "format": {
+      "const": "anthroforge.anatomy-assembly"
+    },
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_.-]{2,95}$"
+    },
+    "kind": {
+      "const": "anatomy"
+    },
+    "class": {
+      "enum": [
+        "A"
+      ]
+    },
+    "socket": {
+      "const": "pelvis.genital"
+    },
+    "adult_only": {
+      "type": "boolean",
+      "default": true
+    },
+    "species_tags": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "canid",
+          "vulpine",
+          "feline",
+          "equine",
+          "draconic",
+          "reptilian",
+          "avian",
+          "gryphon",
+          "serpentine",
+          "aquatic",
+          "custom",
+          "universal"
+        ]
+      }
+    },
+    "plan_fit": {
+      "type": "object",
+      "required": [
+        "plans",
+        "socket_by_plan"
+      ],
+      "properties": {
+        "plans": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "plan.biped",
+              "plan.quadruped_taur",
+              "plan.quadruped_feral",
+              "plan.naga"
+            ]
+          }
+        },
+        "socket_by_plan": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "variant_by_plan": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "excluded_plans": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    },
+    "morph_channels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/channel"
+      }
+    },
+    "rig": {
+      "type": "object",
+      "properties": {
+        "bones": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "weight_asset": {
+          "type": "string"
+        },
+        "dynamics_profile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "bones",
+        "weight_asset"
+      ],
+      "additionalProperties": false
+    },
+    "fit_qa": {
+      "type": "object",
+      "required": [
+        "base",
+        "score",
+        "tool"
+      ],
+      "properties": {
+        "base": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "tool": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "with",
+          "kind"
+        ],
+        "properties": {
+          "with": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "exclude",
+              "clip",
+              "clearance"
+            ]
+          },
+          "plans": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "material_zones": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "lod": {
+      "type": "object",
+      "properties": {
+        "lod0": {
+          "type": "string"
+        },
+        "lod1": {
+          "type": "string"
+        },
+        "lod2": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lod0"
+      ],
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": [
+        "id",
+        "role",
+        "mesh",
+        "parent",
+        "skin_mode"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]{1,63}$"
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mesh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skin_mode": {
+          "enum": [
+            "own-weights",
+            "inherit",
+            "rigid"
+          ]
+        },
+        "weight_asset": {
+          "type": "string"
+        },
+        "bone_chain": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "transform": {
+          "type": "object",
+          "properties": {
+            "translation": {
+              "$ref": "#/$defs/vec3"
+            },
+            "rotation": {
+              "$ref": "#/$defs/vec3"
+            },
+            "scale": {
+              "$ref": "#/$defs/vec3"
+            }
+          },
+          "additionalProperties": false
+        },
+        "material_zones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enabled_by_default": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "channel": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "kind",
+        "min",
+        "max",
+        "default",
+        "unit",
+        "component_ids"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]{1,63}$"
+        },
+        "label": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "bone_scale",
+            "morph",
+            "transform",
+            "material",
+            "dynamics",
+            "visibility"
+          ]
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "default": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "component_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "symmetric_partner": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "safe_range": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "bone_scale"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "ratio",
+                  "m",
+                  "deg"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "vec3": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3
+    }
+  },
+  "additionalProperties": false
+}
