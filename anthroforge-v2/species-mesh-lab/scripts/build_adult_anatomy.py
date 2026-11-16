@@ -54,34 +54,33 @@ def ellipsoid(name,loc,scale,material):
     for f in o.data.polygons:f.use_smooth=True
     return o
 
-def add_rig(prefix,count,segments):
+def add_rig(prefix,count,segments,length,spacing,scale):
     arm=bpy.data.armatures.new(prefix+"_RigData")
     rig=bpy.data.objects.new(prefix+"_Rig",arm);bpy.context.collection.objects.link(rig)
     bpy.context.view_layer.objects.active=rig;rig.select_set(True)
     bpy.ops.object.mode_set(mode="EDIT")
-    root=arm.edit_bones.new("GenBase");root.head=(0,0,.0);root.tail=(0,0,.12)
-    sac=arm.edit_bones.new("GenSac");sac.head=(0,0,.0);sac.tail=(0,0,-.16);sac.parent=root
+    root=arm.edit_bones.new("GenBase");root.head=(0,0,0);root.tail=(0,0,.04*scale)
+    sac=arm.edit_bones.new("GenSac");sac.head=(0,0,0);sac.tail=(0,0,-.16*scale);sac.parent=root
+    start=.04*scale
     for idx in range(count):
-        x=(idx-(count-1)/2)*.14
-        parent=root
+        x=(idx-(count-1)/2)*spacing;parent=root
         for j in range(segments):
-            b=arm.edit_bones.new(f"Gen{idx+1:02d}_{j+1:02d}")
-            b.head=(x,0,.08+j*.16);b.tail=(x,0,.08+(j+1)*.16);b.parent=parent
-            parent=b
+            z0=start+length*j/segments;z1=start+length*(j+1)/segments
+            bone=arm.edit_bones.new(f"Gen{idx+1:02d}_{j+1:02d}")
+            bone.head=(x,0,z0);bone.tail=(x,0,z1);bone.parent=parent;parent=bone
     bpy.ops.object.mode_set(mode="OBJECT");rig.select_set(False)
     return rig
 
-def bind_segment_weights(obj,rig,bone_names,axis="z"):
-    # Deterministic longitudinal weights; replace with authored weights in
-    # production and run deformation QA before shipping.
+def bind_segment_weights(obj,rig,bone_names,length,scale):
+    # Deterministic longitudinal weights are interim; author and pose-test final weights.
+    start=.04*scale
     for name in bone_names:obj.vertex_groups.new(name=name)
-    for v in obj.data.vertices:
-        coord=v.co.z if axis=="z" else v.co.y
-        idx=max(0,min(len(bone_names)-1,int(coord*len(bone_names))))
-        obj.vertex_groups[bone_names[idx]].add([v.index],1.0,"REPLACE")
+    for vertex in obj.data.vertices:
+        t=max(0.0,min(.999999,(vertex.co.z-start)/length))
+        idx=max(0,min(len(bone_names)-1,int(t*len(bone_names))))
+        obj.vertex_groups[idx].add([vertex.index],1.0,"REPLACE")
     mod=obj.modifiers.new("AdultAnatomy_Armature","ARMATURE");mod.object=rig
     obj.parent=rig
-
 def build(cfg,scale,count,out):
     if not cfg.get("adult_only"):raise ValueError("Adult-only profile flag is required")
     if not .15<=scale<=8.0:raise ValueError("Scale must be between 0.15 and 8.0")
@@ -111,10 +110,10 @@ def build(cfg,scale,count,out):
         obj["anthroforge_member_index"]=i+1
         obj["anthroforge_scale"]=scale
         details.append(obj)
-    rig=add_rig(prefix,count,5)
+    rig=add_rig(prefix,count,5,length,spacing,scale)
     for i,obj in enumerate(details):
         names=[f"Gen{i+1:02d}_{j+1:02d}" for j in range(1,6)]
-        bind_segment_weights(obj,rig,names)
+        bind_segment_weights(obj,rig,names,length,scale)
     for obj in (base,sac):
         obj.parent=rig
     scene=bpy.context.scene
