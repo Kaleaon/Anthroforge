@@ -33,3 +33,14 @@ The script imports shared primitives from `scripts/build_species_blockouts.py`. 
 4. Fit separate harness and glasses meshes to the final surface.
 5. Add UVs, texture masks and reference-matched irregular grey rosettes/patches rather than uniform procedural dots.
 6. Integrate the resolved asset into the shared creator preview/export path and run pose, collision, and GLB QA.
+
+
+## Optional modular lower-anatomy assembly
+
+The optional lower-anatomy module is modeled independently of the body sculpt base and organized into separate Blender collections:
+
+- **Quad genitalia:** four separately named and independently editable meshes.
+- **Sac:** one separate shared mesh, not joined to the body or shafts.
+- **Teats:** four individual meshes in their own collection, separate from both sac and body.
+
+Every component is tagged with its anatomical role, pelvic attachment region, component index where applicable, and pending rigging status. The profile stores editable dimensions and spacing in metres. These are working proportions, not measurements from the reference artwork. The module remains optional and can be hidden or excluded without changing the body mesh. Rig weights, collision handling, and pose deformation are still future work.
