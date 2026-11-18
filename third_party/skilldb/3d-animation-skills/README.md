@@ -4,7 +4,7 @@ Source: [SkillDB — 3D Animation skills](https://skilldb.dev/skills/3d-animatio
 Retrieved: 2026-11-18  
 Indexed entries: **21**
 
-This directory records SkillDB's 3D Animation pack as a second, complementary source alongside [zhuyansen/awesome-3d-skills](../awesome-3d-skills/README.md).
+This directory records SkillDB's 3D Animation pack as a second, complementary source alongside [zhuyansen/awesome-3d-skills](../../awesome-3d-skills/README.md).
 
 ## Scope
 
@@ -24,7 +24,7 @@ This directory records SkillDB's 3D Animation pack as a second, complementary so
 
 ## Relationship to the existing catalogue
 
-The [awesome-3d-skills catalogue](../awesome-3d-skills/catalog.json) indexes 211 external projects across tools and platforms. SkillDB contributes a focused pack of 21 agent-readable workflow documents. Keep the sources separately attributed and deduplicate only where a skill and a project actually refer to the same upstream artifact.
+The [awesome-3d-skills catalogue](../../awesome-3d-skills/catalog.json) indexes 211 external projects across tools and platforms. SkillDB contributes a focused pack of 21 agent-readable workflow documents. Keep the sources separately attributed and deduplicate only where a skill and a project actually refer to the same upstream artifact.
 
 ## Refresh procedure
 
