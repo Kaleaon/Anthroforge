@@ -3,7 +3,7 @@
   "version": 1,
   "id": "sona.kaleaon",
   "display_name": "Kaleaon",
-  "status": "reference-informed greybox; provisional dimensions pending direct image reference",
+  "status": "reference-informed greybox; visual design grounded in supplied five-image reference batch; dimensions remain provisional",
   "coordinate_system": {
     "x": "character right",
     "y": "front",
@@ -11,16 +11,17 @@
   },
   "units": "metres",
   "visual": {
-    "species_lineage": "feline-like",
+    "species_lineage": "anthropomorphic feline; exact breed/species not specified by reference",
     "body_plan": "plan.biped",
     "coat": {
-      "base": "warm_off_white",
-      "spots": "soft_cool_grey",
-      "secondary_shading": "muted_mauve",
-      "nose": "muted_pink"
+      "base": "pale warm ivory / cream-white",
+      "spots": "large irregular soft-edged cool-grey rosettes and broken patches, concentrated on shoulders, upper arms, flanks and thighs; avoid uniform tiny polka dots",
+      "secondary_shading": "muted mauve-pink shadows and fur accents, especially around face, ruff and body contours",
+      "nose": "pink-magenta"
     },
     "accessories": [
-      "dark harness straps across chest, back, upper arms and waist",
+      "dark charcoal harness: shoulder straps over chest, crossing into an X on the back, with torso/waist connections",
+      "dark upper-arm bands and wrist/forearm bands",
       "dark waist belt with central metal fitting",
       "separate glasses frame and lenses"
     ],
@@ -29,6 +30,20 @@
       "large shaggy feline-like head and cheek/neck ruff",
       "digitigrade lower legs and paws",
       "long flexible tail"
+    ],
+    "eyes": "green irises; expressive heavy brows",
+    "head": [
+      "rounded broad feline head with short muzzle and prominent cheek pads",
+      "small rounded ears partly buried in thick head fur",
+      "large layered cheek, jaw and neck ruff",
+      "glasses with a visible bridge and two separate lenses"
+    ],
+    "silhouette": [
+      "very broad shoulder span and massive rounded deltoids",
+      "thick upper arms and forearms; visible muscle separation",
+      "large chest and abdomen with compact waist transition",
+      "heavy hips and thighs; digitigrade hocks and broad paw-feet",
+      "long tapered tail with a visibly fluffy terminal tuft"
     ]
   },
   "blockout_dimensions_m": {
@@ -59,5 +74,15 @@
       "base_girth": 0.14
     }
   },
-  "proportion_note": "These are provisional blockout values chosen only to establish the documented silhouette. Replace with measurements from the user's front/rear/head reference before treating as faithful."
+  "proportion_note": "Metric dimensions are provisional placeholders. The supplied turnaround now grounds the visual design and relative silhouette, but it contains no scale bar; replace dimensions only when a real-world height or other scale anchor is supplied.",
+  "reference_observations": {
+    "source_batch": "five user-uploaded illustrations; final image is the front/rear/head turnaround",
+    "turnaround": {
+      "front": "broad shoulder and arm silhouette; pale coat with grey shoulder/arm/thigh spots; dark harness and arm bands; green-eyed shaggy feline face with glasses; tufted tail",
+      "rear": "rear harness straps form a prominent X across the upper back; belt/waist assembly and spotted shoulders and thighs are visible",
+      "head": "rounded feline head, short muzzle, broad cheek fur, small ears, glasses, green eyes and mauve-pink facial shading"
+    },
+    "secondary_art": "Use the other illustrations for expression, fur volume, pose and secondary anatomical design only; do not infer orthographic dimensions from perspective poses.",
+    "measurement_policy": "All metric dimensions remain provisional because the turnaround has no scale bar. Match relative proportions visually; do not claim physical measurements."
+  }
 }
