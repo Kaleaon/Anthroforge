@@ -35,6 +35,15 @@ def validate() -> dict[str, int]:
             value = values.get(key)
             if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
                 raise ValueError(f"{section}.{key} must be a finite positive number")
+    anatomy = data.get("anatomy_components")
+    if not isinstance(anatomy, dict):
+        raise ValueError("anatomy_components must be an object")
+    if anatomy.get("genitalia", {}).get("count") != 4:
+        raise ValueError("Kaleaon must have four independent genitalia components")
+    if anatomy.get("teats", {}).get("count") != 4:
+        raise ValueError("Kaleaon must have four individually separate teat components")
+    if "separate" not in anatomy.get("assembly_policy", ""):
+        raise ValueError("anatomy assembly policy must preserve separate components")
     if not isinstance(data.get("status"), str) or "provisional" not in data["status"]:
         raise ValueError("profile status must disclose provisional proportions")
     if data.get("scale_anchor", {}).get("source") != "user estimate: approximately 7 ft":
