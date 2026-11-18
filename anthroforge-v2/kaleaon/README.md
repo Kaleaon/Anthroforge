@@ -11,9 +11,9 @@ This is the first dedicated character asset pass for the Kaleaon creator profile
 
 ## Important reference limitation
 
-The user previously supplied a Google Photos share link, but it could not be fetched by the repository environment. The shape notes are retained in `anthroforge-app/KALEAON_CREATOR_PROFILE.md`; all numeric dimensions in this blockout are explicitly provisional estimates, not measurements from the turnaround.
+The user has now supplied five illustrations, including a front/rear/head turnaround. The profile records the visual observations from that batch. The turnaround has no scale bar, so metric dimensions remain provisional; relative silhouette, coat palette, spot placement, face, tail and harness routing are now reference-informed.
 
-**Do not call this a faithful final model.** Attach the front/rear/head reference sheet and replace the provisional dimensions, head silhouette, spot distribution, harness routing, tail shape and paw details from the actual views.
+**This remains a greybox, not a faithful final model.** Perspective illustrations are used for expression and secondary design cues, not as orthographic measurement sources.
 
 ## Build
 
@@ -27,9 +27,9 @@ The script imports shared primitives from `scripts/build_species_blockouts.py`. 
 
 ## Next production passes
 
-1. Measure front/rear/head reference views and update `kaleaon.v1.json`.
+1. Replace provisional metric dimensions when a real-world scale anchor is supplied; preserve the visual landmarks recorded in `kaleaon.v1.json`.
 2. Replace overlapping primitive masses with continuous sculpted surfaces and retopologized deformation loops.
 3. Author facial, shoulder, arm, hand/paw, hip, hock, foot and tail deformation.
 4. Fit separate harness and glasses meshes to the final surface.
-5. Add UVs, texture masks and reference-matched irregular spot placement.
+5. Add UVs, texture masks and reference-matched irregular grey rosettes/patches rather than uniform procedural dots.
 6. Integrate the resolved asset into the shared creator preview/export path and run pose, collision, and GLB QA.
