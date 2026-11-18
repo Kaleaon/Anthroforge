@@ -78,6 +78,8 @@ def build(profile, output):
     mauve = material("Kaleaon_Mauve_Shading", (0.42, 0.31, 0.39))
     dark = material("Kaleaon_Harness_Charcoal", (0.035, 0.032, 0.04))
     pink = material("Kaleaon_Nose_MutedPink", (0.42, 0.23, 0.28))
+    eye_white = material("Kaleaon_Eye_OffWhite", (0.82, 0.81, 0.76))
+    iris = material("Kaleaon_Iris_Dark", (0.12, 0.09, 0.10))
     metal = material("Kaleaon_Belt_Fitting", (0.42, 0.40, 0.35))
     ident = "Kaleaon"
 
@@ -119,13 +121,17 @@ def build(profile, output):
     ellipsoid(ident+"_Jaw", (0, .245, 1.70), (h["width"]*.30, .14, .075), mauve)
     ellipsoid(ident+"_Nose", (0, .405, 1.79), (.045, .035, .032), pink)
     for side, lr in [(-1, "L"), (1, "R")]:
+        ellipsoid(ident+"_Eye_"+lr, (side*.095, .345, 1.835), (.045, .025, .045), eye_white)
+        ellipsoid(ident+"_Iris_"+lr, (side*.095, .369, 1.835), (.022, .012, .026), iris)
         ellipsoid(ident+"_CheekRuff_"+lr, (side*.18, .035, 1.72), (.13, .17, .22), mauve)
         ellipsoid(ident+"_Ear_"+lr, (side*.145, .015, 2.015), (.095, .085, .115), coat)
         ellipsoid(ident+"_InnerEar_"+lr, (side*.145, .088, 2.02), (.052, .018, .067), mauve)
 
     # Long, flexible tail greybox: separate named curve, ready for spline rig.
-    tail_pts = [(0, -.16, .87), (0, -.40, .83), (.03, -.68, .77),
-                (.08, -.92, .69), (.13, -1.12, .63), (.18, -1.20, .68)]
+    tail_len = tail["length"]
+    tail_pts = [(0, -.15*tail_len, .87), (0, -.38*tail_len, .83), (.03*tail_len, -.62*tail_len, .77),
+                (.08*tail_len, -.82*tail_len, .69), (.13*tail_len, -.98*tail_len, .63),
+                (.18*tail_len, -tail_len, .68)]
     curve_object(ident+"_Tail_Blockout", tail_pts, tail["base_girth"]*.42, coat)
 
     # Harness is separate wearable geometry, never baked into skin.
