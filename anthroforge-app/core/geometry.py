@@ -314,7 +314,22 @@ def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) ->
     import json as _json
     import struct
 
-    pos = np.ascontiguousarray(positions, dtype=np.float32)
+    source_positions = np.asarray(positions)
+    source_triangles = np.asarray(triangles)
+    if source_positions.ndim != 2 or source_positions.shape[1:] != (3,) or not len(source_positions):
+        raise GeometryError(
+            f"write_glb: positions must have non-empty shape (N, 3), got {source_positions.shape}"
+        )
+    if source_triangles.ndim != 2 or source_triangles.shape[1:] != (3,) or not len(source_triangles):
+        raise GeometryError(
+            f"write_glb: triangles must have non-empty shape (M, 3), got {source_triangles.shape}"
+        )
+    if not np.issubdtype(source_triangles.dtype, np.integer):
+        raise GeometryError("write_glb: triangle indices must be integers")
+    if source_triangles.min() < 0 or source_triangles.max() >= len(source_positions):
+        raise GeometryError("write_glb: triangle index is outside the vertex array")
+    pos = np.ascontiguousarray(source_positions, dtype=np.float32)
+    triangles = np.ascontiguousarray(source_triangles, dtype=np.uint32)
     # A non-finite vertex would serialise as an invalid NaN/Infinity
     # token in the glTF JSON chunk (accessor min/max) — refuse the
     # export instead of writing a file no strict parser accepts.
@@ -323,14 +338,16 @@ def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) ->
             "write_glb: vertex positions contain NaN or infinite values — "
             "refusing to write an invalid GLB"
         )
-    nrm = np.ascontiguousarray(face_normals(positions, triangles), dtype=np.float32)
+    nrm = np.ascontiguousarray(face_normals(pos, triangles), dtype=np.float32)
+    if not np.isfinite(nrm).all():
+        raise GeometryError("write_glb: computed normals contain non-finite values")
     # per-vertex normals: average of adjacent face normals
     vn = np.zeros_like(pos)
     flat = triangles.ravel()
     np.add.at(vn, flat, np.repeat(nrm, 3, axis=0))
     ln = np.linalg.norm(vn, axis=1, keepdims=True)
     vn = np.divide(vn, ln, out=np.zeros_like(vn), where=ln > 0).astype(np.float32)
-    idx = np.ascontiguousarray(triangles, dtype=np.uint32)
+    idx = triangles
 
     def pad4(b: bytes) -> bytes:
         return b + b"\x00" * (-len(b) % 4)
