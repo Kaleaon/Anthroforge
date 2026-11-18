@@ -36,10 +36,26 @@ def validate():
   assert p["tail"]["length"]>0 and p["tail"]["girth"]>0
   assert p["limbs"]["paw_scale"]>=0
  assert families==ALLOWED_FAMILIES, f"missing species families: {ALLOWED_FAMILIES-families}"
+ # Adult-only anatomy data has an independent schema and explicit family/plan fit.
+ anatomy=json.loads((ROOT/"anatomy_profiles.v1.json").read_text(encoding="utf-8"))
+ assert anatomy["schema"]=="anthroforge.adult-anatomy-profiles" and anatomy["version"]==1
+ assert anatomy["scale"]["minimum"]==0.15 and anatomy["scale"]["maximum"]==8.0
+ for key,profile in anatomy["profiles"].items():
+  assert profile["id"]==key and profile["adult_only"] is True
+  assert 1<=profile["default_member_count"]<=4
+  assert profile["compatible_families"] and profile["compatible_plans"]
+  dims=profile["dimensions_m"]
+  for name in ("length","girth","sac_width","sac_height"):
+   assert dims[name]>0, str(key)+": "+name+" must be positive"
+  stations=profile["shape"]["stations"]
+  assert len(stations)>=3
+  ts=[station["t"] for station in stations]
+  assert ts==sorted(ts) and ts[0]==0 and ts[-1]==1
+  assert all(station["radius"]>0 for station in stations)
  # Parse Blender scripts without importing bpy; catches syntax regressions in CI.
  for path in (ROOT/"scripts").glob("*.py"):
   ast.parse(path.read_text(encoding="utf-8"),filename=str(path))
- print(f"OK: {len(ids)} species profiles, {len(families)} families, Blender scripts parse")
+ print("OK: "+str(len(ids))+" species profiles, "+str(len(families))+" families, "+str(len(anatomy["profiles"]))+" adult anatomy profiles, Blender scripts parse")
 
 if __name__=="__main__":
  try: validate()

@@ -121,3 +121,63 @@ against each canonical species base. In particular, a gryphon wing module
 needs a flight-ready shoulder rig, equine hoof placement needs fetlock/limb
 validation, and the naga coil needs ground-contact and spline deformation
 tests. The static validator does not substitute for Blender runtime tests.
+
+
+## Adult-only parametric external-anatomy module
+
+`anatomy_profiles.v1.json` defines six family-specific adult-only module
+profiles: canid, feline, equine, draconic, avian cloacal, and serpentine.
+The canid profile defaults to four independently named members, matching the
+multi-member customization direction; the member count can be changed from
+one through four at build time.
+
+The scale multiplier is continuous from 0.15 to 8.0. It scales length, girth,
+member spacing and shared sac dimensions together. The source profile also
+defines the neutral dimensions and longitudinal shape stations. The Blender
+builder writes separate base, sac, and member objects, plus an interim
+segmented armature and per-member vertex groups.
+
+Build an adult-only module:
+
+```bash
+blender --background --python scripts/build_adult_anatomy.py -- --profile adult_quad_canid --scale 1.0 --count 4 --output ./out/adult-anatomy
+```
+
+Other profile IDs: `adult_feline_modular`, `adult_equine_modular`,
+`adult_draconic_modular`, `adult_avian_cloacal`, and
+`adult_serpentine_modular`.
+
+### Editing contract
+
+The eventual creator UI should expose these as separate controls, not a single
+"size" slider:
+
+- Overall scale (0.15–8.0), plus independent length, girth and spacing.
+- Member count (1–4) and per-member length/girth/curve/offset.
+- Base volume and sac width/height/depth.
+- Profile morphology and body-plan socket placement.
+- Adult-only visibility/export gate, independent of ordinary character age
+  metadata. This flag is not age verification; the application must enforce
+  its own age policy.
+
+### Accuracy and safety gates
+
+These are procedural starting profiles, not validated species-specific
+clinical anatomy. In particular, family labels do not imply that every
+species in a family shares identical anatomy. Anatomical references and
+expert review are required before calling a profile accurate. Do not infer
+the user's character anatomy from unrelated references.
+
+The current auto weights are a deterministic longitudinal placeholder, not
+production skinning. The module still needs authored attachment transforms
+for each body plan, collision volumes, extreme-scale clearance checks,
+corrective shapes, pose/deformation tests, and round-trip preview/export QA.
+At the maximum multiplier, the UI should warn when anatomy intersects the
+thighs, abdomen, clothing, ground, or other modules; it must not silently
+shrink the requested dimensions.
+
+The builder exports a separate anatomy GLB and a Blender source scene. It is
+not yet assembled into the character core or the Babylon preview. The next
+integration task is to resolve the part manifest/socket, compose its geometry
+and rig with the selected body plan, and export the same assembled result
+that the creator previews.
