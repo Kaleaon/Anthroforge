@@ -18,6 +18,9 @@ def validate() -> dict[str, int]:
     dims = data.get("blockout_dimensions_m")
     if not isinstance(dims, dict):
         raise ValueError("blockout_dimensions_m must be an object")
+    height = dims.get("overall_height")
+    if isinstance(height, bool) or not isinstance(height, (int, float)) or not math.isfinite(height) or abs(height - 2.1336) > 1e-6:
+        raise ValueError("overall_height must match the user-selected 7 ft target (2.1336 m)")
     required = {
         "head": ("width", "length", "height", "muzzle_length", "ear_height"),
         "torso": ("shoulder_width", "waist_width", "hip_width", "chest_depth", "pelvis_depth"),
@@ -34,6 +37,8 @@ def validate() -> dict[str, int]:
                 raise ValueError(f"{section}.{key} must be a finite positive number")
     if not isinstance(data.get("status"), str) or "provisional" not in data["status"]:
         raise ValueError("profile status must disclose provisional proportions")
+    if data.get("scale_anchor", {}).get("source") != "user estimate: approximately 7 ft":
+        raise ValueError("scale anchor must disclose the user-estimated 7 ft target")
     ast.parse(BUILDER.read_text(encoding="utf-8"), filename=str(BUILDER))
     return {"profiles": 1, "dimension_sections": len(required), "blender_scripts": 1}
 
