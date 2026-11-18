@@ -164,3 +164,38 @@ def test_library_rejects_empty_lod0_asset(tmp_path):
     (part_dir / "part.json").write_text(json.dumps(genital_manifest()), encoding="utf-8")
     with pytest.raises(ValueError, match="asset is empty"):
         AnatomyLibrary.from_folder(tmp_path, require_mesh_files=True)
+
+
+
+@pytest.mark.parametrize(
+    "asset_path",
+    [
+        r"..\\outside.glb",
+        r"folder\\..\\..\\outside.glb",
+        r"C:\\outside.glb",
+        r"\\\\server\\share\\outside.glb",
+    ],
+)
+def test_manifest_rejects_windows_path_escape(asset_path):
+    data = genital_manifest()
+    data["meshes"]["lod0"] = asset_path
+    errors = validate_part_manifest(data)
+    assert any("stay inside" in error for error in errors)
+
+
+def test_library_rejects_symlinked_lod0_escape(tmp_path):
+    library_root = tmp_path / "library"
+    part_dir = library_root / "canid"
+    part_dir.mkdir(parents=True)
+    outside = tmp_path / "outside.glb"
+    outside.write_bytes(b"not part of this library")
+    mesh = part_dir / "mesh.glb"
+    try:
+        mesh.symlink_to(outside)
+    except (OSError, NotImplementedError):
+        pytest.skip("symlinks are unavailable in this environment")
+    (part_dir / "part.json").write_text(
+        json.dumps(genital_manifest()), encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="resolves outside"):
+        AnatomyLibrary.from_folder(library_root, require_mesh_files=True)
