@@ -10,6 +10,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_FAMILIES = {"canid", "feline", "equine", "draconic", "avian", "serpentine"}
+ANATOMY_COMPATIBLE_FAMILIES = ALLOWED_FAMILIES | {"vulpine"}
 PLANS = {"plan.biped", "plan.quadruped_feral", "plan.quadruped_taur", "plan.naga"}
 REQUIRED = {
     "head": {"length", "width", "height", "muzzle_length", "ear"},
@@ -157,7 +158,7 @@ def validate(root: Path = ROOT) -> dict[str, int]:
         compatible_plans = profile.get("compatible_plans")
         if not isinstance(compatible_families, list) or not compatible_families:
             raise ValueError(f"{context}: compatible_families must be a non-empty list")
-        if not set(compatible_families) <= ALLOWED_FAMILIES:
+        if not set(compatible_families) <= ANATOMY_COMPATIBLE_FAMILIES:
             raise ValueError(f"{context}: contains an unknown family")
         if not isinstance(compatible_plans, list) or not compatible_plans:
             raise ValueError(f"{context}: compatible_plans must be a non-empty list")
