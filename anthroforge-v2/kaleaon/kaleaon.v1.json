@@ -47,7 +47,7 @@
     ]
   },
   "blockout_dimensions_m": {
-    "overall_height": 2.08,
+    "overall_height": 2.1336,
     "head": {
       "width": 0.39,
       "length": 0.38,
@@ -74,7 +74,7 @@
       "base_girth": 0.14
     }
   },
-  "proportion_note": "Metric dimensions are provisional placeholders. The supplied turnaround now grounds the visual design and relative silhouette, but it contains no scale bar; replace dimensions only when a real-world height or other scale anchor is supplied.",
+  "proportion_note": "Overall height is set to the user's assumed target of 7 ft (2.1336 m). Other metric dimensions remain proportional estimates derived from the unscaled turnaround and should remain editable.",
   "reference_observations": {
     "source_batch": "five user-uploaded illustrations; final image is the front/rear/head turnaround",
     "turnaround": {
@@ -83,6 +83,12 @@
       "head": "rounded feline head, short muzzle, broad cheek fur, small ears, glasses, green eyes and mauve-pink facial shading"
     },
     "secondary_art": "Use the other illustrations for expression, fur volume, pose and secondary anatomical design only; do not infer orthographic dimensions from perspective poses.",
-    "measurement_policy": "All metric dimensions remain provisional because the turnaround has no scale bar. Match relative proportions visually; do not claim physical measurements."
+    "measurement_policy": "7 ft (2.1336 m) is a user-selected working scale target, not a measurement from the artwork. All other metric dimensions remain proportional estimates."
+  },
+  "scale_anchor": {
+    "value": 2.1336,
+    "unit": "metres",
+    "source": "user estimate: approximately 7 ft",
+    "confidence": "assumed design target, not measured reference fact"
   }
 }
