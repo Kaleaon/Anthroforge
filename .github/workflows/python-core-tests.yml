@@ -11,9 +11,6 @@ on:
       - "anthroforge-app/**"
       - ".github/workflows/python-core-tests.yml"
 
-permissions:
-  contents: read
-
 jobs:
   pytest:
     runs-on: ubuntu-latest
@@ -22,6 +19,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "anthroforge-app/pyproject.toml"
       - name: Install test dependencies
         run: python -m pip install --upgrade pip pytest numpy
       - name: Run application core regression suite
