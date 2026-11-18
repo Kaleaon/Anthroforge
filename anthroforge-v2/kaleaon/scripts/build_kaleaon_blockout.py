@@ -157,13 +157,56 @@ def tag_anatomy_component(obj, role, index=None):
     obj["anthroforge_rigging_status"] = "separate_mesh_pending_armature_weights"
 
 
-def build_lower_anatomy(profile, coat):
-    """Build optional lower anatomy as three independently editable assemblies.
+def make_rounded_component(name, start, end, radius_x, radius_y, mat, sides=24, stations=16, bulge=1.0):
+    """Create a closed, smooth, tapered component along an arbitrary axis.
 
-    The four shaft meshes, shared sac mesh, and individual teat meshes are
-    deliberately excluded from the unified body sculpt surface. They remain
-    separate objects and collections for independent visibility, fitting,
-    scaling, material assignment and later rigging.
+    Each station is an elliptical ring around the start-to-end axis. End rings
+    taper almost to zero and are capped, producing a continuous editable mesh
+    rather than a primitive sphere. Dimensions are in profile metres.
+    """
+    a, b = Vector(start), Vector(end)
+    axis = (b - a).normalized()
+    helper = Vector((0, 0, 1)) if abs(axis.z) < 0.92 else Vector((0, 1, 0))
+    u = axis.cross(helper).normalized()
+    v = axis.cross(u).normalized()
+    verts, faces = [], []
+    for j in range(stations):
+        t = j / (stations - 1)
+        center = a.lerp(b, t)
+        envelope = max(0.025, math.sin(math.pi * (0.035 + 0.93 * t)) ** 0.52)
+        fullness = 0.91 + 0.16 * math.sin(math.pi * t) ** 2
+        for i in range(sides):
+            angle = 2.0 * math.pi * i / sides
+            p = center + u * (math.cos(angle) * radius_x * envelope * fullness * bulge)
+            p += v * (math.sin(angle) * radius_y * envelope * fullness * bulge)
+            verts.append(tuple(p))
+    for j in range(stations - 1):
+        for i in range(sides):
+            p0 = j * sides + i
+            p1 = j * sides + (i + 1) % sides
+            faces.append((p0, p1, p1 + sides, p0 + sides))
+    faces.append(tuple(range(sides - 1, -1, -1)))
+    faces.append(tuple((stations - 1) * sides + i for i in range(sides)))
+    mesh = bpy.data.meshes.new(name + "_Mesh")
+    mesh.from_pydata(verts, [], faces)
+    mesh.materials.append(mat)
+    mesh.validate(clean_customdata=True)
+    mesh.update()
+    obj = bpy.data.objects.new(name, mesh)
+    bpy.context.collection.objects.link(obj)
+    for poly in mesh.polygons:
+        poly.use_smooth = True
+    obj["anthroforge_geometry_method"] = "closed_parametric_rounded_loft"
+    obj["anthroforge_surface_status"] = "editable_smooth_mesh_pending_final_sculpt"
+    return obj
+
+
+def build_lower_anatomy(profile, coat):
+    """Build the optional anatomy as independent, closed, editable mesh objects.
+
+    Four individual parametric lofts, one shared softly subdivided sac mesh,
+    and four individual tapered teat meshes live in separate collections.
+    Nothing in this module is joined to or voxel-fused with the body sculpt.
     """
     cfg = profile["anatomy_components"]
     root = make_component_collection("Kaleaon_Anatomy_Modules")
@@ -171,45 +214,70 @@ def build_lower_anatomy(profile, coat):
     sac_collection = make_component_collection("Kaleaon_Sac_Module", root)
     teats_collection = make_component_collection("Kaleaon_Teats_Module", root)
 
-    dark = material("Kaleaon_Anatomy_DeepMauve", (0.20, 0.045, 0.085))
-    pink = material("Kaleaon_Teat_MutedRose", (0.62, 0.27, 0.38))
+    deep_mauve = material("Kaleaon_Anatomy_DeepMauve", (0.20, 0.045, 0.085))
+    muted_rose = material("Kaleaon_Teat_MutedRose", (0.62, 0.27, 0.38))
     shafts = cfg["genitalia"]
-    count = shafts["count"]
-    if count != 4:
-        raise ValueError("Kaleaon anatomy profile requires exactly four independent shafts")
+    if shafts["count"] != 4:
+        raise ValueError("Kaleaon anatomy profile requires exactly four independent meshes")
+
     spacing_x = shafts["spacing_x_m"]
     spacing_z = shafts["spacing_z_m"]
     center_z = shafts["center_z_m"]
-    for i in range(count):
+    length = shafts["length_m"]
+    for i in range(4):
         col = (i % 2) - 0.5
         row = (i // 2) - 0.5
-        obj = ellipsoid(
+        x = col * spacing_x
+        z = center_z + row * spacing_z
+        # The component is a gently curved, rounded loft with its own origin
+        # at the proximal attachment for later independent articulation.
+        obj = make_rounded_component(
             "Kaleaon_Genitalia_Shaft_%02d" % (i + 1),
-            (col * spacing_x, cfg["mount_y_m"], center_z + row * spacing_z),
-            (shafts["radius_x_m"], shafts["radius_y_m"], shafts["length_m"] * 0.5),
-            dark,
+            (x, cfg["mount_y_m"], z - length * 0.5),
+            (x, cfg["mount_y_m"] + 0.018, z + length * 0.5),
+            shafts["radius_x_m"], shafts["radius_y_m"], deep_mauve,
+            sides=28, stations=20, bulge=1.0,
         )
         move_to_collection(obj, shafts_collection)
         tag_anatomy_component(obj, "independent_shaft", i + 1)
         obj["anthroforge_pivot_hint"] = "proximal_end"
+        obj["anthroforge_length_m"] = length
 
     sac_cfg = cfg["sac"]
-    sac = ellipsoid(
-        "Kaleaon_Sac_Shared",
-        (0.0, cfg["mount_y_m"] - 0.035, sac_cfg["center_z_m"]),
-        (sac_cfg["width_m"] * 0.5, sac_cfg["depth_m"] * 0.5, sac_cfg["height_m"] * 0.5),
-        dark,
+    bpy.ops.mesh.primitive_uv_sphere_add(
+        segments=48, ring_count=32,
+        location=(0.0, cfg["mount_y_m"] - 0.035, sac_cfg["center_z_m"]),
     )
+    sac = bpy.context.object
+    sac.name = "Kaleaon_Sac_Shared"
+    sac.scale = (
+        sac_cfg["width_m"] * 0.5,
+        sac_cfg["depth_m"] * 0.5,
+        sac_cfg["height_m"] * 0.5,
+    )
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    sac.data.materials.append(deep_mauve)
+    for poly in sac.data.polygons:
+        poly.use_smooth = True
+    subdiv = sac.modifiers.new("Sac_Surface_Subdivision", "SUBSURF")
+    subdiv.levels = 2
+    subdiv.render_levels = 2
     move_to_collection(sac, sac_collection)
     tag_anatomy_component(sac, "shared_sac")
+    sac["anthroforge_geometry_method"] = "high_resolution_uv_surface_with_live_subdivision"
+    sac["anthroforge_surface_status"] = "editable_smooth_mesh_pending_final_sculpt"
 
     teat_cfg = cfg["teats"]
     for i, (x, zoff) in enumerate(teat_cfg["positions_m"]):
-        teat = ellipsoid(
+        z = sac_cfg["center_z_m"] + zoff
+        # Each teat has a separate tapered loft and its own origin, directed
+        # outward from the front surface of the shared sac assembly.
+        teat = make_rounded_component(
             "Kaleaon_Teat_%02d" % (i + 1),
-            (x, cfg["mount_y_m"] - 0.075, sac_cfg["center_z_m"] + zoff),
-            (teat_cfg["radius_x_m"], teat_cfg["radius_y_m"], teat_cfg["radius_z_m"]),
-            pink,
+            (x, cfg["mount_y_m"] - 0.11, z),
+            (x, cfg["mount_y_m"] - 0.11 + 0.10, z),
+            teat_cfg["radius_x_m"], teat_cfg["radius_z_m"], muted_rose,
+            sides=24, stations=14, bulge=0.78,
         )
         move_to_collection(teat, teats_collection)
         tag_anatomy_component(teat, "individual_teat", i + 1)
