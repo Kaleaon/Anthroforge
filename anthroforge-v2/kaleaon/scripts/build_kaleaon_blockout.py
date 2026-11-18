@@ -36,14 +36,14 @@ def coat_material(name):
     bsdf = nodes.get("Principled BSDF")
     tex = nodes.new("ShaderNodeTexCoord")
     noise = nodes.new("ShaderNodeTexNoise")
-    noise.inputs["Scale"].default_value = 5.5
+    noise.inputs["Scale"].default_value = 3.0
     noise.inputs["Detail"].default_value = 2.0
     vor = nodes.new("ShaderNodeTexVoronoi")
-    vor.inputs["Scale"].default_value = 7.0
+    vor.inputs["Scale"].default_value = 3.2
     ramp = nodes.new("ShaderNodeValToRGB")
-    ramp.color_ramp.elements[0].position = 0.12
+    ramp.color_ramp.elements[0].position = 0.10
     ramp.color_ramp.elements[0].color = (0.48, 0.47, 0.48, 1)
-    ramp.color_ramp.elements[1].position = 0.28
+    ramp.color_ramp.elements[1].position = 0.34
     ramp.color_ramp.elements[1].color = (0.88, 0.87, 0.84, 1)
     links.new(tex.outputs["Generated"], vor.inputs["Vector"])
     links.new(vor.outputs["Distance"], ramp.inputs["Fac"])
@@ -79,7 +79,7 @@ def build(profile, output):
     dark = material("Kaleaon_Harness_Charcoal", (0.035, 0.032, 0.04))
     pink = material("Kaleaon_Nose_MutedPink", (0.42, 0.23, 0.28))
     eye_white = material("Kaleaon_Eye_OffWhite", (0.82, 0.81, 0.76))
-    iris = material("Kaleaon_Iris_Dark", (0.12, 0.09, 0.10))
+    iris = material("Kaleaon_Iris_Green", (0.18, 0.34, 0.12))
     metal = material("Kaleaon_Belt_Fitting", (0.42, 0.40, 0.35))
     ident = "Kaleaon"
 
@@ -139,6 +139,14 @@ def build(profile, output):
     curve_object(ident+"_Harness_RightStrap", [(.28,.17,1.55),(.36,.18,1.34),(.30,.17,1.12),(.22,.15,.91)], .026, dark)
     curve_object(ident+"_Harness_ChestBand", [(-.39,.16,1.34),(0,.20,1.31),(.39,.16,1.34)], .03, dark)
     curve_object(ident+"_Harness_WaistBand", [(-.30,.12,.91),(0,.18,.89),(.30,.12,.91)], .03, dark)
+    # Shoulder harness continues over the back as a distinct X, matching the
+    # supplied rear turnaround. Keep it separate from the body for fitting.
+    curve_object(ident+"_Harness_Back_Left", [(-.30,-.16,1.55),(-.20,-.19,1.36),(0,-.20,1.18),(.24,-.15,.91)], .028, dark)
+    curve_object(ident+"_Harness_Back_Right", [(.30,-.16,1.55),(.20,-.19,1.36),(0,-.20,1.18),(-.24,-.15,.91)], .028, dark)
+    # Paired upper-arm bands are independent wearable parts.
+    for side, lr in [(-1, "L"), (1, "R")]:
+        x = side * .49
+        curve_object(ident+"_UpperArmBand_"+lr, [(x-.13,.04,1.28),(x,.16,1.28),(x+.13,.04,1.28),(x,-.12,1.28)], .025, dark, True)
     ellipsoid(ident+"_Belt_Fitting", (0,.205,.90), (.07,.025,.045), metal)
 
     # Separate glasses frame and bridge; lenses are translucent material objects.
