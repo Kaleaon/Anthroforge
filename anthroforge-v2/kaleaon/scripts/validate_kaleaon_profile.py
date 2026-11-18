@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "kaleaon.v1.json"
 BUILDER = ROOT / "scripts" / "build_kaleaon_blockout.py"
+BLENDER_SMOKE_TEST = ROOT / "scripts" / "verify_kaleaon_blender_output.py"
 
 
 def positive_number(value, label):
@@ -71,6 +72,8 @@ def validate() -> dict[str, int]:
 
     source = BUILDER.read_text(encoding="utf-8")
     tree = ast.parse(source, filename=str(BUILDER))
+    smoke_source = BLENDER_SMOKE_TEST.read_text(encoding="utf-8")
+    ast.parse(smoke_source, filename=str(BLENDER_SMOKE_TEST))
     functions = {node.name: node for node in tree.body if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))}
     for name in ("make_rounded_component", "build_lower_anatomy", "fuse_coat_surface"):
         if name not in functions:
@@ -85,7 +88,7 @@ def validate() -> dict[str, int]:
         "dimension_sections": len(required),
         "anatomy_mesh_families": 3,
         "independent_anatomy_objects": 9,
-        "blender_scripts": 1,
+        "blender_scripts": 2,
     }
 
 
