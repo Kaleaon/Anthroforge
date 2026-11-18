@@ -166,6 +166,16 @@ def build_character(
     report, effective = evaluate_character(character, library)
     report.raise_if_errors()
 
+    # The current Core exporter writes only the base mesh plus slider fields.
+    # Refuse to silently discard persisted part selections until the shared
+    # part-assembly adapter is implemented and validated.
+    if character.parts:
+        raise GeometryError(
+            f"build of character {character.id!r}: Character.parts contains "
+            f"{len(character.parts)} selected part(s), but this build pipeline "
+            "does not assemble anatomy parts; refusing to export an incomplete character"
+        )
+
     base_id = BaseRegistry.resolve(character.base.get("body", ""))
     base = library.bases.load(base_id)
     positions = base.positions.copy()
