@@ -1,0 +1,139 @@
+{
+  "schema": "anthroforge.sona-blockout-profile",
+  "version": 1,
+  "id": "sona.kaleaon",
+  "display_name": "Kaleaon",
+  "status": "reference-informed greybox; visual design grounded in supplied five-image reference batch; dimensions remain provisional",
+  "coordinate_system": {
+    "x": "character right",
+    "y": "front",
+    "z": "up"
+  },
+  "units": "metres",
+  "visual": {
+    "species_lineage": "anthropomorphic feline; exact breed/species not specified by reference",
+    "body_plan": "plan.biped",
+    "coat": {
+      "base": "pale warm ivory / cream-white",
+      "spots": "large irregular soft-edged cool-grey rosettes and broken patches, concentrated on shoulders, upper arms, flanks and thighs; avoid uniform tiny polka dots",
+      "secondary_shading": "muted mauve-pink shadows and fur accents, especially around face, ruff and body contours",
+      "nose": "pink-magenta"
+    },
+    "accessories": [
+      "dark charcoal harness: shoulder straps over chest, crossing into an X on the back, with torso/waist connections",
+      "dark upper-arm bands and wrist/forearm bands",
+      "dark waist belt with central metal fitting",
+      "separate glasses frame and lenses"
+    ],
+    "distinctives": [
+      "broad heavily muscular upper torso",
+      "large shaggy feline-like head and cheek/neck ruff",
+      "digitigrade lower legs and paws",
+      "long flexible tail"
+    ],
+    "eyes": "green irises; expressive heavy brows",
+    "head": [
+      "rounded broad feline head with short muzzle and prominent cheek pads",
+      "small rounded ears partly buried in thick head fur",
+      "large layered cheek, jaw and neck ruff",
+      "glasses with a visible bridge and two separate lenses"
+    ],
+    "silhouette": [
+      "very broad shoulder span and massive rounded deltoids",
+      "thick upper arms and forearms; visible muscle separation",
+      "large chest and abdomen with compact waist transition",
+      "heavy hips and thighs; digitigrade hocks and broad paw-feet",
+      "long tapered tail with a visibly fluffy terminal tuft"
+    ]
+  },
+  "blockout_dimensions_m": {
+    "overall_height": 2.1336,
+    "head": {
+      "width": 0.39,
+      "length": 0.38,
+      "height": 0.36,
+      "muzzle_length": 0.16,
+      "ear_height": 0.1
+    },
+    "torso": {
+      "shoulder_width": 0.88,
+      "waist_width": 0.58,
+      "hip_width": 0.7,
+      "chest_depth": 0.42,
+      "pelvis_depth": 0.34
+    },
+    "limbs": {
+      "upper_arm_girth": 0.17,
+      "forearm_girth": 0.14,
+      "thigh_girth": 0.2,
+      "shin_girth": 0.12,
+      "paw_scale": 1.28
+    },
+    "tail": {
+      "length": 1.05,
+      "base_girth": 0.14
+    }
+  },
+  "proportion_note": "Overall height is set to the user's assumed target of 7 ft (2.1336 m). Other metric dimensions remain proportional estimates derived from the unscaled turnaround and should remain editable.",
+  "reference_observations": {
+    "source_batch": "five user-uploaded illustrations; final image is the front/rear/head turnaround",
+    "turnaround": {
+      "front": "broad shoulder and arm silhouette; pale coat with grey shoulder/arm/thigh spots; dark harness and arm bands; green-eyed shaggy feline face with glasses; tufted tail",
+      "rear": "rear harness straps form a prominent X across the upper back; belt/waist assembly and spotted shoulders and thighs are visible",
+      "head": "rounded feline head, short muzzle, broad cheek fur, small ears, glasses, green eyes and mauve-pink facial shading"
+    },
+    "secondary_art": "Use the other illustrations for expression, fur volume, pose and secondary anatomical design only; do not infer orthographic dimensions from perspective poses.",
+    "measurement_policy": "7 ft (2.1336 m) is a user-selected working scale target, not a measurement from the artwork. All other metric dimensions remain proportional estimates."
+  },
+  "scale_anchor": {
+    "value": 2.1336,
+    "unit": "metres",
+    "source": "user estimate: approximately 7 ft",
+    "confidence": "assumed design target, not measured reference fact"
+  },
+  "anatomy_components": {
+    "enabled": true,
+    "mount_y_m": 0.29,
+    "genitalia": {
+      "count": 4,
+      "length_m": 0.34,
+      "radius_x_m": 0.075,
+      "radius_y_m": 0.075,
+      "spacing_x_m": 0.105,
+      "spacing_z_m": 0.11,
+      "center_z_m": 0.36
+    },
+    "sac": {
+      "width_m": 0.42,
+      "depth_m": 0.28,
+      "height_m": 0.31,
+      "center_z_m": 0.23
+    },
+    "teats": {
+      "count": 4,
+      "radius_x_m": 0.055,
+      "radius_y_m": 0.045,
+      "radius_z_m": 0.065,
+      "positions_m": [
+        [
+          -0.15,
+          0.055
+        ],
+        [
+          0.15,
+          0.055
+        ],
+        [
+          -0.15,
+          -0.055
+        ],
+        [
+          0.15,
+          -0.055
+        ]
+      ]
+    },
+    "assembly_policy": "four independent genitalia meshes; one separate shared sac mesh; four individually separate teat meshes; all isolated from unified body sculpt mesh",
+    "units": "metres; editable design estimates; scaled with the seven-foot character target"
+  }
+}
