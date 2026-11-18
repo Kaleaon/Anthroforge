@@ -81,6 +81,47 @@ def test_parse_target_rejects_bad_index(tmp_path):
         parse_target(bad, 19158)
 
 
+@pytest.mark.parametrize("delta", ["nan", "inf", "-inf"])
+def test_parse_target_rejects_non_finite_deltas(tmp_path, delta):
+    target = tmp_path / "non_finite.target"
+    target.write_text(f"# basemesh hm08\\n5 {delta} 0.0 0.0\\n")
+    with pytest.raises(GeometryError, match="finite"):
+        parse_target(target, 10)
+
+
+@pytest.mark.parametrize("n_verts", [0, -1, True, 1.5])
+def test_parse_target_requires_positive_integer_vertex_count(tmp_path, n_verts):
+    target = tmp_path / "empty.target"
+    target.write_text("# basemesh hm08\\n")
+    with pytest.raises(GeometryError, match="positive integer"):
+        parse_target(target, n_verts)
+
+
+def test_instance_field_rejects_mismatched_or_non_finite_fields():
+    from core.geometry import InstanceField
+
+    with pytest.raises(GeometryError, match="sag field shape"):
+        InstanceField("test.slider", "test.base", np.zeros((3, 3)), np.zeros((2, 3)))
+    with pytest.raises(GeometryError, match="linear field contains non-finite"):
+        InstanceField("test.slider", "test.base", np.array([[np.nan, 0., 0.]]))
+
+
+@pytest.mark.parametrize("gamma", [0, -1, float("nan"), float("inf")])
+def test_instance_field_rejects_invalid_gamma(gamma):
+    from core.geometry import InstanceField
+
+    with pytest.raises(GeometryError, match="gamma"):
+        InstanceField("test.slider", "test.base", np.zeros((1, 3)), gamma=gamma)
+
+
+def test_instance_field_rejects_non_finite_slider_value():
+    from core.geometry import InstanceField
+
+    field = InstanceField("test.slider", "test.base", np.zeros((1, 3)))
+    with pytest.raises(GeometryError, match="slider value must be finite"):
+        field.at(float("nan"))
+
+
 def test_parse_target_dm_to_stored_axes(tmp_path):
     t = tmp_path / "t.target"
     t.write_text("# basemesh hm08\n5 1.0 2.0 3.0\n")
