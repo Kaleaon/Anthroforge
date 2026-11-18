@@ -72,7 +72,7 @@ This change adds a reusable contract and validator. The LOD0 check verifies a no
 2. **Plan-aware body meshes:** biped, taur, feral and naga must have separate fit regions, pelvis transforms, locomotion and socket instances.
 3. **Rigged anatomy assets:** create continuous, watertight, weighted meshes with morph targets and corrective shapes. Use authored weights; retain the current procedural loft only as a preview/prototyping route.
 4. **Collision and motion:** test neutral, walk, run, crouch, sit, tail poses and extreme slider endpoints. Validate body, clothing and fur clearances.
-5. **Single assembly pipeline:** make the Core Service resolve part manifests, assemble geometry/materials, validate the final mesh and export the same character the Babylon viewport previews.
+5. **Single assembly pipeline:** make the Core Service resolve part manifests, assemble geometry/materials, validate the final mesh and export the same character the Babylon viewport previews. Until that adapter lands, selected parts are rejected by the Python exporter so incomplete builds cannot be mistaken for complete ones.
 6. **Platform profiles:** generate platform-specific rigs and reports. VRChat setup still requires Unity Humanoid validation, Avatar Descriptor, expressions, colliders/PhysBones and SDK Build & Test.
 
 ## Reference handling
