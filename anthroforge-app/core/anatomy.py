@@ -80,14 +80,14 @@ def validate_part_manifest(
         # Validate both path grammars so manifests behave consistently on
         # Windows and POSIX (where backslashes are otherwise ordinary chars).
         windows_asset = PureWindowsPath(lod0)
-        portable_asset = Path(lod0.replace("\\\\", "/"))
+        portable_asset = Path(lod0.replace("\\", "/"))
         unsafe_path = (
             portable_asset.is_absolute()
             or windows_asset.is_absolute()
             or bool(windows_asset.drive)
             or ".." in portable_asset.parts
             or ".." in windows_asset.parts
-            or "\\x00" in lod0
+            or "\x00" in lod0
         )
         if unsafe_path:
             errors.append(f"{source}: meshes.lod0 must stay inside the part folder")
