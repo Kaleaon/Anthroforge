@@ -49,8 +49,14 @@ def main():
             raise RuntimeError(f"{name} is missing independent-component metadata")
     if len({bpy.data.objects[name].data.as_pointer() for name in anatomy}) != 9:
         raise RuntimeError("anatomy components must not share mesh datablocks")
-    if any("Kaleaon_Anatomy_Modules" not in [c.name for c in bpy.data.objects[name].users_collection] for name in anatomy):
-        raise RuntimeError("anatomy components are not organized under the modular anatomy root")
+    expected_collections = {
+        **{f"Kaleaon_Genitalia_Shaft_{i:02d}": "Kaleaon_Genitalia_Quad" for i in range(1, 5)},
+        "Kaleaon_Sac_Shared": "Kaleaon_Sac_Module",
+        **{f"Kaleaon_Teat_{i:02d}": "Kaleaon_Teats_Module" for i in range(1, 5)},
+    }
+    for name, collection_name in expected_collections.items():
+        if collection_name not in [collection.name for collection in bpy.data.objects[name].users_collection]:
+            raise RuntimeError(f"{name} is not in its expected independent collection: {collection_name}")
     print("KALEAON BLENDER SMOKE TEST PASSED")
     print("Verified 9 independent anatomy meshes, unified sculpt base, editable BLEND and valid GLB")
 
