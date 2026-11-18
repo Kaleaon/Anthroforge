@@ -1,0 +1,63 @@
+{
+  "schema": "anthroforge.sona-blockout-profile",
+  "version": 1,
+  "id": "sona.kaleaon",
+  "display_name": "Kaleaon",
+  "status": "reference-informed greybox; exact proportions pending direct image reference",
+  "coordinate_system": {
+    "x": "character right",
+    "y": "front",
+    "z": "up"
+  },
+  "units": "metres",
+  "visual": {
+    "species_lineage": "feline-like",
+    "body_plan": "plan.biped",
+    "coat": {
+      "base": "warm_off_white",
+      "spots": "soft_cool_grey",
+      "secondary_shading": "muted_mauve",
+      "nose": "muted_pink"
+    },
+    "accessories": [
+      "dark harness straps across chest, back, upper arms and waist",
+      "dark waist belt with central metal fitting",
+      "separate glasses frame and lenses"
+    ],
+    "distinctives": [
+      "broad heavily muscular upper torso",
+      "large shaggy feline-like head and cheek/neck ruff",
+      "digitigrade lower legs and paws",
+      "long flexible tail"
+    ]
+  },
+  "blockout_dimensions_m": {
+    "overall_height": 2.08,
+    "head": {
+      "width": 0.39,
+      "length": 0.38,
+      "height": 0.36,
+      "muzzle_length": 0.16,
+      "ear_height": 0.1
+    },
+    "torso": {
+      "shoulder_width": 0.88,
+      "waist_width": 0.58,
+      "hip_width": 0.7,
+      "chest_depth": 0.42,
+      "pelvis_depth": 0.34
+    },
+    "limbs": {
+      "upper_arm_girth": 0.17,
+      "forearm_girth": 0.14,
+      "thigh_girth": 0.2,
+      "shin_girth": 0.12,
+      "paw_scale": 1.28
+    },
+    "tail": {
+      "length": 1.05,
+      "base_girth": 0.14
+    }
+  },
+  "proportion_note": "These are provisional blockout values chosen only to establish the documented silhouette. Replace with measurements from the user's front/rear/head reference before treating as faithful."
+}
