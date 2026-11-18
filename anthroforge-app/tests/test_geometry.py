@@ -84,7 +84,7 @@ def test_parse_target_rejects_bad_index(tmp_path):
 @pytest.mark.parametrize("delta", ["nan", "inf", "-inf"])
 def test_parse_target_rejects_non_finite_deltas(tmp_path, delta):
     target = tmp_path / "non_finite.target"
-    target.write_text(f"# basemesh hm08\\n5 {delta} 0.0 0.0\\n")
+    target.write_text(f"# basemesh hm08\n5 {delta} 0.0 0.0\n")
     with pytest.raises(GeometryError, match="finite"):
         parse_target(target, 10)
 
@@ -92,7 +92,7 @@ def test_parse_target_rejects_non_finite_deltas(tmp_path, delta):
 @pytest.mark.parametrize("n_verts", [0, -1, True, 1.5])
 def test_parse_target_requires_positive_integer_vertex_count(tmp_path, n_verts):
     target = tmp_path / "empty.target"
-    target.write_text("# basemesh hm08\\n")
+    target.write_text("# basemesh hm08\n")
     with pytest.raises(GeometryError, match="positive integer"):
         parse_target(target, n_verts)
 
