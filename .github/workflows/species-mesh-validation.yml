@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "anthroforge-v2/species-mesh-lab/**"
+      - "anthroforge-v2/kaleaon/**"
       - ".github/workflows/species-mesh-validation.yml"
   push:
     branches: [main]
@@ -20,6 +21,8 @@ jobs:
           python-version: "3.12"
       - name: Validate species profiles and Blender script syntax
         run: python anthroforge-v2/species-mesh-lab/scripts/validate_species_mesh_lab.py
+      - name: Validate Kaleaon blockout profile and Blender script syntax
+        run: python anthroforge-v2/kaleaon/scripts/validate_kaleaon_profile.py
       - name: Run species mesh lab regression tests
         working-directory: anthroforge-v2/species-mesh-lab
         run: python -m unittest discover -s tests -v
