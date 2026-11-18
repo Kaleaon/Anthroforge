@@ -3,9 +3,12 @@ import json
 import shutil
 import tempfile
 import unittest
+import sys
 from pathlib import Path
 
-from validate_species_mesh_lab import ROOT, validate
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from validate_species_mesh_lab import validate
 
 
 class SpeciesProfileValidationTests(unittest.TestCase):
