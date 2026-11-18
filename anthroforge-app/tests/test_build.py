@@ -131,6 +131,19 @@ def test_every_hm08_instance_holds_the_fold_gate_at_full_value(tmp_path, library
     ]
 
 
+def test_build_refuses_to_silently_drop_selected_parts(tmp_path, library):
+    from core.errors import GeometryError
+
+    char = Character(
+        name="Part assembly guard",
+        parts=[{"slot": "pelvis.genital", "part": "anatomy.example"}],
+    )
+    output = tmp_path / "incomplete.glb"
+    with pytest.raises(GeometryError, match="does not assemble anatomy parts"):
+        build_character(char, library, out_path=output, run_qa=False)
+    assert not output.exists()
+
+
 def test_unknown_slider_character_refuses_to_build(tmp_path, library):
     char = Character(sliders={"body.nope": 1.0})
     with pytest.raises(Exception):
