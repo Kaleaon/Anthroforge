@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "anthroforge-v2/species-mesh-lab/**"
+      - "anthroforge-v2/kaleaon/**"
 
 jobs:
   validate-profiles:
