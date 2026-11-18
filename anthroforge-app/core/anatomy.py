@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any, Iterable
 
 PART_FORMAT = "anthroforge.part"
@@ -76,14 +76,37 @@ def validate_part_manifest(
     lod0 = meshes.get("lod0") if isinstance(meshes, dict) else None
     if not _is_nonempty_string(lod0):
         errors.append(f"{source}: meshes.lod0 is required")
-    elif Path(lod0).is_absolute() or ".." in Path(lod0).parts:
-        errors.append(f"{source}: meshes.lod0 must stay inside the part folder")
-    elif require_mesh_files:
-        asset_path = Path(source).parent / lod0
-        if not asset_path.is_file():
-            errors.append(f"{source}: meshes.lod0 asset does not exist: {lod0}")
-        elif asset_path.stat().st_size <= 0:
-            errors.append(f"{source}: meshes.lod0 asset is empty: {lod0}")
+    else:
+        # Validate both path grammars so manifests behave consistently on
+        # Windows and POSIX (where backslashes are otherwise ordinary chars).
+        windows_asset = PureWindowsPath(lod0)
+        portable_asset = Path(lod0.replace("\\\\", "/"))
+        unsafe_path = (
+            portable_asset.is_absolute()
+            or windows_asset.is_absolute()
+            or bool(windows_asset.drive)
+            or ".." in portable_asset.parts
+            or ".." in windows_asset.parts
+            or "\\x00" in lod0
+        )
+        if unsafe_path:
+            errors.append(f"{source}: meshes.lod0 must stay inside the part folder")
+        elif require_mesh_files:
+            part_root = Path(source).parent.resolve()
+            try:
+                asset_path = (part_root / portable_asset).resolve()
+                contained = asset_path.is_relative_to(part_root)
+            except (OSError, RuntimeError, ValueError):
+                contained = False
+                asset_path = part_root
+            # resolve() follows symlinks, preventing a relative asset path
+            # from escaping the part folder through a linked file.
+            if not contained:
+                errors.append(f"{source}: meshes.lod0 resolves outside the part folder")
+            elif not asset_path.is_file():
+                errors.append(f"{source}: meshes.lod0 asset does not exist: {lod0}")
+            elif asset_path.stat().st_size <= 0:
+                errors.append(f"{source}: meshes.lod0 asset is empty: {lod0}")
 
     skin = data.get("skin")
     if not isinstance(skin, dict):
