@@ -3,10 +3,9 @@
 Run from Blender:
   blender --background --python build_kaleaon_blockout.py -- --output ./out
 
-This is a proportion-editable greybox, not production topology. Dimensions are
-provisional until the supplied turnaround is available. The script uses named
-objects and separate accessory meshes so later sculpt/retopo work can replace
-each component without losing character assembly semantics.
+This is a reference-informed sculpt blockout. It fuses overlapping coat masses
+into a single voxel-remeshed sculpt surface while retaining separate wearable
+accessories and facial details. It is not yet retopologized or rig-ready.
 """
 from __future__ import annotations
 import argparse, json, math, sys
@@ -70,6 +69,70 @@ def curve_object(name, points, bevel, mat, cyclic=False):
     return obj
 
 
+def fuse_coat_surface(voxel_size=0.016):
+    """Fuse overlapping coat masses into one sculptable surface.
+
+    Wearables, eyes, nose, jaw accents and tail remain separate so they can be
+    fitted, edited and rigged independently. This is a sculpt base, not final
+    animation topology.
+    """
+    bpy.ops.object.select_all(action="DESELECT")
+    body = []
+    excluded = ("_Nose", "_Eye_", "_Iris_", "_InnerEar_", "_Jaw",
+                "_Hock_", "_Harness_", "_UpperArmBand_", "_Belt_",
+                "_Glasses_", "_Lens_", "_Tail_", "_PawToe_", "_Claw_")
+    for obj in list(bpy.context.scene.objects):
+        if obj.type == "MESH" and obj.name.startswith("Kaleaon_") and not any(
+            token in obj.name for token in excluded
+        ):
+            body.append(obj)
+    if not body:
+        raise RuntimeError("No coat meshes found for sculpt-surface fusion")
+    bpy.ops.object.select_all(action="DESELECT")
+    for obj in body:
+        obj.select_set(True)
+    bpy.context.view_layer.objects.active = body[0]
+    bpy.ops.object.join()
+    skin = bpy.context.object
+    skin.name = "Kaleaon_SculptBase_Unified"
+    skin.data.name = "Kaleaon_SculptBase_Unified_Mesh"
+    skin.data.remesh_voxel_size = voxel_size
+    skin.data.remesh_mode = "VOXEL"
+    bpy.ops.object.voxel_remesh()
+    for poly in skin.data.polygons:
+        poly.use_smooth = True
+    smooth = skin.modifiers.new("SculptBase_SurfaceRelax", "SMOOTH")
+    smooth.factor = 0.65
+    smooth.iterations = 4
+    skin["anthroforge_mesh_role"] = "unified_sculpt_base"
+    skin["anthroforge_topology_status"] = "voxel_remeshed_sculpt_base_not_retopologized"
+    return skin
+
+
+def apply_character_scale(target_height):
+    """Scale the complete character so its measured bounds match the chosen height."""
+    bpy.context.scene.cursor.location = (0.0, 0.0, 0.0)
+    bpy.ops.object.select_all(action="SELECT")
+    bpy.context.view_layer.objects.active = bpy.context.selected_objects[0]
+    bpy.context.scene.tool_settings.transform_pivot_point = "CURSOR"
+    bpy.context.view_layer.update()
+    corners = [
+        obj.matrix_world @ Vector(corner)
+        for obj in bpy.context.selected_objects
+        if obj.type in {"MESH", "CURVE"}
+        for corner in obj.bound_box
+    ]
+    if not corners:
+        raise RuntimeError("Cannot determine character bounds for scale calibration")
+    current_height = max(v.z for v in corners) - min(v.z for v in corners)
+    if current_height <= 0:
+        raise RuntimeError("Character bounds have non-positive height")
+    factor = target_height / current_height
+    bpy.ops.transform.resize(value=(factor, factor, factor), orient_type="GLOBAL")
+    bpy.context.view_layer.update()
+    return factor
+
+
 def build(profile, output):
     clear_scene()
     d = profile["blockout_dimensions_m"]
@@ -127,7 +190,15 @@ def build(profile, output):
         ellipsoid(ident+"_Ear_"+lr, (side*.145, .015, 2.015), (.095, .085, .115), coat)
         ellipsoid(ident+"_InnerEar_"+lr, (side*.145, .088, 2.02), (.052, .018, .067), mauve)
 
-    # Long, flexible tail greybox: separate named curve, ready for spline rig.
+        # Four editable toe lobes and dark claw tips give each foot a paw silhouette.
+        for toe in range(4):
+            toe_x = hipx + (toe - 1.5) * .047
+            toe_y = .18
+            ellipsoid(ident+"_PawToe_"+lr+"_"+str(toe+1), (toe_x, toe_y, .075),
+                      (.034, .085, .045), coat)
+            ellipsoid(ident+"_Claw_"+lr+"_"+str(toe+1), (toe_x, .245, .068),
+                      (.018, .032, .018), dark)
+\n    # Long, flexible tail greybox: separate named curve, ready for spline rig.
     tail_len = tail["length"]
     tail_pts = [(0, -.15*tail_len, .87), (0, -.38*tail_len, .83), (.03*tail_len, -.62*tail_len, .77),
                 (.08*tail_len, -.82*tail_len, .69), (.13*tail_len, -.98*tail_len, .63),
@@ -160,9 +231,17 @@ def build(profile, output):
         ellipsoid(ident+("_Lens_L" if side<0 else "_Lens_R"), (x,.399,1.805), (.067,.008,.035), lens)
     curve_object(ident+"_Glasses_Bridge", [(-.03,.41,1.805),(.03,.41,1.805)], .008, frame)
 
+    # Fuse the coat-colored anatomy into one continuous sculpting surface.
+    skin = fuse_coat_surface()
+    # Calibrate the complete character to the user-selected seven-foot target.
+    scale_factor = apply_character_scale(d["overall_height"])
+
     scene = bpy.context.scene
     scene["anthroforge_character_id"] = "sona.kaleaon"
-    scene["anthroforge_build_stage"] = "reference_informed_greybox"
+    scene["anthroforge_build_stage"] = "reference_informed_unified_sculpt_blockout"
+    scene["anthroforge_target_height_m"] = d["overall_height"]
+    scene["anthroforge_scale_factor"] = scale_factor
+    scene["anthroforge_sculpt_base"] = skin.name
     scene["anthroforge_reference_status"] = profile["status"]
     scene["anthroforge_profile_json"] = json.dumps(profile, sort_keys=True)
     out = Path(output).resolve()
