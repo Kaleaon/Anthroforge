@@ -90,5 +90,50 @@
     "unit": "metres",
     "source": "user estimate: approximately 7 ft",
     "confidence": "assumed design target, not measured reference fact"
+  },
+  "anatomy_components": {
+    "enabled": true,
+    "mount_y_m": 0.29,
+    "genitalia": {
+      "count": 4,
+      "length_m": 0.34,
+      "radius_x_m": 0.075,
+      "radius_y_m": 0.075,
+      "spacing_x_m": 0.105,
+      "spacing_z_m": 0.11,
+      "center_z_m": 0.36
+    },
+    "sac": {
+      "width_m": 0.42,
+      "depth_m": 0.28,
+      "height_m": 0.31,
+      "center_z_m": 0.23
+    },
+    "teats": {
+      "count": 4,
+      "radius_x_m": 0.055,
+      "radius_y_m": 0.045,
+      "radius_z_m": 0.065,
+      "positions_m": [
+        [
+          -0.15,
+          0.055
+        ],
+        [
+          0.15,
+          0.055
+        ],
+        [
+          -0.15,
+          -0.055
+        ],
+        [
+          0.15,
+          -0.055
+        ]
+      ]
+    },
+    "assembly_policy": "four independent genitalia meshes; one separate shared sac mesh; four individually separate teat meshes; all isolated from unified body sculpt mesh",
+    "units": "metres; editable design estimates; scaled with the seven-foot character target"
   }
 }
