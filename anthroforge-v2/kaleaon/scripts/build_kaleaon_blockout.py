@@ -80,7 +80,8 @@ def fuse_coat_surface(voxel_size=0.016):
     body = []
     excluded = ("_Nose", "_Eye_", "_Iris_", "_InnerEar_", "_Jaw",
                 "_Hock_", "_Harness_", "_UpperArmBand_", "_Belt_",
-                "_Glasses_", "_Lens_", "_Tail_", "_PawToe_", "_Claw_",\n                "_Genitalia_", "_Sac_", "_Teat_")
+                "_Glasses_", "_Lens_", "_Tail_", "_PawToe_", "_Claw_",
+                "_Genitalia_", "_Sac_", "_Teat_")
     for obj in list(bpy.context.scene.objects):
         if obj.type == "MESH" and obj.name.startswith("Kaleaon_") and not any(
             token in obj.name for token in excluded
@@ -314,7 +315,10 @@ def build(profile, output):
         ellipsoid(ident+("_Lens_L" if side<0 else "_Lens_R"), (x,.399,1.805), (.067,.008,.035), lens)
     curve_object(ident+"_Glasses_Bridge", [(-.03,.41,1.805),(.03,.41,1.805)], .008, frame)
 
-    # Optional lower anatomy remains modular and is never fused into the body.\n    anatomy_root = build_lower_anatomy(profile, coat)\n\n    # Fuse the coat-colored anatomy into one continuous sculpting surface.
+    # Optional lower anatomy remains modular and is never fused into the body.
+    anatomy_root = build_lower_anatomy(profile, coat)
+
+    # Fuse the coat-colored anatomy into one continuous sculpting surface.
     skin = fuse_coat_surface()
     # Calibrate the complete character to the user-selected seven-foot target.
     scale_factor = apply_character_scale(d["overall_height"])
@@ -324,7 +328,9 @@ def build(profile, output):
     scene["anthroforge_build_stage"] = "reference_informed_unified_sculpt_blockout"
     scene["anthroforge_target_height_m"] = d["overall_height"]
     scene["anthroforge_scale_factor"] = scale_factor
-    scene["anthroforge_sculpt_base"] = skin.name\n    scene["anthroforge_anatomy_module"] = anatomy_root.name\n    scene["anthroforge_anatomy_separation"] = "four_independent_shafts_shared_sac_individual_teats_all_separate_from_body"
+    scene["anthroforge_sculpt_base"] = skin.name
+    scene["anthroforge_anatomy_module"] = anatomy_root.name
+    scene["anthroforge_anatomy_separation"] = "four_independent_shafts_shared_sac_individual_teats_all_separate_from_body"
     scene["anthroforge_reference_status"] = profile["status"]
     scene["anthroforge_profile_json"] = json.dumps(profile, sort_keys=True)
     out = Path(output).resolve()
