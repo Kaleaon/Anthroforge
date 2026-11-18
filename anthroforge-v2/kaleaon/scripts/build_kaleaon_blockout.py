@@ -138,8 +138,7 @@ def build(profile, output):
     # Separate glasses frame and bridge; lenses are translucent material objects.
     frame = material("Kaleaon_Glasses_Frame", (.045,.04,.05))
     lens = material("Kaleaon_Glasses_Lens", (.30,.38,.43))
-    lens.diffuse_color = (.30,.38,.43,.28)
-    lens.blend_method = "BLEND"
+    lens.diffuse_color = (.30,.38,.43,1.0)
     for side in (-1, 1):
         x = side*.105
         ring = [(x-.075,.405,1.845),(x+.075,.405,1.845),(x+.075,.405,1.765),(x-.075,.405,1.765)]
