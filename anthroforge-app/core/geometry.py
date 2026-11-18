@@ -335,7 +335,7 @@ def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) ->
     # export instead of writing a file no strict parser accepts.
     if not np.isfinite(pos).all():
         raise GeometryError(
-            "write_glb: vertex positions contain NaN or infinite values — "
+            "write_glb: vertex positions contain non-finite values (NaN or infinity) — "
             "refusing to write an invalid GLB"
         )
     nrm = np.ascontiguousarray(face_normals(pos, triangles), dtype=np.float32)
