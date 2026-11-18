@@ -80,7 +80,7 @@ def fuse_coat_surface(voxel_size=0.016):
     body = []
     excluded = ("_Nose", "_Eye_", "_Iris_", "_InnerEar_", "_Jaw",
                 "_Hock_", "_Harness_", "_UpperArmBand_", "_Belt_",
-                "_Glasses_", "_Lens_", "_Tail_", "_PawToe_", "_Claw_")
+                "_Glasses_", "_Lens_", "_Tail_", "_PawToe_", "_Claw_",\n                "_Genitalia_", "_Sac_", "_Teat_")
     for obj in list(bpy.context.scene.objects):
         if obj.type == "MESH" and obj.name.startswith("Kaleaon_") and not any(
             token in obj.name for token in excluded
@@ -131,6 +131,93 @@ def apply_character_scale(target_height):
     bpy.ops.transform.resize(value=(factor, factor, factor), orient_type="GLOBAL")
     bpy.context.view_layer.update()
     return factor
+
+
+def make_component_collection(name):
+    """Create a dedicated collection for independently editable anatomy parts."""
+    collection = bpy.data.collections.new(name)
+    bpy.context.scene.collection.children.link(collection)
+    return collection
+
+
+def move_to_collection(obj, collection):
+    for owner in list(obj.users_collection):
+        owner.objects.unlink(obj)
+    collection.objects.link(obj)
+
+
+def tag_anatomy_component(obj, role, index=None):
+    obj["anthroforge_component_group"] = "kaleaon_lower_anatomy"
+    obj["anthroforge_anatomy_role"] = role
+    obj["anthroforge_independent_component"] = True
+    if index is not None:
+        obj["anthroforge_component_index"] = index
+    obj["anthroforge_attach_region"] = "pelvic_mount"
+    obj["anthroforge_rigging_status"] = "separate_mesh_pending_armature_weights"
+
+
+def build_lower_anatomy(profile, coat):
+    """Build optional lower anatomy as three independently editable assemblies.
+
+    The four shaft meshes, shared sac mesh, and individual teat meshes are
+    deliberately excluded from the unified body sculpt surface. They remain
+    separate objects and collections for independent visibility, fitting,
+    scaling, material assignment and later rigging.
+    """
+    cfg = profile["anatomy_components"]
+    root = make_component_collection("Kaleaon_Anatomy_Modules")
+    shafts_collection = make_component_collection("Kaleaon_Genitalia_Quad")
+    sac_collection = make_component_collection("Kaleaon_Sac_Module")
+    teats_collection = make_component_collection("Kaleaon_Teats_Module")
+    # Keep the three component collections nested under a common optional module.
+    for child in (shafts_collection, sac_collection, teats_collection):
+        for owner in list(child.users_collection):
+            owner.children.unlink(child)
+        root.children.link(child)
+
+    dark = material("Kaleaon_Anatomy_DeepMauve", (0.20, 0.045, 0.085))
+    pink = material("Kaleaon_Teat_MutedRose", (0.62, 0.27, 0.38))
+    shafts = cfg["genitalia"]
+    count = shafts["count"]
+    if count != 4:
+        raise ValueError("Kaleaon anatomy profile requires exactly four independent shafts")
+    spacing_x = shafts["spacing_x_m"]
+    spacing_z = shafts["spacing_z_m"]
+    center_z = shafts["center_z_m"]
+    for i in range(count):
+        col = (i % 2) - 0.5
+        row = (i // 2) - 0.5
+        obj = ellipsoid(
+            "Kaleaon_Genitalia_Shaft_%02d" % (i + 1),
+            (col * spacing_x, cfg["mount_y_m"], center_z + row * spacing_z),
+            (shafts["radius_x_m"], shafts["radius_y_m"], shafts["length_m"] * 0.5),
+            dark,
+        )
+        move_to_collection(obj, shafts_collection)
+        tag_anatomy_component(obj, "independent_shaft", i + 1)
+        obj["anthroforge_pivot_hint"] = "proximal_end"
+
+    sac_cfg = cfg["sac"]
+    sac = ellipsoid(
+        "Kaleaon_Sac_Shared",
+        (0.0, cfg["mount_y_m"] - 0.035, sac_cfg["center_z_m"]),
+        (sac_cfg["width_m"] * 0.5, sac_cfg["depth_m"] * 0.5, sac_cfg["height_m"] * 0.5),
+        dark,
+    )
+    move_to_collection(sac, sac_collection)
+    tag_anatomy_component(sac, "shared_sac")
+
+    teat_cfg = cfg["teats"]
+    for i, (x, zoff) in enumerate(teat_cfg["positions_m"]):
+        teat = ellipsoid(
+            "Kaleaon_Teat_%02d" % (i + 1),
+            (x, cfg["mount_y_m"] - 0.075, sac_cfg["center_z_m"] + zoff),
+            (teat_cfg["radius_x_m"], teat_cfg["radius_y_m"], teat_cfg["radius_z_m"]),
+            pink,
+        )
+        move_to_collection(teat, teats_collection)
+        tag_anatomy_component(teat, "individual_teat", i + 1)
+    return root
 
 
 def build(profile, output):
@@ -232,7 +319,7 @@ def build(profile, output):
         ellipsoid(ident+("_Lens_L" if side<0 else "_Lens_R"), (x,.399,1.805), (.067,.008,.035), lens)
     curve_object(ident+"_Glasses_Bridge", [(-.03,.41,1.805),(.03,.41,1.805)], .008, frame)
 
-    # Fuse the coat-colored anatomy into one continuous sculpting surface.
+    # Optional lower anatomy remains modular and is never fused into the body.\n    anatomy_root = build_lower_anatomy(profile, coat)\n\n    # Fuse the coat-colored anatomy into one continuous sculpting surface.
     skin = fuse_coat_surface()
     # Calibrate the complete character to the user-selected seven-foot target.
     scale_factor = apply_character_scale(d["overall_height"])
@@ -242,7 +329,7 @@ def build(profile, output):
     scene["anthroforge_build_stage"] = "reference_informed_unified_sculpt_blockout"
     scene["anthroforge_target_height_m"] = d["overall_height"]
     scene["anthroforge_scale_factor"] = scale_factor
-    scene["anthroforge_sculpt_base"] = skin.name
+    scene["anthroforge_sculpt_base"] = skin.name\n    scene["anthroforge_anatomy_module"] = anatomy_root.name\n    scene["anthroforge_anatomy_separation"] = "four_independent_shafts_shared_sac_individual_teats_all_separate_from_body"
     scene["anthroforge_reference_status"] = profile["status"]
     scene["anthroforge_profile_json"] = json.dumps(profile, sort_keys=True)
     out = Path(output).resolve()
