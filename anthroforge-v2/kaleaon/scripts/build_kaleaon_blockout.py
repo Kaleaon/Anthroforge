@@ -133,10 +133,10 @@ def apply_character_scale(target_height):
     return factor
 
 
-def make_component_collection(name):
-    """Create a dedicated collection for independently editable anatomy parts."""
+def make_component_collection(name, parent=None):
+    """Create a dedicated collection, optionally nested under a module root."""
     collection = bpy.data.collections.new(name)
-    bpy.context.scene.collection.children.link(collection)
+    (parent.children if parent else bpy.context.scene.collection.children).link(collection)
     return collection
 
 
@@ -166,14 +166,9 @@ def build_lower_anatomy(profile, coat):
     """
     cfg = profile["anatomy_components"]
     root = make_component_collection("Kaleaon_Anatomy_Modules")
-    shafts_collection = make_component_collection("Kaleaon_Genitalia_Quad")
-    sac_collection = make_component_collection("Kaleaon_Sac_Module")
-    teats_collection = make_component_collection("Kaleaon_Teats_Module")
-    # Keep the three component collections nested under a common optional module.
-    for child in (shafts_collection, sac_collection, teats_collection):
-        for owner in list(child.users_collection):
-            owner.children.unlink(child)
-        root.children.link(child)
+    shafts_collection = make_component_collection("Kaleaon_Genitalia_Quad", root)
+    sac_collection = make_component_collection("Kaleaon_Sac_Module", root)
+    teats_collection = make_component_collection("Kaleaon_Teats_Module", root)
 
     dark = material("Kaleaon_Anatomy_DeepMauve", (0.20, 0.045, 0.085))
     pink = material("Kaleaon_Teat_MutedRose", (0.62, 0.27, 0.38))
