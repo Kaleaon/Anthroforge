@@ -198,7 +198,8 @@ def build(profile, output):
                       (.034, .085, .045), coat)
             ellipsoid(ident+"_Claw_"+lr+"_"+str(toe+1), (toe_x, .245, .068),
                       (.018, .032, .018), dark)
-\n    # Long, flexible tail greybox: separate named curve, ready for spline rig.
+
+    # Long, flexible tail greybox: separate named curve, ready for spline rig.
     tail_len = tail["length"]
     tail_pts = [(0, -.15*tail_len, .87), (0, -.38*tail_len, .83), (.03*tail_len, -.62*tail_len, .77),
                 (.08*tail_len, -.82*tail_len, .69), (.13*tail_len, -.98*tail_len, .63),
