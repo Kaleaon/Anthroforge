@@ -1,0 +1,28 @@
+name: Python core tests
+
+on:
+  pull_request:
+    paths:
+      - "anthroforge-app/**"
+      - ".github/workflows/python-core-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "anthroforge-app/**"
+      - ".github/workflows/python-core-tests.yml"
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "anthroforge-app/pyproject.toml"
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest numpy
+      - name: Run application core regression suite
+        working-directory: anthroforge-app
+        run: python -m pytest -q
