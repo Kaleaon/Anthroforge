@@ -144,6 +144,23 @@ def test_glb_roundtrip_through_the_gauntlet(tmp_path, bases):
     assert qa["max_extent_m"] == pytest.approx(1.695, abs=0.01)
 
 
+@pytest.mark.parametrize(
+    "positions,triangles,message",
+    [
+        (np.empty((0, 3)), np.array([[0, 1, 2]]), "positions"),
+        (np.zeros((3, 2)), np.array([[0, 1, 2]]), "positions"),
+        (np.zeros((3, 3)), np.empty((0, 3), dtype=int), "triangles"),
+        (np.zeros((3, 3)), np.array([[0, 1, 3]]), "outside"),
+        (np.zeros((3, 3)), np.array([[0.0, 1.0, 2.0]]), "integers"),
+        (np.array([[0., 0., 0.], [1., 0., 0.], [np.inf, 1., 0.]]),
+         np.array([[0, 1, 2]]), "non-finite"),
+    ],
+)
+def test_glb_writer_rejects_invalid_geometry(tmp_path, positions, triangles, message):
+    with pytest.raises(GeometryError, match=message):
+        write_glb(tmp_path / "invalid.glb", positions, triangles)
+
+
 def test_fold_gate_counts_a_known_flip():
     # A single triangle wound backwards vs the base = exactly 1 flip.
     pos = np.array([[0., 0., 0.], [1., 0., 0.], [0., 1., 0.]])
