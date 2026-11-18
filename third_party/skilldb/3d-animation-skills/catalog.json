@@ -1,0 +1,193 @@
+{
+  "schema": "anthroforge.external-skill-pack",
+  "schema_version": 1,
+  "source": {
+    "provider": "SkillDB",
+    "pack": "3d-animation-skills",
+    "url": "https://skilldb.dev/skills/3d-animation-skills",
+    "retrieved_at": "2026-11-18",
+    "category": "Visual Arts & Design",
+    "upstream_skill_count": 21,
+    "access_method": "SkillDB CLI/MCP; full-pack CLI command shown upstream as `npx skilldb add 3d-animation-skills`",
+    "license": "Not established by the pack landing page; verify SkillDB terms and individual skill licensing before copying full documents."
+  },
+  "note": "Discovery metadata only. This file does not vendor SkillDB skill Markdown, install its CLI, or execute any skill instructions. Descriptions and line counts are a snapshot of the public pack index. Confirm current pack contents and licensing before redistribution.",
+  "skills": [
+    {
+      "slug": "3d-modeling-fundamentals",
+      "name": "3D Modeling Fundamentals",
+      "summary": "Clean topology, real-world scale, reference-led modeling, edge flow, normals, and production-ready mesh creation.",
+      "line_count": 75,
+      "focus": "modeling",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/3d-modeling-fundamentals"
+    },
+    {
+      "slug": "blender-workflows",
+      "name": "Blender Workflows",
+      "summary": "Non-destructive Blender workflows, modifiers, scene organization, hotkeys, file hygiene, and production pipeline practices.",
+      "line_count": 76,
+      "focus": "blender",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/blender-workflows"
+    },
+    {
+      "slug": "camera-animation",
+      "name": "Camera Animation",
+      "summary": "Story-driven camera composition, movement, pacing, and continuity.",
+      "line_count": 76,
+      "focus": "animation",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/camera-animation"
+    },
+    {
+      "slug": "character-rigging",
+      "name": "Character Rigging",
+      "summary": "Robust character control rigs, deformation quality, and animator-friendly controls.",
+      "line_count": 75,
+      "focus": "rigging",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/character-rigging"
+    },
+    {
+      "slug": "facial-animation",
+      "name": "Facial Animation",
+      "summary": "Expressive facial performance including eyes, brows, mouth, jaw, and head integration.",
+      "line_count": 75,
+      "focus": "animation",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/facial-animation"
+    },
+    {
+      "slug": "keyframe-animation",
+      "name": "Keyframe Animation",
+      "summary": "Key poses, timing, spacing, breakdowns, arcs, and polished animation curves.",
+      "line_count": 75,
+      "focus": "animation",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/keyframe-animation"
+    },
+    {
+      "slug": "lighting-rendering",
+      "name": "Lighting Rendering",
+      "summary": "Lighting, look development, rendering quality, and performance.",
+      "line_count": 74,
+      "focus": "rendering",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/lighting-rendering"
+    },
+    {
+      "slug": "lod-optimization",
+      "name": "LOD Optimization",
+      "summary": "Level-of-detail strategy balancing visual fidelity and runtime performance.",
+      "line_count": 72,
+      "focus": "optimization",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/lod-optimization"
+    },
+    {
+      "slug": "material-creation",
+      "name": "Material Creation",
+      "summary": "PBR materials, shader organization, physically plausible surface response, and texture quality.",
+      "line_count": 76,
+      "focus": "materials",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/material-creation"
+    },
+    {
+      "slug": "maya-workflows",
+      "name": "Maya Workflows",
+      "summary": "Maya project organization, technical workflows, and production asset delivery.",
+      "line_count": 73,
+      "focus": "dcc",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/maya-workflows"
+    },
+    {
+      "slug": "motion-capture",
+      "name": "Motion Capture",
+      "summary": "Capture preparation, data cleanup, retargeting, and end-to-end character animation integration.",
+      "line_count": 69,
+      "focus": "animation",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/motion-capture"
+    },
+    {
+      "slug": "particle-systems",
+      "name": "Particle Systems",
+      "summary": "Procedural particle effects for natural and stylized visual effects.",
+      "line_count": 73,
+      "focus": "simulation",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/particle-systems"
+    },
+    {
+      "slug": "physics-simulation",
+      "name": "Physics Simulation",
+      "summary": "Believable collisions, cloth and fluid interaction, scale-aware simulation, and caching.",
+      "line_count": 71,
+      "focus": "simulation",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/physics-simulation"
+    },
+    {
+      "slug": "procedural-modeling",
+      "name": "Procedural Modeling",
+      "summary": "Rule-driven geometry generation and repeatable procedural asset variation.",
+      "line_count": 75,
+      "focus": "modeling",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/procedural-modeling"
+    },
+    {
+      "slug": "retopology",
+      "name": "Retopology",
+      "summary": "Animation-friendly topology reconstruction, deformation flow, UV readiness, and efficient meshes.",
+      "line_count": 81,
+      "focus": "modeling",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/retopology"
+    },
+    {
+      "slug": "scene-composition",
+      "name": "Scene Composition",
+      "summary": "Visual storytelling through spatial arrangement, depth, lighting, and camera framing.",
+      "line_count": 70,
+      "focus": "composition",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/scene-composition"
+    },
+    {
+      "slug": "sculpting-digital",
+      "name": "Sculpting Digital",
+      "summary": "Organic forms, creature and character sculpting, anatomical structure, and high-detail meshes.",
+      "line_count": 75,
+      "focus": "sculpting",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/sculpting-digital"
+    },
+    {
+      "slug": "tentacle-spline-ik-rigging",
+      "name": "Blender Tentacle Spline IK Rigging",
+      "summary": "Curve-driven spline IK for tails, tentacles, and flexible appendages with repeatable pose checks.",
+      "line_count": 34,
+      "focus": "rigging",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/tentacle-spline-ik-rigging"
+    },
+    {
+      "slug": "texture-painting",
+      "name": "Texture Painting",
+      "summary": "Direct texture authoring, surface detail, wear, and coherent visual material storytelling.",
+      "line_count": 70,
+      "focus": "materials",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/texture-painting"
+    },
+    {
+      "slug": "uv-mapping",
+      "name": "UV Mapping",
+      "summary": "UV layout, seam planning, distortion control, texel density, and efficient packing.",
+      "line_count": 75,
+      "focus": "materials",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/uv-mapping"
+    },
+    {
+      "slug": "walk-cycles",
+      "name": "Walk Cycles",
+      "summary": "Grounded locomotion, weight transfer, timing, overlapping action, and quadruped/biped gait.",
+      "line_count": 75,
+      "focus": "animation",
+      "url": "https://skilldb.dev/skills/3d-animation-skills/walk-cycles"
+    }
+  ],
+  "anthroforge_relevance": [
+    "Modeling and retopology: improve species body meshes, topology flow, deformation loops, and mesh QA.",
+    "Character rigging and spline IK: improve species-specific rigs, tails, ears, appendages, skinning, and corrective deformation.",
+    "Motion capture, keyframes, and walk cycles: establish reusable animation validation and locomotion test suites.",
+    "Facial animation: support expressive face rigs and facial deformation QA.",
+    "Materials, UVs, and LODs: improve export-ready asset packaging and runtime budgets.",
+    "Physics: evaluate collision, cloth, and secondary-motion workflows only where they integrate cleanly with the current character pipeline."
+  ]
+}
