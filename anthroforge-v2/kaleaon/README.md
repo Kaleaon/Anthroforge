@@ -39,8 +39,10 @@ The script imports shared primitives from `scripts/build_species_blockouts.py`. 
 
 The optional lower-anatomy module is modeled independently of the body sculpt base and organized into separate Blender collections:
 
-- **Quad genitalia:** four separately named and independently editable meshes.
-- **Sac:** one separate shared mesh, not joined to the body or shafts.
-- **Teats:** four individual meshes in their own collection, separate from both sac and body.
+- **Quad genitalia:** four separately named closed parametric loft meshes, each with its own object origin and proximal pivot hint.
+- **Sac:** one separate high-resolution UV surface with a live subdivision modifier.
+- **Teats:** four individual tapered parametric meshes in their own collection, separate from both sac and body.
+
+The current generator now creates nine independent mesh objects using closed surface geometry, smooth shading and per-part metadata. They remain editable in Blender; the anatomy validator checks the component counts, dimensions and that the builder uses the parametric mesh generator rather than the old ellipsoid placeholders. The Blender scene still requires runtime inspection and sculpt/fit refinement before production use.
 
 Every component is tagged with its anatomical role, pelvic attachment region, component index where applicable, and pending rigging status. The profile stores editable dimensions and spacing in metres. These are working proportions, not measurements from the reference artwork. The module remains optional and can be hidden or excluded without changing the body mesh. Rig weights, collision handling, and pose deformation are still future work.
