@@ -57,6 +57,8 @@ def parse_target(path: str | Path, n_verts: int) -> np.ndarray:
     in stored base axes, metres. Raises GeometryError naming the file
     on any malformed line or out-of-range vertex index."""
     path = Path(path)
+    if not isinstance(n_verts, int) or isinstance(n_verts, bool) or n_verts <= 0:
+        raise GeometryError(f"target instance {path}: n_verts must be a positive integer")
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
@@ -80,6 +82,10 @@ def parse_target(path: str | Path, n_verts: int) -> np.ndarray:
             raise GeometryError(
                 f"target instance {path}:{lineno}: non-numeric entry {line!r}"
             ) from exc
+        if not np.isfinite((dx, dy, dz)).all():
+            raise GeometryError(
+                f"target instance {path}:{lineno}: vertex deltas must be finite numbers"
+            )
         if not (0 <= idx < n_verts):
             raise GeometryError(
                 f"target instance {path}:{lineno}: vertex index {idx} outside "
@@ -107,9 +113,39 @@ class InstanceField:
     sag: Optional[np.ndarray] = None         # gravity component, if coupled
     gamma: float = 2.0
 
+    def __post_init__(self) -> None:
+        self.linear = np.asarray(self.linear, dtype=np.float64)
+        if self.linear.ndim != 2 or self.linear.shape[1:] != (3,):
+            raise GeometryError(
+                f"slider {self.slider_id!r}: linear field must have shape (N, 3), "
+                f"got {self.linear.shape}"
+            )
+        if not np.isfinite(self.linear).all():
+            raise GeometryError(f"slider {self.slider_id!r}: linear field contains non-finite values")
+        if self.sag is not None:
+            self.sag = np.asarray(self.sag, dtype=np.float64)
+            if self.sag.shape != self.linear.shape:
+                raise GeometryError(
+                    f"slider {self.slider_id!r}: sag field shape {self.sag.shape} "
+                    f"does not match linear field {self.linear.shape}"
+                )
+            if not np.isfinite(self.sag).all():
+                raise GeometryError(f"slider {self.slider_id!r}: sag field contains non-finite values")
+        try:
+            self.gamma = float(self.gamma)
+        except (TypeError, ValueError) as exc:
+            raise GeometryError(f"slider {self.slider_id!r}: gamma must be a finite positive number") from exc
+        if not np.isfinite(self.gamma) or self.gamma <= 0:
+            raise GeometryError(f"slider {self.slider_id!r}: gamma must be a finite positive number")
+
     def at(self, value: float) -> np.ndarray:
         """The displacement field at slider value ``value``."""
-        w = float(value)
+        try:
+            w = float(value)
+        except (TypeError, ValueError) as exc:
+            raise GeometryError(f"slider {self.slider_id!r}: slider value must be finite") from exc
+        if not np.isfinite(w):
+            raise GeometryError(f"slider {self.slider_id!r}: slider value must be finite")
         disp = w * self.linear
         if self.sag is not None and w != 0.0:
             disp = disp + np.sign(w) * (abs(w) ** self.gamma) * self.sag
@@ -278,7 +314,22 @@ def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) ->
     import json as _json
     import struct
 
-    pos = np.ascontiguousarray(positions, dtype=np.float32)
+    source_positions = np.asarray(positions)
+    source_triangles = np.asarray(triangles)
+    if source_positions.ndim != 2 or source_positions.shape[1:] != (3,) or not len(source_positions):
+        raise GeometryError(
+            f"write_glb: positions must have non-empty shape (N, 3), got {source_positions.shape}"
+        )
+    if source_triangles.ndim != 2 or source_triangles.shape[1:] != (3,) or not len(source_triangles):
+        raise GeometryError(
+            f"write_glb: triangles must have non-empty shape (M, 3), got {source_triangles.shape}"
+        )
+    if not np.issubdtype(source_triangles.dtype, np.integer):
+        raise GeometryError("write_glb: triangle indices must be integers")
+    if source_triangles.min() < 0 or source_triangles.max() >= len(source_positions):
+        raise GeometryError("write_glb: triangle index is outside the vertex array")
+    pos = np.ascontiguousarray(source_positions, dtype=np.float32)
+    triangles = np.ascontiguousarray(source_triangles, dtype=np.uint32)
     # A non-finite vertex would serialise as an invalid NaN/Infinity
     # token in the glTF JSON chunk (accessor min/max) — refuse the
     # export instead of writing a file no strict parser accepts.
@@ -287,14 +338,16 @@ def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) ->
             "write_glb: vertex positions contain NaN or infinite values — "
             "refusing to write an invalid GLB"
         )
-    nrm = np.ascontiguousarray(face_normals(positions, triangles), dtype=np.float32)
+    nrm = np.ascontiguousarray(face_normals(pos, triangles), dtype=np.float32)
+    if not np.isfinite(nrm).all():
+        raise GeometryError("write_glb: computed normals contain non-finite values")
     # per-vertex normals: average of adjacent face normals
     vn = np.zeros_like(pos)
     flat = triangles.ravel()
     np.add.at(vn, flat, np.repeat(nrm, 3, axis=0))
     ln = np.linalg.norm(vn, axis=1, keepdims=True)
     vn = np.divide(vn, ln, out=np.zeros_like(vn), where=ln > 0).astype(np.float32)
-    idx = np.ascontiguousarray(triangles, dtype=np.uint32)
+    idx = triangles
 
     def pad4(b: bytes) -> bytes:
         return b + b"\x00" * (-len(b) % 4)

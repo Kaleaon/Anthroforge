@@ -81,6 +81,47 @@ def test_parse_target_rejects_bad_index(tmp_path):
         parse_target(bad, 19158)
 
 
+@pytest.mark.parametrize("delta", ["nan", "inf", "-inf"])
+def test_parse_target_rejects_non_finite_deltas(tmp_path, delta):
+    target = tmp_path / "non_finite.target"
+    target.write_text(f"# basemesh hm08\n5 {delta} 0.0 0.0\n")
+    with pytest.raises(GeometryError, match="finite"):
+        parse_target(target, 10)
+
+
+@pytest.mark.parametrize("n_verts", [0, -1, True, 1.5])
+def test_parse_target_requires_positive_integer_vertex_count(tmp_path, n_verts):
+    target = tmp_path / "empty.target"
+    target.write_text("# basemesh hm08\n")
+    with pytest.raises(GeometryError, match="positive integer"):
+        parse_target(target, n_verts)
+
+
+def test_instance_field_rejects_mismatched_or_non_finite_fields():
+    from core.geometry import InstanceField
+
+    with pytest.raises(GeometryError, match="sag field shape"):
+        InstanceField("test.slider", "test.base", np.zeros((3, 3)), np.zeros((2, 3)))
+    with pytest.raises(GeometryError, match="linear field contains non-finite"):
+        InstanceField("test.slider", "test.base", np.array([[np.nan, 0., 0.]]))
+
+
+@pytest.mark.parametrize("gamma", [0, -1, float("nan"), float("inf")])
+def test_instance_field_rejects_invalid_gamma(gamma):
+    from core.geometry import InstanceField
+
+    with pytest.raises(GeometryError, match="gamma"):
+        InstanceField("test.slider", "test.base", np.zeros((1, 3)), gamma=gamma)
+
+
+def test_instance_field_rejects_non_finite_slider_value():
+    from core.geometry import InstanceField
+
+    field = InstanceField("test.slider", "test.base", np.zeros((1, 3)))
+    with pytest.raises(GeometryError, match="slider value must be finite"):
+        field.at(float("nan"))
+
+
 def test_parse_target_dm_to_stored_axes(tmp_path):
     t = tmp_path / "t.target"
     t.write_text("# basemesh hm08\n5 1.0 2.0 3.0\n")
@@ -101,6 +142,23 @@ def test_glb_roundtrip_through_the_gauntlet(tmp_path, bases):
     assert qa["nan_vertices"] == 0
     assert qa["blocked"] is False
     assert qa["max_extent_m"] == pytest.approx(1.695, abs=0.01)
+
+
+@pytest.mark.parametrize(
+    "positions,triangles,message",
+    [
+        (np.empty((0, 3)), np.array([[0, 1, 2]]), "positions"),
+        (np.zeros((3, 2)), np.array([[0, 1, 2]]), "positions"),
+        (np.zeros((3, 3)), np.empty((0, 3), dtype=int), "triangles"),
+        (np.zeros((3, 3)), np.array([[0, 1, 3]]), "outside"),
+        (np.zeros((3, 3)), np.array([[0.0, 1.0, 2.0]]), "integers"),
+        (np.array([[0., 0., 0.], [1., 0., 0.], [np.inf, 1., 0.]]),
+         np.array([[0, 1, 2]]), "non-finite"),
+    ],
+)
+def test_glb_writer_rejects_invalid_geometry(tmp_path, positions, triangles, message):
+    with pytest.raises(GeometryError, match=message):
+        write_glb(tmp_path / "invalid.glb", positions, triangles)
 
 
 def test_fold_gate_counts_a_known_flip():
