@@ -397,7 +397,7 @@ Sen's unchanged 31-slider vector. §3 above is the historical record of
 the v3-based build and is **not** edited; where its numbers differ from
 this section's, this section's were re-measured on identical rulers
 across both files (`scripts/measure_mirror.py`,
-`characters/pyn/scripts/verify_head.py`).
+`characters/common/verify_head.py`).
 
 ### 10.1 The bug
 
@@ -420,8 +420,7 @@ mirrored:
   on both ears, and the 6° cant was likewise name-keyed (inward).
 
 Found 2026-11-16 during the Pyn/Jorge/Brand head builds. Their
-corrected builder (`characters/pyn/scripts/build_head.py`;
-byte-identical copies in `jorge/scripts/` and `brand/scripts/`) takes
+corrected builder (`characters/common/build_head.py`) takes
 side from each part's own position: `side = 1.0 if centre_x >= 0`.
 
 ### 10.2 The rebuild

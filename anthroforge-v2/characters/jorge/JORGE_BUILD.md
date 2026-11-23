@@ -271,8 +271,11 @@ vector re-derived for St. Bernard from the breed standards (skull:muzzle
 `renders/head_profile.png`. No fur, no body changes; the body above
 still carries its placeholder base head.
 
-Machinery: the generalised Sen-pattern builder — see the HEADS section
-of `characters/pyn/PYN_BUILD.md` for the shared method (proportional
+Machinery: the generalised Sen-pattern builder
+(`characters/common/build_head.py`, clay renders via
+`characters/common/render_head.py`, verify via
+`characters/common/verify_head.py`) — see the HEADS section of
+`characters/pyn/PYN_BUILD.md` for the shared method (proportional
 convention, [E] maps, v4 teeth handling, the L/R side-convention fix,
 `--base` parameterised for the v5 re-run; vector at
 `scripts/jorge_vector.json`, raw numbers in `work/head_measure.json` +
