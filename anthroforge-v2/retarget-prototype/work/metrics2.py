@@ -46,11 +46,10 @@ def char_frame(arm, spec):
     ank_c = (head_w(arm, spec["foot"]["L"]) + head_w(arm, spec["foot"]["R"])) / 2
     fwd = toe_c - ank_c
     fwd = fwd - up * fwd.dot(up); fwd.normalize()
-    right = fwd.cross(up).normalized() if False else up.cross(fwd).normalized()
+    right = up.cross(fwd).normalized()
     # ensure right points toward the character's left side (+X for wolf): use hips->left ankle
     la = head_w(arm, spec["foot"]["L"]) - hips
     if right.dot(la) < 0: right = -right
-    R = Matrix((right, fwd, up)).transposed()  # columns? build explicitly below
     M = Matrix.Identity(3)
     M.col[0] = right; M.col[1] = fwd; M.col[2] = up
     return hips, M

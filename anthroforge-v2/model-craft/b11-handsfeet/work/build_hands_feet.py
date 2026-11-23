@@ -14,7 +14,6 @@ Outputs (../parts, ../work): .blend, two .glb, STLs for fit scoring.
 import json
 import math
 import os
-import sys
 
 import bpy
 from mathutils import Matrix, Vector

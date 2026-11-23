@@ -13,7 +13,7 @@ try {
   const scene = new BABYLON.Scene(engine);
   scene.clearColor = new BABYLON.Color4(0, 0, 0, 1);
   new BABYLON.HemisphericLight('h', new BABYLON.Vector3(0, 1, 0), scene).intensity = 1.0;
-  const cam = new BABYLON.ArcRotateCamera('cam', -Math.PI/2, Math.PI/2.2, 6, BABYLON.Vector3.Zero(), scene);
+  new BABYLON.ArcRotateCamera('cam', -Math.PI/2, Math.PI/2.2, 6, BABYLON.Vector3.Zero(), scene);
   const inner = BABYLON.MeshBuilder.CreateSphere('inner', {diameter: 2}, scene);
   const im = new BABYLON.StandardMaterial('im', scene); im.emissiveColor = new BABYLON.Color3(0, 1, 0); im.disableLighting = true;
   inner.material = im;

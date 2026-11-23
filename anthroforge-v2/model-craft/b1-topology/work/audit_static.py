@@ -1,5 +1,5 @@
 import bpy, json
-from collections import Counter, defaultdict
+from collections import Counter
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath='/home/hatch/workspace/bodies-3d/parts-library/sketchfab/border-collie-scientist-akm/border_collie_scientist.glb')

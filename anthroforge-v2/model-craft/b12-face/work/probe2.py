@@ -1,4 +1,3 @@
-import json
 import numpy as np
 from collections import defaultdict
 from glb_lib import load_glb, meshes

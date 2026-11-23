@@ -339,7 +339,6 @@ def grade(pos, lmts):
             ztop[i] = sil[m, 2].max()
     ok = ~np.isnan(ztop)
     ztop = np.interp(xs, xs[ok], ztop[ok])
-    neck_half = neck_w / 2
     fx = (xs > 0.10) & (xs < delt_span / 2 - 0.020)
     if fx.sum() > 4:
         fit = np.polyfit(xs[fx], ztop[fx], 1)

@@ -2,7 +2,7 @@
 Each test logs PASS/FAIL + the exception text verbatim to probe_results.txt.
 Run: blender -b --factory-startup -noaudio --python probe_headless.py
 """
-import bpy, traceback, json, sys
+import bpy
 
 LOG = []
 def log(name, ok, detail=""):
@@ -45,7 +45,7 @@ except Exception as e:
 try:
     bpy.ops.sculpt.dynamic_topology_toggle()
     log("sculpt.dynamic_topology_toggle", True,
-        "use_dyntopo=" + str(bpy.context.scene.tool_settings.sculpt.use_unified_color if False else bpy.context.object.data.use_dynamic_topology_sculpting if hasattr(bpy.context.object.data,'use_dynamic_topology_sculpting') else 'n/a'))
+        "use_dyntopo=" + str(bpy.context.object.data.use_dynamic_topology_sculpting if hasattr(bpy.context.object.data,'use_dynamic_topology_sculpting') else 'n/a'))
 except Exception as e:
     log("sculpt.dynamic_topology_toggle", False, repr(e))
 try:

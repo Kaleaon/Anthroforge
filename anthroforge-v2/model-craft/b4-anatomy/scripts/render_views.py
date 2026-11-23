@@ -20,7 +20,6 @@ Outputs go to renders/passN_view.png; the original renders are kept.
 
 Run: blender -b --threads 2 --python render_views.py
 """
-import math
 from pathlib import Path
 
 import bpy

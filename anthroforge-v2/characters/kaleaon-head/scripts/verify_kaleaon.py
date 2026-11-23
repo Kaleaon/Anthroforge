@@ -38,10 +38,6 @@ def W(M, name):
     return M[name][0]
 
 
-def pal(M):
-    return float(W(M, "TeethUpper")[:, 2].max())
-
-
 def nose(M):
     return float(W(M, "TissueHead")[:, 1].max())
 
@@ -73,7 +69,7 @@ out["S3_canine_slab"] = {"base": slab_depth(Mb, Rb),
                          "built": slab_depth(Mk, Rk)}
 
 # --- S2 canine-station muzzle width ---------------------------------
-def section_at(M, R, yc):
+def section_at(M, yc):
     tis = W(M, "TissueHead")
     jaw = W(M, "Jaw")
     band = np.vstack([tis[np.abs(tis[:, 1] - yc) < 0.004],
@@ -81,15 +77,15 @@ def section_at(M, R, yc):
     return float(band[:, 0].max() - band[:, 0].min()) if len(band) else None
 
 out["S2_canine_section"] = {
-    "base": section_at(Mb, Rb, Rb["nose"] - 0.295 * Lb),
-    "built": section_at(Mk, Rk, Rk["nose"] - 0.295 * Lk)}
+    "base": section_at(Mb, Rb["nose"] - 0.295 * Lb),
+    "built": section_at(Mk, Rk["nose"] - 0.295 * Lk)}
 
 # --- S8 orbit station u = (nose - eye_y)/L ---------------------------
 out["S8_orbit_station_u"] = {
     "base": (Rb["nose"] - ecb[1]) / Lb, "built": (Rk["nose"] - eck[1]) / Lk}
 
 # --- S10 ear tip height (above palate, built-L units) ----------------
-def ear_tips(M, R, ec):
+def ear_tips(M, R):
     res = {}
     tis = W(M, "TissueHead")
     for s in ("L", "R"):
@@ -103,8 +99,8 @@ def ear_tips(M, R, ec):
                   "maxz_height": float((tip_maxz[2] - R["pal_z"]) / R["L"])}
     return res
 
-out["S10_ear_tip_height"] = {"base": ear_tips(Mb, Rb, ecb),
-                             "built": ear_tips(Mk, Rk, eck)}
+out["S10_ear_tip_height"] = {"base": ear_tips(Mb, Rb),
+                             "built": ear_tips(Mk, Rk)}
 
 # --- S11 head height: palate->crown and total extent -----------------
 def heights(M, R):
@@ -130,7 +126,7 @@ out["S12_S13_mane"] = {
 }
 
 # --- S14 growth-ray burial -------------------------------------------
-def ray_burial(M, R, ec):
+def ray_burial(M):
     """For each ear: ray from the quartile base through the tracked
     tip; buried if the mane surface along the ray lies at or beyond
     the tip (- 0.005 tolerance). Vectorised Moller-Trumbore."""
@@ -149,8 +145,7 @@ def ray_burial(M, R, ec):
         tvec = origin - A
         u = np.einsum("ij,ij->i", tvec, pvec) * inv
         qvec = np.cross(tvec, e1)
-        v = (direction @ qvec.T).diagonal() * inv if False else \
-            np.einsum("j,ij->i", direction, qvec) * inv
+        v = np.einsum("j,ij->i", direction, qvec) * inv
         t = np.einsum("ij,ij->i", e2, qvec) * inv
         hit = ok & (u >= -1e-6) & (v >= -1e-6) & (u + v <= 1 + 1e-6) \
             & (t > 1e-6) & (t <= max_t)
@@ -170,7 +165,7 @@ def ray_burial(M, R, ec):
                   "buried": bool(surf is not None and surf >= dist_tip - 0.005)}
     return res
 
-out["S14_growth_ray"] = ray_burial(Mk, Rk, eck)
+out["S14_growth_ray"] = ray_burial(Mk)
 
 # --- S15 brow projection ----------------------------------------------
 def brow_proj(M, R, ec):

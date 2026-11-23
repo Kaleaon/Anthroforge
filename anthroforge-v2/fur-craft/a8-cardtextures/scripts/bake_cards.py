@@ -40,7 +40,7 @@ def lerp(a, b, t):
     return a + (b - a) * t
 
 
-def strand_colour(t, jit, guard, agouti, rng):
+def strand_colour(t, jit, guard, agouti):
     """Colour at normalised length t for one strand."""
     if guard:
         c = lerp(ROOT * 1.4, GUARD, smooth(t))
@@ -102,8 +102,6 @@ def gen_strands(name, p, rng):
         pts, ts = [], []
         for i in range(steps + 1):
             t = i / steps
-            # envelope: lateral spread narrows toward the tip
-            env = 1.0 - p["envelope"] * (t ** 1.4)
             x = x0 + lean * t + math.sin(phase + t * math.tau * sway_f) \
                 * p["sway"] * t
             if clump_tip is not None:
@@ -133,7 +131,7 @@ def bake(name, p, seed):
         for i in range(len(pts) - 1):
             t = 0.5 * (ts[i] + ts[i + 1])
             wdt = max(1.0, s["w0"] * (1.0 - 0.82 * t))
-            col = strand_colour(t, s["jit"], s["guard"], s["agouti"], rng)
+            col = strand_colour(t, s["jit"], s["guard"], s["agouti"])
             for dx in (-W, 0, W):  # U wrap copies
                 seg = [(pts[i][0] + dx, pts[i][1]),
                        (pts[i + 1][0] + dx, pts[i + 1][1])]

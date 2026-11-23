@@ -18,7 +18,7 @@ Outputs (in ../parts/):
 Run: blender -b --python build_clumps.py
 """
 import bpy, math, json, os
-from mathutils import Vector, Matrix
+from mathutils import Vector
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, "..", "parts"))

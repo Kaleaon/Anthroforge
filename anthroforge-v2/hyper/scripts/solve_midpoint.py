@@ -35,7 +35,7 @@ out = {}
 belly15 = D1 + 0.5 * SEG
 P15 = belly15 + CT
 print("midpoint before solve:", fold_stats(V, Fb, P15),
-      fold_stats(Vm, Fb, P15), "crossings", crossings(V, Fb, P15))
+      fold_stats(Vm, Fb, P15), "crossings", crossings(V, P15))
 
 q = quantise(P15)
 for attempt in range(1, 9):
@@ -44,7 +44,7 @@ for attempt in range(1, 9):
     q = quantise(cur)
     q, rounds, ok = fold_repair_q(q)
     cur = dequantise(q)
-    cr = crossings(V, Fb, cur)
+    cr = crossings(V, cur)
     fr, fm = fold_stats(V, Fb, cur), fold_stats(Vm, Fb, cur)
     print(f"  attempt {attempt}: capped {nc}, rounds {rounds}, "
           f"folds {fr}/{fm}, crossings {cr}")
@@ -66,25 +66,25 @@ print(f"shipped contact_hyper15 ({n} moved verts)")
 out["midpoint_1.5"] = {
     "folds_raw": fold_stats(V, Fb, P15s),
     "folds_macro": fold_stats(Vm, Fb, P15s),
-    "crossings": crossings(V, Fb, P15s),
+    "crossings": crossings(V, P15s),
     "min_thigh_gap_mm": float(min_thigh_gap(V, P15s) * 1000)}
 
 # quarter points: belly linear; contact piecewise-linear between keys
-def gate(slider, belly, contact):
+def gate(belly, contact):
     d = belly + contact
     return {"folds_raw": fold_stats(V, Fb, d),
             "folds_macro": fold_stats(Vm, Fb, d),
-            "crossings": crossings(V, Fb, d),
+            "crossings": crossings(V, d),
             "min_thigh_gap_mm": float(min_thigh_gap(V, d) * 1000)}
 
 belly125 = D1 + 0.25 * SEG
 belly175 = D1 + 0.75 * SEG
 ct125 = CT + 0.5 * (CH15 - CT)
 ct175 = CH15 + 0.5 * ((CT + CH2) - CH15)
-out["quarter_1.25"] = gate(1.25, belly125, ct125)
-out["quarter_1.75"] = gate(1.75, belly175, ct175)
-out["endpoint_2.0"] = gate(2.0, FULL, CT + CH2)
-out["endpoint_1.0"] = gate(1.0, D1, CT)
+out["quarter_1.25"] = gate(belly125, ct125)
+out["quarter_1.75"] = gate(belly175, ct175)
+out["endpoint_2.0"] = gate(FULL, CT + CH2)
+out["endpoint_1.0"] = gate(D1, CT)
 print(json.dumps(out, indent=1))
 
 # navel tracker, windowed: midline front, navel height band.

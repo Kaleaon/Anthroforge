@@ -240,7 +240,7 @@ tail_arm = make_armature("tail_rig", tail_bones)
 TAIL_CENTRES = [0.0, 0.18, 0.38, 0.58, 0.78, 0.97]
 for obj, rts in ((tail_core, ct), (tail_vol, vt)):
     skin(obj, tail_arm, [b[0] for b in tail_bones],
-         lambda vi, rts=rts: tri_weights(rts[vi // (8 if rts is ct else 12)] if False else 0.0, TAIL_CENTRES))
+         lambda vi, rts=rts: tri_weights(0.0, TAIL_CENTRES))
 # NOTE: the lambda above is replaced below with a per-vertex t lookup (cleaner):
 def tail_weights(obj, rts, per_ring):
     for g in obj.vertex_groups:
@@ -301,7 +301,7 @@ def ear_geometry(side):
             a = fold * (1 if side > 0 else 1)
             xr = x * math.cos(a) - y * math.sin(a) * 0.35
             yr = x * math.sin(a) * 0.35 + y * math.cos(a)
-            verts.append((side * (abs(xr) if False else xr) + out, yr, z))
+            verts.append((side * xr + out, yr, z))
             vcoord.append(v)
     faces = []
     for i in range(rows - 1):

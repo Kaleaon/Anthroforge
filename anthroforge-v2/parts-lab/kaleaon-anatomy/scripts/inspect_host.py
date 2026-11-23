@@ -1,4 +1,4 @@
-import bpy, json, sys, bmesh
+import bpy, json, bmesh
 from mathutils import Vector
 
 def mesh_volume(me):

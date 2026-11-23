@@ -29,7 +29,6 @@ import json, math, random
 from pathlib import Path
 import numpy as np
 import bpy
-from mathutils import Vector
 
 SEN = Path(__file__).resolve().parent.parent  # PATCH 1
 bpy.ops.wm.open_mainfile(filepath=str(SEN / "sen_build.blend"))
@@ -165,10 +164,9 @@ def build_cards(chosen, path):
         s = np.concatenate([[0], np.cumsum(seg)])
         if s[-1] < 1e-6:
             return
-        q = np.array([np.interp(u, s, pts[:, k]) for k in range(3)]).T \
-            if False else np.stack(
-                [np.interp(np.linspace(0, s[-1], 5), s, pts[:, k])
-                 for k in range(3)], axis=1)
+        q = np.stack(
+            [np.interp(np.linspace(0, s[-1], 5), s, pts[:, k])
+             for k in range(3)], axis=1)
         w0 = WIDTHS[region]
         side = np.array([1.0, 0.0, 0.0])
         tw = rng.uniform(-0.6, 0.6)

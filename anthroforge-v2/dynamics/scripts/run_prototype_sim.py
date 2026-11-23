@@ -40,14 +40,6 @@ def teat_frame(tip_pos, prev_pos, world_R):
     return R, side
 
 
-def phase_lag_ms(root_z, tip_z, fps=FPS):
-    a = root_z - root_z.mean()
-    b = tip_z - tip_z.mean()
-    corr = np.correlate(b, a, mode='full')
-    lag = corr.argmax() - (len(a) - 1)
-    return float(lag / fps * 1000.0)
-
-
 def xcorr_lag_ms(driver, response, fps=FPS):
     """Lag of response behind driver (ms), best over +/- half the window."""
     a = driver - driver.mean()

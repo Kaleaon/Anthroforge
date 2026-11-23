@@ -45,7 +45,7 @@ def tube(n,pts,rs,m,sides=12):
  return o
 
 def build(p,out):
- reset(); ident=p["id"].replace(".","_"); family=p["family"]; detail=mat("AF_"+family+"_Addon",(0.25,.27,.30)); membrane=mat("AF_"+family+"_Membrane",(.38,.40,.43)); h=p["head"]
+ reset(); ident=p["id"].replace(".","_"); family=p["family"]; detail=mat("AF_"+family+"_Addon",(0.25,.27,.30)); membrane=mat("AF_"+family+"_Membrane",(.38,.40,.43))
  # Species-specific cranial add-ons.
  if family in ("canid","vulpine"):
   for s,lr in [(-1,"L"),(1,"R")]:

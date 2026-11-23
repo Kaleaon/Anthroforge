@@ -1,6 +1,6 @@
-import bpy, json
+import bpy
 import numpy as np
-from collections import defaultdict, deque
+from collections import defaultdict
 
 bpy.ops.wm.open_mainfile(filepath="/home/hatch/workspace/anthroforge-v2/base-head-v3/neutral_base_head_v3.blend")
 ob = bpy.data.objects["TeethArcade"]

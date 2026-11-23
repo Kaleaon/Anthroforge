@@ -19,7 +19,6 @@ geometry).
 import math
 import os
 import random
-import sys
 
 import bpy
 from mathutils import Matrix, Vector

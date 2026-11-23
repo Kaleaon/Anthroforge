@@ -62,7 +62,7 @@ def catmull(keys, t):
 
 # ---------------------------------------------------------------- loft builder
 # stations: list of dicts along Y. Ring: NR points, superellipse cross-section.
-def loft(name, keys, n_stations, n_ring, cap_front=True, cap_back=True, arch_z=-0.010):
+def loft(keys, n_stations, n_ring, cap_front=True, cap_back=True, arch_z=-0.010):
     chans = list(keys[0].keys())
     ys = [k['y'] for k in keys]
     stations = []
@@ -300,7 +300,6 @@ def build_ear(sign):
                 ly -= dish
             verts.append((lx, ly, t*LEN, xo))
     # transform: base at (sign*0.100, -0.155, 0.128); dir up, cant out 14deg, tilt back 7deg
-    import mathutils
     R = Matrix.Rotation(math.radians(-7), 4, 'X') @ Matrix.Rotation(math.radians(sign*14), 4, 'Y')
     base = Vector((sign*0.100, -0.155, 0.128))
     out = []
@@ -351,7 +350,7 @@ def box(name, centre, scale, rot_euler=(0,0,0), subdiv=0):
         bpy.ops.object.modifier_apply(modifier=mod.name)
     return ob
 
-def tube(name, points, radius, mat=None):
+def tube(name, points, radius):
     cu = bpy.data.curves.new(name, 'CURVE'); cu.dimensions = '3D'
     cu.bevel_depth = radius; cu.bevel_resolution = 3
     sp = cu.splines.new('BEZIER'); sp.bezier_points.add(len(points)-1)
@@ -372,25 +371,6 @@ def join_objects(name, objs):
     ob = bpy.context.object; ob.name = name
     return ob
 
-def smooth_obj(ob, iterations=2, factor=0.5):
-    me = ob.data
-    # simple laplacian via neighbour averaging on vertex coords
-    adj = {}
-    for e in me.edges:
-        a, b = e.vertices
-        adj.setdefault(a, []).append(b); adj.setdefault(b, []).append(a)
-    for _ in range(iterations):
-        newc = []
-        for i, v in enumerate(me.vertices):
-            ns = adj.get(i, [])
-            if not ns: newc.append(v.co); continue
-            avg = Vector((0,0,0))
-            for j in ns: avg += me.vertices[j].co
-            avg /= len(ns)
-            newc.append(v.co.lerp(avg, factor))
-        for i, co in enumerate(newc): me.vertices[i].co = co
-    me.update()
-
 # ---------------------------------------------------------------- build
 clean_scene()
 MAT_TISSUE = material('TissueClay', (0.60, 0.53, 0.485), rough=0.62, subsurface=0.28)
@@ -405,7 +385,7 @@ MAT_EYE = material('Eyeball', (0.88, 0.86, 0.82), rough=0.14, spec=0.9)
 MAT_IRIS = material('Iris', (0.16, 0.09, 0.045), rough=0.12, spec=0.9)
 
 # ---- SKULL layer
-sv, sf, sstations = loft('Skull', SKULL_KEYS, 48, 64)
+sv, sf, sstations = loft(SKULL_KEYS, 48, 64)
 skull = make_mesh('Skull', sv, sf); assign_mat(skull, MAT_BONE)
 arch_parts = []
 for sgn in (1,-1):
@@ -448,7 +428,7 @@ muscles = join_objects('Muscles', mus); assign_mat(muscles, MAT_MUSCLE)
 for p in muscles.data.polygons: p.use_smooth = True
 
 # ---- TISSUE head (deliverable)
-tv, tf, tstations = loft('TissueHead', TISSUE_KEYS, 60, 80)
+tv, tf, tstations = loft(TISSUE_KEYS, 60, 80)
 tv = displacement_passes(tv, tstations)
 head = make_mesh('TissueHead', tv, tf); assign_mat(head, MAT_TISSUE)
 HINGE = Vector((0, -0.245, -0.026))

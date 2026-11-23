@@ -258,7 +258,7 @@ def pose_metrics():
         n = n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-12)
         e2 = np.cross(n, e1n)
         u1 = np.linalg.norm(e1, axis=1)
-        u2x = ((p2 - p0) * e1n).sum(axis=1); u2y = ((p2 - p0) * e2).sum(axis=1)
+        u2y = ((p2 - p0) * e2).sum(axis=1)
         v1x = ((q1 - q0) * e1n).sum(axis=1); v1y = ((q1 - q0) * e2).sum(axis=1)
         v2x = ((q2 - q0) * e1n).sum(axis=1); v2y = ((q2 - q0) * e2).sum(axis=1)
         detF = (v1x * v2y - v1y * v2x) / np.maximum(u1 * u2y, 1e-12)
@@ -323,9 +323,6 @@ def add_twist(name, jkey, deg, region_keys, note=""):
         return
     POSES.append((name, {bn: (0, math.radians(deg), 0)},
                   [JN[k] for k in region_keys if JN[k]], note, deg))
-def add_pose(name, pose, region_keys, note=""):
-    POSES.append((name, pose, [JN[k] for k in region_keys if JN[k]],
-                  note, None))
 
 add_bend("elbow_flex_L", "fore_l", F, 150, ["arm_l", "fore_l"])
 add_bend("elbow_flex_R", "fore_r", F, 150, ["arm_r", "fore_r"])

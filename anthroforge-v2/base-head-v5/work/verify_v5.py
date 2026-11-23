@@ -1,5 +1,4 @@
 import bpy, json
-import numpy as np
 from collections import Counter, defaultdict
 
 def census(path, tag):

@@ -25,7 +25,6 @@ structure data; see DIGITIGRADE.md).
 import json
 import math
 import os
-import sys
 
 import bpy
 from mathutils import Vector
@@ -149,7 +148,7 @@ def seg_stations(p0, p1, profile):
 
 
 # ------------------------------------------------------- leg construction
-def build_leg_geometry(side):
+def build_leg_geometry():
     """Returns (verts_canonical, faces, vert_station_tags).
     Tags record which chain zone each vertex belongs to, for weighting:
     ('seg', seg_index, frac_along_total_chain)."""
@@ -163,7 +162,6 @@ def build_leg_geometry(side):
     # DIGITIGRADE.md s.7 debit 1 / s.9).
     # skirt above hip: two stations rising into the pelvis volume
     skirt_top = (H[0], H[1] - 0.005, H[2] + 0.075)
-    skirt_mid = (H[0], H[1] - 0.002, H[2] + 0.035)
     thigh = seg_stations(skirt_top, K, [
         (0.00, 0.205, 0.215, 0.00),   # skirt flare (seats in pelvis)
         (0.18, 0.188, 0.200, 0.02),   # skirt_mid ~ hip+0.035
@@ -208,9 +206,9 @@ def build_leg_geometry(side):
     return verts, faces, tags, arc[-1], stations
 
 
-def build_toe(side, cx_off, fan_deg):
+def build_toe(cx_off, fan_deg):
     """One toe: mini-loft from its MTP knuckle forward-down to the tip."""
-    M, T = JOINTS["mtp"], JOINTS["toe"]
+    M = JOINTS["mtp"]
     cx = abs(M[0]) + cx_off  # side-naive: cb() applies the mirror (fix s.9)
     base = (cx, M[1] + 0.004, 0.040)
     fan = math.radians(fan_deg) * (1 if cx_off > 0 else -1 if cx_off < 0 else 0)
@@ -226,15 +224,6 @@ def build_toe(side, cx_off, fan_deg):
     ]
     verts, faces = loft(sts, n=10, cap_start=True, cap_end=True)
     return verts, faces, base, tip
-
-
-def smoothstep(a, b, x):
-    if x <= a:
-        return 0.0
-    if x >= b:
-        return 1.0
-    t = (x - a) / (b - a)
-    return t * t * (3 - 2 * t)
 
 
 def chain_weights(arc_s, joint_arcs, half=0.035):
@@ -259,7 +248,6 @@ def chain_weights(arc_s, joint_arcs, half=0.035):
             w = 0.5 - 0.5 * (d / half)  # weight of the *upper* bone at joint
             w = w * w * (3 - 2 * w)
             lo, hi = j, j + 1
-            cur_lo = bones[lo]
             bones[lo] = max(bones[lo] * 0, 0)  # reset handled below
             bones = [0.0] * 5
             bones[lo] = w
@@ -306,7 +294,7 @@ def make_armature(side):
 
 def make_mesh(side, arm, bone_names):
     sname = "L" if side < 0 else "R"
-    verts, faces, tags, total_arc, stations = build_leg_geometry(side)
+    verts, faces, tags, total_arc, stations = build_leg_geometry()
     # joint arc positions: find arc of stations nearest each joint height
     centres = [st["c"] for st in stations]
     arc = [0.0]
@@ -332,7 +320,7 @@ def make_mesh(side, arm, bone_names):
     toe_tags = []  # (bone_weights list) per extra vertex
     toe_specs = [(-0.0275, -7.0), (-0.0092, -2.5), (0.0092, 2.5), (0.0275, 7.0)]
     for cx_off, fan in toe_specs:
-        tv, tf, tbase, ttip = build_toe(side, cx_off, fan)
+        tv, tf, tbase, ttip = build_toe(cx_off, fan)
         off = len(verts) + len(extra_verts)
         extra_verts.extend(tv)
         extra_faces.extend([tuple(v + off for v in f) for f in tf])
@@ -569,7 +557,7 @@ def main():
                           export_selected_objects=True, apply_modifiers=False)
 
     # --- renders ---
-    stub = make_pelvis_stub()
+    make_pelvis_stub()
     setup_render([obj_r, obj_l])
     render((1.35, -1.5, 0.75), (0, 0, 0.45),
            os.path.join(RENDERS, "standing_threequarter.png"))

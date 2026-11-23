@@ -227,7 +227,7 @@ def crotch_of(pos, gate, mid_hw, slab_hw):
     return pos[mid, 2].min()
 
 
-def neck_base(pos, ctr, axis, crotch, label):
+def neck_base(pos, ctr, axis, crotch):
     ax = axis_at(ctr, axis, pos[:, 2])
     r = np.linalg.norm(pos[:, :2] - ax, axis=1)
     gated = r < 0.23
@@ -253,13 +253,13 @@ def neck_base(pos, ctr, axis, crotch, label):
     return neck
 
 
-def torso_params(pos, crotch=None, neck=None, label="mesh"):
+def torso_params(pos, crotch=None, neck=None):
     gate = np.ones(len(pos), bool)
     ctr, axis = compute_axis(pos, gate)
     if crotch is None:
         crotch = crotch_of(pos, gate, 0.030, 0.060)
     if neck is None:
-        neck = neck_base(pos, ctr, axis, crotch, label)
+        neck = neck_base(pos, ctr, axis, crotch)
     ax = axis_at(ctr, axis, pos[:, 2])
     rel = pos[:, :2] - ax
     r = np.linalg.norm(rel, axis=1)
@@ -421,35 +421,6 @@ def label_mesh(pos, crotch, neck, body_mask=None):
     return lab
 
 
-def seg_params(pos, A, B, ref):
-    ab = B - A
-    L = np.linalg.norm(ab)
-    ah = ab / L
-    t = ((pos - A) @ ah) / L
-    rv = (pos - A) - np.outer((pos - A) @ ah, ah)
-    rl = np.linalg.norm(rv, axis=1)
-    e1 = ref - (ref @ ah) * ah
-    e1 = e1 / np.linalg.norm(e1)
-    e2 = np.cross(ah, e1)
-    phi = np.arctan2(rv @ e2, rv @ e1)
-    rdir = np.where(rl[:, None] > 1e-9, rv / np.maximum(rl, 1e-9)[:, None],
-                    e1[None, :])
-    return t, phi, rdir, ah, L, rl
-
-
-REF_ARM = np.array([0.0, 0.0, 1.0])
-REF_LEG = np.array([0.0, 1.0, 0.0])
-
-
-def chain_of(lab, kind, sname):
-    lm = lab["lm"].get(f"{kind}{sname}")
-    if lm is None:
-        return None
-    if kind == "arm":
-        return [(lm["S"], lm["E"]), (lm["E"], lm["W"])], REF_ARM, lm
-    return [(lm["H"], lm["K"]), (lm["K"], lm["A"])], REF_LEG, lm
-
-
 # ------------------------------------------------------------- slice loops
 def plane_loops(pos, n, p0):
     n = n / np.linalg.norm(n)
@@ -587,7 +558,6 @@ def grade(pos, lmts):
             ztop[i] = sil[m, 2].max()
     ok = ~np.isnan(ztop)
     ztop = np.interp(xs, xs[ok], ztop[ok])
-    neck_half = neck_w / 2
     fx = (xs > 0.10) & (xs < delt_span / 2 - 0.020)
     if fx.sum() > 4:
         fit = np.polyfit(xs[fx], ztop[fx], 1)
@@ -657,7 +627,7 @@ def grade(pos, lmts):
 
 # profiles girths (v4 method, build_bara girths + hip window)
 def girths(pos):
-    h, th, r, ax, _, _, _ = torso_params(pos, mh_crotch, mh_neck, "def")
+    h, th, r, ax, _, _, _ = torso_params(pos, mh_crotch, mh_neck)
     edges = np.arange(0.30, 1.001, 0.02)
     bands = []
     for a, b in zip(edges[:-1], edges[1:]):
@@ -825,7 +795,7 @@ s_hi = L_mh / L_hi
 hi_lab = label_mesh(hi_pos_u * SK, cr_hi, nk_hi)
 mh_lab = label_mesh(mh_pos_mac, mh_crotch, mh_neck, BODY_MASK)
 h_mh, th_mh, r_mh, ax_mh, _, _, _ = torso_params(
-    mh_pos_mac, mh_crotch, mh_neck, "hm08")
+    mh_pos_mac, mh_crotch, mh_neck)
 SIG_H, SIG_A = 0.05, 0.04
 cv_report = {}
 

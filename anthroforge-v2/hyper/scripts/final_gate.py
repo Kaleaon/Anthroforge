@@ -17,7 +17,6 @@ import json
 import sys
 from pathlib import Path
 
-import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 from hyper_common import (FP, HYPER, crossings, fold_stats, load_base,
@@ -51,7 +50,7 @@ for s in (1.0, 1.25, 1.5, 1.75, 2.0):
     out[str(s)] = {
         "folds_raw": fold_stats(V, Fb, d),
         "folds_macro": fold_stats(Vm, Fb, d),
-        "crossings": crossings(V, Fb, d),
+        "crossings": crossings(V, d),
         "min_thigh_gap_mm": float(min_thigh_gap(V, d) * 1000)}
     print(s, out[str(s)])
 

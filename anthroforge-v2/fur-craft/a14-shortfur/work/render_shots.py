@@ -1,6 +1,6 @@
 """A14 render-only pass: opens the saved comparison blend, shoots in
 judging order (cheap close-ups first, shell-heavy shots last)."""
-import bpy, os, sys, time
+import bpy, time
 ROOT = "/home/hatch/workspace/anthroforge-v2/fur-craft/a14-shortfur"
 bpy.ops.wm.open_mainfile(filepath=ROOT + "/shortfur_compare.blend")
 scene = bpy.context.scene

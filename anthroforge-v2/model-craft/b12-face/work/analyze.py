@@ -1,6 +1,6 @@
 import json
 import numpy as np
-from collections import defaultdict, deque
+from collections import defaultdict
 from glb_lib import load_glb, meshes
 
 gltf, bin_chunk = load_glb("/home/hatch/workspace/anthroforge-v2/base-head-v3/neutral_base_head_v3.glb")
@@ -41,7 +41,7 @@ def topo(pos, idx):
         loops.append(loop)
     return val, bnd, nonman, loops
 
-def adj_list(idx, n):
+def adj_list(idx):
     adj = defaultdict(set)
     for t in idx:
         for a,b in ((0,1),(1,2),(2,0)):
@@ -76,7 +76,7 @@ for name, prims in MS.items():
 
 # ---------- TissueHead deep dive ----------
 tp, ti = W["TissueHead"]
-tadj = adj_list(ti, len(tp))
+tadj = adj_list(ti)
 eyeL = np.array([0.131, -0.008, -0.082]); eyeR = np.array([-0.131, -0.008, -0.082])
 d_eye = np.minimum(np.linalg.norm(tp-eyeL,axis=1), np.linalg.norm(tp-eyeR,axis=1))
 rim = np.where((d_eye>0.070)&(d_eye<0.088))[0]
@@ -149,7 +149,7 @@ out["tissue_boundary_loops"] = loop_info
 # ---------- Eyelid ----------
 ep, ei = W["Eyelid_L"]
 eval_, ebnd, enon, eloops = topo(ep, ei)
-eadj = adj_list(ei, len(ep))
+eadj = adj_list(ei)
 out["eyelid_loops_detail"] = []
 for lp in eloops:
     P = ep[lp]
@@ -173,7 +173,7 @@ for lp in aloops:
 c = ap.mean(0); U,S,Vt = np.linalg.svd(ap-c, full_matrices=False)
 n = Vt[2]
 d = (ap-c)@n
-out["ear_relief"] = dict(pca_extents=np.round(S,3).tolist() if False else np.round(np.sqrt(S**2/len(ap))*2,3).tolist(),
+out["ear_relief"] = dict(pca_extents=np.round(np.sqrt(S**2/len(ap))*2,3).tolist(),
                          signed_dist_min=round(float(d.min()),3), signed_dist_max=round(float(d.max()),3),
                          frac_beyond_002L=int(((np.abs(d)>0.02)).sum()), nverts=int(len(ap)))
 # concha probe: verts in central 50% of ear (PCA coords), their depth vs rim verts

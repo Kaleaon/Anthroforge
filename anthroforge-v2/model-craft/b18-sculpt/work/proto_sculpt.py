@@ -13,7 +13,7 @@ by construction; residual asymmetry measured with a KD-tree.
 
 Run: blender -b --python proto_sculpt.py   (renders: BLENDER_WORKBENCH)
 """
-import bpy, bmesh, json, math
+import bpy, bmesh, json
 from mathutils import Vector, kdtree
 
 ROOT = "/home/hatch/workspace/anthroforge-v2/model-craft/b18-sculpt/"
@@ -81,7 +81,6 @@ rec("remeshed_faces", len(torso.data.polygons))
 bm = bmesh.new(); bm.from_mesh(torso.data)
 bm.verts.ensure_lookup_table(); bm.edges.ensure_lookup_table()
 rec("volume_fused_m3", round(bm.calc_volume(), 5))
-bb = [torso.matrix_world @ Vector(c) for c in torso.bound_verts()] if False else None
 xs = [v.co.x for v in bm.verts]; ys = [v.co.y for v in bm.verts]; zs = [v.co.z for v in bm.verts]
 rec("bbox_fused", [round(max(xs)-min(xs),3), round(max(ys)-min(ys),3), round(max(zs)-min(zs),3)])
 # keep a frozen copy of stage B for the file + before render

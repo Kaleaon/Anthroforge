@@ -49,7 +49,7 @@ D1 = load_target(FP / "body.belly.protrusion_v5.1.target")
 D2n = 2.0 * D1
 print(f"naive 2x: raw folds {fold_stats(V, Fb, D2n)}, "
       f"macro folds {fold_stats(Vm, Fb, D2n)}, "
-      f"crossings {crossings(V, Fb, D2n)}, "
+      f"crossings {crossings(V, D2n)}, "
       f"min gap {min_thigh_gap(V, D2n)*1000:.2f} mm")
 
 
@@ -111,7 +111,7 @@ for attempt in range(1, 9):
     q = quantise(cur)
     q, rounds, ok = fold_repair_q(q)
     cur = dequantise(q)
-    cr = crossings(V, Fb, cur)
+    cr = crossings(V, cur)
     gap_mm = min_thigh_gap(V, cur) * 1000
     fr = fold_stats(V, Fb, cur)
     fm = fold_stats(Vm, Fb, cur)
@@ -152,7 +152,7 @@ for nm, d in states.items():
     qa[nm] = {
         "folds_raw": fold_stats(V, Fb, d),
         "folds_macro": fold_stats(Vm, Fb, d),
-        "crossings": crossings(V, Fb, d),
+        "crossings": crossings(V, d),
         "min_thigh_gap_mm": float(min_thigh_gap(V, d) * 1000)}
     print(f"state {nm}: {qa[nm]}")
 qa["full_file_matches_composition_max_mm"] = float(

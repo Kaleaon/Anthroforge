@@ -1,4 +1,4 @@
-import bpy, os
+import bpy
 exec(open("render_clumps.py").read().split("HEAD_PARTS")[0])
 HEAD_PARTS = {'fur_cheek_tufts', 'fur_ear_tufts', 'fur_chest_ruff'}
 TAIL_OBJS = {'fur_tail_clumps', 'tail_core_proxy'}

@@ -2,7 +2,7 @@
 shape key per slider state; render the briefed extremes (front, Cycles).
 Run: HOME=/tmp/af_home xvfb-run -a <blender> -b --python build_blend.py
 Canonical (x, y_front, z_up) -> Blender (x, -y, z)."""
-import bpy, numpy as np, sys
+import bpy, numpy as np
 from pathlib import Path
 
 OUT = Path("/home/hatch/workspace/anthroforge-v2/model-craft/b15-clothing")
@@ -26,7 +26,7 @@ def make_obj(name, verts, polys, mat):
         me.materials.append(mat)
     return ob
 
-def add_keys(ob, basis_verts, key_verts):
+def add_keys(ob, key_verts):
     ob.shape_key_add(name="Basis")
     for name, kv in key_verts.items():
         sk = ob.shape_key_add(name=name)
@@ -45,15 +45,15 @@ body_idx = np.arange(13380)
 body_faces = faces[np.all(faces < 13380, axis=1)]
 body_ob = make_obj("Body_hm08", base[body_idx], body_faces - 0, mat_body)
 # faces reference global ids 0..13379 == local here
-add_keys(body_ob, base[body_idx], {s: (base + d[f"delta_{s}"])[body_idx] for s in STATES[1:]})
+add_keys(body_ob, {s: (base + d[f"delta_{s}"])[body_idx] for s in STATES[1:]})
 
 gA = {s: d[f"{s}_A"] for s in STATES}
 gar_a = make_obj("TankTop_A_delta_transfer", gA["neutral"], gq, mat_a)
-add_keys(gar_a, gA["neutral"], {s: gA[s] for s in STATES[1:]})
+add_keys(gar_a, {s: gA[s] for s in STATES[1:]})
 
 gC = {s: np.load(OUT/f"scripts/garmentC_{s}.npy") for s in STATES}
 gar_c = make_obj("TankTop_C_plus_pushout", gC["neutral"], gq, mat_c)
-add_keys(gar_c, gC["neutral"], {s: gC[s] for s in STATES[1:]})
+add_keys(gar_c, {s: gC[s] for s in STATES[1:]})
 gar_c.hide_render = True
 
 # lights + camera (front view, character front faces -Y in Blender)

@@ -10,8 +10,7 @@ Method notes are in BUILD_NOTES.md (v4). Key disciplines:
 import bpy, json, math, os
 import numpy as np
 import bmesh
-from mathutils import Vector, Matrix
-from mathutils.bvhtree import BVHTree
+from mathutils import Vector
 
 V3 = "/home/hatch/workspace/anthroforge-v2/base-head-v3/neutral_base_head_v3.blend"
 OUT = "/home/hatch/workspace/anthroforge-v2/base-head-v4"
@@ -102,7 +101,6 @@ for e in bm.edges:
 # facet metric BEFORE (cheek region, merged v3 surface)
 def cheek_facet_metric(bm_):
     bm_.faces.ensure_lookup_table()
-    import mathutils
     pair_angles = []
     edge_face = {}
     for f in bm_.faces:

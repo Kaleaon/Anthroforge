@@ -327,9 +327,7 @@ def main():
         ic = integral_colour(p)
         out["profiles"][name] = bands_json(bands, mel) | {
             "distance_colour": "#" + "".join(f"{int(round(c * 255)):02x}" for c in ic),
-            "pheo_fraction": round(float(np.mean(
-                [profile_from_bands(bands, 0.0)[i] for i in range(1024)])), 4)
-                if False else None}
+            "pheo_fraction": None}
     # pheomelanin fraction = share of shaft length whose nearest band is a
     # pulse band at melanism 0 (report measured value instead of the stub)
     for name, (bands, mel) in PROFILES.items():

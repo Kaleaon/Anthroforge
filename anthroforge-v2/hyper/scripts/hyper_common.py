@@ -130,11 +130,6 @@ def body_edges(Fb):
     return np.array(sorted(es))
 
 
-def neighbours_of(verts, edges):
-    m = np.isin(edges[:, 0], verts) | np.isin(edges[:, 1], verts)
-    return np.unique(edges[m].ravel())
-
-
 def thigh_band(V):
     """B16's interpenetration band, from audit_hyper.py lines 62-65
     (zleg = below the 40th percentile of body height). An earlier copy
@@ -148,7 +143,7 @@ def thigh_band(V):
     return thigh & zleg & (np.abs(V[:, 0]) < 0.16)
 
 
-def crossings(V, Fb, delta):
+def crossings(V, delta):
     band = thigh_band(V)
     P = V + delta
     return int(((V[band, 0] > 0) & (P[band, 0] < 0)).sum()

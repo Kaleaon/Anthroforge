@@ -7,7 +7,6 @@ frame), every component solo and composed."""
 import sys
 from pathlib import Path
 
-import numpy as np
 
 sys.path.insert(0, str(Path.home()
                        / "workspace/anthroforge-v2/hyper/scripts"))

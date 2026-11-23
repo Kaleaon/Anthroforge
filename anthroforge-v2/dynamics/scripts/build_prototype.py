@@ -15,11 +15,11 @@ import sys
 
 import bpy
 import numpy as np
-from mathutils import Matrix, Quaternion, Vector
+from mathutils import Matrix, Vector
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from proto_common import (N_FRAMES, N_WALK, PREROLL, REST_OFFSETS,
-                          SEG_SOFTNESS, TEAT_OFFSET)
+                          TEAT_OFFSET)
 
 BASE = os.path.expanduser('~/workspace/anthroforge-v2/dynamics')
 SRC = os.path.expanduser('~/workspace/anthroforge-v2/retarget-prototype/'

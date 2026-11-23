@@ -3,7 +3,6 @@
 on this VM for lack of libEGL). Run:
   blender -b --python render_passes.py
 Fixed camera/light/material across passes so only the sculpt changes."""
-import math
 from pathlib import Path
 
 import bpy

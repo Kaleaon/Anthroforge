@@ -6,7 +6,7 @@ record in Blender, renders each on a UV sphere under the Poly Haven studio
 HDRI (CC0), then renders skin_smooth on the v1 neutral base head.
 Run: blender -b --python render_swatches.py
 """
-import bpy, json, math, os, sys
+import bpy, json, math, os
 
 LAB = os.path.expanduser("~/workspace/anthroforge-v2/materials-lab")
 WS = os.path.expanduser("~/workspace")

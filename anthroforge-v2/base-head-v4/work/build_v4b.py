@@ -1,7 +1,7 @@
 """Stage B: teeth split (plane scan + BVH verify), layer regen, groups, final save + GLB."""
-import bpy, json, math, os
+import bpy, json, math
 import numpy as np
-from mathutils import Vector, Matrix
+from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
 OUT = "/home/hatch/workspace/anthroforge-v2/base-head-v4"

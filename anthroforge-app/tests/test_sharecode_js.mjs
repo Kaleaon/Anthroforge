@@ -5,7 +5,6 @@
 // detection, and the JS vocabulary translation mirroring core/vocabulary.py.
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
-import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import zlib from 'node:zlib';

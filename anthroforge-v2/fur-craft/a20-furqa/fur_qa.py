@@ -25,7 +25,6 @@ import argparse
 import json
 import math
 import struct
-import sys
 from io import BytesIO
 
 import numpy as np
@@ -210,7 +209,7 @@ def card_geometry(verts, uv, card_verts):
 # --------------------------------------------------------------------------
 # orthographic rasterisation (unique-pixel coverage + summed area)
 # --------------------------------------------------------------------------
-def project(verts, tris, view):
+def project(verts, view):
     axes = {"+x": (2, 1, 0), "-x": (2, 1, 0), "+z": (0, 1, 2), "-z": (0, 1, 2),
             "+y": (0, 2, 1), "-y": (0, 2, 1)}
     u, v, _ = axes[view]
@@ -312,7 +311,7 @@ def texture_metrics(img):
 # --------------------------------------------------------------------------
 # gates
 # --------------------------------------------------------------------------
-def gate(name, value, fmt, passed, warned):
+def gate(name, value, passed, warned):
     status = "PASS" if value >= passed else ("WARN" if value >= warned else "FAIL")
     return {"gate": name, "value": round(float(value), 4), "status": status,
             "pass_at": passed, "warn_at": warned}
@@ -361,7 +360,7 @@ def score_lod(fur, res):
     gmin = verts.min(axis=0) - 0.05
     gmax = verts.max(axis=0) + 0.05
     for view in views:
-        pts2d, _ = project(verts, tris, view)
+        pts2d, _ = project(verts, view)
         u, v = {"+x": (2, 1), "-x": (2, 1), "+z": (0, 1), "-z": (0, 1),
                 "+y": (0, 2), "-y": (0, 2)}[view]
         extent = (min(gmin[u], gmin[v]), max(gmax[u], gmax[v]))
@@ -431,20 +430,20 @@ def main():
 
     lod0 = results["lods"][0]
     g = []
-    g.append(gate("density_cards_per_m2", lod0["cards_per_m2"], "", 4000, 1500))
-    g.append(gate("silhouette_coverage", lod0["coverage"], "", 0.55, 0.35))
-    g.append(gate("grazing_retention", lod0["grazing_retention"], "", 0.55, 0.35))
+    g.append(gate("density_cards_per_m2", lod0["cards_per_m2"], 4000, 1500))
+    g.append(gate("silhouette_coverage", lod0["coverage"], 0.55, 0.35))
+    g.append(gate("grazing_retention", lod0["grazing_retention"], 0.55, 0.35))
     over = {"gate": "overdraw", "value": round(lod0["overdraw"], 3),
             "status": "PASS" if lod0["overdraw"] <= 4.0 else
                       ("WARN" if lod0["overdraw"] <= 8.0 else "FAIL"),
             "pass_at": "<=4.0", "warn_at": "<=8.0"}
     g.append(over)
-    g.append(gate("direction_coherence_neighbour", lod0["neighbour_coherence"], "", 0.75, 0.55))
-    g.append(gate("direction_straightness", lod0["straightness"], "", 0.85, 0.70))
+    g.append(gate("direction_coherence_neighbour", lod0["neighbour_coherence"], 0.75, 0.55))
+    g.append(gate("direction_straightness", lod0["straightness"], 0.85, 0.70))
     if lod0["textures"]:
         for name, ts in lod0["textures"].items():
-            g.append(gate(f"texture_alpha_coverage[{name}]", ts["alpha_coverage"], "", 0.25, 0.12))
-            g.append(gate(f"colour_band_gradient[{name}]", ts["band_gradient"], "", 0.25, 0.10))
+            g.append(gate(f"texture_alpha_coverage[{name}]", ts["alpha_coverage"], 0.25, 0.12))
+            g.append(gate(f"colour_band_gradient[{name}]", ts["band_gradient"], 0.25, 0.10))
             g.append({"gate": f"dead_uv_fraction[{name}]", "value": round(ts["dead_uv_fraction"], 4),
                       "status": "PASS" if ts["dead_uv_fraction"] <= 0.05 else
                                 ("WARN" if ts["dead_uv_fraction"] <= 0.20 else "FAIL"),
@@ -470,7 +469,7 @@ def main():
     if args.render_strands and args.render_cards:
         ratio = render_silhouette_ratio(args.render_strands, args.render_cards)
         results["render_silhouette_ratio_cards_vs_strands"] = round(ratio, 4)
-        g.append(gate("render_silhouette_ratio", ratio, "", 0.85, 0.65))
+        g.append(gate("render_silhouette_ratio", ratio, 0.85, 0.65))
     results["gates"] = g
     for row in g:
         print(f"  {row['status']:4s}  {row['gate']:46s} {row['value']}")

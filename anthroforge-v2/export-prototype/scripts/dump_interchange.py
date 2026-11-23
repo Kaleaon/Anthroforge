@@ -139,7 +139,6 @@ if arm and arm.animation_data and arm.animation_data.action:
     step = 2
     frames = list(range(int(np.floor(f0)), int(np.ceil(f1)) + 1, step))
     samples = {b.name: [] for b in arm.pose.bones}
-    from mathutils import Matrix
     for f in frames:
         bpy.context.scene.frame_set(f)
         bpy.context.view_layer.update()

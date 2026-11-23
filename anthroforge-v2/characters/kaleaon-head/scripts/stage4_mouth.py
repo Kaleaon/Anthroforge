@@ -256,28 +256,6 @@ report["tongue"] = {"arcade_W_L": arcade_W / L, "before": before,
 # ---- full mouth battery at angles
 from kaleaon_io import group_weights
 
-
-def submesh(o, vert_idx):
-    """Faces whose verts all lie in vert_idx, with those verts."""
-    keep = set(int(i) for i in vert_idx)
-    W, _ = world_co(o)
-    tris = []
-    for p in o.data.polygons:
-        idx = list(p.vertices)
-        if all(v in keep for v in idx):
-            for k in range(1, len(idx) - 1):
-                tris.append((idx[0], idx[k], idx[k + 1]))
-    return W, tris
-
-
-def pose(W, deg):
-    th = math.radians(deg)
-    R = np.array([[1, 0, 0],
-                  [0, math.cos(th), -math.sin(th)],
-                  [0, math.sin(th), math.cos(th)]])
-    return (W - hinge) @ R.T + hinge
-
-
 tis, jaw = objs["TissueHead"], objs["Jaw"]
 tcage = np.where(group_weights(tis, "LipCage") > 0)[0]
 jcage = np.where(group_weights(jaw, "LipCage") > 0)[0]

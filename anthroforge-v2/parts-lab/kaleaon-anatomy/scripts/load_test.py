@@ -1,4 +1,4 @@
-import bpy, time, json
+import bpy, time
 start=time.time()
 bpy.ops.wm.read_factory_settings(use_empty=True)
 src='/home/hatch/workspace/bodies-3d/kaleaon-sacdrape/kaleaon_sacdrape.blend'

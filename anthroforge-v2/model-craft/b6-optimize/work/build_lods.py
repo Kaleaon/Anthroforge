@@ -24,7 +24,7 @@ Writes <lods_dir>/bara_wolf_lod{1,2}{,_naive}.glb and
 <out_dir>/lod_build.json with counts + weight-hygiene stats.
 Rigid attachments (eyes: no armature modifier) are carried unchanged.
 """
-import bpy, sys, json, math, os
+import bpy, sys, json, os
 import numpy as np
 
 argv = sys.argv[sys.argv.index("--") + 1:]

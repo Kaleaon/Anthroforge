@@ -17,11 +17,9 @@ Everything else - plane size, 800 parents, hair length 0.42, the
 Hair_coat material slot, 512x1024 @ 24 spp, transparent film - is
 exactly as scripted. The blend is NOT saved.
 """
-import json, math, random
+import math, random
 from pathlib import Path
-import numpy as np
 import bpy
-from mathutils import Vector
 
 SEN = Path(__file__).resolve().parent.parent
 bpy.ops.wm.open_mainfile(filepath=str(SEN / "sen_build.blend"))

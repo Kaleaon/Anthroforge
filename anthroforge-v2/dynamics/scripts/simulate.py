@@ -110,7 +110,7 @@ def run_chain(root_pos, root_R, rest_offsets, params, softness=None,
     return out
 
 
-def chain_metrics(positions, root_pos, root_R, rest_offsets, fps=30.0):
+def chain_metrics(positions, root_pos, root_R, rest_offsets):
     """Lag/settle metrics for a simulated chain.
 
     lag angle: angle between the root->tip direction now and the root->tip

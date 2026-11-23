@@ -1,5 +1,4 @@
-import bpy, json, math
-from mathutils import Vector
+import bpy, math
 
 SRC="/home/hatch/workspace/bodies-3d/parts-library/sketchfab/cougar-galileogb/source/FemaleCougar_ForSale.blend"
 try:

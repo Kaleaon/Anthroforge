@@ -54,7 +54,7 @@ def measure(tissue, ears, eye_objs, pal_obj, jaw_obj=None, ear_excl=None):
          "EarBase_belowSkullTop": round(top - eb.z, 4) if estats else None,
          "EarTip_aboveSkullTop": round(max(estats[0][1].z, estats[1][1].z) - top, 4) if estats else None,
          "eye_centre": [round(v, 4) for v in ec], "pal_z": round(pal, 4)}
-    hinge_y = eb.y - 0.02; hinge_z = pal + 0.055
+    hinge_y = eb.y - 0.02
     r["EarTipHeight_abovePalate"] = round((max(estats[0][1].z, estats[1][1].z) - pal), 4) if estats else None
     if jaw_obj is not None:
         jw = [jaw_obj.matrix_world @ v.co for v in jaw_obj.data.vertices]
