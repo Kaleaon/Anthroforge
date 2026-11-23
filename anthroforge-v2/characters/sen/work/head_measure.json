@@ -125,5 +125,5 @@
   "tongue_max_forward_vs_jaw_front": -0.025272898003459,
   "note": "bbox-level clearance, as the original build reported; the v4 split arcades make a true teeth occlusion check possible and the builder's BVH verify covers the teeth (tongue not a party to it). Tongue direction carried from the original build, not a slider."
  },
- "build_driver": "characters/sen/scripts/build_sen_head.py \u2014 corrected batch builder (pyn/scripts/build_head.py) + tongue x1.3 step"
+ "build_driver": "characters/sen/scripts/build_sen_head.py \u2014 corrected batch builder (common/build_head.py) + tongue x1.3 step"
 }

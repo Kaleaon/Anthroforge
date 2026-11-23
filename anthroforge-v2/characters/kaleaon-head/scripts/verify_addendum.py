@@ -2,35 +2,27 @@
 """Addendum measures: S2 station migration, S15 profile brow
 projection, S18 base comparison, S19 offender locations.
 Pure python on the GLBs."""
-import importlib.util
+import argparse
+from collections import defaultdict
 import json
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
 from scipy.spatial import cKDTree
 
-sys.argv = ["verify_head.py",
-            "--base", "/home/hatch/workspace/anthroforge-v2/base-head-v5/neutral_base_head_v5.glb",
-            "--built", "/home/hatch/workspace/anthroforge-v2/characters/kaleaon-head/kaleaon_head.glb",
-            "--vector", "/home/hatch/workspace/anthroforge-v2/characters/kaleaon-head/scripts/kaleaon_vector.json",
-            "--out", "/tmp/hv.json"]
-VHP = Path("/home/hatch/workspace/anthroforge-v2/characters/pyn/scripts/verify_head.py")
-spec = importlib.util.spec_from_file_location("vh", VHP)
-vh = importlib.util.module_from_spec(spec)
-import io, contextlib
-with contextlib.redirect_stdout(io.StringIO()):
-    spec.loader.exec_module(vh)
+HERE = Path(__file__).resolve().parent
+CHAR = HERE.parent
+CHARS = CHAR.parent
+V2 = CHARS.parent
+if str(CHARS) not in sys.path:
+    sys.path.insert(0, str(CHARS))
 
-CHAR = Path("/home/hatch/workspace/anthroforge-v2/characters/kaleaon-head")
-BASE = "/home/hatch/workspace/anthroforge-v2/base-head-v5/neutral_base_head_v5.glb"
-BUILT = str(CHAR / "kaleaon_head.glb")
-Mb = vh.glb_meshes(BASE)
-Mk = vh.glb_meshes(BUILT)
-Rb = vh.rulers(Mb)
-Rk = vh.rulers(Mk)
-out = {}
+from common.verify_head import glb_meshes, rulers  # noqa: E402
+
+DEFAULT_BASE = V2 / "base-head-v5" / "neutral_base_head_v5.glb"
+DEFAULT_BUILT = CHAR / "kaleaon_head.glb"
+DEFAULT_OUT = CHAR / "work" / "verify_addendum.json"
 
 
 def W(M, n):
@@ -45,14 +37,6 @@ def section(M, yc, half=0.004):
                       jaw[np.abs(jaw[:, 1] - yc) < half]])
     return float(band[:, 0].max() - band[:, 0].min()) if len(band) else None
 
-nose_b = float(W(Mb, "TissueHead")[:, 1].max())
-nose_k = float(W(Mk, "TissueHead")[:, 1].max())
-out["S2_migration"] = {
-    "base_at_own_station": section(Mb, nose_b - 0.295 * Rb["L"]),
-    "built_at_own_station": section(Mk, nose_k - 0.295 * Rk["L"]),
-    "built_at_base_absolute_station": section(Mk, nose_b - 0.295 * Rb["L"]),
-    "base_at_built_absolute_station": section(Mb, nose_k - 0.295 * Rk["L"]),
-}
 
 # --- S15 profile brow projection ---------------------------------------
 def brow_profile(M, R):
@@ -78,7 +62,6 @@ def brow_profile(M, R):
         worst = max(worst, yprof(z) - line)
     return worst
 
-out["S15_profile"] = {"base": brow_profile(Mb, Rb), "built": brow_profile(Mk, Rk)}
 
 # --- S18 base comparison -------------------------------------------------
 def symmetry(M, name):
@@ -90,8 +73,6 @@ def symmetry(M, name):
     return {"max": float(d.max()), "mean": float(d.mean()),
             "worst_at": src[i].tolist()}
 
-out["S18_base"] = {n: symmetry(Mb, n) for n in ("TissueHead", "Jaw")}
-out["S18_built_worst"] = {n: symmetry(Mk, n) for n in ("TissueHead", "Jaw")}
 
 # --- S19 offender locations ----------------------------------------------
 def offenders(M, name, R):
@@ -119,11 +100,50 @@ def offenders(M, name, R):
                             "in_mouth_zone_stage3_def": in_mouth})
     return res
 
-out["S19_offenders"] = {
-    "base": {n: offenders(Mb, n, Rb) for n in ("TissueHead", "Jaw")},
-    "built": {n: offenders(Mk, n, Rk) for n in ("TissueHead", "Jaw")},
-}
-print(json.dumps(out, indent=1, default=str))
-(CHAR / "work" / "verify_addendum.json").write_text(
-    json.dumps(out, indent=1, default=str))
-print("ADDENDUM DONE")
+
+def verify_addendum(base=DEFAULT_BASE, built=DEFAULT_BUILT, out=DEFAULT_OUT):
+    Mb = glb_meshes(base)
+    Mk = glb_meshes(built)
+    Rb = rulers(Mb)
+    Rk = rulers(Mk)
+    res = {}
+
+    nose_b = float(W(Mb, "TissueHead")[:, 1].max())
+    nose_k = float(W(Mk, "TissueHead")[:, 1].max())
+    res["S2_migration"] = {
+        "base_at_own_station": section(Mb, nose_b - 0.295 * Rb["L"]),
+        "built_at_own_station": section(Mk, nose_k - 0.295 * Rk["L"]),
+        "built_at_base_absolute_station": section(Mk, nose_b - 0.295 * Rb["L"]),
+        "base_at_built_absolute_station": section(Mb, nose_k - 0.295 * Rk["L"]),
+    }
+
+    res["S15_profile"] = {"base": brow_profile(Mb, Rb),
+                          "built": brow_profile(Mk, Rk)}
+
+    res["S18_base"] = {n: symmetry(Mb, n) for n in ("TissueHead", "Jaw")}
+    res["S18_built_worst"] = {n: symmetry(Mk, n) for n in ("TissueHead", "Jaw")}
+
+    res["S19_offenders"] = {
+        "base": {n: offenders(Mb, n, Rb) for n in ("TissueHead", "Jaw")},
+        "built": {n: offenders(Mk, n, Rk) for n in ("TissueHead", "Jaw")},
+    }
+    print(json.dumps(res, indent=1, default=str))
+    if out is not None:
+        out_path = Path(out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(res, indent=1, default=str))
+    print("ADDENDUM DONE")
+    return res
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--base", default=str(DEFAULT_BASE))
+    ap.add_argument("--built", default=str(DEFAULT_BUILT))
+    ap.add_argument("--out", default=str(DEFAULT_OUT))
+    A = ap.parse_args(argv)
+    return verify_addendum(base=A.base, built=A.built, out=A.out)
+
+
+if __name__ == "__main__":
+    main()

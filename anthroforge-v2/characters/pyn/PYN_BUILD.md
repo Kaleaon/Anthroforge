@@ -175,15 +175,15 @@ changes. The body above still carries its placeholder base head; this head
 replaces it at assembly.
 
 **Machinery.** Sen's head build (`characters/sen/scripts/build_head.py`)
-generalised into `scripts/build_head.py` (identical copies in all three
-character folders): same smooth-field deformations, same
+generalised into `characters/common/build_head.py` (shared across
+character folders; clay renders via `characters/common/render_head.py`): same smooth-field deformations, same
 proportional-from-neutral convention (factor = (neutral + t·span)/neutral,
 preserving the base's deliberate deviations), same [E] index maps calibrated
 so Sen's values reproduce Sen's shipped fields. Adaptations for v4: the
 teeth are two arcades, not the fused slab (below); ear bases seat against
 the *deformed* tissue by material-point delta. `--base` is a parameter —
 when base-head-v5 lands, re-run with the v5 GLB and this same vector
-(`scripts/pyn_vector.json`). Verify: `scripts/verify_head.py` (stage-F
+(`scripts/pyn_vector.json`). Verify: `characters/common/verify_head.py` (stage-F
 rulers from `base-head-v4/work/measure_v4.py`, re-checked against the v4
 base's own `proportions.json` before use — ZB .5466, MuzzleWidth .2332,
 JawWidth .533, RamusDepth .2697 all reproduced); raw numbers in
@@ -335,7 +335,7 @@ skull (hidden), and his base-heavy measured profile is a round bear ear
 read along its diagonal axis (W/L 1.59), not a fan inversion. Flagged
 here per instructions; neither rebuilt.
 
-### Fix (builder ear stage; all three generic copies updated, byte-identical)
+### Fix (builder ear stage; `characters/common/build_head.py`)
 
 - **Root preservation in EarHeight:** stretch weight
   `sstep(t/tmax, −0.02, +0.25)` — the sub-base root keeps its base

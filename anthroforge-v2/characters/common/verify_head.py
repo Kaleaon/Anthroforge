@@ -19,7 +19,8 @@ built-vs-expected, where expected = base_measured * (target/neutral).
 built-vs-target is reported too — it includes the base's own deviation,
 inherited, not introduced by the build.
 
-    python3 verify_head.py --base BASE.glb --built CHAR_head.glb \
+    python3 anthroforge-v2/characters/common/verify_head.py \
+        --base BASE.glb --built CHAR_head.glb \
         --vector VECTOR.json --out work/head_verify.json
 """
 import argparse
@@ -29,19 +30,26 @@ from pathlib import Path
 
 import numpy as np
 
-ap = argparse.ArgumentParser()
-ap.add_argument("--base", required=True)
-ap.add_argument("--built", required=True)
-ap.add_argument("--vector", required=True)
-ap.add_argument("--out", required=True)
-A = ap.parse_args()
-
-V = {k: float(v) for k, v in json.loads(Path(A.vector).read_text()).items()
-     if isinstance(v, (int, float))}
-
 C = np.array([[1, 0, 0], [0, 0, -1], [0, 1, 0]], float)   # glTF -> head frame
 C4 = np.eye(4)
 C4[:3, :3] = C
+
+# station: (label, ruler key, neutral, span, slider)
+STATIONS = [
+    ("ZB (CheekWidth)", "ZB", 0.58, 0.20, "CheekWidth"),
+    ("MuzzleWidth — vertex slab (legacy ruler)", "MuzzleWidth_slab", 0.17, 0.08, "MuzzleWidth"),
+    ("MuzzleWidth — merged section (v4-verdict ruler)", "MuzzleWidth_section", 0.17, 0.08, "MuzzleWidth"),
+    ("MuzzleDepth", "MuzzleDepth", 0.20, 0.10, "MuzzleDepth"),
+    ("MuzzleFrac (MuzzleLength)", "MuzzleFrac_antOrbit", 0.33, 0.20, "MuzzleLength"),
+    ("CraniumWidth (dome shell)", "CraniumWidth_domeShell", 0.36, 0.16, "CraniumWidth"),
+    ("SkullHeight (CraniumHeight)", "SkullHeight_domeRise", 0.31, 0.12, "CraniumHeight"),
+    ("OrbitDiameter (EyeSize)", "OrbitDiameter", 0.15, 0.10, "EyeSize"),
+    ("EarLength base->tip (EarHeight)", "EarLength_baseTip", 0.40, 0.65, "EarHeight"),
+    ("EarLength stage-F ruler (EarHeight)", "EarLength_stageF", 0.40, 0.65, "EarHeight"),
+    ("JawLength", "JawLength", 0.74, 0.10, "JawLength"),
+    ("JawWidth", "JawWidth", 0.40, 0.14, "JawWidth"),
+    ("RamusDepth (JawDepth)", "RamusDepth", 0.28, 0.12, "JawDepth"),
+]
 
 
 def quat_mat(q):
@@ -219,114 +227,125 @@ def rulers(M):
     }
 
 
-B = rulers(glb_meshes(A.base))
-N = rulers(glb_meshes(A.built))
-
-
 def rf(neutral, span, val):
     return (neutral + (val / 100.0) * span) / neutral
 
 
-# station: (label, ruler key, neutral, span, slider)
-STATIONS = [
-    ("ZB (CheekWidth)", "ZB", 0.58, 0.20, "CheekWidth"),
-    ("MuzzleWidth — vertex slab (legacy ruler)", "MuzzleWidth_slab", 0.17, 0.08, "MuzzleWidth"),
-    ("MuzzleWidth — merged section (v4-verdict ruler)", "MuzzleWidth_section", 0.17, 0.08, "MuzzleWidth"),
-    ("MuzzleDepth", "MuzzleDepth", 0.20, 0.10, "MuzzleDepth"),
-    ("MuzzleFrac (MuzzleLength)", "MuzzleFrac_antOrbit", 0.33, 0.20, "MuzzleLength"),
-    ("CraniumWidth (dome shell)", "CraniumWidth_domeShell", 0.36, 0.16, "CraniumWidth"),
-    ("SkullHeight (CraniumHeight)", "SkullHeight_domeRise", 0.31, 0.12, "CraniumHeight"),
-    ("OrbitDiameter (EyeSize)", "OrbitDiameter", 0.15, 0.10, "EyeSize"),
-    ("EarLength base->tip (EarHeight)", "EarLength_baseTip", 0.40, 0.65, "EarHeight"),
-    ("EarLength stage-F ruler (EarHeight)", "EarLength_stageF", 0.40, 0.65, "EarHeight"),
-    ("JawLength", "JawLength", 0.74, 0.10, "JawLength"),
-    ("JawWidth", "JawWidth", 0.40, 0.14, "JawWidth"),
-    ("RamusDepth (JawDepth)", "RamusDepth", 0.28, 0.12, "JawDepth"),
-]
-rows = []
-for label, key, neutral, span, slider in STATIONS:
-    val = V[slider]
-    target = neutral + (val / 100.0) * span
-    b, n = B[key], N[key]
-    exp = b * rf(neutral, span, val) if b else None
-    rows.append({
-        "station": label, "slider": slider, "value": val,
-        "base": round(b, 4) if b else None,
-        "built": round(n, 4) if n else None,
-        "species_target": round(target, 4),
-        "built_vs_target_pct": round(100 * (n / target - 1), 1) if n else None,
-        "expected_proportional": round(exp, 4) if exp else None,
-        "built_vs_expected_pct": round(100 * (n / exp - 1), 1) if (n and exp) else None,
-    })
+def run_verify(base, built, vector, out=None, verbose=True):
+    _raw = (vector if isinstance(vector, dict)
+            else json.loads(Path(vector).read_text()))
+    V = {k: float(v) for k, v in _raw.items() if isinstance(v, (int, float))}
 
-extra = []
-# Interorbital — delta station (EyeSpacing moves centres, not a ratio)
-val = V["EyeSpacing"]
-exp_d = (val / 100.0) * 0.08
-extra.append({"station": "Interorbital (EyeSpacing, delta)",
-              "base": round(B["Interorbital"], 4),
-              "built": round(N["Interorbital"], 4),
-              "delta_measured": round(N["Interorbital"] - B["Interorbital"], 4),
-              "delta_expected": round(exp_d, 4)})
-# NoseWidth — factor station
-val = V["NoseSize"]
-extra.append({"station": "NoseWidth (NoseSize, factor)",
-              "base": round(B["NoseWidth"], 4),
-              "built": round(N["NoseWidth"], 4),
-              "ratio_measured": round(N["NoseWidth"] / B["NoseWidth"], 3),
-              "ratio_expected": round(rf(0.55, 0.30, val), 3)})
-# ForeheadWidth probe — factor station
-val = V["ForeheadWidth"]
-extra.append({"station": "ForeheadWidth probe (factor)",
-              "base": round(B["ForeheadWidth_probe"], 4),
-              "built": round(N["ForeheadWidth_probe"], 4),
-              "ratio_measured": round(N["ForeheadWidth_probe"] / B["ForeheadWidth_probe"], 3),
-              "ratio_expected": round(rf(0.24, 0.12, val), 3)})
-# RuffZone probe — swell evidence (no closed-form expectation)
-extra.append({"station": "RuffZoneWidth probe (RuffVolume evidence)",
-              "base": round(B["RuffZoneWidth_probe"], 4),
-              "built": round(N["RuffZoneWidth_probe"], 4),
-              "pct_change": round(100 * (N["RuffZoneWidth_probe"] / B["RuffZoneWidth_probe"] - 1), 1)})
-# Stop band probe — dip evidence
-extra.append({"station": "StopBandZ probe (StopAngle evidence)",
-              "base": round(B["StopBandZ_probe"], 4),
-              "built": round(N["StopBandZ_probe"], 4),
-              "delta": round(N["StopBandZ_probe"] - B["StopBandZ_probe"], 4)})
-# Occiput — CraniumLength evidence
-val = V["CraniumLength"]
-extra.append({"station": "OcciputY (CraniumLength evidence)",
-              "base": round(B["OcciputY"], 4),
-              "built": round(N["OcciputY"], 4),
-              "delta": round(N["OcciputY"] - B["OcciputY"], 4),
-              "factor": round(rf(0.62, 0.20, val), 3)})
-# JawLength about the node hinge — the stage-F origin (ear-base-derived
-# hinge_y) migrates when the ears change shape (population migration,
-# the v4 EarLength artefact family); the node-hinge measure is immune.
-val = V["JawLength"]
-extra.append({"station": "JawLength about node hinge (supplementary)",
-              "base": round(B["JawLength_nodeHinge"], 4),
-              "built": round(N["JawLength_nodeHinge"], 4),
-              "ratio_measured": round(N["JawLength_nodeHinge"] / B["JawLength_nodeHinge"], 4),
-              "ratio_expected": round(rf(0.74, 0.10, val), 4)})
-# unchanged-check stations
-for k in ("OrbitHeight", "OrbitRise"):
-    extra.append({"station": f"{k} (no slider — drift check)",
-                  "base": round(B[k], 4), "built": round(N[k], 4),
-                  "delta": round(N[k] - B[k], 4)})
+    B = rulers(glb_meshes(base))
+    N = rulers(glb_meshes(built))
 
-rep = {"base_rulers": {k: (round(v, 4) if isinstance(v, float) else v)
-                       for k, v in B.items()},
-       "built_rulers": {k: (round(v, 4) if isinstance(v, float) else v)
-                        for k, v in N.items()},
-       "stations": rows, "extra": extra}
-Path(A.out).write_text(json.dumps(rep, indent=1))
+    rows = []
+    for label, key, neutral, span, slider in STATIONS:
+        val = V[slider]
+        target = neutral + (val / 100.0) * span
+        b, n = B[key], N[key]
+        exp = b * rf(neutral, span, val) if b else None
+        rows.append({
+            "station": label, "slider": slider, "value": val,
+            "base": round(b, 4) if b else None,
+            "built": round(n, 4) if n else None,
+            "species_target": round(target, 4),
+            "built_vs_target_pct": round(100 * (n / target - 1), 1) if n else None,
+            "expected_proportional": round(exp, 4) if exp else None,
+            "built_vs_expected_pct": round(100 * (n / exp - 1), 1) if (n and exp) else None,
+        })
 
-print("| Station | Slider | Base | Built | Species target | Built vs target | Expected (proportional) | Built vs expected |")
-print("|---|---|---|---|---|---|---|---|")
-for r in rows:
-    print(f"| {r['station']} | {r['slider']} {r['value']:+.0f} | {r['base']} | "
-          f"{r['built']} | {r['species_target']} | {r['built_vs_target_pct']:+}% | "
-          f"{r['expected_proportional']} | {r['built_vs_expected_pct']:+}% |")
-print()
-for e in extra:
-    print(e)
+    extra = []
+    # Interorbital — delta station (EyeSpacing moves centres, not a ratio)
+    val = V["EyeSpacing"]
+    exp_d = (val / 100.0) * 0.08
+    extra.append({"station": "Interorbital (EyeSpacing, delta)",
+                  "base": round(B["Interorbital"], 4),
+                  "built": round(N["Interorbital"], 4),
+                  "delta_measured": round(N["Interorbital"] - B["Interorbital"], 4),
+                  "delta_expected": round(exp_d, 4)})
+    # NoseWidth — factor station
+    val = V["NoseSize"]
+    extra.append({"station": "NoseWidth (NoseSize, factor)",
+                  "base": round(B["NoseWidth"], 4),
+                  "built": round(N["NoseWidth"], 4),
+                  "ratio_measured": round(N["NoseWidth"] / B["NoseWidth"], 3),
+                  "ratio_expected": round(rf(0.55, 0.30, val), 3)})
+    # ForeheadWidth probe — factor station
+    val = V["ForeheadWidth"]
+    extra.append({"station": "ForeheadWidth probe (factor)",
+                  "base": round(B["ForeheadWidth_probe"], 4),
+                  "built": round(N["ForeheadWidth_probe"], 4),
+                  "ratio_measured": round(N["ForeheadWidth_probe"] / B["ForeheadWidth_probe"], 3),
+                  "ratio_expected": round(rf(0.24, 0.12, val), 3)})
+    # RuffZone probe — swell evidence (no closed-form expectation)
+    extra.append({"station": "RuffZoneWidth probe (RuffVolume evidence)",
+                  "base": round(B["RuffZoneWidth_probe"], 4),
+                  "built": round(N["RuffZoneWidth_probe"], 4),
+                  "pct_change": round(100 * (N["RuffZoneWidth_probe"] / B["RuffZoneWidth_probe"] - 1), 1)})
+    # Stop band probe — dip evidence
+    extra.append({"station": "StopBandZ probe (StopAngle evidence)",
+                  "base": round(B["StopBandZ_probe"], 4),
+                  "built": round(N["StopBandZ_probe"], 4),
+                  "delta": round(N["StopBandZ_probe"] - B["StopBandZ_probe"], 4)})
+    # Occiput — CraniumLength evidence
+    val = V["CraniumLength"]
+    extra.append({"station": "OcciputY (CraniumLength evidence)",
+                  "base": round(B["OcciputY"], 4),
+                  "built": round(N["OcciputY"], 4),
+                  "delta": round(N["OcciputY"] - B["OcciputY"], 4),
+                  "factor": round(rf(0.62, 0.20, val), 3)})
+    # JawLength about the node hinge — the stage-F origin (ear-base-derived
+    # hinge_y) migrates when the ears change shape (population migration,
+    # the v4 EarLength artefact family); the node-hinge measure is immune.
+    val = V["JawLength"]
+    extra.append({"station": "JawLength about node hinge (supplementary)",
+                  "base": round(B["JawLength_nodeHinge"], 4),
+                  "built": round(N["JawLength_nodeHinge"], 4),
+                  "ratio_measured": round(N["JawLength_nodeHinge"] / B["JawLength_nodeHinge"], 4),
+                  "ratio_expected": round(rf(0.74, 0.10, val), 4)})
+    # unchanged-check stations
+    for k in ("OrbitHeight", "OrbitRise"):
+        extra.append({"station": f"{k} (no slider — drift check)",
+                      "base": round(B[k], 4), "built": round(N[k], 4),
+                      "delta": round(N[k] - B[k], 4)})
+
+    rep = {"base_rulers": {k: (round(v, 4) if isinstance(v, float) else v)
+                           for k, v in B.items()},
+           "built_rulers": {k: (round(v, 4) if isinstance(v, float) else v)
+                            for k, v in N.items()},
+           "stations": rows, "extra": extra}
+    if out is not None:
+        out_path = Path(out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(rep, indent=1))
+
+    if verbose:
+        print("| Station | Slider | Base | Built | Species target | Built vs target | Expected (proportional) | Built vs expected |")
+        print("|---|---|---|---|---|---|---|---|")
+        for r in rows:
+            print(f"| {r['station']} | {r['slider']} {r['value']:+.0f} | {r['base']} | "
+                  f"{r['built']} | {r['species_target']} | {r['built_vs_target_pct']:+}% | "
+                  f"{r['expected_proportional']} | {r['built_vs_expected_pct']:+}% |")
+        print()
+        for e in extra:
+            print(e)
+    return rep
+
+
+def parse_args(argv=None):
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--base", required=True)
+    ap.add_argument("--built", required=True)
+    ap.add_argument("--vector", required=True)
+    ap.add_argument("--out", required=True)
+    return ap.parse_args(argv)
+
+
+def main(argv=None):
+    A = parse_args(argv)
+    return run_verify(A.base, A.built, A.vector, A.out)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Kaleaon head Phase 2 - shared field machinery.
 
-Ports characters/pyn/scripts/build_head.py (the corrected sona builder:
+Ports characters/common/build_head.py (the corrected sona builder:
 proportional-from-neutral convention, side from part position, metric
 teeth follow, ear seat by material-point delta) into per-object field
 functions so the staged Kaleaon build can apply layer-appropriate
