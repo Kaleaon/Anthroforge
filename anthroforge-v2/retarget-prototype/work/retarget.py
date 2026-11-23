@@ -444,10 +444,7 @@ for o in [fen] + fen_meshes:
     o.select_set(True)
 bpy.context.view_layer.objects.active = fen
 glb_path = os.path.join(OUT, "fennec_retargeted.glb")
-try:
-    bpy.ops.export_scene.gltf(filepath=glb_path, use_selection=True, export_animations=True,
-                              export_animation_mode='NLA_TRACKS')
-except TypeError:
-    bpy.ops.export_scene.gltf(filepath=glb_path, use_selection=True, export_animations=True)
+bpy.ops.export_scene.gltf(filepath=glb_path, use_selection=True, export_animations=True,
+                          export_animation_mode='NLA_TRACKS')
 log("exported GLB:", glb_path, os.path.getsize(glb_path))
 log("DONE")

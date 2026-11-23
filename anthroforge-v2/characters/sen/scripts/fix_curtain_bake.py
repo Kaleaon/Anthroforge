@@ -52,7 +52,6 @@ bm2.free()
 vg = cur.vertex_groups.new(name="all")
 vg.add(list(range(len(cur.data.vertices))), 1.0, "REPLACE")
 mat_clear = bpy.data.materials.new("Clear")
-mat_clear.use_nodes = True
 mat_clear.node_tree.nodes.remove(
     mat_clear.node_tree.nodes["Principled BSDF"])
 tr = mat_clear.node_tree.nodes.new("ShaderNodeBsdfTransparent")

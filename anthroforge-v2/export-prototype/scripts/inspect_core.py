@@ -9,31 +9,12 @@ import json
 
 
 def action_fcurves(act):
-    """Return list of fcurves for an action across legacy + slotted APIs."""
+    """Return list of fcurves for a slotted Blender 5.2 action."""
     fcs = []
-    try:
-        fcs = list(act.fcurves)  # legacy path
-        if fcs:
-            return fcs
-    except Exception:
-        pass
-    try:
-        for layer in act.layers:
-            for strip in layer.strips:
-                bags = []
-                cbs = getattr(strip, "channelbags", None)
-                if cbs is not None:
-                    bags = list(cbs)
-                else:
-                    cb = getattr(strip, "channelbag", None)
-                    if callable(cb):
-                        cb = cb()
-                    if cb is not None:
-                        bags = [cb]
-                for bag in bags:
-                    fcs.extend(list(bag.fcurves))
-    except Exception:
-        pass
+    for layer in act.layers:
+        for strip in layer.strips:
+            for cb in strip.channelbags:
+                fcs.extend(cb.fcurves)
     return fcs
 
 

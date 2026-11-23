@@ -9,7 +9,6 @@ sc.cycles.samples = 12
 sc.cycles.use_denoising = True
 sc.render.resolution_x = 512; sc.render.resolution_y = 512
 sc.world = bpy.data.worlds.new("W") if not sc.world else sc.world
-sc.world.use_nodes = True
 sc.world.node_tree.nodes["Background"].inputs[0].default_value = (0.25, 0.25, 0.28, 1)
 sc.world.node_tree.nodes["Background"].inputs[1].default_value = 0.7
 

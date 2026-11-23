@@ -16,7 +16,6 @@ for name in ("leg_digitigrade_R", "leg_digitigrade_L"):
     o = bpy.data.objects[name]
     if not o.data.materials:
         mat = bpy.data.materials.new("leg_mat")
-        mat.use_nodes = True
         b = mat.node_tree.nodes["Principled BSDF"]
         b.inputs["Base Color"].default_value = (0.55, 0.47, 0.42, 1)
         b.inputs["Roughness"].default_value = 0.85
@@ -47,7 +46,7 @@ if "pelvis_stub" not in bpy.data.objects:
     for p in me.polygons: p.use_smooth = True
     ob = bpy.data.objects.new("pelvis_stub", me)
     bpy.context.collection.objects.link(ob)
-    mat = bpy.data.materials.new("stub_mat"); mat.use_nodes = True
+    mat = bpy.data.materials.new("stub_mat")
     bb = mat.node_tree.nodes["Principled BSDF"]
     bb.inputs["Base Color"].default_value = (0.42, 0.36, 0.33, 1)
     bb.inputs["Roughness"].default_value = 0.9
@@ -55,7 +54,7 @@ if "pelvis_stub" not in bpy.data.objects:
 
 bpy.ops.mesh.primitive_plane_add(size=6, location=(0, 0, 0))
 gnd = bpy.context.active_object
-gm = bpy.data.materials.new("ground_mat"); gm.use_nodes = True
+gm = bpy.data.materials.new("ground_mat")
 gm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
 gnd.data.materials.append(gm)
 
@@ -74,7 +73,6 @@ sc.render.resolution_x = 640
 sc.render.resolution_y = 800
 if not sc.world:
     sc.world = bpy.data.worlds.new("w")
-sc.world.use_nodes = True
 sc.world.node_tree.nodes["Background"].inputs[0].default_value = (0.05, 0.05, 0.06, 1)
 sc.world.node_tree.nodes["Background"].inputs[1].default_value = 0.6
 

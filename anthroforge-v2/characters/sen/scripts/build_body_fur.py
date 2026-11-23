@@ -130,7 +130,6 @@ print(f"body after cut: {len(P)} verts")
 
 # coat material for the (unfurred) skin under the fur
 mat_coat = bpy.data.materials.new("SenCoatSkin")
-mat_coat.use_nodes = True
 bsdf = mat_coat.node_tree.nodes["Principled BSDF"]
 bsdf.inputs["Base Color"].default_value = (0.30, 0.185, 0.10, 1.0)
 bsdf.inputs["Roughness"].default_value = 0.85
@@ -165,13 +164,11 @@ for o in head_objs:
     o.name = "Sen_" + o.name
 # head materials: coat on tissue/jaw, amber iris, dark nose
 mat_head = bpy.data.materials.new("SenHeadCoat")
-mat_head.use_nodes = True
 mat_head.node_tree.nodes["Principled BSDF"].inputs[
     "Base Color"].default_value = (0.30, 0.185, 0.10, 1.0)
 mat_head.node_tree.nodes["Principled BSDF"].inputs[
     "Roughness"].default_value = 0.9
 mat_amber = bpy.data.materials.new("SenIrisAmber")
-mat_amber.use_nodes = True
 mat_amber.node_tree.nodes["Principled BSDF"].inputs[
     "Base Color"].default_value = (0.85, 0.45, 0.08, 1.0)
 for o in head_objs:
@@ -256,7 +253,6 @@ HAIR = {
 hair_mats = {}
 for name, (n, ln, col, clump, kink) in HAIR.items():
     m = bpy.data.materials.new(f"Hair_{name}")
-    m.use_nodes = True
     nt = m.node_tree
     nt.nodes.remove(nt.nodes["Principled BSDF"])
     hb = nt.nodes.new("ShaderNodeBsdfHairPrincipled")

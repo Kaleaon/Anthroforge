@@ -33,7 +33,7 @@ for i, mat in enumerate(bpy.data.materials):
     mat_index[mat.name] = i
     color = [1.0, 1.0, 1.0, 1.0]
     tex_name = None
-    if mat.use_nodes:
+    if mat.node_tree:
         for node in mat.node_tree.nodes:
             if node.type == "BSDF_PRINCIPLED":
                 bc = node.inputs["Base Color"].default_value

@@ -26,7 +26,6 @@ def bake_card_texture(name, count, seed, outpath):
     em = bpy.context.active_object
     em.name = "CardEmitter"
     mat = bpy.data.materials.new("CardHair")
-    mat.use_nodes = True
     nt = mat.node_tree
     nt.nodes.clear()
     outn = nt.nodes.new("ShaderNodeOutputMaterial")
@@ -109,7 +108,6 @@ def card_materials():
     mats = []
     for suffix, texfile in (("A", "fur_card_texture_a.png"), ("B", "fur_card_texture_b.png")):
         m = bpy.data.materials.get(f"FurCard{suffix}") or bpy.data.materials.new(f"FurCard{suffix}")
-        m.use_nodes = True
         nt = m.node_tree
         nt.nodes.clear()
         outn = nt.nodes.new("ShaderNodeOutputMaterial")
@@ -123,10 +121,6 @@ def card_materials():
         nt.links.new(tex.outputs["Alpha"], bsdf.inputs["Alpha"])
         nt.links.new(bsdf.outputs["BSDF"], outn.inputs["Surface"])
         m.surface_render_method = 'DITHERED'
-        try:
-            m.blend_method = 'HASHED'
-        except Exception:
-            pass
         mats.append(m)
     return mats
 

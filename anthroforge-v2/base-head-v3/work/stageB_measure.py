@@ -109,15 +109,15 @@ with open("/home/hatch/workspace/anthroforge-v2/base-head-v3/work/source_measure
 
 # --- ID render: colour pieces, front + side, Eevee
 def mat(name, rgb):
-    m=bpy.data.materials.new(name); m.use_nodes=True
+    m=bpy.data.materials.new(name)
     m.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value=(*rgb,1)
     m.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value=0.85
     return m
 for ob,rgb in ((T,(0.75,0.72,0.68)),(P6,(0.85,0.3,0.25)),(P10,(0.25,0.5,0.9)),(E,(0.2,0.2,0.22))):
     ob.data.materials.clear(); ob.data.materials.append(mat(ob.name, rgb))
 sc=bpy.context.scene
-sc.render.engine='BLENDER_EEVEE_NEXT'; sc.render.resolution_x=640; sc.render.resolution_y=640
-w=bpy.data.worlds.new("W"); sc.world=w; w.use_nodes=True
+sc.render.engine='BLENDER_EEVEE'; sc.render.resolution_x=640; sc.render.resolution_y=640
+w=bpy.data.worlds.new("W"); sc.world=w
 w.node_tree.nodes["Background"].inputs[0].default_value=(0.5,0.5,0.5,1); w.node_tree.nodes["Background"].inputs[1].default_value=1.0
 cam=bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam")); sc.collection.objects.link(cam); sc.camera=cam
 sun=bpy.data.objects.new("Sun", bpy.data.lights.new("Sun",'SUN')); sc.collection.objects.link(sun)

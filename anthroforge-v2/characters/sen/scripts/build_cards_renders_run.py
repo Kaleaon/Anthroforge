@@ -75,7 +75,6 @@ bm2.free()
 vg = cur.vertex_groups.new(name="all")
 vg.add(list(range(len(cur.data.vertices))), 1.0, "REPLACE")
 mat_clear = bpy.data.materials.new("Clear")
-mat_clear.use_nodes = True
 mat_clear.node_tree.nodes.remove(
     mat_clear.node_tree.nodes["Principled BSDF"])
 tr = mat_clear.node_tree.nodes.new("ShaderNodeBsdfTransparent")
@@ -203,7 +202,6 @@ def build_cards(chosen, path):
     ob = bpy.data.objects.new("FurCards", me)
     bpy.context.scene.collection.objects.link(ob)
     m = bpy.data.materials.new("CardMat")
-    m.use_nodes = True
     nt = m.node_tree
     bsdf = nt.nodes["Principled BSDF"]
     tex = nt.nodes.new("ShaderNodeTexImage")
@@ -242,7 +240,6 @@ scene.render.film_transparent = False
 world = bpy.data.worlds.new("W") if not bpy.data.worlds \
     else bpy.data.worlds[0]
 scene.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = \
     (0.12, 0.12, 0.13, 1)
 cam_d2 = bpy.data.cameras.new("Cam")

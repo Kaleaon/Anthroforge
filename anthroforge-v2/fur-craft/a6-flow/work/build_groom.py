@@ -214,7 +214,6 @@ attr3.data.foreach_set("value", pot.astype(np.float32))
 
 def make_mat(name, color, rough=0.85, emission=None):
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     bsdf = m.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value = (*color, 1)
     bsdf.inputs["Roughness"].default_value = rough
@@ -235,7 +234,6 @@ viz_mesh = mesh.copy()
 viz_ob = bpy.data.objects.new("WolfHead_flowviz", viz_mesh)
 bpy.context.scene.collection.objects.link(viz_ob)
 vm = bpy.data.materials.new("flowviz")
-vm.use_nodes = True
 nt = vm.node_tree
 out = nt.nodes["Material Output"]
 em = nt.nodes.new("ShaderNodeEmission")
@@ -434,7 +432,6 @@ tangled_ob = make_strand_object("Groom_tangled", tangled, hair_c, 0.00062)
 # ---------------------------------------------------------------- lights, cameras, world
 sc = bpy.context.scene
 world = bpy.data.worlds.new("W"); sc.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.045, 0.045, 0.05, 1)
 world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 sun = bpy.data.objects.new("Sun", bpy.data.lights.new("Sun", 'SUN'))

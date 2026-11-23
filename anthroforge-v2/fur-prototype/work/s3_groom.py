@@ -10,7 +10,6 @@ me = ob.data
 
 # ---------- hair material (Principled Hair BSDF) ----------
 hair_mat = bpy.data.materials.get("FurHair") or bpy.data.materials.new("FurHair")
-hair_mat.use_nodes = True
 nt = hair_mat.node_tree
 nt.nodes.clear()
 out_node = nt.nodes.new("ShaderNodeOutputMaterial")

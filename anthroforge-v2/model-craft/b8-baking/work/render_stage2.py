@@ -27,7 +27,6 @@ def tex(name, colorspace):
     return n
 
 mat = bpy.data.materials.new("LowBaked")
-mat.use_nodes = True
 nt = mat.node_tree
 bsdf = nt.nodes["Principled BSDF"]
 bsdf.inputs["Roughness"].default_value = 0.95
@@ -74,7 +73,6 @@ except Exception as e:
 # ---------- studio: flat world, one sun, ortho camera ----------
 world = bpy.data.worlds.new("Studio")
 scene.world = world
-world.use_nodes = True
 bg = world.node_tree.nodes["Background"]
 bg.inputs[0].default_value = (0.18, 0.18, 0.18, 1.0)
 bg.inputs[1].default_value = 1.0

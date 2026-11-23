@@ -27,7 +27,6 @@ def rough_of(pbr):
 
 def new_mat(name):
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     return m, m.node_tree.nodes["Principled BSDF"]
 
 def apply_pbr(mat, bsdf, pbr, base_tex=None):
@@ -44,8 +43,7 @@ def apply_pbr(mat, bsdf, pbr, base_tex=None):
     bsdf.inputs["Metallic"].default_value = pbr.get("metallic", 0.0)
     bsdf.inputs["Roughness"].default_value = rough_of(pbr)
     bsdf.inputs["IOR"].default_value = pbr.get("ior", 1.45)
-    if "Specular IOR Level" in bsdf.inputs:
-        bsdf.inputs["Specular IOR Level"].default_value = pbr.get("specular_level", 0.5)
+    bsdf.inputs["Specular IOR Level"].default_value = pbr.get("specular_level", 0.5)
     ss = pbr.get("subsurface")
     if ss:
         bsdf.inputs["Subsurface Weight"].default_value = ss["weight"]
@@ -60,13 +58,12 @@ def apply_pbr(mat, bsdf, pbr, base_tex=None):
     if sheen and sheen.get("weight", 0) > 0:
         bsdf.inputs["Sheen Weight"].default_value = sheen["weight"]
         bsdf.inputs["Sheen Roughness"].default_value = sheen.get("roughness", 0.5)
-    if "anisotropy" in pbr and "Anisotropic" in bsdf.inputs:
+    if "anisotropy" in pbr:
         bsdf.inputs["Anisotropic"].default_value = pbr["anisotropy"]
     tr = pbr.get("transmission")
     if tr:
         bsdf.inputs["Transmission Weight"].default_value = tr["weight"]
-        if "Thickness" in bsdf.inputs:
-            bsdf.inputs["Thickness"].default_value = tr.get("thickness_mm", 0.5) / 1000.0
+        bsdf.inputs["Thickness"].default_value = tr.get("thickness_mm", 0.5) / 1000.0
 
 def add_noise_bump(mat, bsdf, scale, strength, stretch=None):
     nt = mat.node_tree
@@ -110,7 +107,6 @@ scene.view_settings.view_transform = "AgX"
 
 world = bpy.data.worlds.get("World") or bpy.data.worlds.new("World")
 scene.world = world
-world.use_nodes = True
 wnt = world.node_tree
 env = wnt.nodes.new("ShaderNodeTexEnvironment")
 env.image = bpy.data.images.load(HDRI)
@@ -188,8 +184,7 @@ for mid, rec in by_id.items():
         # sheen colour = coat highlight tint (lightened base colour)
         base_lin = srgb_to_linear(rec["pbr"]["base_color"]["srgb_default"])
         tint = tuple(min(1.0, c * 1.9 + 0.08) for c in base_lin[:3]) + (1.0,)
-        if "Sheen Tint" in bsdf.inputs:
-            bsdf.inputs["Sheen Tint"].default_value = tint
+        bsdf.inputs["Sheen Tint"].default_value = tint
     if mid in BUMPS:
         s, st, stretch = BUMPS[mid]
         add_noise_bump(mat, bsdf, s, st, stretch)

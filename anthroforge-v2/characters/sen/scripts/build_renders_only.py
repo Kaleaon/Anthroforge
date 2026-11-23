@@ -68,7 +68,6 @@ scene.render.film_transparent = False
 world = bpy.data.worlds.new("W") if not bpy.data.worlds \
     else bpy.data.worlds[0]
 scene.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = \
     (0.12, 0.12, 0.13, 1)
 cam_d2 = bpy.data.cameras.new("Cam")

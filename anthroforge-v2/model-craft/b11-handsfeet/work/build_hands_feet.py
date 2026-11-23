@@ -26,7 +26,6 @@ PARTS = os.path.join(OUT, "parts")
 # ---------------------------------------------------------------- materials
 def make_mat(name, rgb, rough=0.85):
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     bsdf = m.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value = (*rgb, 1.0)
     bsdf.inputs["Roughness"].default_value = rough

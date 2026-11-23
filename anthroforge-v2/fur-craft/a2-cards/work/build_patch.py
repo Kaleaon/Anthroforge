@@ -57,7 +57,6 @@ def build_dome(mat):
 
 def fur_material(tex_name, nrm_strength):
     mat = bpy.data.materials.new("Fur_" + tex_name)
-    mat.use_nodes = True
     nt = mat.node_tree
     out = nt.nodes.get("Material Output")
     prin = nt.nodes.get("Principled BSDF")
@@ -160,7 +159,6 @@ scene.render.resolution_x = 640
 scene.render.resolution_y = 480
 scene.render.image_settings.file_format = "PNG"
 world = bpy.data.worlds.new("W")
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.45, 0.45, 0.45, 1)
 world.node_tree.nodes["Background"].inputs[1].default_value = 0.7
 scene.world = world
@@ -174,12 +172,10 @@ for loc, energy, size in (((0.3, -0.5, 1.4), 900, 1.2), ((-1.0, 0.9, 0.8), 250, 
     bpy.context.collection.objects.link(lo)
 
 dome_mat = bpy.data.materials.new("Undercoat")
-dome_mat.use_nodes = True
 dome_mat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.02, 0.02, 0.55, 1)
 dome_mat.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
 
 backdrop_mat = bpy.data.materials.new("Backdrop")
-backdrop_mat.use_nodes = True
 bsdf = backdrop_mat.node_tree.nodes.get("Principled BSDF")
 emis = backdrop_mat.node_tree.nodes.new("ShaderNodeEmission")
 emis.inputs["Color"].default_value = (1.0, 0.0, 1.0, 1)

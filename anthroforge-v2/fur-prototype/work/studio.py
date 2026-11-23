@@ -11,7 +11,6 @@ def aim(obj, target):
 def build_studio(scene):
     # world
     world = bpy.data.worlds.get("FurWorld") or bpy.data.worlds.new("FurWorld")
-    world.use_nodes = True
     bg = world.node_tree.nodes["Background"]
     bg.inputs[0].default_value = (0.015, 0.015, 0.02, 1.0)
     bg.inputs[1].default_value = 0.7
@@ -23,7 +22,6 @@ def build_studio(scene):
         g = bpy.context.active_object
         g.name = "Ground"
         gm = bpy.data.materials.new("GroundMat")
-        gm.use_nodes = True
         gm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.03, 0.03, 0.035, 1)
         gm.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
         g.data.materials.append(gm)

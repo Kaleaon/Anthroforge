@@ -17,7 +17,6 @@ sun = bpy.data.objects.new("Sun", sun_data)
 sc.collection.objects.link(sun)
 sun.rotation_euler = (0.9, 0.2, 0.4)
 sc.world = bpy.data.worlds.new("W")
-sc.world.use_nodes = True
 sc.world.node_tree.nodes["Background"].inputs[0].default_value = (0.04, 0.04, 0.05, 1)
 sc.world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 

@@ -450,7 +450,6 @@ def make_pelvis_stub():
     obj = bpy.data.objects.new("pelvis_stub", mesh)
     bpy.context.collection.objects.link(obj)
     mat = bpy.data.materials.new("stub_mat")
-    mat.use_nodes = True
     bsdf = mat.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value = (0.42, 0.36, 0.33, 1)
     bsdf.inputs["Roughness"].default_value = 0.9
@@ -461,7 +460,6 @@ def make_pelvis_stub():
 def setup_render(objs):
     for o in objs:
         mat = bpy.data.materials.new("leg_mat")
-        mat.use_nodes = True
         bsdf = mat.node_tree.nodes["Principled BSDF"]
         bsdf.inputs["Base Color"].default_value = (0.55, 0.47, 0.42, 1)
         bsdf.inputs["Roughness"].default_value = 0.85
@@ -470,7 +468,6 @@ def setup_render(objs):
     bpy.ops.mesh.primitive_plane_add(size=6, location=(0, 0, 0))
     gnd = bpy.context.active_object
     gm = bpy.data.materials.new("ground_mat")
-    gm.use_nodes = True
     gm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
     gm.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
     gnd.data.materials.append(gm)
@@ -493,7 +490,6 @@ def setup_render(objs):
     sc.render.resolution_x = 700
     sc.render.resolution_y = 860
     sc.world = bpy.data.worlds.new("w")
-    sc.world.use_nodes = True
     sc.world.node_tree.nodes["Background"].inputs[0].default_value = (0.05, 0.05, 0.06, 1)
     sc.world.node_tree.nodes["Background"].inputs[1].default_value = 0.6
 

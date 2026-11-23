@@ -184,7 +184,6 @@ scene.render.resolution_x = 448
 scene.render.resolution_y = 448
 scene.render.film_transparent = False
 world = bpy.data.worlds.new('W'); scene.world = world
-world.use_nodes = True
 world.node_tree.nodes['Background'].inputs[0].default_value = (0.055, 0.055, 0.06, 1)
 world.node_tree.nodes['Background'].inputs[1].default_value = 1.0
 light = bpy.data.lights.new('Key', 'AREA'); light.energy = 160; light.size = 1.6
@@ -219,7 +218,6 @@ TIP_COL = (0.56, 0.43, 0.29)
 
 def skin_material():
     mat = bpy.data.materials.new('SkinUndercoat')
-    mat.use_nodes = True
     bsdf = mat.node_tree.nodes['Principled BSDF']
     bsdf.inputs['Base Color'].default_value = (0.16, 0.11, 0.075, 1)
     bsdf.inputs['Roughness'].default_value = 1.0
@@ -227,7 +225,6 @@ def skin_material():
 
 def shell_material(t):
     mat = bpy.data.materials.new(f'Shell_t{t:.3f}')
-    mat.use_nodes = True
     nt = mat.node_tree
     bsdf = nt.nodes['Principled BSDF']
     bsdf.inputs['Roughness'].default_value = 0.92
@@ -254,7 +251,6 @@ def shell_material(t):
 
 def fin_material():
     mat = bpy.data.materials.new('FinMat')
-    mat.use_nodes = True
     nt = mat.node_tree
     bsdf = nt.nodes['Principled BSDF']
     bsdf.inputs['Roughness'].default_value = 0.95

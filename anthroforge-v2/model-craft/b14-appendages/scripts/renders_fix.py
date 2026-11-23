@@ -32,7 +32,6 @@ scene.view_settings.view_transform = 'Filmic'
 scene.view_settings.look = 'Medium Contrast'
 world = bpy.data.worlds.new("W")
 scene.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.16, 0.16, 0.17, 1)
 world.node_tree.nodes["Background"].inputs[1].default_value = 0.45
 
@@ -207,7 +206,6 @@ crop.update()
 rump = bpy.data.objects.new("rump_crop", crop)
 bpy.context.collection.objects.link(rump)
 grey = bpy.data.materials.new("rump_grey")
-grey.use_nodes = True
 grey.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.42, 0.40, 0.38, 1)
 grey.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 0.95
 rump.data.materials.append(grey)
@@ -243,7 +241,7 @@ ttarget = tpos + tdir * 0.13 * U + up * 0.02 * U
 _tv = [o for o in tail_objs if o.type == 'MESH' and 'volume' in o.name][0]
 _tv.data = _tv.data.copy()
 _tv.data.materials.clear()
-_hi = bpy.data.materials.new('TailHighlight'); _hi.use_nodes = True
+_hi = bpy.data.materials.new('TailHighlight')
 _hi.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (0.62, 0.42, 0.24, 1)
 _hi.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value = 0.9
 _tv.data.materials.append(_hi)
@@ -278,7 +276,6 @@ plane.from_pydata([(-1.4, -0.8, 0), (1.4, -0.8, 0), (1.4, 0.8, 0), (-1.4, 0.8, 0
 po = bpy.data.objects.new("ground", plane)
 bpy.context.collection.objects.link(po)
 gm = bpy.data.materials.new("ground_mat")
-gm.use_nodes = True
 gm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.23, 0.23, 0.24, 1)
 po.data.materials.append(gm)
 add_sun("lsun1", (0.7, 0.4, 0.6), 3.0)

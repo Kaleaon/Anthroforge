@@ -38,7 +38,6 @@ mat_body = bpy.data.materials.new("Body"); mat_body.diffuse_color = (0.55, 0.53,
 mat_a = bpy.data.materials.new("TankTop_A"); mat_a.diffuse_color = (0.05, 0.45, 0.5, 1)
 mat_c = bpy.data.materials.new("TankTop_C"); mat_c.diffuse_color = (0.85, 0.35, 0.05, 1)
 for m in (mat_body, mat_a, mat_c):
-    m.use_nodes = True
     m.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 0.85
 
 body_idx = np.arange(13380)
@@ -66,7 +65,6 @@ cam.data.lens = 55
 bpy.context.collection.objects.link(cam)
 bpy.context.scene.camera = cam
 w = bpy.data.worlds.new("W"); bpy.context.scene.world = w
-w.use_nodes = True
 w.node_tree.nodes["Background"].inputs[0].default_value = (0.12, 0.12, 0.13, 1)
 w.node_tree.nodes["Background"].inputs[1].default_value = 0.6
 

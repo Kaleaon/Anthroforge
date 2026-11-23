@@ -167,7 +167,6 @@ def base_principled(nt):
 
 def new_mat(name):
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     m.surface_render_method = "DITHERED"   # Eevee hashed-alpha equivalent
     return m
 
@@ -251,7 +250,6 @@ def setup_world_lights():
     sc.cycles.adaptive_threshold = 0.02
     w = bpy.data.worlds.new("Studio")
     sc.world = w
-    w.use_nodes = True
     bg = w.node_tree.nodes["Background"]
     bg.inputs[0].default_value = (0.03, 0.03, 0.04, 1)
     bg.inputs[1].default_value = 0.25

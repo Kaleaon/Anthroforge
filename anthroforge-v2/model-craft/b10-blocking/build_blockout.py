@@ -34,14 +34,12 @@ scene.unit_settings.length_unit = 'METERS'
 
 clay = bpy.data.materials.new("block_clay")
 clay.diffuse_color = (0.62, 0.60, 0.58, 1.0)
-clay.use_nodes = True
 _bsdf = clay.node_tree.nodes["Principled BSDF"]
 _bsdf.inputs["Base Color"].default_value = (0.48, 0.46, 0.43, 1.0)
 _bsdf.inputs["Roughness"].default_value = 0.9
 
 dark = bpy.data.materials.new("silhouette")
 dark.diffuse_color = (0.05, 0.05, 0.05, 1.0)
-dark.use_nodes = True
 _bsdf2 = dark.node_tree.nodes["Principled BSDF"]
 _bsdf2.inputs["Base Color"].default_value = (0.02, 0.02, 0.02, 1.0)
 _bsdf2.inputs["Roughness"].default_value = 1.0
@@ -166,7 +164,6 @@ scene.cycles.samples = 24
 scene.cycles.use_denoising = False
 scene.render.resolution_x, scene.render.resolution_y = 760, 560
 scene.world = bpy.data.worlds.new("W")
-scene.world.use_nodes = True
 scene.world.node_tree.nodes["Background"].inputs[0].default_value = (0.92, 0.92, 0.92, 1)
 scene.world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 bpy.ops.object.light_add(type='SUN', location=(1.5, -2.5, 3.5))

@@ -108,7 +108,6 @@ def fur_material():
     global MAT
     if MAT is None:
         MAT = bpy.data.materials.new("FurClump_Stylised")
-        MAT.use_nodes = True
         bsdf = MAT.node_tree.nodes["Principled BSDF"]
         bsdf.inputs["Base Color"].default_value = (0.40, 0.32, 0.26, 1.0)
         bsdf.inputs["Roughness"].default_value = 0.92

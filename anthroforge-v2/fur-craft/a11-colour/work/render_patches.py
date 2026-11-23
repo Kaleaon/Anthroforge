@@ -74,7 +74,6 @@ def dome_mesh(name, centre, R=1.05, half=0.62, seg=26):
 
 def shell_material(name, diffuse, alpha_img, alpha_gain=1.0):
     mat = bpy.data.materials.new(name)
-    mat.use_nodes = True
     nt = mat.node_tree
     bsdf = nt.nodes["Principled BSDF"]
     td = nt.nodes.new("ShaderNodeTexImage")
@@ -94,7 +93,6 @@ def shell_material(name, diffuse, alpha_img, alpha_gain=1.0):
 
 def card_material(name, tex):
     mat = bpy.data.materials.new(name)
-    mat.use_nodes = True
     nt = mat.node_tree
     bsdf = nt.nodes["Principled BSDF"]
     t = nt.nodes.new("ShaderNodeTexImage")
@@ -201,7 +199,6 @@ def main():
     bpy.ops.mesh.primitive_plane_add(size=8, location=(0, 0, -0.62))
     gnd = bpy.context.active_object
     gm = bpy.data.materials.new("ground")
-    gm.use_nodes = True
     gm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.05, 0.045, 0.04, 1)
     gm.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
     gnd.data.materials.append(gm)
@@ -231,7 +228,6 @@ def main():
     scene.render.resolution_x = 480
     scene.render.resolution_y = 340
     scene.world = bpy.data.worlds.new("w")
-    scene.world.use_nodes = True
     scene.world.node_tree.nodes["Background"].inputs[0].default_value = (0.03, 0.03, 0.035, 1)
     scene.world.node_tree.nodes["Background"].inputs[1].default_value = 0.6
 

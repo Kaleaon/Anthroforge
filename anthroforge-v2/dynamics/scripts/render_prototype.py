@@ -37,7 +37,6 @@ scene.cycles.use_denoising = False
 scene.render.resolution_x = 560
 scene.render.resolution_y = 420
 clay = bpy.data.materials.new('ClayOverride')
-clay.use_nodes = True
 clay.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = \
     (0.55, 0.52, 0.50, 1)
 scene.view_layers[0].material_override = clay

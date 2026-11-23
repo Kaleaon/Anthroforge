@@ -167,7 +167,6 @@ def make_radius_group(root_r=0.0011, tip_r=0.00025):
 
 def hair_material():
     m = bpy.data.materials.get("FurHair") or bpy.data.materials.new("FurHair")
-    m.use_nodes = True
     nt = m.node_tree
     nt.nodes.clear()
     out = nt.nodes.new("ShaderNodeOutputMaterial")

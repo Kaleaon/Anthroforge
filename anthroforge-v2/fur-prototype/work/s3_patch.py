@@ -6,7 +6,6 @@ bpy.ops.wm.open_mainfile(filepath=P)
 
 # --- replace hair shading with a predictable Principled BSDF ---
 mat = bpy.data.materials["FurHair"]
-mat.use_nodes = True
 nt = mat.node_tree
 nt.nodes.clear()
 outn = nt.nodes.new("ShaderNodeOutputMaterial")

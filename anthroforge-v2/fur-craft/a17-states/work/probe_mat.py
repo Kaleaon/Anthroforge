@@ -10,7 +10,7 @@ for ps in ob.particle_systems:
           "clump_factor", p.clump_factor, "kink", p.kink, "material_slot", p.material)
 print("MATERIALS", [m.name if m else None for m in bpy.data.materials])
 for m in bpy.data.materials:
-    if not m or not m.use_nodes or not m.node_tree:
+    if not m or not m.node_tree:
         print("MAT", m.name if m else None, "no node tree")
         continue
     print("MAT", m.name, "nodes:")

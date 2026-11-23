@@ -57,7 +57,6 @@ def principled(nt):
 
 def new_mat(name):
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     return m
 
 def zone_node(nt, x, y):

@@ -126,9 +126,8 @@ def claymat(name, rgb, rough=0.6, sss=0.0):
     m=bpy.data.materials.get(name) or bpy.data.materials.new(name)
     bsdf=m.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value=(*rgb,1); bsdf.inputs["Roughness"].default_value=rough
-    if sss: 
-        try: bsdf.inputs["Subsurface Weight"].default_value=sss
-        except Exception: pass
+    if sss:
+        bsdf.inputs["Subsurface Weight"].default_value=sss
     return m
 def assign(ob, m):
     ob.data.materials.clear(); ob.data.materials.append(m)
