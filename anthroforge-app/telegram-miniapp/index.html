@@ -3791,6 +3791,7 @@
   <script src="sharecode.js"></script>
   <script src="vocabulary.js"></script>
   <script src="presets.js"></script>
+  <script src="record.js"></script>
   <script>
     /* AnthroForge Mini App bridge: Telegram WebApp integration, character
        record builder, mobile panel collapsing, DPR cap. Outside Telegram
@@ -3810,7 +3811,6 @@
        * view-only: copy the share code instead). */
       var canSendData = !!(tg && typeof tg.sendData === 'function' && !tg.initData);
       var inTelegram = !!(tg && (tg.initData || canSendData));
-      var charId = window.AFShareCode ? AFShareCode.newCharacterId() : 'chr_web';
 
       function toast(msg) {
         if (typeof showToast === 'function') { showToast(msg); return; }
@@ -3818,102 +3818,30 @@
         if (box) { box.textContent = msg; box.style.opacity = '1'; setTimeout(function () { box.style.opacity = '0'; }, 2600); }
       }
 
-      function currentRecord() {
-        var sliders = {};
-        // Canonical sliders imported from a preset/code go in first:
-        // a bodyslide key below overwrites its canonical twin, because
-        // the UI's own sliders are the current truth.
-        Object.keys(state.coreSliders || {}).forEach(function (k) { sliders[k] = state.coreSliders[k]; });
-        Object.keys(state.morphs || {}).forEach(function (k) { sliders['morph.' + k] = state.morphs[k]; });
-        Object.keys(state.bodyslide || {}).forEach(function (k) { sliders['bodyslide.' + k] = state.bodyslide[k]; });
-        Object.keys(state.sos || {}).forEach(function (k) { sliders['sos.' + k] = state.sos[k]; });
-        Object.keys(state.drivers || {}).forEach(function (k) { sliders['driver.' + k] = state.drivers[k]; });
-        var parts = Object.keys(state.equipped || {}).map(function (slot) {
-          return { slot: slot, part: state.equipped[slot] };
-        });
-        var nameEl = document.getElementById('af-char-name');
-        var name = (nameEl && nameEl.value.trim()) || 'Unnamed';
-        var preset = (window.SPECIES_PRESETS || {})[state.activeSpecies] || {};
-        var raw = {
-          format: 'anthroforge.character',
-          version: 1,
-          id: charId,
-          name: name,
-          base: { body: state.baseBody, head: 'web_v2' },
-          sliders: sliders,
-          species_preset: { preset: state.activeSpecies, label: preset.label || state.activeSpecies },
-          parts: parts,
-          fur: {},
-          materials: { colors: state.colors || {} },
-          identity: { source: inTelegram ? 'telegram-miniapp' : 'web', species: state.activeSpecies,
-            head_shape: { ...state.headShape }, head_sculpt: state.headSculpt }
-        };
-        // Vocabulary fix (pass 2): translate the web vocabulary to
-        // canonical Core form, so the record validates against the
-        // slider registry and builds in the Core instead of failing
-        // on every slider id and on the web base ids.
-        if (window.AFVocabulary) {
-          var translated = AFVocabulary.translateRecord(raw);
-          translated.warnings.forEach(function (w) { console.warn('[vocabulary]', w); });
-          return translated.record;
+      var recordHelper = AFRecord.createRecordHelper({
+        state: state,
+        source: function () { return inTelegram ? 'telegram-miniapp' : 'web'; },
+        speciesPresets: SPECIES_PRESETS,
+        getName: function () {
+          var nameEl = document.getElementById('af-char-name');
+          return (nameEl && nameEl.value.trim()) || 'Unnamed';
+        },
+        setName: function (name) {
+          var nameEl = document.getElementById('af-char-name');
+          if (nameEl) nameEl.value = typeof name === 'string' ? name : '';
+        },
+        toast: toast,
+        onAfterApply: function () {
+          if (typeof updateBaseBodyButtons === 'function') updateBaseBodyButtons();
+          if (typeof renderPartsGrid === 'function') renderPartsGrid();
+          if (typeof renderSocketDropzones === 'function') renderSocketDropzones();
+          if (typeof syncControlsFromState === 'function') syncControlsFromState();
+          if (typeof rebuildAvatarGeometry === 'function') rebuildAvatarGeometry();
         }
-        return raw;
-      }
-
-      // Exposed for the main script's Save .afchar.json button.
-      window.AFBuildRecord = currentRecord;
-
-      // Apply a decoded character record to the UI state (Import).
-      // Web-prefixed values go back into the sliders they came from;
-      // canonical sliders inverse-map where the UI edits them, and the
-      // rest are stashed in state.coreSliders so the round-trip is
-      // lossless (currentRecord merges them back in).
-      function applyRecord(record) {
-        if (!record || record.format !== 'anthroforge.character') {
-          throw new Error('not an AnthroForge character record');
-        }
-        var sliders = record.sliders || {};
-        var identity = record.identity || {};
-        state.headSculpt = identity.head_sculpt && typeof identity.head_sculpt === 'object' ? identity.head_sculpt : {};
-        [['morphs', state.morphs], ['head_shape', state.headShape], ['sos', state.sos], ['drivers', state.drivers]].forEach(function (pair) {
-          var vals = identity[pair[0]];
-          if (vals) {
-            Object.keys(vals).forEach(function (k) { if (k in pair[1]) pair[1][k] = vals[k]; });
-          }
-        });
-        var core = {};
-        Object.keys(sliders).forEach(function (cid) {
-          var inv = window.AFVocabulary ? AFVocabulary.canonicalToWebSlider(cid) : null;
-          if (inv) {
-            var parts = inv[0].split('.');
-            if (parts[0] === 'bodyslide' && parts[1] in state.bodyslide) {
-              state.bodyslide[parts[1]] = sliders[cid] * inv[1];
-            } else {
-              core[cid] = sliders[cid];
-            }
-          } else {
-            core[cid] = sliders[cid];
-          }
-        });
-        state.coreSliders = core;
-        if (identity.base_body && ['max', 'maxine', 'maxwell', 'bara'].indexOf(identity.base_body) >= 0) {
-          state.baseBody = identity.base_body;
-        }
-        (record.parts || []).forEach(function (entry) {
-          if (entry && entry.slot && entry.part && entry.slot in state.equipped) {
-            state.equipped[entry.slot] = entry.part;
-          }
-        });
-        var nameEl = document.getElementById('af-char-name');
-        if (nameEl && record.name) nameEl.value = record.name;
-        if (typeof updateBaseBodyButtons === 'function') updateBaseBodyButtons();
-        if (typeof renderPartsGrid === 'function') renderPartsGrid();
-        if (typeof syncControlsFromState === 'function') syncControlsFromState();
-        if (typeof rebuildAvatarGeometry === 'function') rebuildAvatarGeometry();
-      }
+      });
 
       async function buildCode() {
-        var code = await AFShareCode.encodeShareCode(currentRecord());
+        var code = await AFShareCode.encodeShareCode(recordHelper.buildRecord());
         if (code.length > 4096) throw new Error('share code exceeds Telegram sendData limit');
         return code;
       }
@@ -3991,43 +3919,8 @@
           });
         }
 
-        // Import AF1- / preset (pass 2, wired to decodeShareCode).
-        var importBtn = document.getElementById('btn-import-sharecode');
-        var importModal = document.getElementById('af-import-modal');
-        var importPreset = document.getElementById('af-import-preset');
-        var importCode = document.getElementById('af-import-code');
-        var importStatus = document.getElementById('af-import-status');
-        if (importPreset && window.AFPresets) {
-          AFPresets.presets.forEach(function (p) {
-            var o = document.createElement('option');
-            o.value = p.share_code; o.textContent = p.name;
-            importPreset.appendChild(o);
-          });
-        }
-        if (importBtn && importModal) {
-          importBtn.addEventListener('click', function () { importModal.classList.remove('hidden'); });
-          document.getElementById('af-import-cancel').addEventListener('click', function () {
-            importModal.classList.add('hidden');
-          });
-          document.getElementById('af-import-go').addEventListener('click', async function () {
-            try {
-              var code = (importCode.value || '').trim();
-              if (!code && importPreset && importPreset.value) code = importPreset.value;
-              if (!code) throw new Error('paste a share code or pick a preset');
-              if (!window.AFShareCode || !AFShareCode.decodeShareCode) {
-                throw new Error('share-code codec not loaded');
-              }
-              var record = await AFShareCode.decodeShareCode(code);
-              applyRecord(record);
-              importStatus.textContent = '✅ Imported ' + (record.name || 'character') +
-                ' — ' + Object.keys(record.sliders || {}).length + ' sliders.';
-              toast('✅ Imported ' + (record.name || 'character'));
-              setTimeout(function () { importModal.classList.add('hidden'); }, 900);
-            } catch (err) {
-              importStatus.textContent = '⛔ Import failed: ' + err.message;
-            }
-          });
-        }
+        // Import AF1- / preset (shared via AFRecord + AFShareCode.decodeShareCode).
+        recordHelper.bindImportModal();
 
         // Cap effective devicePixelRatio at 2 for mobile GPU perf.
         var tries = 0;
