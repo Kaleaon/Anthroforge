@@ -154,7 +154,6 @@ me.transform(body.matrix_world)
 verts = [v.co.copy() for v in me.vertices]
 
 def landmark(group_substr, min_w=0.4):
-    gi = [g.index for g in body.data.vertex_groups_unused] if False else None
     idxs = []
     for g in body.vertex_groups:
         if group_substr in g.name:

@@ -159,7 +159,7 @@ def tissue_fields(W, V, LM):
     eye_y, eye_z, pal_z = LM["eye_y"], LM["eye_z"], LM["pal_z"]
     nose_y = LM["nose_y"]
     y, z, x = W[:, 1].copy(), W[:, 2].copy(), W[:, 0].copy()
-    muz, cran = M["muz"], M["cran"]
+    muz = M["muz"]
     zyg, stopb, neckr = M["zyg"], M["stopb"], M["neckr"]
     # MuzzleLength
     f_ml = ratio_factor(0.33, 0.20, V["MuzzleLength"])

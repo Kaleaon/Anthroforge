@@ -860,8 +860,6 @@ for name in ("arm_R", "arm_L"):
 print("underside pooling:", json.dumps(pool))
 
 # ------------------------------------------------- v4 scorecard re-run
-def compute_axis_full(pos, gate):
-    return compute_axis(pos, gate)
 mh_ctr, mh_axis = compute_axis(mh_pos, mh_body)
 _h = (mh_pos[:, 2] - mh_crotch) / L_mh
 _ax = axis_at(mh_ctr, mh_axis, mh_pos[:, 2])

@@ -60,12 +60,6 @@ for v in ("front", "side", "back", "top"):
     finish("neutral", v, "direction")
 
 # ---------- UV / flatten helpers ----------
-def fan_tris(faces):
-    tris = []
-    for f in faces:
-        for k in range(1, len(f) - 1): tris.append([f[0], f[k], f[k + 1]])
-    return np.array(tris)
-
 def face_labels(obj):
     tris = D[f"{obj}_tris"]; col = D[f"{obj}_colour"]
     return np.array([np.bincount(col[t], minlength=5).argmax() for t in tris])
@@ -110,27 +104,12 @@ def draw_panel(box, title):
     dr.text((x0 + 10, y0 + 8), title, fill=(30, 30, 30), font=font(20, True))
     return box
 
-def plot_tris(box, pts2d, tris, labels, lo, hi, label_pts):
-    x0, y0, x1, y1 = box; pad = 46
-    def map2(px, py):
-        return (x0 + pad + (px - lo[0]) / (hi[0] - lo[0]) * (x1 - x0 - 2 * pad),
-                y1 - pad - (py - lo[1]) / (hi[1] - lo[1]) * (y1 - y0 - 2 * pad - 18))
-    for t, lb in zip(tris, labels):
-        poly = [map2(pts2d[i, 0], pts2d[i, 1]) for i in t]
-        dr.polygon(poly, fill=COL_RGB[int(lb)])
-    for (px, py), txt in label_pts:
-        cx, cy = map2(px, py)
-        dr.ellipse([cx - 4, cy - 4, cx + 4, cy + 4], fill=(18, 53, 91))
-        dr.text((cx + 8, cy - 10), txt, fill=(18, 53, 91), font=font(19, True))
-    return map2
-
 # head panel
 tris, uvt = uv_tris(); labels = face_labels("TissueHead")
 pos = D["TissueHead_pos"]; colv = D["TissueHead_colour"]; flow = D["TissueHead_flow"]
 box = draw_panel((24, 96, 880, 700), "HEAD — UV space (P01/P02 main halves, P03 pale)")
 uv_all = uvt.reshape(-1, 2)
 lo, hi = uv_all.min(axis=0), uv_all.max(axis=0)
-maph = plot_tris(box, np.zeros((1, 2)), [], [], lo, hi, [])  # placeholder for mapper
 def maph(px, py):
     x0, y0, x1, y1 = box; pad = 46
     return (x0 + pad + (px - lo[0]) / (hi[0] - lo[0]) * (x1 - x0 - 2 * pad),

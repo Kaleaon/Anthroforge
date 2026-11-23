@@ -1,4 +1,4 @@
-import json, struct, sys
+import json, struct
 import numpy as np
 from PIL import Image
 from io import BytesIO

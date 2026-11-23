@@ -1,5 +1,4 @@
 import bpy
-from mathutils import Vector
 bpy.ops.wm.open_mainfile(filepath="/home/hatch/workspace/stick-figure-avatar/furry/bara_wolf_base.blend")
 arm = bpy.data.objects["BaraWolf"]
 for b in arm.data.bones:
@@ -8,7 +7,6 @@ for b in arm.data.bones:
         print("BONE", b.name, "head", tuple(round(v,3) for v in b.head_local), "tail", tuple(round(v,3) for v in b.tail_local))
 ob = bpy.data.objects["BaraWolfBody"]
 ws = [ob.matrix_world @ v.co for v in ob.data.vertices]
-import collections
 for zlo in (1.50,1.60,1.70,1.80):
     band = [w for w in ws if zlo <= w.z < zlo+0.10 and abs(w.x) < 0.45]
     if band:

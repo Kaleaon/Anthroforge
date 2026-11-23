@@ -20,10 +20,9 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
-from hyper_common import (FP, HYPER, body_edges, crossings, face_dots,
-                          fold_stats, load_base, load_macro, load_target,
+from hyper_common import (FP, HYPER, body_edges, crossings, fold_stats, load_base, load_macro, load_target,
                           min_thigh_gap, quantise, dequantise,
-                          thigh_band, write_target)
+                          write_target)
 from build_hyper_proof import contact_cap, fold_repair_q  # noqa: E402
 
 V, F, Fb = load_base()
@@ -39,14 +38,14 @@ out = {}
 print("== B16 reproduction: stack+contact scaled ==")
 rep = {}
 for s in (1.0, 1.5, 2.0, 3.0, 4.0):
-    rep[str(s)] = crossings(V, Fb, (D1 + CT) * s)
+    rep[str(s)] = crossings(V, (D1 + CT) * s)
 print(rep)
 out["b16_reproduction_stack_plus_contact_crossings"] = rep
 
 print("== policy composition at 2x: solved belly + contact@1.0 ==")
 P2 = FULL + CT
 st = {"folds_raw": fold_stats(V, Fb, P2), "folds_macro":
-      fold_stats(Vm, Fb, P2), "crossings": crossings(V, Fb, P2),
+      fold_stats(Vm, Fb, P2), "crossings": crossings(V, P2),
       "min_thigh_gap_mm": float(min_thigh_gap(V, P2) * 1000)}
 print(st)
 out["policy_2x_before_resolve"] = st
@@ -60,7 +59,7 @@ if st["folds_raw"][0] or st["folds_macro"][0] or st["crossings"]:
         q = quantise(cur)
         q, rounds, ok = fold_repair_q(q)
         cur = dequantise(q)
-        cr = crossings(V, Fb, cur)
+        cr = crossings(V, cur)
         fr, fm = fold_stats(V, Fb, cur), fold_stats(Vm, Fb, cur)
         print(f"  resolve attempt {attempt}: capped {nc}, rounds "
               f"{rounds}, folds {fr}/{fm}, crossings {cr}")
@@ -80,7 +79,7 @@ if st["folds_raw"][0] or st["folds_macro"][0] or st["crossings"]:
     out["policy_2x_after_resolve"] = {
         "folds_raw": fold_stats(V, Fb, P2),
         "folds_macro": fold_stats(Vm, Fb, P2),
-        "crossings": crossings(V, Fb, P2),
+        "crossings": crossings(V, P2),
         "min_thigh_gap_mm": float(min_thigh_gap(V, P2) * 1000)}
 else:
     out["policy_2x_after_resolve"] = st
@@ -91,7 +90,7 @@ P15 = (D1 + CT) + 0.5 * SEG + (contact_hyper2 * 0.5
                                if contact_hyper2.any() else 0.0)
 out["policy_1.5"] = {"folds_raw": fold_stats(V, Fb, P15),
                      "folds_macro": fold_stats(Vm, Fb, P15),
-                     "crossings": crossings(V, Fb, P15)}
+                     "crossings": crossings(V, P15)}
 print("policy 1.5:", out["policy_1.5"])
 
 nav = int(np.argmax(D1[:13380, 1]))

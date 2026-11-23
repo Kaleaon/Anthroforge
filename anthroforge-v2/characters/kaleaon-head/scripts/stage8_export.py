@@ -27,7 +27,6 @@ for name in ("Tongue", "SkullMandible"):
     W0, _ = world_co(o)
     sum0 = W0.sum(axis=0)
     bb0 = (W0.min(axis=0), W0.max(axis=0))
-    o.matrix_world = bpy.context.scene.cursor.matrix if False else o.matrix_world
     import mathutils
     o.matrix_world = mathutils.Matrix.Translation(
         mathutils.Vector(HINGE)) @ mathutils.Matrix.Identity(4)

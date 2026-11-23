@@ -382,7 +382,7 @@ def generate_record(spec_name: str, entry: dict) -> dict:
     return rec
 
 
-def canonical_vector(spec: dict, index: dict[str, dict]) -> dict[str, float]:
+def canonical_vector(spec: dict) -> dict[str, float]:
     out: dict[str, float] = {}
     for name, value in spec.items():
         if isinstance(value, tuple):
@@ -401,9 +401,8 @@ def canonical_vector(spec: dict, index: dict[str, dict]) -> dict[str, float]:
 def make_character(cid: str, name: str, body_spec: dict, head: dict,
                    brow_projection: float | None, species_preset: dict,
                    fur: dict, provenance: dict,
-                   index: dict[str, dict],
                    head_note_override: str | None = None) -> Character:
-    sliders = canonical_vector(body_spec, index)
+    sliders = canonical_vector(body_spec)
     if brow_projection is not None:
         sliders["head.brow.projection"] = brow_projection
     sp = dict(species_preset)
@@ -459,13 +458,13 @@ def main() -> None:
             ORC_SM, ORC_HEAD, 135.0,
             {"preset_id": "orc_bara_strongman", "species": "orc (bara)",
              "export_scale": 1.20, "head_scale_relative": 0.95, **orc_head_note},
-            {}, orc_prov, index),
+            {}, orc_prov),
         make_character(
             "chr_preset_orc_bara_bodybuilder", "Bara Orc — Bodybuilder",
             ORC_BB, {**ORC_HEAD, **ORC_HEAD_BB_DIFF}, 135.0,
             {"preset_id": "orc_bara_bodybuilder", "species": "orc (bara)",
              "export_scale": 1.15, "head_scale_relative": 0.95, **orc_head_note},
-            {}, orc_prov, index),
+            {}, orc_prov),
         make_character(
             "chr_preset_pyn", "Pyn", PYN_BODY, PYN_HEAD, -45.0,
             {"preset_id": "pyn", "species": "fennec (species vector + BrowScowl delta)",
@@ -473,7 +472,7 @@ def main() -> None:
              "ear_note": "EarHeight +100 is a relative anchor; Pyn's absolute "
                          "36 cm ear decision governs the physical body "
                          "(presets-titan-batch1.md section 3.1)."},
-            {"profile": "species.fennec.coat"}, titan_prov, index),
+            {"profile": "species.fennec.coat"}, titan_prov),
         make_character(
             "chr_preset_sen", "Sen", SEN_BODY, SEN_HEAD, -20.0,
             {"preset_id": "sen", "species": "bear (brown x moon blend)",
@@ -489,7 +488,7 @@ def main() -> None:
                  "Tongue: large variant, scale ~1.3 (part parameter); "
                  "jaw clearance check owed at first build",
                  "Eyes amber, round pupil"]},
-            {"profile": "species.bear.coat"}, titan_prov, index),
+            {"profile": "species.bear.coat"}, titan_prov),
         make_character(
             "chr_preset_sen_muscle_bear", "Sen — Muscle Bear (variant)",
             {**SEN_BODY, **SEN_MUSCLE_BEAR_OVERRIDES}, SEN_HEAD, -20.0,
@@ -498,7 +497,7 @@ def main() -> None:
              "note": "MuscleVector held exactly from Sen; only the TissueVector "
                      "moves (presets-titan-batch1.md section 4.5). QA: M4 climbs "
                      "toward the top of 1.25-1.35; M10 moderate band."},
-            {"profile": "species.bear.coat"}, titan_prov, index),
+            {"profile": "species.bear.coat"}, titan_prov),
         make_character(
             "chr_preset_jorge", "Jorge", JORGE_BODY, JORGE_HEAD, -25.0,
             {"preset_id": "jorge", "species": "dog — St. Bernard (breed re-derived)",
@@ -509,7 +508,7 @@ def main() -> None:
                  "Muscle 45 is a flagged watch item (BARA_LESSONS section 6 D): "
                  "if the first build reads fat-not-strong, the corrective is "
                  "Muscle 60, NOT more Chubby. Not applied."]},
-            {"profile": "species.saint_bernard.coat"}, titan_prov, index),
+            {"profile": "species.saint_bernard.coat"}, titan_prov),
     ]
     # The orc strongman calls the authored NeckMass slider at 90
     # (preset-orc-bara.md section 3.0 / BARA_LESSONS section 6 B) — a
@@ -538,7 +537,7 @@ def main() -> None:
              "parts_notes": wolf_parts + [
                  "Neck 25 kg of 408 (6.1%, spec s.3) - the weapon mount; "
                  "thigh 39 kg each is his largest muscle group"]},
-            {"profile": "species.wolf.coat"}, b2_prov, index),
+            {"profile": "species.wolf.coat"}, b2_prov),
         make_character(
             "chr_preset_alpha", "Alpha", ALPHA_BODY, WOLF_HEAD, -25.0,
             {"preset_id": "alpha_titan", "species": "wolf (species vector, unchanged)",
@@ -552,7 +551,7 @@ def main() -> None:
                  "against Gamma's 90 is the load-bearing difference",
                  "Quadruped-capable (Decision #36) - plan capability; "
                  "vector authored on the biped composition"]},
-            {"profile": "species.wolf.coat"}, b2_prov, index),
+            {"profile": "species.wolf.coat"}, b2_prov),
         make_character(
             "chr_preset_beta", "Beta", BETA_BODY, WOLF_HEAD, -25.0,
             {"preset_id": "beta_titan", "species": "wolf (species vector, unchanged)",
@@ -565,7 +564,7 @@ def main() -> None:
                  "s.2); design point adopted by Beta himself Nov 4 2026 (Q-B3)",
                  "Force-limiting on arms/jaw is a character requirement "
                  "(gentle strength) - actuator note, not a shape value"]},
-            {"profile": "species.wolf.coat"}, b2_prov, index),
+            {"profile": "species.wolf.coat"}, b2_prov),
         make_character(
             "chr_preset_delta", "Delta", DELTA_BODY, WOLF_HEAD, -25.0,
             {"preset_id": "delta_titan", "species": "wolf (species vector, unchanged)",
@@ -580,7 +579,7 @@ def main() -> None:
                  "midpoint pick, NOT canon",
                  "Vector derived from Gamma's at the spec's ~74% segment-"
                  "mass rule, legs/glutes/calf held high (cursorial)"]},
-            {"profile": "species.wolf.coat"}, b2_prov, index),
+            {"profile": "species.wolf.coat"}, b2_prov),
         make_character(
             "chr_preset_sage", "Sage", SAGE_BODY, {}, None,
             {"preset_id": "sage_stud", "species": "clydesdale (anthro form)",
@@ -602,7 +601,7 @@ def main() -> None:
                  "Decision #33) live in the markings system, not here",
                  "Apr 2026 10'+/>1-ton picture is the unscaled canon image, "
                  "NOT the design point"]},
-            {"profile": "species.clydesdale.coat"}, b2_prov, index,
+            {"profile": "species.clydesdale.coat"}, b2_prov,
             head_note_override=NO_HEAD_NOTE),
         make_character(
             "chr_preset_sage_pony", "Sage — Pony (variant)", SAGE_BODY, {}, None,
@@ -614,7 +613,7 @@ def main() -> None:
                      "vector (proportions) is shared. FLAGGED "
                      "approximation: a native pony pass would likely "
                      "soften Muscle a few points (batch2 doc s.6.2)."},
-            {"profile": "species.clydesdale.coat"}, b2_prov, index,
+            {"profile": "species.clydesdale.coat"}, b2_prov,
             head_note_override=NO_HEAD_NOTE),
         make_character(
             "chr_preset_thatch", "Thatch", THATCH_BODY, {}, None,
@@ -638,7 +637,7 @@ def main() -> None:
                  "mammal coat substituted",
                  "Hex disc with honey-glow LED is a carried artifact, not "
                  "body data - excluded"]},
-            {}, b2_prov, index, head_note_override=NO_HEAD_NOTE),
+            {}, b2_prov, head_note_override=NO_HEAD_NOTE),
         make_character(
             "chr_preset_hollis", "Hollis", HOLLIS_BODY, {}, None,
             {"preset_id": "hollis_adjacent", "species": "serval",
@@ -664,7 +663,7 @@ def main() -> None:
                  "head column was NOT substituted for a serval",
                  "Pounce question (must he leave the ground?) is HIS to "
                  "answer - unresolved here deliberately"]},
-            {}, b2_prov, index, head_note_override=NO_HEAD_NOTE),
+            {}, b2_prov, head_note_override=NO_HEAD_NOTE),
     ]
     for ch in b2_chars:
         ch.sliders["body.neck.mass"] = BATCH2_NECK_MASS[ch.id]

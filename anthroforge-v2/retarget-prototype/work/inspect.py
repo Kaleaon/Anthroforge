@@ -1,5 +1,4 @@
 import bpy, sys, os
-from mathutils import Vector
 
 def clean():
     bpy.ops.wm.read_factory_settings(use_empty=True)

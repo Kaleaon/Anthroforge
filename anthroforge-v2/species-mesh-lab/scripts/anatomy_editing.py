@@ -5,7 +5,6 @@ should all consume the same resolved state returned by resolve_anatomy().
 """
 from __future__ import annotations
 
-from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 import json
 from pathlib import Path

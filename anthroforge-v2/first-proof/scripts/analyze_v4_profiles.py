@@ -12,7 +12,6 @@ were flawed (see GRAVITY_V4.md):
   M7b' waist crease = interior local minima of the width profile in
       the waist window, with depth vs +-0.06 h neighbours.
 """
-import json
 import zipfile
 from pathlib import Path
 

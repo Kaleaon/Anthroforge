@@ -52,7 +52,6 @@ try:
     print("POINTS:", len(pts))
     # roots = first point of each curve; get via curve offsets attribute domain
     # In 5.x, CurvesGeometry has .curves_range etc; use foreach on curves domain via attribute 'offset'? Fallback: use spline API through geometry component
-    from bpy.types import CurvesGeometry
     # simpler: root indices from curve point counts via low-level: ec.curves gives count
     n_curves = len(ec.curves) if hasattr(ec, "curves") else -1
     print("N_CURVES_ATTR:", n_curves)

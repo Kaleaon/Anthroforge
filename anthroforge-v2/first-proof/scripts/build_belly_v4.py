@@ -565,7 +565,7 @@ def full_metrics(D, tag):
     P = mh_pos + D
     pr = profiles(P); pr0 = prof_base
     hh = (pr[:, 0] - mh_crotch) / L_mh
-    gir = girth_ellipse(pr[:, 1], pr[:, 2]); gir0 = girth_ellipse(pr0[:, 1], pr0[:, 2])
+    gir = girth_ellipse(pr[:, 1], pr[:, 2])
     waist_i = np.nanargmin(np.where((hh > h_star + 0.06) & (hh < h_star + 0.36), gir, np.inf))
     hip_i = np.nanargmax(np.where((hh > -0.02) & (hh < 0.12), gir, -np.inf))
     chest = (hh > 0.80) & (hh < 0.90)

@@ -150,15 +150,6 @@ for tag, objs, key in (("ear_pair", earR_objs + earL_objs, "ear"), ("horns", hor
     for o in objs:
         if o.type == 'MESH' and key in o.name.lower():
             world_stl(o, os.path.join(FIT, f"{tag}_{o.name}.stl"))
-ctr = HC + Vector((0, facing * 0.001, 0.01))
-if False: render(add_camera("cam_front", HC + Vector((0, facing * HS.y * 2.6, HS.z * 0.25)), ctr),
-           os.path.join(REND, "head_front.png"))
-if False: render(add_camera("cam_34", HC + Vector((HS.x * 1.7, facing * HS.y * 2.0, HS.z * 0.55)), ctr),
-           os.path.join(REND, "head_threequarter.png"))
-if False: render(add_camera("cam_ear", Vector((HC.x + HS.x * 0.85, HC.y + facing * HS.y * 0.95,
-                                         HC.z + HS.z * 0.66)),
-                      Vector((0.295, -0.150, 0.26))),
-           os.path.join(REND, "ear_closeup.png"))
 for o in head_objs + earR_objs + earL_objs + horn_objs:
     o.hide_render = True
 
@@ -287,6 +278,4 @@ L = add_light("larea", (-0.7, -1.1, 1.3), 60, 1.2)
 aim(L, (0, 0, 0.15))
 scene.render.resolution_x = 960
 scene.render.resolution_y = 640
-if False: render(add_camera("cam_lineup", (0, -2.15, 0.55), (0.02, 0, 0.14)),
-           os.path.join(REND, "parts_lineup.png"))
 print("B14 RENDERS_FIX DONE", flush=True)

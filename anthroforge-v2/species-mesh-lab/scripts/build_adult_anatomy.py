@@ -87,7 +87,7 @@ def build(cfg,scale,count,out):
     if not 1<=count<=4:raise ValueError("Member count must be between 1 and 4")
     bpy.ops.object.select_all(action="SELECT");bpy.ops.object.delete(use_global=False)
     ident=cfg["id"];prefix="AF_"+ident
-    skin=mat(prefix+"_Anatomy",(0.34,.22,.25));accent=mat(prefix+"_Detail",(.22,.13,.16))
+    skin=mat(prefix+"_Anatomy",(0.34,.22,.25));mat(prefix+"_Detail",(.22,.13,.16))
     length=cfg["dimensions_m"]["length"]*scale
     girth=cfg["dimensions_m"]["girth"]*scale
     sac_w=cfg["dimensions_m"]["sac_width"]*scale

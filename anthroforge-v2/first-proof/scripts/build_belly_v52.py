@@ -65,7 +65,6 @@ MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zi
 HIMBO_DIR = (Path.home() / "workspace/character_assets/_himbo_work/CalienteTools"
              "/BodySlide/ShapeData/HIMBO")
 sys.path.insert(0, str(LEARNED / "tools"))
-from osdparse import load_osd  # noqa: E402
 
 SK_UNIT_M = 0.01428
 DM_M = 0.1
@@ -312,33 +311,6 @@ def flips_on(delta, bname):
     nn = face_normals(BASES[bname] + delta, Fb)
     dots = np.einsum("ij,ij->i", n0_all[bname], nn)
     return int((dots < 0).sum()), float(dots.min())
-
-def graph_smooth(V, supp_mask, passes=3, keep=0.35):
-    V = V.copy()
-    for _ in range(passes):
-        sm = Lop @ V
-        V = np.where(supp_mask[:, None], (1 - keep) * V + keep * sm, V)
-    return V
-
-def slope_limit(Ds, supp_mask, kappa=0.55):
-    ea = np.array([e for e in edges_all if supp_mask[e[0]] or supp_mask[e[1]]])
-    el = np.linalg.norm(mh_pos[ea[:, 0]] - mh_pos[ea[:, 1]], axis=1)
-    Ds = Ds.copy()
-    for it in range(80):
-        diff = Ds[ea[:, 0]] - Ds[ea[:, 1]]
-        dn = np.linalg.norm(diff, axis=1)
-        excess = dn - kappa * el
-        if (excess <= 0).all():
-            return Ds, it
-        corr_ = np.zeros_like(Ds); wgt = np.zeros(len(Ds))
-        m_ = excess > 0
-        adj = (0.5 * excess[m_] / np.maximum(dn[m_], 1e-12))[:, None] * diff[m_]
-        np.add.at(corr_, ea[m_, 0], -adj)
-        np.add.at(corr_, ea[m_, 1], adj)
-        np.add.at(wgt, ea[m_, 0], 1); np.add.at(wgt, ea[m_, 1], 1)
-        Ds += 0.7 * corr_ / np.maximum(wgt, 1)[:, None]
-        Ds[~supp_mask] = 0.0
-    return Ds, 80
 
 def repair(C_raw, supp_mask, max_rounds=60):
     """Attenuation repair so D51 + C has 0 flips at +1 on both bases

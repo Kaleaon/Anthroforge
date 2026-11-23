@@ -255,13 +255,6 @@ def flips(delta, bname):
     nn = face_normals(BASES[bname] + delta, Fb)
     dots = np.einsum("ij,ij->i", n0_all[bname], nn)
     return int((dots < 0).sum()), float(dots.min())
-def bad_faces(delta, thresh=0.03):
-    bad = np.zeros(len(Fb), bool); mind = 1.0
-    for k, p in BASES.items():
-        nn = face_normals(p + delta, Fb)
-        dots = np.einsum("ij,ij->i", n0_all[k], nn)
-        bad |= dots < thresh; mind = min(mind, float(dots.min()))
-    return bad, mind
 
 _d = np.linalg.norm(Dsag[be[:, 0]] - Dsag[be[:, 1]], axis=1) - KAPPA * elen
 print(f"pre-repair: sag max edge excess {float(_d.max())*100:.3f} cm, "

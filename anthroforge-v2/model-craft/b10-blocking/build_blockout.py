@@ -73,8 +73,7 @@ def limb(name, p1, p2, r):
     o = bpy.context.object
     o.scale = (r, r, d.length / 2)
     o.rotation_mode = 'QUATERNION'
-    o.rotation_quaternion = Vector((0, 0, 1)).to_track_quat('Z', 'Y').inverted() \
-        if False else d.to_track_quat('Z', 'Y')
+    o.rotation_quaternion = d.to_track_quat('Z', 'Y')
     return finish(o, name)
 
 def cone(name, loc, r, h, rot=(0, 0, 0)):

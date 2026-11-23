@@ -1,5 +1,4 @@
-import bpy, sys
-from mathutils import Vector
+import bpy
 bpy.ops.wm.open_mainfile(filepath="/home/hatch/workspace/stick-figure-avatar/furry/bara_wolf_base.blend")
 for ob in bpy.data.objects:
     print("OBJ", ob.name, ob.type)

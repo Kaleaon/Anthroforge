@@ -81,21 +81,6 @@ def smooth_labels(labels, tris, nv, passes=2, codes=None):
         lab = new
     return lab
 
-def components(labels, tris, nv, want):
-    nbrs = [set() for _ in range(nv)]
-    for a, b, c in tris:
-        nbrs[a] |= {b, c}; nbrs[b] |= {a, c}; nbrs[c] |= {a, b}
-    seen = np.zeros(nv, bool); comps = []
-    for s in range(nv):
-        if seen[s] or labels[s] != want: continue
-        stack = [s]; seen[s] = True; comp = []
-        while stack:
-            i = stack.pop(); comp.append(i)
-            for j in nbrs[i]:
-                if not seen[j] and labels[j] == want: seen[j] = True; stack.append(j)
-        comps.append(comp)
-    return comps
-
 out = {}
 diag = {}
 

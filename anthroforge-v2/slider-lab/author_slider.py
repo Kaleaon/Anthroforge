@@ -29,8 +29,7 @@ import sys
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from mask_tools import (read_glb, mask_from_landmarks, fold_count,
-                        signed_volume, mask_stats)
+from mask_tools import (read_glb, mask_from_landmarks, signed_volume, mask_stats)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "output")

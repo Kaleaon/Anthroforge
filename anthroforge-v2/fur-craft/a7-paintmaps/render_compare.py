@@ -75,7 +75,6 @@ def main():
     scene = bpy.context.scene
 
     if args.mode == "viz":
-        body = bpy.data.objects["BaraWolfBody"]
         m = bpy.data.materials.new("VizMat")
         m.use_nodes = True
         nt = m.node_tree

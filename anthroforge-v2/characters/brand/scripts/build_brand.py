@@ -58,7 +58,7 @@ sys.path.insert(0, str(V2 / "characters" / "sen" / "scripts"))
 import bara_machinery as BM  # noqa: E402
 
 from core.build import (Library, build_character, evaluate_character,  # noqa: E402
-                        run_qa_gauntlet, WORKSPACE_ROOT)
+                        WORKSPACE_ROOT)
 from core.character import Character             # noqa: E402
 from core import geometry                        # noqa: E402
 

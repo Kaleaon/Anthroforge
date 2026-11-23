@@ -59,7 +59,6 @@ import zipfile
 from pathlib import Path
 
 import numpy as np
-from scipy.spatial import cKDTree
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent                      # bara-proof/
@@ -675,7 +674,6 @@ def limb_fields(delta, tag):
                 Pv = lm_s["verts"]
                 ts, ps, _, _, Ls, _ = seg_params(hi_pos_u * SK, As, Bs, ref)
                 # source verts of this chain assigned to this segment
-                ts_all = []
                 assign = np.zeros(len(Pv), bool)
                 # assignment by nearest segment in t-space: recompute
                 # both segments' t and pick the one whose [t] is closer
@@ -898,52 +896,6 @@ if CORRECTION:
     print("side-mass (tissue, post-correction):",
           {k: {kk: round(vv, 3) for kk, vv in v.items()}
            for k, v in SM_AFTER.items()})
-
-
-# ------------------------------------------------- girths (v4 profiles method)
-def girths(pos):
-    """Ellipse-approx girths with v4's corrected torso-only gates:
-    chest rb<0.30 over h in [.80,.90]; navel waist rb<0.215 over
-    h in [h*-0.02, h*+0.04]; narrowest waist over h in [.45,.62]."""
-    h, th, r, ax, _, _, _ = torso_params(pos, mh_crotch, mh_neck, "def")
-    edges = np.arange(0.30, 1.001, 0.02)
-    out = {}
-    prof = []
-    for a, b in zip(edges[:-1], edges[1:]):
-        m = (h >= a) & (h < b)
-        row = None
-        if m.sum() > 20:
-            px = pos[m, 0] - ax[m, 0]
-            py = pos[m, 1] - ax[m, 1]
-            rr = np.hypot(px, py)
-            for gate, key in ((0.30, "g30"), (0.215, "g215")):
-                mm = rr < gate
-                if mm.sum() > 12:
-                    A = (px[mm].max() - px[mm].min()) / 2
-                    Bv = (py[mm].max() - py[mm].min()) / 2
-                    g = np.pi * (3 * (A + Bv) - np.sqrt(
-                        (3 * A + Bv) * (A + 3 * Bv)))
-                    row = (key, g)
-                    if key == "g30":
-                        out.setdefault("bands", []).append(
-                            (0.5 * (a + b), g, None))
-                    else:
-                        if out.get("bands"):
-                            out["bands"][-1] = (out["bands"][-1][0],
-                                                out["bands"][-1][1], g)
-        prof.append(row)
-    bands = out.get("bands", [])
-    chest = np.mean([g for hh, g, _ in bands if 0.80 <= hh <= 0.90])
-    nav = [g2 for hh, _, g2 in bands
-           if g2 and h_star - 0.02 <= hh <= h_star + 0.04]
-    waist_navel = float(np.mean(nav)) if nav else float("nan")
-    waist_min = float(np.min([g2 for _, _, g2 in bands if g2
-                              and True])) if bands else float("nan")
-    waist_band = [g2 for hh, _, g2 in bands
-                  if g2 and 0.45 <= hh <= 0.62]
-    waist_min = float(np.min(waist_band)) if waist_band else waist_navel
-    return {"chest": float(chest), "waist_navel": waist_navel,
-            "waist_min": waist_min}
 
 
 def plane_loops(pos, n, p0):
@@ -1223,7 +1175,6 @@ def grade(pos, lmts):
             ztop[i] = sil[m, 2].max()
     ok = ~np.isnan(ztop)
     ztop = np.interp(xs, xs[ok], ztop[ok])
-    neck_half = neck_w / 2
     fx = (xs > 0.10) & (xs < delt_span / 2 - 0.020)
     if fx.sum() > 4:
         fit = np.polyfit(xs[fx], ztop[fx], 1)

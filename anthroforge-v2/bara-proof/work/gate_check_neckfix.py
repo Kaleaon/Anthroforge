@@ -12,7 +12,6 @@ Usage: gate_check_neckfix.py [label]
 import sys
 from pathlib import Path
 
-import numpy as np
 
 sys.path.insert(0, str(Path.home() / "workspace/anthroforge-v2/hyper/scripts"))
 from hyper_common import BP, face_dots, load_base, load_macro, load_target

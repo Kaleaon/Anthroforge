@@ -1,4 +1,4 @@
-import bpy, json
+import bpy
 import numpy as np
 from mathutils import Vector
 import bmesh

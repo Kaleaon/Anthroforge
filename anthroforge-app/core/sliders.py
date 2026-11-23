@@ -391,7 +391,6 @@ class _Eval:
         self.dist_muscle: dict[str, float] = {}
         self.region_to_macro: dict[str, str] = {}
         self.tissue: dict[str, float] = {}
-        self.tissue_level: float = 0.0
 
     def value(self, slider_id: str) -> float:
         """Current working value, falling back to the record default."""
@@ -442,7 +441,6 @@ def _apply_regional_tissue(ctx: _Eval, rec: CouplingRecord) -> None:
                 num += float(w) * ctx.sliders[sid]
                 den += float(w)
         level = num / den if den else 0.0
-    ctx.tissue_level = level
     ctx.derived["tissue.level"] = level
     profile = p["profiles"][p.get("default_profile", "lifter")]
     for region, weight in profile.items():

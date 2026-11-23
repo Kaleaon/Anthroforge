@@ -76,7 +76,7 @@ def render(mode, view):
     bpy.ops.render.render(write_still=True)
     return loc
 
-def arrows_for(view, loc):
+def arrows_for(loc):
     """Project fur-direction arrows for one view; returns pixel-space list."""
     arr = []
     for name in OBJS:
@@ -101,7 +101,7 @@ for mode, views in (("colour", ["front", "side", "back"]),):
         loc = render(mode, v)
         print("rendered", mode, v)
         if mode == "neutral":
-            arrow_data[v] = arrows_for(v, loc)
+            arrow_data[v] = arrows_for(loc)
 if arrow_data:
     json.dump(arrow_data, open(W + "arrows.json", "w"))
     print("arrows:", {k: len(v) for k, v in arrow_data.items()})

@@ -1,4 +1,4 @@
-import bpy, json
+import bpy
 bpy.ops.wm.open_mainfile(filepath="/home/hatch/workspace/anthroforge-v2/base-head-v3/work/head_source.blend")
 T=bpy.data.objects["TissueHead_source"]
 vs=[v.co for v in T.data.vertices]

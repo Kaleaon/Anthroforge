@@ -100,50 +100,6 @@ def margin_crossings():
     return len(ta.overlap(tb))
 
 
-
-
-def separation_pass(rounds=8):  # TRIED, NOT SHIPPED - see KALEAON_HEAD_BUILD.md (both this and a vertex-distance version failed to reduce crossings; reverted)
-    """Signed-distance pass: jaw margin verts are placed >= 0.0035
-    from the tissue margin SURFACE (BVH nearest triangle + normal),
-    on the side the majority of them already occupy. (A vertex-to-
-    vertex version of this pass measured no improvement - crossings
-    are triangle-level, so the correction has to be too.)"""
-    rim_j_set = set(int(jcage[i]) for i in rim_j)
-    rim_t_set = set(int(tcage[i]) for i in rim_t)
-    movers = np.array([int(jcage[i]) for i in range(len(jcage))
-                       if int(jcage[i]) not in rim_j_set])
-    TWx, _ = world_co(tis)
-    TT = margin_faces(tis, tcage, rim_t_set)
-    tree = _BVH.FromPolygons([_V(v) for v in TWx], TT, all_triangles=True)
-    JWx, JMx = world_co(jaw)
-    # reference side from the current (pre-pass) configuration
-    signs = []
-    for vi in movers:
-        hit = tree.find_nearest(_V(JWx[vi]))
-        if hit and hit[3] > 0.002:
-            signs.append(float(np.sign(np.dot(
-                JWx[vi] - np.array(hit[0]), np.array(hit[1])))))
-    S = 1.0 if np.median(signs) >= 0 else -1.0
-    for _ in range(rounds):
-        JWx, JMx = world_co(jaw)
-        moved = 0
-        for vi in movers:
-            hit = tree.find_nearest(_V(JWx[vi]))
-            if not hit:
-                continue
-            loc = np.array(hit[0])
-            nrm = np.array(hit[1])
-            sd = S * float(np.dot(JWx[vi] - loc, nrm))
-            if sd < 0.0035:
-                step = min(0.0035 - sd, 0.004)
-                JWx[vi] = JWx[vi] + S * step * nrm
-                moved += 1
-        set_world(jaw, JWx, JMx)
-        if not moved:
-            break
-
-
-
 report["margin_crossings_base"] = margin_crossings()
 
 # ---- tissue: full stack + whisker pads

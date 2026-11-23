@@ -50,8 +50,8 @@ def sid(name):
 
 def float_source(parent, id_, arr, params):
     src = sub(parent, "source", {"id": id_})
-    fa = sub(src, "float_array", {"id": id_ + "-array", "count": str(len(np.asarray(arr).ravel()))},
-             fmt(arr))
+    sub(src, "float_array", {"id": id_ + "-array", "count": str(len(np.asarray(arr).ravel()))},
+        fmt(arr))
     tc = sub(src, "technique_common")
     stride = len(params)
     acc = sub(tc, "accessor", {"source": "#" + id_ + "-array", "count": str(len(np.asarray(arr).ravel()) // stride),

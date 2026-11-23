@@ -6,9 +6,8 @@ meshes, renders one Blender-side jaw-open check frame (end-to-end proof the
 exported skin deforms), then exports the bind-pose GLB.
 Run: blender -b --python blender_export.py
 """
-import bpy, json, math
+import bpy, json
 import numpy as np
-from mathutils import Matrix, Vector
 
 W = "/home/hatch/workspace/anthroforge-v2/autoskin-prototype/work"
 OUT = "/home/hatch/workspace/anthroforge-v2/autoskin-prototype/orc_bust_skinned.glb"

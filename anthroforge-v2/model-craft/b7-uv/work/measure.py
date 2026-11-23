@@ -1,4 +1,4 @@
-import bpy, sys, json
+import bpy, json
 import numpy as np
 from mathutils import kdtree
 
@@ -71,8 +71,6 @@ def metrics(ob):
             else:
                 edge_map[key]=(fi, uv_a, uv_b)
     islands = len(set(find(i) for i in range(len(T))))
-    # seam-edge 3D length fraction: edges used by 2 faces but NOT uv-joined -> count boundary+cut edges
-    total_edges = len(edge_map)
     outside = float(np.mean((Tuv< -0.001)|(Tuv>1.001))) if Tuv.size else 0.0
     # occupancy raster 256
     G=256; occ=np.zeros((G,G),bool)

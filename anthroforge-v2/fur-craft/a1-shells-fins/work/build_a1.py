@@ -4,7 +4,7 @@ Bara Wolf body, render measured configs, dump stats JSON.
 
 Run: blender -b --factory-startup -noaudio --python build_a1.py
 """
-import bpy, math, time, json, sys
+import bpy, math, time, json
 import numpy as np
 from mathutils import Vector
 
@@ -56,7 +56,6 @@ def make_fin_texture(w=256, h=256, n_strands=110):
         xi0 = int(max(0, x0 - wid)); xi1 = int(min(w, x0 + wid + 1))
         for xi in range(xi0, xi1):
             prof = max(0.0, 1.0 - abs(xi - x0) / wid) ** 0.7
-            colw = (xi + 0.5) / w
             for yi in range(h):
                 v = yi / (h - 1)              # 0 root -> 1 tip
                 if v > top:
@@ -279,7 +278,7 @@ def build_shells(coll_name, n_layers, fur_len):
     for i in range(1, n_layers):
         t = i / (n_layers - 1)
         off = pV + pN * (fur_len * t)
-        ob = mesh_obj(f'{coll_name}_s{i:02d}', off, pF, pUV, coll, shell_material(t))
+        mesh_obj(f'{coll_name}_s{i:02d}', off, pF, pUV, coll, shell_material(t))
         tris += len(pF)
     return {"layers_total_incl_base": n_layers, "shells_above_base": n_layers - 1,
             "fur_length_mm": fur_len * 1000, "step_mm": fur_len / (n_layers - 1) * 1000,
@@ -310,7 +309,7 @@ def build_fins(name, edges, fur_len):
                   tuple(pV[b] + pN[b] * fur_len), tuple(pV[a] + pN[a] * fur_len)]
         faces.append([i0, i0 + 1, i0 + 2, i0 + 3])
         uvs += [(0, 0), (1, 0), (1, 1), (0, 1)]
-    ob = mesh_obj(name, np.array(verts), faces, np.array(uvs), coll, fin_material())
+    mesh_obj(name, np.array(verts), faces, np.array(uvs), coll, fin_material())
     return {"fins": len(edges), "tris": len(edges) * 2, "fur_length_mm": fur_len * 1000}
 
 stats["fins_boundary"] = build_fins('FINS_B', boundary, 0.025)

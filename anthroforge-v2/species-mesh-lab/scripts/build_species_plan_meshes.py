@@ -81,13 +81,12 @@ def build_feral(p, plan, out):
       for yside,fb in [(1,"Fore"),(-1,"Hind")]:
         x=xside*(t["shoulder_width"]*.39 if fb=="Fore" else t["hip_width"]*.36)
         y=.53 if fb=="Fore" else -.56
-        joint=(x,y,.54); foot=(x,y+.05,.12)
+        foot=(x,y+.05,.12)
         ellipsoid(ident+"_"+fb+"Upper_"+lr,(x,y,.70),(.12,.19,.27),body)
         tube(ident+"_"+fb+"Lower_"+lr,[(x,y,.58),(x,y-.03,.34),foot],[.09,.07,.055],body)
         paw_scale=limbs["paw_scale"] or 1.0
         ellipsoid(ident+"_"+fb+"Paw_"+lr,(x,y+.10,.09),(.11*paw_scale,.18*paw_scale,.07),detail)
         claw_set(ident+"_"+fb+"Paw_"+lr,x,y+.17,.09,paw_scale,detail)
-    tail_len=p["tail"]["length"]
     tube(ident+"_Tail",[(0,-.70,.92),(0,-.95,.82),(0,-1.20,.70),(0,-1.42,.64)],[.09,.075,.045,.008],body)
     return finish(p,plan,ident,out)
 

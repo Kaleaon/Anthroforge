@@ -1,5 +1,5 @@
 import bpy, math, os
-from mathutils import Matrix, Vector
+from mathutils import Matrix
 MODELS = os.path.expanduser("~/workspace/stick-figure-avatar/furry-lineup/threejs-lineup/models")
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.context.scene.render.fps = 30

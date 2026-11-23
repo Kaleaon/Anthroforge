@@ -1,4 +1,4 @@
-import bpy, math, json
+import bpy, math
 # --- render Piece006/010 alone
 bpy.ops.wm.open_mainfile(filepath="/home/hatch/workspace/anthroforge-v2/base-head-v3/work/head_source.blend")
 T=bpy.data.objects["TissueHead_source"]; T.hide_render=True

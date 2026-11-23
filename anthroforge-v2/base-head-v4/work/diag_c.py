@@ -1,6 +1,5 @@
 import bpy
 import numpy as np
-from mathutils import Vector
 bpy.ops.wm.open_mainfile(filepath="/home/hatch/workspace/anthroforge-v2/base-head-v4/work/stage_v4a.blend")
 T4 = bpy.data.objects["TissueHead"]; J4 = bpy.data.objects["Jaw"]
 H = np.array(J4.location)

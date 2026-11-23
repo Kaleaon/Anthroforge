@@ -26,7 +26,6 @@ one-line human summary per file. Exit code 0 unless a file fails to parse.
 
 import argparse
 import json
-import math
 import os
 import struct
 import sys
@@ -118,7 +117,6 @@ def read_accessor(gltf, binbuf, idx):
     start = bv.get("byteOffset", 0) + acc.get("byteOffset", 0)
     stride = bv.get("byteStride")
     elem = dsize * ncomp
-    raw = np.frombuffer(binbuf, dtype=np.uint8)
     if stride is None or stride == elem:
         end = start + elem * count
         if end > len(binbuf):

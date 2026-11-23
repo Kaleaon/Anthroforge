@@ -270,8 +270,6 @@ mh_tris = tri_list(mh_faces)
 act_idx = np.where(active)[0]
 
 # Transfer by non-rigid registration in torso-param space (identical to v1).
-from scipy.spatial import cKDTree
-
 gr, gz = field_eval(mh_h[active], np.abs(mh_th[active]))
 er_mh = np.stack([np.sin(mh_th[active]), np.cos(mh_th[active])], axis=1)
 d_can = np.zeros((active.sum(), 3))

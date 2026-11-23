@@ -62,13 +62,11 @@ PROVENANCE: study-only. Every field derives from sliders decoded from
 Joe's own legitimately obtained mod files (learned library); only
 aggregate displacement statistics and our own composed fields ship.
 """
-import json
 import sys
 import zipfile
 from pathlib import Path
 
 import numpy as np
-from scipy.spatial import cKDTree
 
 HERE = Path(__file__).resolve().parent
 OUT = Path.home() / "workspace/anthroforge-v2/bara-proof"  # bara-proof/
@@ -658,7 +656,6 @@ def limb_fields(delta, tag):
                 Pv = lm_s["verts"]
                 ts, ps, _, _, Ls, _ = seg_params(hi_pos_u * SK, As, Bs, ref)
                 # source verts of this chain assigned to this segment
-                ts_all = []
                 assign = np.zeros(len(Pv), bool)
                 # assignment by nearest segment in t-space: recompute
                 # both segments' t and pick the one whose [t] is closer

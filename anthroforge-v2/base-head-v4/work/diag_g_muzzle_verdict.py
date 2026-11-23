@@ -1,7 +1,7 @@
 """MuzzleWidth verdict: ruler (vertex-slab) vs surface-true section, v3 vs v4.
 Gate replication + surface measures + attaining-vert forensics + subdivided-unrelaxed control.
 Measurement only; modifies no delivered file (control subdivision happens in-memory)."""
-import bpy, json, math
+import bpy, json
 import numpy as np
 import bmesh
 from mathutils import Vector
@@ -101,7 +101,7 @@ bm.verts.ensure_lookup_table()
 TS = np.array([tuple(eo.matrix_world @ v.co) for v in bm.verts], float)
 bm.free()
 OUT["v3_tissue_subdiv_unrelaxed_ruler"] = slab_ruler(TS, ycan3)
-OUT["v3_tissue_subdiv_unrelaxed_section"] = section(TS, None, ycan3) if False else None
+OUT["v3_tissue_subdiv_unrelaxed_section"] = None
 
 # ---------------- stage A output (attribution: A vs B)
 T4a, _ = measure_head(V4A, "v4_stageA")

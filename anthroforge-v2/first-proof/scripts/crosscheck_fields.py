@@ -24,9 +24,7 @@ transfers v1 / v2 / v3 (v3 only if work/belly_v3.npz exists).
 Caveat kept honest: the three learned fields are whole-body morphs; only
 their belly band is compared here. Our fields are belly-only by design.
 """
-import io
 import json
-import struct
 import sys
 import zipfile
 from pathlib import Path

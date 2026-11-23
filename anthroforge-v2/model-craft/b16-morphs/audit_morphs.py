@@ -13,7 +13,7 @@ Fold test (hm08 only): flipped faces at +1 alone vs (+1,+1) combined.
 Stack integrity: residual of combined targets vs sum of components.
 All deltas in metres, canonical frame (x, z-up, y) as in the proofs.
 """
-import io, json, zipfile
+import json, zipfile
 from pathlib import Path
 import numpy as np
 

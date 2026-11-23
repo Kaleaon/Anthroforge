@@ -1,5 +1,4 @@
 """Unit tests for persistent anatomy editing state; no Blender dependency."""
-import json
 import tempfile
 import unittest
 import sys

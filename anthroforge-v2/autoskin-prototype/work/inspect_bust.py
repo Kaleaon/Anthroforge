@@ -1,4 +1,4 @@
-import bpy, sys
+import bpy
 from mathutils import Vector
 
 bpy.ops.wm.read_factory_settings(use_empty=True)

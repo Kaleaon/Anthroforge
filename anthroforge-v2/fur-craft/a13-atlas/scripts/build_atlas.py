@@ -8,7 +8,7 @@ see FUR_ATLAS.md) into the AF-FUR-2048 atlas: 4x2 grid of 512x1024 cells,
 16 px dilation pad inside every cell, 8 semantic slots. Also emits the
 layout JSON and a UV-remapped LOD0 GLB (single material, single texture).
 """
-import json, math, struct
+import json, struct
 from io import BytesIO
 from pathlib import Path
 

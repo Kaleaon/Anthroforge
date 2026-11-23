@@ -1,4 +1,4 @@
-import bpy, sys, json
+import bpy, json
 import numpy as np
 from mathutils import kdtree
 

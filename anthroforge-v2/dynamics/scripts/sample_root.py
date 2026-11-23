@@ -47,7 +47,7 @@ basis = np.column_stack([side, fwd, up])   # root-frame basis, armature space
 
 hips_head = np.array(hips_bone.head_local)
 attach_rest = hips_head + fwd * 0.10 - up * 0.03   # groin, front-below pelvis
-from mathutils import Matrix, Vector
+from mathutils import Vector
 Minv = hips_bone.matrix_local.inverted()
 attach_in_bone = np.array(Minv @ Vector(attach_rest))
 

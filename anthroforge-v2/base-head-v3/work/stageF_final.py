@@ -1,5 +1,5 @@
-import bpy, json, math, os
-from mathutils import Vector, Matrix
+import bpy, json
+from mathutils import Vector
 
 OUT="/home/hatch/workspace/anthroforge-v2/base-head-v3"
 WORK=OUT+"/work"
@@ -29,8 +29,6 @@ def measure(tissue, ears, eye_objs, pal_obj, jaw_obj=None, ear_excl=None):
         b=cent(low); tip=max(vs, key=lambda v:(v-b).length)
         estats.append((b,tip,(tip-b).length))
     eb=(estats[0][0]+estats[1][0])/2 if estats else Vector((0,0,pal+0.25))
-    if not estats:
-        r_extra={}
     r={"L":round(L,4),
       "ZB":round(max(v.x for v in tvx)-min(v.x for v in tvx),4),
       "CraniumWidth_domeShell":round(max(v.x for v in cran)-min(v.x for v in cran),4) if cran else None,

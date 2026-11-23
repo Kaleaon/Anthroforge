@@ -217,7 +217,7 @@ def decode_direction(rgba, tan, bit):
     return d, rgba[:, 2].copy()
 
 
-def flow_seed(pos, nrm):
+def flow_seed(nrm):
     """Canonical slick flow: backward (+Y, away from the face) and down,
     projected onto the tangent plane; lift seeded by nothing (flat 0.32,
     raised on the ruff by the caller)."""

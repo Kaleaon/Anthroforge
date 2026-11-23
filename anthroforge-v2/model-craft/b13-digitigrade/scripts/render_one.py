@@ -3,7 +3,6 @@
 Usage: blender -b legs_digitigrade.blend --python render_one.py -- <mode> <outfile>
 mode: standing | stride ; camera chosen by outfile suffix _side/_threequarter."""
 import math
-import os
 import sys
 
 import bpy

@@ -1,7 +1,7 @@
 """Mesh audit for scan-like assets. Usage:
 blender -b --python audit.py -- <mesh-file> [label]
 Prints one JSON line prefixed AUDIT:: with topology/health metrics."""
-import bpy, bmesh, json, sys, math
+import bpy, bmesh, json, sys
 from mathutils import kdtree
 
 def boundary_loops(bm):

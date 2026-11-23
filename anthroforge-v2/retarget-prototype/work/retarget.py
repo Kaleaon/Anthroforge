@@ -1,4 +1,4 @@
-import bpy, math, os, json, sys
+import bpy, math, os, json
 from mathutils import Matrix, Vector
 
 OUT = os.path.expanduser("~/workspace/anthroforge-v2/retarget-prototype")
@@ -368,7 +368,7 @@ def analyse_walk(frames, T, floor):
     )
     return out
 
-def analyse_wave(frames, Tsrc, Ttgt, side, arm_src, arm_tgt):
+def analyse_wave(Tsrc, Ttgt, side, arm_src, arm_tgt):
     ns = [(h - s) / arm_src for h, s in zip(Tsrc[f"hand{side}"], Tsrc[f"sh{side}"])]
     nt = [(h - s) / arm_tgt for h, s in zip(Ttgt[f"hand{side}"], Ttgt[f"sh{side}"])]
     n = min(len(ns), len(nt))
@@ -405,7 +405,7 @@ for label, arm, act in [("fennec_C1_comp", fen, baked["Wave@Fennec_C1"]),
                         ("orc_C1_comp", orc, baked["Wave@Orc_C1"])]:
     fr2, T2 = eval_traj(arm, act, SPEC[arm.name])
     alen = chain_len(arm, SPEC[arm.name]["armchain"][side])
-    rms, _ = analyse_wave(frw, Tw, T2, side, wolf_arm_len, alen)
+    rms, _ = analyse_wave(Tw, T2, side, wolf_arm_len, alen)
     peak_tgt = max(T2[f"hand{side}"][i].z - T2["headtop"][i].z for i in range(len(fr2))) / alen
     peak_src = max(Tw[f"hand{side}"][i].z - Tw["headtop"][i].z for i in range(len(frw))) / wolf_arm_len
     wave_res[label] = dict(hand_rms_err_pct_arm=round(100 * rms, 1),

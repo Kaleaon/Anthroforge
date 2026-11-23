@@ -68,15 +68,6 @@ def group_idx(obj, name):
     return sorted(v.index for v in obj.data.vertices if any(g.group == gi for g in v.groups))
 
 tis_cage = group_idx(TIS, "LipCage"); jaw_cage = group_idx(JAW, "LipCage")
-# edge (rim) rows: cage verts duplicated across the two objects
-def match_rows(A, B):
-    pairs = []
-    used = set()
-    for a in A:
-        d = np.linalg.norm(B - A[a], axis=1)
-        b = int(np.argmin(d))
-        pairs.append((a, b, float(d[b]))); used.add(b)
-    return pairs
 # candidate edge verts: tissue cage verts with a jaw cage twin within 1e-3
 tis_cage_w = tis_w[tis_cage]; jaw_cage_w = jaw_w[jaw_cage]
 edge_pairs = []
@@ -176,13 +167,6 @@ OUT["jaw_rigid_pose_check"] = {"min_area_rest": round(float(a0.min()), 6),
                                "max_normal_drift_deg": round(float(np.degrees(np.arccos(np.clip(np.einsum('ij,ij->i', n0, n1_back), -1, 1))).max()), 6)}
 
 # ---- synthetic lip-part field test
-def vnormals(P, tris):
-    vn = np.zeros_like(P)
-    T = P[np.array(tris)]
-    n = np.cross(T[:, 1] - T[:, 0], T[:, 2] - T[:, 0])
-    for fi, t in enumerate(tris):
-        for vi in t: vn[vi] += n[fi]
-    return vn / np.maximum(np.linalg.norm(vn, axis=1, keepdims=True), 1e-12)
 cols = np.arange(81)
 fall = np.cos(np.clip((np.abs(cols - cen_col)) / 20.0, 0, 1) * math.pi / 2) ** 2
 # parting direction per column = the jaw rim's actual travel direction at -20 deg

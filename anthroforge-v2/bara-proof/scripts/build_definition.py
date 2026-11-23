@@ -189,7 +189,7 @@ def crotch_of(pos, gate, mid_hw, slab_hw):
     return pos[mid, 2].min()
 
 
-def neck_base(pos, ctr, axis, crotch, label):
+def neck_base(pos, ctr, axis, crotch):
     ax = axis_at(ctr, axis, pos[:, 2])
     r = np.linalg.norm(pos[:, :2] - ax, axis=1)
     gated = r < 0.23
@@ -215,13 +215,13 @@ def neck_base(pos, ctr, axis, crotch, label):
     return neck
 
 
-def torso_params(pos, crotch=None, neck=None, label="mesh"):
+def torso_params(pos, crotch=None, neck=None):
     gate = np.ones(len(pos), bool)
     ctr, axis = compute_axis(pos, gate)
     if crotch is None:
         crotch = crotch_of(pos, gate, 0.030, 0.060)
     if neck is None:
-        neck = neck_base(pos, ctr, axis, crotch, label)
+        neck = neck_base(pos, ctr, axis, crotch)
     ax = axis_at(ctr, axis, pos[:, 2])
     rel = pos[:, :2] - ax
     r = np.linalg.norm(rel, axis=1)
@@ -442,7 +442,7 @@ class Source:
         self.blocks = blocks
         self.n = len(pos_u)
         (self.h, self.th, self.r, self.ax, self.cr, self.nk,
-         self.L) = torso_params(self.pos, label=tag)
+         self.L) = torso_params(self.pos)
         self.lab = label_mesh(self.pos, self.cr, self.nk)
         self.s = L_mh / self.L
         print(f"source {tag}: {self.n} verts, L={self.L:.4f} m, "
@@ -456,7 +456,7 @@ SRC_VAN = Source("vanilla", hi_pos_u, van_blocks)
 SRC_HP = Source("sos_hp", hp_pos_u, hp_blocks)
 
 h_mh, th_mh, r_mh, ax_mh, _, _, _ = torso_params(
-    mh_pos_mac, mh_crotch, mh_neck, "hm08")
+    mh_pos_mac, mh_crotch, mh_neck)
 cv_report = {}
 
 
@@ -562,7 +562,7 @@ def dip_theta_g(P, pos0, h, th, ax, mask, F, n_body,
     return float(np.mean(depths)) * 1000.0, float(np.mean(roughs))
 
 
-def dip_h_g(P, pos0, h, th, ax, mask, F, n_body,
+def dip_h_g(P, h, th, ax, mask, F, n_body,
             th_half=0.5, nbins=22, pad=0.12):
     """Generalized dip_h (validation): pec-plate (above-window) mean
     radius minus core-window mean radius. Returns (above, below,
@@ -592,7 +592,7 @@ def dip_h_g(P, pos0, h, th, ax, mask, F, n_body,
     return d_above, d_below, _rough(prof, core_bins | above | below)
 
 
-def inc_profile(P0, F, v, h, th, ax, mask, hw, coord_bins, coord_of):
+def inc_profile(P0, F, v, ax, mask, hw, coord_bins, coord_of):
     """Binned mean radial INCREMENT (P0+vF vs P0) over a window.
     coord_of: vertex -> profile coordinate array (precomputed)."""
     inc = radius_of(P0 + v * F, ax) - radius_of(P0, ax)
@@ -615,7 +615,7 @@ def abs_station(P0, F, v, h, th, ax, mask, n_body):
     hw = (h >= hlo) & (h <= hhi) & (np.abs(th) <= 1.0)
     uth = np.abs(th)
     bins = np.linspace(0, 1.0, 11)
-    prof = inc_profile(P0, F, v, h, th, ax, mask, hw, bins, uth)
+    prof = inc_profile(P0, F, v, ax, mask, hw, bins, uth)
     ctr = 0.5 * (bins[:-1] + bins[1:])
     ok = ~np.isnan(prof)
     prof = np.interp(ctr, ctr[ok], prof[ok])
@@ -623,7 +623,7 @@ def abs_station(P0, F, v, h, th, ax, mask, n_body):
     flank = prof[(ctr >= 0.55) & (ctr <= 0.95)].mean()
     flat = float((flank - centre) * 1000.0)
     gbins = np.linspace(-0.45, 0.45, 19)
-    gprof = inc_profile(P0, F, v, h, th, ax, mask, hw, gbins, th)
+    gprof = inc_profile(P0, F, v, ax, mask, hw, gbins, th)
     gctr = 0.5 * (gbins[:-1] + gbins[1:])
     ok = ~np.isnan(gprof)
     gprof = np.interp(gctr, gctr[ok], gprof[ok])
@@ -642,7 +642,7 @@ def back_station(P0, F, v, h, th, ax, mask, n_body):
     u = np.pi - np.abs(th)
     hw = (h >= hlo) & (h <= hhi) & (u <= 1.3)
     bins = np.linspace(0, 1.3, 14)
-    prof = inc_profile(P0, F, v, h, th, ax, mask, hw, bins, u)
+    prof = inc_profile(P0, F, v, ax, mask, hw, bins, u)
     ctr = 0.5 * (bins[:-1] + bins[1:])
     ok = ~np.isnan(prof)
     prof = np.interp(ctr, ctr[ok], prof[ok])
@@ -677,9 +677,9 @@ def station(fr, kind, P0, F, v):
                             fr.mask, F, fr.n_body, span=3.14, nbins=28)
         return d1 - d0
     if kind == "crease":
-        a1, _, _ = dip_h_g(P0 + v * F, fr.pos0, fr.h, fr.th, fr.ax,
+        a1, _, _ = dip_h_g(P0 + v * F, fr.h, fr.th, fr.ax,
                            fr.mask, F, fr.n_body)
-        a0, _, _ = dip_h_g(P0, fr.pos0, fr.h, fr.th, fr.ax,
+        a0, _, _ = dip_h_g(P0, fr.h, fr.th, fr.ax,
                            fr.mask, F, fr.n_body)
         return a1 - a0
     if kind == "abs":

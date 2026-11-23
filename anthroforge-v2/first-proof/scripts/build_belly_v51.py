@@ -331,7 +331,6 @@ def build_hand(side_name):
     P_wrist = pts[i_w]
     tip_seed = mh_body & (dist < 0.075) & (s > 0.93)
     mid_seed = mh_body & (dist < 0.075) & (s > 0.78) & (s <= 0.88)
-    e_long = tip_seed.mean() if False else None
     tip_c = mh_pos[tip_seed].mean(axis=0)
     mid_c = mh_pos[mid_seed].mean(axis=0)
     e_long = tip_c - mid_c; e_long /= np.linalg.norm(e_long)
@@ -457,7 +456,6 @@ def build_foot(side_name):
     cum = np.concatenate([[0], np.cumsum(seglen)]) / seglen.sum()
     i_a = int(np.argmin(np.abs(cum - 0.84)))
     P_ankle = pts[i_a]
-    z_floor = mh_pos[mh_body, 2].min()
     toe_seed = mh_body & (dist < 0.20) & (s > 0.90)
     toe_c = mh_pos[toe_seed].mean(axis=0)
     e_long = toe_c - P_ankle; e_long[2] = 0.0
@@ -501,7 +499,7 @@ print("zone gains pre-CAL (mm):", {k: round(v * 1000, 2) for k, v in G.items()})
 ANKLE_RING_CAP = 0.0017
 
 # ------------------------------------------- terminal field assembly
-def sector_hand(dp_n, lat_n):
+def sector_hand(dp_n):
     """dp_n: cos angle toward dorsal (+1 dorsal, -1 palmar)."""
     return np.where(dp_n >= 0, 0.55 + 0.75 * dp_n, 0.55 + 0.35 * dp_n)
 
@@ -536,7 +534,7 @@ def build_terminal(CAL):
             rn = np.linalg.norm(rad, axis=1)
             rdir = rad / np.maximum(rn, 1e-9)[:, None]
             cosd = rdir @ H["e_dp"]
-            sec = sector_hand(cosd, None)
+            sec = sector_hand(cosd)
             edge = smoothstep(-0.055, -0.01, H["a"][idx])
             add(idx, (G["palm"] * CAL * sec * edge)[:, None] * rdir,
                 0.9 * edge)

@@ -101,7 +101,6 @@ def build(nth, nz, passes):
         front = np.clip(np.cos(TH), 0, 1)
         # clavicle grooves: shallow V lines near the top of the chest
         for sgn in (+1, -1):
-            zz_line = 1.235 - 0.035 * np.abs(np.sin(TH)) * (np.sign(TH - np.pi) * -1 if False else 1)
             line = 1.245 - 0.030 * np.abs(np.sin(TH))
             side = np.exp(-(angdiff(TH, sgn * 1.05) ** 2) / (2 * 0.55 ** 2))
             displace(-0.0026 * np.exp(-((Z - line) ** 2) / (2 * 0.010 ** 2)) * side * front)

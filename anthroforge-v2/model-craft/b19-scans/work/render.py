@@ -45,7 +45,7 @@ bb = [obj.matrix_world @ Vector(c) for c in obj.bound_box]
 cen = sum(bb, Vector()) / 8
 rad = max((c - cen).length for c in bb)
 
-def shot(name, direction, up_hint=(0, 0, 1)):
+def shot(name, direction):
     d = Vector(direction).normalized()
     cam.location = cen + d * rad * 2.6 + Vector((0, 0, rad * 0.1))
     look = cen - cam.location

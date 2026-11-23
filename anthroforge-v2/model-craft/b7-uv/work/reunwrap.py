@@ -68,7 +68,6 @@ P = np.empty((len(me.vertices),3)); me.vertices.foreach_get("co", P.ravel())
 ymin,ymax = P[:,1].min(), P[:,1].max(); zmin,zmax = P[:,2].min(), P[:,2].max()
 back_y = ymin + 0.45*(ymax-ymin)   # seam zone behind this (away from muzzle)
 front = fs  # +1 if muzzle toward +Y
-def is_back(y): return (y*front) < ( (ymin+ymax)/2*front ) if front>0 else (y*front) > ((ymin+ymax)/2*front)
 seam_count=0
 for e in me.edges:
     v0,v1 = me.vertices[e.vertices[0]].co, me.vertices[e.vertices[1]].co

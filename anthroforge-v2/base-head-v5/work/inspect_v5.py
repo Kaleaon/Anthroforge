@@ -1,6 +1,5 @@
-import bpy, json
+import bpy
 import numpy as np
-from mathutils import Vector
 
 bpy.ops.wm.open_mainfile(filepath="/home/hatch/workspace/anthroforge-v2/base-head-v4/neutral_base_head_v4.blend")
 print("=== OBJECTS ===")

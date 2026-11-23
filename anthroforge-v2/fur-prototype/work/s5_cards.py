@@ -1,4 +1,4 @@
-import bpy, random, sys
+import bpy, random
 from mathutils import Vector
 
 IN = "/home/hatch/workspace/anthroforge-v2/fur-prototype/work/fur_stage2.blend"
@@ -156,7 +156,6 @@ def build_cards(lod_name):
                 i0 = int(f)
                 i1 = min(i0 + 1, total)
                 pts.append(keys[i0].lerp(keys[i1], f - i0))
-            root = pts[0]
             tan0 = (pts[1] - pts[0])
             if tan0.length < 1e-6:
                 continue

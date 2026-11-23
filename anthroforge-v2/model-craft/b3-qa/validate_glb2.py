@@ -99,7 +99,6 @@ def prim_tris(gltf, binbuf, prim, pos_count):
     mode = prim.get("mode", 4)
     if mode != 4:
         return None
-    attrs = prim.get("attributes", {})
     if "indices" in prim:
         idx = read_accessor(gltf, binbuf, prim["indices"]).reshape(-1).astype(np.int64)
         n = len(idx) // 3

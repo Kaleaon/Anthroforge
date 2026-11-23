@@ -51,7 +51,7 @@ density_map *= np.where(pos[:, 2] < 0.30,
                         0.55 + 0.45 * fc.ss(0.05, 0.30, pos[:, 2]), 1.0)
 
 # ---- direction: canonical slick flow; ruff stands up more
-d = fc.flow_seed(pos, nrm)
+d = fc.flow_seed(nrm)
 lift = 0.30 + 0.25 * reg["ruff"] + 0.10 * reg["back"]
 dir_rgba = fc.encode_direction(d, lift, tan, bit)
 

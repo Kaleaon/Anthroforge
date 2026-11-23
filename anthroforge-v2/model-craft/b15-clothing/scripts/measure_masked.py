@@ -26,7 +26,6 @@ bnd_verts = np.unique(uniq[counts == 1])
 print("boundary verts:", len(bnd_verts))
 
 # reuse signed_dist machinery by exec'ing the module's function defs only
-import re
 code = Path(__file__).with_name("measure_final.py").read_text()
 fn = code[code.index("def cand_array"):code.index("results = {}")]
 ns = {"np": np, "cKDTree": cKDTree, "PAD": 72}

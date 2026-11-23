@@ -14,7 +14,6 @@ projects churn) is untouched:
 """
 import json
 import math
-import sys
 from pathlib import Path
 
 import bpy

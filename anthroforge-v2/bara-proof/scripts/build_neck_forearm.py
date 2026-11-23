@@ -140,7 +140,7 @@ def crotch_of(pos, gate, mid_hw, slab_hw):
     return pos[mid, 2].min()
 
 
-def neck_base(pos, ctr, axis, crotch, label):
+def neck_base(pos, ctr, axis, crotch):
     ax = axis_at(ctr, axis, pos[:, 2])
     r = np.linalg.norm(pos[:, :2] - ax, axis=1)
     gated = r < 0.23
@@ -166,13 +166,13 @@ def neck_base(pos, ctr, axis, crotch, label):
     return neck
 
 
-def torso_params(pos, crotch=None, neck=None, label="mesh"):
+def torso_params(pos, crotch=None, neck=None):
     gate = np.ones(len(pos), bool)
     ctr, axis = compute_axis(pos, gate)
     if crotch is None:
         crotch = crotch_of(pos, gate, 0.030, 0.060)
     if neck is None:
-        neck = neck_base(pos, ctr, axis, crotch, label)
+        neck = neck_base(pos, ctr, axis, crotch)
     ax = axis_at(ctr, axis, pos[:, 2])
     rel = pos[:, :2] - ax
     r = np.linalg.norm(rel, axis=1)
@@ -441,7 +441,7 @@ _mh_body_mask = np.zeros(NB, bool)
 _mh_body_mask[:BODY_END] = True
 mh_lab = label_mesh(mh_pos_mac, mh_crotch, mh_neck, _mh_body_mask)
 h_mh, th_mh, r_mh, ax_mh, _, _, _ = torso_params(
-    mh_pos_mac, mh_crotch, mh_neck, "hm08")
+    mh_pos_mac, mh_crotch, mh_neck)
 
 
 def mesh_volume(pos):
@@ -492,7 +492,6 @@ def grade(pos, lmts):
             ztop[i] = sil[m, 2].max()
     ok = ~np.isnan(ztop)
     ztop = np.interp(xs, xs[ok], ztop[ok])
-    neck_half = neck_w / 2
     fx = (xs > 0.10) & (xs < delt_span / 2 - 0.020)
     if fx.sum() > 4:
         fit = np.polyfit(xs[fx], ztop[fx], 1)

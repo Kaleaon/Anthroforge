@@ -3738,43 +3738,19 @@
 
       document.getElementById('btn-export-json').addEventListener('click', () => {
         // Pass 2: the bespoke "Rig JSON" had no loader anywhere — it
-        // could never be re-opened. The primary save is now the
-        // canonical Core record (.afchar.json), built by the Mini App
-        // bridge (window.AFBuildRecord) with the vocabulary translation
-        // applied, so the file validates and builds in the Core.
-        if (typeof window.AFBuildRecord === 'function') {
-          const record = window.AFBuildRecord();
-          const blob = new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `anthroforge_${(record.name || 'character').replace(/[^a-z0-9_-]/gi, '_')}.afchar.json`;
-          a.click();
-          URL.revokeObjectURL(url);
-          showToast('💾 Downloaded canonical .afchar.json (Core format)!');
-          return;
-        }
-        const payload = JSON.stringify({
-          generator: 'AnthroForge 3D Pro v2 Babylon.js — real Skeleton skinning & validated GLB export',
-          skeleton: { bones: BONE_HIERARCHY.map(b => b.name), influencesPerVertex: 4, skinnedMeshes: avatarMeshGroup.length },
-          timestamp: new Date().toISOString(),
-          baseBody: state.baseBody,
-          equipped: state.equipped,
-          colors: state.colors,
-          morphs: state.morphs,
-          bodyslide: state.bodyslide,
-          sos: state.sos,
-          drivers: state.drivers,
-          manualBoneOffsets: state.manualBoneOffsets
-        }, null, 2);
-        const blob = new Blob([payload], { type: 'application/json' });
+        // could never be re-opened. Save the canonical Core record
+        // (.afchar.json), built by the Mini App bridge (window.AFBuildRecord)
+        // with the vocabulary translation applied, so the file validates
+        // and builds in the Core.
+        const record = window.AFBuildRecord();
+        const blob = new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `anthroforge_${state.activeSpecies}_${state.baseBody}_rig.json`;
+        a.download = `anthroforge_${(record.name || 'character').replace(/[^a-z0-9_-]/gi, '_')}.afchar.json`;
         a.click();
         URL.revokeObjectURL(url);
-        showToast('💾 Downloaded Rig Blueprint JSON (fallback — bridge not loaded)!');
+        showToast('💾 Downloaded canonical .afchar.json (Core format)!');
       });
     }
 
@@ -3929,8 +3905,8 @@
         if (p.button_color) root.setProperty('--tg-button', p.button_color);
         if (p.button_text_color) root.setProperty('--tg-button-text', p.button_text_color);
         document.body.classList.add('tg-themed');
-        try { if (tg.setHeaderColor) tg.setHeaderColor(p.secondary_bg_color || p.bg_color || '#070b14'); } catch (e) {}
-        try { if (tg.setBackgroundColor) tg.setBackgroundColor(p.bg_color || '#070b14'); } catch (e) {}
+        try { if (tg.setHeaderColor) tg.setHeaderColor(p.secondary_bg_color || p.bg_color || '#070b14'); } catch {}
+        try { if (tg.setBackgroundColor) tg.setBackgroundColor(p.bg_color || '#070b14'); } catch {}
       }
 
       document.addEventListener('DOMContentLoaded', function () {
@@ -3962,7 +3938,7 @@
           tg.expand();
           applyTheme();
           if (tg.onEvent) tg.onEvent('themeChanged', applyTheme);
-          try { if (tg.enableClosingConfirmation) tg.enableClosingConfirmation(); } catch (e) {}
+          try { if (tg.enableClosingConfirmation) tg.enableClosingConfirmation(); } catch {}
           if (canSendData) {
             // Reply-keyboard launch: the only mode where sendData()
             // actually delivers web_app_data to the bot.
@@ -3987,7 +3963,7 @@
             if (hint) hint.textContent = 'View-only launch: to save, open the studio from the bot\u2019s keyboard button, or copy the share code below and paste it to the bot.';
           }
           if (tg.onEvent) tg.onEvent('viewportChanged', function () {
-            try { if (typeof engine !== 'undefined' && engine) engine.resize(); } catch (e) {}
+            try { if (typeof engine !== 'undefined' && engine) engine.resize(); } catch {}
           });
         }
 
@@ -4039,7 +4015,7 @@
               if (dpr > 2) engine.setHardwareScalingLevel(dpr / 2);
               clearInterval(iv);
             }
-          } catch (e) {}
+          } catch {}
           if (tries > 40) clearInterval(iv);
         }, 250);
       });

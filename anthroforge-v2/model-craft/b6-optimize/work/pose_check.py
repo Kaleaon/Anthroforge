@@ -15,7 +15,7 @@ bone names. Rigid attachments are excluded (B17 R13 pattern).
 
   blender -b --python pose_check.py -- <out_dir> <glb...>
 """
-import bpy, sys, json, math, os
+import bpy, sys, math, os
 import numpy as np
 from mathutils import Euler
 
