@@ -8,6 +8,9 @@ a record built the way the web UIs build it translates to a record
 """
 
 import json
+import re
+import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -158,3 +161,57 @@ def test_js_twin_matches_python_table():
     assert js["carried_prefixes"] == CARRIED_PREFIXES
     js_sliders = {k: tuple(v) for k, v in js["slider_map"].items()}
     assert js_sliders == SLIDER_MAP
+
+
+SHARED_SCRIPTS = ("sharecode.js", "vocabulary.js", "presets.js", "record.js")
+
+
+def test_both_web_apps_reference_shared_scripts_and_embed_no_duplicates():
+    miniapp_dir = ROOT / "telegram-miniapp"
+    miniapp_html = (miniapp_dir / "index.html").read_text(encoding="utf-8")
+    v2_path = ROOT.parent / "anthroforge-v2" / "anthroforge_3d_pro_v2.html"
+    v2_html = v2_path.read_text(encoding="utf-8")
+
+    for script_name in SHARED_SCRIPTS:
+        canonical = (miniapp_dir / script_name).resolve()
+        assert canonical.is_file(), f"missing shared script {canonical}"
+
+        v2_rel = f"../anthroforge-app/telegram-miniapp/{script_name}"
+        assert re.search(
+            rf'<script\s+src=["\']{re.escape(v2_rel)}["\']\s*></script>',
+            v2_html,
+        ), f"anthroforge_3d_pro_v2.html must load {v2_rel} as a classic script"
+        assert (v2_path.parent / v2_rel).resolve() == canonical
+
+        assert re.search(
+            rf'<script\s+src=["\']{re.escape(script_name)}["\']\s*></script>',
+            miniapp_html,
+        ), f"telegram-miniapp/index.html must load {script_name} as a classic script"
+
+    for forbidden in (
+        "AF_VOCABULARY",
+        "decodeShareCode",
+        "AF_PRESETS",
+        "buildAfcharRecord",
+        "applyAfcharRecord",
+    ):
+        assert forbidden not in v2_html, (
+            f"anthroforge_3d_pro_v2.html must not embed inline {forbidden}"
+        )
+
+    assert "AF_VOCABULARY" not in miniapp_html
+    assert "function decodeShareCode" not in miniapp_html
+
+
+def test_js_sharecode_and_record_suite():
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node runtime not installed")
+    res = subprocess.run(
+        [node, str(ROOT / "tests" / "test_sharecode_js.mjs")],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert res.returncode == 0, f"stdout:\n{res.stdout}\nstderr:\n{res.stderr}"

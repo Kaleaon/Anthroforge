@@ -44,7 +44,7 @@ that the pipeline enforces.
 | Path | What it is |
 |---|---|
 | `anthroforge-app/` | The application: Python core service (character records, share codes, slider registry, geometry/build service, fold gate, GLB writer), the canonical library (slider records, per-base instance packs, presets), the MCP server package, a Telegram Mini App front end, and the pytest suite (**114 tests passing**). |
-| `anthroforge-v2/` | The design & build lab: handbook and design docs, the standalone `anthroforge_3d_pro_v2.html` prototype (36-bone rigged builder with validated GLB export), base/body/head construction, character builds, and the study waves (fur-craft A1–A20, model-craft B1–B20) whose findings the app encodes. |
+| `anthroforge-v2/` | The design & build lab: handbook and design docs, the standalone `anthroforge_3d_pro_v2.html` prototype (36-bone rigged builder with validated GLB export; loads shared codec/record scripts from `../anthroforge-app/telegram-miniapp/`, so run local HTTP servers from the repository root), base/body/head construction, character builds, and the study waves (fur-craft A1–A20, model-craft B1–B20) whose findings the app encodes. |
 | `NOT_INCLUDED.md` | Redistribution audit: third-party study material deliberately **not** shipped in this repo, and why. |
 
 ## The slider engine (anthroforge-app)

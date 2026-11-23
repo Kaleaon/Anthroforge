@@ -12,6 +12,11 @@
   <script src="https://cdn.jsdelivr.net/npm/babylonjs@7.31.2/babylon.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/babylonjs-loaders@7.31.2/babylonjs.loaders.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/babylonjs-serializers@7.31.2/babylonjs.serializers.min.js"></script>
+  <!-- Shared AnthroForge codec, vocabulary, presets & record helper (serve HTTP from repo root; file:// also works) -->
+  <script src="../anthroforge-app/telegram-miniapp/sharecode.js"></script>
+  <script src="../anthroforge-app/telegram-miniapp/vocabulary.js"></script>
+  <script src="../anthroforge-app/telegram-miniapp/presets.js"></script>
+  <script src="../anthroforge-app/telegram-miniapp/record.js"></script>
   <style>
     :root {
       --bg-deep: #070b14;
@@ -697,145 +702,6 @@
   </div>
 
   <script>
-    /* AnthroForge vocabulary + share-code decode (inline twin, pass 2).
-     * Source of truth: telegram-miniapp/vocabulary.js (table),
-     * telegram-miniapp/sharecode.js (codec) and
-     * core/vocabulary.py (Python twin). This standalone desktop file
-     * cannot load those, so this block is a compact copy — keep it in
-     * sync when they change. Preset codes were generated from
-     * library/presets/INDEX.json (2026-11-14); regenerate, don't
-     * hand-edit them. */
-    (function (global) {
-      'use strict';
-      var AF_VOCABULARY = {
-        "version": 1,
-        "base_body_map": { "max": "af_body_neutral_v1", "maxwell": "af_body_neutral_v1", "maxine": "af_body_neutral_v1", "bara": "af_body_neutral_v1" },
-        "head_map": { "web_v2": "af_head_neutral_v2" },
-        "slider_map": {
-          "bodyslide.samson": ["body.build.muscle", 0.01],
-          "bodyslide.samuel": ["body.belly.protrusion", 0.01],
-          "bodyslide.samael": ["body.himbo.lean", 0.01],
-          "bodyslide.glutes": ["body.himbo.legs_glutes", 0.01],
-          "bodyslide.traps": ["body.himbo.arms_traps", 0.01],
-          "bodyslide.meaner": ["head.brow.projection", 1.5]
-        },
-        "carried_prefixes": { "morph.": "morphs", "sos.": "sos", "driver.": "drivers" }
-      };
-      function canonicalToWebSlider(canonicalId) {
-        var keys = Object.keys(AF_VOCABULARY.slider_map);
-        for (var i = 0; i < keys.length; i++) {
-          var entry = AF_VOCABULARY.slider_map[keys[i]];
-          if (entry[0] === canonicalId) return [keys[i], 1 / entry[1]];
-        }
-        return null;
-      }
-      function translateRecord(record) {
-        var warnings = [];
-        var out = {}; var k;
-        for (k in record) out[k] = record[k];
-        var slidersIn = record.sliders || {};
-        var identityIn = record.identity || {};
-        var identityOut = {};
-        for (k in identityIn) identityOut[k] = identityIn[k];
-        var baseIn = record.base || {};
-        var baseOut = {};
-        for (k in baseIn) baseOut[k] = baseIn[k];
-        if (typeof baseIn.body === 'string' && AF_VOCABULARY.base_body_map[baseIn.body]) {
-          baseOut.body = AF_VOCABULARY.base_body_map[baseIn.body];
-          if (!identityOut.base_body) identityOut.base_body = baseIn.body;
-        }
-        if (typeof baseIn.head === 'string' && AF_VOCABULARY.head_map[baseIn.head]) {
-          baseOut.head = AF_VOCABULARY.head_map[baseIn.head];
-          if (!identityOut.base_head) identityOut.base_head = baseIn.head;
-        }
-        out.base = baseOut;
-        var slidersOut = {}; var carried = {}; var unmapped = {};
-        var prefixes = Object.keys(AF_VOCABULARY.carried_prefixes);
-        var WEB_PREFIXES = ['morph.', 'bodyslide.', 'sos.', 'driver.'];
-        Object.keys(slidersIn).forEach(function (sid) {
-          var value = slidersIn[sid];
-          var entry = AF_VOCABULARY.slider_map[sid];
-          if (entry) { slidersOut[entry[0]] = value * entry[1]; return; }
-          var isWeb = WEB_PREFIXES.some(function (p) { return sid.indexOf(p) === 0; });
-          if (!isWeb) { slidersOut[sid] = value; return; }
-          for (var i = 0; i < prefixes.length; i++) {
-            if (sid.indexOf(prefixes[i]) === 0) {
-              var section = AF_VOCABULARY.carried_prefixes[prefixes[i]];
-              if (!carried[section]) carried[section] = {};
-              carried[section][sid.slice(prefixes[i].length)] = value;
-              return;
-            }
-          }
-          unmapped[sid] = value;
-          warnings.push("slider '" + sid + "' has no canonical mapping; preserved under identity.unmapped_sliders");
-        });
-        out.sliders = slidersOut;
-        Object.keys(carried).forEach(function (section) {
-          var merged = identityOut[section] || {};
-          var vals = carried[section];
-          Object.keys(vals).forEach(function (key) { merged[key] = vals[key]; });
-          identityOut[section] = merged;
-        });
-        if (Object.keys(unmapped).length) {
-          var mergedUnmapped = identityOut.unmapped_sliders || {};
-          Object.keys(unmapped).forEach(function (key) { mergedUnmapped[key] = unmapped[key]; });
-          identityOut.unmapped_sliders = mergedUnmapped;
-        }
-        out.identity = identityOut;
-        return { record: out, warnings: warnings };
-      }
-      var CRC_TABLE = null;
-      function crc32(bytes) {
-        if (!CRC_TABLE) {
-          CRC_TABLE = new Int32Array(256);
-          for (var n = 0; n < 256; n++) {
-            var c = n;
-            for (var k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
-            CRC_TABLE[n] = c;
-          }
-        }
-        var crc = -1;
-        for (var i = 0; i < bytes.length; i++) crc = (crc >>> 8) ^ CRC_TABLE[(crc ^ bytes[i]) & 0xFF];
-        return (crc ^ -1) >>> 0;
-      }
-      function base64urlDecode(text) {
-        var s = String(text).replace(/-/g, '+').replace(/_/g, '/');
-        while (s.length % 4) s += '=';
-        var bin = atob(s);
-        var bytes = new Uint8Array(bin.length);
-        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-        return bytes;
-      }
-      async function decodeShareCode(code) {
-        if (typeof code !== 'string') throw new Error('share code must be a string');
-        code = code.trim();
-        if (code.indexOf('AF1-') !== 0) throw new Error("share code must start with 'AF1-'");
-        var body = code.slice(4);
-        if (!body) throw new Error('share code has an empty payload');
-        var frame;
-        try { frame = base64urlDecode(body); }
-        catch (e) { throw new Error('share code is not valid base64url: ' + e.message); }
-        if (frame.length <= 4) throw new Error('share code payload is too short to contain a checksum');
-        var comp = frame.subarray(0, frame.length - 4);
-        var expected = ((frame[frame.length - 4] << 24) | (frame[frame.length - 3] << 16) |
-          (frame[frame.length - 2] << 8) | frame[frame.length - 1]) >>> 0;
-        if (crc32(comp) !== expected) throw new Error('share code checksum mismatch: the code is corrupted');
-        var raw;
-        try {
-          if (typeof DecompressionStream === 'undefined') throw new Error('DecompressionStream unavailable in this browser');
-          var stream = new Blob([comp]).stream().pipeThrough(new DecompressionStream('deflate'));
-          raw = new Uint8Array(await new Response(stream).arrayBuffer());
-        } catch (e) { throw new Error('share code payload does not decompress: ' + e.message); }
-        try { return JSON.parse(new TextDecoder().decode(raw)); }
-        catch (e) { throw new Error('share code payload is not valid JSON: ' + e.message); }
-      }
-      global.AFVocabulary = { table: AF_VOCABULARY, translateRecord: translateRecord, canonicalToWebSlider: canonicalToWebSlider };
-      global.AFShareCode = { decodeShareCode: decodeShareCode, crc32: crc32 };
-      global.AFPresets = {"presets": [{"id": "chr_preset_orc_bara_strongman", "name": "Bara Orc — Strongman", "file": "orc_bara_strongman.afchar.json", "share_code": "AF1-eNp1V81u4zYQfhVCpw0SqbYTJZvsqZu2WBTtNmiC9lAUAiWNJW4oUiUpe53FFn2IPmGfpDOkJNuRfLPm-zgznF_6S5RzC9HdlyjX5S66i_g6o1-Zgs4ZLrPNMrqIauBlwOjXHltFXy-itTYNdwQrVxuNnxUkRc0NLxwYPL3uDBpApiAlRW2y1oAFl2lTZDnyMuuMVlXDVUQkUE64XTiCmsEILm34VLxBZ6P3eIj9Ygr23z__sseDwy03Dql__HkRWYmajB2ulnDT2KQESfgiuU0vgjgHKXdJqx1J00Fa1F2e70h0PYhKWAslnNAqyXnxTNjlDIaBaW224VLCzlu6mnI2UiggbNljtWhy7T3MclFAG1w8BWaD_Zt0hoJhr4Um-O0U9ffPurbFxJCCKQPTB0cBOsBsrTsZgora5wgY8lOO-cCc0hyi1gDV0TJZnCK0na2nofEpzGyjtfPo9TGKmZSQ5Z3zKb5KX6HOYcFrt5vGw2OWV5XHVkeYBKy3u_i1rxIqmxVcrjEULzATpj1hK8rg7tsZwlh-N1Owkp0DOxNmjwa7s365WlT1FGuhQIuSb0QhYeqQh6Xehoq5nmINt_bEsTF4l-kUHAPwqiCcNlb7GseC4-1cFA8pfZxvTxKkbmeu1TOodKZxPgB9Lo4GwZQia65KGXKSztFq0U5LKEBG5NSWw2zwU2FOxdB7mVDFTO57Eg5LVNbOFdYBowYsBHcyrp6zz84MY8uFdWPoV3NK9uV9jG697WyROZ0tj_Cms68KUEHxnAzlNfhBtZOMWR8OO2FtB558OAlGmHxK-ireN0AQBwteSustyY3eJq3Rn6AIKVlepskCt49F2wJsv778ZkEq3sR0lrYSftxrXF6qw_3FzpeLBdsKVzMCHkZ9CFymzBlRVThKmauB7dUw2mBsw3HnKcfeEBBb11F4yrMENxx8brXB2OMM8X2-Ck5nSjvofTgwJSwruDECSsaDqYIrrQSeZmFBsrkrHxpm3hSL00WSnC_TxdkFQ1us7FqJahxqrsFAwr7n5oPP7Tf460HyAhpc5EHEuAFvnSLIaIlbJhTDXVMA29agCLTAQmAtwzSh3AjnQL3zBzdgnPcaPqPMko-SngbMAKkridSQDz-BqlxNPrzHh00wn_RPmCFqUYypodtggrxHuK47sBesT3BM5Jg-MOq9u0cqMgNoXWzGGgzQ_sVxXAqYpwUWl88NL0uhKpL0Am37xo9Xveix0FsZ3dHM9J81yHV0d9ujT7UonhVQyVLr3NcAz7-HZkuRcm-4El3zoW_xmLT0shAa2lp7Xn8yph4eMxi8m6Zxz3vETNGTcBV4T0IegE-ifdBCoeQ6CAYjl8TewQ_abLkpwx2uguzRN3Q8fLW88FHyKpEPFOBRDcp-5Nvvwpy7Dl_D5a4X_rPn3uDXz93Li4SBPQr20UgH0RP376I4HUmDGqR81Lb3kuBfu_X6Ny07eo6Sj49Ot9-qiqoLfcZZ8YlvcU5ohz2N2c3WkuN1oics5ctlfNB6bG2wvrbaPFNrUmdhh2Mb4CQwulIcl7Zt3u2bx8BfnUCccYbXfBgtHDTGG2wr9jc7v0nPmDZIzPkzdgh6xPR6jQ3mn83kUYVi7MPQdjEei-k5TkVv-0GwwgHj-32Hx_jB9DBQaFNSZ_WPef-4n33R910VYBwtiJ_RHwfsaRvm69f_AVxtRy1HK47a"}, {"id": "chr_preset_orc_bara_bodybuilder", "name": "Bara Orc — Bodybuilder", "file": "orc_bara_bodybuilder.afchar.json", "share_code": "AF1-eNp9V91u2zYUfhVCVw1iabJTJ016tXQbimE_wRJsF8NAUNKRxYYWVZKy6hQd9hB7wj3JziElW7bl3onnOzz_P9TnKBMWorvPUaaLbXQXiZLTF6-hdUYovplHs6gCUQSMvvbYIvoyi0pt1sIRXLvKaDyuIMkrYUTuwODtsjWoADklCckrwxsDFhzXJucZ8nmNWStV4fllAbWTbhsuoWwwUigbjrVYo7nRPV5jv5qc_ffPv-z-4HojjEPmP_-aRVahLGMH9xJh1jYpQBGeJrfLWSDnVZtlWyKlA6mAUtbSSV0nmcifD9hHWKmE4yIL4k7hBnLLcwM-xGlyMyEBA9lYvhFKwdaLeTPBtFGyhgOwkutMe394JnNo8Oo8Sc-BfPBh8j4mqpJ67MII9dHithJNMOAcR9s0GP1pGVgScMY-W-lWhRxN4j48B9E_BvkaqPrO3-ZNa6tTyzLMuQKetc4ReH0EOodVqd321GmPObmqHNQ-qweoAuGpr4-oKywEoUpu5QtM-LNn6GThqolcBY5dpc5PwZVqHdhTTz0Y9B5HyUOuQmdOsVC8SmxkruBUqoeV7kLWb06xtbBTmQuYrPW5e30Ajs1x2ljtC5nnOB-C2jfnWHSm5Mc2ROMskwVjhGvJnOKgP085Q_1_xabp-I4ZlA4tdD3FAUodDqAxamRGbTaMg3M-Db3EZZ2f5qvnwcChqGayxEYsFVCBf1XKrlBvp6R0Qlq3q_ZJRTsBR3HvvG6ecqf5fFwk69b2pTi4TwWTHIfeSWtbSKj-uF1jE1fjhvG6k11xhuWWZEZ3SWP0B8hDiOdXyyTFfWNRhQTbryy_SZAVTTOtpT2Eh3ca11Xd4sZil_M0ZZ10FSPgYScPgaslc0auVjjrmKuA7cUw2lhsI3DL1Y69IiC2riWHi4sENxp8arTBYOJ88I7Ol8FqXmsHvREjXdKyXBgjoWAi6MpFrWuJ11nYiGzK57Fm5nWxeJkmyeV8mV7MGOpiRdsoFONQcgUGEva9MO99tr7BrwclclhjbwYSEwa8dgoho71tmawZLoMcWFdBTaAFFiJrGU4SpBvpcK6-9Rc3YJy3Gj4hzZKNil4DzACJK4hpTTb8BPXKVWTDPa7aoD7p3y1D2KIYc0PeYIa8RbhzcUDMWJ_hmJhjOmDYe3MPRHADqF1uduM7QPsnxmEtYKJSrEifG1EUsl4RpSdo23dyvOhJj7nuVHR3teyPFagyurvt0adK5s81UM1SK72rAJ7_CO2zpLMRtWzX7_umja_2tBAapJHuntbfjBfItstgsO40jXu-R8wUvQMXge9JqhH4JJsHLWukXAfCoOSKuLfwgzadMEXw4XWgPfrGjYdTI3IfJS8S-YECvBODtB9F910YXdfhNDh3nfpjz3uDp5_blxcFA_eOsI_GciA9Cf9wwVIfKIMYZPlF295Kgn9ry_J3rVp6gcaIPjrdfFuvqLrQZhwWH0SHg0I7bGrMLsfXIboTPWEpX83jUeux0mB9ddo8U2tSZ2GLYxvgKDB6VQvcyHb9dt88Bj62EnEmGLr5sNMwaoxX2Fbsb3Z5s7xg2iBjJp6xQ9AipssSG8y_lMmiFZKxD0PbxXgtpjc4Fb3tB8EiWYR-3-I1MZoeBnJtCuqs_gXvX_RnnvF9XwUGHC7IcUH_C9jVNozYL_8DiBZIcWZ2JYo"}, {"id": "chr_preset_pyn", "name": "Pyn", "file": "pyn.afchar.json", "share_code": "AF1-eNptVVFv4zYM_iuCX9aisRanTbflnna3DcOwG4qluHsYBkOW6Vg7WTIkOb626H8fKdlur8mbxU8kP34i6aesEh6y3VNW2foh22WiKemrNDAEJ3R5LLJV1oKoE0ZfL9gme15ljXWdCASb0DqLxwNw2QonZACH3s3gKEGPmNKYK_M9SAWeN2AMSC4tumMgRTlk68regYdQ9g8mIyuYoAJye8I7mAmcEtqnoxEdBbyLN3vhAtr_-XeVeY1uzs91ceE6z2vQhK_5ZpWsNTTKqKCs4Y0WoRRVhK8nuFVdZaNrWSkJffLdnqJYMkTHM5hv7aATlzUvTnEUsj-DVUNVaSirIYQIbt-gIeAzWVLlpZxXWFCHNoA5rUaDiNYf3lgPvpRCN6VXj3CmzHhhxoozWGgx42kZM4bv7Aj91hPbANNqcVRSx8g3p3An_Bl5IjSqOpzJGazztmxVfxoxQaNQPizVbL_lNAJJV67LYMvidfBu8BPLWVEiwU9ECcr7ATjxLn2Hb9S-5hEZ8FdF0UDxytmR43z8B5K6MdvlN1u-xv6eJmWaCGpnEK40NlDX_yrc75EtuyrWa6Y8E8wBNrI6AhNGtta9Yzga3yFQeauHAOz6lsmOYRBWY2SPydjBHsEZz0ILrG8fvMJGYESWXaS0Psf5EyavRJBtwbua-cSTXfPikuPkwdfeOpQUPaMYP92mwmam77G-u6U8YiqFcwpqJlJeKYw1MXGaXHZOFnZBhtyHAbnFXCzfrjm_KrbryxXDXKweeo1hAkZuwQFni0bf49edFhI6XCeTbMJBzE4qM1olninDcJolsLEFQ6BHUZIKbMSIbHQq4GS9i44oXIis4SvaopqaFhQ-A4Wr6VJHHP4EcwgtcXiP6zal59NinWXLcnxFqgbfMjI6Cj2AX7GpCXK6nNOBniDRXUK87DvS-oPFlWmGuDVRolV6AFHXyhzQUswW61Xqt9myl3bUeNxOxxZ0gw6bCb5vlfxigJo3v0Hbhxbgy-c0hvk1GZwwauhSgdluu1iSAMRmMc1-lHt5JqKSzm8eK9ttkn2Pz0F_o9nvXumQCoiH_s4qE1IiNExJbgl-gN-sG4WrUwW04tC2jwO8SRf2vZBRI4qHt4HUnWLQlT_E-Av0kTa543EpbILnquj4cXh81DA7kKjJMvu8WO5FTwvyZnFawuCVv6yfWMaa_x6a5hNOczcb9sH2P5sD9VCxfaaOiCtMdni-_RH_i-l3Gn-v6Z86dRSe0y-YXUwW7GiJK4pdsaUbGP02xSX9oLHdfWqX5_8BBJ7DL5wH2CY"}, {"id": "chr_preset_sen", "name": "Sen", "file": "sen.afchar.json", "share_code": "AF1-eNp1Vttu4zYQ_RVCTwlqq1YSJ1nvU3fboii6RdAE7UNRCJQ0trihSJWk4jjB9tt7hpQvG3vfxLnPmYvmNaukp2zxmlW22WSLTC5L_ioNDcFJXT4V2SRrSTaJx1973kX2ZZItretkYLYJrbN4riivW-lkHchBezk4dtCDpzR8Zb6nWpHPK5Iury2UYUaxh7p1Ze_IUyg9mYypZIIKiOwVMvBDTknt09PIjs3dR8leugD63_9MMq-h5vw2q1y6zucNaebP8neTRK1I603e28DE6_lIrduhqjZMuh0pDS2VUUFZkyPr3pdPUmvaRFuXo0yruspGP2Wlauoj83Z-ggtUWmUP7R9wgR0SKvLZMcu3dtApq30KB_wYWuTNv8EsO-IynbSeBPrBt8fmI06l76wNkXvzNZebpZP-BBwVkNRUVkOIEF-9YYaATrMhYn0zP2Z6uVpF5sXXTE3SZIvp2zw0rXxZS70svXqh4zT2_LVqUia38xMSu_rfnOCu9BDIH1cvMpPfk3GFVq3aYx7mAB61fFK1pmNsI1vbNaboNG-L-7tj1g69q_kxc0TgbTjBOm_LStaPaDfZ0wmMDkVOwjwKcM8cw3TAjECfgPlQRLfSNDrhfX1Cai2VD2Mc02-IbGv9ZizWhIKEclYGWxaHWXSDH2uxWwkMWf62uEF5P1DOFTicja1O9J6PtTvQiuRUtkjlfZpXzq5zrMfPVPOaQTIXs3yGBTcuynEl8j6j59465IxGjuHcXCUbpbGBd-EHmLrbWRLKi1o6p6gR0ovQEp7GGgV1kbakOBWBOGPC1Ieh2YjoS0znszz_rpjPzicCvkQz9BpmAiy35CgXP0n3SwT1e3zdaVlTh9WdSEI6it45IcFr2wtlBNZdTWLdkmGmJ5Hy9AKoge5UCGTeR8UnciFGTc-geY5R889AOGJzDQt1HMNvZFah5Rg-4MeW3OfjL2wLWzYtZjGb2SxFhI0-kJ-IEe8pC0_5kXfNGO7OxP7fwlh_tPg9mSH-oaa8qGIBZNMos8oWO4L1aqxsMUuk-9qu9V7iviW93D8fWlU_GuI2mRagfWyJHv8apxYWPjpp1NCl9GK_7GgJgGwx31FGveh6V6X9-02txjzAuEc5-L9_leQelN66iq_-zirDlNtEGd3MWXlDP1u3lq5JOUSdDd2nSb0aX72sI0qXeEOcGN_RCEfwq1z_SP3Ba5sZWjG-Dxx-Gl5eNI3ibD8RthrFTuQBa82NMSTKaIUJv1s_xngJhT-G5fJPqwe-MW7AvQ-2_8GsuIGueDjbtELqjjOYjwdInEM-Q7hkPogaHV0D24Xo0XpTnELixRoS6N-0C5YOHSTOOukeAYYXkJjWVlsIWjS9Q7fxqBydTDyGBAGxIttRcJvtW4ogQ7BWNIRuz_bQCvaxEL7D-fJ1NO8xVTjWRFz6aboRtVMV5krF2RRAzSNmPuDEme0xsSpQdw7zD9asBlpgHHH3YZJwn5kwGbfGf0V-Kc4YGXh0GCSM7Pl78VmuBbYsKAYLoG6pfhRYlVhSAS4ccKsGpZss9okXsqvITYSzg2lEP_RKZ7jyxjsx3o3pWPxXlisZ4X_NPhU4U_GXikPbKcPLskDN52XDXVIq09AzNBFhgXWHH43AQp7jrLiYcVqfruNRhHlHttBBn2YXs-nFdbbfyyBxPdK2NOJZ4D9gBG4e05yzGMrh49QXX_4H_l_b06pejug"}, {"id": "chr_preset_sen_muscle_bear", "name": "Sen — Muscle Bear (variant)", "file": "sen_muscle_bear.afchar.json", "share_code": "AF1-eNp1Vs1u4zYQfhVCpw1qq1JiN1nvaZNuURTNIq2D7aEoBEoaW2woUiApO06wQB-iT9gn6QxJ24rlvZHzzf8f-ZqU3EKyeE1KXe-SRcJXBZ0KBb0zXBabPJkkDfA6YHQ6YpfJ10my0qbljmDlGqPxuoa0arjhlQOD0qvekIEOMSHRVmI7qATYtARu0kqjMKoRZKFqTNEZsOAKC6poe1tJKIgvIQ5QTjj08hX50SYYwaUNV8VbUr0Exf7751927yXZLUqydxuOjMpdoI6OG4cSf_41SaxEhcbuY0-5aW1agyQ8S99PArUEKXdppx0R55FYNX1Z7jxlT6phJZRwQqu05NXTkHsAYdo6W2y4lLCzb-Qb0Zba-1CUooLOozfnUMxrI7SHxyhmH9OQp9kYso3uZYj4GN4A9755bP4NsGiBCn1We2DoetuM1fscFrbV2nn0-i1K7dZy621fvYUwzVT_3vn0z05A57BXtfOFuJ6PQcvXaw9evgUlcJUspqdxSFjbouJyVVjxAuMwjvhW1CGSm_kZjkNzXJ9B17J3YMfV82Cwe9Yv14h1M8ZwktCi5BtRSRjn1sNSb3EOz2P7vL8fQ4fsXY2xmIBTb5w2VhfU_9htvIMzKRqynM1yZKCWGWdpAPo8n8nykEU2XNUypPuHM1xbLqyLfky_wbIv9clUbAHr4YqscLrIh1GEneUt7iUoZelpbZ2wtoeUCjAYjdlexltPY-kGUp4cquaptJDT0uhtivv1b6hozWAwl1ma4VaMmzbuVFp18NxpgzFjH3t3rmdBR6G0owV6i6oeDpqYsKzixgioGbfMNYBXpZVAcRYWKDvnAXtHhKl1fb1j3habzrM0_S6fZxcThrZY3XcS1TjU3ICBlH3i5mef1O_x9CB5BS3u-0Bi3IC3TgEx2vWWCcVw21XAtg0ufQQtsBCnZZg1pBvhHKgPXnADxnmv4RlplnyU9IIwA6SuJqaWfPgV1No15MMtvozBfBrfwH3akmme-WiyLHiEG70HO2Ex31NintIlbevo7kHF8dmhXN9pfNNU75-1Ke0pXwBe10Ktk8WBoK2Ilc2zQFpWeiuPHMsG5Op4fWxE9aSA2mSaI-2uAXj6I04targzXIm-DeH5fjnQQgKSxfxAiXLe9KFKx_tJrWIcCCyxHPRxmAW-RyH3pvyte9BCEeUmUKIZehI_7eAnbbbc1CEGL7ODZZjUWbx1vPJZusI7sgPlNyohD37h2x-hG9z2kWEr-vvA4H3_8iIhspP-QNhL5AeWR1xrJvoQKFELET5rG328QoHf-9Xqi5Y9fUyuEV063X1Ua2qgGQ1nnLjwVfmCg6NpmGSNLYpfJ7ljK6NbtqQO1gqv1MaPfmtE5lZvsLHexaaf4t-Iq2nJXdXk1Hc2zuIsnV-k7LePC3Y_Y5XE9YWTrCm5XiV6xfSK5fhK4pN4Nf_A7vMMdWOX4oCwElco9X_8lvlv2vhvFhsfsdJ_uWj8FXtGNegAvuGqpt9X_IgVejX669EXEGfU-ibPv_4PApqV-0m9-vk"}, {"id": "chr_preset_jorge", "name": "Jorge", "file": "jorge.afchar.json", "share_code": "AF1-eNp1Vttu3DYQ_RVCTza6Undtr2Nv0QfbSVGkiWNk3fahKARKGq0YU6RAUrtZGwH6Ef3CfklnSO7Nq7yJc0ZzOXMhX5KCW0hmL0mhq3UyS3id01euoHeGy3w5SUZJA7wKGH3tsLPk2yiptWm5I1i5xmg8LiArG2546cDg33VvyEGHmJDoK7EdlAJsZrlQLi_AKG6qrNRoBe0JclU2Ju8MWHD5FzKYkByUEw6DfEEtdAlGcGnDUfGWLL-Puh03DpG__h4lVuKPxm5SzLhpbVaBJHycXY2CtAAp11mnHQkvo7Bs-qJYe7VpFFVQCyWc0CpDCjqbL7mUsPa2zqJOI9pCez95IUroPPhmOoAiRY3QHj5GkUg48L2H2Ub3MqQ1rOCD20_wNZa3wH2y199T6HrbHIfmicptq7Vrju371mm5DXwcxlUgmRLyonfe72vQYSeg0fUAWR60fLHw4PkhKIGrZJZOsvEr8cLmJZd1bsXzEI87hZWohnIJCrsWOAYXsncwVF2PBr-DcblGLJpjDMcCPUq-FKWE_Ubcg6Ve4VARNj0GN8xfDWBb_gawLQPXh6DTxuq84OUTdhzv4Lgd9jWGeY4a1DYDTO2hnutjpvc1ZMNVJQPll0OGVlxYFyNJv6ezTfYAXAHWxOXj3Ol8csBF29tYj4uNiFjLNglvFZ2wtoeMqrA_IVuY3GexgLvaB3EonZfSjs0Ko1cZrswvUNK2wXTOptkYN11cnnE70lqDr502mDU2s2-48-tgI1fa0VK8RVMPW0tMWFZyYwRUjFvmGsCj0krg7ywsSzYUATshQWpdX62Z98XS6TjLfphMx6cjhr5Y1XcSzTi03ICBjL3j5ldP64_49SB5CS3u8CBi3ID3Tgkx2t-WCcVw65XAVg0oAi2wkKdlyBrKjXAO1E_-xyUY56OGryizFKOkW4EZIHMVKbUUwwdQC9dQDLd42QX3WbzWNrQl6WTssxmPQ0S42HuwIxb5Tkk5pUPWVjHcrYndFUNc32m8p1Tvr6r0HAvqC8CrSqhFMqOt6AXailDZKJiXeiWxYeKpAVkns_MIPjaifFJAPZKeocpdA_D0Z-hkfzZcib4NuYXfoigkH_xG0eY_lGwr5B0fVwn7KWjNsQ70CDgLao9CIpa-mcZT96DxLo_BoSS6mNBpDb9os8IrPsQfZfMwpJtTx0tPD51RHYjYaGSKovd89RY6Ol2E0yatcNrT_Ng_P0uIyldbwZ5-EDziPsM5THf_RCM0r_faxgAJ_tzX9R9a9vTEIGbnTnc3akFtc00j2YTVUbZIz8VFfH346aM3SFJLWNH-RYLiW4eRBnYYPmCUYycV3rc4hSAkUsB-9s39-293rOa9dAyFcMr---df_5fFM74bzJoJB22YOx7nNqFMaFexiymNOWe1xK2Pk7Dirmz8H-zk9ubzTf7h3Xz-6X7ObBzuS_b2dMZE7X3XwljHil7IilHVLUbiUvSE02-0WozC1tDG0N9LIF_R8eV4xO4_PbIWS8ju_OWZsXuKscPdAFWW4JMsPuz8Q2_zuotjhpJKL3y2c5ex28gX7h4ACibFNNFjdUovRVwA1k_Q5Nv_JVmn5BW7-pM"}]};
-    })(window);
-  </script>
-
-  <script>
     // ============================================================================
     // 1. MODULAR PART CATALOG, RUTHANDROTH MAX BASE PROFILES & SPECIES DNA
     // ============================================================================
@@ -1019,6 +885,9 @@
       equipped: { ...SPECIES_PRESETS.fennec.equipped },
       colors: { ...SPECIES_PRESETS.fennec.colors },
       morphs: { ...SPECIES_PRESETS.fennec.morphs },
+      characterName: '',
+      headShape: { width: 1.0, height: 1.0, muzzleWidth: 1.0, muzzleHeight: 1.0, jawWidth: 1.0, cheek: 1.0, brow: 1.0 },
+      headSculpt: {},
       bodyslide: {
         samson: 0,    // Muscular hypertrophy (.osd differential morph)
         samuel: 0,    // Powerbelly / core mass (.osd differential morph)
@@ -3083,6 +2952,7 @@
       const preset = SPECIES_PRESETS[speciesKey];
       if (!preset) return;
       state.activeSpecies = speciesKey;
+      state.characterName = '';
       state.baseBody = preset.baseBody || 'max';
       state.equipped = { ...preset.equipped, pelvis: state.equipped.pelvis || 'pelvis_smooth' };
       state.colors = { ...preset.colors };
@@ -3512,40 +3382,9 @@
         }
       });
 
-      // Pass 2: the bespoke "Rig JSON" had no loader anywhere — it
-      // could never be re-opened. The primary save is now the
-      // canonical Core record (.afchar.json), translated from the web
-      // vocabulary so it validates and builds in the Core.
-      function buildAfcharRecord() {
-        const sliders = {};
-        Object.keys(state.coreSliders || {}).forEach(k => { sliders[k] = state.coreSliders[k]; });
-        Object.keys(state.morphs || {}).forEach(k => { sliders['morph.' + k] = state.morphs[k]; });
-        Object.keys(state.bodyslide || {}).forEach(k => { sliders['bodyslide.' + k] = state.bodyslide[k]; });
-        Object.keys(state.sos || {}).forEach(k => { sliders['sos.' + k] = state.sos[k]; });
-        Object.keys(state.drivers || {}).forEach(k => { sliders['driver.' + k] = state.drivers[k]; });
-        const raw = {
-          format: 'anthroforge.character',
-          version: 1,
-          id: 'chr_web_' + Date.now().toString(36),
-          name: state.activeSpecies || 'Unnamed',
-          base: { body: state.baseBody, head: 'web_v2' },
-          sliders: sliders,
-          species_preset: { preset: state.activeSpecies },
-          parts: Object.keys(state.equipped || {}).map(slot => ({ slot: slot, part: state.equipped[slot] })),
-          fur: {},
-          materials: { colors: state.colors || {} },
-          identity: { source: 'web', species: state.activeSpecies }
-        };
-        if (window.AFVocabulary) {
-          const translated = AFVocabulary.translateRecord(raw);
-          translated.warnings.forEach(w => console.warn('[vocabulary]', w));
-          return translated.record;
-        }
-        return raw;
-      }
-
+      // Shared canonical Core record (.afchar.json) export via AFRecord / window.AFBuildRecord.
       document.getElementById('btn-export-json').addEventListener('click', () => {
-        const record = buildAfcharRecord();
+        const record = window.AFBuildRecord();
         const blob = new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -3557,6 +3396,22 @@
       });
     }
 
+    const recordHelper = AFRecord.createRecordHelper({
+      state,
+      source: 'web',
+      speciesPresets: SPECIES_PRESETS,
+      getName: () => state.characterName || state.activeSpecies || 'Unnamed',
+      setName: (name) => { state.characterName = typeof name === 'string' ? name : ''; },
+      toast: showToast,
+      onAfterApply: () => {
+        updateBaseBodyButtons();
+        renderPartsGrid();
+        renderSocketDropzones();
+        syncControlsFromState();
+        rebuildAvatarGeometry();
+      }
+    });
+
     window.addEventListener('DOMContentLoaded', () => {
       initBabylon();
       initBoneInspectorUI();
@@ -3565,84 +3420,7 @@
       renderSocketDropzones();
       syncControlsFromState();
       bindUIEvents();
-
-      // Import AF1- / preset (pass 2, wired to AFShareCode.decodeShareCode).
-      const importBtn = document.getElementById('btn-import-sharecode');
-      const importModal = document.getElementById('af-import-modal');
-      const importPreset = document.getElementById('af-import-preset');
-      const importCode = document.getElementById('af-import-code');
-      const importStatus = document.getElementById('af-import-status');
-      if (importPreset && window.AFPresets) {
-        AFPresets.presets.forEach(p => {
-          const o = document.createElement('option');
-          o.value = p.share_code; o.textContent = p.name;
-          importPreset.appendChild(o);
-        });
-      }
-      function applyAfcharRecord(record) {
-        if (!record || record.format !== 'anthroforge.character') {
-          throw new Error('not an AnthroForge character record');
-        }
-        const sliders = record.sliders || {};
-        const identity = record.identity || {};
-        [['morphs', state.morphs], ['sos', state.sos], ['drivers', state.drivers]].forEach(pair => {
-          const vals = identity[pair[0]];
-          if (vals) {
-            Object.keys(vals).forEach(k => { if (k in pair[1]) pair[1][k] = vals[k]; });
-          }
-        });
-        const core = {};
-        Object.keys(sliders).forEach(cid => {
-          const inv = window.AFVocabulary ? AFVocabulary.canonicalToWebSlider(cid) : null;
-          if (inv) {
-            const parts = inv[0].split('.');
-            if (parts[0] === 'bodyslide' && parts[1] in state.bodyslide) {
-              state.bodyslide[parts[1]] = sliders[cid] * inv[1];
-            } else {
-              core[cid] = sliders[cid];
-            }
-          } else {
-            core[cid] = sliders[cid];
-          }
-        });
-        state.coreSliders = core;
-        if (identity.base_body && ['max', 'maxine', 'maxwell', 'bara'].indexOf(identity.base_body) >= 0) {
-          state.baseBody = identity.base_body;
-        }
-        (record.parts || []).forEach(entry => {
-          if (entry && entry.slot && entry.part && entry.slot in state.equipped) {
-            state.equipped[entry.slot] = entry.part;
-          }
-        });
-        if (typeof updateBaseBodyButtons === 'function') updateBaseBodyButtons();
-        if (typeof renderPartsGrid === 'function') renderPartsGrid();
-        if (typeof syncControlsFromState === 'function') syncControlsFromState();
-        if (typeof rebuildAvatarGeometry === 'function') rebuildAvatarGeometry();
-      }
-      if (importBtn && importModal) {
-        importBtn.addEventListener('click', () => { importModal.classList.remove('hidden'); });
-        document.getElementById('af-import-cancel').addEventListener('click', () => {
-          importModal.classList.add('hidden');
-        });
-        document.getElementById('af-import-go').addEventListener('click', async () => {
-          try {
-            let code = (importCode.value || '').trim();
-            if (!code && importPreset && importPreset.value) code = importPreset.value;
-            if (!code) throw new Error('paste a share code or pick a preset');
-            if (!window.AFShareCode || !AFShareCode.decodeShareCode) {
-              throw new Error('share-code codec not loaded');
-            }
-            const record = await AFShareCode.decodeShareCode(code);
-            applyAfcharRecord(record);
-            importStatus.textContent = '✅ Imported ' + (record.name || 'character') +
-              ' — ' + Object.keys(record.sliders || {}).length + ' sliders.';
-            showToast('✅ Imported ' + (record.name || 'character'));
-            setTimeout(() => { importModal.classList.add('hidden'); }, 900);
-          } catch (err) {
-            importStatus.textContent = '⛔ Import failed: ' + err.message;
-          }
-        });
-      }
+      recordHelper.bindImportModal();
     });
   </script>
 </body>
