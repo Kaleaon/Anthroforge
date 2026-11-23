@@ -44,21 +44,69 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 PYN = HERE.parent
 V2 = PYN.parent.parent
+FP = V2 / "first-proof"
 WORK = PYN / "work"
 TG = PYN / "targets"
-APP = Path.home() / "workspace/anthroforge-app"
+APP = V2.parent / "anthroforge-app"
+LEARNED = Path.home() / "workspace/character_assets/learned"
+HIMBO_DIR = (Path.home() / "workspace/character_assets/_himbo_work/"
+             "CalienteTools/BodySlide/ShapeData/HIMBO")
+MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
 
-sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(LEARNED / "tools"))
+sys.path.insert(0, str(V2))
 sys.path.insert(0, str(APP))
-sys.path.insert(0, str(V2 / "characters/sen/scripts"))
 
-import pyn_machinery as M          # noqa: E402  (executes build_bara loads)
-import bara_machinery as BM        # noqa: E402  (Sen's verbatim rulers)
-from core.build import Library, evaluate_character   # noqa: E402
-from core.character import Character                 # noqa: E402
-from core.geometry import write_glb                  # noqa: E402
+from osdparse import load_osd  # noqa: E402
+from body_machinery.axes import torso_params  # noqa: E402
+from body_machinery.labels import (  # noqa: E402
+    blend_regions,
+    label_mesh,
+    region_weights_w3,
+)
+from body_machinery.loops import grade, mesh_volume  # noqa: E402
+from body_machinery.osd import (  # noqa: E402
+    BODY_END,
+    SK_UNIT_M as SK,
+    align_macro_base,
+    compose_osd,
+    extract_base_positions,
+    load_mpfb_base_obj,
+)
+from body_machinery.repair import cos_fold_stats, repair  # noqa: E402
+from body_machinery.transfer import limb_fields, torso_field  # noqa: E402
+from core.build import Library, evaluate_character  # noqa: E402
+from core.character import Character  # noqa: E402
+from core.geometry import parse_target, write_glb, write_target  # noqa: E402
 
-DM_M = 0.1
+# ---------------------------------------------------------- mesh loads
+corr = np.load(FP / "work/correspondence.npz")
+mh_crotch, mh_neck = [float(x) for x in corr["mh_landmarks"]]
+navel_mh = int(corr["navel_mh"])
+mh_tris = corr["mh_tris"]
+L_mh = mh_neck - mh_crotch
+W_TORSO_V4 = np.load(FP / "work/belly_v4.npz")["torso_weight"].astype(np.float64)
+
+mh_pos = load_mpfb_base_obj(MPFB_ZIP)
+_mac = np.load(FP / "work/mh_macro_base.npz")["pos_canonical_m"]
+mh_pos_mac = align_macro_base(mh_pos, _mac, BODY_END)
+NB = len(mh_pos)
+FACES_B = mh_tris[np.all(mh_tris < BODY_END, axis=1)]
+
+hi_pos_u = extract_base_positions(
+    (HIMBO_DIR / "HIMBO Body - Vanilla.nif").read_bytes(), 4000)
+assert hi_pos_u is not None and len(hi_pos_u) == 9346, "HIMBO base extract"
+hi_blocks = {b["name"]: b for b in
+             load_osd(str(HIMBO_DIR / "HIMBO Body - Vanilla.osd"))["blocks"]}
+NH = len(hi_pos_u)
+_missed_blocks: set[str] = set()
+
+h_hi, th_hi, r_hi, _ax_hi, cr_hi, nk_hi, L_hi = torso_params(hi_pos_u * SK)
+s_hi = L_mh / L_hi
+hi_lab = label_mesh(hi_pos_u * SK, cr_hi, nk_hi)
+_mh_body_mask = np.zeros(NB, bool)
+_mh_body_mask[:BODY_END] = True
+mh_lab = label_mesh(mh_pos_mac, mh_crotch, mh_neck, _mh_body_mask)
 
 # ---------------------------------------------------------- effective vector
 preset = json.loads((APP / "library/presets/pyn.afchar.json").read_text())
@@ -109,20 +157,41 @@ UNAPPLIED = {  # canonical id -> reason (no Vanilla-base field exists)
 for cid in UNAPPLIED:
     assert cid in EFF, cid
 for key in NAME.values():
-    assert f"HIMBO - Body{key}" in M.hi_blocks, f"missing OSD block {key}"
+    assert f"HIMBO - Body{key}" in hi_blocks, f"missing OSD block {key}"
 recipe = {NAME[cid]: EFF[cid] for cid in NAME}
 print("\nHIMBO recipe (effective values):", recipe)
-src = M.compose(recipe)
+src = compose_osd(
+    hi_blocks, NH, recipe, scale=SK, warn_missing=True, missed=_missed_blocks
+)
 mag = np.linalg.norm(src, axis=1)
 print(f"HIMBO-space composed field: support {(mag > 0.02).sum()} verts, "
-      f"max {mag.max() * M.SK * 100:.1f} cm")
+      f"max {mag.max() * SK * 100:.1f} cm")
 
 # ---------------------------------------------------------- transfer to hm08
-torso_f, (h_mh, r_mh) = M.torso_field(src, "pyn")
-M.h_mh, M.r_mh = h_mh, r_mh
-exec((HERE / "w3_block.txt").read_text(), M.__dict__)   # region weights W3
-limb_f = M.limb_fields(src, "pyn")
-D = M.blend(torso_f, limb_f)
+torso_f, (h_mh, r_mh) = torso_field(
+    src,
+    "pyn",
+    hi_lab=hi_lab,
+    h_hi=h_hi,
+    th_hi=th_hi,
+    r_hi=r_hi,
+    mh_pos_mac=mh_pos_mac,
+    mh_crotch=mh_crotch,
+    mh_neck=mh_neck,
+    s_hi=s_hi,
+)
+W3, _e = region_weights_w3(
+    mh_pos_mac, mh_lab, h_mh, r_mh, W_TORSO_V4, mh_tris, body_end=BODY_END
+)
+limb_f = limb_fields(
+    src,
+    "pyn",
+    hi_pos_m=hi_pos_u * SK,
+    mh_pos_mac=mh_pos_mac,
+    hi_lab=hi_lab,
+    mh_lab=mh_lab,
+)
+D = blend_regions(torso_f, limb_f, W3)
 mag = np.linalg.norm(D, axis=1)
 print(f"transferred field on hm08: support {(mag > 0.0002).sum()}, "
       f"max {mag.max() * 100:.1f} cm")
@@ -135,9 +204,15 @@ print(f"flat_abs added at effective {EFF['body.definition.flat_abs']:.4f} "
       f"(raw {RAW['body.definition.flat_abs']})")
 
 # ---------------------------------------------------------- repair (float)
-ZERO = np.zeros((M.NB, 3))
-D, att, traj = M.repair(D, [(M.mh_pos, ZERO), (M.mh_pos_mac, ZERO)],
-                        "pyn composed")
+ZERO = np.zeros((NB, 3))
+D, att, traj = repair(
+    D,
+    [(mh_pos, ZERO), (mh_pos_mac, ZERO)],
+    "pyn composed",
+    faces=FACES_B,
+    edges=_e,
+    ref_pos=mh_pos,
+)
 print(f"repair: att min {att.min():.3f}, "
       f"{int((att < 0.999).sum())} verts attenuated, traj {traj}")
 
@@ -155,35 +230,11 @@ NOTE = ("Provenance: Pyn body build (AnthroForge, Nov 16 2026) — preset "
 TARGET = TG / "body.pyn.target"
 
 
-def parse_target(path):
-    """MPFB .target -> canonical delta (metres), grade_sen convention."""
-    Dq = np.zeros((M.NB, 3))
-    for line in Path(path).read_text().splitlines():
-        if not line or line.startswith("#"):
-            continue
-        p = line.split()
-        Dq[int(p[0])] = [float(p[1]), float(p[3]), float(p[2])]
-    return Dq * DM_M
-
-
-def fold_stats(pos, Dq):
-    F = M.FACES_B
-    n0 = np.cross(pos[F[:, 1]] - pos[F[:, 0]], pos[F[:, 2]] - pos[F[:, 0]])
-    pp = pos + Dq
-    n1 = np.cross(pp[F[:, 1]] - pp[F[:, 0]], pp[F[:, 2]] - pp[F[:, 0]])
-    l0 = np.linalg.norm(n0, axis=1)
-    l1 = np.linalg.norm(n1, axis=1)
-    ok = (l0 > 1e-12) & (l1 > 1e-12)
-    cos = np.full(len(F), np.nan)
-    cos[ok] = np.einsum("ij,ij->i", n0[ok], n1[ok]) / (l0[ok] * l1[ok])
-    return cos, ok
-
-
 def gate(Dq):
     out = {}
     worst = 1.0
-    for nm, base in (("raw", M.mh_pos), ("macro", M.mh_pos_mac)):
-        cos, ok = fold_stats(base, Dq)
+    for nm, base in (("raw", mh_pos), ("macro", mh_pos_mac)):
+        cos, ok = cos_fold_stats(base, Dq, FACES_B)
         out[nm] = {"flips": int((cos[ok] <= 0).sum()),
                    "min_dot": float(np.nanmin(cos)),
                    "faces_below_0.01": int((cos[ok] < 0.01).sum())}
@@ -193,33 +244,33 @@ def gate(Dq):
     return out
 
 
-M.write_target(TARGET, D, NOTE)
-D_q = parse_target(TARGET)
+write_target(TARGET, D, NOTE)
+D_q = parse_target(TARGET, NB)
 g = gate(D_q)
 print("fold gate on shipped (quantised) delta:", json.dumps(g, indent=1))
 q_rounds = 0
 while not g["pass"] and q_rounds < 40:
     # quantised-space repair (hyper-lineage pattern): attenuate the
     # verts of every sub-margin face on either base, rewrite, re-gate
-    badv = np.zeros(M.NB, bool)
-    for base in (M.mh_pos, M.mh_pos_mac):
-        cos, ok = fold_stats(base, D_q)
+    badv = np.zeros(NB, bool)
+    for base in (mh_pos, mh_pos_mac):
+        cos, ok = cos_fold_stats(base, D_q, FACES_B)
         bad = np.zeros(len(cos), bool)
         bad[ok] = cos[ok] < 0.01
-        badv[M.FACES_B[bad].ravel()] = True
-    nbr = np.zeros(M.NB, bool)
-    nbr[M._e[badv[M._e].any(axis=1)].ravel()] = True
+        badv[FACES_B[bad].ravel()] = True
+    nbr = np.zeros(NB, bool)
+    nbr[_e[badv[_e].any(axis=1)].ravel()] = True
     D[badv] *= 0.90
     D[nbr & ~badv] *= 0.97
-    M.write_target(TARGET, D, NOTE)
-    D_q = parse_target(TARGET)
+    write_target(TARGET, D, NOTE)
+    D_q = parse_target(TARGET, NB)
     g = gate(D_q)
     q_rounds += 1
     print(f" quantised repair round {q_rounds}: {g}")
 assert g["pass"], "fold gate still failing after quantised repair rounds"
 
 # ---------------------------------------------------------- export scale + GLB
-composed = M.mh_pos_mac + D_q
+composed = mh_pos_mac + D_q
 h_base = float(composed[:, 2].max() - composed[:, 2].min())
 S = 1.68 / h_base
 pos_out = composed * S
@@ -227,19 +278,34 @@ h_out = float(pos_out[:, 2].max() - pos_out[:, 2].min())
 print(f"composed height at base scale {h_base:.4f} m -> export scale "
       f"{S:.5f} -> GLB height {h_out:.4f} m")
 GLB = PYN / "pyn_composed.glb"
-write_glb(GLB, pos_out, M.mh_tris)
+write_glb(GLB, pos_out, mh_tris)
 print("wrote", GLB)
 
 # ---------------------------------------------------------- grade (bara rulers)
-BM.FACES_B = M.FACES_B
-BM.BODY_END = M.BODY_END
-BM.mh_neck, BM.mh_crotch, BM.L_mh = M.mh_neck, M.mh_crotch, M.L_mh
-BM.mh_pos_mac = M.mh_pos_mac
-BM.navel_mh = M.navel_mh
-BM.h_mh = BM.torso_params(M.mh_pos, M.mh_crotch, M.mh_neck, "mh")[0]
-G = BM.grade(M.mh_pos_mac + D_q, M.mh_lab)
-G_base = BM.grade(M.mh_pos_mac, M.mh_lab)
-vol_export_L = float(BM.mesh_volume(pos_out) * 1000.0)
+h_mh_raw = torso_params(mh_pos, mh_crotch, mh_neck, "mh")[0]
+G = grade(
+    mh_pos_mac + D_q,
+    mh_lab,
+    faces_b=FACES_B,
+    mh_crotch=mh_crotch,
+    mh_neck=mh_neck,
+    mh_pos_mac=mh_pos_mac,
+    navel_mh=navel_mh,
+    h_mh=h_mh_raw,
+    body_end=BODY_END,
+)
+G_base = grade(
+    mh_pos_mac,
+    mh_lab,
+    faces_b=FACES_B,
+    mh_crotch=mh_crotch,
+    mh_neck=mh_neck,
+    mh_pos_mac=mh_pos_mac,
+    navel_mh=navel_mh,
+    h_mh=h_mh_raw,
+    body_end=BODY_END,
+)
+vol_export_L = float(mesh_volume(pos_out, FACES_B) * 1000.0)
 print("grade (base scale):", json.dumps(G, indent=1, default=float))
 print(f"export volume {vol_export_L:.1f} L")
 

@@ -33,7 +33,7 @@ blunt, and documented as such.)
 Output: work/qa_sen_body.json
 """
 import json
-import zipfile
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -41,14 +41,23 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 SEN = HERE.parent
 V2 = SEN.parent.parent
+APP = V2.parent / "anthroforge-app"
 FP = V2 / "first-proof"
 TG = SEN / "targets"
-import sys
-sys.path.insert(0, str(HERE))
-import bara_machinery as BM
+sys.path.insert(0, str(V2))
+sys.path.insert(0, str(APP))
 
-DM_M = 0.1
-BODY_END = 13380
+from body_machinery.axes import torso_params  # noqa: E402
+from body_machinery.labels import label_mesh  # noqa: E402
+from body_machinery.loops import grade  # noqa: E402
+from body_machinery.osd import (  # noqa: E402
+    BODY_END,
+    align_macro_base,
+    load_mpfb_base_obj,
+)
+from body_machinery.repair import flipped  # noqa: E402
+from core.geometry import parse_target  # noqa: E402
+
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
 
 # ------------------------------------------------------------------ loads
@@ -58,51 +67,22 @@ navel_mh = int(corr["navel_mh"])
 mh_tris = corr["mh_tris"].astype(np.int64)
 L_mh = mh_neck - mh_crotch
 
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    _lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-_obj = np.array([[float(x) for x in l.split()[1:4]]
-                 for l in _lines if l.startswith("v ")])
-mh_pos = np.stack([_obj[:, 0], _obj[:, 2], _obj[:, 1]], axis=1) * DM_M
+mh_pos = load_mpfb_base_obj(MPFB_ZIP)
 _mac = np.load(FP / "work/mh_macro_base.npz")["pos_canonical_m"]
-mh_pos_mac = mh_pos.copy()
-_mb = _mac.copy()
-for _ax in range(3):
-    r0, r1 = mh_pos[:BODY_END, _ax].min(), mh_pos[:BODY_END, _ax].max()
-    m0, m1 = _mb[:, _ax].min(), _mb[:, _ax].max()
-    _mb[:, _ax] = r0 + (_mb[:, _ax] - m0) * (r1 - r0) / (m1 - m0)
-mh_pos_mac[:len(_mb)] = _mb
+mh_pos_mac = align_macro_base(mh_pos, _mac, BODY_END)
 NB = len(mh_pos)
 FACES_B = mh_tris[np.all(mh_tris < BODY_END, axis=1)]
 
-BM.FACES_B = FACES_B
-BM.BODY_END = BODY_END
-BM.mh_neck, BM.mh_crotch, BM.L_mh = mh_neck, mh_crotch, L_mh
-BM.mh_pos_mac = mh_pos_mac
-BM.navel_mh = navel_mh
-BM.h_mh = BM.torso_params(mh_pos, mh_crotch, mh_neck, "mh")[0]
+h_mh = torso_params(mh_pos, mh_crotch, mh_neck, "mh")[0]
 
 _mh_body_mask = np.zeros(NB, bool)
 _mh_body_mask[:BODY_END] = True
-mh_lab = BM.label_mesh(mh_pos_mac, mh_crotch, mh_neck, _mh_body_mask)
+mh_lab = label_mesh(mh_pos_mac, mh_crotch, mh_neck, _mh_body_mask)
 
-
-def parse_target(path):
-    """MPFB .target -> canonical delta (metres). File columns are
-    (x, z, y) in decimetres (the pipeline's write_target convention)."""
-    D = np.zeros((NB, 3))
-    for line in Path(path).read_text().splitlines():
-        if not line or line.startswith("#"):
-            continue
-        p = line.split()
-        i = int(p[0])
-        D[i] = [float(p[1]), float(p[3]), float(p[2])]
-    return D * DM_M
-
-
-D_muscle = parse_target(TG / "body.muscle.target")
-D_width = parse_target(TG / "body.chest.width.target")
-D_tissue = parse_target(TG / "body.tissue.strongman.target")
-D_term = parse_target(TG / "body.belly.protrusion_terminal_v51.target")
+D_muscle = parse_target(TG / "body.muscle.target", NB)
+D_width = parse_target(TG / "body.chest.width.target", NB)
+D_tissue = parse_target(TG / "body.tissue.strongman.target", NB)
+D_term = parse_target(TG / "body.belly.protrusion_terminal_v51.target", NB)
 
 # cross-check parsed targets vs the stored fields (sanity, report only)
 _bf = np.load(V2 / "bara-proof/work/bara_fields.npz")
@@ -123,12 +103,22 @@ D_muscle_sys = D_muscle + D_width + D_term
 def flips_for(D):
     out = {}
     for nm, base in (("raw", mh_pos), ("macro", mh_pos_mac)):
-        out[nm] = int(BM.flipped(base, D).sum())
+        out[nm] = int(flipped(base, D, FACES_B).sum())
     return out
 
 
 def grade_at(D):
-    return BM.grade(mh_pos_mac + D, mh_lab)
+    return grade(
+        mh_pos_mac + D,
+        mh_lab,
+        faces_b=FACES_B,
+        mh_crotch=mh_crotch,
+        mh_neck=mh_neck,
+        mh_pos_mac=mh_pos_mac,
+        navel_mh=navel_mh,
+        h_mh=h_mh,
+        body_end=BODY_END,
+    )
 
 
 # ------------------------------------------------------------------ scan

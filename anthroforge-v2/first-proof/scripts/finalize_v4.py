@@ -21,16 +21,27 @@ flawed, found on inspection (full story in GRAVITY_V4.md):
       profile, plus the flank roll/pinch read directly off the profile.
 """
 import json
-import zipfile
+import sys
 from pathlib import Path
 
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent
+V2 = OUT.parent
+if str(V2) not in sys.path:
+    sys.path.insert(0, str(V2))
+
+from body_machinery import (  # noqa: E402
+    BODY_END,
+    compute_axis,
+    girth_ellipse as girth_of,
+    load_mpfb_base_obj,
+    torso_cylindrical,
+)
+
 WORK = OUT / "work"
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
-DM_M = 0.1
 
 corr = np.load(WORK / "correspondence.npz")
 B = corr["mh_mask"].astype(np.float64)
@@ -39,35 +50,11 @@ mh_crotch, mh_neck = [float(x) for x in corr["mh_landmarks"]]
 L_mh = mh_neck - mh_crotch
 D3 = np.load(WORK / "belly_v3.npz")["delta_v3_canonical_m"].astype(np.float64)
 D4 = np.load(WORK / "belly_v4.npz")["delta_v4_canonical_m"].astype(np.float64)
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    obj_lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-mh_obj = np.array([[float(x) for x in l.split()[1:4]]
-                   for l in obj_lines if l.startswith("v ")])
-mh_pos = np.stack([mh_obj[:, 0], mh_obj[:, 2], mh_obj[:, 1]], axis=1) * DM_M
-mh_body = np.zeros(len(mh_pos), bool); mh_body[:13380] = True
+mh_pos = load_mpfb_base_obj(MPFB_ZIP)
+mh_body = np.zeros(len(mh_pos), bool); mh_body[:BODY_END] = True
 
-def compute_axis(pos, gate):
-    hgt = pos[:, 2]; lo, hi = hgt[gate].min(), hgt[gate].max()
-    edges = np.linspace(lo, hi, 81); ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = gate & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"), k, "valid")
-    return ctr, axis
 ctr, axis = compute_axis(mh_pos, mh_body)
-ax = np.stack([np.interp(mh_pos[:, 2], ctr, axis[:, 0]),
-               np.interp(mh_pos[:, 2], ctr, axis[:, 1])], axis=1)
-rel = mh_pos[:, :2] - ax
-mh_r = np.linalg.norm(rel, axis=1)
-mh_th = np.arctan2(rel[:, 0], rel[:, 1])
+_, mh_th, ax, mh_r = torso_cylindrical(mh_pos, ctr, axis, mh_crotch, mh_neck)
 er = np.stack([np.sin(mh_th), np.cos(mh_th)], axis=1)
 gate_all = mh_body & (mh_r < 0.30)
 gate_torso = mh_body & (mh_r < 0.215)
@@ -83,9 +70,6 @@ def profiles(P, gate):
             W[i] = P[m, 0].max() - P[m, 0].min()
             Dp[i] = P[m, 1].max() - P[m, 1].min()
     return W, Dp
-def girth_of(W, Dp):
-    a, b = W / 2, Dp / 2
-    return np.pi * (3 * (a + b) - np.sqrt((3 * a + b) * (a + 3 * b)))
 
 def corrected(D):
     out = {}

@@ -27,16 +27,46 @@ macro map, factor maps). Measurements added here:
 Writes work/coupling_measurements.json. Study-only analysis.
 """
 import json
-import numpy as np
+import sys
 from pathlib import Path
+
+import numpy as np
 
 HERE = Path(__file__).resolve().parent
 BP = HERE.parent
+V2 = BP.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(HERE), str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
-_src = (HERE / "build_coupling_validation.py").read_text()
-_cut = _src.index('print("\\n== GACHIDEBU ==")')
-exec(compile(_src[:_cut], "build_coupling_validation.py", "exec"),
-     globals())
+from body_machinery.loops import loop_perim  # noqa: E402
+from build_coupling_validation import (  # noqa: E402
+    evaluate_effective_vector,
+    load_coupling_validation_context,
+)
+from core.geometry import parse_target  # noqa: E402
+
+_ctx = load_coupling_validation_context()
+mh_tris = _ctx["mh_tris"]
+NB = _ctx["NB"]
+mh_crotch = _ctx["mh_crotch"]
+mh_neck = _ctx["mh_neck"]
+mh_pos = _ctx["mh_pos"]
+mh_pos_mac = _ctx["mh_pos_mac"]
+navel_mh = _ctx["navel_mh"]
+M_F, W_F, T_F = _ctx["M_F"], _ctx["W_F"], _ctx["T_F"]
+T_SCALE = _ctx["T_SCALE"]
+NECK_EMB = _ctx["NECK_EMB"]
+EV = _ctx["EV"]
+d5 = _ctx["d5"]
+BODY_MASK = _ctx["BODY_MASK"]
+ax_mh, th_mh, h_mh = _ctx["ax_mh"], _ctx["th_mh"], _ctx["h_mh"]
+F_VLINE, F_VALLEYS, F_CREASE = _ctx["F_VLINE"], _ctx["F_VALLEYS"], _ctx["F_CREASE"]
+reg, coup = _ctx["reg"], _ctx["coup"]
+factor_map = _ctx["factor_map"]
+B_CORE = _ctx["B_CORE"]
+h_star = _ctx["h_star"]
 
 R = {"note": "follow-up measurements; see COUPLING_VALIDATION.md"}
 CM = 100.0
@@ -97,11 +127,6 @@ def plane_loops2(points, axis, value):
     return loops
 
 
-def loop_perim(L):
-    d = np.diff(np.vstack([L, L[:1]]), axis=0)
-    return float(np.hypot(d[:, 0], d[:, 1]).sum())
-
-
 def band_max(P, hlo, hhi, step=0.02):
     cz, nz = mh_crotch, mh_neck
     best = 0.0
@@ -128,23 +153,10 @@ def station_table(P):
             "thigh": thigh}
 
 
-def load_target(tag):
-    """MakeHuman .target text format: '#' comments, then
-    'index dx dy dz' lines (deltas in basemesh units vs base.obj
-    rest positions -- the header contract of the proofs' writer)."""
-    d = np.zeros((len(mh_pos), 3))
-    for line in (BP / f"body.coupling.{tag}.target").read_text().splitlines():
-        if not line or line.startswith("#"):
-            continue
-        p = line.split()
-        if len(p) == 4:
-            s = [float(p[1]), float(p[2]), float(p[3])]
-            # writer stores [dx, dz, dy] / 0.1 (MPFB decimetre frame)
-            d[int(p[0])] = [s[0] * 0.1, s[2] * 0.1, s[1] * 0.1]
-    return d
-
-
-TARGETS = {t: load_target(t) for t in ("gachidebu", "pear", "bigchest")}
+TARGETS = {
+    t: parse_target(BP / f"body.coupling.{t}.target", len(mh_pos))
+    for t in ("gachidebu", "pear", "bigchest")
+}
 
 # --------------------------------------------------------- girth stations
 print("station tables (perimeter method)...")

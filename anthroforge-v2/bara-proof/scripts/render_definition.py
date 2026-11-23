@@ -14,15 +14,26 @@ Run: HOME=/tmp/af_home xvfb-run blender -b --python render_definition.py
 """
 import json
 import math
+import sys
 from pathlib import Path
 
 import bpy
 import numpy as np
 
 HERE = Path(__file__).resolve().parent.parent
+V2 = HERE.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery.axes import axis_at_3d  # noqa: E402
+from body_machinery.osd import BODY_END  # noqa: E402
+from core.geometry import face_normals  # noqa: E402
+
 WORK = HERE / "work"
 RENDERS = HERE / "renders"
-FP_WORK = HERE.parent / "first-proof" / "work"
+FP_WORK = V2 / "first-proof" / "work"
 MPFB_ZIP = Path("/home/hatch/workspace/stick-figure-avatar/photoreal/"
                 "tools/mpfb2.zip")
 NUM = json.loads((WORK / "definition_numbers.json").read_text())
@@ -44,7 +55,6 @@ DEFKEY = {"body.definition.flat_abs": "flat_abs",
           "body.definition.traps_valleys": "valleys",
           "body.definition.pecs_crease": "crease",
           "body.definition.back": "back"}
-BODY_END = 13380
 
 corr = np.load(FP_WORK / "correspondence.npz")
 NAVEL = int(corr["navel_mh"])
@@ -105,17 +115,11 @@ tris = np.array([[v for v in t.vertices]
 tris = tris[np.all(tris < BODY_END, axis=1)]
 
 
-def fn(P, F):
-    nn = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return nn / np.maximum(np.linalg.norm(nn, axis=1, keepdims=True),
-                           1e-14)
-
-
 res = {"body_triangles": int(len(tris)), "states": {}}
 for tag, st in STATES.items():
     set_state(**st)
     pos = evaluated()
-    dots = np.einsum("ij,ij->i", fn(base, tris), fn(pos, tris))
+    dots = np.einsum("ij,ij->i", face_normals(base, tris), face_normals(pos, tris))
     res["states"][tag] = {"flips": int((dots < 0).sum()),
                           "min_dot": float(dots.min())}
     print(f"R evaluated {tag}: flips {(dots < 0).sum()}, "
@@ -134,13 +138,7 @@ for z in np.arange(nz - 0.06, nz + 0.061, 0.005):
 slices = np.array(slices)
 zg = slices[:, 2]
 
-
-def axis_at(z):
-    return np.array([np.interp(z, zg, slices[:, 0]),
-                     np.interp(z, zg, slices[:, 1]), z])
-
-
-fdir = base[NAVEL] - axis_at(nz)
+fdir = base[NAVEL] - axis_at_3d(zg, slices, nz)
 fdir[2] = 0.0
 fdir = fdir / np.linalg.norm(fdir)
 side = np.array([-fdir[1], fdir[0], 0.0])
@@ -182,7 +180,7 @@ def point_cam(loc, target):
         0, math.atan2(d[1], d[0]) - math.pi / 2)
 
 
-centre = axis_at(1.04)
+centre = axis_at_3d(zg, slices, 1.04)
 front_loc = tuple(centre + fdir * 1.30 + np.array([0, 0, 0.06]))
 back_loc = tuple(centre - fdir * 1.30 + side * 0.22
                  + np.array([0, 0, 0.08]))

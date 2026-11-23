@@ -21,6 +21,15 @@ import bpy
 import numpy as np
 
 HERE = Path(__file__).resolve().parent.parent
+V2 = HERE.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery import axis_at_3d  # noqa: E402
+from core.geometry import face_normals as fn  # noqa: E402
+
 WORK = HERE / "work"
 RENDERS = HERE / "renders"
 MPFB_ZIP = Path("/home/hatch/workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip")
@@ -89,8 +98,7 @@ zg = slices[:, 2]
 
 
 def axis_at(z):
-    return np.array([np.interp(z, zg, slices[:, 0]),
-                     np.interp(z, zg, slices[:, 1]), z])
+    return axis_at_3d(zg, slices, z)
 
 
 fdir = base[NAVEL] - axis_at(nz)
@@ -124,13 +132,6 @@ cen = base[tris].mean(axis=1)
 front = (cen - np.array([axis_at(z) for z in cen[:, 2]])) @ fdir
 belly_sel = (np.abs(cen[:, 2] - nz) < 0.20) & (front > 0.03) & (np.abs(cen[:, 0]) < 0.17)
 fb = tris[belly_sel]
-
-
-def fn(P, F):
-    nn = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return nn / np.maximum(np.linalg.norm(nn, axis=1, keepdims=True), 1e-14)
-
-
 dots = np.einsum("ij,ij->i", fn(base, fb), fn(pos1, fb))
 res["eval_belly_region"] = {"faces": int(belly_sel.sum()),
                             "flips": int((dots < 0).sum()),

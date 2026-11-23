@@ -27,76 +27,23 @@ Writes work/wolf_crosscheck.json. Geometry dumped to /tmp scratch by
 a Blender world-space pass (dump_wolves.py, session scratch).
 """
 import json
-from collections import defaultdict
+import sys
 from pathlib import Path
 
 import numpy as np
+
+V2 = Path(__file__).resolve().parents[2]
+if str(V2) not in sys.path:
+    sys.path.insert(0, str(V2))
+
+from body_machinery.loops import loop_perim as perim, plane_loops as _plane_loops  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "work"
 SCRATCH = Path("/tmp/nf_work")
 
 
 def plane_loops(pos, F, n, p0):
-    n = n / np.linalg.norm(n)
-    d = (pos - p0) @ n
-    dv = d[F]
-    per_face = {}
-    for e in ((0, 1), (1, 2), (2, 0)):
-        a, b = dv[:, e[0]], dv[:, e[1]]
-        cross = (a >= 0) != (b >= 0)
-        if not cross.any():
-            continue
-        fa, fb = F[cross, e[0]], F[cross, e[1]]
-        t = a[cross] / (a[cross] - b[cross])
-        pts = pos[fa] + (pos[fb] - pos[fa]) * t[:, None]
-        for i, f in enumerate(np.where(cross)[0]):
-            per_face.setdefault(int(f), []).append(pts[i])
-    raw = [np.stack(v) for v in per_face.values() if len(v) == 2]
-    if not raw:
-        return []
-    S = np.stack([s[0] for s in raw])
-    E = np.stack([s[1] for s in raw])
-
-    def key(p):
-        return (round(float(p[0]), 4), round(float(p[1]), 4),
-                round(float(p[2]), 4))
-    at = defaultdict(list)
-    for i in range(len(raw)):
-        at[key(S[i])].append((i, 0))
-        at[key(E[i])].append((i, 1))
-    used = np.zeros(len(raw), bool)
-    loops = []
-    for i0 in range(len(raw)):
-        if used[i0]:
-            continue
-        used[i0] = True
-        loop = [S[i0], E[i0]]
-        cur = key(E[i0])
-        for _ in range(len(raw) + 2):
-            nxt = None
-            for (j, end) in at.get(cur, []):
-                if not used[j]:
-                    nxt = (j, end)
-                    break
-            if nxt is None:
-                break
-            j, end = nxt
-            used[j] = True
-            p = E[j] if end == 0 else S[j]
-            loop.append(p)
-            cur = key(p)
-            if cur == key(loop[0]):
-                break
-        if len(loop) >= 4:
-            loops.append(np.array(loop[:-1])
-                         if np.allclose(loop[-1], loop[0])
-                         else np.array(loop))
-    return loops
-
-
-def perim(lp):
-    q = np.roll(lp, -1, axis=0)
-    return float(np.linalg.norm(q - lp, axis=1).sum())
+    return _plane_loops(pos, F, n, p0, round_decimals=4)
 
 
 def load_parts(tag):

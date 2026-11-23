@@ -21,13 +21,16 @@ muzzle retracts ~0.05 L under it, so the nose is carried by the same
 material-point seat delta the builder already uses for ears).
 """
 import math
+import sys
+from pathlib import Path
 
 import numpy as np
 
+V2 = Path(__file__).resolve().parents[3]
+if str(V2) not in sys.path:
+    sys.path.insert(0, str(V2))
 
-def sstep(x, a, b):
-    t = np.clip((np.asarray(x, float) - a) / (b - a), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
+from body_machinery.axes import sstep
 
 
 def ratio_factor(neutral, span, val):

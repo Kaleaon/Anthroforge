@@ -75,7 +75,6 @@ ankle, upper-arm underside pooling, inner-thigh gap/contact).
 """
 import json
 import sys
-import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -83,6 +82,33 @@ import scipy.sparse as sp
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent
+V2 = OUT.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery import (  # noqa: E402
+    BODY_END,
+    DM_M,
+    SK_UNIT_M,
+    axis_at,
+    compute_axis,
+    cosfade,
+    crotch_of,
+    extract_base_positions,
+    extract_limbs,
+    girth_ellipse,
+    limb_field_sphi,
+    limb_params,
+    load_mpfb_base_obj,
+    neck_base,
+    slope_limit_iter,
+    smooth_polyline,
+    smoothstep,
+)
+from core.geometry import face_normals, write_target  # noqa: E402
+
 WORK = OUT / "work"
 LEARNED = Path.home() / "workspace/character_assets/learned"
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
@@ -90,10 +116,6 @@ HIMBO_DIR = (Path.home() / "workspace/character_assets/_himbo_work/CalienteTools
              "/BodySlide/ShapeData/HIMBO")
 sys.path.insert(0, str(LEARNED / "tools"))
 from osdparse import load_osd  # noqa: E402
-
-SK_UNIT_M = 0.01428
-DM_M = 0.1
-BODY_END = 13380
 
 # HIMBO "Chonky" preset recipe, ARMS + LEGS blocks only (big values
 # /100 from himbo_presets_all.json; every listed slider has small=0
@@ -137,77 +159,13 @@ fm = np.load(LEARNED / "fat-males_body_morph.npz")
 fm_pos = fm["body_vertices"].astype(np.float64) * SK_UNIT_M
 fm_delta = fm["body_delta"].astype(np.float64) * SK_UNIT_M
 
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    obj_lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-mh_obj = np.array([[float(x) for x in l.split()[1:4]]
-                   for l in obj_lines if l.startswith("v ")])
-mh_faces = []
-for l in obj_lines:
-    if l.startswith("f "):
-        mh_faces.append([int(t.split("/")[0]) - 1 for t in l.split()[1:]])
-mh_pos = np.stack([mh_obj[:, 0], mh_obj[:, 2], mh_obj[:, 1]], axis=1) * DM_M
+mh_pos, mh_faces = load_mpfb_base_obj(MPFB_ZIP, with_poly_faces=True)
 mh_body = np.zeros(len(mh_pos), bool); mh_body[:BODY_END] = True
 mh_pos_mac = mh_pos.copy()
 _mac = np.load(WORK / "mh_macro_base.npz")["pos_canonical_m"]
 mh_pos_mac[:len(_mac)] = _mac
 
 # ------------------------------------------------------- shared machinery
-def compute_axis(pos, gate=None):
-    if gate is None:
-        gate = np.ones(len(pos), bool)
-    hgt = pos[:, 2]
-    lo, hi = hgt[gate].min(), hgt[gate].max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = gate & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"), k, "valid")
-    return ctr, axis
-
-def axis_at(ctr, axis, hgt):
-    return np.stack([np.interp(hgt, ctr, axis[:, 0]),
-                     np.interp(hgt, ctr, axis[:, 1])], axis=1)
-
-def crotch_of(pos, gate, mid_hw=0.030, slab_hw=0.060):
-    mid = gate & (np.abs(pos[:, 0]) < mid_hw) & (np.abs(pos[:, 1]) < slab_hw)
-    return float(pos[mid, 2].min())
-
-def neck_base(pos, ctr, axis, crotch, label):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    r = np.linalg.norm(pos[:, :2] - ax, axis=1)
-    gated = r < 0.23
-    bands = np.linspace(crotch, pos[:, 2].max(), 160)
-    C = 0.5 * (bands[:-1] + bands[1:]); Wd = np.zeros(len(C))
-    for i, (a, b) in enumerate(zip(bands[:-1], bands[1:])):
-        m = gated & (pos[:, 2] >= a) & (pos[:, 2] < b)
-        if m.sum() >= 4:
-            Wd[i] = np.percentile(pos[m, 0], 99) - np.percentile(pos[m, 0], 1)
-    above = C > crotch + 0.20 * (C[-1] - crotch)
-    chest_i = int(np.argmax(np.where(above, Wd, 0)))
-    neck, run = None, 0
-    for i in range(chest_i + 1, len(Wd)):
-        if 0 < Wd[i] < 0.55 * Wd[chest_i]:
-            run += 1
-            if run >= 3:
-                neck = C[i - 2]; break
-        else:
-            run = 0
-    print(f"{label}: neck base {neck:.4f} m")
-    return neck
-
-def face_normals(P, F):
-    n = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-14)
-
 edges_all = np.vstack([mh_tris[:, [0, 1]], mh_tris[:, [1, 2]], mh_tris[:, [2, 0]]])
 edges_all = np.unique(np.sort(edges_all, axis=1), axis=0)
 A_mat = sp.coo_matrix((np.ones(len(edges_all)),
@@ -218,199 +176,10 @@ deg = np.asarray(A_mat.sum(axis=1)).ravel()
 Lop = sp.diags(1.0 / np.maximum(deg, 1)) @ A_mat
 nbrs = [np.asarray(A_mat[v].nonzero()[1]) for v in range(len(mh_pos))]
 
-# ------------------------------------------------ limb axis extraction
-def smooth_polyline(pts, passes=3):
-    """Binomial smoothing, endpoints fixed. Coarse source meshes
-    (Fat Males: 2,024 verts) give band centroids that zigzag; an
-    unsmoothed axis inflates arc length and corrupts (s, phi)."""
-    pts = pts.copy()
-    for _ in range(passes):
-        mid = 0.25 * pts[:-2] + 0.5 * pts[1:-1] + 0.25 * pts[2:]
-        pts[1:-1] = mid
-    return pts
-
-def extract_limbs(pos, gate, label):
-    """Returns dict: for each of arm_R/arm_L/leg_R/leg_L a polyline
-    (proximal->distal points), its length, side sign. Legs: z-band
-    centroids per side. Arms: PCA-direction bands per side."""
-    ctr, axis = compute_axis(pos, gate)
-    ax_x = lambda z: np.interp(z, ctr, axis[:, 0])
-    crotch = crotch_of(pos, gate)
-    neck = neck_base(pos, ctr, axis, crotch, label)
-    zmin = float(pos[gate, 2].min())
-    out = {}
-    # ---- legs (bands ascend ankle->hip; reversed to proximal-first)
-    for side, sname in ((1.0, "R"), (-1.0, "L")):
-        seeds = gate & (np.sign(pos[:, 0] - ax_x(pos[:, 2])) == side) \
-            & (np.abs(pos[:, 0] - ax_x(pos[:, 2])) > 0.025) \
-            & (pos[:, 2] < crotch + 0.02) & (pos[:, 2] > zmin + 0.09)
-        pts = []
-        zb = np.arange(zmin + 0.09, crotch + 0.02, 0.025)
-        for a in zb:
-            m = seeds & (pos[:, 2] >= a) & (pos[:, 2] < a + 0.025)
-            if m.sum() >= 4:
-                pts.append(pos[m].mean(axis=0))
-        pts = np.array(pts)                       # ankle -> hip order
-        d_top = pts[-1] - pts[-2]; d_top /= np.linalg.norm(d_top)
-        d_bot = pts[0] - pts[1]; d_bot /= np.linalg.norm(d_bot)
-        pts = np.vstack([pts[0] + d_bot * 0.05, pts, pts[-1] + d_top * 0.06])
-        pts = smooth_polyline(pts[::-1].copy())   # hip -> ankle order
-        seg = np.linalg.norm(np.diff(pts, axis=0), axis=1)
-        out[f"leg_{sname}"] = {"pts": pts, "length": float(seg.sum()),
-                               "side": side, "kind": "leg"}
-    # ---- arms
-    for side, sname in ((1.0, "R"), (-1.0, "L")):
-        seeds = gate & (np.sign(pos[:, 0] - ax_x(pos[:, 2])) == side) \
-            & (np.abs(pos[:, 0] - ax_x(pos[:, 2])) > 0.17) \
-            & (pos[:, 2] > crotch + 0.10) & (pos[:, 2] < neck + 0.02)
-        P = pos[seeds]
-        c0 = P.mean(axis=0)
-        _, _, vt = np.linalg.svd(P - c0, full_matrices=False)
-        d = vt[0]
-        if d[0] * side < 0:
-            d = -d
-        t = (P - c0) @ d
-        pts = []
-        tb = np.arange(t.min(), t.max(), 0.025)
-        for a in tb:
-            m = (t >= a) & (t < a + 0.025)
-            if m.sum() >= 3:
-                pts.append(P[m].mean(axis=0))
-        pts = np.array(pts)                       # shoulder -> wrist order
-        d0 = pts[1] - pts[0]; d0 /= np.linalg.norm(d0)
-        d1 = pts[-1] - pts[-2]; d1 /= np.linalg.norm(d1)
-        pts = np.vstack([pts[0] - d0 * 0.05, pts, pts[-1] + d1 * 0.03])
-        pts = smooth_polyline(pts)
-        seg = np.linalg.norm(np.diff(pts, axis=0), axis=1)
-        out[f"arm_{sname}"] = {"pts": pts, "length": float(seg.sum()),
-                               "side": side, "kind": "arm"}
-    for k, v in out.items():
-        print(f"{label} {k}: {len(v['pts'])} axis pts, length "
-              f"{v['length']*100:.1f} cm, prox {np.round(v['pts'][0],3)}, "
-              f"dist {np.round(v['pts'][-1],3)}")
-    return out
-
-def limb_params(pos, limb):
-    """(s, dist, phi, er, adir) for every vert vs one limb polyline.
-    phi measured in mirrored right-limb space: left limbs are x-flipped
-    about x=0 for the angle only, so phi=0 is lateral-out, +pi/2 front,
-    pi inner, -pi/2 back on BOTH sides."""
-    pts = limb["pts"]; side = limb["side"]
-    segv = np.diff(pts, axis=0)
-    seglen = np.linalg.norm(segv, axis=1)
-    cum = np.concatenate([[0], np.cumsum(seglen)])
-    L = cum[-1]
-    best_d2 = np.full(len(pos), np.inf)
-    s_out = np.zeros(len(pos)); pt_out = np.zeros_like(pos)
-    dir_out = np.zeros_like(pos)
-    for i, (p0, v) in enumerate(zip(pts[:-1], segv)):
-        vv = max(float(v @ v), 1e-14)
-        tt = np.clip(((pos - p0) @ v) / vv, 0, 1)
-        q = p0 + tt[:, None] * v
-        d2 = np.einsum("ij,ij->i", pos - q, pos - q)
-        m = d2 < best_d2
-        best_d2[m] = d2[m]
-        s_out[m] = (cum[i] + tt[m] * seglen[i]) / L
-        pt_out[m] = q[m]
-        dir_out[m] = (v / seglen[i])
-    dist = np.sqrt(best_d2)
-    rel = pos - pt_out
-    er = rel / np.maximum(dist, 1e-9)[:, None]
-    # mirrored-space angle: flip x of the radial dir for left limbs
-    rel_m = rel.copy(); rel_m[:, 0] *= side
-    adir_m = dir_out.copy(); adir_m[:, 0] *= side
-    # per-vertex frames (vectorised gram-schmidt)
-    a = adir_m
-    eo = np.tile(np.array([1.0, 0, 0]), (len(pos), 1))
-    eo = eo - np.einsum("ij,ij->i", eo, a)[:, None] * a
-    eo /= np.maximum(np.linalg.norm(eo, axis=1, keepdims=True), 1e-12)
-    ef = np.tile(np.array([0.0, 1.0, 0]), (len(pos), 1))
-    ef = ef - np.einsum("ij,ij->i", ef, a)[:, None] * a \
-             - np.einsum("ij,ij->i", ef, eo)[:, None] * eo
-    ef /= np.maximum(np.linalg.norm(ef, axis=1, keepdims=True), 1e-12)
-    reln = rel_m / np.maximum(dist, 1e-9)[:, None]
-    phi = np.arctan2(np.einsum("ij,ij->i", reln, ef),
-                     np.einsum("ij,ij->i", reln, eo))
-    return s_out, dist, phi, er, dir_out
-
 GATE = {"arm": 0.135, "leg": 0.175}
-
-def limb_field(pos, delta, limbs, kind, label):
-    """(s, phi) -> (dr, da) kernel field for one limb kind, both sides
-    pooled (mirrored). Returns (eval_fn, info)."""
-    S_, P_, R_, A_ = [], [], [], []
-    for name in (f"{kind}_R", f"{kind}_L"):
-        lb = limbs[name]
-        s, dist, phi, er, adir = limb_params(pos, lb)
-        samp = (dist < GATE[kind]) & (s > -0.04) & (s < 1.05)
-        S_.append(s[samp]); P_.append(phi[samp])
-        R_.append(np.einsum("ij,ij->i", delta, er)[samp])
-        A_.append(np.einsum("ij,ij->i", delta, adir)[samp])
-    S = np.concatenate(S_); PH = np.concatenate(P_)
-    DR = np.concatenate(R_); DA = np.concatenate(A_)
-    # arc length around the limb uses a constant characteristic radius
-    # per kind (arm 0.055 m, leg 0.085 m); sigma_A is metres of arc.
-    R_CHAR = 0.055 if kind == "arm" else 0.085
-    SIG_S, SIG_A = 0.06, 0.035
-    def ev(sq, pq, idx=None):
-        if idx is None:
-            idx = np.arange(len(S))
-        o_r = np.zeros(len(sq)); o_a = np.zeros(len(sq))
-        for s0 in range(0, len(sq), 800):
-            q = slice(s0, s0 + 800)
-            ds = (S[idx][:, None] - sq[q][None, :]) / SIG_S
-            dp = (PH[idx][:, None] - pq[q][None, :])
-            dp = (dp + np.pi) % (2 * np.pi) - np.pi
-            da_ = dp * R_CHAR / SIG_A
-            w = np.exp(-0.5 * (ds ** 2 + da_ ** 2))
-            ws = w.sum(axis=0) + 1e-12
-            o_r[q] = (w * DR[idx][:, None]).sum(axis=0) / ws
-            o_a[q] = (w * DA[idx][:, None]).sum(axis=0) / ws
-        return o_r, o_a
-    rng = np.random.default_rng(20261112)
-    inf = np.where(np.hypot(DR, DA) > 0.0005)[0]
-    perm = rng.permutation(inf); folds = np.array_split(perm, 5)
-    errs = np.zeros(len(inf))
-    for f in folds:
-        tr = np.setdiff1d(perm, f)
-        pos_in_inf = np.searchsorted(inf, f)
-        pr, pa = ev(S[f], PH[f], idx=tr)
-        errs[pos_in_inf] = np.hypot(pr - DR[f], pa - DA[f])
-    cv = {k: float(v * 100) for k, v in zip(
-        ["p50", "p95", "max"], np.percentile(errs, [50, 95, 100]))}
-    info = {"label": label, "kind": kind, "samples": int(len(S)),
-            "informative": int(len(inf)), "cv_cm": cv}
-    print(f"limb field {label}: {len(S)} samples ({len(inf)} informative), "
-          f"CV p50 {cv['p50']:.3f} / p95 {cv['p95']:.3f} / max {cv['max']:.3f} cm")
-    return ev, info
 
 # ---------------------------------------------------------------- sources
 fm_limbs = extract_limbs(fm_pos, np.ones(len(fm_pos), bool), "fatmales")
-
-def extract_base_positions(data, expect_min_verts):
-    """Embedded vertex stream scan, copied from build_belly_v4.py."""
-    best = None
-    for phase in range(0, 32, 2):
-        n = (len(data) - phase) // 32
-        if n < expect_min_verts:
-            continue
-        rec = np.frombuffer(data[phase:phase + n * 32], dtype="<f4")
-        rec = rec.reshape(n, 8).astype(np.float64)
-        pos, pad = rec[:, :3], rec[:, 3]
-        ok = (np.isfinite(pos).all(axis=1) & (np.abs(pos[:, 0]) < 60) &
-              (np.abs(pos[:, 1]) < 45) & (pos[:, 2] > -15) &
-              (pos[:, 2] < 160) & (np.abs(pad) < 0.01) &
-              (np.abs(pos).max(axis=1) > 0.05))
-        ch = np.diff(np.concatenate(([0], ok.view(np.int8), [0])))
-        st = np.where(ch == 1)[0]
-        en = np.where(ch == -1)[0]
-        for s, e in zip(st, en):
-            if e - s >= expect_min_verts:
-                run = pos[s:e]
-                cand = (int(e - s), float(run[:, 2].max() - run[:, 2].min()), run)
-                if best is None or cand[:2] > best[:2]:
-                    best = cand
-    return None if best is None else best[2]
 
 hi_pos_u = extract_base_positions(
     (HIMBO_DIR / "HIMBO Body - Vanilla.nif").read_bytes(), 4000)
@@ -436,10 +205,10 @@ scales, fields = {}, {}
 for kind in ("arm", "leg"):
     scales[f"fm_{kind}"] = mh_limbs[f"{kind}_R"]["length"] / fm_limbs[f"{kind}_R"]["length"]
     scales[f"hi_{kind}"] = mh_limbs[f"{kind}_R"]["length"] / hi_limbs[f"{kind}_R"]["length"]
-    fields[f"fm_{kind}"] = limb_field(fm_pos, fm_delta, fm_limbs, kind,
-                                      f"fat_males_{kind}")
-    fields[f"hi_{kind}"] = limb_field(hi_pos, hi_delta_limb, hi_limbs, kind,
-                                      f"himbo_limb_{kind}")
+    fields[f"fm_{kind}"] = limb_field_sphi(fm_pos, fm_delta, fm_limbs, kind,
+                                           f"fat_males_{kind}", gate_map=GATE)
+    fields[f"hi_{kind}"] = limb_field_sphi(hi_pos, hi_delta_limb, hi_limbs, kind,
+                                           f"himbo_limb_{kind}", gate_map=GATE)
 print("limb length scales:", {k: round(v, 3) for k, v in scales.items()})
 
 # alpha calibration on the THIGH band: mean |dr| over leg samples
@@ -458,13 +227,6 @@ print(f"thigh-band |dr| (scaled): Fat Males {fm_thigh*100:.2f} cm, HIMBO limb "
       f"recipe {hi_thigh*100:.2f} cm -> alpha_limb {alpha_limb:.3f}")
 
 # ------------------------------------------------------- target-side field
-def smoothstep(a, b, x):
-    t = np.clip((x - a) / (b - a), 0, 1)
-    return t * t * (3 - 2 * t)
-def cosfade(a, b, x):
-    t = np.clip((x - a) / (b - a), 0, 1)
-    return 0.5 + 0.5 * np.cos(np.pi * t)
-
 limb_of = {}
 for name in ("arm_R", "arm_L", "leg_R", "leg_L"):
     kind = name.split("_")[0]
@@ -594,25 +356,7 @@ def flips_on(delta, bname):
 
 aff_edges = np.array([e for e in edges_all
                       if supp[e[0]] or supp[e[1]]])
-elen = np.linalg.norm(mh_pos[aff_edges[:, 0]] - mh_pos[aff_edges[:, 1]], axis=1)
 KAPPA = 0.55
-def slope_limit(Ds, supp_mask):
-    Ds = Ds.copy()
-    for it in range(80):
-        diff = Ds[aff_edges[:, 0]] - Ds[aff_edges[:, 1]]
-        dn = np.linalg.norm(diff, axis=1)
-        excess = dn - KAPPA * elen
-        if (excess <= 0).all():
-            return Ds, it
-        corr_ = np.zeros_like(Ds); wgt = np.zeros(len(Ds))
-        m_ = excess > 0
-        adj = (0.5 * excess[m_] / np.maximum(dn[m_], 1e-12))[:, None] * diff[m_]
-        np.add.at(corr_, aff_edges[m_, 0], -adj)
-        np.add.at(corr_, aff_edges[m_, 1], adj)
-        np.add.at(wgt, aff_edges[m_, 0], 1); np.add.at(wgt, aff_edges[m_, 1], 1)
-        Ds += 0.7 * corr_ / np.maximum(wgt, 1)[:, None]
-        Ds[~supp_mask] = 0.0
-    return Ds, 80
 
 def repair_inc(INC_raw, supp_mask, max_rounds=60):
     att = np.ones(len(INC_raw))
@@ -642,7 +386,9 @@ for s_try in (1.0, 0.85, 0.7, 0.55):
     INCc, _, _ = compose(s_try)
     supp_c = np.linalg.norm(INCc, axis=1) > 0.0002
     INCc = graph_smooth(INCc, supp_c)
-    INCc, lim_it = slope_limit(INCc, supp_c)
+    INCc, lim_it = slope_limit_iter(
+        INCc, aff_edges, mh_pos, kappa=KAPPA, max_iters=80, supp_mask=supp_c
+    )
     pre = (flips_on(D4 + INCc, "raw")[0], flips_on(D4 + INCc, "macro")[0])
     INC_fin, att, converged, rounds = repair_inc(INCc, supp_c)
     print(f"inc scale {s_try}: limiter {lim_it} it, pre-repair flips "
@@ -742,10 +488,6 @@ nav = {"v4_at_+1": navel_vec(D4), "v5_at_+1": navel_vec(D5),
 print("navel:", json.dumps(nav))
 
 # ------------------------------------------------------------- limb metrics
-def girth_ellipse(w, d):
-    a, b = w / 2, d / 2
-    return np.pi * (3 * (a + b) - np.sqrt((3 * a + b) * (a + 3 * b)))
-
 def limb_profile(P, name):
     lb = mh_limbs[name]
     s, dist, phi, er, adir = limb_params(mh_pos, lb)
@@ -860,8 +602,6 @@ for name in ("arm_R", "arm_L"):
 print("underside pooling:", json.dumps(pool))
 
 # ------------------------------------------------- v4 scorecard re-run
-def compute_axis_full(pos, gate):
-    return compute_axis(pos, gate)
 mh_ctr, mh_axis = compute_axis(mh_pos, mh_body)
 _h = (mh_pos[:, 2] - mh_crotch) / L_mh
 _ax = axis_at(mh_ctr, mh_axis, mh_pos[:, 2])
@@ -932,24 +672,6 @@ qa4 = json.loads((WORK / "qa_numbers_v4.json").read_text())
 m4_first = {"v3": qa4["metrics_v3"], "v4": qa4["metrics_v4"]}
 
 # ---------------------------------------------------------------- targets
-def fmt(v):
-    s_ = f"{abs(v):.3f}".rstrip("0")
-    if s_.endswith("."): s_ += "0"
-    if s_ in ("", "0."): s_ = "0"
-    return ("-" + s_) if v < 0 else s_
-def write_target(path, delta, note):
-    d_obj = np.stack([delta[:, 0], delta[:, 2], delta[:, 1]], axis=1) / DM_M
-    moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
-    header = ("# This is a target file for MakeHuman\n#\n"
-              "# It was written by the MakeTarget submodule of MPFB\n#\n"
-              "# For more information, see MakeHuman's home page at "
-              "http://www.makehumancommunity.org\n#\n# basemesh hm08\n"
-              f"# {note}\n")
-    with open(path, "w") as fh:
-        fh.write(header)
-        for i in moved:
-            fh.write(f"{i} {fmt(d_obj[i,0])} {fmt(d_obj[i,1])} {fmt(d_obj[i,2])}\n")
-    return int(len(moved))
 NOTE5 = ("Provenance: omniversal slider body.belly.protrusion v5 (whole-"
          "body adiposity: v4 whole-torso system extended into the limbs), "
          "instance makehuman_hm08. Combined field at w=+1: v4 (torso) plus "

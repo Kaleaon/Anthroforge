@@ -42,6 +42,7 @@ inter-digit minimum distances base vs deformed (no webbing
 collapse); zone gain table.
 """
 import json
+import sys
 import zipfile
 from pathlib import Path
 
@@ -51,13 +52,27 @@ from scipy.spatial import cKDTree
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent
+V2 = OUT.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery import (  # noqa: E402
+    BODY_END,
+    DM_M,
+    SK_UNIT_M,
+    extract_limbs as _extract_limbs,
+    girth_ellipse,
+    limb_params,
+    load_mpfb_base_obj,
+    smoothstep,
+)
+from core.geometry import face_normals, write_target  # noqa: E402
+
 WORK = OUT / "work"
 LEARNED = Path.home() / "workspace/character_assets/learned"
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
-
-SK_UNIT_M = 0.01428
-DM_M = 0.1
-BODY_END = 13380
 
 # ------------------------------------------------------------------ loads
 corr = np.load(WORK / "correspondence.npz")
@@ -70,172 +85,13 @@ GAMMA = float(_v5["gamma"])
 
 fm = np.load(LEARNED / "fat-males_body_morph.npz")
 
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    obj_lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-mh_obj = np.array([[float(x) for x in l.split()[1:4]]
-                   for l in obj_lines if l.startswith("v ")])
-mh_pos = np.stack([mh_obj[:, 0], mh_obj[:, 2], mh_obj[:, 1]], axis=1) * DM_M
+mh_pos = load_mpfb_base_obj(MPFB_ZIP)
 mh_body = np.zeros(len(mh_pos), bool); mh_body[:BODY_END] = True
 mh_pos_mac = mh_pos.copy()
 _mac = np.load(WORK / "mh_macro_base.npz")["pos_canonical_m"]
 mh_pos_mac[:len(_mac)] = _mac
 
 # ------------------------------------------------------- shared machinery
-def compute_axis(pos, gate=None):
-    if gate is None:
-        gate = np.ones(len(pos), bool)
-    hgt = pos[:, 2]
-    lo, hi = hgt[gate].min(), hgt[gate].max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = gate & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"), k, "valid")
-    return ctr, axis
-
-def axis_at(ctr, axis, hgt):
-    return np.stack([np.interp(hgt, ctr, axis[:, 0]),
-                     np.interp(hgt, ctr, axis[:, 1])], axis=1)
-
-def crotch_of(pos, gate, mid_hw=0.030, slab_hw=0.060):
-    mid = gate & (np.abs(pos[:, 0]) < mid_hw) & (np.abs(pos[:, 1]) < slab_hw)
-    return float(pos[mid, 2].min())
-
-def neck_base(pos, ctr, axis, crotch):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    r = np.linalg.norm(pos[:, :2] - ax, axis=1)
-    gated = r < 0.23
-    bands = np.linspace(crotch, pos[:, 2].max(), 160)
-    C = 0.5 * (bands[:-1] + bands[1:]); Wd = np.zeros(len(C))
-    for i, (a, b) in enumerate(zip(bands[:-1], bands[1:])):
-        m = gated & (pos[:, 2] >= a) & (pos[:, 2] < b)
-        if m.sum() >= 4:
-            Wd[i] = np.percentile(pos[m, 0], 99) - np.percentile(pos[m, 0], 1)
-    above = C > crotch + 0.20 * (C[-1] - crotch)
-    chest_i = int(np.argmax(np.where(above, Wd, 0)))
-    run = 0
-    for i in range(chest_i + 1, len(Wd)):
-        if 0 < Wd[i] < 0.55 * Wd[chest_i]:
-            run += 1
-            if run >= 3:
-                return C[i - 2]
-        else:
-            run = 0
-    return C[-1]
-
-def smooth_polyline(pts, passes=3):
-    pts = pts.copy()
-    for _ in range(passes):
-        mid = 0.25 * pts[:-2] + 0.5 * pts[1:-1] + 0.25 * pts[2:]
-        pts[1:-1] = mid
-    return pts
-
-def extract_limbs(pos, gate):
-    ctr, axis = compute_axis(pos, gate)
-    ax_x = lambda z: np.interp(z, ctr, axis[:, 0])
-    crotch = crotch_of(pos, gate)
-    neck = neck_base(pos, ctr, axis, crotch)
-    zmin = float(pos[gate, 2].min())
-    out = {}
-    for side, sname in ((1.0, "R"), (-1.0, "L")):
-        seeds = gate & (np.sign(pos[:, 0] - ax_x(pos[:, 2])) == side) \
-            & (np.abs(pos[:, 0] - ax_x(pos[:, 2])) > 0.025) \
-            & (pos[:, 2] < crotch + 0.02) & (pos[:, 2] > zmin + 0.09)
-        pts = []
-        zb = np.arange(zmin + 0.09, crotch + 0.02, 0.025)
-        for a in zb:
-            m = seeds & (pos[:, 2] >= a) & (pos[:, 2] < a + 0.025)
-            if m.sum() >= 4:
-                pts.append(pos[m].mean(axis=0))
-        pts = np.array(pts)
-        d_top = pts[-1] - pts[-2]; d_top /= np.linalg.norm(d_top)
-        d_bot = pts[0] - pts[1]; d_bot /= np.linalg.norm(d_bot)
-        pts = np.vstack([pts[0] + d_bot * 0.05, pts, pts[-1] + d_top * 0.06])
-        pts = smooth_polyline(pts[::-1].copy())
-        seg = np.linalg.norm(np.diff(pts, axis=0), axis=1)
-        out[f"leg_{sname}"] = {"pts": pts, "length": float(seg.sum()),
-                               "side": side, "kind": "leg"}
-    for side, sname in ((1.0, "R"), (-1.0, "L")):
-        seeds = gate & (np.sign(pos[:, 0] - ax_x(pos[:, 2])) == side) \
-            & (np.abs(pos[:, 0] - ax_x(pos[:, 2])) > 0.17) \
-            & (pos[:, 2] > crotch + 0.10) & (pos[:, 2] < neck + 0.02)
-        P = pos[seeds]
-        c0 = P.mean(axis=0)
-        _, _, vt = np.linalg.svd(P - c0, full_matrices=False)
-        d = vt[0]
-        if d[0] * side < 0:
-            d = -d
-        t = (P - c0) @ d
-        pts = []
-        tb = np.arange(t.min(), t.max(), 0.025)
-        for a in tb:
-            m = (t >= a) & (t < a + 0.025)
-            if m.sum() >= 3:
-                pts.append(P[m].mean(axis=0))
-        pts = np.array(pts)
-        d0 = pts[1] - pts[0]; d0 /= np.linalg.norm(d0)
-        d1 = pts[-1] - pts[-2]; d1 /= np.linalg.norm(d1)
-        pts = np.vstack([pts[0] - d0 * 0.05, pts, pts[-1] + d1 * 0.03])
-        pts = smooth_polyline(pts)
-        seg = np.linalg.norm(np.diff(pts, axis=0), axis=1)
-        out[f"arm_{sname}"] = {"pts": pts, "length": float(seg.sum()),
-                               "side": side, "kind": "arm"}
-    return out
-
-def limb_params(pos, limb):
-    pts = limb["pts"]; side = limb["side"]
-    segv = np.diff(pts, axis=0)
-    seglen = np.linalg.norm(segv, axis=1)
-    cum = np.concatenate([[0], np.cumsum(seglen)])
-    L = cum[-1]
-    best_d2 = np.full(len(pos), np.inf)
-    s_out = np.zeros(len(pos)); pt_out = np.zeros_like(pos)
-    dir_out = np.zeros_like(pos)
-    for i, (p0, v) in enumerate(zip(pts[:-1], segv)):
-        vv = max(float(v @ v), 1e-14)
-        tt = np.clip(((pos - p0) @ v) / vv, 0, 1)
-        q = p0 + tt[:, None] * v
-        d2 = np.einsum("ij,ij->i", pos - q, pos - q)
-        m = d2 < best_d2
-        best_d2[m] = d2[m]
-        s_out[m] = (cum[i] + tt[m] * seglen[i]) / L
-        pt_out[m] = q[m]
-        dir_out[m] = (v / seglen[i])
-    dist = np.sqrt(best_d2)
-    rel = pos - pt_out
-    er = rel / np.maximum(dist, 1e-9)[:, None]
-    rel_m = rel.copy(); rel_m[:, 0] *= side
-    adir_m = dir_out.copy(); adir_m[:, 0] *= side
-    a = adir_m
-    eo = np.tile(np.array([1.0, 0, 0]), (len(pos), 1))
-    eo = eo - np.einsum("ij,ij->i", eo, a)[:, None] * a
-    eo /= np.maximum(np.linalg.norm(eo, axis=1, keepdims=True), 1e-12)
-    ef = np.tile(np.array([0.0, 1.0, 0]), (len(pos), 1))
-    ef = ef - np.einsum("ij,ij->i", ef, a)[:, None] * a \
-             - np.einsum("ij,ij->i", ef, eo)[:, None] * eo
-    ef /= np.maximum(np.linalg.norm(ef, axis=1, keepdims=True), 1e-12)
-    reln = rel_m / np.maximum(dist, 1e-9)[:, None]
-    phi = np.arctan2(np.einsum("ij,ij->i", reln, ef),
-                     np.einsum("ij,ij->i", reln, eo))
-    return s_out, dist, phi, er, dir_out
-
-def face_normals(P, F):
-    n = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-14)
-
-def smoothstep(a, b, x):
-    t = np.clip((x - a) / (b - a), 0, 1)
-    return t * t * (3 - 2 * t)
-
 edges_all = np.vstack([mh_tris[:, [0, 1]], mh_tris[:, [1, 2]], mh_tris[:, [2, 0]]])
 edges_all = np.unique(np.sort(edges_all, axis=1), axis=0)
 A_mat = sp.coo_matrix((np.ones(len(edges_all)),
@@ -246,7 +102,9 @@ deg = np.asarray(A_mat.sum(axis=1)).ravel()
 Lop = sp.diags(1.0 / np.maximum(deg, 1)) @ A_mat
 nbrs = [np.asarray(A_mat[v].nonzero()[1]) for v in range(len(mh_pos))]
 
-mh_limbs = extract_limbs(mh_pos, mh_body)
+mh_limbs = _extract_limbs(
+    mh_pos, mh_body, None, neck_log_mode=None, neck_fallback_top=True, verbose=False
+)
 for k, v in mh_limbs.items():
     print(f"hm08 {k}: length {v['length']*100:.1f} cm")
 
@@ -356,7 +214,9 @@ def build_hand(side_name):
     except NameError:
         _JOINTS = {}
         _grp = None
-        for _l in obj_lines:
+        with zipfile.ZipFile(MPFB_ZIP) as _zf:
+            _obj_lines = _zf.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
+        for _l in _obj_lines:
             if _l.startswith("g "):
                 _grp = _l[2:].strip().strip("\r")
             elif _l.startswith("f ") and _grp and _grp.startswith("joint-"):
@@ -630,10 +490,6 @@ def graph_smooth_support(V, supp_mask, passes=3, keep=0.35):
     return V
 
 # wrist girth measurement (v5 method: axis-band ellipse at s=0.72)
-def girth_ellipse(w, d):
-    a, b = w / 2, d / 2
-    return np.pi * (3 * (a + b) - np.sqrt((3 * a + b) * (a + 3 * b)))
-
 def station_girth(P, limb_name, s_t, gate_r):
     lb = mh_limbs[limb_name]
     s, dist, phi, er, adir = limb_params(mh_pos, lb)
@@ -841,24 +697,6 @@ qa["zone_gains_source"] = {"hand_perp_mean_mm": HS, "hand_perp_p90_mm": HS90,
                            "ankle_ring_cap_mm": ANKLE_RING_CAP * 1000}
 
 # ---------------------------------------------------------------- targets
-def fmt(v):
-    s_ = f"{abs(v):.3f}".rstrip("0")
-    if s_.endswith("."): s_ += "0"
-    if s_ in ("", "0."): s_ = "0"
-    return ("-" + s_) if v < 0 else s_
-def write_target(path, delta, note):
-    d_obj = np.stack([delta[:, 0], delta[:, 2], delta[:, 1]], axis=1) / DM_M
-    moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
-    header = ("# This is a target file for MakeHuman\n#\n"
-              "# It was written by the MakeTarget submodule of MPFB\n#\n"
-              "# For more information, see MakeHuman's home page at "
-              "http://www.makehumancommunity.org\n#\n# basemesh hm08\n"
-              f"# {note}\n")
-    with open(path, "w") as fh:
-        fh.write(header)
-        for i in moved:
-            fh.write(f"{i} {fmt(d_obj[i,0])} {fmt(d_obj[i,1])} {fmt(d_obj[i,2])}\n")
-    return int(len(moved))
 NOTET = ("Provenance: TERMINAL component of body.belly.protrusion "
          "v5.1 (= combined v5.1 - combined v5). Stacks on the v5 "
          "combined target. Source: Fat Males malehands/malefeet "

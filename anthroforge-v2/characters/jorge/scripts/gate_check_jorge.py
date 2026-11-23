@@ -9,12 +9,12 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path.home()
-                       / "workspace/anthroforge-v2/hyper/scripts"))
+V2 = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(V2 / "hyper/scripts"))
 from hyper_common import (fold_stats, load_base, load_macro,
                           load_target)
 
-TG = Path.home() / "workspace/anthroforge-v2/characters/jorge/targets"
+TG = Path(__file__).resolve().parents[1] / "targets"
 V, F, Fb = load_base()
 Vm = load_macro(V)
 M = load_target(TG / "body.muscle.target")

@@ -22,6 +22,7 @@ Run: HOME=/tmp/af_home xvfb-run blender -b --python build_body_fur.py
 """
 import json
 import math
+import sys
 from pathlib import Path
 
 import bmesh
@@ -32,12 +33,16 @@ from mathutils import Matrix
 HERE = Path(__file__).resolve().parent
 SEN = HERE.parent
 V2 = SEN.parent.parent
+sys.path.insert(0, str(V2))
+
+from body_machinery.axes import sstep  # noqa: E402
+from body_machinery.osd import BODY_END  # noqa: E402
+
 WORK = SEN / "work"
 REND = SEN / "renders"
 TG = SEN / "targets"
 MPFB_ZIP = Path("/home/hatch/workspace/stick-figure-avatar/photoreal/"
                 "tools/mpfb2.zip")
-BODY_END = 13380
 HEAD_SCALE = 0.42 / 1.74
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -57,11 +62,6 @@ def co_of(o):
     co = np.empty(len(o.data.vertices) * 3)
     o.data.vertices.foreach_get("co", co)
     return co.reshape(-1, 3) @ M[:3, :3].T + M[:3, 3]
-
-
-def sstep(x, a, b):
-    t = np.clip((np.asarray(x, float) - a) / (b - a), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
 
 
 # ------------------------------------------------------------ stage A

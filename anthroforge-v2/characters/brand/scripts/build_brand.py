@@ -44,7 +44,6 @@ work/brand_body_delta.npz (delta on the APP base).
 """
 import json
 import sys
-import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -52,11 +51,19 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 BRAND = HERE.parent
 V2 = BRAND.parent.parent
-APP = Path.home() / "workspace/anthroforge-app"
+APP = V2.parent / "anthroforge-app"
+sys.path.insert(0, str(V2))
 sys.path.insert(0, str(APP))
-sys.path.insert(0, str(V2 / "characters" / "sen" / "scripts"))
-import bara_machinery as BM  # noqa: E402
 
+from body_machinery.axes import torso_params  # noqa: E402
+from body_machinery.labels import label_mesh  # noqa: E402
+from body_machinery.loops import grade as _bm_grade  # noqa: E402
+from body_machinery.osd import (  # noqa: E402
+    BODY_END,
+    align_macro_base,
+    load_mpfb_base_obj,
+)
+from body_machinery.repair import flipped  # noqa: E402
 from core.build import (Library, build_character, evaluate_character,  # noqa: E402
                         run_qa_gauntlet, WORKSPACE_ROOT)
 from core.character import Character             # noqa: E402
@@ -66,7 +73,6 @@ TARGET_HEIGHT_M = 1.83
 DRAFT_MASS_KG = 140.0
 BELLY_W = 0.30
 SCAN_S = (0.35, 0.45, 0.55, 0.65)
-BODY_END = 13380
 
 lib = Library.load(APP / "library")
 preset = Character.load(APP / "library" / "presets" / "brand.afchar.json")
@@ -90,31 +96,31 @@ corr = np.load(FP / "work/correspondence.npz")
 mh_crotch, mh_neck = [float(x) for x in corr["mh_landmarks"]]
 navel_mh = int(corr["navel_mh"])
 mh_tris = corr["mh_tris"].astype(np.int64)
-with zipfile.ZipFile(Path.home() / "workspace/stick-figure-avatar"
-                     "/photoreal/tools/mpfb2.zip") as z:
-    _lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-_obj = np.array([[float(x) for x in l.split()[1:4]]
-                 for l in _lines if l.startswith("v ")])
-mh_pos = np.stack([_obj[:, 0], _obj[:, 2], _obj[:, 1]], axis=1) * 0.1
+mh_pos = load_mpfb_base_obj(
+    Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
+)
 _mac = np.load(FP / "work/mh_macro_base.npz")["pos_canonical_m"]
-mh_pos_mac = mh_pos.copy()
-_mb = _mac.copy()
-for _ax in range(3):
-    r0, r1 = mh_pos[:BODY_END, _ax].min(), mh_pos[:BODY_END, _ax].max()
-    m0, m1 = _mb[:, _ax].min(), _mb[:, _ax].max()
-    _mb[:, _ax] = r0 + (_mb[:, _ax] - m0) * (r1 - r0) / (m1 - m0)
-mh_pos_mac[:len(_mb)] = _mb
+mh_pos_mac = align_macro_base(mh_pos, _mac, BODY_END)
 NB = len(mh_pos)
 FACES_B = mh_tris[np.all(mh_tris < BODY_END, axis=1)]
-BM.FACES_B = FACES_B
-BM.BODY_END = BODY_END
-BM.mh_neck, BM.mh_crotch, BM.L_mh = mh_neck, mh_crotch, mh_neck - mh_crotch
-BM.mh_pos_mac = mh_pos_mac
-BM.navel_mh = navel_mh
-BM.h_mh = BM.torso_params(mh_pos, mh_crotch, mh_neck, "mh")[0]
+h_mh = torso_params(mh_pos, mh_crotch, mh_neck, "mh")[0]
 _mh_body_mask = np.zeros(NB, bool)
 _mh_body_mask[:BODY_END] = True
-mh_lab = BM.label_mesh(mh_pos_mac, mh_crotch, mh_neck, _mh_body_mask)
+mh_lab = label_mesh(mh_pos_mac, mh_crotch, mh_neck, _mh_body_mask)
+
+
+def grade_mesh(pos):
+    return _bm_grade(
+        pos,
+        mh_lab,
+        faces_b=FACES_B,
+        mh_crotch=mh_crotch,
+        mh_neck=mh_neck,
+        mh_pos_mac=mh_pos_mac,
+        navel_mh=navel_mh,
+        h_mh=h_mh,
+        body_end=BODY_END,
+    )
 
 
 def recipe_character(s, neck_raw=None):
@@ -194,7 +200,7 @@ for s in SCAN_S:
     char = recipe_character(s, neck_raw_ship)
     rep = build_character(char, lib, out_path=tmp_glb, run_qa=False)
     pos, _, _ = composed_positions(char)
-    G = BM.grade(pos, mh_lab)
+    G = grade_mesh(pos)
     row = {"s": s, "flips_body": rep.flips_body,
            "min_body_dot": rep.min_body_dot,
            "M4": G["M4_chest_waist"], "M5": G["M5_depth_ratio"],
@@ -227,8 +233,8 @@ glb_path = BRAND / "brand_body.glb"
 char = recipe_character(ship_s, neck_raw_ship)
 rep = build_character(char, lib, out_path=glb_path)
 pos, applied, eff = composed_positions(char)
-G_brand = BM.grade(pos, mh_lab)
-G_base = BM.grade(app_base.positions, mh_lab)
+G_brand = grade_mesh(pos)
+G_base = grade_mesh(app_base.positions)
 
 pos_muscle = app_base.positions.copy()
 for sid in ("body.build.muscle", "body.build.chest_width"):
@@ -236,7 +242,7 @@ for sid in ("body.build.muscle", "body.build.chest_width"):
     fld = geometry.load_instance(sid, spec, app_base.id,
                                  app_base.n_verts, WORKSPACE_ROOT)
     pos_muscle = pos_muscle + fld.at(1.0)
-G_musc = BM.grade(pos_muscle, mh_lab)
+G_musc = grade_mesh(pos_muscle)
 
 # shipped-numbers fold gate: the float32 positions in the GLB
 pos32 = pos.astype(np.float32).astype(np.float64)
@@ -270,36 +276,25 @@ print(f"Brand: height {G_brand['height_m']:.3f} m base scale, "
 # ------------------------------------------------- machinery cross-check
 TG = BRAND / "targets"
 
-
-def parse_target(path):
-    D = np.zeros((NB, 3))
-    for line in Path(path).read_text().splitlines():
-        if not line or line.startswith("#"):
-            continue
-        p = line.split()
-        i = int(p[0])
-        D[i] = [float(p[1]), float(p[3]), float(p[2])]
-    return D * 0.1
-
-
-D_mach = (parse_target(TG / "body.muscle.target")
-          + parse_target(TG / "body.chest.width.target")
-          + ship_s * parse_target(TG / "body.tissue.strongman.target")
-          + BELLY_W * parse_target(
-              TG / "body.belly.protrusion_terminal_v51.target")
+D_mach = (geometry.parse_target(TG / "body.muscle.target", NB)
+          + geometry.parse_target(TG / "body.chest.width.target", NB)
+          + ship_s * geometry.parse_target(
+              TG / "body.tissue.strongman.target", NB)
+          + BELLY_W * geometry.parse_target(
+              TG / "body.belly.protrusion_terminal_v51.target", NB)
           + float(eff.sliders["body.forearm.mass"])
-          * parse_target(TG / "body.forearm.mass.target")
+          * geometry.parse_target(TG / "body.forearm.mass.target", NB)
           + float(eff.sliders["body.neck.mass"])
-          * parse_target(TG / "body.neck.mass.target")
+          * geometry.parse_target(TG / "body.neck.mass.target", NB)
           + float(eff.sliders["body.definition.back"])
-          * parse_target(TG / "body.definition.back.target")
+          * geometry.parse_target(TG / "body.definition.back.target", NB)
           + float(eff.sliders["body.definition.traps_valleys"])
-          * parse_target(TG / "body.definition.traps_valleys.target")
+          * geometry.parse_target(TG / "body.definition.traps_valleys.target", NB)
           + float(eff.sliders["body.definition.pecs_crease"])
-          * parse_target(TG / "body.definition.pecs_crease.target"))
-G_mach = BM.grade(mh_pos_mac + D_mach, mh_lab)
-fl_mach = {"raw": int(BM.flipped(mh_pos, D_mach).sum()),
-           "macro": int(BM.flipped(mh_pos_mac, D_mach).sum())}
+          * geometry.parse_target(TG / "body.definition.pecs_crease.target", NB))
+G_mach = grade_mesh(mh_pos_mac + D_mach)
+fl_mach = {"raw": int(flipped(mh_pos, D_mach, FACES_B).sum()),
+           "macro": int(flipped(mh_pos_mac, D_mach, FACES_B).sum())}
 print(f"machinery cross-check: chest {G_mach['chest_g']*100:.1f} cm  "
       f"waist {G_mach['waist_g']*100:.1f} cm  volume "
       f"{G_mach['volume_L']:.1f} L  flips {fl_mach} (macro-base "

@@ -14,7 +14,15 @@ import pytest
 
 from core.bases import BaseRegistry
 from core.errors import GeometryError
-from core.geometry import count_degenerate_faces, count_flips, load_instance, parse_target, write_glb
+from core.geometry import (
+    count_degenerate_faces,
+    count_flips,
+    fmt,
+    load_instance,
+    parse_target,
+    write_glb,
+    write_target,
+)
 from core.sliders import SliderRegistry
 
 APP = Path(__file__).resolve().parent.parent
@@ -178,3 +186,65 @@ def test_degenerate_face_gate_detects_collapsed_triangles():
     healthy = positions.copy()
     healthy[2] = [0., 1., 0.]
     assert count_degenerate_faces(healthy, triangles) == 0
+
+
+@pytest.mark.parametrize(
+    "value,expected",
+    [
+        (0.0, "0.0"),
+        (-0.0, "0.0"),
+        (0.0004, "0.0"),
+        (-0.0004, "-0.0"),
+        (1.0, "1.0"),
+        (-2.0, "-2.0"),
+        (0.1, "0.1"),
+        (-0.25, "-0.25"),
+        (0.1234, "0.123"),
+        (-0.5678, "-0.568"),
+    ],
+)
+def test_fmt_matches_canonical_maketarget_formatting(value, expected):
+    assert fmt(value) == expected
+
+
+def test_write_target_roundtrips_canonical_axes_and_threshold(tmp_path):
+    # Canonical frame: (x, y=+forward, z=+up) in metres.
+    # .target frame:   (x, z=+up, y=+forward) in decimetres, written when max(|d_obj|) > 0.001 dm (0.1 mm).
+    delta = np.zeros((8, 3), dtype=np.float64)
+    delta[1] = [0.00009, 0.0, 0.0]         # 0.0009 dm <= 0.001 dm -> omitted
+    delta[3] = [0.012, -0.045, 0.078]      # d_obj = (0.12, 0.78, -0.45) dm
+    delta[6] = [-0.1, 0.2, 0.0]            # d_obj = (-1.0, 0.0, 2.0) dm
+
+    out = tmp_path / "out.target"
+    written = write_target(out, delta, "unit test target\nsecond header line")
+    assert written == 2
+
+    lines = out.read_text(encoding="utf-8").splitlines()
+    assert "# basemesh hm08" in lines
+    assert "# unit test target" in lines
+    assert "# second header line" in lines
+    data_lines = [ln for ln in lines if ln and not ln.startswith("#")]
+    assert data_lines == [
+        "3 0.12 0.78 -0.45",
+        "6 -1.0 0.0 2.0",
+    ]
+
+    parsed = parse_target(out, 8)
+    assert not parsed[1].any()
+    assert parsed[3] == pytest.approx(delta[3])
+    assert parsed[6] == pytest.approx(delta[6])
+
+
+@pytest.mark.parametrize(
+    "bad_delta,match",
+    [
+        (np.zeros((0, 3)), "shape"),
+        (np.zeros((4, 2)), "shape"),
+        (np.array([[np.nan, 0.0, 0.0]]), "non-finite"),
+        (np.array([[0.0, np.inf, 0.0]]), "non-finite"),
+    ],
+)
+def test_write_target_rejects_invalid_deltas(tmp_path, bad_delta, match):
+    with pytest.raises(GeometryError, match=match):
+        write_target(tmp_path / "bad.target", bad_delta, "bad")
+

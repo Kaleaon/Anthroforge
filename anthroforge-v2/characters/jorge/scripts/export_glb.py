@@ -20,11 +20,11 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path.home()
-                       / "workspace/anthroforge-v2/hyper/scripts"))
+V2 = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(V2 / "hyper/scripts"))
 from hyper_common import BODY_END, load_base, load_macro, load_target
 
-OUT = Path.home() / "workspace/anthroforge-v2/characters/jorge"
+OUT = Path(__file__).resolve().parents[1]
 TG = OUT / "targets"
 SCALE = 1.39
 
@@ -35,8 +35,7 @@ Vm = load_macro(V)
 # hyper_common's Fb keeps only the first triangle of each base.obj
 # quad (13,378) -- fine for the fold gate's consistent subset, but
 # the exported mesh must be complete.
-_corr = np.load(Path.home() / "workspace/anthroforge-v2"
-                / "first-proof/work/correspondence.npz")
+_corr = np.load(V2 / "first-proof/work/correspondence.npz")
 _tris = _corr["mh_tris"].astype(np.int64)
 Fb = _tris[np.all(_tris < BODY_END, axis=1)]
 print(f"export faces: {len(Fb)} (full triangulation)")

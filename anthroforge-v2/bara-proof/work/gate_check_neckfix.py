@@ -14,7 +14,8 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path.home() / "workspace/anthroforge-v2/hyper/scripts"))
+V2 = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(V2 / "hyper/scripts"))
 from hyper_common import BP, face_dots, load_base, load_macro, load_target
 
 label = sys.argv[1] if len(sys.argv) > 1 else "run"

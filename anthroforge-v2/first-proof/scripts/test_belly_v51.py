@@ -12,18 +12,27 @@ Run: HOME=/tmp/af_home xvfb-run blender -b --python test_belly_v51.py
 """
 import json
 import math
+import sys
 from pathlib import Path
 
 import bpy
 import numpy as np
 
 HERE = Path(__file__).resolve().parent.parent
+V2 = HERE.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery import BODY_END  # noqa: E402
+from core.geometry import face_normals as fn  # noqa: E402
+
 WORK = HERE / "work"
 RENDERS = HERE / "renders"
 MPFB_ZIP = Path("/home/hatch/workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip")
 V5_TARGET = HERE / "body.belly.protrusion_v5.target"
 TERM_TARGET = HERE / "body.belly.protrusion_terminal_v51.target"
-BODY_END = 13380
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 try:
@@ -61,9 +70,6 @@ base = evaluated()
 set_state(1.0, 1.0)
 pos1 = evaluated()
 tris = np.array([list(p.vertices) for p in human.data.polygons])
-def fn(P, F):
-    nn = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return nn / np.maximum(np.linalg.norm(nn, axis=1, keepdims=True), 1e-14)
 body_sel = np.array([np.all(f < BODY_END) for f in tris])
 fbb = tris[body_sel]
 dots_b = np.einsum("ij,ij->i", fn(base, fbb), fn(pos1, fbb))

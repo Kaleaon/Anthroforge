@@ -13,21 +13,26 @@ a proper rotation (det +1), canonical front (+Y) lands on Blender -Y.
 
 Run: HOME=/tmp/af_home xvfb-run -a blender -b --python build_paintable_blend.py
 """
+import sys
 from pathlib import Path
 
 import bpy
 import numpy as np
 
 HERE = Path(__file__).resolve().parent.parent
+V2 = HERE.parent
+if str(V2) not in sys.path:
+    sys.path.insert(0, str(V2))
+
+from body_machinery import load_mpfb_base_obj  # noqa: E402
+
 WORK = HERE / "work"
 
 corr = np.load(WORK / "correspondence.npz")
 v2 = np.load(WORK / "belly_v2.npz")
-import zipfile
-with zipfile.ZipFile("/home/hatch/workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip") as z:
-    lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-o = np.array([[float(x) for x in l.split()[1:4]] for l in lines if l.startswith("v ")])
-base_can = np.stack([o[:, 0], o[:, 2], o[:, 1]], axis=1) * 0.1   # canonical m
+base_can = load_mpfb_base_obj(
+    "/home/hatch/workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
+)
 tris = corr["mh_tris"].astype(np.int64)
 D1 = corr["mh_delta_canonical_m"]
 mask = corr["mh_mask"]

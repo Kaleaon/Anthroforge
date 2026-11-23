@@ -61,29 +61,39 @@ OUT = HERE.parent                      # bara-proof/
 V2 = OUT.parent                        # anthroforge-v2/
 FP = V2 / "first-proof"
 WORK = OUT / "work"
-APP = Path.home() / "workspace/anthroforge-app"
+APP = V2.parent / "anthroforge-app"
 LEARNED = Path.home() / "workspace/character_assets/learned"
 HIMBO_DIR = (Path.home() / "workspace/character_assets/_himbo_work/"
              "CalienteTools/BodySlide/ShapeData/HIMBO")
 sys.path.insert(0, str(LEARNED / "tools"))
+sys.path.insert(0, str(V2))
 sys.path.insert(0, str(APP))
 from osdparse import load_osd  # noqa: E402
+from body_machinery.axes import sstep, torso_params  # noqa: E402
+from body_machinery.labels import label_mesh  # noqa: E402
+from body_machinery.osd import (  # noqa: E402
+    BODY_END,
+    DM_M,
+    SK_UNIT_M as SK,
+    align_macro_base,
+    extract_base_positions,
+    load_mpfb_base_obj,
+)
+from body_machinery.repair import (  # noqa: E402
+    body_edges,
+    fold_stats as _bm_fold_stats,
+    repair_inc as _bm_repair_inc,
+)
+from body_machinery.transfer import torso_field  # noqa: E402
+from core.geometry import write_target  # noqa: E402
 from core.sliders import (CouplingRegistry, SliderRegistry,  # noqa: E402
                           evaluate_effective_vector)
 
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
-DM_M = 0.1
-SK = 0.01428
-BODY_END = 13380
 KAPPA = 0.55
 DEF_SIG = (0.018, 0.014)
 
 R = {"sliders": {}, "evaluator": {}, "folds": {}}
-
-
-def sstep(x, a, b):
-    t = np.clip((np.asarray(x, float) - a) / (b - a), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
 
 
 # ---------------------------------------------------------------- loads
@@ -94,19 +104,9 @@ navel_mh = int(corr["navel_mh"])
 mh_tris = corr["mh_tris"]
 L_mh = mh_neck - mh_crotch
 
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    _lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-_obj = np.array([[float(x) for x in l.split()[1:4]]
-                 for l in _lines if l.startswith("v ")])
-mh_pos = np.stack([_obj[:, 0], _obj[:, 2], _obj[:, 1]], axis=1) * DM_M
+mh_pos = load_mpfb_base_obj(MPFB_ZIP)
 _mac = np.load(FP / "work/mh_macro_base.npz")["pos_canonical_m"]
-mh_pos_mac = mh_pos.copy()
-_mb = _mac.copy()
-for _ax in range(3):
-    r0, r1 = mh_pos[:BODY_END, _ax].min(), mh_pos[:BODY_END, _ax].max()
-    m0, m1 = _mb[:, _ax].min(), _mb[:, _ax].max()
-    _mb[:, _ax] = r0 + (_mb[:, _ax] - m0) * (r1 - r0) / (m1 - m0)
-mh_pos_mac[:len(_mb)] = _mb
+mh_pos_mac = align_macro_base(mh_pos, _mac, BODY_END)
 NB = len(mh_pos)
 FACES_B = mh_tris[np.all(mh_tris < BODY_END, axis=1)]
 BODY_MASK = np.zeros(NB, bool)
@@ -127,289 +127,25 @@ S_SM = S0 + T_F                                # strongman (level .7575)
 # raw min dot was 0.0006). See the rebuild block after the evaluator.
 print(f"hm08: {NB} verts, L={L_mh:.4f} m, h*={h_star:.4f}")
 
-
-def extract_base_positions(data, expect_min_verts):
-    """Verbatim from build_bara.py (32-byte vertex stream scan)."""
-    best = None
-    for phase in range(0, 32, 2):
-        n = (len(data) - phase) // 32
-        if n < expect_min_verts:
-            continue
-        rec = np.frombuffer(data[phase:phase + n * 32], dtype="<f4")
-        rec = rec.reshape(n, 8).astype(np.float64)
-        pos, pad = rec[:, :3], rec[:, 3]
-        ok = (np.isfinite(pos).all(axis=1) & (np.abs(pos[:, 0]) < 60) &
-              (np.abs(pos[:, 1]) < 45) & (pos[:, 2] > -15) &
-              (pos[:, 2] < 160) & (np.abs(pad) < 0.01) &
-              (np.abs(pos).max(axis=1) > 0.05))
-        ch = np.diff(np.concatenate(([0], ok.view(np.int8), [0])))
-        st = np.where(ch == 1)[0]
-        en = np.where(ch == -1)[0]
-        for s, e in zip(st, en):
-            if e - s >= expect_min_verts:
-                run = pos[s:e]
-                cand = (int(e - s), float(run[:, 2].max() - run[:, 2].min()),
-                        run)
-                if best is None or cand[:2] > best[:2]:
-                    best = cand
-    return None if best is None else best[2]
-
-
-# ------------------------------------------------------- shared geometry
-def compute_axis(pos, gate=None):
-    if gate is None:
-        gate = np.ones(len(pos), bool)
-    hgt = pos[:, 2]
-    lo, hi = hgt[gate].min(), hgt[gate].max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = gate & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"),
-                                 k, "valid")
-    return ctr, axis
-
-
-def axis_at(ctr, axis, hgt):
-    return np.stack([np.interp(hgt, ctr, axis[:, 0]),
-                     np.interp(hgt, ctr, axis[:, 1])], axis=1)
-
-
-def crotch_of(pos, gate, mid_hw, slab_hw):
-    mid = gate & (np.abs(pos[:, 0]) < mid_hw) & (np.abs(pos[:, 1]) < slab_hw)
-    return pos[mid, 2].min()
-
-
-def neck_base(pos, ctr, axis, crotch, label):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    r = np.linalg.norm(pos[:, :2] - ax, axis=1)
-    gated = r < 0.23
-    bands = np.linspace(crotch, pos[:, 2].max(), 160)
-    C = 0.5 * (bands[:-1] + bands[1:])
-    Wd = np.zeros(len(C))
-    for i, (a, b) in enumerate(zip(bands[:-1], bands[1:])):
-        m = gated & (pos[:, 2] >= a) & (pos[:, 2] < b)
-        if m.sum() >= 4:
-            Wd[i] = np.percentile(pos[m, 0], 99) \
-                - np.percentile(pos[m, 0], 1)
-    above = C > crotch + 0.20 * (C[-1] - crotch)
-    chest_i = int(np.argmax(np.where(above, Wd, 0)))
-    neck, run = None, 0
-    for i in range(chest_i + 1, len(Wd)):
-        if 0 < Wd[i] < 0.55 * Wd[chest_i]:
-            run += 1
-            if run >= 3:
-                neck = C[i - 2]
-                break
-        else:
-            run = 0
-    return neck
-
-
-def torso_params(pos, crotch=None, neck=None, label="mesh"):
-    gate = np.ones(len(pos), bool)
-    ctr, axis = compute_axis(pos, gate)
-    if crotch is None:
-        crotch = crotch_of(pos, gate, 0.030, 0.060)
-    if neck is None:
-        neck = neck_base(pos, ctr, axis, crotch, label)
-    ax = axis_at(ctr, axis, pos[:, 2])
-    rel = pos[:, :2] - ax
-    r = np.linalg.norm(rel, axis=1)
-    theta = np.arctan2(rel[:, 0], rel[:, 1])
-    h = (pos[:, 2] - crotch) / (neck - crotch)
-    return h, theta, r, ax, crotch, neck, neck - crotch
-
-
-def pair_field(sa, sb, v1, v2, qa, qb, sig_a, sig_b):
-    out1 = np.zeros(len(qa))
-    out2 = np.zeros(len(qa))
-    for s0 in range(0, len(qa), 800):
-        q = slice(s0, s0 + 800)
-        da = (sa[:, None] - qa[q][None, :]) / sig_a
-        db = (sb[:, None] - qb[q][None, :]) / sig_b
-        w = np.exp(-0.5 * (da ** 2 + db ** 2))
-        ws = w.sum(axis=0) + 1e-12
-        out1[q] = (w * v1[:, None]).sum(axis=0) / ws
-        out2[q] = (w * v2[:, None]).sum(axis=0) / ws
-    return out1, out2
-
-
-def pair_cv(sa, sb, v1, v2, sig_a, sig_b):
-    inf = np.where(np.hypot(v1, v2) > 0.0005)[0]
-    if len(inf) < 40:
-        return None
-    rng = np.random.default_rng(20261112)
-    perm = rng.permutation(inf)
-    folds = np.array_split(perm, 5)
-    errs = np.zeros(len(inf))
-    for f in folds:
-        tr = np.setdiff1d(perm, f)
-        pr, pz = pair_field(sa[tr], sb[tr], v1[tr], v2[tr],
-                            sa[f], sb[f], sig_a, sig_b)
-        errs[np.searchsorted(inf, f)] = np.hypot(pr - v1[f], pz - v2[f])
-    e = errs * 100.0
-    return {"n": int(len(e)), "median_cm": float(np.median(e)),
-            "p95_cm": float(np.percentile(e, 95))}
-
-
-def label_mesh(pos, crotch, neck, body_mask=None):
-    """Verbatim from build_bara.py (region labeller; only the torso /
-    arm / leg split and side are consumed here)."""
-    if body_mask is None:
-        body_mask = np.ones(len(pos), bool)
-    z = pos[:, 2]
-    ctr, axis = compute_axis(pos, np.ones(len(pos), bool))
-    ax = np.stack([np.interp(z, ctr, axis[:, 0]),
-                   np.interp(z, ctr, axis[:, 1])], axis=1)
-    rel = pos[:, :2] - ax
-    r = np.hypot(rel[:, 0], rel[:, 1])
-    edges = np.arange(z.min() - 0.005, z.max() + 0.011, 0.01)
-    prof = np.full(len(edges) - 1, np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = (z >= a) & (z < b) & (r < 0.23)
-        if m.sum() > 8:
-            prof[i] = np.percentile(r[m], 92)
-    zc = 0.5 * (edges[:-1] + edges[1:])
-    ok = ~np.isnan(prof)
-    r92 = np.interp(z, zc[ok], prof[ok])
-    side = np.sign(rel[:, 0])
-    arm = (r > r92 + 0.010) & (z > crotch - 0.02) & (z < neck + 0.05) \
-        & (side != 0) & (np.abs(rel[:, 0]) > 0.7 * r) & body_mask
-    leg = (z < crotch - 0.008) & ~arm & body_mask
-    torso = ~arm & ~leg
-    return {"arm": arm, "leg": leg, "torso": torso, "side": side,
-            "ax": ax, "r": r, "rel": rel}
-
-
-# ------------------------------------------------------------ fold machinery
-edges_set = set()
-for a, b, c in mh_tris:
-    for u, v in ((a, b), (b, c), (c, a)):
-        if u < BODY_END and v < BODY_END:
-            edges_set.add((min(u, v), max(u, v)))
-_e = np.array(sorted(edges_set))
-
-
-def lap_smooth(x, mask, iters=2):
-    x = x.copy()
-    for _ in range(iters):
-        acc = x.copy()
-        cnt = np.ones(len(x))
-        np.add.at(acc, _e[:, 0], x[_e[:, 1]])
-        np.add.at(acc, _e[:, 1], x[_e[:, 0]])
-        np.add.at(cnt, _e[:, 0], 1)
-        np.add.at(cnt, _e[:, 1], 1)
-        div = cnt[:, None] if x.ndim == 2 else cnt
-        x = np.where(mask[:, None] if x.ndim == 2 else mask,
-                     acc / div, x)
-    return x
-
-
-def flipped(pos, D):
-    p = pos + D
-    v0 = p[FACES_B[:, 0]]
-    v1 = p[FACES_B[:, 1]]
-    v2 = p[FACES_B[:, 2]]
-    n0 = np.cross(pos[FACES_B[:, 1]] - pos[FACES_B[:, 0]],
-                  pos[FACES_B[:, 2]] - pos[FACES_B[:, 0]])
-    n1 = np.cross(v1 - v0, v2 - v0)
-    dot = np.einsum("ij,ij->i", n0, n1)
-    ln = np.linalg.norm(n0, axis=1) * np.linalg.norm(n1, axis=1)
-    return dot < -1e-12 * np.maximum(ln, 1e-30)
+_e = body_edges(mh_tris, body_end=BODY_END)
+_REPAIR_BASES = ((mh_pos, "raw"), (mh_pos_mac, "macro"))
 
 
 def fold_stats(pos, D):
-    p = pos + D
-    v0 = p[FACES_B[:, 0]]
-    v1 = p[FACES_B[:, 1]]
-    v2 = p[FACES_B[:, 2]]
-    n0 = np.cross(pos[FACES_B[:, 1]] - pos[FACES_B[:, 0]],
-                  pos[FACES_B[:, 2]] - pos[FACES_B[:, 0]])
-    n1 = np.cross(v1 - v0, v2 - v0)
-    ln = np.linalg.norm(n0, axis=1) * np.linalg.norm(n1, axis=1)
-    dot = np.einsum("ij,ij->i", n0, n1) / np.maximum(ln, 1e-30)
-    fl = flipped(pos, D)
-    return int(fl.sum()), float(dot.min())
-
-
-def slope_limit(D, moved):
-    D = D.copy()
-    nbr = np.linalg.norm(D[_e[:, 0]] - D[_e[:, 1]], axis=1)
-    dist = np.linalg.norm(mh_pos[_e[:, 0]] - mh_pos[_e[:, 1]], axis=1)
-    bad = nbr > KAPPA * dist
-    if bad.any():
-        mv = moved.copy()
-        mv[np.unique(_e[bad].ravel())] = True
-        D = lap_smooth(np.where(mv[:, None], D, 0.0), mv, 3)
-        D = np.where(mv[:, None], D, 0.0)
-    return D
+    return _bm_fold_stats(pos, FACES_B, D, flip_tol=-1e-12)
 
 
 def repair_inc(base_delta, inc, label):
-    """Staged increment repair (verbatim protocol): attenuate ONLY
-    the increment over an already flip-free base delta."""
-    for pos, nm in ((mh_pos, "raw"), (mh_pos_mac, "macro")):
-        fb, _ = fold_stats(pos, base_delta)
-        assert fb == 0, f"{label}: base delta not flip-free on {nm} ({fb})"
-    moved = np.linalg.norm(inc, axis=1) > 0.0002
-    inc = slope_limit(inc, moved)
-    att = np.ones(NB)
-    traj = []
-    for it in range(80):
-        badv = np.zeros(NB, bool)
-        for pos in (mh_pos, mh_pos_mac):
-            fl = flipped(pos, base_delta + inc * att[:, None])
-            if fl.any():
-                badv[FACES_B[fl].ravel()] = True
-        traj.append(int(badv.sum()))
-        if not badv.any():
-            print(f" {label}: increment clean after {it} iterations")
-            break
-        nbr = np.zeros(NB, bool)
-        nbr[_e[badv[_e].any(axis=1)].ravel()] = True
-        att[badv] *= 0.78
-        att[nbr & ~badv] *= 0.93
-        att = np.maximum(att, 0.0)
-    else:
-        print(f" {label}: WARNING flips remain after 80 iterations")
-    return inc * att[:, None], att, traj
-
-
-# ----------------------------------------------------------------- targets
-def fmt(v):
-    s = f"{abs(v):.3f}".rstrip("0")
-    if s.endswith("."):
-        s += "0"
-    if s in ("", "0."):
-        s = "0"
-    return ("-" + s) if v < 0 else s
-
-
-def write_target(path, delta, note):
-    d_obj = np.stack([delta[:, 0], delta[:, 2], delta[:, 1]],
-                     axis=1) / DM_M
-    moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
-    header = ("# This is a target file for MakeHuman\n#\n"
-              "# It was written by the MakeTarget submodule of MPFB\n#\n"
-              "# For more information, see MakeHuman's home page at "
-              "http://www.makehumancommunity.org\n#\n# basemesh hm08\n"
-              f"# {note}\n")
-    with open(path, "w") as fh:
-        fh.write(header)
-        for i in moved:
-            fh.write(f"{i} {fmt(d_obj[i, 0])} {fmt(d_obj[i, 1])} "
-                     f"{fmt(d_obj[i, 2])}\n")
-    return int(len(moved))
+    return _bm_repair_inc(
+        base_delta,
+        inc,
+        label,
+        bases=_REPAIR_BASES,
+        faces=FACES_B,
+        edges=_e,
+        ref_pos=mh_pos,
+        kappa=KAPPA,
+    )
 
 
 # ------------------------------------------------------------- sources
@@ -442,7 +178,7 @@ class Source:
         self.blocks = blocks
         self.n = len(pos_u)
         (self.h, self.th, self.r, self.ax, self.cr, self.nk,
-         self.L) = torso_params(self.pos, label=tag)
+         self.L) = torso_params(self.pos, label=tag, verbose=False)
         self.lab = label_mesh(self.pos, self.cr, self.nk)
         self.s = L_mh / self.L
         print(f"source {tag}: {self.n} verts, L={self.L:.4f} m, "
@@ -461,35 +197,22 @@ cv_report = {}
 
 
 def torso_field_p(src, delta, tag, sig_h, sig_a):
-    """Parameterized twin of build_coupling_validation.torso_field:
-    signed-theta (h, arc) kernel from an arbitrary source base."""
-    gate_s = src.lab["torso"] & (
-        ((src.h > -0.02) & (src.h < 1.06) & (src.r < 0.30))
-        | ((src.h >= 1.06) & (src.h < 1.18) & (src.r < 0.13)))
-    hh, tt, rr, dd = src.h[gate_s], src.th[gate_s], src.r[gate_s], \
-        delta[gate_s]
-    er = np.stack([np.sin(tt), np.cos(tt)], axis=1)
-    dr_s = dd[:, 0] * er[:, 0] + dd[:, 1] * er[:, 1]
-    dz_s = dd[:, 2]
-    rb = np.linspace(-0.02, 1.18, 25)
-    rmean = np.array([rr[(hh >= rb[i]) & (hh < rb[i + 1])].mean()
-                      if ((hh >= rb[i]) & (hh < rb[i + 1])).sum() > 5
-                      else 0.17 for i in range(24)])
-    rctr = 0.5 * (rb[:-1] + rb[1:])
-
-    def arc(theta, hv):
-        return theta * np.interp(hv, rctr, rmean)
-    arc_s = arc(tt, hh)
-    arc_q = arc(th_mh, h_mh)
-    dr, dz = pair_field(hh, arc_s, dr_s, dz_s, h_mh, arc_q, sig_h, sig_a)
-    dr, dz = dr * src.s, dz * src.s
-    cv = pair_cv(hh, arc_s, dr_s, dz_s, sig_h, sig_a)
-    if cv:
-        cv_report[f"torso/{tag}"] = cv
-    out = np.zeros((NB, 3))
-    out[:, 0] = dr * np.sin(th_mh)
-    out[:, 1] = dr * np.cos(th_mh)
-    out[:, 2] = dz
+    """Signed-theta (h, arc) kernel transfer from an arbitrary source base."""
+    out, _ = torso_field(
+        delta,
+        tag,
+        hi_lab=src.lab,
+        h_hi=src.h,
+        th_hi=src.th,
+        r_hi=src.r,
+        mh_pos_mac=mh_pos_mac,
+        mh_crotch=mh_crotch,
+        mh_neck=mh_neck,
+        s_hi=src.s,
+        sig_h=sig_h,
+        sig_a=sig_a,
+        cv_report=cv_report,
+    )
     return out
 
 
