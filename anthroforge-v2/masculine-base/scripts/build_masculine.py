@@ -32,24 +32,47 @@ Outputs (masculine-base/):
   work/qa_numbers_masc.json             validation + comparison numbers
 """
 import json
-import zipfile
+import sys
 from pathlib import Path
 
 import numpy as np
 import scipy.sparse as sp
-from scipy.spatial import cKDTree, ConvexHull
+from scipy.spatial import ConvexHull, cKDTree
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent
+V2 = OUT.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery import (  # noqa: E402
+    BODY_END,
+    DM_M,
+    SK_UNIT_M,
+    ParamSurface,
+    axis_at,
+    compute_axis,
+    crotch_of,
+    load_mpfb_base_obj,
+    neck_base,
+    torso_cylindrical as torso_params,
+    tri_closest,
+    tri_list,
+)
+from core.geometry import (  # noqa: E402
+    count_flips as _count_flips,
+    face_normals,
+    write_target,
+)
+
 WORK = OUT / "work"
 WORK.mkdir(parents=True, exist_ok=True)
 FP_WORK = Path.home() / "workspace/anthroforge-v2/first-proof/work"
 LEARNED = Path.home() / "workspace/character_assets/learned"
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
 
-SK_UNIT_M = 0.01428
-DM_M = 0.1
-BODY_END = 13380
 rng = np.random.default_rng(20261112)
 
 # ---------------------------------------------------------------- load source
@@ -59,15 +82,7 @@ sk_tri = src["body_triangles"].astype(np.int64)
 sk_delta = src["body_delta"].astype(np.float64) * SK_UNIT_M
 
 # ---------------------------------------------------------------- load hm08 raw
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    obj_lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-mh_obj = np.array([[float(x) for x in l.split()[1:4]]
-                   for l in obj_lines if l.startswith("v ")])
-mh_faces = []
-for l in obj_lines:
-    if l.startswith("f "):
-        mh_faces.append([int(t.split("/")[0]) - 1 for t in l.split()[1:]])
-raw_pos = np.stack([mh_obj[:, 0], mh_obj[:, 2], mh_obj[:, 1]], axis=1) * DM_M
+raw_pos, mh_faces = load_mpfb_base_obj(MPFB_ZIP, with_poly_faces=True)
 mh_body = np.zeros(len(raw_pos), bool); mh_body[:BODY_END] = True
 print(f"hm08 raw: {len(raw_pos)} verts ({mh_body.sum()} body), {len(mh_faces)} faces")
 
@@ -100,68 +115,6 @@ fem_pos[:len(_old)] = _old - _off_f
 print(f"feminine frame offset {np.round(_off_f, 4)} (same method)")
 
 # ---------------------------------------------------------------- axis + landmarks
-def compute_axis(pos, mask=None):
-    """Smooth torso axis: per-band bbox centres of |x|<0.23 m gated verts."""
-    if mask is None:
-        mask = np.ones(len(pos), bool)
-    hgt = pos[:, 2]
-    lo, hi = hgt[mask].min(), hgt[mask].max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = mask & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"), k, "valid")
-    return ctr, axis
-
-def axis_at(ctr, axis, hgt):
-    return np.stack([np.interp(hgt, ctr, axis[:, 0]),
-                     np.interp(hgt, ctr, axis[:, 1])], axis=1)
-
-def crotch_of(pos, mask, mid_hw, slab_hw):
-    mid = mask & (np.abs(pos[:, 0]) < mid_hw) & (np.abs(pos[:, 1]) < slab_hw)
-    return pos[mid, 2].min()
-
-def neck_base(pos, ctr, axis, crotch, label):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    r = np.linalg.norm(pos[:, :2] - ax, axis=1)
-    gated = r < 0.23
-    bands = np.linspace(crotch, pos[:, 2].max(), 160)
-    C = 0.5 * (bands[:-1] + bands[1:]); W = np.zeros(len(C))
-    for i, (a, b) in enumerate(zip(bands[:-1], bands[1:])):
-        m = gated & (pos[:, 2] >= a) & (pos[:, 2] < b)
-        if m.sum() >= 4:
-            W[i] = np.percentile(pos[m, 0], 99) - np.percentile(pos[m, 0], 1)
-    above = C > crotch + 0.20 * (C[-1] - crotch)
-    chest_i = int(np.argmax(np.where(above, W, 0)))
-    neck, run = None, 0
-    for i in range(chest_i + 1, len(W)):
-        if 0 < W[i] < 0.55 * W[chest_i]:
-            run += 1
-            if run >= 3:
-                neck = C[i - 2]; break
-        else:
-            run = 0
-    print(f"{label}: chest {C[chest_i]:.3f} m (W={W[chest_i]:.3f} m), "
-          f"neck base {neck:.4f} m")
-    return neck
-
-def torso_params(pos, ctr, axis, crotch, neck):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    rel = pos[:, :2] - ax
-    r = np.linalg.norm(rel, axis=1)
-    theta = np.arctan2(rel[:, 0], rel[:, 1])       # 0 = front, +-pi = back
-    h = (pos[:, 2] - crotch) / (neck - crotch)
-    return h, theta, ax, r
-
 sk_ctr, sk_axis = compute_axis(sk_pos)
 mh_ctr, mh_axis = compute_axis(mh_pos, mh_body)
 sk_crotch = crotch_of(sk_pos, np.ones(len(sk_pos), bool), 0.030, 0.060)
@@ -258,20 +211,10 @@ print(f"hm08-masc verts inside belly mask (w>0.003): {active.sum()} "
       f"(feminine v1: 535 moved / mask count in its qa)")
 
 # ---------------------------------------------------------------- transfer
-def tri_list(faces):
-    tris = []
-    for f in faces:
-        if len(f) == 4:
-            tris.append(f[:3]); tris.append([f[0], f[2], f[3]])
-        elif len(f) == 3:
-            tris.append(f)
-    return np.array(tris)
 mh_tris = tri_list(mh_faces)
 act_idx = np.where(active)[0]
 
 # Transfer by non-rigid registration in torso-param space (identical to v1).
-from scipy.spatial import cKDTree
-
 gr, gz = field_eval(mh_h[active], np.abs(mh_th[active]))
 er_mh = np.stack([np.sin(mh_th[active]), np.cos(mh_th[active])], axis=1)
 d_can = np.zeros((active.sum(), 3))
@@ -299,50 +242,6 @@ for f in sk_tri:
 src_tris = np.array(src_tris)
 src_verts = np.unique(src_tris)
 print(f"param-space source surface: {len(src_tris)} tris, {len(src_verts)} verts")
-
-def tri_closest(P, A, B, C):
-    """Exact closest points on triangles (Ericson), vectorised."""
-    ab, ac, ap = B - A, C - A, P - A
-    d1 = np.einsum("ij,ij->i", ab, ap); d2 = np.einsum("ij,ij->i", ac, ap)
-    d3 = np.einsum("ij,ij->i", ab, ab); d4 = np.einsum("ij,ij->i", ab, ac)
-    d5 = np.einsum("ij,ij->i", ac, ac)
-    den = np.maximum(d3 * d5 - d4 * d4, 1e-14)
-    vc = (d3 * d2 - d4 * d1) / den; vb = (d5 * d1 - d4 * d2) / den
-    inside = (vb >= 0) & (vc >= 0) & (vb + vc <= 1)
-    plane = A + vb[:, None] * ab + vc[:, None] * ac
-    best = plane.copy()
-    bestd = np.where(inside, np.linalg.norm(P - plane, axis=1), np.inf)
-    for E0, E1 in ((A, B), (B, C), (C, A)):
-        seg = E1 - E0
-        t = np.einsum("ij,ij->i", P - E0, seg) / np.maximum(
-            np.einsum("ij,ij->i", seg, seg), 1e-14)
-        q = E0 + np.clip(t, 0, 1)[:, None] * seg
-        dd = np.linalg.norm(P - q, axis=1)
-        m = dd < bestd
-        best[m] = q[m]; bestd[m] = dd[m]
-    return best, bestd
-
-class ParamSurface:
-    def __init__(self, P, F):
-        self.P, self.F = P, F
-        self.tree = cKDTree(P)
-        vf = {}
-        for fi, f in enumerate(F):
-            for v in f:
-                vf.setdefault(int(v), []).append(fi)
-        self.vf = vf
-    def closest(self, Q, k=12):
-        _, nn = self.tree.query(Q, k=k)
-        out_c = np.empty_like(Q); out_d = np.empty(len(Q))
-        for i, row in enumerate(nn):
-            cand = np.unique(np.concatenate(
-                [self.vf[int(v)] for v in row if int(v) in self.vf]))
-            A = self.P[self.F[cand, 0]]; B = self.P[self.F[cand, 1]]
-            C = self.P[self.F[cand, 2]]
-            cp, dd = tri_closest(np.repeat(Q[i:i + 1], len(cand), axis=0), A, B, C)
-            j = int(np.argmin(dd))
-            out_c[i] = cp[j]; out_d[i] = dd[j]
-        return out_c, out_d
 
 src_surf = ParamSurface(skP_fat, src_tris)
 edges = np.vstack([mh_tris[:, [0, 1]], mh_tris[:, [1, 2]], mh_tris[:, [2, 0]]])
@@ -414,16 +313,11 @@ def shipped_residuals(delta):
             "backward_n": int(matched.sum())}
 
 belly_face = np.array([mh_w[list(f)].max() > 0.02 for f in mh_tris])
-def face_normals(P, F):
-    n = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-14)
 def count_flips(delta, pos=None):
     pos = mh_pos if pos is None else pos
     Fb_ = mh_tris[belly_face]
-    n0_ = face_normals(pos, Fb_)
-    nn_ = face_normals(pos + delta, Fb_)
-    dots = np.einsum("ij,ij->i", n0_, nn_)
-    return int((dots < 0).sum()), float(dots.min())
+    dots = np.einsum("ij,ij->i", face_normals(pos, Fb_), face_normals(pos + delta, Fb_))
+    return _count_flips(pos, pos + delta, mh_tris, belly_face), float(dots.min())
 
 # finishing: TIGHT navel pin -> TARGETED fold repair -> guarded micro-pin
 # (dual bases here: masculine neutral + raw base.obj)
@@ -601,29 +495,17 @@ props_fem = measure_base(fem_pos, "feminine ")
 props_raw = measure_base(raw_pos, "raw      ")
 
 # ---------------------------------------------------------------- write .target
-d_obj = np.stack([mh_delta[:, 0], mh_delta[:, 2], mh_delta[:, 1]], axis=1) / DM_M
-moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
-HEADER = ("# This is a target file for MakeHuman\n#\n"
-          "# It was written by the MakeTarget submodule of MPFB\n#\n"
-          "# For more information, see MakeHuman's home page at "
-          "http://www.makehumancommunity.org\n#\n# basemesh hm08\n"
-          "# Provenance: omniversal slider body.belly.protrusion, instance "
-          "makehuman_hm08 MASCULINE base (MPFB macro gender 1.0, all other "
-          "macros default).\n# PER-BASE INSTANCE: deltas are relative to "
-          "the masculine-macro neutral; apply only on the masculine-macro "
-          "human.\n# Learned from the Fat Males body morph "
-          "(study-only, internal - not a CC0 MakeHuman asset).\n")
-def fmt(v):
-    s = f"{abs(v):.3f}".rstrip("0")
-    if s.endswith("."): s += "0"
-    if s in ("", "0."): s = "0"
-    return ("-" + s) if v < 0 else s
+NOTE_MASC = (
+    "Provenance: omniversal slider body.belly.protrusion, instance "
+    "makehuman_hm08 MASCULINE base (MPFB macro gender 1.0, all other "
+    "macros default).\nPER-BASE INSTANCE: deltas are relative to "
+    "the masculine-macro neutral; apply only on the masculine-macro "
+    "human.\nLearned from the Fat Males body morph "
+    "(study-only, internal - not a CC0 MakeHuman asset)."
+)
 target_path = OUT / "body.belly.protrusion.target"
-with open(target_path, "w") as fh:
-    fh.write(HEADER)
-    for i in moved:
-        fh.write(f"{i} {fmt(d_obj[i,0])} {fmt(d_obj[i,1])} {fmt(d_obj[i,2])}\n")
-print(f"wrote {target_path} with {len(moved)} moved verts")
+n_moved = write_target(target_path, mh_delta, NOTE_MASC)
+print(f"wrote {target_path} with {n_moved} moved verts")
 
 # ------------------------------------------------------- correspondence package
 np.savez(WORK / "correspondence_masc.npz",
@@ -659,7 +541,7 @@ qa = {
     "fold_scan": fold_scan, "safe_max": safe_max,
     "safe_max_raw_baseobj": safe_max_raw,
     "fold_repair_rounds_used": repair_rounds_used,
-    "moved_verts": int(len(moved)),
+    "moved_verts": int(n_moved),
     "tangential_mean_cm": float(np.abs(sk_dt[samp]).mean() * 100),
     "landmarks": {"skyrim": [sk_crotch, sk_neck], "hm08_masc": [mh_crotch, mh_neck]},
     "kernel": {"sigma_h": SIG_H, "sigma_arc_m": SIG_A},

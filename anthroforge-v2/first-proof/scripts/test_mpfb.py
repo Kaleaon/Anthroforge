@@ -10,7 +10,16 @@
 Run: blender -b --python test_mpfb.py
 """
 import bpy, os, json, importlib, sys
+from pathlib import Path
 import numpy as np
+
+V2 = Path(__file__).resolve().parents[2]
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from core.geometry import face_normals  # noqa: E402
 
 ROOT = os.path.expanduser("~/workspace/anthroforge-v2/first-proof")
 ZIP = os.path.expanduser("~/workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip")
@@ -91,9 +100,6 @@ print(f"CRITERION 1: anchor {ANCHOR*100:.2f} cm, measured "
       f"-> {'PASS' if err_mm <= 5.0 else 'FAIL'} (tolerance 5 mm)")
 
 # belly flip cross-check at +1 from evaluated coords
-def face_normals(P, F):
-    n = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-14)
 Fb = MH_TRIS[BELLY]
 n0 = face_normals(base_coords, Fb)
 for w in (0.5, 1.0, -1.0):

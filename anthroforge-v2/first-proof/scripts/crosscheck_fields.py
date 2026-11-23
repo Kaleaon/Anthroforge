@@ -24,9 +24,7 @@ transfers v1 / v2 / v3 (v3 only if work/belly_v3.npz exists).
 Caveat kept honest: the three learned fields are whole-body morphs; only
 their belly band is compared here. Our fields are belly-only by design.
 """
-import io
 import json
-import struct
 import sys
 import zipfile
 from pathlib import Path
@@ -35,6 +33,19 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent
+V2 = OUT.parent
+if str(V2) not in sys.path:
+    sys.path.insert(0, str(V2))
+
+from body_machinery import (  # noqa: E402
+    SK_UNIT_M as SK,
+    axis_at,
+    compute_axis,
+    dense_from_osd,
+    extract_base_positions,
+    load_mpfb_base_obj,
+)
+
 WORK = OUT / "work"
 LEARNED = Path.home() / "workspace/character_assets/learned"
 HIMBO_NIF = (Path.home() / "workspace/character_assets/_himbo_work/CalienteTools"
@@ -46,62 +57,14 @@ AM_NIF_NAME = ("Atomic-Muscle---Modders-Resource-main/10 Modder Res - Base Body"
                "/Tools/BodySlide/ShapeData/Atomic Muscle + Hands"
                "/Atomic Muscle + Hands.nif")
 AM_OSD_NAME = AM_NIF_NAME.replace(".nif", ".osd")
-SK = 0.01428  # Skyrim/FO4 unit -> m (AM decode used the same 1.428 cm/unit)
 
 sys.path.insert(0, str(LEARNED / "tools"))
 from osdparse import load_osd  # noqa: E402
 
 
-def extract_base_positions(data, expect_min_verts):
-    """Embedded vertex stream scan, copied from himbo_full_decode.py."""
-    best = None
-    for phase in range(0, 32, 2):
-        n = (len(data) - phase) // 32
-        if n < expect_min_verts:
-            continue
-        rec = np.frombuffer(data[phase:phase + n * 32], dtype="<f4")
-        rec = rec.reshape(n, 8).astype(np.float64)
-        pos, pad = rec[:, :3], rec[:, 3]
-        ok = (np.isfinite(pos).all(axis=1) & (np.abs(pos[:, 0]) < 60) &
-              (np.abs(pos[:, 1]) < 45) & (pos[:, 2] > -15) &
-              (pos[:, 2] < 160) & (np.abs(pad) < 0.01) &
-              (np.abs(pos).max(axis=1) > 0.05))
-        ch = np.diff(np.concatenate(([0], ok.view(np.int8), [0])))
-        st = np.where(ch == 1)[0]
-        en = np.where(ch == -1)[0]
-        for s, e in zip(st, en):
-            if e - s >= expect_min_verts:
-                run = pos[s:e]
-                cand = (int(e - s), float(run[:, 2].max() - run[:, 2].min()), run)
-                if best is None or cand[:2] > best[:2]:
-                    best = cand
-    return None if best is None else best[2]
-
-
-def compute_axis(pos):
-    hgt = pos[:, 2]
-    lo, hi = hgt.min(), hgt.max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"), k, "valid")
-    return ctr, axis
-
-
 def band_metrics(name, base, delta):
     ctr, axis = compute_axis(base)
-    ax = np.stack([np.interp(base[:, 2], ctr, axis[:, 0]),
-                   np.interp(base[:, 2], ctr, axis[:, 1])], axis=1)
+    ax = axis_at(ctr, axis, base[:, 2])
     rel = base[:, :2] - ax
     theta = np.arctan2(rel[:, 0], rel[:, 1])
     er = np.stack([np.sin(theta), np.cos(theta)], axis=1)
@@ -134,18 +97,6 @@ def band_metrics(name, base, delta):
     return out
 
 
-def dense_from_osd(osd_bytes, n_verts, block_substr):
-    with open("/tmp/_cc.osd", "wb") as fh:
-        fh.write(osd_bytes)
-    osd = load_osd("/tmp/_cc.osd")
-    names = [b["name"] for b in osd["blocks"]]
-    blk = next((b for b in osd["blocks"] if block_substr in b["name"]), None)
-    assert blk is not None, f"block {block_substr!r} not in {names}"
-    D = np.zeros((n_verts, 3))
-    D[blk["indices"]] = blk["diffs"]
-    return D, blk["name"], names
-
-
 rows = []
 
 # --- Fat Males (Skyrim base, full delta in the npz)
@@ -157,7 +108,7 @@ rows.append(band_metrics("Fat Males (full morph)",
 # --- HIMBO BodyChubby
 pos = extract_base_positions(HIMBO_NIF.read_bytes(), 4000)
 assert pos is not None and len(pos) == 9346, None if pos is None else len(pos)
-D, bname, _ = dense_from_osd(HIMBO_OSD.read_bytes(), len(pos), "BodyChubby")
+D, bname, _ = dense_from_osd(HIMBO_OSD.read_bytes(), len(pos), "BodyChubby", load_osd)
 rows.append(band_metrics(f"HIMBO '{bname}'", pos * SK, D * SK))
 
 # --- Atomic Muscle Nuka Bull: FIELD-LEVEL only. The FO4 BSTriShape vertex
@@ -190,12 +141,9 @@ rows.append(am_row)
 
 # --- ours: hm08 v1 / v2 / v3
 corr = np.load(WORK / "correspondence.npz")
-with zipfile.ZipFile(Path.home() / "workspace/stick-figure-avatar/photoreal"
-                     "/tools/mpfb2.zip") as z:
-    obj_lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-mh_obj = np.array([[float(x) for x in l.split()[1:4]]
-                   for l in obj_lines if l.startswith("v ")])
-mh_pos = np.stack([mh_obj[:, 0], mh_obj[:, 2], mh_obj[:, 1]], axis=1) * 0.1
+mh_pos = load_mpfb_base_obj(
+    Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
+)
 rows.append(band_metrics("ours v1 (protrusion transfer)",
                          mh_pos, corr["mh_delta_canonical_m"]))
 v2 = np.load(WORK / "belly_v2.npz")

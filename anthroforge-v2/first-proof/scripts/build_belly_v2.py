@@ -37,21 +37,37 @@ studied surface by exactly the sag field, so residuals are reported for
 v1 and v2 side by side with the mean sag per zone.
 """
 import json
-import zipfile
+import sys
 from pathlib import Path
 
 import numpy as np
 import scipy.sparse as sp
-from scipy.spatial import cKDTree
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent
+V2 = OUT.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery import (  # noqa: E402
+    BODY_END,
+    DM_M,
+    SK_UNIT_M,
+    ParamSurface,
+    axis_at,
+    compute_axis,
+    load_mpfb_base_obj,
+    slope_limit_iter,
+    torso_cylindrical as torso_params,
+    tri_closest,
+)
+from core.geometry import face_normals, write_target  # noqa: E402
+
 WORK = OUT / "work"
 LEARNED = Path.home() / "workspace/character_assets/learned"
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
-
-SK_UNIT_M = 0.01428
-DM_M = 0.1
 
 # sag model constants (documented in GRAVITY_WEIGHTS.md)
 ALPHA = 0.40        # downward sag per unit radial protrusion at m = 1
@@ -80,55 +96,13 @@ anchor = qa1["anchor_m"]
 L_sk = qa1["landmarks"]["skyrim"][1] - qa1["landmarks"]["skyrim"][0]
 
 # ---------------------------------------------------------------- load hm08
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    obj_lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-mh_obj = np.array([[float(x) for x in l.split()[1:4]]
-                   for l in obj_lines if l.startswith("v ")])
-mh_faces = []
-for l in obj_lines:
-    if l.startswith("f "):
-        mh_faces.append([int(t.split("/")[0]) - 1 for t in l.split()[1:]])
-mh_pos = np.stack([mh_obj[:, 0], mh_obj[:, 2], mh_obj[:, 1]], axis=1) * DM_M
-BODY_END = 13380
+mh_pos, mh_faces = load_mpfb_base_obj(MPFB_ZIP, with_poly_faces=True)
 mh_body = np.zeros(len(mh_pos), bool); mh_body[:BODY_END] = True
 mh_pos_mac = mh_pos.copy()
 _mac = np.load(WORK / "mh_macro_base.npz")["pos_canonical_m"]
 mh_pos_mac[:len(_mac)] = _mac
 
 # ------------------------------------------------- torso params (from v1)
-def compute_axis(pos, mask_=None):
-    if mask_ is None:
-        mask_ = np.ones(len(pos), bool)
-    hgt = pos[:, 2]
-    lo, hi = hgt[mask_].min(), hgt[mask_].max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = mask_ & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"), k, "valid")
-    return ctr, axis
-
-def axis_at(ctr, axis, hgt):
-    return np.stack([np.interp(hgt, ctr, axis[:, 0]),
-                     np.interp(hgt, ctr, axis[:, 1])], axis=1)
-
-def torso_params(pos, ctr, axis, crotch, neck):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    rel = pos[:, :2] - ax
-    r = np.linalg.norm(rel, axis=1)
-    theta = np.arctan2(rel[:, 0], rel[:, 1])
-    h = (pos[:, 2] - crotch) / (neck - crotch)
-    return h, theta, ax, r
-
 mh_ctr, mh_axis = compute_axis(mh_pos, mh_body)
 mh_h, mh_th, mh_ax, mh_r = torso_params(mh_pos, mh_ctr, mh_axis, mh_crotch, mh_neck)
 sk_ctr, sk_axis = compute_axis(sk_pos)
@@ -190,23 +164,13 @@ be = np.array([e for e in np.unique(np.sort(np.vstack(
     [mh_tris[:, [0, 1]], mh_tris[:, [1, 2]], mh_tris[:, [2, 0]]]), axis=1), axis=0)
     if mask[e[0]] > 0.003 and mask[e[1]] > 0.003])
 elen = np.linalg.norm(mh_pos[be[:, 0]] - mh_pos[be[:, 1]], axis=1)
-for it in range(80):
-    diff = Dsag[be[:, 0]] - Dsag[be[:, 1]]
-    dn = np.linalg.norm(diff, axis=1)
-    excess = dn - KAPPA * elen
-    if (excess <= 0).all():
-        print(f"slope limiter: clean after {it} iterations")
-        break
-    corr = np.zeros_like(Dsag)
-    wgt = np.zeros(len(Dsag))
-    m = excess > 0
-    adj = (0.5 * excess[m] / np.maximum(dn[m], 1e-12))[:, None] * diff[m]
-    np.add.at(corr, be[m, 0], -adj); np.add.at(corr, be[m, 1], adj)
-    np.add.at(wgt, be[m, 0], 1); np.add.at(wgt, be[m, 1], 1)
-    Dsag += 0.7 * corr / np.maximum(wgt, 1)[:, None]
+Dsag, _lim_it = slope_limit_iter(Dsag, be, mh_pos, kappa=KAPPA, max_iters=80)
+if _lim_it < 80:
+    print(f"slope limiter: clean after {_lim_it} iterations")
 else:
+    _excess = np.linalg.norm(Dsag[be[:, 0]] - Dsag[be[:, 1]], axis=1) - KAPPA * elen
     print(f"slope limiter: 80 iterations, residual max excess "
-          f"{float(excess.max())*100:.2f} cm")
+          f"{float(_excess.max())*100:.2f} cm")
 
 # approximate volume preservation: radial compensation solved on the
 # belly patch's signed-tetra volume about the navel axis point
@@ -245,9 +209,6 @@ print(f"volume proxy: base {V0*1e6:.1f} cm^3, v1 adds {(V1-V0)*1e6:.1f}, "
 D2 = D1 + Dsag
 
 # ---------------------------------------------------------------- fold QA
-def face_normals(P, F):
-    n = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-14)
 Fb = mh_tris[belly_face]
 BASES = {"raw": mh_pos, "macro": mh_pos_mac}
 n0_all = {k: face_normals(p, Fb) for k, p in BASES.items()}
@@ -361,50 +322,6 @@ for f in sk_tri:
             src_tris.append(f)
 src_tris = np.array(src_tris)
 
-def tri_closest(P, A, B, C):
-    """Exact closest points on triangles (Ericson), vectorised."""
-    ab, ac, ap = B - A, C - A, P - A
-    d1 = np.einsum("ij,ij->i", ab, ap); d2 = np.einsum("ij,ij->i", ac, ap)
-    d3 = np.einsum("ij,ij->i", ab, ab); d4 = np.einsum("ij,ij->i", ab, ac)
-    d5 = np.einsum("ij,ij->i", ac, ac)
-    den = np.maximum(d3 * d5 - d4 * d4, 1e-14)
-    vc = (d3 * d2 - d4 * d1) / den; vb = (d5 * d1 - d4 * d2) / den
-    inside = (vb >= 0) & (vc >= 0) & (vb + vc <= 1)
-    plane = A + vb[:, None] * ab + vc[:, None] * ac
-    best = plane.copy()
-    bestd = np.where(inside, np.linalg.norm(P - plane, axis=1), np.inf)
-    for E0, E1 in ((A, B), (B, C), (C, A)):
-        seg = E1 - E0
-        t = np.einsum("ij,ij->i", P - E0, seg) / np.maximum(
-            np.einsum("ij,ij->i", seg, seg), 1e-14)
-        q = E0 + np.clip(t, 0, 1)[:, None] * seg
-        dd = np.linalg.norm(P - q, axis=1)
-        m = dd < bestd
-        best[m] = q[m]; bestd[m] = dd[m]
-    return best, bestd
-
-class ParamSurface:
-    def __init__(self, P, F):
-        self.P, self.F = P, F
-        self.tree = cKDTree(P)
-        vf = {}
-        for fi, f in enumerate(F):
-            for v in f:
-                vf.setdefault(int(v), []).append(fi)
-        self.vf = vf
-    def closest(self, Q, k=12):
-        _, nn = self.tree.query(Q, k=k)
-        out_c = np.empty_like(Q); out_d = np.empty(len(Q))
-        for i, row in enumerate(nn):
-            cand = np.unique(np.concatenate(
-                [self.vf[int(v)] for v in row if int(v) in self.vf]))
-            A = self.P[self.F[cand, 0]]; B = self.P[self.F[cand, 1]]
-            C = self.P[self.F[cand, 2]]
-            cp, dd = tri_closest(np.repeat(Q[i:i + 1], len(cand), axis=0), A, B, C)
-            j = int(np.argmin(dd))
-            out_c[i] = cp[j]; out_d[i] = dd[j]
-        return out_c, out_d
-
 src_surf = ParamSurface(skP_fat, src_tris)
 def fwd_resid(delta):
     P = param_coords(mh_pos + delta, mh_ctr, mh_axis, mh_crotch, L_mh)
@@ -446,24 +363,6 @@ print(f"zone ALL (triangle-exact, recomputed): v1 p95 {allrow['v1_p95_cm']:.2f} 
       f"(v1 doc: 1.394), v2 p95 {allrow['v2_p95_cm']:.2f} cm")
 
 # ---------------------------------------------------------------- write targets
-def fmt(v):
-    s = f"{abs(v):.3f}".rstrip("0")
-    if s.endswith("."): s += "0"
-    if s in ("", "0."): s = "0"
-    return ("-" + s) if v < 0 else s
-def write_target(path, delta, note):
-    d_obj = np.stack([delta[:, 0], delta[:, 2], delta[:, 1]], axis=1) / DM_M
-    moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
-    header = ("# This is a target file for MakeHuman\n#\n"
-              "# It was written by the MakeTarget submodule of MPFB\n#\n"
-              "# For more information, see MakeHuman's home page at "
-              "http://www.makehumancommunity.org\n#\n# basemesh hm08\n"
-              f"# {note}\n")
-    with open(path, "w") as fh:
-        fh.write(header)
-        for i in moved:
-            fh.write(f"{i} {fmt(d_obj[i,0])} {fmt(d_obj[i,1])} {fmt(d_obj[i,2])}\n")
-    return int(len(moved))
 NOTE2 = ("Provenance: omniversal slider body.belly.protrusion v2 (gravity pass), "
          "instance makehuman_hm08. Combined field at w=+1: v1 protrusion + sag "
          "component. Learned from the Fat Males body morph (study-only, internal "

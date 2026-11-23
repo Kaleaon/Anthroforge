@@ -51,8 +51,7 @@ geometry ships. Calibration targets come from BARA_LESSONS.md and
 the library cross-check above.
 """
 import json
-import zipfile
-from collections import defaultdict
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -60,19 +59,36 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent                      # bara-proof/
 V2 = OUT.parent                        # anthroforge-v2/
+APP = V2.parent / "anthroforge-app"
 FP = V2 / "first-proof"
 WORK = OUT / "work"
+sys.path.insert(0, str(V2))
+sys.path.insert(0, str(APP))
+
+from body_machinery.axes import sstep, torso_params  # noqa: E402
+from body_machinery.labels import chain_of, label_mesh, seg_params  # noqa: E402
+from body_machinery.loops import (  # noqa: E402
+    band,
+    best_loop as _bm_best_loop,
+    grade as _bm_grade,
+    loop_perim,
+    plane_loops as _bm_plane_loops,
+)
+from body_machinery.osd import (  # noqa: E402
+    BODY_END,
+    align_macro_base,
+    load_mpfb_base_obj,
+)
+from body_machinery.repair import (  # noqa: E402
+    body_edges,
+    flipped as _bm_flipped,
+    lap_smooth as _bm_lap_smooth,
+    repair as _bm_repair,
+)
+from core.geometry import write_target  # noqa: E402
 
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
-DM_M = 0.1
-BODY_END = 13380
-
 KAPPA = 0.55
-
-
-def sstep(x, a, b):
-    t = np.clip((np.asarray(x, float) - a) / (b - a), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
 
 
 # ---------------------------------------------------------------- loads
@@ -82,19 +98,9 @@ navel_mh = int(corr["navel_mh"])
 mh_tris = corr["mh_tris"]
 L_mh = mh_neck - mh_crotch
 
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    _lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-_obj = np.array([[float(x) for x in l.split()[1:4]]
-                 for l in _lines if l.startswith("v ")])
-mh_pos = np.stack([_obj[:, 0], _obj[:, 2], _obj[:, 1]], axis=1) * DM_M
+mh_pos = load_mpfb_base_obj(MPFB_ZIP)
 _mac = np.load(FP / "work/mh_macro_base.npz")["pos_canonical_m"]
-mh_pos_mac = mh_pos.copy()
-_mb = _mac.copy()
-for _ax in range(3):
-    r0, r1 = mh_pos[:BODY_END, _ax].min(), mh_pos[:BODY_END, _ax].max()
-    m0, m1 = _mb[:, _ax].min(), _mb[:, _ax].max()
-    _mb[:, _ax] = r0 + (_mb[:, _ax] - m0) * (r1 - r0) / (m1 - m0)
-mh_pos_mac[:len(_mb)] = _mb
+mh_pos_mac = align_macro_base(mh_pos, _mac, BODY_END)
 NB = len(mh_pos)
 FACES_B = mh_tris[np.all(mh_tris < BODY_END, axis=1)]
 
@@ -105,335 +111,21 @@ T_field = _bf["tissue_canonical_m"].astype(np.float64)
 print(f"hm08: {NB} verts, L={L_mh:.4f} m; shipped bara fields loaded "
       f"(core |D|max {np.linalg.norm(M_field, axis=1).max()*100:.1f} cm)")
 
-
-# ------------------------------------------------- geometry (from build_bara)
-def compute_axis(pos, gate=None):
-    if gate is None:
-        gate = np.ones(len(pos), bool)
-    hgt = pos[:, 2]
-    lo, hi = hgt[gate].min(), hgt[gate].max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = gate & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"),
-                                 k, "valid")
-    return ctr, axis
-
-
-def axis_at(ctr, axis, hgt):
-    return np.stack([np.interp(hgt, ctr, axis[:, 0]),
-                     np.interp(hgt, ctr, axis[:, 1])], axis=1)
-
-
-def crotch_of(pos, gate, mid_hw, slab_hw):
-    mid = gate & (np.abs(pos[:, 0]) < mid_hw) & (np.abs(pos[:, 1]) < slab_hw)
-    return pos[mid, 2].min()
-
-
-def neck_base(pos, ctr, axis, crotch, label):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    r = np.linalg.norm(pos[:, :2] - ax, axis=1)
-    gated = r < 0.23
-    bands = np.linspace(crotch, pos[:, 2].max(), 160)
-    C = 0.5 * (bands[:-1] + bands[1:])
-    Wd = np.zeros(len(C))
-    for i, (a, b) in enumerate(zip(bands[:-1], bands[1:])):
-        m = gated & (pos[:, 2] >= a) & (pos[:, 2] < b)
-        if m.sum() >= 4:
-            Wd[i] = np.percentile(pos[m, 0], 99) \
-                - np.percentile(pos[m, 0], 1)
-    above = C > crotch + 0.20 * (C[-1] - crotch)
-    chest_i = int(np.argmax(np.where(above, Wd, 0)))
-    neck, run = None, 0
-    for i in range(chest_i + 1, len(Wd)):
-        if 0 < Wd[i] < 0.55 * Wd[chest_i]:
-            run += 1
-            if run >= 3:
-                neck = C[i - 2]
-                break
-        else:
-            run = 0
-    return neck
-
-
-def torso_params(pos, crotch=None, neck=None, label="mesh"):
-    gate = np.ones(len(pos), bool)
-    ctr, axis = compute_axis(pos, gate)
-    if crotch is None:
-        crotch = crotch_of(pos, gate, 0.030, 0.060)
-    if neck is None:
-        neck = neck_base(pos, ctr, axis, crotch, label)
-    ax = axis_at(ctr, axis, pos[:, 2])
-    rel = pos[:, :2] - ax
-    r = np.linalg.norm(rel, axis=1)
-    theta = np.arctan2(rel[:, 0], rel[:, 1])
-    h = (pos[:, 2] - crotch) / (neck - crotch)
-    return h, theta, r, ax, crotch, neck, neck - crotch
-
-
-def label_mesh(pos, crotch, neck, body_mask=None):
-    if body_mask is None:
-        body_mask = np.ones(len(pos), bool)
-    z = pos[:, 2]
-    ctr, axis = compute_axis(pos, np.ones(len(pos), bool))
-    ax = np.stack([np.interp(z, ctr, axis[:, 0]),
-                   np.interp(z, ctr, axis[:, 1])], axis=1)
-    rel = pos[:, :2] - ax
-    r = np.hypot(rel[:, 0], rel[:, 1])
-    edges = np.arange(z.min() - 0.005, z.max() + 0.011, 0.01)
-    prof = np.full(len(edges) - 1, np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = (z >= a) & (z < b) & (r < 0.23)
-        if m.sum() > 8:
-            prof[i] = np.percentile(r[m], 92)
-    zc = 0.5 * (edges[:-1] + edges[1:])
-    ok = ~np.isnan(prof)
-    r92 = np.interp(z, zc[ok], prof[ok])
-    side = np.sign(rel[:, 0])
-    arm = (r > r92 + 0.010) & (z > crotch - 0.02) & (z < neck + 0.05) \
-        & (side != 0) & (np.abs(rel[:, 0]) > 0.7 * r) & body_mask
-    leg = (z < crotch - 0.008) & ~arm & body_mask
-    torso = ~arm & ~leg
-    lab = {"arm": arm, "leg": leg, "torso": torso, "side": side,
-           "ax": ax, "r": r, "rel": rel}
-    lm = {}
-    for sgn, sname in ((1.0, "R"), (-1.0, "L")):
-        am = arm & (side == sgn)
-        if am.sum() > 60:
-            P = pos[am]
-            c = P.mean(axis=0)
-            _, _, vt = np.linalg.svd(P - c, full_matrices=False)
-            a = vt[0]
-            s = (P - c) @ a
-            for sgn_a in (1.0,):
-                e1 = P[s > np.percentile(s, 92)]
-                e0 = P[s < np.percentile(s, 8)]
-                d1 = np.mean(np.abs(e1[:, 0] - np.interp(
-                    e1[:, 2], ctr, axis[:, 0])))
-                d0 = np.mean(np.abs(e0[:, 0] - np.interp(
-                    e0[:, 2], ctr, axis[:, 0])))
-                if d0 > d1:
-                    a, s = -a, -s
-            u = s - s.min()
-            span = u.max()
-            nb = 28
-            bins = np.linspace(0, span, nb + 1)
-            rad = np.full(nb, np.nan)
-            for i in range(nb):
-                m = (u >= bins[i]) & (u < bins[i + 1])
-                if m.sum() > 3:
-                    rad[i] = np.mean(np.linalg.norm(
-                        (P[m] - c) - np.outer(s[m], a), axis=1))
-            okb = ~np.isnan(rad)
-            rad = np.interp(np.arange(nb), np.where(okb)[0], rad[okb])
-            bc = 0.5 * (bins[:-1] + bins[1:])
-            sm_r = np.convolve(rad, np.ones(3) / 3, mode="same")
-            loc_min = [i for i in range(1, nb - 1)
-                       if sm_r[i] <= sm_r[i - 1] and sm_r[i] <= sm_r[i + 1]
-                       and bc[i] > 0.20 * span]
-            if loc_min:
-                ei = loc_min[0]
-                elb_u = bc[ei]
-                cand = [i for i in loc_min
-                        if bc[i] > elb_u + 0.18 * span
-                        and bc[i] < 0.96 * span]
-                wri_u = bc[min(cand, key=lambda i: sm_r[i])] \
-                    if cand else bc[min(loc_min[-1], nb - 1)]
-            else:
-                elo = bc[(bc > 0.32 * span) & (bc < 0.68 * span)]
-                elb_u = elo[np.argmin(rad[(bc > 0.32 * span)
-                                          & (bc < 0.68 * span)])]
-                wlo = bc[(bc > 0.74 * span) & (bc < 0.95 * span)]
-                wri_u = wlo[np.argmin(rad[(bc > 0.74 * span)
-                                          & (bc < 0.95 * span)])]
-
-            def cent(uc, hw):
-                m = np.abs(u - uc) < hw
-                return P[m].mean(axis=0) if m.sum() > 2 else c + a * uc
-            lm[f"arm{sname}"] = {
-                "S": cent(0.03 * span, 0.05 * span),
-                "E": cent(elb_u, 0.04 * span),
-                "W": cent(wri_u, 0.035 * span),
-                "span": float(span), "verts": np.where(am)[0]}
-        lg = leg & (side == sgn)
-        if lg.sum() > 60:
-            P = pos[lg]
-            top = P[P[:, 2] > crotch - 0.09]
-            hip_off = np.median(np.abs(top[:, 0] - np.interp(
-                top[:, 2], ctr, axis[:, 0]))) if len(top) else 0.09
-            H = np.array([np.interp(crotch, ctr, axis[:, 0]) + sgn * hip_off,
-                          np.interp(crotch, ctr, axis[:, 1]), crotch + 0.005])
-            low = P[P[:, 2] <= np.percentile(P[:, 2], 3)]
-            A = low.mean(axis=0)
-            hv = A - H
-            hl = np.linalg.norm(hv)
-            ah = hv / hl
-            t = (P - H) @ ah
-            rad = np.linalg.norm((P - H) - np.outer(t, ah), axis=1)
-            nb = 24
-            bins = np.linspace(0, hl, nb + 1)
-            prof = np.full(nb, np.nan)
-            for i in range(nb):
-                m = (t >= bins[i]) & (t < bins[i + 1])
-                if m.sum() > 3:
-                    prof[i] = np.mean(rad[m])
-            okb = ~np.isnan(prof)
-            prof = np.interp(np.arange(nb), np.where(okb)[0], prof[okb])
-            bc = 0.5 * (bins[:-1] + bins[1:])
-            klo = bc[(bc > 0.35 * hl) & (bc < 0.65 * hl)]
-            knee_t = klo[np.argmin(prof[(bc > 0.35 * hl)
-                                        & (bc < 0.65 * hl)])]
-            K = P[np.abs(t - knee_t) < 0.04 * hl].mean(axis=0)
-            lm[f"leg{sname}"] = {"H": H, "K": K, "A": A,
-                                 "span": float(hl), "verts": np.where(lg)[0]}
-    lab["lm"] = lm
-    return lab
-
-
-def seg_params(pos, A, B, ref):
-    ab = B - A
-    L = np.linalg.norm(ab)
-    ah = ab / L
-    t = ((pos - A) @ ah) / L
-    rv = (pos - A) - np.outer((pos - A) @ ah, ah)
-    rl = np.linalg.norm(rv, axis=1)
-    e1 = ref - (ref @ ah) * ah
-    e1 = e1 / np.linalg.norm(e1)
-    e2 = np.cross(ah, e1)
-    phi = np.arctan2(rv @ e2, rv @ e1)
-    rdir = np.where(rl[:, None] > 1e-9, rv / np.maximum(rl, 1e-9)[:, None],
-                    e1[None, :])
-    return t, phi, rdir, ah, L, rl
-
-
-REF_ARM = np.array([0.0, 0.0, 1.0])
-REF_LEG = np.array([0.0, 1.0, 0.0])
-
-
-def chain_of(lab, kind, sname):
-    lm = lab["lm"].get(f"{kind}{sname}")
-    if lm is None:
-        return None
-    if kind == "arm":
-        return [(lm["S"], lm["E"]), (lm["E"], lm["W"])], REF_ARM, lm
-    return [(lm["H"], lm["K"]), (lm["K"], lm["A"])], REF_LEG, lm
-
-
-# edges / adjacency (build_bara pattern)
-edges = set()
-for a, b, c in mh_tris:
-    for u, v in ((a, b), (b, c), (c, a)):
-        if u < BODY_END and v < BODY_END:
-            edges.add((min(u, v), max(u, v)))
-_e = np.array(sorted(edges))
+_e = body_edges(mh_tris, body_end=BODY_END)
 
 
 def lap_smooth(x, mask, iters=2):
-    x = x.copy()
-    for _ in range(iters):
-        acc = x.copy()
-        cnt = np.ones(len(x))
-        np.add.at(acc, _e[:, 0], x[_e[:, 1]])
-        np.add.at(acc, _e[:, 1], x[_e[:, 0]])
-        np.add.at(cnt, _e[:, 0], 1)
-        np.add.at(cnt, _e[:, 1], 1)
-        div = cnt[:, None] if x.ndim == 2 else cnt
-        x = np.where(mask[:, None] if x.ndim == 2 else mask,
-                     acc / div, x)
-    return x
+    return _bm_lap_smooth(x, mask, _e, iters=iters)
 
 
 def plane_loops(pos, n, p0):
-    n = n / np.linalg.norm(n)
-    d = (pos - p0) @ n
-    F = FACES_B
-    dv = d[F]
-    per_face = {}
-    for e in ((0, 1), (1, 2), (2, 0)):
-        a, b = dv[:, e[0]], dv[:, e[1]]
-        cross = (a >= 0) != (b >= 0)
-        if not cross.any():
-            continue
-        fa, fb = F[cross, e[0]], F[cross, e[1]]
-        t = a[cross] / (a[cross] - b[cross])
-        pts = pos[fa] + (pos[fb] - pos[fa]) * t[:, None]
-        fid = np.where(cross)[0]
-        for i, f in enumerate(fid):
-            per_face.setdefault(int(f), []).append(pts[i])
-    raw = [np.stack(v) for v in per_face.values() if len(v) == 2]
-    if not raw:
-        return []
-    S = np.stack([s[0] for s in raw])
-    E = np.stack([s[1] for s in raw])
-
-    def key(p):
-        return (round(float(p[0]), 5), round(float(p[1]), 5),
-                round(float(p[2]), 5))
-    at = defaultdict(list)
-    for i in range(len(raw)):
-        at[key(S[i])].append((i, 0))
-        at[key(E[i])].append((i, 1))
-    used = np.zeros(len(raw), bool)
-    loops = []
-    for i0 in range(len(raw)):
-        if used[i0]:
-            continue
-        used[i0] = True
-        loop = [S[i0], E[i0]]
-        cur = key(E[i0])
-        for _ in range(len(raw) + 2):
-            nxt = None
-            for (j, end) in at.get(cur, []):
-                if not used[j]:
-                    nxt = (j, end)
-                    break
-            if nxt is None:
-                break
-            j, end = nxt
-            used[j] = True
-            p = E[j] if end == 0 else S[j]
-            loop.append(p)
-            cur = key(p)
-            if cur == key(loop[0]):
-                break
-        if len(loop) >= 4:
-            loops.append(np.array(loop[:-1]) if
-                         np.allclose(loop[-1], loop[0]) else
-                         np.array(loop))
-    return loops
-
-
-def loop_perim(lp):
-    q = np.roll(lp, -1, axis=0)
-    return float(np.linalg.norm(q - lp, axis=1).sum())
+    return _bm_plane_loops(pos, FACES_B, n, p0)
 
 
 def best_loop(pos, n, p0, near_axis=True, max_extent=None):
-    loops = plane_loops(pos, n, p0)
-    if not loops:
-        return None
-
-    def ok(lp):
-        c = lp.mean(axis=0)
-        if near_axis and abs(c[0]) > 0.09:
-            return False
-        if max_extent and (lp[:, 0].max() - lp[:, 0].min()) > max_extent:
-            return False
-        return True
-    cand = [lp for lp in loops if ok(lp)]
-    if not cand:
-        cand = loops
-    return max(cand, key=loop_perim)
+    return _bm_best_loop(
+        pos, FACES_B, n, p0, near_axis=near_axis, max_extent=max_extent
+    )
 
 
 # ------------------------------------------------------------- grading
@@ -444,117 +136,18 @@ h_mh, th_mh, r_mh, ax_mh, _, _, _ = torso_params(
     mh_pos_mac, mh_crotch, mh_neck, "hm08")
 
 
-def mesh_volume(pos):
-    F = FACES_B
-    v0, v1, v2 = pos[F[:, 0]], pos[F[:, 1]], pos[F[:, 2]]
-    return abs(float(np.einsum("ij,ij->i", v0,
-                                np.cross(v1, v2)).sum() / 6.0))
-
-
 def grade(pos, lmts):
-    """BARA_PROOF's grade(), verbatim protocol (slice-loop scorecard)."""
-    Z = np.array([0.0, 0.0, 1.0])
-    body = pos[:BODY_END]
-    crown = body[:, 2].max()
-    sole = body[:, 2].min()
-    height = crown - sole
-    neck_lp = best_loop(pos, Z, np.array([0, 0, mh_neck + 0.045]))
-    neck_g = loop_perim(neck_lp)
-    neck_w = float(neck_lp[:, 0].max() - neck_lp[:, 0].min())
-    widths = []
-    for zz in np.arange(mh_neck + 0.06, crown - 0.002, 0.004):
-        lp = best_loop(pos, Z, np.array([0, 0, zz]), max_extent=0.30)
-        if lp is not None and loop_perim(lp) > 0.04:
-            widths.append((zz, float(lp[:, 0].max() - lp[:, 0].min())))
-    head_w = max(w for _, w in widths)
-    jaw_win = [(zz, w) for zz, w in widths if zz < mh_neck + 0.17]
-    jaw_z = min(jaw_win, key=lambda t: t[1])[0]
-    chin_z = jaw_z - 0.02
-    head_h = crown - chin_z
-    z_chest = mh_crotch + 0.85 * L_mh
-    chest_lp = best_loop(pos, Z, np.array([0, 0, z_chest]))
-    chest_g = loop_perim(chest_lp)
-    chest_w = float(chest_lp[:, 0].max() - chest_lp[:, 0].min())
-    chest_d = float(chest_lp[:, 1].max() - chest_lp[:, 1].min())
-    z_waist = float(mh_pos_mac[navel_mh, 2])
-    waist_lp = best_loop(pos, Z, np.array([0, 0, z_waist]))
-    waist_g = loop_perim(waist_lp)
-    waist_w = float(waist_lp[:, 0].max() - waist_lp[:, 0].min())
-    waist_d = float(waist_lp[:, 1].max() - waist_lp[:, 1].min())
-    band = (body[:, 2] > mh_neck - 0.17) & (body[:, 2] < mh_neck - 0.02)
-    delt_span = float(body[band, 0].max() - body[band, 0].min())
-    sil = body[(h_mh[:BODY_END] <= 1.16)]
-    xs = np.arange(0.0, 0.30, 0.004)
-    ztop = np.full(len(xs), np.nan)
-    for i, x0 in enumerate(xs):
-        m = (sil[:, 0] >= x0) & (sil[:, 0] < x0 + 0.004)
-        if m.sum() > 2:
-            ztop[i] = sil[m, 2].max()
-    ok = ~np.isnan(ztop)
-    ztop = np.interp(xs, xs[ok], ztop[ok])
-    neck_half = neck_w / 2
-    fx = (xs > 0.10) & (xs < delt_span / 2 - 0.020)
-    if fx.sum() > 4:
-        fit = np.polyfit(xs[fx], ztop[fx], 1)
-        trap_angle = float(np.degrees(np.arctan(abs(fit[0]))))
-    else:
-        trap_angle = float("nan")
-    trap_at_neck = float(np.interp(head_w / 2 + 0.03, xs, ztop))
-    visible_neck = chin_z - trap_at_neck
-    ua_gs, fa_gs = [], []
-    for sname in ("R", "L"):
-        lm = lmts["lm"].get(f"arm{sname}")
-        if not lm:
-            continue
-        S, E, W = lm["S"], lm["E"], lm["W"]
-        for A, Bv, ts, acc in ((S, E, (0.20, 0.35, 0.50, 0.65), ua_gs),
-                               (E, W, (0.15, 0.30, 0.45, 0.60), fa_gs)):
-            n = (Bv - A) / np.linalg.norm(Bv - A)
-            best = 0.0
-            for t in ts:
-                P0 = A + t * (Bv - A)
-                loops = [lp for lp in plane_loops(pos, n, P0)
-                         if loop_perim(lp) > 0.05]
-                if loops:
-                    lp = min(loops, key=lambda l:
-                             np.linalg.norm(l.mean(axis=0) - P0))
-                    best = max(best, loop_perim(lp))
-            if best > 0:
-                acc.append(best)
-    ua_g = float(np.mean(ua_gs))
-    fa_g = float(np.mean(fa_gs))
-    loops = plane_loops(pos, Z, np.array([0, 0, mh_crotch - 0.10]))
-    th = [loop_perim(lp) for lp in loops
-          if abs(lp.mean(axis=0)[0]) > 0.03 and loop_perim(lp) > 0.15]
-    thigh_g = float(np.mean(th)) if th else float("nan")
-    knee_z = min(lm["K"][2] for lm in
-                 (lmts["lm"].get("legR"), lmts["lm"].get("legL")) if lm)
-    calf = {}
-    for zz in np.arange(knee_z - 0.17, knee_z - 0.04, 0.008):
-        for lp in plane_loops(pos, Z, np.array([0, 0, zz])):
-            cx = lp.mean(axis=0)[0]
-            if abs(cx) > 0.03 and loop_perim(lp) > 0.08:
-                s = "R" if cx > 0 else "L"
-                calf[s] = max(calf.get(s, 0.0), loop_perim(lp))
-    calf_g = float(np.mean(list(calf.values()))) if calf else float("nan")
-    return {
-        "height_m": height, "volume_L": mesh_volume(pos) * 1000.0,
-        "neck_g": neck_g, "neck_w": neck_w, "head_w": head_w,
-        "head_h": head_h, "chin_z": chin_z, "jaw_z": jaw_z,
-        "chest_g": chest_g, "chest_w": chest_w, "waist_w": waist_w,
-        "waist_g": waist_g, "chest_d": chest_d, "waist_d": waist_d,
-        "delt_span": delt_span, "trap_angle": trap_angle,
-        "visible_neck": visible_neck, "ua_g": ua_g, "fa_g": fa_g,
-        "thigh_g": thigh_g, "calf_g": calf_g,
-        "M1_neckW_headW": neck_w / head_w,
-        "M2_neck_arm": neck_g / ua_g, "M2_neck_calf": neck_g / calf_g,
-        "M3_fa_arm": fa_g / ua_g,
-        "M4_chest_waist": chest_g / waist_g,
-        "M6_trap_deg": trap_angle,
-        "M7_vis_neck_ratio": visible_neck / head_h,
-        "M8_span_headW": delt_span / head_w,
-        "M11_thigh_waist": thigh_g / waist_g,
-    }
+    return _bm_grade(
+        pos,
+        lmts,
+        faces_b=FACES_B,
+        mh_crotch=mh_crotch,
+        mh_neck=mh_neck,
+        mh_pos_mac=mh_pos_mac,
+        navel_mh=navel_mh,
+        h_mh=h_mh,
+        body_end=BODY_END,
+    )
 
 
 def jaw_scan(pos):
@@ -616,59 +209,20 @@ def groove_metrics(pos):
 
 # ------------------------------------------------------------ fold repair
 def flipped(pos, D):
-    p = pos + D
-    v0 = p[FACES_B[:, 0]]
-    v1 = p[FACES_B[:, 1]]
-    v2 = p[FACES_B[:, 2]]
-    n0 = np.cross(pos[FACES_B[:, 1]] - pos[FACES_B[:, 0]],
-                  pos[FACES_B[:, 2]] - pos[FACES_B[:, 0]])
-    n1 = np.cross(v1 - v0, v2 - v0)
-    dot = np.einsum("ij,ij->i", n0, n1)
-    ln = np.linalg.norm(n0, axis=1) * np.linalg.norm(n1, axis=1)
-    return dot < -1e-12 * np.maximum(ln, 1e-30)
-
-
-def slope_limit(D, moved):
-    D = D.copy()
-    nbr = np.linalg.norm(D[_e[:, 0]] - D[_e[:, 1]], axis=1)
-    dist = np.linalg.norm(mh_pos[_e[:, 0]] - mh_pos[_e[:, 1]], axis=1)
-    bad = nbr > KAPPA * dist
-    if bad.any():
-        mv = moved.copy()
-        mv[np.unique(_e[bad].ravel())] = True
-        D = lap_smooth(np.where(mv[:, None], D, 0.0), mv, 3)
-        D = np.where(mv[:, None], D, 0.0)
-    return D
+    return _bm_flipped(pos, D, FACES_B)
 
 
 def repair(D, checks, label, verbose=True):
-    """build_bara's surgical attenuation repair, verbatim
-    (verbose flag added for calibration trials)."""
-    moved = np.linalg.norm(D, axis=1) > 0.0002
-    D = slope_limit(D, moved)
-    att = np.ones(NB)
-    traj = []
-    for it in range(80):
-        badv = np.zeros(NB, bool)
-        for pos, base_delta in checks:
-            fl = flipped(pos, base_delta + D * att[:, None])
-            if fl.any():
-                badv[FACES_B[fl].ravel()] = True
-        traj.append(int(badv.sum()))
-        if not badv.any():
-            if verbose:
-                print(f" {label}: clean after {it} repair iterations "
-                      f"(bad-vert trajectory {traj})")
-            break
-        nbr = np.zeros(NB, bool)
-        nbr[_e[badv[_e].any(axis=1)].ravel()] = True
-        att[badv] *= 0.78
-        att[nbr & ~badv] *= 0.93
-        att = np.maximum(att, 0.05)
-    else:
-        print(f" {label}: WARNING flips remain after 80 iterations "
-              f"(trajectory {traj})")
-    return D * att[:, None], att, traj
+    return _bm_repair(
+        D,
+        checks,
+        label,
+        faces=FACES_B,
+        edges=_e,
+        ref_pos=mh_pos,
+        kappa=KAPPA,
+        verbose=verbose,
+    )
 
 
 ZERO = np.zeros((NB, 3))
@@ -1004,32 +558,6 @@ for name, D in (("neck_solo", F_NECK), ("forearm_solo", F_FORE),
           f"macro {FLIPS[name]['macro']}")
 
 # ---------------------------------------------------------------- outputs
-def fmt(v):
-    s = f"{abs(v):.3f}".rstrip("0")
-    if s.endswith("."):
-        s += "0"
-    if s in ("", "0."):
-        s = "0"
-    return ("-" + s) if v < 0 else s
-
-
-def write_target(path, delta, note):
-    d_obj = np.stack([delta[:, 0], delta[:, 2], delta[:, 1]],
-                     axis=1) / DM_M
-    moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
-    header = ("# This is a target file for MakeHuman\n#\n"
-              "# It was written by the MakeTarget submodule of MPFB\n#\n"
-              "# For more information, see MakeHuman's home page at "
-              "http://www.makehumancommunity.org\n#\n# basemesh hm08\n"
-              f"# {note}\n")
-    with open(path, "w") as fh:
-        fh.write(header)
-        for i in moved:
-            fh.write(f"{i} {fmt(d_obj[i, 0])} {fmt(d_obj[i, 1])} "
-                     f"{fmt(d_obj[i, 2])}\n")
-    return int(len(moved))
-
-
 NOTE_N = ("Provenance: omniversal slider body.neck.mass (NeckMass, "
           "the yoke), instance makehuman_hm08. AUTHORED procedurally "
           "on hm08 (anatomy-anchored landmark fields: neck column + "
@@ -1095,10 +623,6 @@ qa = {
 print("wrote qa_numbers_neck_forearm.json + neck_forearm_fields.npz")
 
 # ------------------------------------------------------- slider JSONs
-def band(v, lo, hi):
-    return "PASS" if lo <= v <= hi else "miss"
-
-
 score_rows_C = [
     {"metric": "M1 neck width / head width (scorecard)",
      "value": round(GC_["M1_neckW_headW"], 3), "band": [0.68, 9.0],

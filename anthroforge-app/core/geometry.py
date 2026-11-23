@@ -103,6 +103,56 @@ def parse_target(path: str | Path, n_verts: int) -> np.ndarray:
     return field
 
 
+def fmt(v: float) -> str:
+    """Format one MakeHuman ``.target`` coordinate in decimetres (3-decimal
+    precision with trailing zeros stripped, preserving ``.0`` on whole
+    floats and zeros)."""
+    s = f"{abs(v):.3f}".rstrip("0")
+    if s.endswith("."):
+        s += "0"
+    if s in ("", "0."):
+        s = "0"
+    return ("-" + s) if v < 0 else s
+
+
+def write_target(path: str | Path, delta: np.ndarray, note: str) -> int:
+    """Write a canonical-frame ``(N, 3)`` vertex delta (metres, ``(x, y, z)``)
+    as a sparse MakeHuman ``.target`` file (decimetres, ``(x, z, y)``),
+    emitting vertices with ``max(|d_obj|) > 0.001`` dm. Returns the count of
+    moved vertices written."""
+    path = Path(path)
+    arr = np.asarray(delta, dtype=np.float64)
+    if arr.ndim != 2 or arr.shape[1:] != (3,) or arr.shape[0] == 0:
+        raise GeometryError(
+            f"target output {path}: delta must have shape (N, 3) with N > 0, got {arr.shape}"
+        )
+    if not np.isfinite(arr).all():
+        raise GeometryError(f"target output {path}: delta contains non-finite values")
+    d_obj = np.stack([arr[:, 0], arr[:, 2], arr[:, 1]], axis=1) / DM_M
+    moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
+    raw_lines = str(note).splitlines() or [""]
+    note_block = "\n".join(
+        line if line.startswith("#") else f"# {line}" for line in raw_lines
+    )
+    header = (
+        "# This is a target file for MakeHuman\n#\n"
+        "# It was written by the MakeTarget submodule of MPFB\n#\n"
+        "# For more information, see MakeHuman's home page at "
+        "http://www.makehumancommunity.org\n#\n# basemesh hm08\n"
+        f"{note_block}\n"
+    )
+    try:
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(header)
+            for i in moved:
+                fh.write(
+                    f"{i} {fmt(d_obj[i, 0])} {fmt(d_obj[i, 1])} {fmt(d_obj[i, 2])}\n"
+                )
+    except OSError as exc:
+        raise GeometryError(f"target output {path}: cannot write ({exc})") from exc
+    return int(len(moved))
+
+
 @dataclass
 class InstanceField:
     """A slider's field on one base, ready to evaluate at any value."""

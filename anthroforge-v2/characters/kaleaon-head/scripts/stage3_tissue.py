@@ -26,7 +26,6 @@ Out: work/stage3.blend + work/stage3.json
 """
 import json
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 import bpy
@@ -34,9 +33,9 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 import kaleaon_fields as F
-from kaleaon_io import world_co, set_world, group_weights
+from kaleaon_io import fold_stats, group_weights, set_world, world_co
 
-CHAR = Path("/home/hatch/workspace/anthroforge-v2/characters/kaleaon-head")
+CHAR = Path(__file__).resolve().parents[1]
 V = {k: float(v) for k, v in json.loads(
     (CHAR / "scripts" / "kaleaon_vector.json").read_text()).items()
     if isinstance(v, (int, float))}
@@ -210,41 +209,6 @@ report["margin_crossings_final"] = margin_crossings()
 
 
 # ---- fold stats, split exterior / cage-zone
-def fold_stats(o, cage_idx):
-    W5, _ = world_co(o)
-    cage_set = set(int(i) for i in cage_idx)
-    tris, cage_face = [], []
-    for p in o.data.polygons:
-        idx = list(p.vertices)
-        for k in range(1, len(idx) - 1):
-            t = (idx[0], idx[k], idx[k + 1])
-            tris.append(t)
-            cage_face.append(all(v in cage_set for v in t))
-    tris = np.array(tris)
-    cage_face = np.array(cage_face)
-    A, B, C = W5[tris[:, 0]], W5[tris[:, 1]], W5[tris[:, 2]]
-    n = np.cross(B - A, C - A)
-    ln = np.linalg.norm(n, axis=1)
-    n = n / np.maximum(ln, 1e-12)[:, None]
-    edge_faces = defaultdict(list)
-    for fi, t in enumerate(tris):
-        for a, b in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0])):
-            edge_faces[(min(a, b), max(a, b))].append(fi)
-    ext_dots, cage_dots = [], []
-    for fs in edge_faces.values():
-        if len(fs) == 2 and ln[fs[0]] > 1e-10 and ln[fs[1]] > 1e-10:
-            dot = float(n[fs[0]] @ n[fs[1]])
-            (cage_dots if (cage_face[fs[0]] or cage_face[fs[1]])
-             else ext_dots).append(dot)
-    ext_dots = np.array(ext_dots)
-    cage_dots = np.array(cage_dots)
-    return {"exterior_pairs": len(ext_dots),
-            "exterior_min_dot": float(ext_dots.min()) if len(ext_dots) else None,
-            "exterior_below_0.01": int((ext_dots < 0.01).sum()),
-            "cage_pairs": len(cage_dots),
-            "cage_below_0.01": int((cage_dots < 0.01).sum())}
-
-
 report["fold"] = {"TissueHead": fold_stats(tis, tcage),
                   "Jaw": fold_stats(jaw, jcage)}
 

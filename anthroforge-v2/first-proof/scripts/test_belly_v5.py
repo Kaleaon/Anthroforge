@@ -16,37 +16,38 @@ Run: HOME=/tmp/af_home xvfb-run blender -b --python test_belly_v5.py
 """
 import json
 import math
+import sys
 from pathlib import Path
 
 import bpy
 import numpy as np
 
 HERE = Path(__file__).resolve().parent.parent
+V2 = HERE.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery import BODY_END, axis_at_3d  # noqa: E402
+from core.geometry import face_normals as fn, write_target  # noqa: E402
+
 WORK = HERE / "work"
 RENDERS = HERE / "renders"
 MPFB_ZIP = Path("/home/hatch/workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip")
 V5_TARGET = HERE / "body.belly.protrusion_v5.target"
 COUPLED5 = WORK / "target_coupled_v5_w0.5.target"
-BODY_END = 13380
 
 # --- write the coupled +0.5 fixture target from the shipped components
 _v5 = np.load(WORK / "belly_v5.npz")
 GAMMA = float(_v5["gamma"])
 D05 = 0.5 * _v5["lin_v5_canonical_m"] + (0.5 ** GAMMA) * _v5["sag_v5_canonical_m"]
-def fmt(v):
-    s = f"{abs(v):.3f}".rstrip("0")
-    if s.endswith("."): s += "0"
-    if s in ("", "0."): s = "0"
-    return ("-" + s) if v < 0 else s
-d_obj = np.stack([D05[:, 0], D05[:, 2], D05[:, 1]], axis=1) / 0.1
-moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
-with open(COUPLED5, "w") as fh:
-    fh.write("# This is a target file for MakeHuman\n#\n# basemesh hm08\n"
-             "# QA harness artefact: coupled v5 shape at w=+0.5 "
-             "(0.5*LIN5 + 0.5^gamma*SAG).\n")
-    for i in moved:
-        fh.write(f"{i} {fmt(d_obj[i,0])} {fmt(d_obj[i,1])} {fmt(d_obj[i,2])}\n")
-print(f"coupled +0.5 fixture: {len(moved)} moved verts")
+n_moved = write_target(
+    COUPLED5,
+    D05,
+    "QA harness artefact: coupled v5 shape at w=+0.5 (0.5*LIN5 + 0.5^gamma*SAG).",
+)
+print(f"coupled +0.5 fixture: {n_moved} moved verts")
 
 corr = np.load(WORK / "correspondence.npz")
 NAVEL = int(corr["navel_mh"])
@@ -100,8 +101,7 @@ for z in np.arange(nz - 0.06, nz + 0.061, 0.005):
 slices = np.array(slices)
 zg = slices[:, 2]
 def axis_at(z):
-    return np.array([np.interp(z, zg, slices[:, 0]),
-                     np.interp(z, zg, slices[:, 1]), z])
+    return axis_at_3d(zg, slices, z)
 fdir = base[NAVEL] - axis_at(nz)
 fdir[2] = 0.0
 fdir = fdir / np.linalg.norm(fdir)
@@ -122,9 +122,6 @@ for tag, (w, v) in [("w+0.5", ("coupled", 0.0)), ("w+1.0", ("v5", 1.0))]:
 set_state("v5", 1.0)
 pos1 = evaluated()
 tris = np.array([list(p.vertices) for p in human.data.polygons])
-def fn(P, F):
-    nn = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return nn / np.maximum(np.linalg.norm(nn, axis=1, keepdims=True), 1e-14)
 # (a) v4 belly region, identical selection
 cen = base[tris].mean(axis=1)
 front = (cen - np.array([axis_at(z) for z in cen[:, 2]])) @ fdir

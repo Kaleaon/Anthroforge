@@ -13,16 +13,26 @@ were flawed (see GRAVITY_V4.md):
       the waist window, with depth vs +-0.06 h neighbours.
 """
 import json
-import zipfile
+import sys
 from pathlib import Path
 
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent
+V2 = OUT.parent
+if str(V2) not in sys.path:
+    sys.path.insert(0, str(V2))
+
+from body_machinery import (  # noqa: E402
+    BODY_END,
+    compute_axis,
+    load_mpfb_base_obj,
+    torso_cylindrical,
+)
+
 WORK = OUT / "work"
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
-DM_M = 0.1
 
 corr = np.load(WORK / "correspondence.npz")
 B = corr["mh_mask"].astype(np.float64)
@@ -33,39 +43,11 @@ L_mh = mh_neck - mh_crotch
 D3 = np.load(WORK / "belly_v3.npz")["delta_v3_canonical_m"].astype(np.float64)
 D4 = np.load(WORK / "belly_v4.npz")["delta_v4_canonical_m"].astype(np.float64)
 
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    obj_lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-mh_obj = np.array([[float(x) for x in l.split()[1:4]]
-                   for l in obj_lines if l.startswith("v ")])
-mh_pos = np.stack([mh_obj[:, 0], mh_obj[:, 2], mh_obj[:, 1]], axis=1) * DM_M
-BODY_END = 13380
+mh_pos = load_mpfb_base_obj(MPFB_ZIP)
 mh_body = np.zeros(len(mh_pos), bool); mh_body[:BODY_END] = True
 
-def compute_axis(pos, gate):
-    hgt = pos[:, 2]
-    lo, hi = hgt[gate].min(), hgt[gate].max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = gate & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"), k, "valid")
-    return ctr, axis
 mh_ctr, mh_axis = compute_axis(mh_pos, mh_body)
-ax = np.stack([np.interp(mh_pos[:, 2], mh_ctr, mh_axis[:, 0]),
-               np.interp(mh_pos[:, 2], mh_ctr, mh_axis[:, 1])], axis=1)
-rel = mh_pos[:, :2] - ax
-mh_r = np.linalg.norm(rel, axis=1)
-mh_th = np.arctan2(rel[:, 0], rel[:, 1])
-mh_h = (mh_pos[:, 2] - mh_crotch) / L_mh
+mh_h, mh_th, ax, mh_r = torso_cylindrical(mh_pos, mh_ctr, mh_axis, mh_crotch, mh_neck)
 er = np.stack([np.sin(mh_th), np.cos(mh_th)], axis=1)
 torso_gate = mh_body & (mh_r < 0.30)
 

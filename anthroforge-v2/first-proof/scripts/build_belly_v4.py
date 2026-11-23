@@ -48,15 +48,37 @@ v3 and v4 alike.
 """
 import json
 import sys
-import zipfile
 from pathlib import Path
 
 import numpy as np
 import scipy.sparse as sp
-from scipy.spatial import cKDTree
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent
+V2 = OUT.parent
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from body_machinery import (  # noqa: E402
+    BODY_END,
+    DM_M,
+    SK_UNIT_M,
+    ParamSurface,
+    axis_at,
+    compute_axis,
+    crotch_of,
+    extract_base_positions,
+    girth_ellipse,
+    load_mpfb_base_obj,
+    neck_base,
+    slope_limit_iter,
+    torso_cylindrical as torso_params,
+    tri_closest,
+)
+from core.geometry import face_normals, write_target  # noqa: E402
+
 WORK = OUT / "work"
 LEARNED = Path.home() / "workspace/character_assets/learned"
 MPFB_ZIP = Path.home() / "workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip"
@@ -65,8 +87,6 @@ HIMBO_DIR = (Path.home() / "workspace/character_assets/_himbo_work/CalienteTools
 sys.path.insert(0, str(LEARNED / "tools"))
 from osdparse import load_osd  # noqa: E402
 
-SK_UNIT_M = 0.01428
-DM_M = 0.1
 GAMMA4 = 2.0            # sag coupling, as v3
 
 # HIMBO "Chonky" recipe: preset high-weight ("big") values / 100, blocks
@@ -108,83 +128,13 @@ qa1 = json.loads((WORK / "qa_numbers.json").read_text())
 anchor = qa1["anchor_m"]
 FM_anchor_raw = qa1["anchor_raw_m"]
 
-with zipfile.ZipFile(MPFB_ZIP) as z:
-    obj_lines = z.read("mpfb/data/3dobjs/base.obj").decode().splitlines()
-mh_obj = np.array([[float(x) for x in l.split()[1:4]]
-                   for l in obj_lines if l.startswith("v ")])
-mh_faces = []
-for l in obj_lines:
-    if l.startswith("f "):
-        mh_faces.append([int(t.split("/")[0]) - 1 for t in l.split()[1:]])
-mh_pos = np.stack([mh_obj[:, 0], mh_obj[:, 2], mh_obj[:, 1]], axis=1) * DM_M
-BODY_END = 13380
+mh_pos, mh_faces = load_mpfb_base_obj(MPFB_ZIP, with_poly_faces=True)
 mh_body = np.zeros(len(mh_pos), bool); mh_body[:BODY_END] = True
 mh_pos_mac = mh_pos.copy()
 _mac = np.load(WORK / "mh_macro_base.npz")["pos_canonical_m"]
 mh_pos_mac[:len(_mac)] = _mac
 
 # ------------------------------------------------------- shared machinery
-def compute_axis(pos, gate=None):
-    if gate is None:
-        gate = np.ones(len(pos), bool)
-    hgt = pos[:, 2]
-    lo, hi = hgt[gate].min(), hgt[gate].max()
-    edges = np.linspace(lo, hi, 81)
-    ctr = 0.5 * (edges[:-1] + edges[1:])
-    axis = np.full((len(ctr), 2), np.nan)
-    for i, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
-        m = gate & (hgt >= a) & (hgt < b) & (np.abs(pos[:, 0]) < 0.23)
-        if m.sum() >= 4:
-            axis[i] = [0.5 * (pos[m, 0].min() + pos[m, 0].max()),
-                       0.5 * (pos[m, 1].min() + pos[m, 1].max())]
-    ok = ~np.isnan(axis[:, 0])
-    for c in range(2):
-        axis[:, c] = np.interp(ctr, ctr[ok], axis[ok, c])
-    k = np.ones(5) / 5
-    for c in range(2):
-        axis[:, c] = np.convolve(np.pad(axis[:, c], 2, mode="edge"), k, "valid")
-    return ctr, axis
-
-def axis_at(ctr, axis, hgt):
-    return np.stack([np.interp(hgt, ctr, axis[:, 0]),
-                     np.interp(hgt, ctr, axis[:, 1])], axis=1)
-
-def torso_params(pos, ctr, axis, crotch, neck):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    rel = pos[:, :2] - ax
-    r = np.linalg.norm(rel, axis=1)
-    theta = np.arctan2(rel[:, 0], rel[:, 1])
-    h = (pos[:, 2] - crotch) / (neck - crotch)
-    return h, theta, ax, r
-
-def crotch_of(pos, gate, mid_hw, slab_hw):
-    mid = gate & (np.abs(pos[:, 0]) < mid_hw) & (np.abs(pos[:, 1]) < slab_hw)
-    return pos[mid, 2].min()
-
-def neck_base(pos, ctr, axis, crotch, label):
-    ax = axis_at(ctr, axis, pos[:, 2])
-    r = np.linalg.norm(pos[:, :2] - ax, axis=1)
-    gated = r < 0.23
-    bands = np.linspace(crotch, pos[:, 2].max(), 160)
-    C = 0.5 * (bands[:-1] + bands[1:]); Wd = np.zeros(len(C))
-    for i, (a, b) in enumerate(zip(bands[:-1], bands[1:])):
-        m = gated & (pos[:, 2] >= a) & (pos[:, 2] < b)
-        if m.sum() >= 4:
-            Wd[i] = np.percentile(pos[m, 0], 99) - np.percentile(pos[m, 0], 1)
-    above = C > crotch + 0.20 * (C[-1] - crotch)
-    chest_i = int(np.argmax(np.where(above, Wd, 0)))
-    neck, run = None, 0
-    for i in range(chest_i + 1, len(Wd)):
-        if 0 < Wd[i] < 0.55 * Wd[chest_i]:
-            run += 1
-            if run >= 3:
-                neck = C[i - 2]; break
-        else:
-            run = 0
-    print(f"{label}: chest {C[chest_i]:.3f} m (W={Wd[chest_i]:.3f} m), "
-          f"neck base {neck:.4f} m")
-    return neck
-
 mh_ctr, mh_axis = compute_axis(mh_pos, mh_body)
 mh_h, mh_th, mh_ax, mh_r = torso_params(mh_pos, mh_ctr, mh_axis, mh_crotch, mh_neck)
 er_mh = np.stack([np.sin(mh_th), np.cos(mh_th)], axis=1)
@@ -197,10 +147,6 @@ A = A + A.T
 deg = np.asarray(A.sum(axis=1)).ravel()
 Lop = sp.diags(1.0 / np.maximum(deg, 1)) @ A
 nbrs = [np.asarray(A[v].nonzero()[1]) for v in range(len(mh_pos))]
-
-def face_normals(P, F):
-    n = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-14)
 
 # ------------------------------------------------- kernel field (v1 method)
 SIG_H, SIG_A = 0.05, 0.040
@@ -262,31 +208,6 @@ fm_ev, fm_info, _ = make_field(fm_pos, fm_delta, fm_crotch, fm_neck, "fat_males"
 s_fm = L_mh / fm_info["torso_len_m"]
 
 # ------------------------------------------------------------- HIMBO side
-def extract_base_positions(data, expect_min_verts):
-    """Embedded vertex stream scan, copied from crosscheck_fields.py."""
-    best = None
-    for phase in range(0, 32, 2):
-        n = (len(data) - phase) // 32
-        if n < expect_min_verts:
-            continue
-        rec = np.frombuffer(data[phase:phase + n * 32], dtype="<f4")
-        rec = rec.reshape(n, 8).astype(np.float64)
-        pos, pad = rec[:, :3], rec[:, 3]
-        ok = (np.isfinite(pos).all(axis=1) & (np.abs(pos[:, 0]) < 60) &
-              (np.abs(pos[:, 1]) < 45) & (pos[:, 2] > -15) &
-              (pos[:, 2] < 160) & (np.abs(pad) < 0.01) &
-              (np.abs(pos).max(axis=1) > 0.05))
-        ch = np.diff(np.concatenate(([0], ok.view(np.int8), [0])))
-        st = np.where(ch == 1)[0]
-        en = np.where(ch == -1)[0]
-        for s, e in zip(st, en):
-            if e - s >= expect_min_verts:
-                run = pos[s:e]
-                cand = (int(e - s), float(run[:, 2].max() - run[:, 2].min()), run)
-                if best is None or cand[:2] > best[:2]:
-                    best = cand
-    return None if best is None else best[2]
-
 hi_pos_u = extract_base_positions((HIMBO_DIR / "HIMBO Body - Vanilla.nif").read_bytes(), 4000)
 assert hi_pos_u is not None and len(hi_pos_u) == 9346, None if hi_pos_u is None else len(hi_pos_u)
 hi_pos = hi_pos_u * SK_UNIT_M
@@ -379,9 +300,6 @@ def profiles(P, step=0.0125):
         rmean = float(np.linalg.norm(P[m, :2] - axz, axis=1).mean())
         rows.append((z, width, depth, rmean))
     return np.array(rows)
-def girth_ellipse(width, depth):
-    a, b = width / 2, depth / 2
-    return np.pi * (3 * (a + b) - np.sqrt((3 * a + b) * (a + 3 * b)))
 prof_base = profiles(mh_pos)
 print("profiles computed")
 
@@ -474,24 +392,7 @@ def compose(dist_scale=1.0):
 torso_edges = np.array([e for e in edges_all
                         if (W[e[0]] > 0.003 or B[e[0]] > 0.003)
                         and (W[e[1]] > 0.003 or B[e[1]] > 0.003)])
-elen = np.linalg.norm(mh_pos[torso_edges[:, 0]] - mh_pos[torso_edges[:, 1]], axis=1)
 KAPPA = 0.55
-def slope_limit(Ds):
-    Ds = Ds.copy()
-    for it in range(80):
-        diff = Ds[torso_edges[:, 0]] - Ds[torso_edges[:, 1]]
-        dn = np.linalg.norm(diff, axis=1)
-        excess = dn - KAPPA * elen
-        if (excess <= 0).all():
-            return Ds, it
-        corr_ = np.zeros_like(Ds); wgt = np.zeros(len(Ds))
-        m_ = excess > 0
-        adj = (0.5 * excess[m_] / np.maximum(dn[m_], 1e-12))[:, None] * diff[m_]
-        np.add.at(corr_, torso_edges[m_, 0], -adj)
-        np.add.at(corr_, torso_edges[m_, 1], adj)
-        np.add.at(wgt, torso_edges[m_, 0], 1); np.add.at(wgt, torso_edges[m_, 1], 1)
-        Ds += 0.7 * corr_ / np.maximum(wgt, 1)[:, None]
-    return Ds, 80
 def repair(A_raw, max_rounds=60):
     att = np.ones(len(A_raw))
     Av = A_raw.copy()
@@ -524,7 +425,7 @@ for s_try in (1.0, 0.85, 0.7, 0.55):
         sm = Lop @ A_raw
         gate = np.maximum(W, B)
         A_raw = A_raw + 0.35 * gate[:, None] * (sm - A_raw)
-    A_raw, lim_it = slope_limit(A_raw)
+    A_raw, lim_it = slope_limit_iter(A_raw, torso_edges, mh_pos, kappa=KAPPA, max_iters=80)
     pre = (flips_t(D1 + A_raw, "raw")[0], flips_t(D1 + A_raw, "macro")[0])
     A_fin, att, converged, rounds = repair(A_raw)
     print(f"dist scale {s_try}: limiter {lim_it} it, pre-repair flips "
@@ -634,47 +535,6 @@ print("pinch:", json.dumps({"v3": pm3, "v4": pm4}, indent=1))
 def param_coords(pos, ctr, axis, crotch, L):
     h, th, ax, r = torso_params(pos, ctr, axis, crotch, crotch + L)
     return np.stack([th * r / L, h, r / L], axis=1)
-def tri_closest(P, A_, B_, C_):
-    ab, ac, ap = B_ - A_, C_ - A_, P - A_
-    d1 = np.einsum("ij,ij->i", ab, ap); d2 = np.einsum("ij,ij->i", ac, ap)
-    d3 = np.einsum("ij,ij->i", ab, ab); d4 = np.einsum("ij,ij->i", ab, ac)
-    d5 = np.einsum("ij,ij->i", ac, ac)
-    den = np.maximum(d3 * d5 - d4 * d4, 1e-14)
-    vc = (d3 * d2 - d4 * d1) / den; vb = (d5 * d1 - d4 * d2) / den
-    inside = (vb >= 0) & (vc >= 0) & (vb + vc <= 1)
-    plane = A_ + vb[:, None] * ab + vc[:, None] * ac
-    best = plane.copy()
-    bestd = np.where(inside, np.linalg.norm(P - plane, axis=1), np.inf)
-    for E0, E1 in ((A_, B_), (B_, C_), (C_, A_)):
-        seg = E1 - E0
-        t = np.einsum("ij,ij->i", P - E0, seg) / np.maximum(
-            np.einsum("ij,ij->i", seg, seg), 1e-14)
-        q = E0 + np.clip(t, 0, 1)[:, None] * seg
-        dd = np.linalg.norm(P - q, axis=1)
-        m_ = dd < bestd
-        best[m_] = q[m_]; bestd[m_] = dd[m_]
-    return best, bestd
-class ParamSurface:
-    def __init__(self, P, F):
-        self.P, self.F = P, F
-        self.tree = cKDTree(P)
-        vf = {}
-        for fi, f in enumerate(F):
-            for v in f:
-                vf.setdefault(int(v), []).append(fi)
-        self.vf = vf
-    def closest(self, Q, k=12):
-        _, nn = self.tree.query(Q, k=k)
-        out_c = np.empty_like(Q); out_d = np.empty(len(Q))
-        for i, row in enumerate(nn):
-            cand = np.unique(np.concatenate(
-                [self.vf[int(v)] for v in row if int(v) in self.vf]))
-            A_ = self.P[self.F[cand, 0]]; B_ = self.P[self.F[cand, 1]]
-            C_ = self.P[self.F[cand, 2]]
-            cp, dd = tri_closest(np.repeat(Q[i:i + 1], len(cand), axis=0), A_, B_, C_)
-            j = int(np.argmin(dd))
-            out_c[i] = cp[j]; out_d[i] = dd[j]
-        return out_c, out_d
 L_sk = fm_neck - fm_crotch
 skP_fat = param_coords(fm_pos + fm_delta, _fm_ctr, _fm_axis, fm_crotch, L_sk)
 _fm_h3, _fm_th3, _fm_ax3, _fm_r3 = torso_params(fm_pos, _fm_ctr, _fm_axis, fm_crotch, fm_neck)
@@ -718,24 +578,6 @@ allrow = {"n": int(len(core1)),
 print(f"zone ALL: v4 p95 {allrow['v4_p95_cm']:.2f} cm (v3 {allrow['v3_p95_cm']})")
 
 # ---------------------------------------------------------------- targets
-def fmt(v):
-    s = f"{abs(v):.3f}".rstrip("0")
-    if s.endswith("."): s += "0"
-    if s in ("", "0."): s = "0"
-    return ("-" + s) if v < 0 else s
-def write_target(path, delta, note):
-    d_obj = np.stack([delta[:, 0], delta[:, 2], delta[:, 1]], axis=1) / DM_M
-    moved = np.where(np.abs(d_obj).max(axis=1) > 0.001)[0]
-    header = ("# This is a target file for MakeHuman\n#\n"
-              "# It was written by the MakeTarget submodule of MPFB\n#\n"
-              "# For more information, see MakeHuman's home page at "
-              "http://www.makehumancommunity.org\n#\n# basemesh hm08\n"
-              f"# {note}\n")
-    with open(path, "w") as fh:
-        fh.write(header)
-        for i in moved:
-            fh.write(f"{i} {fmt(d_obj[i,0])} {fmt(d_obj[i,1])} {fmt(d_obj[i,2])}\n")
-    return int(len(moved))
 NOTE4 = ("Provenance: omniversal slider body.belly.protrusion v4 (reference-"
          "driven whole-torso adiposity), instance makehuman_hm08. Combined "
          "field at w=+1: v3 belly in the mask core, learned whole-torso "

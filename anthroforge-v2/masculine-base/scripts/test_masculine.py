@@ -11,7 +11,16 @@ Mirror of first-proof/scripts/test_mpfb.py:
 Run: HOME=/tmp/af_home xvfb-run blender -b --python test_masculine.py
 """
 import bpy, os, json, importlib, sys
+from pathlib import Path
 import numpy as np
+
+V2 = Path(__file__).resolve().parents[2]
+APP = V2.parent / "anthroforge-app"
+for _p in (str(V2), str(APP)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+from core.geometry import face_normals  # noqa: E402
 
 ROOT = os.path.expanduser("~/workspace/anthroforge-v2/masculine-base")
 ZIP = os.path.expanduser("~/workspace/stick-figure-avatar/photoreal/tools/mpfb2.zip")
@@ -93,9 +102,6 @@ print(f"vs feminine-base headline result (anchor 11.97 cm): masculine "
       f"(delta {fem_anchor_err:+.2f} cm -- the anchor is defined "
       f"proportionally to torso length; see MASCULINE_BASE.md)")
 
-def face_normals(P, F):
-    n = np.cross(P[F[:, 1]] - P[F[:, 0]], P[F[:, 2]] - P[F[:, 0]])
-    return n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-14)
 Fb = MH_TRIS[BELLY]
 n0 = face_normals(base_coords, Fb)
 flip_results = {}
