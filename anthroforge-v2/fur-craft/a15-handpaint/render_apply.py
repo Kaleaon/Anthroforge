@@ -54,7 +54,6 @@ for poly in mesh.polygons:
 
 # ---- material: painted diffuse + painted roughness + bump from diffuse ---
 mat = bpy.data.materials.new("CanineBackPelt")
-mat.use_nodes = True
 nt = mat.node_tree
 bsdf = nt.nodes["Principled BSDF"]
 tex_d = nt.nodes.new("ShaderNodeTexImage")
@@ -88,7 +87,6 @@ obj.data.materials.append(mat)
 bpy.ops.mesh.primitive_plane_add(size=30, location=(0, 0, -0.42))
 ground = bpy.context.active_object
 gmat = bpy.data.materials.new("Ground")
-gmat.use_nodes = True
 gmat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.15, 0.14, 1)
 gmat.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
 ground.data.materials.append(gmat)
@@ -109,7 +107,6 @@ area("Key", (-1.6, -1.2, 2.4), (math.radians(38), math.radians(-18), math.radian
 area("Fill", (2.0, -0.4, 1.0), (math.radians(62), math.radians(20), math.radians(55)), 3.2, 85, (0.82, 0.88, 1.0))
 world = bpy.data.worlds.new("W")
 scene.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.03, 0.03, 0.035, 1)
 world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 

@@ -85,7 +85,7 @@ swap_image("fin_texture", make_fin_texture_v3())
 ROOT2 = (0.15, 0.10, 0.058)
 TIP2 = (0.40, 0.285, 0.175)
 for mat in bpy.data.materials:
-    if mat.name.startswith('Shell_t') and mat.use_nodes:
+    if mat.name.startswith('Shell_t') and mat.node_tree:
         t = float(mat.name.split('_t')[1].split('.')[0] + '.' +
                   mat.name.split('_t')[1].split('.')[1][:3])
         col = tuple(ROOT2[i] + (TIP2[i] - ROOT2[i]) * t for i in range(3))

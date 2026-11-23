@@ -202,7 +202,6 @@ pts -= rnrm[:, None, :] * (over * 0.85 + under)[:, :, None]
 
 def hair_material(name, root_hex, tip_hex):
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     nt = m.node_tree
     nt.nodes.remove(nt.nodes["Principled BSDF"])
     bsdf = nt.nodes.new("ShaderNodeBsdfHairPrincipled")
@@ -309,7 +308,6 @@ if gpts:
     gcd.attributes["radius"].data.foreach_set(
         "value", [0.003] * (len(gpts) * GSTEPS))
     gm = bpy.data.materials.new("FURP_guide_mat")
-    gm.use_nodes = True
     gnt = gm.node_tree
     gnt.nodes.remove(gnt.nodes["Principled BSDF"])
     gb = gnt.nodes.new("ShaderNodeBsdfHairPrincipled")

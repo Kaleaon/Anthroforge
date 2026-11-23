@@ -74,7 +74,6 @@ def add_groups(ob, groups):
 # ---------------------------------------------------------------- materials
 def clay(name, rgb, rough=0.85):
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     bsdf = m.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value = (*rgb, 1.0)
     bsdf.inputs["Roughness"].default_value = rough
@@ -435,7 +434,6 @@ scene.cycles.device = 'CPU'
 scene.render.resolution_x = 640
 scene.render.resolution_y = 640
 world = bpy.data.worlds.new("W") if not scene.world else scene.world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.18, 0.18, 0.19, 1.0)
 world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 bpy.ops.object.light_add(type='SUN', location=(2, 3, 4))

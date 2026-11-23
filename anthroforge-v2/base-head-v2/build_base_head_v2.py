@@ -25,16 +25,12 @@ def make_mesh(name, verts, faces, smooth=True):
 
 def material(name, color, rough=0.6, subsurface=0.0, spec=0.5):
     m = bpy.data.materials.get(name) or bpy.data.materials.new(name)
-    m.use_nodes = True
     bsdf = m.node_tree.nodes['Principled BSDF']
     bsdf.inputs['Base Color'].default_value = (*color, 1.0)
     bsdf.inputs['Roughness'].default_value = rough
-    if 'Subsurface Weight' in bsdf.inputs:
-        bsdf.inputs['Subsurface Weight'].default_value = subsurface
-    if 'Subsurface Scale' in bsdf.inputs:
-        bsdf.inputs['Subsurface Scale'].default_value = 0.012
-    if 'Specular IOR Level' in bsdf.inputs:
-        bsdf.inputs['Specular IOR Level'].default_value = spec
+    bsdf.inputs['Subsurface Weight'].default_value = subsurface
+    bsdf.inputs['Subsurface Scale'].default_value = 0.012
+    bsdf.inputs['Specular IOR Level'].default_value = spec
     return m
 
 def assign_mat(ob, mat):
@@ -644,7 +640,6 @@ scene.cycles.samples = 40
 scene.cycles.use_denoising = True
 scene.render.resolution_x = 950; scene.render.resolution_y = 950
 world = bpy.data.worlds.new('W'); scene.world = world
-world.use_nodes = True
 env = world.node_tree.nodes.new('ShaderNodeTexEnvironment')
 env.image = bpy.data.images.load(os.path.expanduser('~/workspace/bodies-3d/parts-library/polyhaven/photo-studio-01-hdri/photo_studio_01_2k.hdr'))
 bg = world.node_tree.nodes['Background']

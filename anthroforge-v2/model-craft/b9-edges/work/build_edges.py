@@ -160,7 +160,6 @@ print("STATS:", json.dumps(stats), flush=True)
 
 # ---- studio: clay material, key + rim lights, one camera -------------------
 mat = bpy.data.materials.new("clay")
-mat.use_nodes = True
 bsdf = mat.node_tree.nodes["Principled BSDF"]
 bsdf.inputs["Base Color"].default_value = (0.40, 0.385, 0.37, 1)
 bsdf.inputs["Roughness"].default_value = 0.62
@@ -194,7 +193,6 @@ sc.cycles.samples = 48
 sc.cycles.use_denoising = False
 sc.render.resolution_x = 640; sc.render.resolution_y = 640
 sc.world = bpy.data.worlds.new("W")
-sc.world.use_nodes = True
 sc.world.node_tree.nodes["Background"].inputs[0].default_value = (0.08, 0.08, 0.09, 1)
 sc.world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 

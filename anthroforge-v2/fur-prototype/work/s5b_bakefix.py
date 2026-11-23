@@ -19,7 +19,6 @@ def bake_card_texture(name, count, seed, outpath):
     em.name = "CardEmitter"
     # slot 0: transparent (hides the emitter sheet itself)
     ghost = bpy.data.materials.new("Ghost")
-    ghost.use_nodes = True
     gnt = ghost.node_tree
     gnt.nodes.clear()
     go = gnt.nodes.new("ShaderNodeOutputMaterial")
@@ -28,7 +27,6 @@ def bake_card_texture(name, count, seed, outpath):
     em.data.materials.append(ghost)
     # slot 1: the hair shading the particles will use
     mat = bpy.data.materials.new("CardHair")
-    mat.use_nodes = True
     nt = mat.node_tree
     nt.nodes.clear()
     outn = nt.nodes.new("ShaderNodeOutputMaterial")

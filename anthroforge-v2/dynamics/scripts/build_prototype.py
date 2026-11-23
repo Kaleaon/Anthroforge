@@ -179,7 +179,6 @@ vg_soft = sac_obj.vertex_groups.new(name='AF_softness')
 for vi, s in enumerate(soft_vals):
     vg_soft.add([vi], float(s), 'REPLACE')
 mat = bpy.data.materials.new('AF_SacSkin')
-mat.use_nodes = True
 bsdf = mat.node_tree.nodes['Principled BSDF']
 bsdf.inputs['Base Color'].default_value = (0.45, 0.30, 0.24, 1)
 bsdf.inputs['Roughness'].default_value = 0.55
@@ -309,7 +308,6 @@ bpy.ops.mesh.primitive_plane_add(size=10, location=(0, 0, 0))
 ground = bpy.context.active_object
 ground.name = 'Ground'
 gmat = bpy.data.materials.new('Clay')
-gmat.use_nodes = True
 gmat.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = \
     (0.32, 0.32, 0.34, 1)
 ground.data.materials.append(gmat)
@@ -333,7 +331,6 @@ scene.collection.objects.link(sun)
 sun.rotation_euler = (0.9, 0.2, 0.6)
 world = bpy.data.worlds.new('W')
 scene.world = world
-world.use_nodes = True
 world.node_tree.nodes['Background'].inputs['Strength'].default_value = 0.5
 
 scene['af_dynamics'] = json.dumps({

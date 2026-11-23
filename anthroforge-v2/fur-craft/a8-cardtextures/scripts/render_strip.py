@@ -24,14 +24,12 @@ sc.render.film_transparent = False
 
 # world: near-black studio
 w = bpy.data.worlds.new("W"); sc.world = w
-w.use_nodes = True
 w.node_tree.nodes["Background"].inputs[0].default_value = (0.012, 0.012, 0.016, 1)
 w.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 
 
 def mat_card():
     m = bpy.data.materials.new("card")
-    m.use_nodes = True
     nt = m.node_tree
     bsdf = nt.nodes["Principled BSDF"]
     tex = nt.nodes.new("ShaderNodeTexImage"); tex.image = bpy.data.images.load(TEX)
@@ -77,7 +75,7 @@ def cluster(x, dist, scale=1.0):
 # ground + backdrop
 bpy.ops.mesh.primitive_plane_add(size=60, location=(0, 6, 0))
 g = bpy.context.active_object
-gm = bpy.data.materials.new("ground"); gm.use_nodes = True
+gm = bpy.data.materials.new("ground")
 gm.node_tree.nodes["Principled BSDF"].inputs[0].default_value = (0.05, 0.05, 0.06, 1)
 gm.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
 g.data.materials.append(gm)

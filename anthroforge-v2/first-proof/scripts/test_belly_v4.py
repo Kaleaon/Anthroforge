@@ -150,7 +150,6 @@ scene.render.resolution_x = 640
 scene.render.resolution_y = 800
 world = bpy.data.worlds.new("W") if not bpy.data.worlds else bpy.data.worlds[0]
 scene.world = world
-world.use_nodes = True
 bg = world.node_tree.nodes["Background"]
 bg.inputs[0].default_value = (0.12, 0.12, 0.13, 1)
 bg.inputs[1].default_value = 1.0

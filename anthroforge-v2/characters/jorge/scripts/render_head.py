@@ -33,7 +33,6 @@ bpy.ops.import_scene.gltf(filepath=A.glb)
 
 def clay(name, rgb, rough=0.85):
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     bsdf = m.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value = (*rgb, 1.0)
     bsdf.inputs["Roughness"].default_value = rough
@@ -97,7 +96,6 @@ sc.render.resolution_x = 640
 sc.render.resolution_y = 800
 world = bpy.data.worlds.new("W")
 sc.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = \
     (0.35, 0.35, 0.36, 1.0)
 

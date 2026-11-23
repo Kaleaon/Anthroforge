@@ -85,7 +85,6 @@ fc.write_color_attr(me, "FURP_viz", viz)
 
 # clay material so the paintable file renders standalone (from s2)
 mat = bpy.data.materials.get("BodyClay") or bpy.data.materials.new("BodyClay")
-mat.use_nodes = True
 mat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.13, 0.11, 1.0)
 mat.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 0.9
 if mat.name not in [m.name for m in me.materials]:

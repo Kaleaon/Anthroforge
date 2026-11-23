@@ -31,7 +31,6 @@ def clear_scene():
 
 def make_material(tex_path, rx, ry):
     mat = bpy.data.materials.new("fur")
-    mat.use_nodes = True
     nt = mat.node_tree
     bsdf = nt.nodes["Principled BSDF"]
     bsdf.inputs["Roughness"].default_value = 0.9
@@ -50,7 +49,6 @@ def make_material(tex_path, rx, ry):
 
 def setup_world_and_lights():
     world = bpy.data.worlds["World"]
-    world.use_nodes = True
     bg = world.node_tree.nodes["Background"]
     bg.inputs[0].default_value = (0.05, 0.05, 0.06, 1.0)
     bg.inputs[1].default_value = 1.0

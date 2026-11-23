@@ -30,8 +30,7 @@ world.node_tree.links.new(bg2.outputs['Background'], mix.inputs[2])
 world.node_tree.links.new(mix.outputs['Shader'], wo.inputs['Surface'])
 clay=bpy.data.materials.new("Clay")
 bsdf=clay.node_tree.nodes["Principled BSDF"]; bsdf.inputs["Base Color"].default_value=(0.72,0.62,0.52,1); bsdf.inputs["Roughness"].default_value=0.55
-try: bsdf.inputs["Subsurface Weight"].default_value=0.25
-except Exception: pass
+bsdf.inputs["Subsurface Weight"].default_value=0.25
 def place(objs, xoff):
     vs=[]
     for ob in objs: vs += [ob.matrix_world @ v.co for v in ob.data.vertices]

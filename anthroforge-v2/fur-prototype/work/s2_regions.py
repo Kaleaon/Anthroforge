@@ -100,7 +100,6 @@ def stats(name, w):
 stats("ruff", ruff); stats("back", back); stats("belly", belly); stats("coat", coat); stats("bodyhair", bodyhair)
 
 mat = bpy.data.materials.get("BodyClay") or bpy.data.materials.new("BodyClay")
-mat.use_nodes = True
 bsdf = mat.node_tree.nodes["Principled BSDF"]
 bsdf.inputs["Base Color"].default_value = (0.16, 0.13, 0.11, 1.0)
 bsdf.inputs["Roughness"].default_value = 0.9

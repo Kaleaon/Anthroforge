@@ -115,7 +115,6 @@ def tube(name, spine_pts, n_rings, per_ring, radius_fn, color_fn=None,
 
 def make_material(name, rough=0.9):
     mat = bpy.data.materials.new(name)
-    mat.use_nodes = True
     bsdf = mat.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Roughness"].default_value = rough
     vc = mat.node_tree.nodes.new("ShaderNodeVertexColor")

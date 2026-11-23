@@ -104,7 +104,6 @@ def build_cards(chosen, path):
     ob = bpy.data.objects.new("FurCards", me)
     bpy.context.scene.collection.objects.link(ob)
     m = bpy.data.materials.new("CardMat")
-    m.use_nodes = True
     nt = m.node_tree
     bsdf = nt.nodes["Principled BSDF"]
     tex = nt.nodes.new("ShaderNodeTexImage")

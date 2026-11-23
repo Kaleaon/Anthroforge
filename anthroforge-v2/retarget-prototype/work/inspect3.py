@@ -6,9 +6,9 @@ arm = [o for o in bpy.data.objects if o.type=='ARMATURE'][0]
 print("armature world matrix:", [round(v,3) for row in arm.matrix_world for v in row])
 def fcs(a):
     out=[]
-    for layer in getattr(a,"layers",[]):
+    for layer in a.layers:
         for strip in layer.strips:
-            for cb in getattr(strip,"channelbags",[]):
+            for cb in strip.channelbags:
                 out.extend(cb.fcurves)
     return out
 for name in ("Walk","Wave"):

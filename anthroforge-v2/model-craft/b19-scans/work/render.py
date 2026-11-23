@@ -12,7 +12,6 @@ if path.endswith(('.gltf', '.glb')):
 obj = [o for o in bpy.data.objects if o.type == 'MESH'][0]
 
 clay = bpy.data.materials.new('clay')
-clay.use_nodes = True
 bsdf = clay.node_tree.nodes['Principled BSDF']
 bsdf.inputs['Base Color'].default_value = (0.55, 0.53, 0.5, 1)
 bsdf.inputs['Roughness'].default_value = 0.85
@@ -26,7 +25,6 @@ scene.cycles.device = 'CPU'
 scene.render.resolution_x = 512
 scene.render.resolution_y = 640
 world = bpy.data.worlds.new('w'); scene.world = world
-world.use_nodes = True
 world.node_tree.nodes['Background'].inputs[0].default_value = (0.12, 0.12, 0.12, 1)
 world.node_tree.nodes['Background'].inputs[1].default_value = 0.5
 

@@ -21,7 +21,6 @@ scene.render.resolution_y = 512
 scene.render.film_transparent = False
 world = bpy.data.worlds.new("W")
 scene.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.35, 0.35, 0.35, 1)
 world.node_tree.nodes["Background"].inputs[1].default_value = 0.7
 sun = bpy.data.objects.new("Sun", bpy.data.lights.new("Sun", "SUN"))

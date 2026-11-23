@@ -23,11 +23,10 @@ scene.render.resolution_x = scene.render.resolution_y = 900
 scene.view_settings.view_transform = "Standard"
 scene.display_settings.display_device = "sRGB"
 world = bpy.data.worlds.new("W"); scene.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (1, 1, 1, 1)
 world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 
-mat = bpy.data.materials.new("planmat"); mat.use_nodes = True
+mat = bpy.data.materials.new("planmat")
 nt = mat.node_tree; nt.nodes.clear()
 em = nt.nodes.new("ShaderNodeEmission")
 vc = nt.nodes.new("ShaderNodeVertexColor"); vc.layer_name = "plan"

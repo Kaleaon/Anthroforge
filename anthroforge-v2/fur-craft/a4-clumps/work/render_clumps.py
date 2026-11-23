@@ -13,7 +13,6 @@ sc.cycles.device = 'CPU'
 sc.render.resolution_x = 600
 sc.render.resolution_y = 600
 sc.world = bpy.data.worlds.new("W") if not sc.world else sc.world
-sc.world.use_nodes = True
 sc.world.node_tree.nodes["Background"].inputs[0].default_value = (0.16, 0.15, 0.14, 1)
 sc.world.node_tree.nodes["Background"].inputs[1].default_value = 0.85
 

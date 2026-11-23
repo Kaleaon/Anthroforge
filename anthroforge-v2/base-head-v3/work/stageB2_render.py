@@ -5,7 +5,7 @@ P6=bpy.data.objects["Piece006"]; P10=bpy.data.objects["Piece010"]
 vs=[v.co for v in T.data.vertices]
 print("TISSUE bbox x",min(v.x for v in vs),max(v.x for v in vs)," y",min(v.y for v in vs),max(v.y for v in vs)," z",min(v.z for v in vs),max(v.z for v in vs))
 def mat(name,rgb):
-    m=bpy.data.materials.new(name); m.use_nodes=True
+    m=bpy.data.materials.new(name)
     m.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value=(*rgb,1)
     m.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value=0.85
     return m
@@ -13,7 +13,7 @@ for ob,rgb in ((T,(0.78,0.74,0.68)),(P6,(0.85,0.3,0.25)),(P10,(0.25,0.5,0.9)),(E
     ob.data.materials.clear(); ob.data.materials.append(mat(ob.name,rgb))
 sc=bpy.context.scene
 sc.render.engine='CYCLES'; sc.cycles.samples=24; sc.cycles.use_denoising=True; sc.render.resolution_x=700; sc.render.resolution_y=700
-w=bpy.data.worlds.new("W"); sc.world=w; w.use_nodes=True
+w=bpy.data.worlds.new("W"); sc.world=w
 w.node_tree.nodes["Background"].inputs[0].default_value=(0.45,0.45,0.45,1)
 cam=bpy.data.objects.new("Cam",bpy.data.cameras.new("Cam")); sc.collection.objects.link(cam); sc.camera=cam
 cam.data.type='ORTHO'; cam.data.ortho_scale=1.2

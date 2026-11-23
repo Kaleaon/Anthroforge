@@ -51,7 +51,6 @@ def build_patch_mesh(name, skin_rgb):
     ob = bpy.data.objects.new(name, me)
     bpy.context.collection.objects.link(ob)
     m = bpy.data.materials.new(name + "_skin")
-    m.use_nodes = True
     bsdf = m.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value = tuple(skin_rgb) + (1.0,)  # linear values
     bsdf.inputs["Roughness"].default_value = 0.8
@@ -163,7 +162,6 @@ def hair_material(name, stops, tint_rgb, roughness):
     blows out to white at density). stops = [(pos, srgb_colour)] root->tip,
     carried as melanin amounts on a ramp; Tint colours the whole strand."""
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     nt = m.node_tree
     nt.nodes.remove(nt.nodes["Principled BSDF"])
     bsdf = nt.nodes.new("ShaderNodeBsdfHairPrincipled")
@@ -209,7 +207,6 @@ sc.render.threads_mode = "FIXED"
 sc.render.threads = 2
 w = bpy.data.worlds.new("Studio")
 sc.world = w
-w.use_nodes = True
 w.node_tree.nodes["Background"].inputs[0].default_value = (0.13, 0.13, 0.145, 1.0)
 w.node_tree.nodes["Background"].inputs[1].default_value = 1.0
 

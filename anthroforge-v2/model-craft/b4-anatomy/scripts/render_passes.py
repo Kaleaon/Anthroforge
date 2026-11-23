@@ -28,7 +28,6 @@ def setup():
     sc.render.resolution_y = 580
     sc.render.film_transparent = False
     sc.world = bpy.data.worlds.new("W")
-    sc.world.use_nodes = True
     sc.world.node_tree.nodes["Background"].inputs[0].default_value = (0.16, 0.16, 0.17, 1)
     sc.world.node_tree.nodes["Background"].inputs[1].default_value = 0.7
     cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
@@ -44,7 +43,6 @@ def setup():
         sc.collection.objects.link(lo)
         look_at(lo, (0, 0, 0.66))
     mat = bpy.data.materials.new("Clay")
-    mat.use_nodes = True
     bsdf = mat.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value = (0.62, 0.58, 0.55, 1)
     bsdf.inputs["Roughness"].default_value = 0.62

@@ -105,7 +105,6 @@ vc_name = high.data.color_attributes.active_color.name if high.data.color_attrib
 log(f"using vertex-colour layer '{vc_name}'")
 
 mat_vc = bpy.data.materials.new("HighMat")
-mat_vc.use_nodes = True
 nt = mat_vc.node_tree
 bsdf = nt.nodes["Principled BSDF"]
 vcn = nt.nodes.new("ShaderNodeVertexColor")
@@ -114,7 +113,6 @@ nt.links.new(vcn.outputs["Color"], bsdf.inputs["Base Color"])
 bsdf.inputs["Roughness"].default_value = 1.0
 
 mat_pt = bpy.data.materials.new("HighPointiness")
-mat_pt.use_nodes = True
 nt2 = mat_pt.node_tree
 nt2.nodes.remove(nt2.nodes["Principled BSDF"])
 out = nt2.nodes["Material Output"]
@@ -131,7 +129,6 @@ nt2.links.new(emit.outputs["Emission"], out.inputs["Surface"])
 
 # ---------- low bake material (active image node is the bake target) ----------
 mat_bake = bpy.data.materials.new("LowBakeMat")
-mat_bake.use_nodes = True
 tex_node = mat_bake.node_tree.nodes.new("ShaderNodeTexImage")
 low.data.materials.clear()
 low.data.materials.append(mat_bake)

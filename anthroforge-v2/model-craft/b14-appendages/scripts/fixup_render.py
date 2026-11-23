@@ -27,7 +27,6 @@ scene.view_settings.view_transform = 'Filmic'
 scene.view_settings.look = 'Medium Contrast'
 world = bpy.data.worlds.new("W")
 scene.world = world
-world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.16, 0.16, 0.17, 1)
 world.node_tree.nodes["Background"].inputs[1].default_value = 0.45
 
@@ -191,7 +190,6 @@ crop.update()
 rump = bpy.data.objects.new("rump_crop", crop)
 bpy.context.collection.objects.link(rump)
 grey = bpy.data.materials.new("rump_grey")
-grey.use_nodes = True
 grey.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.42, 0.40, 0.38, 1)
 grey.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 0.95
 rump.data.materials.append(grey)
@@ -256,7 +254,6 @@ plane.from_pydata([(-1.2, -0.7, 0), (1.2, -0.7, 0), (1.2, 0.7, 0), (-1.2, 0.7, 0
 po = bpy.data.objects.new("ground", plane)
 bpy.context.collection.objects.link(po)
 gm = bpy.data.materials.new("ground_mat")
-gm.use_nodes = True
 gm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.23, 0.23, 0.24, 1)
 po.data.materials.append(gm)
 for nm, loc, en in (("key2", (-0.8, -1.2, 1.6), 500), ("fill2", (1.2, -0.6, 0.8), 200),
