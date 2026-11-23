@@ -13,6 +13,7 @@ from core.sliders import (
     PIPELINE_STAGES,
     CouplingRegistry,
     SliderRegistry,
+    _interp,
     evaluate_effective_vector,
 )
 
@@ -181,6 +182,33 @@ def test_muscle_gate_floors_definition_without_muscle(registry, couplings):
         "body.tissue.level": 0.0, "body.definition.vline": 1.0,
     })
     assert out.sliders["body.definition.vline"] == pytest.approx(0.5)
+
+
+# -- piecewise-linear interpolation (_interp) ------------------------------------
+
+
+def test_interp_clamped_bounds_and_interior_segments():
+    # Unsorted anchors are sorted before interpolation; queries outside
+    # the anchor span clamp flat to the outer endpoints.
+    anchors = [[1.0, 0.9], [0.0, 0.1], [0.5, 0.3]]
+    assert _interp(anchors, -0.5) == pytest.approx(0.1)
+    assert _interp(anchors, 0.0) == pytest.approx(0.1)
+    assert _interp(anchors, 0.25) == pytest.approx(0.2)
+    assert _interp(anchors, 0.5) == pytest.approx(0.3)
+    assert _interp(anchors, 0.75) == pytest.approx(0.6)
+    assert _interp(anchors, 1.0) == pytest.approx(0.9)
+    assert _interp(anchors, 1.5) == pytest.approx(0.9)
+
+
+def test_interp_equal_x_anchor_pairs():
+    anchors = [[0.0, 0.2], [0.5, 0.4], [0.5, 0.8], [1.0, 1.0]]
+    assert _interp(anchors, 0.25) == pytest.approx(0.3)
+    assert _interp(anchors, 0.5) == pytest.approx(0.4)
+    assert _interp(anchors, 0.75) == pytest.approx(0.9)
+    same_x = [[0.5, 0.4], [0.5, 0.8]]
+    assert _interp(same_x, 0.0) == pytest.approx(0.4)
+    assert _interp(same_x, 0.5) == pytest.approx(0.4)
+    assert _interp(same_x, 1.0) == pytest.approx(0.8)
 
 
 # -- TissueDefinition dial -------------------------------------------------------

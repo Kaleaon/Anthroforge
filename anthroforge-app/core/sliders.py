@@ -17,9 +17,11 @@ from __future__ import annotations
 
 import json
 import math
+from collections.abc import Iterable
 from dataclasses import dataclass, field
+from itertools import pairwise
 from pathlib import Path
-from typing import Any, Iterable, Optional
+from typing import Any
 
 from .errors import SliderRecordError, UnknownSliderError
 
@@ -47,11 +49,11 @@ class SliderRecord:
     range_min: float = -1.0
     range_max: float = 1.0
     default: float = 0.0
-    safe_min: Optional[float] = None
-    safe_max: Optional[float] = None
+    safe_min: float | None = None
+    safe_max: float | None = None
     units: str = "normalised"
     endpoint_anchor: str = ""
-    symmetry: Optional[str] = None
+    symmetry: str | None = None
     provenance: dict = field(default_factory=dict)
     instances: dict = field(default_factory=dict)
     raw: dict = field(default_factory=dict, repr=False)
@@ -59,7 +61,7 @@ class SliderRecord:
     # -- construction -----------------------------------------------------
 
     @classmethod
-    def from_dict(cls, data: Any, *, source: str = "<record>") -> "SliderRecord":
+    def from_dict(cls, data: Any, *, source: str = "<record>") -> SliderRecord:
         def fail(msg: str) -> SliderRecordError:
             return SliderRecordError(f"{source}: {msg}")
 
@@ -160,7 +162,7 @@ class SliderRecord:
         return v, []
 
     @property
-    def licence_tier(self) -> Optional[str]:
+    def licence_tier(self) -> str | None:
         """Provenance licence string, e.g. 'study-only (internal)'."""
         lic = self.provenance.get("licence")
         return lic if isinstance(lic, str) else None
@@ -177,7 +179,7 @@ class SliderRegistry:
             self._records[rec.id] = rec
 
     @classmethod
-    def from_folder(cls, folder: str | Path) -> "SliderRegistry":
+    def from_folder(cls, folder: str | Path) -> SliderRegistry:
         folder = Path(folder)
         if not folder.is_dir():
             raise SliderRecordError(f"slider folder not found: {folder}")
@@ -213,7 +215,7 @@ class SliderRegistry:
     def ids(self) -> list[str]:
         return sorted(self._records)
 
-    def find(self, slider_id: str) -> Optional[SliderRecord]:
+    def find(self, slider_id: str) -> SliderRecord | None:
         return self._records.get(slider_id)
 
     def get(self, slider_id: str) -> SliderRecord:
@@ -273,7 +275,7 @@ def _interp(anchors: list, x: float) -> float:
         return pts[0][1]
     if x >= pts[-1][0]:
         return pts[-1][1]
-    for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+    for (x0, y0), (x1, y1) in pairwise(pts):
         if x0 <= x <= x1:
             if x1 == x0:
                 return y1
@@ -295,7 +297,7 @@ class CouplingRecord:
     raw: dict = field(default_factory=dict, repr=False)
 
     @classmethod
-    def from_dict(cls, data: Any, *, source: str = "<record>") -> "CouplingRecord":
+    def from_dict(cls, data: Any, *, source: str = "<record>") -> CouplingRecord:
         def fail(msg: str) -> CouplingRecordError:
             return CouplingRecordError(f"{source}: {msg}")
 
@@ -333,7 +335,7 @@ class CouplingRegistry:
             self._records[rec.id] = rec
 
     @classmethod
-    def from_folder(cls, folder: str | Path) -> "CouplingRegistry":
+    def from_folder(cls, folder: str | Path) -> CouplingRegistry:
         folder = Path(folder)
         if not folder.is_dir():
             raise CouplingRecordError(f"coupling folder not found: {folder}")
@@ -361,7 +363,7 @@ class CouplingRegistry:
     def by_stage(self, stage: str) -> list[CouplingRecord]:
         return [r for r in self._records.values() if r.stage == stage]
 
-    def find_kind(self, kind: str) -> Optional[CouplingRecord]:
+    def find_kind(self, kind: str) -> CouplingRecord | None:
         for rec in self._records.values():
             if rec.kind == kind:
                 return rec

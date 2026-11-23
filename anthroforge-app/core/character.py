@@ -22,7 +22,7 @@ import secrets
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 from .errors import SchemaError, ValidationError
 from .sliders import (
@@ -82,7 +82,7 @@ class Character:
     name: str = "Unnamed"
     base: dict = field(default_factory=lambda: dict(_DEFAULT_BASE))
     sliders: dict[str, float] = field(default_factory=dict)
-    species_preset: Optional[dict] = None
+    species_preset: dict | None = None
     parts: list[dict] = field(default_factory=list)
     fur: dict = field(default_factory=dict)
     materials: dict = field(default_factory=dict)
@@ -114,7 +114,7 @@ class Character:
         return d
 
     @classmethod
-    def from_dict(cls, data: Any) -> "Character":
+    def from_dict(cls, data: Any) -> Character:
         """Build from a parsed dict, structurally validating every
         section. Raises :class:`SchemaError` naming the bad field."""
         if not isinstance(data, dict):
@@ -213,7 +213,7 @@ class Character:
         return path
 
     @classmethod
-    def load(cls, path: str | Path) -> "Character":
+    def load(cls, path: str | Path) -> Character:
         path = Path(path)
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
@@ -227,7 +227,7 @@ class Character:
 
     def validate(
         self,
-        registry: Optional[SliderRegistry] = None,
+        registry: SliderRegistry | None = None,
         *,
         apply_clamps: bool = True,
     ) -> ValidationReport:

@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Optional
 
 from .errors import FurDataError
 
@@ -99,7 +98,7 @@ class FurLibrary:
             )
         return prof
 
-    def profile_for(self, character_fur: dict) -> Optional[dict]:
+    def profile_for(self, character_fur: dict) -> dict | None:
         """Resolve a character record's ``fur`` block to its profile,
         or None when the character names no profile."""
         pid = character_fur.get("profile")
