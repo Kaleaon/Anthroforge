@@ -27,6 +27,30 @@ def test_validate_character_live():
     assert out["derived"]["tissue.level"] > 0.5
 
 
+def test_validate_character_merges_validation_and_coupling_warnings(tmp_path):
+    char_dict = {
+        "format": "anthroforge.character",
+        "version": 1,
+        "name": "Warning merge check",
+        "sliders": {
+            "head.brow.projection": 500.0,  # validation range clamp warning
+            "body.muscle": 0.1,
+            "body.belly.pot": 0.9,          # coupling bare-belly advisory
+        },
+    }
+    validated = server.call_tool("validate_character", {"character": char_dict})
+    assert validated["ok"] is True
+    assert len(validated["warnings"]) >= 2
+    assert "head.brow.projection: requested 500.0 is above range max 150.0" in validated["warnings"][0]
+    assert any("tissue-only" in msg for msg in validated["warnings"][1:])
+    exported = server.call_tool("export_run", {
+        "character": char_dict,
+        "out": str(tmp_path / "warn.glb"),
+        "run_qa": False,
+    })
+    assert exported["warnings"][:len(validated["warnings"])] == validated["warnings"]
+
+
 def test_export_run_live(tmp_path):
     out_path = tmp_path / "pyn.glb"
     result = server.call_tool("export_run", {

@@ -141,13 +141,49 @@ def test_unknown_slider_character_refuses_to_build(tmp_path, library):
 def test_strict_build_checks_the_entire_mesh_fold_gate(tmp_path, library, monkeypatch):
     import core.build as build
     from core.errors import GeometryError
+    from core.geometry import InstanceField
 
-    calls = iter((0, 1))  # body-only passes; a non-body face is flipped
-    monkeypatch.setattr(build, "count_flips", lambda *args, **kwargs: next(calls))
+    base = library.bases.load("makehuman_hm08")
+    linear = np.zeros_like(base.positions)
+    # Mirror only helper/non-body vertices across X so body faces stay
+    # untouched (0 body flips, 0 new degenerates) while non-body faces flip.
+    linear[base.body_end:, 0] = -2.0 * base.positions[base.body_end:, 0]
+    monkeypatch.setattr(
+        build,
+        "load_instance",
+        lambda sid, inst, bid, n_verts, ws, variant=None: InstanceField(sid, bid, linear),
+    )
     char = Character(name="Full mesh gate", sliders={"body.belly.protrusion": 1.0})
+    non_strict = build_character(
+        char, library, out_path=tmp_path / "non_strict.glb",
+        strict=False, run_qa=False,
+    )
+    assert non_strict.flips_body == 0
+    assert non_strict.flips_all > 0
+    assert non_strict.new_degenerate_faces == 0
+    assert non_strict.ok is False
+    assert any("Full-mesh fold gate:" in w for w in non_strict.warnings)
     with pytest.raises(GeometryError, match="full mesh"):
         build_character(char, library, out_path=tmp_path / "strict.glb",
                         strict=True, run_qa=False)
+
+
+def test_build_character_returns_none_body_margin_when_body_mask_is_empty(tmp_path, library, monkeypatch):
+    from core.bases import BasePackage
+
+    pos = np.array([[0., 0., 0.], [1., 0., 0.], [0., 1., 0.]])
+    tris = np.array([[0, 1, 2]])
+    synthetic = BasePackage(
+        id="synthetic", record={}, positions=pos, triangles=tris, navel=0, body_end=0
+    )
+    monkeypatch.setattr(library.bases, "load", lambda _bid: synthetic)
+    rep = build_character(
+        Character(name="No body faces"), library,
+        out_path=tmp_path / "synthetic.glb", run_qa=False,
+    )
+    assert rep.flips_body == 0 and rep.flips_all == 0
+    assert rep.min_body_dot is None
+    assert rep.min_all_dot == pytest.approx(1.0)
 
 
 def test_build_report_is_not_ok_when_non_body_faces_flip():

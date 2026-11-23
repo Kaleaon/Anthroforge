@@ -33,7 +33,7 @@ import numpy as np
 from .bases import BaseRegistry
 from .character import Character
 from .errors import GeometryError
-from .geometry import count_degenerate_faces, count_flips, degenerate_face_mask, load_instance, write_glb
+from .geometry import degenerate_face_mask, face_normals, load_instance, write_glb
 from .sliders import CouplingRegistry, SliderRegistry
 
 APP_ROOT = Path(__file__).resolve().parent.parent
@@ -99,6 +99,11 @@ def evaluate_character(character: Character, library: Library):
     report = character.validate(library.sliders)
     effective = character.effective_sliders(library.sliders, library.couplings)
     return report, effective
+
+
+def _merge_warnings(report, effective) -> list[str]:
+    """Merge validation and coupling clamp/advisory warning messages."""
+    return [w.message for w in (*report.warnings, *effective.warnings)]
 
 
 def run_qa_gauntlet(glb_path: str | Path) -> Optional[dict]:
@@ -192,23 +197,19 @@ def build_character(
             f"build of character {character.id!r} on base {base.id!r}: "
             f"{nonfinite_vertices} vertices contain NaN or infinity"
         )
-    flips_body = count_flips(base.positions, positions, base.triangles,
-                             base.body_face_mask)
-    flips_all = count_flips(base.positions, positions, base.triangles)
-    base_degenerate_faces = count_degenerate_faces(base.positions, base.triangles)
-    degenerate_faces = count_degenerate_faces(positions, base.triangles)
-    from .geometry import face_normals
-
-    dots = np.einsum(
-        "ij,ij->i",
-        face_normals(base.positions, base.triangles),
-        face_normals(positions, base.triangles),
-    )
-    min_body_dot = (float(dots[base.body_face_mask].min())
-                    if np.any(base.body_face_mask) else None)
+    base_normals = face_normals(base.positions, base.triangles)
+    mesh_normals = face_normals(positions, base.triangles)
+    base_degenerate = degenerate_face_mask(base.positions, base.triangles)
+    mesh_degenerate = degenerate_face_mask(positions, base.triangles)
+    dots = np.einsum("ij,ij->i", base_normals, mesh_normals)
+    body_dots = dots[base.body_face_mask]
+    flips_body = int((body_dots < 0).sum())
+    flips_all = int((dots < 0).sum())
+    min_body_dot = float(body_dots.min()) if len(body_dots) else None
     min_all_dot = float(dots.min()) if len(dots) else None
-    new_degenerate_faces = int((degenerate_face_mask(positions, base.triangles) &
-                                ~degenerate_face_mask(base.positions, base.triangles)).sum())
+    base_degenerate_faces = int(base_degenerate.sum())
+    degenerate_faces = int(mesh_degenerate.sum())
+    new_degenerate_faces = int((mesh_degenerate & ~base_degenerate).sum())
     if strict and (flips_all or new_degenerate_faces):
         raise GeometryError(
             f"build of character {character.id!r} on base {base.id!r}: "
@@ -217,8 +218,7 @@ def build_character(
         )
     glb = write_glb(out_path, positions, base.triangles)
     qa = run_qa_gauntlet(glb) if run_qa else None
-    warnings = [w.message for w in report.warnings] + \
-               [w.message for w in effective.warnings]
+    warnings = _merge_warnings(report, effective)
     if unapplied:
         warnings.append(
             f"{len(unapplied)} active slider(s) have no geometry instance on "

@@ -19,9 +19,9 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Optional
+from typing import Any, Callable, Iterable, Optional
 
-from .errors import SliderRecordError, UnknownSliderError
+from .errors import CouplingRecordError, SliderRecordError, UnknownSliderError
 
 
 @dataclass(frozen=True)
@@ -166,41 +166,59 @@ class SliderRecord:
         return lic if isinstance(lic, str) else None
 
 
+def _index_records(records: Iterable, kind: str, error_cls: type[Exception]) -> dict:
+    indexed = {}
+    for rec in records:
+        if rec.id in indexed:
+            raise error_cls(f"duplicate {kind} id {rec.id!r}")
+        indexed[rec.id] = rec
+    return indexed
+
+
+def _load_json_folder(
+    folder: str | Path,
+    kind: str,
+    error_cls: type[Exception],
+    parse: Callable[[dict[str, Any], Path], Any],
+    *,
+    record_id: Callable[[Any], Any] = lambda rec: rec.id,
+    stem_note: str = "",
+) -> list:
+    folder = Path(folder)
+    if not folder.is_dir():
+        raise error_cls(f"{kind} folder not found: {folder}")
+    records = []
+    for path in sorted(folder.glob("*.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise error_cls(f"{path}: unreadable JSON ({exc})") from exc
+        if not isinstance(data, dict):
+            raise error_cls(f"{path}: {kind} record must be a JSON object")
+        rec = parse(data, path)
+        rid = record_id(rec)
+        if path.stem != rid:
+            raise error_cls(
+                f"{path}: filename stem {path.stem!r} does not match "
+                f"record id {rid!r}{stem_note}"
+            )
+        records.append(rec)
+    return records
+
+
 class SliderRegistry:
     """All canonical slider records loaded from one folder."""
 
     def __init__(self, records: Iterable[SliderRecord] = ()):
-        self._records: dict[str, SliderRecord] = {}
-        for rec in records:
-            if rec.id in self._records:
-                raise SliderRecordError(f"duplicate slider id {rec.id!r}")
-            self._records[rec.id] = rec
+        self._records: dict[str, SliderRecord] = _index_records(records, "slider", SliderRecordError)
 
     @classmethod
     def from_folder(cls, folder: str | Path) -> "SliderRegistry":
-        folder = Path(folder)
-        if not folder.is_dir():
-            raise SliderRecordError(f"slider folder not found: {folder}")
-        records: list[SliderRecord] = []
-        seen: dict[str, Path] = {}
-        for path in sorted(folder.glob("*.json")):
-            try:
-                data = json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError) as exc:
-                raise SliderRecordError(f"{path}: unreadable JSON ({exc})") from exc
-            rec = SliderRecord.from_dict(data, source=str(path))
-            if path.stem != rec.id:
-                raise SliderRecordError(
-                    f"{path}: filename stem {path.stem!r} does not match "
-                    f"record id {rec.id!r} (blueprint §3.6 names records <id>.json)"
-                )
-            if rec.id in seen:
-                raise SliderRecordError(
-                    f"{path}: duplicate slider id {rec.id!r} (first seen in {seen[rec.id]})"
-                )
-            seen[rec.id] = path
-            records.append(rec)
-        return cls(records)
+        return cls(_load_json_folder(
+            folder, "slider", SliderRecordError,
+            lambda data, path: SliderRecord.from_dict(data, source=str(path)),
+            stem_note=" (blueprint §3.6 names records <id>.json)",
+        ))
 
     # -- lookup -----------------------------------------------------------
 
@@ -247,8 +265,6 @@ class SliderRegistry:
 # mutated; derived quantities (regional tissue, core share, ...)
 # ride along on the result for the geometry layer.
 # ---------------------------------------------------------------------------
-
-from .errors import CouplingRecordError  # noqa: E402  (section import)
 
 PIPELINE_STAGES = ("authoring", "distribution", "muscle", "tissue")
 
@@ -326,31 +342,14 @@ class CouplingRegistry:
     """All coupling records loaded from one folder (library/couplings/)."""
 
     def __init__(self, records: Iterable[CouplingRecord] = ()):
-        self._records: dict[str, CouplingRecord] = {}
-        for rec in records:
-            if rec.id in self._records:
-                raise CouplingRecordError(f"duplicate coupling id {rec.id!r}")
-            self._records[rec.id] = rec
+        self._records: dict[str, CouplingRecord] = _index_records(records, "coupling", CouplingRecordError)
 
     @classmethod
     def from_folder(cls, folder: str | Path) -> "CouplingRegistry":
-        folder = Path(folder)
-        if not folder.is_dir():
-            raise CouplingRecordError(f"coupling folder not found: {folder}")
-        records: list[CouplingRecord] = []
-        for path in sorted(folder.glob("*.json")):
-            try:
-                data = json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError) as exc:
-                raise CouplingRecordError(f"{path}: unreadable JSON ({exc})") from exc
-            rec = CouplingRecord.from_dict(data, source=str(path))
-            if path.stem != rec.id:
-                raise CouplingRecordError(
-                    f"{path}: filename stem {path.stem!r} does not match "
-                    f"record id {rec.id!r}"
-                )
-            records.append(rec)
-        return cls(records)
+        return cls(_load_json_folder(
+            folder, "coupling", CouplingRecordError,
+            lambda data, path: CouplingRecord.from_dict(data, source=str(path)),
+        ))
 
     def __len__(self) -> int:
         return len(self._records)
