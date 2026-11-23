@@ -26,7 +26,6 @@ import subprocess
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
 
 import numpy as np
 
@@ -51,7 +50,7 @@ class Library:
     bases: BaseRegistry
 
     @classmethod
-    def load(cls, library: str | Path = DEFAULT_LIBRARY) -> "Library":
+    def load(cls, library: str | Path = DEFAULT_LIBRARY) -> Library:
         library = Path(library)
         return cls(
             sliders=SliderRegistry.from_folder(library / "sliders"),
@@ -71,16 +70,16 @@ class BuildReport:
     warnings: list[str] = field(default_factory=list)
     applied: list[str] = field(default_factory=list)       # slider ids with geometry
     unapplied: list[str] = field(default_factory=list)     # effective, no instance on base
-    flips_body: Optional[int] = None
-    flips_all: Optional[int] = None
-    min_body_dot: Optional[float] = None   # thinnest body fold-gate margin
-    min_all_dot: Optional[float] = None    # thinnest full-mesh fold-gate margin
-    base_degenerate_faces: Optional[int] = None
-    degenerate_faces: Optional[int] = None
-    new_degenerate_faces: Optional[int] = None
+    flips_body: int | None = None
+    flips_all: int | None = None
+    min_body_dot: float | None = None   # thinnest body fold-gate margin
+    min_all_dot: float | None = None    # thinnest full-mesh fold-gate margin
+    base_degenerate_faces: int | None = None
+    degenerate_faces: int | None = None
+    new_degenerate_faces: int | None = None
     nonfinite_vertices: int = 0
-    glb_path: Optional[str] = None
-    qa: Optional[dict] = None                              # qa-gauntlet verdicts
+    glb_path: str | None = None
+    qa: dict | None = None                              # qa-gauntlet verdicts
 
     @property
     def ok(self) -> bool:
@@ -101,7 +100,7 @@ def evaluate_character(character: Character, library: Library):
     return report, effective
 
 
-def run_qa_gauntlet(glb_path: str | Path) -> Optional[dict]:
+def run_qa_gauntlet(glb_path: str | Path) -> dict | None:
     """Run the QA gauntlet on one GLB and return its verdict summary,
     or None when the gauntlet is not available on this machine."""
     if not QA_GAUNTLET.is_file():
@@ -153,7 +152,7 @@ def build_character(
     library: Library,
     *,
     out_path: str | Path,
-    belly_variant: Optional[str] = None,
+    belly_variant: str | None = None,
     strict: bool = False,
     run_qa: bool = True,
 ) -> BuildReport:

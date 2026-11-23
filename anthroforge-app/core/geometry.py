@@ -43,7 +43,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
 
 import numpy as np
 
@@ -110,7 +109,7 @@ class InstanceField:
     slider_id: str
     base_id: str
     linear: np.ndarray                       # (n_verts, 3) metres
-    sag: Optional[np.ndarray] = None         # gravity component, if coupled
+    sag: np.ndarray | None = None            # gravity component, if coupled
     gamma: float = 2.0
 
     def __post_init__(self) -> None:
@@ -178,7 +177,7 @@ def load_instance(
     n_verts: int,
     workspace_root: str | Path,
     *,
-    variant: Optional[str] = None,
+    variant: str | None = None,
 ) -> InstanceField:
     """Load one record instance entry as an :class:`InstanceField`.
 
@@ -275,7 +274,7 @@ def count_flips(
     base_positions: np.ndarray,
     positions: np.ndarray,
     triangles: np.ndarray,
-    face_mask: Optional[np.ndarray] = None,
+    face_mask: np.ndarray | None = None,
 ) -> int:
     """Fold gate: faces whose normal flipped vs the base pose — the
     hard QA gate every proof in the lineage ships against (0 flips at

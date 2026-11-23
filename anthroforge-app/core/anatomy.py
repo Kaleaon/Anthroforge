@@ -8,9 +8,10 @@ it does not invent meshes or pretend a metadata-only part is exportable.
 from __future__ import annotations
 
 import json
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path, PureWindowsPath
-from typing import Any, Iterable
+from typing import Any
 
 PART_FORMAT = "anthroforge.part"
 PART_VERSION = 1
@@ -191,7 +192,7 @@ class AnatomyLibrary:
         folder: str | Path,
         *,
         require_mesh_files: bool = True,
-    ) -> "AnatomyLibrary":
+    ) -> AnatomyLibrary:
         root = Path(folder)
         if not root.is_dir():
             raise FileNotFoundError(f"anatomy parts folder not found: {root}")
