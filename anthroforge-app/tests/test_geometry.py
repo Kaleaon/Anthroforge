@@ -14,7 +14,15 @@ import pytest
 
 from core.bases import BaseRegistry
 from core.errors import GeometryError
-from core.geometry import count_degenerate_faces, count_flips, load_instance, parse_target, write_glb
+from core.geometry import (
+    count_degenerate_faces,
+    count_flips,
+    degenerate_face_mask,
+    face_normals,
+    load_instance,
+    parse_target,
+    write_glb,
+)
 from core.sliders import SliderRegistry
 
 APP = Path(__file__).resolve().parent.parent
@@ -72,6 +80,21 @@ def test_contact_variant_swaps_the_combined_field(bases, registry):
     with pytest.raises(GeometryError, match="unknown instance variant"):
         load_instance(rec.id, rec.instances["makehuman_hm08"],
                       base.id, base.n_verts, WS, variant="nope")
+
+
+def test_components_variant_lookup_matches_arrays_branch(bases, registry):
+    base = bases.load("makehuman_hm08")
+    rec = registry.get("body.belly.protrusion")
+    comps_only = {k: v for k, v in rec.instances["makehuman_hm08"].items() if k != "arrays"}
+    plain = load_instance(rec.id, comps_only, base.id, base.n_verts, WS)
+    contact = load_instance(rec.id, comps_only, base.id, base.n_verts, WS, variant="contact")
+    assert not np.allclose(plain.at(1.0), contact.at(1.0))
+    assert np.allclose(plain.sag, contact.sag)
+    with pytest.raises(GeometryError, match=r"unknown instance variant 'nope' \(declared: \['contact'\]\)"):
+        load_instance(rec.id, comps_only, base.id, base.n_verts, WS, variant="nope")
+    no_variants = {"components": {k: v for k, v in comps_only["components"].items() if k != "variants"}}
+    with pytest.raises(GeometryError, match=r"unknown instance variant 'contact' \(declared: none\)"):
+        load_instance(rec.id, no_variants, base.id, base.n_verts, WS, variant="contact")
 
 
 def test_parse_target_rejects_bad_index(tmp_path):
@@ -178,3 +201,18 @@ def test_degenerate_face_gate_detects_collapsed_triangles():
     healthy = positions.copy()
     healthy[2] = [0., 1., 0.]
     assert count_degenerate_faces(healthy, triangles) == 0
+
+
+def test_degenerate_face_mask_accepts_empty_triangles_and_validates_shapes():
+    positions = np.zeros((3, 3))
+    empty_mask = degenerate_face_mask(positions, np.empty((0, 3), dtype=int))
+    assert empty_mask.shape == (0,) and empty_mask.dtype == np.bool_
+    assert face_normals(np.array([[0., 0., 0.], [1., 0., 0.], [2., 0., 0.]]),
+                        np.array([[0, 1, 2]])).tolist() == [[0.0, 0.0, 0.0]]
+    with pytest.raises(GeometryError, match=r"^positions must have shape"):
+        degenerate_face_mask(np.zeros((3, 2)), np.empty((0, 3), dtype=int))
+    with pytest.raises(GeometryError, match=r"^triangles must have shape"):
+        degenerate_face_mask(positions, np.zeros((1, 2), dtype=int))
+    with pytest.raises(GeometryError, match=r"^triangle index is outside"):
+        degenerate_face_mask(positions, np.array([[0, 1, 3]]))
+

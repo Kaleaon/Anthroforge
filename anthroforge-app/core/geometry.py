@@ -171,6 +171,17 @@ def _resolve(workspace_root: Path, rel: str, slider_id: str) -> Path:
     return p
 
 
+def _resolve_variant(spec: dict, variant: str, slider_id: str):
+    variants = spec.get("variants") or {}
+    if not isinstance(variants, dict) or variant not in variants:
+        declared = sorted(variants) if isinstance(variants, dict) and variants else "none"
+        raise GeometryError(
+            f"slider {slider_id!r}: unknown instance variant "
+            f"{variant!r} (declared: {declared})"
+        )
+    return variants[variant]
+
+
 def load_instance(
     slider_id: str,
     instance: dict,
@@ -204,13 +215,7 @@ def load_instance(
             with np.load(pack_path) as data:
                 linear_key = arrays["linear"]
                 if variant is not None:
-                    variants = arrays.get("variants", {})
-                    if variant not in variants:
-                        raise GeometryError(
-                            f"slider {slider_id!r}: unknown instance variant "
-                            f"{variant!r} (declared: {sorted(variants) or 'none'})"
-                        )
-                    linear_key = variants[variant]["linear"]
+                    linear_key = _resolve_variant(arrays, variant, slider_id)["linear"]
                 linear = data[linear_key].astype(np.float64)
                 sag = (data[arrays["sag"]].astype(np.float64)
                        if arrays.get("sag") else None)
@@ -231,15 +236,11 @@ def load_instance(
         )
     comps = instance.get("components")
     if comps is not None:
-        combined_rel = comps.get("combined")
-        if variant is not None:
-            variants = comps.get("variants", {})
-            if variant not in variants:
-                raise GeometryError(
-                    f"slider {slider_id!r}: unknown instance variant {variant!r} "
-                    f"(declared: {sorted(variants) or 'none'})"
-                )
-            combined_rel = variants[variant]
+        combined_rel = (
+            _resolve_variant(comps, variant, slider_id)
+            if variant is not None
+            else comps.get("combined")
+        )
         if not combined_rel or "sag" not in comps:
             raise GeometryError(
                 f"slider {slider_id!r}: components instance needs 'combined' and 'sag'"
@@ -263,12 +264,40 @@ def load_instance(
     )
 
 
+def _triangle_cross(positions: np.ndarray, triangles: np.ndarray) -> np.ndarray:
+    tris = positions[triangles]
+    return np.cross(tris[:, 1] - tris[:, 0], tris[:, 2] - tris[:, 0])
+
+
+def _unit_rows(vectors: np.ndarray) -> np.ndarray:
+    lengths = np.linalg.norm(vectors, axis=1, keepdims=True)
+    return np.divide(vectors, lengths, out=np.zeros_like(vectors), where=lengths > 0)
+
+
+def _validate_mesh_arrays(
+    positions: np.ndarray,
+    triangles: np.ndarray,
+    *,
+    prefix: str = "",
+    require_non_empty: bool = False,
+    require_integer_indices: bool = False,
+) -> tuple[np.ndarray, np.ndarray]:
+    pos, tris = np.asarray(positions), np.asarray(triangles)
+    kind = "non-empty shape" if require_non_empty else "shape"
+    if pos.ndim != 2 or pos.shape[1:] != (3,) or (require_non_empty and not len(pos)):
+        raise GeometryError(f"{prefix}positions must have {kind} (N, 3), got {pos.shape}")
+    if tris.ndim != 2 or tris.shape[1:] != (3,) or (require_non_empty and not len(tris)):
+        raise GeometryError(f"{prefix}triangles must have {kind} (M, 3), got {tris.shape}")
+    if require_integer_indices and not np.issubdtype(tris.dtype, np.integer):
+        raise GeometryError(f"{prefix}triangle indices must be integers")
+    if tris.size and (tris.min() < 0 or tris.max() >= len(pos)):
+        raise GeometryError(f"{prefix}triangle index is outside the vertex array")
+    return pos, tris
+
+
 def face_normals(positions: np.ndarray, triangles: np.ndarray) -> np.ndarray:
     """Unit face normals; degenerate faces get a zero normal."""
-    tris = positions[triangles]
-    n = np.cross(tris[:, 1] - tris[:, 0], tris[:, 2] - tris[:, 0])
-    ln = np.linalg.norm(n, axis=1, keepdims=True)
-    return np.divide(n, ln, out=np.zeros_like(n), where=ln > 0)
+    return _unit_rows(_triangle_cross(positions, triangles))
 
 
 def count_flips(
@@ -290,21 +319,15 @@ def count_flips(
 
 def degenerate_face_mask(positions: np.ndarray, triangles: np.ndarray, *, area_epsilon: float = 1e-12) -> np.ndarray:
     """Return a per-face mask for collapsed or non-finite triangles."""
-    if positions.ndim != 2 or positions.shape[1] != 3:
-        raise GeometryError(f"positions must have shape (N, 3), got {positions.shape}")
-    if triangles.ndim != 2 or triangles.shape[1] != 3:
-        raise GeometryError(f"triangles must have shape (M, 3), got {triangles.shape}")
-    if triangles.size and (triangles.min() < 0 or triangles.max() >= len(positions)):
-        raise GeometryError("triangle index is outside the vertex array")
-    tri = positions[triangles]
-    cross = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
-    magnitude = np.linalg.norm(cross, axis=1)
+    pos, tris = _validate_mesh_arrays(positions, triangles)
+    magnitude = np.linalg.norm(_triangle_cross(pos, tris), axis=1)
     return ~np.isfinite(magnitude) | (magnitude <= area_epsilon)
 
 
 def count_degenerate_faces(positions: np.ndarray, triangles: np.ndarray, *, area_epsilon: float = 1e-12) -> int:
     """Count faces with cross-product magnitude at or below epsilon (m^2)."""
     return int(degenerate_face_mask(positions, triangles, area_epsilon=area_epsilon).sum())
+
 
 def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) -> Path:
     """Write a minimal, valid GLB (one mesh, positions + computed
@@ -314,20 +337,10 @@ def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) ->
     import json as _json
     import struct
 
-    source_positions = np.asarray(positions)
-    source_triangles = np.asarray(triangles)
-    if source_positions.ndim != 2 or source_positions.shape[1:] != (3,) or not len(source_positions):
-        raise GeometryError(
-            f"write_glb: positions must have non-empty shape (N, 3), got {source_positions.shape}"
-        )
-    if source_triangles.ndim != 2 or source_triangles.shape[1:] != (3,) or not len(source_triangles):
-        raise GeometryError(
-            f"write_glb: triangles must have non-empty shape (M, 3), got {source_triangles.shape}"
-        )
-    if not np.issubdtype(source_triangles.dtype, np.integer):
-        raise GeometryError("write_glb: triangle indices must be integers")
-    if source_triangles.min() < 0 or source_triangles.max() >= len(source_positions):
-        raise GeometryError("write_glb: triangle index is outside the vertex array")
+    source_positions, source_triangles = _validate_mesh_arrays(
+        positions, triangles, prefix="write_glb: ",
+        require_non_empty=True, require_integer_indices=True,
+    )
     pos = np.ascontiguousarray(source_positions, dtype=np.float32)
     triangles = np.ascontiguousarray(source_triangles, dtype=np.uint32)
     # A non-finite vertex would serialise as an invalid NaN/Infinity
@@ -345,8 +358,7 @@ def write_glb(path: str | Path, positions: np.ndarray, triangles: np.ndarray) ->
     vn = np.zeros_like(pos)
     flat = triangles.ravel()
     np.add.at(vn, flat, np.repeat(nrm, 3, axis=0))
-    ln = np.linalg.norm(vn, axis=1, keepdims=True)
-    vn = np.divide(vn, ln, out=np.zeros_like(vn), where=ln > 0).astype(np.float32)
+    vn = _unit_rows(vn).astype(np.float32)
     idx = triangles
 
     def pad4(b: bytes) -> bytes:

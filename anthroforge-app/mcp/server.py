@@ -91,7 +91,7 @@ def _character_from_args(arguments: dict):
 
 def _validate_character(arguments: dict) -> dict:
     """#27: validate a character + return its effective vector."""
-    from core.build import Library, evaluate_character
+    from core.build import Library, _merge_warnings, evaluate_character
 
     character = _character_from_args(arguments)
     library = Library.load()
@@ -99,8 +99,7 @@ def _validate_character(arguments: dict) -> dict:
     return {
         "ok": report.ok,
         "errors": report.errors,
-        "warnings": [w.message for w in report.warnings]
-                    + [w.message for w in effective.warnings],
+        "warnings": _merge_warnings(report, effective),
         "effective_sliders": effective.sliders,
         "derived": effective.derived,
     }

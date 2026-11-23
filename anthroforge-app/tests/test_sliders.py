@@ -205,3 +205,19 @@ def test_filename_id_mismatch_rejected(tmp_path):
     bad.write_text((SLIDERS_DIR / "body.chubby.json").read_text())
     with pytest.raises(SliderRecordError, match="does not match"):
         SliderRegistry.from_folder(tmp_path)
+
+
+@pytest.mark.parametrize("payload", ["[]", '"not-an-object"', "42", "null"])
+def test_registry_loaders_reject_non_object_json_with_domain_errors(tmp_path, payload):
+    from core.bases import BaseRegistry
+    from core.errors import BaseRecordError, CouplingRecordError
+    from core.sliders import CouplingRegistry
+
+    (tmp_path / "bad.json").write_text(payload, encoding="utf-8")
+    with pytest.raises(SliderRecordError, match="slider record must be a JSON object"):
+        SliderRegistry.from_folder(tmp_path)
+    with pytest.raises(CouplingRecordError, match="coupling record must be a JSON object"):
+        CouplingRegistry.from_folder(tmp_path)
+    with pytest.raises(BaseRecordError, match="base record must be a JSON object"):
+        BaseRegistry(tmp_path)
+

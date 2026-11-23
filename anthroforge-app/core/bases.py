@@ -17,14 +17,13 @@ with no instance on the character's base is reported, not applied.
 
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
 
 import numpy as np
 
 from .errors import BaseRecordError
+from .sliders import _load_json_folder
 
 # Blueprint §3.1's default body id denotes the hm08 package (recorded
 # as an alias in library/bases/makehuman_hm08.json).
@@ -58,25 +57,20 @@ class BaseRegistry:
 
     def __init__(self, folder: str | Path):
         self.folder = Path(folder)
-        if not self.folder.is_dir():
-            raise BaseRecordError(f"base folder not found: {self.folder}")
-        self._records: dict[str, dict] = {}
-        for path in sorted(self.folder.glob("*.json")):
-            try:
-                data = json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError) as exc:
-                raise BaseRecordError(f"{path}: unreadable JSON ({exc})") from exc
+
+        def parse_base(data: dict, path: Path) -> dict:
             if data.get("format") != "anthroforge.base":
                 raise BaseRecordError(
                     f"{path}: field 'format': expected 'anthroforge.base', "
                     f"got {data.get('format')!r}"
                 )
-            if data.get("id") != path.stem:
-                raise BaseRecordError(
-                    f"{path}: filename stem {path.stem!r} does not match "
-                    f"record id {data.get('id')!r}"
-                )
-            self._records[data["id"]] = data
+            return data
+
+        records = _load_json_folder(
+            self.folder, "base", BaseRecordError, parse_base,
+            record_id=lambda data: data.get("id"),
+        )
+        self._records: dict[str, dict] = {rec["id"]: rec for rec in records}
         self._packages: dict[str, BasePackage] = {}
 
     def ids(self) -> list[str]:
